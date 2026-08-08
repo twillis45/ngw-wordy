@@ -96,12 +96,22 @@ npm run definitions
 
 `data/webster.json` is gitignored — it's a regenerable build input.
 
-> **Caveat: the source is Webster's Unabridged (1913).** It is public domain and
-> works offline, but it is Victorian. "linker" comes back as *"a torch made of
-> tow and pitch"* rather than *"one who links"*, and it predates modern
-> Scrabble-legal words (achy, ads, actin) — which is most of the missing 20%.
-> A modern dictionary API would read better but would put definitions behind
-> the network. Unresolved trade-off, deliberately chosen for offline-first.
+Definitions are **hybrid**:
+
+1. **Bundled floor** — Webster's Unabridged (1913), public domain, offline. It is
+   Victorian: on its own it defines *linker* as "a torch made of tow and pitch".
+2. **Modern upgrade** — fetched per word from dictionaryapi.dev on demand and
+   cached in localStorage (capped at 600 entries, confirmed misses remembered so
+   we don't re-ask). *linker* becomes "That which links."
+
+The sheet shows the floor **instantly** and upgrades in place, so there is never
+a spinner in front of content the player could already be reading. The source is
+labelled either way. If the network is gone or the API dies, the feature degrades
+to archaic-but-present rather than broken — which is the point of keeping a
+bundled floor at all.
+
+`parseModern` is pure and defensively tested against malformed payloads, because
+it parses a third-party shape we don't control.
 
 ## Breakpoints
 

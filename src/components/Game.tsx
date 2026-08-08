@@ -14,10 +14,12 @@ import RankBar from './RankBar';
 import Rail from './Rail';
 import { feedback, setMuted } from '@/lib/feedback';
 import {
+  fromBundled,
   loadDefinitions,
   lookup,
+  resolveModern,
   type Definitions,
-  type Entry,
+  type Resolved,
 } from '@/lib/definitions';
 import { flyLetters, measureFlight } from '@/lib/flight';
 import {
@@ -95,9 +97,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const [showWords, setShowWords] = useState(false);
   const [showRules, setShowRules] = useState(false);
   const [defs, setDefs] = useState<Definitions | null>(null);
-  const [showDef, setShowDef] = useState<{ word: string; entry: Entry } | null>(
-    null
-  );
+  const [showDef, setShowDef] = useState<Resolved | null>(null);
+  const [defUpgrading, setDefUpgrading] = useState(false);
   /** Words solved in THIS session — only these animate. */
   const [justSolved, setJustSolved] = useState<Set<string>>(new Set());
   const [floatFor, setFloatFor] = useState<{
@@ -302,20 +303,38 @@ export default function Game({ data }: { data: PuzzleFile }) {
     };
   }, []);
 
+  /**
+   * Show the bundled definition immediately, then upgrade in place if a modern
+   * one can be fetched. No spinner in front of content the player could already
+   * be reading — the only wait is when there is no floor to show.
+   */
   const openDefinition = useCallback(
     (word: string) => {
       const entry = lookup(defs, word);
-      if (!entry) return;
-      setShowDef({ word, entry });
+      setShowDef(entry ? fromBundled(word, entry) : null);
+      setDefUpgrading(true);
+
+      void resolveModern(word).then((modern) => {
+        setDefUpgrading(false);
+        // Only replace if the sheet is still on this word; a fast player can
+        // have moved on before the request lands.
+        setShowDef((current) => {
+          if (modern) return modern;
+          if (current) return current;
+          // No floor and no upgrade — say so rather than leaving a blank sheet.
+          return { word, definition: '', source: 'archaic' };
+        });
+      });
     },
     [defs]
   );
 
-  /** Only offer the tap when there is genuinely something behind it. */
-  const hasDefinition = useCallback(
-    (word: string) => lookup(defs, word) !== null,
-    [defs]
-  );
+  /**
+   * Every solved word is now tappable: the API covers most of the 20% the
+   * bundled source lacks, so gating on the bundle would hide definitions that
+   * are in fact available.
+   */
+  const hasDefinition = useCallback(() => true, []);
 
   // Keep the audio module in step with the stored preference.
   useEffect(() => {
@@ -663,20 +682,50 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </Sheet>
       )}
 
-      {showDef && (
-        <Sheet onClose={() => setShowDef(null)} label={`Definition of ${showDef.word}`}>
+      {(showDef !== null || defUpgrading) && (
+        <Sheet
+          onClose={() => {
+            setShowDef(null);
+            setDefUpgrading(false);
+          }}
+          label={showDef ? `Definition of ${showDef.word}` : 'Definition'}
+        >
           <div className="rounded-2xl border border-carbon-border bg-carbon-panel p-4">
             <h2 className="text-[22px] font-bold uppercase tracking-[0.06em] text-text-primary">
-              {showDef.word}
+              {showDef?.word ?? ''}
             </h2>
-            {showDef.entry[1] && (
-              <p className="mt-1 text-[13px] text-text-muted">
-                from <span className="text-text-secondary">{showDef.entry[1]}</span>
+
+            {showDef?.partOfSpeech && (
+              <p className="mt-1 text-[13px] italic text-text-muted">
+                {showDef.partOfSpeech}
               </p>
             )}
+            {showDef?.lemma && (
+              <p className="mt-1 text-[13px] text-text-muted">
+                from <span className="text-text-secondary">{showDef.lemma}</span>
+              </p>
+            )}
+
             <p className="mt-3 text-[15px] leading-relaxed text-text-secondary">
-              {showDef.entry[0]}
+              {showDef?.definition
+                ? showDef.definition
+                : defUpgrading
+                  ? 'Looking it up…'
+                  : 'No definition found for this one.'}
             </p>
+
+            {/* Say where it came from. A Victorian reading of a modern word is
+                a fact about the source, not a bug to hide. */}
+            {showDef?.definition && (
+              <p className="mt-3 text-[12px] text-text-muted">
+                {showDef.source === 'modern'
+                  ? 'Modern dictionary'
+                  : "Webster's Unabridged, 1913"}
+                {defUpgrading && showDef.source === 'archaic'
+                  ? ' · checking for a newer one…'
+                  : ''}
+              </p>
+            )}
           </div>
         </Sheet>
       )}

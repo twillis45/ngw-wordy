@@ -21,6 +21,7 @@ import {
   STARTING_TOKENS,
   tokenBalance,
 } from './hints';
+import { parseModern } from './definitions';
 
 const puzzle: Puzzle = {
   id: 1,
@@ -383,5 +384,82 @@ describe('touchStreak day marking', () => {
     const p = touchStreak({ ...EMPTY }, new Date(2026, 7, 8));
     expect(p.days['2026-08-08']).toBe(true);
     expect(p.streak).toBe(1);
+  });
+});
+
+describe('parseModern', () => {
+  const payload = [
+    {
+      word: 'linker',
+      meanings: [
+        {
+          partOfSpeech: 'noun',
+          definitions: [
+            { definition: 'That which links.' },
+            { definition: 'A computer program that assembles objects.' },
+          ],
+        },
+      ],
+    },
+  ];
+
+  it('takes the first usable sense with its part of speech', () => {
+    expect(parseModern(payload)).toEqual({
+      d: 'That which links.',
+      p: 'noun',
+    });
+  });
+
+  it('skips empty or too-short definitions', () => {
+    expect(
+      parseModern([
+        {
+          meanings: [
+            {
+              partOfSpeech: 'verb',
+              definitions: [{ definition: '  ' }, { definition: 'To bind.' }],
+            },
+          ],
+        },
+      ])
+    ).toEqual({ d: 'To bind.', p: 'verb' });
+  });
+
+  it('falls through to a later meaning when the first has none', () => {
+    expect(
+      parseModern([
+        {
+          meanings: [
+            { partOfSpeech: 'noun', definitions: [] },
+            { partOfSpeech: 'verb', definitions: [{ definition: 'To link.' }] },
+          ],
+        },
+      ])
+    ).toEqual({ d: 'To link.', p: 'verb' });
+  });
+
+  it('omits part of speech when the source does not give one', () => {
+    expect(
+      parseModern([{ meanings: [{ definitions: [{ definition: 'A thing.' }] }] }])
+    ).toEqual({ d: 'A thing.', p: undefined });
+  });
+
+  // It parses a third-party shape, so every level has to survive garbage.
+  it('returns null for malformed payloads rather than throwing', () => {
+    for (const bad of [
+      null,
+      undefined,
+      {},
+      [],
+      'nope',
+      [{}],
+      [{ meanings: 'no' }],
+      [{ meanings: [{}] }],
+      [{ meanings: [{ definitions: 'no' }] }],
+      [{ meanings: [{ definitions: [{}] }] }],
+      [{ meanings: [{ definitions: [{ definition: 42 }] }] }],
+    ]) {
+      expect(parseModern(bad)).toBeNull();
+    }
   });
 });
