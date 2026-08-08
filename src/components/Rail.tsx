@@ -110,13 +110,13 @@ export default function Rail({
         title="Streak"
         meta={bestStreak > 1 ? `best ${bestStreak}` : undefined}
       >
-        <div className="flex items-end justify-between gap-1.5">
+        <div className="flex items-end justify-between gap-1">
           {days.map((d, i) => (
             <div key={d.key} className="flex flex-col items-center gap-1.5">
               <span
                 aria-hidden
                 className={[
-                  'grid h-7 w-7 place-items-center rounded-md border text-[11px]',
+                  'grid h-6 w-6 place-items-center rounded-md border text-[11px] lg:h-7 lg:w-7',
                   d.played
                     ? 'border-success/40 bg-success/15 text-success'
                     // Unplayed cells hold no glyph, so no text color here —

@@ -13,6 +13,7 @@ import WordTray from './WordTray';
 import RankBar from './RankBar';
 import Rail from './Rail';
 import { feedback, setMuted } from '@/lib/feedback';
+import { flyLetters, measureFlight } from '@/lib/flight';
 import {
   dailyIndex,
   dayKey,
@@ -63,6 +64,12 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const [showComplete, setShowComplete] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showWords, setShowWords] = useState(false);
+  /** Words solved in THIS session — only these animate. */
+  const [justSolved, setJustSolved] = useState<Set<string>>(new Set());
+  const [floatFor, setFloatFor] = useState<{
+    word: string;
+    points: number;
+  } | null>(null);
   const toastId = useRef(0);
 
   /**
@@ -121,6 +128,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
   const commit = useCallback(() => {
     const word = selRef.current.map((i) => letters[i]).join('');
+    // Measure the flight BEFORE clearing the selection — once the tiles
+    // deselect they shrink, and the launch rects would be wrong.
+    const flight = measureFlight(word, letters);
     setSel([]);
     if (!word) return;
 
@@ -133,7 +143,26 @@ export default function Game({ data }: { data: PuzzleFile }) {
       case 'grid': {
         const solvedBefore = puzzle.grid.filter((w) => banked.has(w)).length;
         feedback.correct(solvedBefore);
-        addWord(key, result.word);
+
+        /*
+         * The reveal, three beats inside ~900ms:
+         *   1. letters fly from the wheel to their slots
+         *   2. each lands with an overshoot and a light sweep across the row
+         *   3. the points float off the row
+         *
+         * Beat 1 runs first and the tray fills when it lands, so the letters
+         * appear to carry themselves into place rather than teleporting.
+         */
+        const flightMs = flyLetters(flight);
+        const land = () => {
+          setJustSolved((prev) => new Set(prev).add(result.word));
+          addWord(key, result.word);
+          setFloatFor({ word: result.word, points: result.points });
+          setTimeout(() => setFloatFor(null), 950);
+        };
+        if (flightMs > 0) setTimeout(land, flightMs * 0.62);
+        else land();
+
         say(
           result.isBase
             ? `${result.word.toUpperCase()} · the long one!`
@@ -144,14 +173,18 @@ export default function Game({ data }: { data: PuzzleFile }) {
         // that finishes the grid, exactly once, and banks the streak with it.
         if (solvedBefore + 1 === puzzle.grid.length) {
           update((p) => touchStreak(p, today));
-          feedback.complete();
-          setShowComplete(true);
+          // Let the last word actually land before the sheet covers it.
+          setTimeout(() => {
+            feedback.complete();
+            setShowComplete(true);
+          }, Math.max(420, flightMs * 0.62 + 380));
         }
         break;
       }
       case 'bonus':
         feedback.bonus();
         addWord(key, result.word);
+        setJustSolved((prev) => new Set(prev).add(result.word));
         say(`Bonus +${result.points}`, 'good');
         break;
       case 'duplicate':
@@ -273,13 +306,16 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * single-puzzle game on a wide screen. Extra width goes to the evidence
    * rail or stays deliberately empty; it never inflates the game.
    *
-   *   < 768   one column, wheel bottom-anchored in the thumb zone
-   *   >= 768  board scales up, rail drops in below it
-   *   >= 1024 rail moves beside the board, board centers vertically
-   *   >= 1536 wider measure, rail gains the how-to-play card
+   *   < 768   one column, wheel bottom-anchored in the thumb zone; the
+   *             rail is reachable through a sheet
+   *   >= 768  two columns already. An iPad in portrait has room for the
+   *             board plus a narrow rail, and stacking them left a
+   *             half-cut card at the fold, which read as broken
+   *   >= 1024 wider rail, board centers vertically in its cell
+   *   >= 1536 wider measure again, rail gains the how-to-play card
    */
   return (
-    <main className="safe-top safe-bottom mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-5 md:max-w-[600px] lg:max-w-[1060px] 2xl:max-w-[1240px]">
+    <main className="safe-top safe-bottom mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-5 md:max-w-[820px] lg:max-w-[1060px] 2xl:max-w-[1240px]">
       {/* Header — quiet. Day number and streak are evidence, not the hero. */}
       <header className="flex items-center justify-between">
         <div>
@@ -301,31 +337,33 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </button>
       </header>
 
-      <div className="mt-4 flex min-h-0 flex-1 flex-col gap-8 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:items-start lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="mt-4 flex min-h-0 flex-1 flex-col gap-8 md:grid md:grid-cols-[minmax(0,1fr)_260px] md:gap-7 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
         {/* Board column — bounded at every width, centered on desktop. */}
-        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col md:max-w-[480px] lg:min-h-[620px] lg:justify-center">
+        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col md:max-w-[440px] md:justify-center">
       <RankBar rank={rank} score={score} />
 
       {/* Target grid */}
-      <section aria-label="Words to find" className="mt-6">
+      <section aria-label="Words to find" className="mt-5">
         <WordTray
           grid={puzzle.grid}
           found={found}
           revealed={revealed}
           base={puzzle.base}
+          justSolved={justSolved}
+          floatFor={floatFor}
         />
       </section>
 
       {/* Greedy only on phone, where it bottom-anchors the wheel in the thumb
           zone. From tablet up the rail sits below the board so the page
           scrolls anyway — anchoring there just opened a void. */}
-      <div className="min-h-6 flex-1 md:h-8 md:flex-none" />
+      <div className="min-h-6 flex-1 md:h-5 md:flex-none" />
 
       {/* Current word — the only place the accent green appears mid-play */}
       <div
         aria-live="polite"
         className={[
-          'mb-3 grid h-11 place-items-center',
+          'mb-2 grid h-10 place-items-center',
           shaking ? 'anim-shake' : '',
         ].join(' ')}
       >
@@ -405,7 +443,12 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </div>
 
         {/* Evidence rail — below the board on tablet, beside it on desktop. */}
-        <aside aria-label="Your progress" className="hidden md:block lg:sticky lg:top-6">
+        {/* self-start keeps the rail at its natural height so the board column
+            can stretch and center its own contents. */}
+        <aside
+          aria-label="Your progress"
+          className="hidden md:block md:self-start lg:sticky lg:top-6"
+        >
           {rail}
         </aside>
       </div>

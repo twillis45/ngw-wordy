@@ -127,7 +127,18 @@ export default function LetterWheel({
       onPointerDown={handleDown}
       onPointerMove={handleMove}
       onPointerUp={endDrag}
-      className="relative aspect-square w-[264px] touch-none select-none md:w-[330px] lg:w-[300px]"
+      className="relative aspect-square touch-none select-none"
+      /*
+       * Sized from the viewport, not from breakpoints.
+       *
+       * The binding constraint on this component is HEIGHT — a landscape
+       * tablet has width to spare and none to give, and a width-only
+       * breakpoint pushed the controls off screen there. clamp() on vh
+       * handles every device in one expression, and unlike stacked
+       * media-query utilities it can't be defeated by CSS source order.
+       * The 78vw cap keeps it inside the gutters on a narrow phone.
+       */
+      style={{ width: 'min(clamp(200px, 30vh, 296px), 78vw)' }}
     >
       {/* Matte disc — depth comes from an inset ring, not a glow. */}
       <div
@@ -167,6 +178,9 @@ export default function LetterWheel({
           <button
             key={`${letter}-${i}`}
             type="button"
+            // Flight source. The reveal measures this rect to know where the
+            // letter should launch from.
+            data-wheel-tile={i}
             disabled={disabled}
             aria-label={`Letter ${letter.toUpperCase()}${
               active ? `, selected position ${order + 1}` : ''
@@ -179,7 +193,7 @@ export default function LetterWheel({
             }}
             className={[
               'absolute grid place-items-center rounded-2xl border font-bold',
-              'text-[26px] md:text-[32px] lg:text-[29px]',
+              'text-[26px] md:text-[29px]',
               'transition-[transform,background-color,border-color] duration-150',
               'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-muted',
               // anim-tick both pulses on selection and holds the selected
