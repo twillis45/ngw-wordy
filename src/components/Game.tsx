@@ -64,6 +64,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const [showComplete, setShowComplete] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showWords, setShowWords] = useState(false);
+  const [showRules, setShowRules] = useState(false);
   /** Words solved in THIS session — only these animate. */
   const [justSolved, setJustSolved] = useState<Set<string>>(new Set());
   const [floatFor, setFloatFor] = useState<{
@@ -315,7 +316,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
    *   >= 1536 wider measure again, rail gains the how-to-play card
    */
   return (
-    <main className="safe-top safe-bottom mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-5 md:max-w-[820px] lg:max-w-[1060px] 2xl:max-w-[1240px]">
+    <main className="safe-top safe-bottom mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-5 md:max-w-[740px] lg:max-w-[780px] 2xl:max-w-[820px]">
       {/* Header — quiet. Day number and streak are evidence, not the hero. */}
       <header className="flex items-center justify-between">
         <div>
@@ -327,19 +328,30 @@ export default function Game({ data }: { data: PuzzleFile }) {
             {progress.streak > 0 ? ` · ${progress.streak} day streak` : ''}
           </p>
         </div>
+        <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setShowRules(true)}
+          aria-haspopup="dialog"
+          aria-label="How to play"
+          className="grid h-9 w-9 place-items-center rounded-full border border-carbon-border text-[15px] font-semibold text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+        >
+          ?
+        </button>
         <button
           type="button"
           onClick={() => setMutedPref(!progress.muted)}
           aria-label={progress.muted ? 'Unmute sound' : 'Mute sound'}
-          className="grid h-10 w-10 place-items-center rounded-full border border-carbon-border text-text-muted transition-colors hover:text-text-secondary"
+          className="grid h-9 w-9 place-items-center rounded-full border border-carbon-border text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
         >
           <SoundIcon muted={progress.muted} />
         </button>
+        </div>
       </header>
 
       <div className="mt-4 flex min-h-0 flex-1 flex-col gap-8 md:grid md:grid-cols-[minmax(0,1fr)_260px] md:gap-7 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
         {/* Board column — bounded at every width, centered on desktop. */}
-        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col md:max-w-[440px] md:justify-center">
+        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col md:max-w-[440px] md:justify-center md:rounded-3xl md:border md:border-carbon-border/70 md:px-5 md:py-6">
       <RankBar rank={rank} score={score} />
 
       {/* Target grid */}
@@ -389,7 +401,12 @@ export default function Game({ data }: { data: PuzzleFile }) {
           // An empty hero slot read as a hole in the layout, and nothing on
           // screen said how to enter a word. One muted line fixes both.
           <span className="text-[13px] text-text-muted">
-            Drag across the letters, or type
+            {/* Rendered per modality in CSS rather than from a measured
+                pointer type, so it is correct before hydration. */}
+            <span className="mouse:hidden">Drag across the letters</span>
+            <span className="hidden mouse:inline">
+              Click the letters, or just type
+            </span>
           </span>
         )}
       </div>
@@ -420,13 +437,19 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </ControlButton>
       </div>
 
+      <p className="mt-2 hidden text-center text-[12px] text-text-muted mouse:block">
+        <kbd className="font-sans text-text-secondary">Enter</kbd> to submit ·{' '}
+        <kbd className="font-sans text-text-secondary">Space</kbd> to shuffle ·{' '}
+        <kbd className="font-sans text-text-secondary">Backspace</kbd> to undo
+      </p>
+
       {/* On phone the rail has no room, so this line is the way in. From
           tablet up the rail is on screen and the line is just a readout. */}
       <button
         type="button"
         onClick={() => setShowWords(true)}
         aria-haspopup="dialog"
-        className="mt-3 rounded-full px-3 py-1 text-center text-[13px] text-text-muted transition-colors hover:text-text-secondary md:pointer-events-none md:hover:text-text-muted"
+        className="mt-3 inline-flex min-h-11 flex-wrap items-center justify-center gap-x-1 rounded-full px-3 text-center text-[13px] text-text-muted transition-colors hover:text-text-secondary md:min-h-0 md:pointer-events-none md:hover:text-text-muted"
       >
         {bonusFound.length} bonus {bonusFound.length === 1 ? 'word' : 'words'}
         {hintsAvailable <= 0 && (
@@ -467,6 +490,27 @@ export default function Game({ data }: { data: PuzzleFile }) {
             bestStreak={progress.bestStreak}
             howToClassName=""
           />
+        </Sheet>
+      )}
+
+      {showRules && (
+        <Sheet onClose={() => setShowRules(false)} label="How to play">
+          <div className="rounded-2xl border border-carbon-border bg-carbon-panel p-4">
+            <h2 className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+              How to play
+            </h2>
+            <ul className="flex flex-col gap-2.5 text-[15px] leading-relaxed text-text-secondary">
+              <li>Drag across the wheel to spell a word — or just type it.</li>
+              <li>Fill every row in the grid to finish the puzzle.</li>
+              <li>
+                The top row uses all six letters. That one&apos;s the prize.
+              </li>
+              <li>
+                Extra words still score, and every 3 of them earns you a hint.
+              </li>
+              <li>New letters every day.</li>
+            </ul>
+          </div>
         </Sheet>
       )}
 

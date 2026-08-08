@@ -11,6 +11,16 @@
 @custom-variant roomy (@media (min-width: 768px) and (min-height: 900px));
 
 /*
+ * Input modality, named once.
+ *
+ * Screen size is not input type: a desktop has no touch, so the 44px
+ * minimum target is a touch rule and looks oversized with a mouse, and
+ * "drag across the letters" is simply the wrong instruction there.
+ */
+@custom-variant touch (@media (pointer: coarse));
+@custom-variant mouse (@media (hover: hover) and (pointer: fine));
+
+/*
  * NGW Wordy — Studio Matte
  *
  * Palette is the locked Studio Matte ramp from ngw-event-planner
