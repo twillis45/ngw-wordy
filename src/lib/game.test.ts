@@ -9,7 +9,18 @@ import {
   submit,
   type Puzzle,
 } from './game';
-import { touchStreak, type Progress } from './storage';
+import { EMPTY, migrateV1, touchStreak, type Progress } from './storage';
+import {
+  bonusToNextToken,
+  COST_LETTER,
+  COST_WORD,
+  EMPTY_REVEAL,
+  revealedCount,
+  revealLetter,
+  revealWord,
+  STARTING_TOKENS,
+  tokenBalance,
+} from './hints';
 
 const puzzle: Puzzle = {
   id: 1,
@@ -201,13 +212,7 @@ describe('shareText', () => {
 });
 
 describe('touchStreak', () => {
-  const base: Progress = {
-    days: {},
-    streak: 0,
-    bestStreak: 0,
-    lastPlayed: null,
-    muted: false,
-  };
+  const base: Progress = { ...EMPTY };
   const today = new Date(2026, 7, 8);
   const yesterday = new Date(2026, 7, 7);
   const lastWeek = new Date(2026, 7, 1);
@@ -234,5 +239,149 @@ describe('touchStreak', () => {
   it('tracks the best streak across resets', () => {
     const p = { ...base, streak: 9, bestStreak: 9, lastPlayed: dayKey(lastWeek) };
     expect(touchStreak(p, today).bestStreak).toBe(9);
+  });
+});
+
+describe('hint economy', () => {
+  it('grants a starting balance so hints are usable immediately', () => {
+    expect(tokenBalance({ bonusTotal: 0, cleared: 0, spent: 0 })).toBe(
+      STARTING_TOKENS
+    );
+  });
+
+  it('earns a token every 3 bonus words', () => {
+    expect(tokenBalance({ bonusTotal: 2, cleared: 0, spent: 0 })).toBe(3);
+    expect(tokenBalance({ bonusTotal: 3, cleared: 0, spent: 0 })).toBe(4);
+    expect(tokenBalance({ bonusTotal: 9, cleared: 0, spent: 0 })).toBe(6);
+  });
+
+  it('earns a token per cleared puzzle', () => {
+    expect(tokenBalance({ bonusTotal: 0, cleared: 2, spent: 0 })).toBe(5);
+  });
+
+  it('never goes negative', () => {
+    expect(tokenBalance({ bonusTotal: 0, cleared: 0, spent: 99 })).toBe(0);
+  });
+
+  it('reports bonus words needed for the next token', () => {
+    expect(bonusToNextToken(0)).toBe(3);
+    expect(bonusToNextToken(2)).toBe(1);
+    expect(bonusToNextToken(3)).toBe(3);
+  });
+});
+
+describe('revealLetter', () => {
+  const base = { ...EMPTY_REVEAL };
+
+  it('reveals one more leading letter', () => {
+    const r = revealLetter(base, 'linker', { solved: false, balance: 3 });
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      expect(revealedCount(r.reveal, 'linker')).toBe(1);
+      expect(r.cost).toBe(COST_LETTER);
+    }
+  });
+
+  it('accumulates across spends', () => {
+    let reveal = base;
+    for (let i = 0; i < 3; i += 1) {
+      const r = revealLetter(reveal, 'linker', { solved: false, balance: 9 });
+      if (r.ok) reveal = r.reveal;
+    }
+    expect(revealedCount(reveal, 'linker')).toBe(3);
+  });
+
+  it('refuses to reveal the final letter for a letter price', () => {
+    const reveal = { letters: { race: 3 }, words: [] };
+    expect(revealLetter(reveal, 'race', { solved: false, balance: 9 })).toEqual({
+      ok: false,
+      reason: 'nothing-left',
+    });
+  });
+
+  it('refuses without tokens', () => {
+    expect(revealLetter(base, 'linker', { solved: false, balance: 0 })).toEqual({
+      ok: false,
+      reason: 'no-tokens',
+    });
+  });
+
+  it('refuses on a solved word', () => {
+    expect(revealLetter(base, 'linker', { solved: true, balance: 9 })).toEqual({
+      ok: false,
+      reason: 'already-solved',
+    });
+  });
+});
+
+describe('revealWord', () => {
+  it('fills the whole word and costs more', () => {
+    const r = revealWord(EMPTY_REVEAL, 'linker', {
+      solved: false,
+      balance: 3,
+    });
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      expect(r.cost).toBe(COST_WORD);
+      expect(revealedCount(r.reveal, 'linker')).toBe(6);
+    }
+  });
+
+  it('refuses when the balance is short', () => {
+    expect(
+      revealWord(EMPTY_REVEAL, 'linker', { solved: false, balance: 2 })
+    ).toEqual({ ok: false, reason: 'no-tokens' });
+  });
+
+  it('will not double-spend on the same word', () => {
+    const reveal = { letters: {}, words: ['linker'] };
+    expect(revealWord(reveal, 'linker', { solved: false, balance: 9 })).toEqual({
+      ok: false,
+      reason: 'already-solved',
+    });
+  });
+});
+
+describe('migrateV1', () => {
+  const legacy = {
+    days: { '2026-08-07': ['linker', 'kiln'], '2026-08-08': ['race'] },
+    streak: 4,
+    bestStreak: 9,
+    lastPlayed: '2026-08-08',
+    muted: true,
+  };
+
+  it('preserves the streak, which is the part that matters', () => {
+    const p = migrateV1(legacy, () => null);
+    expect(p.streak).toBe(4);
+    expect(p.bestStreak).toBe(9);
+    expect(p.lastPlayed).toBe('2026-08-08');
+    expect(p.muted).toBe(true);
+  });
+
+  it('marks every legacy day as played even when unattributable', () => {
+    const p = migrateV1(legacy, () => null);
+    expect(p.days).toEqual({ '2026-08-07': true, '2026-08-08': true });
+    expect(p.words).toEqual({});
+  });
+
+  it('re-keys words by puzzle when the day can be attributed', () => {
+    const p = migrateV1(legacy, (k) => (k === '2026-08-07' ? '33' : null));
+    expect(p.words).toEqual({ '33': ['linker', 'kiln'] });
+  });
+
+  it('starts the hint ledger clean', () => {
+    const p = migrateV1(legacy, () => null);
+    expect(p.bonusTotal).toBe(0);
+    expect(p.spent).toBe(0);
+    expect(p.clearedIds).toEqual([]);
+  });
+});
+
+describe('touchStreak day marking', () => {
+  it('records the day as played so the strip and streak agree', () => {
+    const p = touchStreak({ ...EMPTY }, new Date(2026, 7, 8));
+    expect(p.days['2026-08-08']).toBe(true);
+    expect(p.streak).toBe(1);
   });
 });

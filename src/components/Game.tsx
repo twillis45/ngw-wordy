@@ -16,7 +16,6 @@ import { feedback, setMuted } from '@/lib/feedback';
 import { flyLetters, measureFlight } from '@/lib/flight';
 import {
   dailyIndex,
-  dayKey,
   rankFor,
   scoreWord,
   shareText,
@@ -27,26 +26,52 @@ import {
 } from '@/lib/game';
 import {
   addWord,
+  configureMigration,
   getServerSnapshot,
   getSnapshot,
-  setMutedPref,
   last7,
+  markCleared,
+  revealFor,
+  setMutedPref,
+  spendHint,
   subscribe,
   touchStreak,
   update,
   wordsFor,
 } from '@/lib/storage';
+import {
+  bonusToNextToken,
+  COST_WORD,
+  revealLetter,
+  revealWord,
+  tokenBalance,
+} from '@/lib/hints';
 
 type Toast = { text: string; tone: 'good' | 'bad' | 'neutral'; id: number };
 
-/** Bonus words buy hints — the economy is earned, never sold. */
-const HINT_COST = 3;
 
 export default function Game({ data }: { data: PuzzleFile }) {
   const today = useMemo(() => new Date(), []);
-  const index = dailyIndex(today, data.puzzles.length);
+  const todayIndex = dailyIndex(today, data.puzzles.length);
+
+  /*
+   * The daily puzzle is the canonical one — it is what the streak and the
+   * share card describe. `offset` lets a player keep going past it without
+   * waiting for tomorrow; only offset 0 touches the streak.
+   */
+  const [offset, setOffset] = useState(0);
+  const index = (todayIndex + offset) % data.puzzles.length;
   const puzzle: Puzzle = data.puzzles[index];
-  const key = dayKey(today);
+  const puzzleId = String(puzzle.id);
+  const isDaily = offset === 0;
+
+  // Lets the v1 -> v2 migration re-key old day-based words onto puzzles.
+  configureMigration((dk) => {
+    const [y, m, d] = dk.split('-').map(Number);
+    if (!y || !m || !d) return null;
+    const i = dailyIndex(new Date(y, m - 1, d), data.puzzles.length);
+    return String(data.puzzles[i]?.id ?? '');
+  });
 
   // Single source of truth for anything that outlives the session.
   const progress = useSyncExternalStore(
@@ -57,8 +82,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
   const [letters, setLetters] = useState<string[]>(puzzle.letters);
   const [selected, setSelected] = useState<number[]>([]);
-  const [revealed, setRevealed] = useState<Set<string>>(new Set());
-  const [spentHints, setSpentHints] = useState(0);
   const [toast, setToast] = useState<Toast | null>(null);
   const [shaking, setShaking] = useState(false);
   const [showComplete, setShowComplete] = useState(false);
@@ -93,17 +116,39 @@ export default function Game({ data }: { data: PuzzleFile }) {
   );
 
   const found = useMemo(
-    () => new Set(wordsFor(progress, key)),
-    [progress, key]
+    () => new Set(wordsFor(progress, puzzleId)),
+    [progress, puzzleId]
+  );
+  const reveal = revealFor(progress, puzzleId);
+  const tokens = tokenBalance({
+    bonusTotal: progress.bonusTotal,
+    cleared: progress.clearedIds.length,
+    spent: progress.spent,
+  });
+
+  /** A row is done when it was solved, or bought outright with a hint. */
+  const rowDone = useCallback(
+    (w: string) => found.has(w) || reveal.words.includes(w),
+    [found, reveal]
   );
 
   const bonusFound = [...found].filter((w) => !puzzle.grid.includes(w));
   const score = [...found].reduce((s, w) => s + scoreWord(w, data.wheel), 0);
   const rank = rankFor(score, puzzle.maxScore);
-  const hintsAvailable = Math.floor(bonusFound.length / HINT_COST) - spentHints;
 
   const current = selected.map((i) => letters[i]).join('');
   const days = useMemo(() => last7(progress, today), [progress, today]);
+
+  const goToPuzzle = useCallback(
+    (nextOffset: number) => {
+      setOffset(nextOffset);
+      setSel([]);
+      setJustSolved(new Set());
+      setShowComplete(false);
+      setLetters(data.puzzles[(todayIndex + nextOffset) % data.puzzles.length].letters);
+    },
+    [data.puzzles, todayIndex, setSel]
+  );
 
   const say = useCallback((text: string, tone: Toast['tone']) => {
     toastId.current += 1;
@@ -127,6 +172,33 @@ export default function Game({ data }: { data: PuzzleFile }) {
     [setSel]
   );
 
+  /**
+   * Fires exactly once, from either path that can finish a grid: submitting the
+   * last word, or buying the last row with hints. Reads the store rather than
+   * render state so it is correct inside the same event.
+   */
+  const finishIfDone = useCallback(
+    (delayMs: number) => {
+      const snap = getSnapshot();
+      const banked = wordsFor(snap, puzzleId);
+      const bought = revealFor(snap, puzzleId).words;
+      const done = puzzle.grid.filter(
+        (w) => banked.includes(w) || bought.includes(w)
+      ).length;
+      if (done < puzzle.grid.length) return;
+
+      markCleared(puzzleId);
+      // Practice puzzles must never move the streak, or it stops meaning
+      // "showed up today".
+      if (isDaily) update((p) => touchStreak(p, today));
+      setTimeout(() => {
+        feedback.complete();
+        setShowComplete(true);
+      }, delayMs);
+    },
+    [puzzle.grid, puzzleId, isDaily, today]
+  );
+
   const commit = useCallback(() => {
     const word = selRef.current.map((i) => letters[i]).join('');
     // Measure the flight BEFORE clearing the selection — once the tiles
@@ -137,11 +209,20 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
     // Read the store directly rather than the render-time snapshot: two
     // submissions inside one React batch must not both bank the same word.
-    const banked = new Set(wordsFor(getSnapshot(), key));
+    const banked = new Set(wordsFor(getSnapshot(), puzzleId));
     const result = submit(puzzle, data.wheel, word, banked);
 
     switch (result.kind) {
       case 'grid': {
+        /*
+         * Count rows that are DONE, not just solved. A row bought with hints
+         * fills the grid too, so counting only solved words meant a puzzle
+         * finished with any bought row could never register as complete.
+         */
+        const boughtRows = revealFor(getSnapshot(), puzzleId).words;
+        const doneBefore = puzzle.grid.filter(
+          (w) => banked.has(w) || boughtRows.includes(w)
+        ).length;
         const solvedBefore = puzzle.grid.filter((w) => banked.has(w)).length;
         feedback.correct(solvedBefore);
 
@@ -157,7 +238,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         const flightMs = flyLetters(flight);
         const land = () => {
           setJustSolved((prev) => new Set(prev).add(result.word));
-          addWord(key, result.word);
+          addWord(puzzleId, result.word, false);
           setFloatFor({ word: result.word, points: result.points });
           setTimeout(() => setFloatFor(null), 950);
         };
@@ -172,19 +253,15 @@ export default function Game({ data }: { data: PuzzleFile }) {
         );
         // Completion is an event, not a derived effect: it fires on the word
         // that finishes the grid, exactly once, and banks the streak with it.
-        if (solvedBefore + 1 === puzzle.grid.length) {
-          update((p) => touchStreak(p, today));
+        if (doneBefore + 1 === puzzle.grid.length) {
           // Let the last word actually land before the sheet covers it.
-          setTimeout(() => {
-            feedback.complete();
-            setShowComplete(true);
-          }, Math.max(420, flightMs * 0.62 + 380));
+          finishIfDone(Math.max(420, flightMs * 0.62 + 380));
         }
         break;
       }
       case 'bonus':
         feedback.bonus();
-        addWord(key, result.word);
+        addWord(puzzleId, result.word, true);
         setJustSolved((prev) => new Set(prev).add(result.word));
         say(`Bonus +${result.points}`, 'good');
         break;
@@ -203,7 +280,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         say('Not a word', 'bad');
         break;
     }
-  }, [letters, puzzle, data.wheel, key, say, setSel, today]);
+  }, [letters, puzzle, data.wheel, puzzleId, say, setSel, finishIfDone]);
 
   // Keep the audio module in step with the stored preference.
   useEffect(() => {
@@ -243,15 +320,54 @@ export default function Game({ data }: { data: PuzzleFile }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [commit, letters, setSel]);
 
-  const useHint = () => {
-    if (hintsAvailable <= 0) return;
-    const target = puzzle.grid.find((w) => !found.has(w) && !revealed.has(w));
-    if (!target) return;
-    setRevealed((prev) => new Set(prev).add(target));
-    setSpentHints((n) => n + 1);
-    feedback.bonus();
-    say('First letter revealed', 'neutral');
-  };
+  /**
+   * Hints are targeted: the player taps the row they're stuck on, because
+   * which word is blocking them is information only they have. The old version
+   * guessed for them and always picked the first unsolved row.
+   */
+  const spendLetter = useCallback(
+    (word: string) => {
+      const r = revealLetter(reveal, word, {
+        solved: rowDone(word),
+        balance: tokens,
+      });
+      if (!r.ok) {
+        feedback.duplicate();
+        say(
+          r.reason === 'no-tokens'
+            ? 'No hints left'
+            : r.reason === 'nothing-left'
+              ? 'Only one letter left — solve it'
+              : 'Already done',
+          'neutral'
+        );
+        return;
+      }
+      spendHint(puzzleId, r.reveal, r.cost);
+      feedback.bonus();
+      say(`Letter revealed · −${r.cost}`, 'neutral');
+    },
+    [reveal, tokens, puzzleId, say, rowDone]
+  );
+
+  const spendWord = useCallback(
+    (word: string) => {
+      const r = revealWord(reveal, word, {
+        solved: rowDone(word),
+        balance: tokens,
+      });
+      if (!r.ok) {
+        feedback.duplicate();
+        say(r.reason === 'no-tokens' ? `Needs ${COST_WORD} hints` : 'Already done', 'neutral');
+        return;
+      }
+      spendHint(puzzleId, r.reveal, r.cost);
+      feedback.correct(0);
+      say(`${word.toUpperCase()} · −${r.cost}`, 'neutral');
+      finishIfDone(360);
+    },
+    [reveal, tokens, puzzleId, say, rowDone, finishIfDone]
+  );
 
   const shareCard = () =>
     shareText({
@@ -324,8 +440,20 @@ export default function Game({ data }: { data: PuzzleFile }) {
             Wordy
           </h1>
           <p className="text-[13px] text-text-muted">
-            Day {index + 1}
-            {progress.streak > 0 ? ` · ${progress.streak} day streak` : ''}
+            {isDaily ? (
+              <>
+                Today
+                {progress.streak > 0 ? ` · ${progress.streak} day streak` : ''}
+              </>
+            ) : (
+              <button
+                type="button"
+                onClick={() => goToPuzzle(0)}
+                className="text-text-secondary underline decoration-carbon-strong underline-offset-2"
+              >
+                Puzzle +{offset} · back to today
+              </button>
+            )}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -355,14 +483,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
       <RankBar rank={rank} score={score} />
 
       {/* Target grid */}
-      <section aria-label="Words to find" className="mt-5">
+      <section aria-label="Words to find" className="mt-3 roomy:mt-5">
         <WordTray
           grid={puzzle.grid}
           found={found}
-          revealed={revealed}
+          reveal={reveal}
           base={puzzle.base}
           justSolved={justSolved}
           floatFor={floatFor}
+          canHint={tokens > 0}
+          onRevealLetter={spendLetter}
+          onRevealWord={spendWord}
         />
       </section>
 
@@ -432,8 +563,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
         >
           Shuffle
         </ControlButton>
-        <ControlButton onClick={useHint} disabled={hintsAvailable <= 0}>
-          Hint {hintsAvailable > 0 ? `(${hintsAvailable})` : ''}
+        <ControlButton onClick={() => setShowWords(true)}>
+          {bonusFound.length} bonus
         </ControlButton>
       </div>
 
@@ -449,17 +580,15 @@ export default function Game({ data }: { data: PuzzleFile }) {
         type="button"
         onClick={() => setShowWords(true)}
         aria-haspopup="dialog"
-        className="mt-3 inline-flex min-h-11 flex-wrap items-center justify-center gap-x-1 rounded-full px-3 text-center text-[13px] text-text-muted transition-colors hover:text-text-secondary md:min-h-0 md:pointer-events-none md:hover:text-text-muted"
+        className="inline-flex min-h-11 flex-wrap items-center justify-center gap-x-1 rounded-full px-3 text-center text-[13px] text-text-muted transition-colors hover:text-text-secondary md:min-h-0 md:pointer-events-none md:hover:text-text-muted"
       >
-        {bonusFound.length} bonus {bonusFound.length === 1 ? 'word' : 'words'}
-        {hintsAvailable <= 0 && (
-          // carbon-strong is a BORDER token; as text it measured 1.51:1 —
-          // invisible. The palette supports exactly three text tiers, so
-          // de-emphasis here comes from position, not from less contrast.
-          <span>
-            {' '}
-            · {HINT_COST - (bonusFound.length % HINT_COST)} more earns a hint
-          </span>
+        {tokens > 0 ? (
+          <>Tap a row for a hint · {tokens} left</>
+        ) : (
+          <>
+            {bonusToNextToken(progress.bonusTotal)} more bonus{' '}
+            {bonusToNextToken(progress.bonusTotal) === 1 ? 'word' : 'words'} earns a hint
+          </>
         )}
         <span className="md:hidden"> ›</span>
       </button>
@@ -522,7 +651,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
           streak={progress.streak}
           preview={shareCard()}
           copied={copied}
+          isDaily={isDaily}
           onShare={share}
+          onNext={() => goToPuzzle(offset + 1)}
           onClose={() => setShowComplete(false)}
         />
       )}
@@ -624,7 +755,9 @@ function CompleteSheet({
   streak,
   preview,
   copied,
+  isDaily,
   onShare,
+  onNext,
   onClose,
 }: {
   rank: string;
@@ -633,14 +766,16 @@ function CompleteSheet({
   streak: number;
   preview: string;
   copied: boolean;
+  isDaily: boolean;
   onShare: () => void;
+  onNext: () => void;
   onClose: () => void;
 }) {
   return (
     <div className="fixed inset-0 z-50 grid place-items-end bg-black/70 sm:place-items-center">
       <div className="anim-rise safe-bottom w-full max-w-[420px] rounded-t-3xl border-t border-carbon-border bg-carbon-panel px-6 pt-7 sm:rounded-3xl sm:border">
         <p className="text-[13px] uppercase tracking-[0.14em] text-text-muted">
-          Grid cleared
+          {isDaily ? "Today's puzzle cleared" : 'Puzzle cleared'}
         </p>
         <h2 className="mt-1 text-[28px] font-bold text-text-primary">{rank}</h2>
 
@@ -655,20 +790,31 @@ function CompleteSheet({
           {preview}
         </pre>
 
+        {/* Forward motion is the primary action — sharing is what you do
+            once, playing on is what brings you back. */}
         <button
           type="button"
-          onClick={onShare}
+          onClick={onNext}
           className="mt-6 h-12 w-full rounded-full bg-gradient-to-b from-steel to-steel-dark text-[15px] font-semibold text-text-primary"
         >
-          {copied ? 'Copied' : 'Share result'}
+          Next puzzle →
         </button>
-        <button
-          type="button"
-          onClick={onClose}
-          className="mt-2 h-11 w-full rounded-full text-[14px] text-text-muted"
-        >
-          Keep finding bonus words
-        </button>
+        <div className="mt-2 flex gap-2">
+          <button
+            type="button"
+            onClick={onShare}
+            className="h-11 flex-1 rounded-full border border-carbon-border text-[14px] text-text-secondary"
+          >
+            {copied ? 'Copied' : 'Share'}
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="h-11 flex-1 rounded-full text-[14px] text-text-muted"
+          >
+            Keep looking
+          </button>
+        </div>
       </div>
     </div>
   );
