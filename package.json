@@ -9,7 +9,8 @@
     "lint": "eslint",
     "test": "vitest run",
     "puzzles": "node scripts/build-puzzles.mjs 240",
-    "icons": "python3 scripts/build-icons.py"
+    "icons": "python3 scripts/build-icons.py",
+    "definitions": "node scripts/build-definitions.mjs"
   },
   "dependencies": {
     "next": "16.3.0",

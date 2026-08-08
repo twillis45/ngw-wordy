@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Bulk dictionary source for scripts/build-definitions.mjs (22MB).
+# Regenerate: curl -sL https://raw.githubusercontent.com/matthewreagan/WebstersEnglishDictionary/master/dictionary_compact.json -o data/webster.json
+data/webster.json

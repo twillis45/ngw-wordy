@@ -31,6 +31,8 @@ type Props = {
    * the mobile sheet passes '' to always show it.
    */
   howToClassName?: string;
+  hasDefinition: (word: string) => boolean;
+  onShowDefinition: (word: string) => void;
 };
 
 export default function Rail({
@@ -44,6 +46,8 @@ export default function Rail({
   streak,
   bestStreak,
   howToClassName = 'hidden 2xl:block',
+  hasDefinition,
+  onShowDefinition,
 }: Props) {
   const solvedTargets = gridWords.filter((w) => found.has(w));
 
@@ -55,7 +59,13 @@ export default function Rail({
           empty="None yet"
         >
           {solvedTargets.map((w) => (
-            <Chip key={w} word={w} tone={w === base ? 'base' : 'target'} />
+            <Chip
+              key={w}
+              word={w}
+              tone={w === base ? 'base' : 'target'}
+              definable={hasDefinition(w)}
+              onOpen={onShowDefinition}
+            />
           ))}
         </Group>
 
@@ -66,7 +76,13 @@ export default function Rail({
           {[...bonusFound]
             .sort((a, b) => b.length - a.length || a.localeCompare(b))
             .map((w) => (
-              <Chip key={w} word={w} tone="bonus" />
+              <Chip
+                key={w}
+                word={w}
+                tone="bonus"
+                definable={hasDefinition(w)}
+                onOpen={onShowDefinition}
+              />
             ))}
         </Group>
       </Card>
@@ -206,22 +222,34 @@ function Group({
 function Chip({
   word,
   tone,
+  definable,
+  onOpen,
 }: {
   word: string;
   tone: 'base' | 'target' | 'bonus';
+  definable: boolean;
+  onOpen: (word: string) => void;
 }) {
+  const cls = [
+    'rounded-md px-2 py-1 text-[13px] font-medium uppercase tracking-[0.06em]',
+    tone === 'base'
+      ? 'bg-success/15 text-success'
+      : tone === 'target'
+        ? 'bg-carbon-surface-2 text-text-primary'
+        : 'bg-carbon-surface-2 text-text-secondary',
+  ].join(' ');
+
+  // A word with no entry stays a plain span, so nothing invites a dead tap.
+  if (!definable) return <span className={cls}>{word}</span>;
+
   return (
-    <span
-      className={[
-        'rounded-md px-2 py-1 text-[13px] font-medium uppercase tracking-[0.06em]',
-        tone === 'base'
-          ? 'bg-success/15 text-success'
-          : tone === 'target'
-            ? 'bg-carbon-surface-2 text-text-primary'
-            : 'bg-carbon-surface-2 text-text-secondary',
-      ].join(' ')}
+    <button
+      type="button"
+      onClick={() => onOpen(word)}
+      aria-label={`${word}. Show definition.`}
+      className={`${cls} underline decoration-carbon-strong decoration-dotted underline-offset-2 transition-colors hover:decoration-steel-muted`}
     >
       {word}
-    </span>
+    </button>
   );
 }

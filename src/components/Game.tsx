@@ -13,6 +13,12 @@ import WordTray from './WordTray';
 import RankBar from './RankBar';
 import Rail from './Rail';
 import { feedback, setMuted } from '@/lib/feedback';
+import {
+  loadDefinitions,
+  lookup,
+  type Definitions,
+  type Entry,
+} from '@/lib/definitions';
 import { flyLetters, measureFlight } from '@/lib/flight';
 import {
   dailyIndex,
@@ -88,6 +94,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const [copied, setCopied] = useState(false);
   const [showWords, setShowWords] = useState(false);
   const [showRules, setShowRules] = useState(false);
+  const [defs, setDefs] = useState<Definitions | null>(null);
+  const [showDef, setShowDef] = useState<{ word: string; entry: Entry } | null>(
+    null
+  );
   /** Words solved in THIS session — only these animate. */
   const [justSolved, setJustSolved] = useState<Set<string>>(new Set());
   const [floatFor, setFloatFor] = useState<{
@@ -282,6 +292,31 @@ export default function Game({ data }: { data: PuzzleFile }) {
     }
   }, [letters, puzzle, data.wheel, puzzleId, say, setSel, finishIfDone]);
 
+  useEffect(() => {
+    let alive = true;
+    void loadDefinitions().then((d) => {
+      if (alive) setDefs(d);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const openDefinition = useCallback(
+    (word: string) => {
+      const entry = lookup(defs, word);
+      if (!entry) return;
+      setShowDef({ word, entry });
+    },
+    [defs]
+  );
+
+  /** Only offer the tap when there is genuinely something behind it. */
+  const hasDefinition = useCallback(
+    (word: string) => lookup(defs, word) !== null,
+    [defs]
+  );
+
   // Keep the audio module in step with the stored preference.
   useEffect(() => {
     setMuted(progress.muted);
@@ -414,6 +449,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
       days={days}
       streak={progress.streak}
       bestStreak={progress.bestStreak}
+      hasDefinition={hasDefinition}
+      onShowDefinition={openDefinition}
     />
   );
 
@@ -494,6 +531,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
           canHint={tokens > 0}
           onRevealLetter={spendLetter}
           onRevealWord={spendWord}
+          hasDefinition={hasDefinition}
+          onShowDefinition={openDefinition}
         />
       </section>
 
@@ -617,8 +656,28 @@ export default function Game({ data }: { data: PuzzleFile }) {
             days={days}
             streak={progress.streak}
             bestStreak={progress.bestStreak}
+            hasDefinition={hasDefinition}
+            onShowDefinition={openDefinition}
             howToClassName=""
           />
+        </Sheet>
+      )}
+
+      {showDef && (
+        <Sheet onClose={() => setShowDef(null)} label={`Definition of ${showDef.word}`}>
+          <div className="rounded-2xl border border-carbon-border bg-carbon-panel p-4">
+            <h2 className="text-[22px] font-bold uppercase tracking-[0.06em] text-text-primary">
+              {showDef.word}
+            </h2>
+            {showDef.entry[1] && (
+              <p className="mt-1 text-[13px] text-text-muted">
+                from <span className="text-text-secondary">{showDef.entry[1]}</span>
+              </p>
+            )}
+            <p className="mt-3 text-[15px] leading-relaxed text-text-secondary">
+              {showDef.entry[0]}
+            </p>
+          </div>
         </Sheet>
       )}
 

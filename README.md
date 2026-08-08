@@ -75,6 +75,34 @@ player gets the same letters with no server involved.
 - **Motion = change only.** Tile pop on a solve, shake on a reject, rise on the
   sheet. No idle ambience. `prefers-reduced-motion` kills all of it.
 
+## Definitions
+
+Tap any solved row — or any word chip in the rail — for a definition. Words with
+no entry are **not tappable**, so a tap never comes back empty.
+
+`scripts/build-definitions.mjs` filters a 22MB bulk dictionary down to only the
+words the puzzle set can produce: **3,337 entries, 392KB, 80% coverage** (871 of
+those resolved through a lemmatiser, because the source lists *acorn* but not
+*acorns*). Coverage will never be 100% — see the caveat below.
+
+The file is larger than the puzzles, so it is **not** bundled or inlined. It is
+fetched once after first paint and then cached by the service worker: off the
+critical path, still available offline later.
+
+```bash
+curl -sL https://raw.githubusercontent.com/matthewreagan/WebstersEnglishDictionary/master/dictionary_compact.json -o data/webster.json
+npm run definitions
+```
+
+`data/webster.json` is gitignored — it's a regenerable build input.
+
+> **Caveat: the source is Webster's Unabridged (1913).** It is public domain and
+> works offline, but it is Victorian. "linker" comes back as *"a torch made of
+> tow and pitch"* rather than *"one who links"*, and it predates modern
+> Scrabble-legal words (achy, ads, actin) — which is most of the missing 20%.
+> A modern dictionary API would read better but would put definitions behind
+> the network. Unresolved trade-off, deliberately chosen for offline-first.
+
 ## Breakpoints
 
 | Width | Layout |

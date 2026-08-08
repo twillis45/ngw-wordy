@@ -31,6 +31,9 @@ type Props = {
   canHint: boolean;
   onRevealLetter: (word: string) => void;
   onRevealWord: (word: string) => void;
+  /** Gated on presence — a word with no entry must not look tappable. */
+  hasDefinition: (word: string) => boolean;
+  onShowDefinition: (word: string) => void;
 };
 
 const HOLD_MS = 450;
@@ -45,6 +48,8 @@ export default function WordTray({
   canHint,
   onRevealLetter,
   onRevealWord,
+  hasDefinition,
+  onShowDefinition,
 }: Props) {
   // A hold fires the expensive spend; the trailing tap must then be suppressed
   // so one gesture never buys twice.
@@ -81,13 +86,16 @@ export default function WordTray({
         const shown = revealedCount(reveal, word);
         const isBase = word === base;
         const fresh = solved && justSolved.has(word);
+        // Before it's done the row buys hints; after, it explains the word.
         const actionable = canHint && !done;
+        const definable = done && hasDefinition(word);
 
         return (
           <div key={word} className="relative flex items-center">
             <button
               type="button"
-              disabled={!actionable}
+              disabled={!actionable && !definable}
+              onClick={() => definable && onShowDefinition(word)}
               onPointerDown={() => actionable && startHold(word)}
               onPointerUp={() => actionable && endHold(word)}
               onPointerLeave={cancelHold}
@@ -95,14 +103,16 @@ export default function WordTray({
               // touch-none: a hold would otherwise raise the selection menu.
               className={[
                 'flex touch-none gap-1 rounded-lg p-1 roomy:gap-1.5',
-                actionable
+                actionable || definable
                   ? 'cursor-pointer transition-colors hover:bg-carbon-surface-2/60'
                   : 'cursor-default',
               ].join(' ')}
               aria-label={
-                done
-                  ? `${word.length}-letter word, done`
-                  : `${word.length}-letter word. Tap to reveal a letter, hold to reveal the whole word.`
+                definable
+                  ? `${word}. Tap for the definition.`
+                  : done
+                    ? `${word.length}-letter word, done`
+                    : `${word.length}-letter word. Tap to reveal a letter, hold to reveal the whole word.`
               }
             >
               {word.split('').map((ch, i) => {
