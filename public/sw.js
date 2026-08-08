@@ -13,11 +13,19 @@
  *
  * Bump CACHE on any change to this file so old entries get swept.
  */
-const CACHE = 'wordy-v1';
+const CACHE = 'wordy-v2';
+
+/**
+ * Where the app is mounted, derived from this file's own URL — "/" on
+ * localhost and Render, "/ngw-wordy/" on GitHub Pages. Reading it here rather
+ * than templating a build-time value in means one static file works at any
+ * base, and the worker can never disagree with the page that registered it.
+ */
+const BASE = self.location.pathname.replace(/sw\.js$/, '');
 
 // Precache only what is guaranteed to exist at every deploy. Hashed build
 // assets are picked up lazily on first use.
-const PRECACHE = ['/', '/data/puzzles.json', '/manifest.webmanifest'];
+const PRECACHE = [BASE, `${BASE}data/puzzles.json`, `${BASE}manifest.webmanifest`];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -58,7 +66,9 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE).then((cache) => cache.put(request, copy));
           return response;
         })
-        .catch(() => caches.match(request).then((hit) => hit || caches.match('/')))
+        .catch(() =>
+          caches.match(request).then((hit) => hit || caches.match(BASE))
+        )
     );
     return;
   }

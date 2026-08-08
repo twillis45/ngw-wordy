@@ -91,6 +91,39 @@ breakpoint, so there's no hydration-unsafe guess about viewport width.
 What's in the rail was already in the engine but invisible: **which** words you
 found (previously only a count), the full rank ladder, and a 7-day streak strip.
 
+## Hosting
+
+The build is a **static export** (`output: 'export'`), so any file host works.
+
+**GitHub Pages** (temporary dev host) — `.github/workflows/pages.yml` builds and
+deploys on every push to `main`. Enable it once in the repo: *Settings → Pages →
+Source: GitHub Actions*. Note that Pages from a **private** repo requires GitHub
+Pro; on a free account the repo must be public.
+
+**Render** (eventual home) — a Static Site, not a Web Service: nothing needs a
+Node process.
+
+| Setting | Value |
+| --- | --- |
+| Build command | `npm ci && npm run build` |
+| Publish directory | `out` |
+| Env | `NEXT_PUBLIC_SHARE_URL=https://<your-domain>` |
+
+Leave `NEXT_PUBLIC_BASE_PATH` unset on Render — it serves from the root.
+
+### The base-path trap
+
+Pages serves a project repo from `/<repo>`, not `/`. Next rewrites its own
+links and assets, but **not** hand-authored paths, so three places go through
+`withBase()` in [`src/lib/basePath.ts`](src/lib/basePath.ts): the manifest's
+`start_url`/`scope`/icons, the `<link rel=icon>` tags, and the service-worker
+registration (script URL *and* scope). The worker itself derives its base from
+its own `location.pathname`, so one static file works at any mount point.
+
+`out/.nojekyll` is also required — without it Pages runs Jekyll, which deletes
+every underscore-prefixed directory, i.e. all of `_next`. The site loads with no
+CSS or JS.
+
 ## Installable + offline
 
 `src/app/manifest.ts` and `public/sw.js` make this a real PWA — installable to

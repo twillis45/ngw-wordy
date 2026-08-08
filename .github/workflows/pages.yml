@@ -1,0 +1,65 @@
+name: Deploy to GitHub Pages
+
+# Temporary dev host so the game is reachable off the local network while
+# building. Render is the eventual home; nothing here is Pages-specific
+# except NEXT_PUBLIC_BASE_PATH.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a newer push cancel an in-flight deploy rather than queueing behind it.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm test
+
+      # Must precede the build: the build reads this step's base_url so the
+      # share card points at the deployed site instead of localhost.
+      - uses: actions/configure-pages@v5
+        id: pages
+
+      - name: Build static export
+        env:
+          # Pages serves a project repo from /<repo>. Keep this in step with
+          # the repository name or every asset 404s.
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_SHARE_URL: ${{ steps.pages.outputs.base_url }}
+        run: npm run build
+
+      # Without this, Pages runs Jekyll, which strips every directory starting
+      # with an underscore — i.e. all of _next. The site loads with no CSS or JS.
+      - run: touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

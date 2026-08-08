@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import ServiceWorker from '@/components/ServiceWorker';
+import { withBase } from '@/lib/basePath';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -13,10 +14,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+      { url: withBase('/icon-192.png'), sizes: '192x192', type: 'image/png' },
+      { url: withBase('/icon-512.png'), sizes: '512x512', type: 'image/png' },
     ],
-    apple: '/apple-touch-icon.png',
+    apple: withBase('/apple-touch-icon.png'),
   },
 };
 

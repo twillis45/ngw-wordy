@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { withBase } from '@/lib/basePath';
 
 /**
  * Registers the service worker in production only — in dev it would serve
@@ -15,9 +16,13 @@ export default function ServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
 
     const register = () => {
-      navigator.serviceWorker.register('/sw.js').catch(() => {
-        /* offline support is an enhancement — never block the game on it */
-      });
+      // Both the script URL and the scope must carry the base path, or the
+      // worker registers at the origin root and controls nothing on Pages.
+      navigator.serviceWorker
+        .register(withBase('/sw.js'), { scope: withBase('/') })
+        .catch(() => {
+          /* offline support is an enhancement — never block the game on it */
+        });
     };
 
     // Registering during load contends with the assets the game needs first.
