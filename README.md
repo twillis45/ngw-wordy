@@ -60,6 +60,27 @@ player gets the same letters with no server involved.
   landing a letter and Enter in the same batch would otherwise submit an empty
   word.
 
+### Themes
+
+Dark is the identity; **light exists because the dark UI is unreadable in
+sunlight** — a screen can't out-emit the sun, so dark-on-dark collapses outdoors.
+The header toggle cycles auto → light → dark and is one tap away on purpose:
+needing it is a moment, not a setting.
+
+Light follows the OS by default (`prefers-color-scheme`), and an explicit choice
+wins in both directions. A tiny inline script in `<head>` applies the stored
+choice before first paint, or light-mode players get a dark flash on every load.
+
+The parent design system's locked light palette was authored for indoor use and
+four of its tokens measured **below AA** on the light body (secondary 4.36,
+muted 4.24, success 3.54, steel-muted 3.77). Sunlight needs more than AA, so
+those are darkened within the same hues. Measured in the browser afterwards:
+**every text element ≥ 6.4:1**, most far above.
+
+Shadows, the reveal sweep and the modal scrim are theme variables
+(`--tile-shadow`, `--sweep-color`, `--scrim`) rather than hardcoded values — a
+white sweep is invisible on white.
+
 ### Design rules
 
 - **One accent moment.** `--color-success` marks a found word. Nothing else on

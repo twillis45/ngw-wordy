@@ -14,6 +14,15 @@ import RankBar from './RankBar';
 import Rail from './Rail';
 import { feedback, setMuted } from '@/lib/feedback';
 import {
+  applyTheme,
+  effectiveTheme,
+  getThemeServerSnapshot,
+  getThemeSnapshot,
+  nextTheme,
+  subscribeTheme,
+  type Theme,
+} from '@/lib/theme';
+import {
   fromBundled,
   loadDefinitions,
   lookup,
@@ -104,6 +113,11 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const [showDef, setShowDef] = useState<Resolved | null>(null);
   const [defUpgrading, setDefUpgrading] = useState(false);
   const [clueCursor, setClueCursor] = useState(0);
+  const theme = useSyncExternalStore(
+    subscribeTheme,
+    getThemeSnapshot,
+    getThemeServerSnapshot
+  );
   /** Words solved in THIS session — only these animate. */
   const [justSolved, setJustSolved] = useState<Set<string>>(new Set());
   const [floatFor, setFloatFor] = useState<{
@@ -305,6 +319,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
         break;
     }
   }, [letters, puzzle, data.wheel, puzzleId, say, setSel, finishIfDone]);
+
+  const cycleTheme = useCallback(() => {
+    applyTheme(nextTheme(getThemeSnapshot()));
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -530,6 +548,14 @@ export default function Game({ data }: { data: PuzzleFile }) {
         <div className="flex items-center gap-2">
         <button
           type="button"
+          onClick={cycleTheme}
+          aria-label={`Theme: ${theme}. Tap to change.`}
+          className="grid h-9 w-9 place-items-center rounded-full border border-carbon-border text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+        >
+          <ThemeIcon theme={theme} />
+        </button>
+        <button
+          type="button"
           onClick={() => setShowRules(true)}
           aria-haspopup="dialog"
           aria-label="How to play"
@@ -550,7 +576,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
       <div className="mt-4 flex min-h-0 flex-1 flex-col gap-8 md:grid md:grid-cols-[minmax(0,1fr)_260px] md:gap-7 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
         {/* Board column — bounded at every width, centered on desktop. */}
-        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col md:max-w-[440px] md:justify-center md:rounded-3xl md:border md:border-carbon-border/70 md:px-5 md:py-6">
+        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col md:max-w-[440px] md:justify-center md:rounded-3xl md:border md:border-carbon-border/70 md:px-5 md:py-4">
       <RankBar rank={rank} score={score} />
 
       {/* Target grid */}
@@ -596,7 +622,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       {/* Greedy only on phone, where it bottom-anchors the wheel in the thumb
           zone. From tablet up the rail sits below the board so the page
           scrolls anyway — anchoring there just opened a void. */}
-      <div className="min-h-6 flex-1 md:h-5 md:flex-none" />
+      <div className="min-h-6 flex-1 md:h-3 md:flex-none" />
 
       {/* Current word — the only place the accent green appears mid-play */}
       <div
@@ -665,7 +691,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </ControlButton>
       </div>
 
-      <p className="mt-2 hidden text-center text-[12px] text-text-muted mouse:block">
+      <p className="mt-1.5 hidden text-center text-[12px] text-text-muted mouse:block">
         <kbd className="font-sans text-text-secondary">Enter</kbd> to submit ·{' '}
         <kbd className="font-sans text-text-secondary">Space</kbd> to shuffle ·{' '}
         <kbd className="font-sans text-text-secondary">Backspace</kbd> to undo
@@ -844,7 +870,8 @@ function Sheet({
       role="dialog"
       aria-modal="true"
       aria-label={label}
-      className="fixed inset-0 z-50 flex items-end bg-black/70"
+      className="fixed inset-0 z-50 flex items-end"
+      style={{ background: 'var(--scrim)' }}
       onClick={onClose}
     >
       <div
@@ -911,6 +938,42 @@ function ModeRow({
         </span>
       </span>
     </button>
+  );
+}
+
+function ThemeIcon({ theme }: { theme: Theme }) {
+  // 'auto' shows what it's currently following, with a dot to say it's tracking
+  // the system rather than pinned.
+  const showing = effectiveTheme(theme);
+  return (
+    <span className="relative grid place-items-center">
+      <svg
+        width="17"
+        height="17"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden
+      >
+        {showing === 'light' ? (
+          <>
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" />
+          </>
+        ) : (
+          <path d="M20 14.5A8 8 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" />
+        )}
+      </svg>
+      {theme === 'auto' && (
+        <span
+          aria-hidden
+          className="absolute -bottom-1.5 h-1 w-1 rounded-full bg-steel-muted"
+        />
+      )}
+    </span>
   );
 }
 
@@ -985,7 +1048,8 @@ function CompleteSheet({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-50 grid place-items-end bg-black/70 sm:place-items-center">
+    <div className="fixed inset-0 z-50 grid place-items-end sm:place-items-center"
+      style={{ background: 'var(--scrim)' }}>
       <div className="anim-rise safe-bottom w-full max-w-[420px] rounded-t-3xl border-t border-carbon-border bg-carbon-panel px-6 pt-7 sm:rounded-3xl sm:border">
         <p className="text-[13px] uppercase tracking-[0.14em] text-text-muted">
           {isDaily ? "Today's puzzle cleared" : 'Puzzle cleared'}

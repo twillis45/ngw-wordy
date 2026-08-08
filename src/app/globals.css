@@ -32,7 +32,7 @@
  * the screen is saturated.
  */
 @theme {
-  /* Carbon surfaces */
+  /* Carbon surfaces — dark is the default identity. */
   --color-carbon-body: #070809;
   --color-carbon-panel: #121518;
   --color-carbon-surface-2: #171b1f;
@@ -54,8 +54,95 @@
   --color-text-secondary: #849eb8;
   --color-text-muted: #9a9ca0;
 
+  /* Theme-dependent surface treatments, so components don't hardcode a
+     light-on-dark assumption in a shadow or a gradient. */
+  --tile-shadow: 0 2px 6px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --tile-shadow-active: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --disc-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --sweep-color: rgba(238, 240, 244, 0.26);
+  --scrim: rgba(0, 0, 0, 0.7);
+
   --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, sans-serif;
+}
+
+/*
+ * Light theme — for reading in sunlight.
+ *
+ * A matte-dark UI loses to glare outdoors: the screen can't out-emit the sun,
+ * so dark-on-dark collapses. Light mode inverts the surfaces while the
+ * steel-blue identity stays put, exactly as the parent design system specifies.
+ *
+ * The locked light palette was authored for indoor use and four of its tokens
+ * measured below AA on the light body (secondary 4.36, muted 4.24, success
+ * 3.54, steel-muted 3.77). Sunlight needs more than AA, so these are darkened
+ * within the same hues to clear AAA (7:1) wherever the hierarchy allows —
+ * measured, not eyeballed.
+ */
+/* Follow the OS by default... */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+  --color-carbon-body: #eef3f8;
+  --color-carbon-panel: #ffffff;
+  --color-carbon-surface-2: #dfe8f1;
+  --color-carbon-border: #a9c0d4;
+  --color-carbon-strong: #8fa6b8;
+
+  --color-steel: #4e6877;
+  --color-steel-dark: #3f5b6a;
+  /* Identity blue as TEXT has to carry contrast, so it darkens on light. */
+  --color-steel-muted: #3f5b6a;
+
+  --color-success: #186438;
+  --color-danger: #a82f2f;
+  --color-amber: #8a5a10;
+
+  --color-text-primary: #0d0f12;
+  --color-text-secondary: #3b5468;
+  --color-text-muted: #54585e;
+
+  --tile-shadow: 0 1px 3px rgba(13, 15, 18, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --tile-shadow-active: inset 0 1px 2px rgba(13, 15, 18, 0.25);
+  --disc-inset: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  /* A white sweep is invisible on white; the highlight has to darken. */
+  --sweep-color: rgba(13, 15, 18, 0.14);
+  --scrim: rgba(13, 15, 18, 0.45);
+  }
+}
+
+/* ...but an explicit choice always wins, in both directions.
+   Duplicated rather than shared: @mixin is a preprocessor feature, and it
+   passed through the build unexpanded — the light values silently never
+   applied. Plain CSS is verbose here and actually works. */
+:root[data-theme='light'] {
+  --color-carbon-body: #eef3f8;
+  --color-carbon-panel: #ffffff;
+  --color-carbon-surface-2: #dfe8f1;
+  --color-carbon-border: #a9c0d4;
+  --color-carbon-strong: #8fa6b8;
+
+  --color-steel: #4e6877;
+  --color-steel-dark: #3f5b6a;
+  /* Identity blue as TEXT has to carry contrast, so it darkens on light. */
+  --color-steel-muted: #3f5b6a;
+
+  --color-success: #186438;
+  --color-danger: #a82f2f;
+  --color-amber: #8a5a10;
+
+  --color-text-primary: #0d0f12;
+  --color-text-secondary: #3b5468;
+  --color-text-muted: #54585e;
+
+  --tile-shadow: 0 1px 3px rgba(13, 15, 18, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --tile-shadow-active: inset 0 1px 2px rgba(13, 15, 18, 0.25);
+  --disc-inset: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  /* A white sweep is invisible on white; the highlight has to darken. */
+  --sweep-color: rgba(13, 15, 18, 0.14);
+  --scrim: rgba(13, 15, 18, 0.45);
 }
 
 html,
@@ -131,7 +218,7 @@ body {
   background: linear-gradient(
     100deg,
     transparent 20%,
-    rgba(238, 240, 244, 0.26) 48%,
+    var(--sweep-color) 48%,
     transparent 76%
   );
   animation: sweep 620ms ease-out 120ms both;

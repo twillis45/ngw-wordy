@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import ServiceWorker from '@/components/ServiceWorker';
 import { withBase } from '@/lib/basePath';
+import { NO_FLASH_SCRIPT } from '@/lib/theme';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -22,7 +23,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#070809',
+  // One entry per scheme, so the browser chrome matches the page outdoors too.
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#070809' },
+    { media: '(prefers-color-scheme: light)', color: '#eef3f8' },
+  ],
   // The wheel is a drag surface — pinch-zoom would fight it.
   maximumScale: 1,
   userScalable: false,
@@ -33,7 +38,12 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Applies an explicit theme before first paint. Without it, a
+            light-mode player gets a dark flash on every load. */}
+        <script dangerouslySetInnerHTML={{ __html: NO_FLASH_SCRIPT }} />
+      </head>
       <body>
         {children}
         <ServiceWorker />

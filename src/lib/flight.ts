@@ -70,6 +70,7 @@ export function flyLetters(pairs: FlightPair[]): number {
       'color:var(--color-text-primary)',
       'background:var(--color-steel-dark)',
       'border:1px solid var(--color-steel)',
+      'box-shadow:var(--tile-shadow-active)',
       'will-change:transform,opacity',
     ].join(';');
 

@@ -157,7 +157,7 @@ export default function LetterWheel({
       <div
         aria-hidden
         className="absolute inset-0 rounded-full border border-carbon-border bg-carbon-panel"
-        style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)' }}
+        style={{ boxShadow: 'var(--disc-inset)' }}
       />
 
       {/* Connection path. Drawn under the tiles so it reads as a thread. */}
@@ -229,8 +229,8 @@ export default function LetterWheel({
               boxShadow: locked
                 ? 'none'
                 : picked
-                  ? 'inset 0 1px 0 rgba(255,255,255,0.10)'
-                  : '0 2px 6px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05)',
+                  ? 'var(--tile-shadow-active)'
+                  : 'var(--tile-shadow)',
             }}
           >
             {letter.toUpperCase()}
