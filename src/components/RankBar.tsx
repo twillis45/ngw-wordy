@@ -11,7 +11,13 @@ export default function RankBar({ rank, score }: { rank: Rank; score: number }) 
   return (
     <div className="w-full">
       <div className="mb-1.5 flex items-baseline justify-between">
-        <span className="text-[17px] font-semibold text-text-primary">
+        {/* Keyed on the name so React remounts it when the rank changes and
+            the animation replays. Promotion is a moment; it shouldn't just
+            silently swap text. */}
+        <span
+          key={rank.name}
+          className="anim-rise text-[17px] font-semibold text-text-primary"
+        >
           {rank.name}
         </span>
         <span className="text-[13px] tabular-nums text-text-muted">

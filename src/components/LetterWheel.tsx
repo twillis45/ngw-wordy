@@ -182,8 +182,10 @@ export default function LetterWheel({
               'text-[26px] md:text-[32px] lg:text-[29px]',
               'transition-[transform,background-color,border-color] duration-150',
               'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-muted',
+              // anim-tick both pulses on selection and holds the selected
+              // scale, so there's no transform utility fighting the keyframes.
               active
-                ? 'scale-105 border-steel bg-steel-dark text-text-primary'
+                ? 'anim-tick border-steel bg-steel-dark text-text-primary'
                 : 'border-carbon-strong bg-carbon-surface-2 text-text-primary active:scale-95',
             ].join(' ')}
             style={{

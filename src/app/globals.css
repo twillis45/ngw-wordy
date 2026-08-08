@@ -80,6 +80,16 @@ body {
   100% { transform: translateY(0); opacity: 1; }
 }
 
+/* Wheel tile confirming a letter as the finger crosses it. Overshoots on
+   arrival and settles at the selected scale, so the class can both animate
+   and hold the resting state — no competing transform utility. */
+@keyframes tick {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.16); }
+  100% { transform: scale(1.05); }
+}
+.anim-tick { animation: tick 180ms cubic-bezier(0.34, 1.4, 0.64, 1) both; }
+
 .anim-pop { animation: tile-pop 260ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 .anim-shake { animation: shake 340ms ease-in-out; }
 .anim-rise { animation: rise 220ms ease-out both; }
