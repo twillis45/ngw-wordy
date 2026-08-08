@@ -38,6 +38,16 @@
   --color-carbon-surface-2: #171b1f;
   --color-carbon-border: #232830;
   --color-carbon-strong: #2b3039;
+  /*
+   * Functional edge.
+   *
+   * carbon-border is a decorative hairline: measured against its own surfaces
+   * it lands at 1.24-1.35:1, far under the 3:1 WCAG asks of a boundary that
+   * carries meaning. Every tile, card and disc edge failed, which is why the
+   * board dissolves into one field in bright light — the text was legible and
+   * the SHAPES were not. This is the boundary you can actually see.
+   */
+  --color-edge: #647181;
 
   /* Steel-blue identity */
   --color-steel: #4e6877;
@@ -88,6 +98,7 @@
   --color-carbon-surface-2: #dfe8f1;
   --color-carbon-border: #a9c0d4;
   --color-carbon-strong: #8fa6b8;
+  --color-edge: #6b8399;
 
   --color-steel: #4e6877;
   --color-steel-dark: #3f5b6a;
@@ -122,6 +133,7 @@
   --color-carbon-surface-2: #dfe8f1;
   --color-carbon-border: #a9c0d4;
   --color-carbon-strong: #8fa6b8;
+  --color-edge: #6b8399;
 
   --color-steel: #4e6877;
   --color-steel-dark: #3f5b6a;

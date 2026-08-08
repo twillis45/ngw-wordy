@@ -132,12 +132,12 @@ export default function Rail({
               <span
                 aria-hidden
                 className={[
-                  'grid h-6 w-6 place-items-center rounded-md border text-[11px] lg:h-7 lg:w-7',
+                  'grid h-6 w-6 place-items-center rounded-md border-2 text-[11px] lg:h-7 lg:w-7',
                   d.played
                     ? 'border-success/40 bg-success/15 text-success'
                     // Unplayed cells hold no glyph, so no text color here —
                     // carbon-strong is a border token and must never set text.
-                    : 'border-carbon-border bg-carbon-body',
+                    : 'border-edge/60 bg-carbon-body',
                   // Today reads as today whether or not it's been played.
                   i === days.length - 1 ? 'ring-1 ring-steel-muted/40' : '',
                 ].join(' ')}
@@ -181,7 +181,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-2xl border border-carbon-border bg-carbon-panel p-4">
+    <section className="rounded-2xl border border-edge bg-carbon-panel p-4">
       <div className="mb-3 flex items-baseline justify-between gap-3">
         <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
           {title}

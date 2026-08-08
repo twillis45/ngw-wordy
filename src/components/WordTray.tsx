@@ -105,10 +105,10 @@ export default function WordTray({
                 done ? `${word}, done` : `${word.length}-letter word, not found`
               }
               className={[
-                'rounded-md border px-2 py-1 text-[13px] font-semibold tabular-nums transition-colors',
+                'rounded-md border-2 px-2 py-1 text-[13px] font-semibold tabular-nums transition-colors',
                 done
                   ? 'border-transparent bg-carbon-surface-2 text-text-primary'
-                  : 'border-carbon-border bg-carbon-panel text-text-muted',
+                  : 'border-edge bg-carbon-panel text-text-muted',
                 bought && !solved ? 'italic text-text-muted' : '',
                 solved && word === base ? 'ring-1 ring-success/50' : '',
                 // Mark the row the clue is currently asking about.
@@ -174,7 +174,7 @@ export default function WordTray({
                     data-slot={`${word}-${i}`}
                     aria-hidden={!visible}
                     className={[
-                      'grid place-items-center rounded-md border font-semibold tabular-nums',
+                      'grid place-items-center rounded-md border-2 font-semibold tabular-nums',
                       // The full-wheel word is the prize, so it gets real size
                       // over the others rather than only a ring.
                       isBase
@@ -182,7 +182,7 @@ export default function WordTray({
                         : 'h-[30px] w-[26px] text-[15px] roomy:h-[35px] roomy:w-[31px] roomy:text-[17px]',
                       done
                         ? 'border-transparent bg-carbon-surface-2 text-text-primary'
-                        : 'border-carbon-border bg-carbon-panel text-text-muted',
+                        : 'border-edge bg-carbon-panel text-text-muted',
                       // A word bought with hints reads dimmer than one you
                       // solved: the grid fills either way, but only one of
                       // those is an achievement.

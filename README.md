@@ -77,6 +77,15 @@ muted 4.24, success 3.54, steel-muted 3.77). Sunlight needs more than AA, so
 those are darkened within the same hues. Measured in the browser afterwards:
 **every text element ≥ 6.4:1**, most far above.
 
+**Structural contrast was the real bug.** The first light pass fixed *text* and
+left every boundary failing: card-vs-page measured **1.12:1** against a 3:1
+minimum, tile-vs-card 1.24, borders 1.68–1.88 — and dark was worse (1.06–1.51).
+The letters were legible and the *shapes* were not, so in bright light the board
+dissolved into one field. `--color-edge` (`#6b8399` light / `#647181` dark) is
+the functional boundary, ≥3:1 against every surface it sits on, used on tiles,
+the wheel disc, cards and controls. `carbon-border` stays the decorative
+hairline for dividers that carry no meaning.
+
 Shadows, the reveal sweep and the modal scrim are theme variables
 (`--tile-shadow`, `--sweep-color`, `--scrim`) rather than hardcoded values — a
 white sweep is invisible on white.

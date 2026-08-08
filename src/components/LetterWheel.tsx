@@ -156,7 +156,7 @@ export default function LetterWheel({
       {/* Matte disc — depth comes from an inset ring, not a glow. */}
       <div
         aria-hidden
-        className="absolute inset-0 rounded-full border border-carbon-border bg-carbon-panel"
+        className="absolute inset-0 rounded-full border-2 border-edge bg-carbon-panel"
         style={{ boxShadow: 'var(--disc-inset)' }}
       />
 
@@ -209,17 +209,17 @@ export default function LetterWheel({
               onSelect(i);
             }}
             className={[
-              'absolute grid place-items-center rounded-2xl border font-bold',
+              'absolute grid place-items-center rounded-2xl border-2 font-bold',
               'text-[26px] md:text-[29px]',
               'transition-[transform,background-color,border-color] duration-150',
               'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-muted',
               // anim-tick both pulses on selection and holds the selected
               // scale, so there's no transform utility fighting the keyframes.
               locked
-                ? 'border-carbon-border bg-carbon-body text-carbon-strong'
+                ? 'border-edge/50 bg-carbon-body text-carbon-strong'
                 : picked
                   ? 'anim-tick border-steel bg-steel-dark text-text-primary'
-                  : 'border-carbon-strong bg-carbon-surface-2 text-text-primary active:scale-95',
+                  : 'border-edge bg-carbon-surface-2 text-text-primary active:scale-95',
             ].join(' ')}
             style={{
               left: `${pos.x - TILE / 2}%`,
