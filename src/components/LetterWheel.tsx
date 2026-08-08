@@ -10,6 +10,11 @@ type Props = {
   onCommit: () => void;
   onClear: () => void;
   disabled?: boolean;
+  /**
+   * Escalating mode: letters not yet unlocked. They stay on the wheel so the
+   * player can see what's coming, but can't be selected.
+   */
+  active?: ReadonlySet<string>;
 };
 
 /**
@@ -37,6 +42,7 @@ export default function LetterWheel({
   onCommit,
   onClear,
   disabled,
+  active,
 }: Props) {
   const boxRef = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
@@ -63,16 +69,23 @@ export default function LetterWheel({
     };
   }, []);
 
+  const isLocked = useCallback(
+    (i: number) => (active ? !active.has(letters[i]) : false),
+    [active, letters]
+  );
+
   const hitTest = useCallback(
     (pt: { x: number; y: number }) => {
       for (let i = 0; i < positions.length; i += 1) {
+        // A locked tile is not a target, so a drag glides straight over it.
+        if (active && !active.has(letters[i])) continue;
         const dx = pt.x - positions[i].x;
         const dy = pt.y - positions[i].y;
         if (Math.hypot(dx, dy) <= HIT) return i;
       }
       return -1;
     },
-    [positions]
+    [positions, active, letters]
   );
 
   const handleDown = (e: React.PointerEvent) => {
@@ -173,7 +186,8 @@ export default function LetterWheel({
       {letters.map((letter, i) => {
         const pos = positions[i];
         const order = selected.indexOf(i);
-        const active = order !== -1;
+        const picked = order !== -1;
+        const locked = isLocked(i);
         return (
           <button
             key={`${letter}-${i}`}
@@ -181,14 +195,17 @@ export default function LetterWheel({
             // Flight source. The reveal measures this rect to know where the
             // letter should launch from.
             data-wheel-tile={i}
-            disabled={disabled}
+            // Genuinely disabled, not just click-guarded: a styled-but-enabled
+            // tile is still keyboard-reachable and reads as available to a
+            // screen reader.
+            disabled={disabled || locked}
             aria-label={`Letter ${letter.toUpperCase()}${
-              active ? `, selected position ${order + 1}` : ''
-            }`}
-            aria-pressed={active}
+              locked ? ', locked' : ''
+            }${picked ? `, selected position ${order + 1}` : ''}`}
+            aria-pressed={picked}
             onClick={() => {
               // Ignore the synthetic click that follows a drag.
-              if (dragging) return;
+              if (dragging || locked) return;
               onSelect(i);
             }}
             className={[
@@ -198,18 +215,22 @@ export default function LetterWheel({
               'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-muted',
               // anim-tick both pulses on selection and holds the selected
               // scale, so there's no transform utility fighting the keyframes.
-              active
-                ? 'anim-tick border-steel bg-steel-dark text-text-primary'
-                : 'border-carbon-strong bg-carbon-surface-2 text-text-primary active:scale-95',
+              locked
+                ? 'border-carbon-border bg-carbon-body text-carbon-strong'
+                : picked
+                  ? 'anim-tick border-steel bg-steel-dark text-text-primary'
+                  : 'border-carbon-strong bg-carbon-surface-2 text-text-primary active:scale-95',
             ].join(' ')}
             style={{
               left: `${pos.x - TILE / 2}%`,
               top: `${pos.y - TILE / 2}%`,
               width: `${TILE}%`,
               height: `${TILE}%`,
-              boxShadow: active
-                ? 'inset 0 1px 0 rgba(255,255,255,0.10)'
-                : '0 2px 6px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05)',
+              boxShadow: locked
+                ? 'none'
+                : picked
+                  ? 'inset 0 1px 0 rgba(255,255,255,0.10)'
+                  : '0 2px 6px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05)',
             }}
           >
             {letter.toUpperCase()}

@@ -36,6 +36,9 @@ export type Progress = {
   bonusTotal: number;
   spent: number;
   muted: boolean;
+  /** Ways to play, opt-in and remembered. */
+  clueMode: boolean;
+  escalating: boolean;
 };
 
 /** Stable identity — required as the server snapshot. */
@@ -50,6 +53,8 @@ export const EMPTY: Progress = Object.freeze({
   bonusTotal: 0,
   spent: 0,
   muted: false,
+  clueMode: false,
+  escalating: false,
 });
 
 let snapshot: Progress = EMPTY;
@@ -215,6 +220,13 @@ export function markCleared(puzzleId: string): Progress {
 
 export function setMutedPref(muted: boolean): Progress {
   return update((p) => (p.muted === muted ? p : { ...p, muted }));
+}
+
+export function setMode(
+  key: 'clueMode' | 'escalating',
+  on: boolean
+): Progress {
+  return update((p) => (p[key] === on ? p : { ...p, [key]: on }));
 }
 
 export type DayCell = { key: string; label: string; played: boolean };

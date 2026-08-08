@@ -19,11 +19,20 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  clueKey,
+  clueText,
+  defineWord,
+  indexSource,
+  isUsableClue,
+  redactAnswer,
+} from './lib/defs.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 
 const WORDLIST = path.join(ROOT, 'data', 'enable1.txt');
+const DICT = path.join(ROOT, 'data', 'webster.json');
 const OUT = path.join(ROOT, 'public', 'data', 'puzzles.json');
 
 const MIN_LEN = 3;
@@ -47,6 +56,22 @@ function mulberry32(seed) {
 }
 
 const letterKey = (w) => w.split('').sort().join('');
+
+/*
+ * Clue mode promises a clue for EVERY row, so grid selection has to know which
+ * words are definable before it picks them. Without this the mode would show
+ * blank rows and read as broken on the puzzles that happen to draw obscure
+ * words.
+ */
+const byWord = indexSource(JSON.parse(fs.readFileSync(DICT, 'utf8')));
+
+/** Clue for a word, redacted, or null when it can't carry one. */
+function clueFor(word) {
+  const entry = defineWord(byWord, word);
+  if (!entry) return null;
+  const clue = redactAnswer(clueText(entry[0]), word, entry[1]);
+  return isUsableClue(clue) ? clue : null;
+}
 
 const raw = fs.readFileSync(WORDLIST, 'utf8').split('\n');
 const words = [];
@@ -143,21 +168,58 @@ for (const base of bases) {
 
   seenSignatures.add(sig);
 
-  // Grid = the base word plus the next-longest answers, capped.
+  // The base must be cluable or the puzzle's centrepiece has no clue.
+  const baseClue = clueFor(base);
+  if (!baseClue) continue;
+
+  // Grid = base plus the longest answers that can carry a clue. Falls back to
+  // uncluable words only if there aren't enough, and those puzzles are dropped.
   const rest = answers.filter((w) => w !== base);
-  const grid = [base, ...rest.slice(0, GRID_MAX - 1)];
+  const clues = { [base]: baseClue };
+  const grid = [base];
+  // No two rows may pose the same question.
+  const usedClues = new Set([clueKey(baseClue)]);
+  for (const w of rest) {
+    if (grid.length >= GRID_MAX) break;
+    const c = clueFor(w);
+    if (!c) continue;
+    const k = clueKey(c);
+    if (usedClues.has(k)) continue;
+    usedClues.add(k);
+    clues[w] = c;
+    grid.push(w);
+  }
+  if (grid.length < GRID_MAX) continue;
   const gridSet = new Set(grid);
   const bonus = answers.filter((w) => !gridSet.has(w));
 
   const maxScore = answers.reduce((sum, w) => sum + scoreWord(w), 0);
+  const ordered = grid.sort((a, b) => b.length - a.length || a.localeCompare(b));
+
+  /*
+   * Escalating wheel: the unlock order.
+   *
+   * Play starts with only the letters of the SHORTEST grid word active, then
+   * unlocks the rest one at a time. Derived here rather than at runtime because
+   * it has to guarantee the early rows are actually solvable with the letters
+   * available — a random unlock order would routinely deal an unsolvable board.
+   */
+  const shortest = ordered[ordered.length - 1];
+  const unlockOrder = [
+    ...new Set([...shortest, ...letters]),
+  ];
+  const startActive = new Set(shortest).size;
 
   puzzles.push({
     id: puzzles.length + 1,
     letters: letters.sort(),
     base,
-    grid: grid.sort((a, b) => b.length - a.length || a.localeCompare(b)),
+    grid: ordered,
     bonus,
     maxScore,
+    clues,
+    unlockOrder,
+    startActive,
   });
 }
 

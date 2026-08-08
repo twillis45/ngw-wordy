@@ -10,7 +10,63 @@ export type Puzzle = {
   grid: string[];
   bonus: string[];
   maxScore: number;
+  /** Redacted definition per grid word — the clue-mode question. */
+  clues: Record<string, string>;
+  /**
+   * Escalating wheel: letters in unlock sequence, and how many start active.
+   * Computed at build time because it must guarantee the opening rows are
+   * solvable with the letters available.
+   */
+  unlockOrder: string[];
+  startActive: number;
 };
+
+/**
+ * Which wheel letters are live, given how many rows are done.
+ *
+ * Escalating mode starts with only the letters of the shortest target word and
+ * unlocks one per cleared row, so the search space grows as you play and the
+ * last word is a different problem from the first.
+ */
+export function activeLetters(
+  puzzle: Puzzle,
+  rowsDone: number,
+  escalating: boolean
+): Set<string> {
+  if (!escalating) return new Set(puzzle.letters);
+  const n = Math.min(
+    puzzle.unlockOrder.length,
+    puzzle.startActive + Math.max(0, rowsDone)
+  );
+  return new Set(puzzle.unlockOrder.slice(0, n));
+}
+
+/**
+ * The row a clue is currently pointing at, cycling through unsolved rows.
+ *
+ * `reachable` matters when escalating mode is also on: pointing at a word
+ * whose letters are still locked poses a question that cannot be answered.
+ * Falls back to the unreachable rows only when nothing is reachable, so the
+ * clue card never goes blank mid-puzzle.
+ */
+export function clueTarget(
+  grid: string[],
+  done: (w: string) => boolean,
+  cursor: number,
+  reachable: (w: string) => boolean = () => true
+): string | null {
+  const open = grid.filter((w) => !done(w));
+  if (open.length === 0) return null;
+  const pool = open.filter(reachable);
+  const list = pool.length > 0 ? pool : open;
+  return list[((cursor % list.length) + list.length) % list.length];
+}
+
+/** Can this word be spelled with the letters currently unlocked? */
+export function isReachable(word: string, active: ReadonlySet<string>): boolean {
+  for (const ch of word) if (!active.has(ch)) return false;
+  return true;
+}
 
 export type PuzzleFile = {
   version: number;

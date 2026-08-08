@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import {
+  activeLetters,
+  clueTarget,
   dailyIndex,
+  isReachable,
   dayKey,
   rankFor,
   scoreWord,
@@ -30,6 +33,9 @@ const puzzle: Puzzle = {
   grid: ['clears', 'scale', 'clear', 'race', 'sale'],
   bonus: ['ale', 'car', 'ear', 'races'],
   maxScore: 100,
+  clues: { clears: 'Makes free of obstruction.' },
+  unlockOrder: ['a', 'c', 'e', 'l', 'r', 's'],
+  startActive: 4,
 };
 
 describe('scoreWord', () => {
@@ -461,5 +467,94 @@ describe('parseModern', () => {
     ]) {
       expect(parseModern(bad)).toBeNull();
     }
+  });
+});
+
+describe('activeLetters', () => {
+  const p: Puzzle = {
+    ...puzzle,
+    unlockOrder: ['s', 'a', 'l', 'e', 'c', 'r'],
+    startActive: 4,
+  };
+
+  it('is the whole wheel when escalating is off', () => {
+    expect(activeLetters(p, 0, false).size).toBe(6);
+  });
+
+  it('starts with only the opening letters', () => {
+    expect([...activeLetters(p, 0, true)]).toEqual(['s', 'a', 'l', 'e']);
+  });
+
+  it('unlocks one letter per cleared row', () => {
+    expect(activeLetters(p, 1, true).size).toBe(5);
+    expect(activeLetters(p, 2, true).size).toBe(6);
+  });
+
+  it('never exceeds the wheel', () => {
+    expect(activeLetters(p, 99, true).size).toBe(6);
+  });
+
+  it('tolerates a negative row count', () => {
+    expect(activeLetters(p, -3, true).size).toBe(4);
+  });
+});
+
+describe('clueTarget', () => {
+  const grid = ['clears', 'scale', 'race'];
+  const none = () => false;
+
+  it('points at the first unsolved row', () => {
+    expect(clueTarget(grid, none, 0)).toBe('clears');
+  });
+
+  it('cycles through the unsolved rows', () => {
+    expect(clueTarget(grid, none, 1)).toBe('scale');
+    expect(clueTarget(grid, none, 3)).toBe('clears');
+  });
+
+  it('skips rows already done', () => {
+    expect(clueTarget(grid, (w) => w === 'clears', 0)).toBe('scale');
+  });
+
+  it('handles a negative cursor', () => {
+    expect(clueTarget(grid, none, -1)).toBe('race');
+  });
+
+  it('returns null when everything is done', () => {
+    expect(clueTarget(grid, () => true, 0)).toBeNull();
+  });
+});
+
+describe('clueTarget with locked letters', () => {
+  const grid = ['heriot', 'their', 'rote'];
+  const none = () => false;
+  // 'i' is the only locked letter, so heriot and their are out and rote is in.
+  const active = new Set(['h', 'e', 'r', 'o', 't']);
+  const reachable = (w: string) => isReachable(w, active);
+
+  it('skips words whose letters are still locked', () => {
+    // heriot and their both need i, which is locked.
+    expect(clueTarget(grid, none, 0, reachable)).toBe('rote');
+  });
+
+  it('cycles only within the reachable rows', () => {
+    expect(clueTarget(grid, none, 1, reachable)).toBe('rote');
+  });
+
+  it('falls back rather than going blank when nothing is reachable', () => {
+    const locked = () => false;
+    expect(clueTarget(grid, none, 0, locked)).toBe('heriot');
+  });
+
+  it('still returns null when every row is done', () => {
+    expect(clueTarget(grid, () => true, 0, reachable)).toBeNull();
+  });
+});
+
+describe('isReachable', () => {
+  it('is true only when every letter is unlocked', () => {
+    expect(isReachable('rote', new Set(['r', 'o', 't', 'e']))).toBe(true);
+    expect(isReachable('rote', new Set(['r', 'o', 't']))).toBe(false);
+    expect(isReachable('', new Set<string>())).toBe(true);
   });
 });

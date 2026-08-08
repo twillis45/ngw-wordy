@@ -34,6 +34,14 @@ type Props = {
   /** Gated on presence — a word with no entry must not look tappable. */
   hasDefinition: (word: string) => boolean;
   onShowDefinition: (word: string) => void;
+  /**
+   * Clue mode: the clue is the question, so the tray stops being the primary
+   * display and becomes a progress row. Also buys back the ~180px the clue
+   * card costs, which is what let clue mode fit a phone at all.
+   */
+  compact?: boolean;
+  /** The row the visible clue points at, so it can be marked. */
+  activeWord?: string | null;
 };
 
 const HOLD_MS = 450;
@@ -50,6 +58,8 @@ export default function WordTray({
   onRevealWord,
   hasDefinition,
   onShowDefinition,
+  compact,
+  activeWord,
 }: Props) {
   // A hold fires the expensive spend; the trailing tap must then be suppressed
   // so one gesture never buys twice.
@@ -76,6 +86,45 @@ export default function WordTray({
     holdTimer.current = null;
     didHold.current = true; // suppress the trailing tap
   };
+
+  if (compact) {
+    return (
+      <div className="flex flex-wrap items-center justify-center gap-1.5">
+        {grid.map((word) => {
+          const bought = reveal.words.includes(word);
+          const solved = found.has(word);
+          const done = solved || bought;
+          const definable = done && hasDefinition(word);
+          return (
+            <button
+              key={word}
+              type="button"
+              disabled={!definable}
+              onClick={() => definable && onShowDefinition(word)}
+              aria-label={
+                done ? `${word}, done` : `${word.length}-letter word, not found`
+              }
+              className={[
+                'rounded-md border px-2 py-1 text-[13px] font-semibold tabular-nums transition-colors',
+                done
+                  ? 'border-transparent bg-carbon-surface-2 text-text-primary'
+                  : 'border-carbon-border bg-carbon-panel text-text-muted',
+                bought && !solved ? 'italic text-text-muted' : '',
+                solved && word === base ? 'ring-1 ring-success/50' : '',
+                // Mark the row the clue is currently asking about.
+                !done && word === activeWord
+                  ? 'border-steel-muted text-text-secondary'
+                  : '',
+                solved && justSolved.has(word) ? 'anim-land' : '',
+              ].join(' ')}
+            >
+              {done ? word.toUpperCase() : word.length}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center gap-1 roomy:gap-2">

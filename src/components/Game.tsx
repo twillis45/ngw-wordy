@@ -23,6 +23,9 @@ import {
 } from '@/lib/definitions';
 import { flyLetters, measureFlight } from '@/lib/flight';
 import {
+  activeLetters,
+  clueTarget,
+  isReachable,
   dailyIndex,
   rankFor,
   scoreWord,
@@ -40,6 +43,7 @@ import {
   last7,
   markCleared,
   revealFor,
+  setMode,
   setMutedPref,
   spendHint,
   subscribe,
@@ -99,6 +103,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const [defs, setDefs] = useState<Definitions | null>(null);
   const [showDef, setShowDef] = useState<Resolved | null>(null);
   const [defUpgrading, setDefUpgrading] = useState(false);
+  const [clueCursor, setClueCursor] = useState(0);
   /** Words solved in THIS session — only these animate. */
   const [justSolved, setJustSolved] = useState<Set<string>>(new Set());
   const [floatFor, setFloatFor] = useState<{
@@ -142,6 +147,14 @@ export default function Game({ data }: { data: PuzzleFile }) {
     (w: string) => found.has(w) || reveal.words.includes(w),
     [found, reveal]
   );
+
+  const rowsDone = puzzle.grid.filter(rowDone).length;
+  const active = activeLetters(puzzle, rowsDone, progress.escalating);
+  const clueWord = progress.clueMode
+    ? clueTarget(puzzle.grid, rowDone, clueCursor, (w) =>
+        isReachable(w, active)
+      )
+    : null;
 
   const bonusFound = [...found].filter((w) => !puzzle.grid.includes(w));
   const score = [...found].reduce((s, w) => s + scoreWord(w, data.wheel), 0);
@@ -364,7 +377,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
       if (!/^[a-zA-Z]$/.test(e.key)) return;
       const ch = e.key.toLowerCase();
       setSel((prev) => {
-        const i = letters.findIndex((l, idx) => l === ch && !prev.includes(idx));
+        const i = letters.findIndex(
+          (l, idx) => l === ch && !prev.includes(idx) && active.has(l)
+        );
         if (i === -1) return prev;
         feedback.tap();
         return [...prev, i];
@@ -372,7 +387,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [commit, letters, setSel]);
+  }, [commit, letters, setSel, active]);
 
   /**
    * Hints are targeted: the player taps the row they're stuck on, because
@@ -539,7 +554,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       <RankBar rank={rank} score={score} />
 
       {/* Target grid */}
-      <section aria-label="Words to find" className="mt-3 roomy:mt-5">
+      <section aria-label="Words to find" className="mt-2 roomy:mt-5">
         <WordTray
           grid={puzzle.grid}
           found={found}
@@ -552,8 +567,31 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onRevealWord={spendWord}
           hasDefinition={hasDefinition}
           onShowDefinition={openDefinition}
+          compact={progress.clueMode}
+          activeWord={clueWord}
         />
       </section>
+
+      {/* Clue mode: one question at a time. Six clues at once doesn't fit a
+          phone and doesn't focus anyone — this is the row you're solving. */}
+      {clueWord && (
+        <button
+          type="button"
+          onClick={() => setClueCursor((c) => c + 1)}
+          className="mt-3 w-full rounded-xl border border-carbon-border bg-carbon-panel px-3.5 py-2.5 text-left transition-colors hover:border-carbon-strong"
+        >
+          <span className="text-[12px] uppercase tracking-[0.14em] text-text-muted">
+            {clueWord.length} letters
+            {puzzle.grid.filter((w) => !rowDone(w)).length > 1
+              ? ' · tap for the next clue'
+              : ''}
+          </span>
+          <span className="mt-1 line-clamp-3 block text-[14px] leading-snug text-text-secondary roomy:text-[15px]">
+            {puzzle.clues[clueWord]}
+          </span>
+        </button>
+      )}
+
 
       {/* Greedy only on phone, where it bottom-anchors the wheel in the thumb
           zone. From tablet up the rail sits below the board so the page
@@ -608,6 +646,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onSelect={pick}
           onCommit={commit}
           onClear={() => setSel([])}
+          active={active}
         />
       </div>
 
@@ -748,6 +787,27 @@ export default function Game({ data }: { data: PuzzleFile }) {
               <li>New letters every day.</li>
             </ul>
           </div>
+
+          <div className="mt-4 rounded-2xl border border-carbon-border bg-carbon-panel p-4">
+            <h2 className="mb-1 text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+              Ways to play
+            </h2>
+            <p className="mb-3 text-[13px] text-text-muted">
+              Both are off by default. Turn one on and the puzzle changes shape.
+            </p>
+            <ModeRow
+              label="Clue mode"
+              detail="Rows come with a definition. Build the word that means this."
+              on={progress.clueMode}
+              onToggle={(v) => setMode('clueMode', v)}
+            />
+            <ModeRow
+              label="Escalating wheel"
+              detail="Start with fewer letters. Each row you clear unlocks another."
+              on={progress.escalating}
+              onToggle={(v) => setMode('escalating', v)}
+            />
+          </div>
         </Sheet>
       )}
 
@@ -806,6 +866,51 @@ function Sheet({
         </button>
       </div>
     </div>
+  );
+}
+
+function ModeRow({
+  label,
+  detail,
+  on,
+  onToggle,
+}: {
+  label: string;
+  detail: string;
+  on: boolean;
+  onToggle: (next: boolean) => void;
+}) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      onClick={() => onToggle(!on)}
+      className="flex w-full items-start gap-3 rounded-xl px-1 py-2 text-left transition-colors hover:bg-carbon-surface-2/60"
+    >
+      <span
+        aria-hidden
+        className={[
+          'mt-0.5 grid h-6 w-10 shrink-0 items-center rounded-full border px-0.5 transition-colors',
+          on ? 'border-steel bg-steel-dark' : 'border-carbon-strong bg-carbon-body',
+        ].join(' ')}
+      >
+        <span
+          className={[
+            'h-4 w-4 rounded-full bg-text-primary transition-transform',
+            on ? 'translate-x-4' : 'translate-x-0',
+          ].join(' ')}
+        />
+      </span>
+      <span>
+        <span className="block text-[15px] font-medium text-text-primary">
+          {label}
+        </span>
+        <span className="block text-[13px] leading-snug text-text-muted">
+          {detail}
+        </span>
+      </span>
+    </button>
   );
 }
 
