@@ -102,6 +102,28 @@ export function setMutedPref(muted: boolean): Progress {
   return update((p) => (p.muted === muted ? p : { ...p, muted }));
 }
 
+export type DayCell = { key: string; label: string; played: boolean };
+
+/**
+ * The trailing 7 days ending today, oldest first — for the streak strip.
+ * "Played" means at least one word was banked that day.
+ */
+export function last7(p: Progress, today: Date): DayCell[] {
+  const labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  const out: DayCell[] = [];
+  for (let i = 6; i >= 0; i -= 1) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const key = dayKey(d);
+    out.push({
+      key,
+      label: labels[d.getDay()],
+      played: (p.days[key]?.length ?? 0) > 0,
+    });
+  }
+  return out;
+}
+
 /**
  * Advance the streak for `today`. Yesterday -> +1, same day -> unchanged,
  * any longer gap -> reset to 1. Returns a new object; never mutates.

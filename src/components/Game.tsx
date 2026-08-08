@@ -11,6 +11,7 @@ import {
 import LetterWheel from './LetterWheel';
 import WordTray from './WordTray';
 import RankBar from './RankBar';
+import Rail from './Rail';
 import { feedback, setMuted } from '@/lib/feedback';
 import {
   dailyIndex,
@@ -28,6 +29,7 @@ import {
   getServerSnapshot,
   getSnapshot,
   setMutedPref,
+  last7,
   subscribe,
   touchStreak,
   update,
@@ -60,6 +62,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const [shaking, setShaking] = useState(false);
   const [showComplete, setShowComplete] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [showWords, setShowWords] = useState(false);
   const toastId = useRef(0);
 
   /**
@@ -92,6 +95,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const hintsAvailable = Math.floor(bonusFound.length / HINT_COST) - spentHints;
 
   const current = selected.map((i) => letters[i]).join('');
+  const days = useMemo(() => last7(progress, today), [progress, today]);
 
   const say = useCallback((text: string, tone: Toast['tone']) => {
     toastId.current += 1;
@@ -249,8 +253,33 @@ export default function Game({ data }: { data: PuzzleFile }) {
     }
   };
 
+  const rail = (
+    <Rail
+      gridWords={puzzle.grid}
+      base={puzzle.base}
+      found={found}
+      bonusFound={bonusFound}
+      rank={rank}
+      score={score}
+      days={days}
+      streak={progress.streak}
+      bestStreak={progress.bestStreak}
+    />
+  );
+
+  /*
+   * Layout by breakpoint. The board NEVER stretches — it stays a bounded
+   * column at every width, which is how Syllo and Duolingo handle a
+   * single-puzzle game on a wide screen. Extra width goes to the evidence
+   * rail or stays deliberately empty; it never inflates the game.
+   *
+   *   < 768   one column, wheel bottom-anchored in the thumb zone
+   *   >= 768  board scales up, rail drops in below it
+   *   >= 1024 rail moves beside the board, board centers vertically
+   *   >= 1536 wider measure, rail gains the how-to-play card
+   */
   return (
-    <main className="safe-top safe-bottom mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-5">
+    <main className="safe-top safe-bottom mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-5 md:max-w-[600px] lg:max-w-[1060px] 2xl:max-w-[1240px]">
       {/* Header — quiet. Day number and streak are evidence, not the hero. */}
       <header className="flex items-center justify-between">
         <div>
@@ -272,9 +301,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </button>
       </header>
 
-      <div className="mt-4">
-        <RankBar rank={rank} score={score} />
-      </div>
+      <div className="mt-4 flex min-h-0 flex-1 flex-col gap-8 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:items-start lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
+        {/* Board column — bounded at every width, centered on desktop. */}
+        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col md:max-w-[480px] lg:min-h-[620px] lg:justify-center">
+      <RankBar rank={rank} score={score} />
 
       {/* Target grid */}
       <section aria-label="Words to find" className="mt-6">
@@ -286,7 +316,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
         />
       </section>
 
-      <div className="flex-1" />
+      {/* Greedy only on phone, where it bottom-anchors the wheel in the thumb
+          zone. From tablet up the rail sits below the board so the page
+          scrolls anyway — anchoring there just opened a void. */}
+      <div className="min-h-6 flex-1 md:h-8 md:flex-none" />
 
       {/* Current word — the only place the accent green appears mid-play */}
       <div
@@ -310,9 +343,15 @@ export default function Game({ data }: { data: PuzzleFile }) {
           >
             {toast.text}
           </span>
-        ) : (
-          <span className="text-[28px] font-bold tracking-[0.14em] text-text-primary">
+        ) : current ? (
+          <span className="text-[28px] font-bold tracking-[0.14em] text-text-primary md:text-[32px]">
             {current.toUpperCase()}
+          </span>
+        ) : (
+          // An empty hero slot read as a hole in the layout, and nothing on
+          // screen said how to enter a word. One muted line fixes both.
+          <span className="text-[13px] text-text-muted">
+            Drag across the letters, or type
           </span>
         )}
       </div>
@@ -343,7 +382,14 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </ControlButton>
       </div>
 
-      <p className="mt-3 text-center text-[13px] text-text-muted">
+      {/* On phone the rail has no room, so this line is the way in. From
+          tablet up the rail is on screen and the line is just a readout. */}
+      <button
+        type="button"
+        onClick={() => setShowWords(true)}
+        aria-haspopup="dialog"
+        className="mt-3 rounded-full px-3 py-1 text-center text-[13px] text-text-muted transition-colors hover:text-text-secondary md:pointer-events-none md:hover:text-text-muted"
+      >
         {bonusFound.length} bonus {bonusFound.length === 1 ? 'word' : 'words'}
         {hintsAvailable <= 0 && (
           <span className="text-carbon-strong">
@@ -351,7 +397,32 @@ export default function Game({ data }: { data: PuzzleFile }) {
             · {HINT_COST - (bonusFound.length % HINT_COST)} more earns a hint
           </span>
         )}
-      </p>
+        <span className="md:hidden"> ›</span>
+      </button>
+        </div>
+
+        {/* Evidence rail — below the board on tablet, beside it on desktop. */}
+        <aside aria-label="Your progress" className="hidden md:block lg:sticky lg:top-6">
+          {rail}
+        </aside>
+      </div>
+
+      {showWords && (
+        <Sheet onClose={() => setShowWords(false)} label="Your progress">
+          <Rail
+            gridWords={puzzle.grid}
+            base={puzzle.base}
+            found={found}
+            bonusFound={bonusFound}
+            rank={rank}
+            score={score}
+            days={days}
+            streak={progress.streak}
+            bestStreak={progress.bestStreak}
+            howToClassName=""
+          />
+        </Sheet>
+      )}
 
       {showComplete && (
         <CompleteSheet
@@ -366,6 +437,46 @@ export default function Game({ data }: { data: PuzzleFile }) {
         />
       )}
     </main>
+  );
+}
+
+/** Bottom sheet — the phone's way into rail content the rail has no room for. */
+function Sheet({
+  label,
+  children,
+  onClose,
+}: {
+  label: string;
+  children: React.ReactNode;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={label}
+      className="fixed inset-0 z-50 flex items-end bg-black/70"
+      onClick={onClose}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="anim-rise safe-bottom max-h-[82dvh] w-full overflow-y-auto rounded-t-3xl border-t border-carbon-border bg-carbon-body px-5 pt-4"
+      >
+        {/* Grab handle — signals "drag or tap away", costs one element. */}
+        <div
+          aria-hidden
+          className="mx-auto mb-4 h-1 w-10 rounded-full bg-carbon-strong"
+        />
+        {children}
+        <button
+          type="button"
+          onClick={onClose}
+          className="mt-4 h-11 w-full rounded-full border border-carbon-border text-[14px] text-text-secondary"
+        >
+          Close
+        </button>
+      </div>
+    </div>
   );
 }
 

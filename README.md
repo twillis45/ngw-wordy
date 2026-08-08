@@ -66,10 +66,30 @@ player gets the same letters with no server involved.
   the screen is saturated. The rank bar is steel, never green.
 - **Banned, as in the parent design system:** `#1a6fba`, `#14b8a6`, `#f0bc44`,
   `#e08c38`. No warm gold as a hierarchy accent.
-- **Thumb zone.** Wheel in the bottom third; the grid never competes for it.
-  The layout is budgeted to fit 375×812 with no scroll.
+- **Thumb zone.** Wheel in the bottom third on phone; the grid never competes
+  for it. The layout is budgeted to fit 375×812 with no scroll.
+- **The board never stretches.** It stays a bounded column at every width.
+  Extra width goes to the evidence rail or stays deliberately empty — it never
+  inflates the game. Wheel geometry is percentage-based so it scales with its
+  breakpoint class and hit-testing follows automatically.
 - **Motion = change only.** Tile pop on a solve, shake on a reject, rise on the
   sheet. No idle ambience. `prefers-reduced-motion` kills all of it.
+
+## Breakpoints
+
+| Width | Layout |
+| --- | --- |
+| `< 768` | One column. Wheel bottom-anchored in the thumb zone; rail reachable via the bonus-words line, which opens a sheet. |
+| `>= 768` | Board scales up (bigger wheel and tiles); rail drops in below it. |
+| `>= 1024` | Rail moves beside the board; board centers vertically in its cell. |
+| `>= 1536` | Wider measure, wider rail, and the how-to-play card appears. |
+
+The rail (`Rail.tsx`) is one copy of markup — the grid parent decides whether it
+sits below or beside. How-to visibility is a CSS class, not a measured
+breakpoint, so there's no hydration-unsafe guess about viewport width.
+
+What's in the rail was already in the engine but invisible: **which** words you
+found (previously only a count), the full rank ladder, and a 7-day streak strip.
 
 ## Installable + offline
 

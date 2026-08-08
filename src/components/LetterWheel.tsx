@@ -12,10 +12,15 @@ type Props = {
   disabled?: boolean;
 };
 
-const SIZE = 264; // px, the wheel's square box
-const RADIUS = 95; // distance from center to a tile's center
-const TILE = 56;
-const HIT = 34; // px from a tile center that counts as "on" it
+/**
+ * Geometry is expressed in percentages of the container, not pixels, so the
+ * wheel scales with its breakpoint class and the hit-testing follows for free
+ * (it normalizes against the live bounding rect). A pixel-sized wheel was the
+ * reason tablet and desktop got a phone-sized board in a large screen.
+ */
+const RADIUS = 36; // % of container, center to a tile's center
+const TILE = 21.2; // % of container
+const HIT = 13; // % from a tile center that counts as "on" it
 
 /**
  * Drag-to-connect letter wheel, thumb-zone sized.
@@ -41,16 +46,21 @@ export default function LetterWheel({
     // Start at the top and go clockwise.
     const angle = (i / letters.length) * Math.PI * 2 - Math.PI / 2;
     return {
-      x: SIZE / 2 + Math.cos(angle) * RADIUS,
-      y: SIZE / 2 + Math.sin(angle) * RADIUS,
+      x: 50 + Math.cos(angle) * RADIUS,
+      y: 50 + Math.sin(angle) * RADIUS,
     };
   });
 
-  const localPoint = useCallback((e: PointerEvent | React.PointerEvent) => {
+  /** Pointer position in container percentage units. */
+  const localPoint = useCallback((e: React.PointerEvent) => {
     const box = boxRef.current;
     if (!box) return null;
     const r = box.getBoundingClientRect();
-    return { x: e.clientX - r.left, y: e.clientY - r.top };
+    if (!r.width || !r.height) return null;
+    return {
+      x: ((e.clientX - r.left) / r.width) * 100,
+      y: ((e.clientY - r.top) / r.height) * 100,
+    };
   }, []);
 
   const hitTest = useCallback(
@@ -117,8 +127,7 @@ export default function LetterWheel({
       onPointerDown={handleDown}
       onPointerMove={handleMove}
       onPointerUp={endDrag}
-      className="relative touch-none select-none"
-      style={{ width: SIZE, height: SIZE }}
+      className="relative aspect-square w-[264px] touch-none select-none md:w-[330px] lg:w-[300px]"
     >
       {/* Matte disc — depth comes from an inset ring, not a glow. */}
       <div
@@ -130,9 +139,9 @@ export default function LetterWheel({
       {/* Connection path. Drawn under the tiles so it reads as a thread. */}
       <svg
         aria-hidden
-        className="pointer-events-none absolute inset-0"
-        width={SIZE}
-        height={SIZE}
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        className="pointer-events-none absolute inset-0 h-full w-full"
       >
         {pathPoints.length > 0 && (
           <polyline
@@ -142,7 +151,7 @@ export default function LetterWheel({
             ].join(' ')}
             fill="none"
             stroke="var(--color-steel-muted)"
-            strokeWidth={5}
+            strokeWidth={1.9}
             strokeLinecap="round"
             strokeLinejoin="round"
             opacity={0.65}
@@ -170,6 +179,7 @@ export default function LetterWheel({
             }}
             className={[
               'absolute grid place-items-center rounded-2xl border font-bold',
+              'text-[26px] md:text-[32px] lg:text-[29px]',
               'transition-[transform,background-color,border-color] duration-150',
               'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-muted',
               active
@@ -177,11 +187,10 @@ export default function LetterWheel({
                 : 'border-carbon-strong bg-carbon-surface-2 text-text-primary active:scale-95',
             ].join(' ')}
             style={{
-              left: pos.x - TILE / 2,
-              top: pos.y - TILE / 2,
-              width: TILE,
-              height: TILE,
-              fontSize: 26,
+              left: `${pos.x - TILE / 2}%`,
+              top: `${pos.y - TILE / 2}%`,
+              width: `${TILE}%`,
+              height: `${TILE}%`,
               boxShadow: active
                 ? 'inset 0 1px 0 rgba(255,255,255,0.10)'
                 : '0 2px 6px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05)',
