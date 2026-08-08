@@ -392,7 +392,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
       >
         {bonusFound.length} bonus {bonusFound.length === 1 ? 'word' : 'words'}
         {hintsAvailable <= 0 && (
-          <span className="text-carbon-strong">
+          // carbon-strong is a BORDER token; as text it measured 1.51:1 —
+          // invisible. The palette supports exactly three text tiers, so
+          // de-emphasis here comes from position, not from less contrast.
+          <span>
             {' '}
             · {HINT_COST - (bonusFound.length % HINT_COST)} more earns a hint
           </span>

@@ -83,7 +83,9 @@ export default function Rail({
                 className={[
                   'flex items-center gap-2.5 rounded-lg px-2 py-1 text-[14px]',
                   current ? 'bg-carbon-surface-2 font-semibold' : '',
-                  reached ? 'text-text-primary' : 'text-carbon-strong',
+                  // Reached vs not is carried by the dot and the weight — not
+                  // by dropping the label to an unreadable contrast.
+                  reached ? 'text-text-primary' : 'text-text-muted',
                 ].join(' ')}
               >
                 <span
@@ -117,7 +119,9 @@ export default function Rail({
                   'grid h-7 w-7 place-items-center rounded-md border text-[11px]',
                   d.played
                     ? 'border-success/40 bg-success/15 text-success'
-                    : 'border-carbon-border bg-carbon-body text-carbon-strong',
+                    // Unplayed cells hold no glyph, so no text color here —
+                    // carbon-strong is a border token and must never set text.
+                    : 'border-carbon-border bg-carbon-body',
                   // Today reads as today whether or not it's been played.
                   i === days.length - 1 ? 'ring-1 ring-steel-muted/40' : '',
                 ].join(' ')}
@@ -193,7 +197,7 @@ function Group({
       {has ? (
         <div className="flex flex-wrap gap-1.5">{children}</div>
       ) : (
-        <p className="text-[13px] text-carbon-strong">{empty}</p>
+        <p className="text-[13px] text-text-muted">{empty}</p>
       )}
     </div>
   );
