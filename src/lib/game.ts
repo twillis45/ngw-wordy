@@ -132,19 +132,52 @@ export function dayKey(date: Date): string {
 }
 
 /**
- * Spoiler-free share card, Wordle grammar: shows shape and rank, never a word.
- * Grid words become filled squares; bonus words become dots.
+ * Spoiler-free share card, Wordle grammar: shape and rank, never a word.
+ *
+ * The squares are in tray order (longest first), so the shape a reader sees
+ * is the shape the player saw. The six-letter word gets its own glyph — it's
+ * the prize, and "did they get the long one" is the whole story of a solve.
+ *
+ * Emoji squares rather than ■/□ on purpose: they survive every platform's
+ * font stack at a readable size, which is exactly why Wordle's card travels.
  */
+const SQ_BASE = '🟩'; // the full-wheel word — matches its green ring in-app
+const SQ_SOLVED = '🟦';
+const SQ_MISSED = '⬛';
+
+export type ShareTile = { solved: boolean; isBase: boolean };
+
 export function shareText(opts: {
   dayNumber: number;
   rank: string;
   score: number;
-  gridFound: number;
-  gridTotal: number;
+  tiles: ShareTile[];
   bonusFound: number;
+  streak: number;
+  /** Where to play. Omitted entirely rather than guessed. */
+  url?: string;
 }): string {
-  const filled = '■'.repeat(opts.gridFound);
-  const empty = '□'.repeat(Math.max(0, opts.gridTotal - opts.gridFound));
-  const dots = opts.bonusFound > 0 ? `\n·${opts.bonusFound} bonus` : '';
-  return `Wordy #${opts.dayNumber} — ${opts.rank} (${opts.score})\n${filled}${empty}${dots}`;
+  const shape = opts.tiles
+    .map((t) =>
+      !t.solved ? SQ_MISSED : t.isBase ? SQ_BASE : SQ_SOLVED
+    )
+    .join('');
+
+  // Evidence line — only the parts that actually happened.
+  const evidence = [
+    opts.bonusFound > 0 ? `${opts.bonusFound} bonus` : null,
+    `${opts.score} pts`,
+    opts.streak > 1 ? `${opts.streak}-day streak` : null,
+  ]
+    .filter(Boolean)
+    .join(' · ');
+
+  return [
+    `Wordy #${opts.dayNumber} — ${opts.rank}`,
+    shape,
+    evidence,
+    opts.url,
+  ]
+    .filter(Boolean)
+    .join('\n');
 }

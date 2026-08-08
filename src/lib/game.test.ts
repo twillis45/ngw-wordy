@@ -122,22 +122,81 @@ describe('dailyIndex', () => {
 });
 
 describe('shareText', () => {
+  const tiles = (pattern: string) =>
+    // b = base solved, x = solved, . = missed
+    pattern.split('').map((c) => ({
+      solved: c !== '.',
+      isBase: c === 'b',
+    }));
+
   it('reveals shape and rank but never a word', () => {
     const text = shareText({
       dayNumber: 12,
       rank: 'Fluent',
       score: 61,
-      gridFound: 3,
-      gridTotal: 5,
+      tiles: tiles('bx x..'.replace(' ', '')),
       bonusFound: 4,
+      streak: 5,
+      url: 'https://wordy.example',
     });
-    expect(text).toContain('Wordy #12');
-    expect(text).toContain('■■■□□');
-    expect(text).toContain('·4 bonus');
+    expect(text).toContain('Wordy #12 — Fluent');
     // No answer from the puzzle may appear anywhere in the card.
     for (const answer of [...puzzle.grid, ...puzzle.bonus]) {
       expect(text.toLowerCase()).not.toContain(answer);
     }
+  });
+
+  it('marks the full-wheel word distinctly from the rest', () => {
+    const text = shareText({
+      dayNumber: 1,
+      rank: 'Genius',
+      score: 100,
+      tiles: tiles('bxx'),
+      bonusFound: 0,
+      streak: 1,
+    });
+    expect(text).toContain('🟩🟦🟦');
+  });
+
+  it('shows misses', () => {
+    const text = shareText({
+      dayNumber: 1,
+      rank: 'Solid',
+      score: 8,
+      tiles: tiles('.x.'),
+      bonusFound: 0,
+      streak: 1,
+    });
+    expect(text).toContain('⬛🟦⬛');
+  });
+
+  it('omits bonus, streak and url when they have nothing to say', () => {
+    const text = shareText({
+      dayNumber: 3,
+      rank: 'Novice',
+      score: 4,
+      tiles: tiles('..'),
+      bonusFound: 0,
+      streak: 1,
+    });
+    expect(text).not.toContain('bonus');
+    expect(text).not.toContain('streak');
+    expect(text).not.toContain('http');
+    expect(text.trim().split('\n')).toHaveLength(3);
+  });
+
+  it('includes bonus, streak and url when they do', () => {
+    const text = shareText({
+      dayNumber: 3,
+      rank: 'Genius',
+      score: 99,
+      tiles: tiles('bxx'),
+      bonusFound: 14,
+      streak: 5,
+      url: 'https://wordy.example',
+    });
+    expect(text).toContain('14 bonus · 99 pts · 5-day streak');
+    expect(text.endsWith('https://wordy.example')).toBe(true);
   });
 });
 

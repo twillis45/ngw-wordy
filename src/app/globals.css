@@ -52,6 +52,15 @@ body {
   overscroll-behavior: none;
 }
 
+/* Safe areas — the viewport is `cover`, so the controls under the wheel would
+   otherwise sit beneath the home indicator on a notched iPhone. */
+.safe-top {
+  padding-top: calc(1rem + env(safe-area-inset-top));
+}
+.safe-bottom {
+  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+}
+
 /* Tile motion — springy enough to feel physical, short enough to stay
    out of the way. Disabled wholesale under reduced-motion. */
 @keyframes tile-pop {

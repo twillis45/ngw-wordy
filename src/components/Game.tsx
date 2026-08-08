@@ -86,7 +86,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
     [progress, key]
   );
 
-  const gridFound = puzzle.grid.filter((w) => found.has(w));
   const bonusFound = [...found].filter((w) => !puzzle.grid.includes(w));
   const score = [...found].reduce((s, w) => s + scoreWord(w, data.wheel), 0);
   const rank = rankFor(score, puzzle.maxScore);
@@ -216,15 +215,27 @@ export default function Game({ data }: { data: PuzzleFile }) {
     say('First letter revealed', 'neutral');
   };
 
-  const share = async () => {
-    const text = shareText({
+  const shareCard = () =>
+    shareText({
       dayNumber: index + 1,
       rank: rank.name,
       score,
-      gridFound: gridFound.length,
-      gridTotal: puzzle.grid.length,
+      // Tray order, so the shape a reader sees is the shape the player saw.
+      tiles: puzzle.grid.map((w) => ({
+        solved: found.has(w),
+        isBase: w === puzzle.base,
+      })),
       bonusFound: bonusFound.length,
+      streak: progress.streak,
+      // Configured per deploy; falls back to wherever the game is actually
+      // being played rather than a guessed domain.
+      url:
+        process.env.NEXT_PUBLIC_SHARE_URL ||
+        (typeof window !== 'undefined' ? window.location.origin : undefined),
     });
+
+  const share = async () => {
+    const text = shareCard();
     try {
       if (navigator.share) {
         await navigator.share({ text });
@@ -239,7 +250,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
   };
 
   return (
-    <main className="mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-5 pb-6 pt-4">
+    <main className="safe-top safe-bottom mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-5">
       {/* Header — quiet. Day number and streak are evidence, not the hero. */}
       <header className="flex items-center justify-between">
         <div>
@@ -348,6 +359,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           score={score}
           bonus={bonusFound.length}
           streak={progress.streak}
+          preview={shareCard()}
           copied={copied}
           onShare={share}
           onClose={() => setShowComplete(false)}
@@ -409,6 +421,7 @@ function CompleteSheet({
   score,
   bonus,
   streak,
+  preview,
   copied,
   onShare,
   onClose,
@@ -417,13 +430,14 @@ function CompleteSheet({
   score: number;
   bonus: number;
   streak: number;
+  preview: string;
   copied: boolean;
   onShare: () => void;
   onClose: () => void;
 }) {
   return (
     <div className="fixed inset-0 z-50 grid place-items-end bg-black/70 sm:place-items-center">
-      <div className="anim-rise w-full max-w-[420px] rounded-t-3xl border-t border-carbon-border bg-carbon-panel px-6 pb-8 pt-7 sm:rounded-3xl sm:border">
+      <div className="anim-rise safe-bottom w-full max-w-[420px] rounded-t-3xl border-t border-carbon-border bg-carbon-panel px-6 pt-7 sm:rounded-3xl sm:border">
         <p className="text-[13px] uppercase tracking-[0.14em] text-text-muted">
           Grid cleared
         </p>
@@ -434,6 +448,11 @@ function CompleteSheet({
           <Stat label="Bonus" value={bonus} />
           <Stat label="Streak" value={streak} />
         </dl>
+
+        {/* Show exactly what gets sent. Nobody shares a card they can't see. */}
+        <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words rounded-xl border border-carbon-border bg-carbon-body px-4 py-3 text-center text-[13px] leading-relaxed text-text-secondary">
+          {preview}
+        </pre>
 
         <button
           type="button"
