@@ -190,40 +190,47 @@ body {
 }
 
 /*
- * The pointer glass.
+ * The pointer glass — a CLEAR lens, not a frosted disc.
  *
- * Modelled on the iPadOS pointer, NOT on a Liquid Glass sheet — they are
- * different objects and conflating them was the mistake in the first pass.
- * Apple's pointer is a quiet, content-adaptive translucent blob: it refracts
- * what's under it and takes a faint rim, but it does not glow, bloom or
- * announce itself. Over a control it MORPHS into that control's shape (handled
- * in LetterWheel) so it reads as the control's own highlight rather than an
- * object resting on top of it.
+ * The whole point of the pointer is that it sits on the letter you are reading,
+ * so anything that obscures that letter is a defect. Two things did:
+ * backdrop-blur smeared the glyph underneath, and the specular highlight sat
+ * as a blob across the middle of it.
  *
- * Anything brighter competes with the letter it is sitting on, which is the one
- * thing the player actually needs to read.
+ * So there is no fill and no blur. What remains is what actually reads as
+ * glass: a lit rim on the light side, a shaded rim opposite, a thin specular
+ * that hugs the top-left EDGE rather than crossing the centre, and a faint
+ * optical shift (saturate/brightness, applied on the element) so the content
+ * behind is visibly *through* something. The letter stays fully legible.
  */
 .glass-puck {
-  background: color-mix(in srgb, var(--color-text-primary) 12%, transparent);
+  background: transparent;
   box-shadow:
-    /* a shallow lift, so it sits just above the surface */
-    0 2px 8px -3px color-mix(in srgb, #000 45%, transparent),
-    /* rim light, brighter where light would catch */
-    inset 1px 1px 0 color-mix(in srgb, var(--color-text-primary) 55%, transparent),
-    inset -1px -1px 2px color-mix(in srgb, #000 25%, transparent);
+    /* lift off the surface */
+    0 2px 8px -4px color-mix(in srgb, #000 45%, transparent),
+    /* continuous faint rim, so the shape is always readable */
+    inset 0 0 0 1px color-mix(in srgb, var(--color-text-primary) 32%, transparent),
+    /* lit edge, top-left */
+    inset 1.5px 1.5px 0 color-mix(in srgb, var(--color-text-primary) 75%, transparent),
+    /* shaded edge, bottom-right */
+    inset -1.5px -1.5px 0 color-mix(in srgb, #000 30%, transparent);
 }
 
-/* A soft off-centre highlight. Kept faint — the pointer is not the subject. */
+/*
+ * Specular. Confined to the rim by a gradient that dies at 26%, so the centre
+ * of the lens — where the letter is — stays completely clear.
+ */
 .glass-puck::after {
   content: '';
   position: absolute;
-  left: 16%;
-  top: 12%;
-  width: 40%;
-  height: 28%;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-text-primary) 45%, transparent);
-  filter: blur(3px);
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-text-primary) 60%, transparent) 0%,
+    transparent 26%
+  );
 }
 
 /*

@@ -298,7 +298,7 @@ export default function LetterWheel({
       {pointer && (
         <span
           aria-hidden
-          className="glass-puck pointer-events-none absolute backdrop-blur-[14px] backdrop-saturate-[1.6]"
+          className="glass-puck pointer-events-none absolute backdrop-saturate-[1.35] backdrop-brightness-[1.12]"
           style={{
             left: `${pointer.x}%`,
             top: `${pointer.y}%`,
