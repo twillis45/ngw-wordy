@@ -38,12 +38,19 @@ import {
   measureFlight,
 } from '@/lib/flight';
 import {
+  fullscreenSupported,
+  isFullscreen,
+  subscribeFullscreen,
+  toggleFullscreen,
+} from '@/lib/fullscreen';
+import {
   activeLetters,
   RANK_BASIS,
   RANKS,
   clueTarget,
   isReachable,
   dailyIndex,
+  puzzleForPlayer,
   rankFor,
   scoreWord,
   shareText,
@@ -59,6 +66,7 @@ import {
   getSnapshot,
   last7,
   markCleared,
+  advanceWarmup,
   markIntroSeen,
   revealFor,
   setMode,
@@ -91,10 +99,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * waiting for tomorrow; only offset 0 touches the streak.
    */
   const [offset, setOffset] = useState(0);
-  const index = (todayIndex + offset) % data.puzzles.length;
-  const puzzle: Puzzle = data.puzzles[index];
-  const puzzleId = String(puzzle.id);
-  const isDaily = offset === 0;
 
   // Lets the v1 -> v2 migration re-key old day-based words onto puzzles.
   configureMigration((dk) => {
@@ -111,6 +115,22 @@ export default function Game({ data }: { data: PuzzleFile }) {
     getServerSnapshot
   );
 
+  /*
+   * A new player gets a short warm-up on the kindest puzzles before joining the
+   * daily. Measuring the set showed the grid is only 51% common words on
+   * average and the day-1 puzzle was 33% — four of six rows obscure. A first
+   * game has to be winnable or there is no second one.
+   */
+  const { index, warmup } = puzzleForPlayer(
+    data,
+    progress.warmupsDone,
+    today,
+    offset
+  );
+  const puzzle: Puzzle = data.puzzles[index];
+  const puzzleId = String(puzzle.id);
+  const isDaily = offset === 0 && warmup === null;
+
   const [letters, setLetters] = useState<string[]>(puzzle.letters);
   const [selected, setSelected] = useState<number[]>([]);
   const [toast, setToast] = useState<Toast | null>(null);
@@ -123,6 +143,13 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const [showDef, setShowDef] = useState<Resolved | null>(null);
   const [defUpgrading, setDefUpgrading] = useState(false);
   const [clueCursor, setClueCursor] = useState(0);
+  // Fullscreen is browser state that Esc can change behind our back, so it's
+  // an external store rather than something we try to remember.
+  const fullscreen = useSyncExternalStore(
+    subscribeFullscreen,
+    isFullscreen,
+    () => false
+  );
   const theme = useSyncExternalStore(
     subscribeTheme,
     getThemeSnapshot,
@@ -236,15 +263,23 @@ export default function Game({ data }: { data: PuzzleFile }) {
       if (done < puzzle.grid.length) return;
 
       markCleared(puzzleId);
-      // Practice puzzles must never move the streak, or it stops meaning
-      // "showed up today".
-      if (isDaily) update((p) => touchStreak(p, today));
+      /*
+       * Practice puzzles must never move the streak, or it stops meaning
+       * "showed up today".
+       *
+       * The warm-up ladder does NOT advance here. Advancing on completion
+       * swapped the current puzzle out from under the summary sheet, so it
+       * reported the next puzzle's state: "Warm-up 2 cleared" with a score of
+       * 0 when you had just finished warm-up 1. The ladder advances when the
+       * player leaves the sheet instead.
+       */
+      if (warmup === null && isDaily) update((p) => touchStreak(p, today));
       setTimeout(() => {
         feedback.complete();
         setShowComplete(true);
       }, delayMs);
     },
-    [puzzle.grid, puzzleId, isDaily, today]
+    [puzzle.grid, puzzleId, isDaily, warmup, today]
   );
 
   const commit = useCallback(() => {
@@ -262,15 +297,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
     switch (result.kind) {
       case 'grid': {
-        /*
-         * Count rows that are DONE, not just solved. A row bought with hints
-         * fills the grid too, so counting only solved words meant a puzzle
-         * finished with any bought row could never register as complete.
-         */
-        const boughtRows = revealFor(getSnapshot(), puzzleId).words;
-        const doneBefore = puzzle.grid.filter(
-          (w) => banked.has(w) || boughtRows.includes(w)
-        ).length;
         const solvedBefore = puzzle.grid.filter((w) => banked.has(w)).length;
         feedback.correct(solvedBefore);
 
@@ -279,9 +305,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
          *   1. letters fly from the wheel to their slots
          *   2. each lands with an overshoot and a light sweep across the row
          *   3. the points float off the row
-         *
-         * Beat 1 runs first and the tray fills when it lands, so the letters
-         * appear to carry themselves into place rather than teleporting.
          */
         const flightMs = flyLetters(flight);
         const land = () => {
@@ -289,6 +312,19 @@ export default function Game({ data }: { data: PuzzleFile }) {
           addWord(puzzleId, result.word, false);
           setFloatFor({ word: result.word, points: result.points });
           setTimeout(() => setFloatFor(null), 950);
+
+          /*
+           * Completion is checked HERE, after the word is actually banked.
+           *
+           * Grid words bank inside this callback, so a check that ran at submit
+           * time was counting pre-flight state: submit words faster than the
+           * animation — easy when typing — and the last word banked after the
+           * check had already decided the puzzle wasn't finished. The grid
+           * filled and nothing happened. finishIfDone reads the store and
+           * decides for itself, so calling it here is both correct and simpler
+           * than the arithmetic it replaces.
+           */
+          finishIfDone(380);
         };
         if (flightMs > 0) setTimeout(land, flightMs * 0.62);
         else land();
@@ -316,12 +352,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
         );
         if (after.index > before.index) {
           setTimeout(() => celebrateRank(after.name, after.next), 620);
-        }
-        // Completion is an event, not a derived effect: it fires on the word
-        // that finishes the grid, exactly once, and banks the streak with it.
-        if (doneBefore + 1 === puzzle.grid.length) {
-          // Let the last word actually land before the sheet covers it.
-          finishIfDone(Math.max(420, flightMs * 0.62 + 380));
         }
         break;
       }
@@ -567,7 +597,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
             Wordy
           </h1>
           <p className="text-[13px] text-text-muted">
-            {isDaily ? (
+            {warmup !== null ? (
+              <>Warm-up {warmup} of {data.starters.length}</>
+            ) : isDaily ? (
               <>
                 Today
                 {progress.streak > 0 ? ` · ${progress.streak} day streak` : ''}
@@ -584,6 +616,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
           </p>
         </div>
         <div className="flex items-center gap-2">
+        {fullscreenSupported() && (
+          <button
+            type="button"
+            onClick={() => void toggleFullscreen()}
+            aria-label={fullscreen ? 'Exit full screen' : 'Full screen'}
+            aria-pressed={fullscreen}
+            className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+          >
+            <FullscreenIcon on={fullscreen} />
+          </button>
+        )}
         <button
           type="button"
           onClick={cycleTheme}
@@ -898,9 +941,21 @@ export default function Game({ data }: { data: PuzzleFile }) {
           preview={shareCard()}
           copied={copied}
           isDaily={isDaily}
+          warmup={warmup}
+          warmupTotal={data.starters.length}
           onShare={share}
-          onNext={() => goToPuzzle(offset + 1)}
-          onClose={() => setShowComplete(false)}
+          // Inside the ladder, staying at offset 0 loads the NEXT warm-up,
+          // because warmupsDone has already advanced. Incrementing the offset
+          // would jump out of the ladder entirely.
+          onNext={() => {
+            // Advance the ladder here, once the summary has been seen.
+            if (warmup !== null) advanceWarmup();
+            goToPuzzle(warmup !== null ? 0 : offset + 1);
+          }}
+          onClose={() => {
+            if (warmup !== null) advanceWarmup();
+            setShowComplete(false);
+          }}
         />
       )}
     </main>
@@ -1057,6 +1112,29 @@ function ModeRow({
   );
 }
 
+function FullscreenIcon({ on }: { on: boolean }) {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      {on ? (
+        // Arrows pointing in — the way out.
+        <path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6" />
+      ) : (
+        <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6" />
+      )}
+    </svg>
+  );
+}
+
 function ThemeIcon({ theme }: { theme: Theme }) {
   // 'auto' shows what it's currently following, with a dot to say it's tracking
   // the system rather than pinned.
@@ -1150,6 +1228,8 @@ function CompleteSheet({
   preview,
   copied,
   isDaily,
+  warmup,
+  warmupTotal,
   onShare,
   onNext,
   onClose,
@@ -1161,6 +1241,8 @@ function CompleteSheet({
   preview: string;
   copied: boolean;
   isDaily: boolean;
+  warmup: number | null;
+  warmupTotal: number;
   onShare: () => void;
   onNext: () => void;
   onClose: () => void;
@@ -1170,7 +1252,11 @@ function CompleteSheet({
       style={{ background: 'var(--scrim)' }}>
       <div className="anim-rise safe-bottom w-full max-w-[420px] relative rounded-t-3xl border-t-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 px-6 pt-7 sm:rounded-3xl sm:border">
         <p className="text-[13px] uppercase tracking-[0.14em] text-text-muted">
-          {isDaily ? "Today's puzzle cleared" : 'Puzzle cleared'}
+          {warmup !== null
+            ? `Warm-up ${warmup} cleared`
+            : isDaily
+              ? "Today's puzzle cleared"
+              : 'Puzzle cleared'}
         </p>
         <h2 className="mt-1 text-[28px] font-bold text-text-primary">{rank}</h2>
 
@@ -1192,7 +1278,11 @@ function CompleteSheet({
           onClick={onNext}
           className="liquid-interactive relative mt-6 h-12 w-full rounded-full border-2 border-edge bg-gradient-to-b from-steel/80 to-steel-dark/80 text-[15px] font-semibold text-text-primary backdrop-blur-md"
         >
-          Next puzzle →
+          {warmup !== null && warmup < warmupTotal
+            ? `Warm-up ${warmup + 1} →`
+            : warmup !== null
+              ? "Play today's puzzle →"
+              : 'Next puzzle →'}
         </button>
         <div className="mt-2 flex gap-2">
           <button

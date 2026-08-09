@@ -17,7 +17,10 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Six letters. How many words can you make?',
     start_url: withBase('/'),
     scope: withBase('/'),
-    display: 'standalone',
+    // fullscreen first, then degrade — an installed player gets the whole
+    // screen, and anything that can't honour it falls back cleanly.
+    display: 'fullscreen',
+    display_override: ['fullscreen', 'standalone', 'minimal-ui'],
     orientation: 'portrait',
     background_color: '#070809',
     theme_color: '#070809',

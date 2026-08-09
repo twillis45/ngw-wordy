@@ -32,6 +32,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 
 const WORDLIST = path.join(ROOT, 'data', 'enable1.txt');
+const POPULAR = path.join(ROOT, 'data', 'popular.txt');
 const DICT = path.join(ROOT, 'data', 'webster.json');
 const OUT = path.join(ROOT, 'public', 'data', 'puzzles.json');
 
@@ -72,6 +73,23 @@ function clueFor(word) {
   const clue = redactAnswer(clueText(entry[0]), word, entry[1]);
   return isUsableClue(clue) ? clue : null;
 }
+
+/*
+ * Familiarity, for the difficulty score.
+ *
+ * ENABLE1 is Scrabble-legal, which is not the same as known. A puzzle can be
+ * perfectly valid and still be six rows of words nobody has met — and measuring
+ * the set found exactly that: the grid is only 51% common words on average, 64
+ * puzzles are under 50%, and some are 0%. That is fine for a regular, and fatal
+ * for a first game.
+ */
+const popular = new Set(
+  fs
+    .readFileSync(POPULAR, 'utf8')
+    .split('\n')
+    .map((w) => w.trim().toLowerCase())
+    .filter(Boolean)
+);
 
 const raw = fs.readFileSync(WORDLIST, 'utf8').split('\n');
 const words = [];
@@ -210,8 +228,32 @@ for (const base of bases) {
   ];
   const startActive = new Set(shortest).size;
 
+  /*
+   * Difficulty, 0 (kindest) to 1 (hardest).
+   *
+   * Weighted toward the GRID, because the grid is what you must clear to
+   * finish — bonus obscurity only affects how high you can score, not whether
+   * you can succeed. A very large answer set also reads as harder because the
+   * board never looks finished.
+   */
+  const gridCommon =
+    ordered.filter((w) => popular.has(w)).length / ordered.length;
+  const allWords = [...ordered, ...bonus];
+  const poolCommon =
+    allWords.filter((w) => popular.has(w)).length / allWords.length;
+  const size = Math.min(1, answers.length / MAX_ANSWERS);
+  const difficulty = Number(
+    (
+      (1 - gridCommon) * 0.55 +
+      (1 - poolCommon) * 0.2 +
+      (popular.has(base) ? 0 : 0.15) +
+      size * 0.1
+    ).toFixed(4)
+  );
+
   puzzles.push({
     id: puzzles.length + 1,
+    difficulty,
     letters: letters.sort(),
     base,
     grid: ordered,
@@ -223,15 +265,44 @@ for (const base of bases) {
   });
 }
 
+/*
+ * The warm-up ladder.
+ *
+ * A new player's first game is currently whatever the date happens to land on,
+ * which measured at 33% common words — four of six rows obscure. Competitors
+ * do not do this: Wordscapes opens on short, common words and ramps, precisely
+ * because a first level that reads as impossible is where onboarding dies.
+ *
+ * So the kindest puzzles are reserved as a starter ladder, ordered easiest
+ * first, and excluded from nothing — they remain in the daily rotation too.
+ */
+const STARTERS = 4;
+const starters = puzzles
+  .map((p, i) => ({ i, d: p.difficulty }))
+  .sort((a, b) => a.d - b.d)
+  .slice(0, STARTERS)
+  .map((x) => x.i);
+
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
-fs.writeFileSync(OUT, JSON.stringify({ version: 1, wheel: WHEEL, puzzles }));
+fs.writeFileSync(
+  OUT,
+  JSON.stringify({ version: 2, wheel: WHEEL, starters, puzzles })
+);
 
 const bytes = fs.statSync(OUT).size;
 const avg =
   puzzles.reduce((s, p) => s + p.grid.length + p.bonus.length, 0) /
   (puzzles.length || 1);
 
+const diffs = puzzles.map((p) => p.difficulty).sort((a, b) => a - b);
+const median = diffs[Math.floor(diffs.length / 2)];
+
 console.log(
   `Wrote ${puzzles.length} puzzles -> ${OUT}\n` +
-    `  ${(bytes / 1024).toFixed(0)} KB · avg ${avg.toFixed(1)} answers/puzzle`
+    `  ${(bytes / 1024).toFixed(0)} KB · avg ${avg.toFixed(1)} answers/puzzle\n` +
+    `  difficulty: ${diffs[0].toFixed(2)} easiest / ${median.toFixed(2)} median /` +
+    ` ${diffs[diffs.length - 1].toFixed(2)} hardest\n` +
+    `  warm-up ladder: ${starters
+      .map((i) => `${puzzles[i].base} (${puzzles[i].difficulty.toFixed(2)})`)
+      .join(', ')}`
 );

@@ -41,6 +41,8 @@ export type Progress = {
   escalating: boolean;
   /** First-run explainer has been seen and dismissed. */
   seenIntro: boolean;
+  /** How many warm-up puzzles have been cleared. */
+  warmupsDone: number;
 };
 
 /** Stable identity — required as the server snapshot. */
@@ -58,6 +60,7 @@ export const EMPTY: Progress = Object.freeze({
   clueMode: false,
   escalating: false,
   seenIntro: false,
+  warmupsDone: 0,
 });
 
 let snapshot: Progress = EMPTY;
@@ -223,6 +226,10 @@ export function markCleared(puzzleId: string): Progress {
 
 export function setMutedPref(muted: boolean): Progress {
   return update((p) => (p.muted === muted ? p : { ...p, muted }));
+}
+
+export function advanceWarmup(): Progress {
+  return update((p) => ({ ...p, warmupsDone: p.warmupsDone + 1 }));
 }
 
 export function markIntroSeen(): Progress {

@@ -71,8 +71,43 @@ export function isReachable(word: string, active: ReadonlySet<string>): boolean 
 export type PuzzleFile = {
   version: number;
   wheel: number;
+  /** Indices of the kindest puzzles, easiest first — the warm-up ladder. */
+  starters: number[];
   puzzles: Puzzle[];
 };
+
+/**
+ * Which puzzle a player should be on.
+ *
+ * A first game currently landed on whatever the date happened to pick, and
+ * measuring the set showed the grid is only 51% common words on average — the
+ * day-1 puzzle was 33%, four of six rows obscure. Competitors do not open that
+ * way: Wordscapes starts on short, common words and ramps, because a first
+ * level that reads as impossible is where onboarding dies.
+ *
+ * So new players get a short warm-up on the kindest puzzles in the set before
+ * joining the daily. It is stated plainly in the UI rather than hidden.
+ */
+export function puzzleForPlayer(
+  file: PuzzleFile,
+  warmupsDone: number,
+  today: Date,
+  offset: number
+): { index: number; warmup: number | null } {
+  const ladder = file.starters ?? [];
+
+  // The warm-up is a sequence, so an explicit offset means the player has
+  // navigated away from it and wants the normal rotation.
+  if (offset === 0 && warmupsDone < ladder.length) {
+    return { index: ladder[warmupsDone], warmup: warmupsDone + 1 };
+  }
+
+  const base = dailyIndex(today, file.puzzles.length);
+  return {
+    index: (base + offset + file.puzzles.length) % file.puzzles.length,
+    warmup: null,
+  };
+}
 
 export type SubmitResult =
   | { kind: 'grid'; word: string; points: number; isBase: boolean }

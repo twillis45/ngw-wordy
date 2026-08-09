@@ -7,6 +7,7 @@ import {
   dayKey,
   rankFor,
   rankLadder,
+  puzzleForPlayer,
   scoreWord,
   shareText,
   shuffle,
@@ -624,5 +625,51 @@ describe('threshold rounding', () => {
         }
       }
     }
+  });
+});
+
+describe('puzzleForPlayer', () => {
+  const file = {
+    version: 2,
+    wheel: 6,
+    starters: [12, 40, 7, 99],
+    puzzles: Array.from({ length: 240 }, (_, i) => ({ ...puzzle, id: i + 1 })),
+  };
+  const today = new Date(2026, 7, 9);
+
+  it('opens a new player on the kindest puzzle, not the date', () => {
+    const r = puzzleForPlayer(file, 0, today, 0);
+    expect(r.index).toBe(12);
+    expect(r.warmup).toBe(1);
+  });
+
+  it('walks the ladder in order', () => {
+    expect(puzzleForPlayer(file, 1, today, 0).index).toBe(40);
+    expect(puzzleForPlayer(file, 2, today, 0).index).toBe(7);
+    expect(puzzleForPlayer(file, 3, today, 0).warmup).toBe(4);
+  });
+
+  it('joins the daily once the ladder is done', () => {
+    const r = puzzleForPlayer(file, 4, today, 0);
+    expect(r.warmup).toBeNull();
+    expect(r.index).toBe(dailyIndex(today, 240));
+  });
+
+  it('respects an explicit offset even mid-ladder', () => {
+    // Navigating away means the player wants the normal rotation.
+    const r = puzzleForPlayer(file, 1, today, 2);
+    expect(r.warmup).toBeNull();
+    expect(r.index).toBe((dailyIndex(today, 240) + 2) % 240);
+  });
+
+  it('wraps a negative offset rather than going out of range', () => {
+    const r = puzzleForPlayer(file, 9, today, -1);
+    expect(r.index).toBeGreaterThanOrEqual(0);
+    expect(r.index).toBeLessThan(240);
+  });
+
+  it('falls back to the daily when no ladder is present', () => {
+    const bare = { ...file, starters: [] };
+    expect(puzzleForPlayer(bare, 0, today, 0).warmup).toBeNull();
   });
 });
