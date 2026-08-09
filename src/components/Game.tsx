@@ -37,6 +37,7 @@ import {
   flyLetters,
   measureFlight,
 } from '@/lib/flight';
+import { assistFor, isStalled } from '@/lib/assist';
 import {
   mediaServerSnapshot,
   mediaSnapshot,
@@ -86,6 +87,7 @@ import {
 import {
   BONUS_PER_TOKEN,
   bonusToNextToken,
+  COST_LETTER,
   COST_WORD,
   revealLetter,
   revealWord,
@@ -146,6 +148,20 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const [showWords, setShowWords] = useState(false);
   const [showRules, setShowRules] = useState(false);
   const [showPuzzles, setShowPuzzles] = useState(false);
+  /**
+   * Do It For Me — stall tracking.
+   *
+   * Misses are keyed to the puzzle they belong to rather than reset by an
+   * effect, so switching puzzles clears them by derivation instead of a
+   * setState cascade. The clock starts on the first tick of the watcher, not
+   * during render — Date.now() in a render body is impure.
+   */
+  const [missState, setMissState] = useState({ id: '', n: 0 });
+  const misses = missState.id === puzzleId ? missState.n : 0;
+  const [offeredFor, setOfferedFor] = useState<string | null>(null);
+  const [assistOpen, setAssistOpen] = useState(false);
+  const lastProgress = useRef(0);
+  const clockFor = useRef('');
   const [defs, setDefs] = useState<Definitions | null>(null);
   const [showDef, setShowDef] = useState<Resolved | null>(null);
   const [defUpgrading, setDefUpgrading] = useState(false);
@@ -343,6 +359,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
            */
           finishIfDone(380);
         };
+        lastProgress.current = Date.now();
+        setMissState({ id: puzzleId, n: 0 });
         if (flightMs > 0) setTimeout(land, flightMs * 0.62);
         else land();
 
@@ -373,6 +391,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
         break;
       }
       case 'bonus':
+        lastProgress.current = Date.now();
+        setMissState({ id: puzzleId, n: 0 });
         feedback.bonus();
         addWord(puzzleId, result.word, true);
         setJustSolved((prev) => new Set(prev).add(result.word));
@@ -396,6 +416,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
         say('Too short', 'neutral');
         break;
       case 'invalid':
+        setMissState((m) =>
+          m.id === puzzleId ? { id: puzzleId, n: m.n + 1 } : { id: puzzleId, n: 1 }
+        );
         feedback.reject();
         setShaking(true);
         setTimeout(() => setShaking(false), 360);
@@ -450,6 +473,68 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * are in fact available.
    */
   const hasDefinition = useCallback(() => true, []);
+
+  /*
+   * Stall watch.
+   *
+   * Polling rather than a single timer because "stuck" has two shapes — a long
+   * silence and a run of wrong guesses — and only one of them fires an event.
+   * Cheap at this interval, and it stops entirely once the grid is done.
+   */
+  const unsolvedRows = puzzle.grid.filter((w) => !rowDone(w));
+  useEffect(() => {
+    if (unsolvedRows.length === 0) return;
+    const id = setInterval(() => {
+      // Start (or restart) the clock here rather than in render.
+      if (clockFor.current !== puzzleId || lastProgress.current === 0) {
+        clockFor.current = puzzleId;
+        lastProgress.current = Date.now();
+        return;
+      }
+      const stalled = isStalled({
+        idleMs: Date.now() - lastProgress.current,
+        missesSinceProgress: misses,
+        rowsLeft: unsolvedRows.length,
+        tokens,
+        alreadyOffered: offeredFor === puzzleId,
+      });
+      if (stalled) {
+        setOfferedFor(puzzleId);
+        setAssistOpen(true);
+      }
+    }, 3000);
+    return () => clearInterval(id);
+  }, [unsolvedRows.length, misses, tokens, offeredFor, puzzleId]);
+
+  /** Does the thing, rather than telling the player what to do. */
+  const acceptAssist = useCallback(() => {
+    const plan = assistFor(unsolvedRows, tokens, COST_LETTER, COST_WORD);
+    setAssistOpen(false);
+    if (!plan) return;
+
+    if (plan.kind === 'open-word') {
+      const r = revealWord(reveal, plan.word, { solved: false, balance: tokens });
+      if (r.ok) {
+        spendHint(puzzleId, r.reveal, r.cost);
+        feedback.correct(0);
+        say(`${plan.word.toUpperCase()} · opened for you`, 'neutral');
+        finishIfDone(360);
+      }
+      return;
+    }
+
+    // Both remaining plans reveal a letter; the free one just doesn't charge.
+    const r = revealLetter(reveal, plan.word, { solved: false, balance: 99 });
+    if (!r.ok) return;
+    spendHint(puzzleId, r.reveal, plan.cost);
+    feedback.spend();
+    lastProgress.current = Date.now();
+    setMissState({ id: puzzleId, n: 0 });
+    say(
+      plan.cost === 0 ? 'Here — on the house' : `Letter revealed · −${plan.cost}`,
+      'neutral'
+    );
+  }, [unsolvedRows, tokens, reveal, puzzleId, say, finishIfDone]);
 
   // Keep the audio module in step with the stored preference.
   useEffect(() => {
@@ -907,6 +992,47 @@ export default function Game({ data }: { data: PuzzleFile }) {
           </div>
         </Sheet>
       )}
+
+      {assistOpen &&
+        (() => {
+          const plan = assistFor(unsolvedRows, tokens, COST_LETTER, COST_WORD);
+          if (!plan) return null;
+          return (
+            <Sheet onClose={() => setAssistOpen(false)} label="Need a hand?">
+              <div className="relative rounded-2xl border border-edge liquid backdrop-blur-md backdrop-saturate-150 p-5">
+                <p className="text-[12px] uppercase tracking-[0.16em] text-text-muted">
+                  Stuck?
+                </p>
+                <h2 className="mt-1.5 text-[20px] font-bold leading-tight text-text-primary">
+                  {plan.kind === 'open-word'
+                    ? `I'll open the ${plan.word.length}-letter one`
+                    : `I'll start the ${plan.word.length}-letter one`}
+                </h2>
+                {/* Say the cost before acting, never after. */}
+                <p className="mt-2 text-[14px] leading-relaxed text-text-secondary">
+                  {plan.cost === 0
+                    ? 'You&rsquo;re out of hints, so this one&rsquo;s free.'
+                    : `Costs ${plan.cost} ${plan.cost === 1 ? 'hint' : 'hints'}. You have ${tokens}.`}
+                </p>
+
+                <button
+                  type="button"
+                  onClick={acceptAssist}
+                  className="liquid-interactive relative mt-5 h-12 w-full rounded-full border-2 border-edge bg-gradient-to-b from-steel/80 to-steel-dark/80 text-[15px] font-semibold text-text-primary backdrop-blur-md"
+                >
+                  Do it for me
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAssistOpen(false)}
+                  className="mt-2 h-11 w-full rounded-full text-[14px] text-text-muted"
+                >
+                  I&rsquo;ve got it
+                </button>
+              </div>
+            </Sheet>
+          );
+        })()}
 
       {showPuzzles && (
         <Sheet onClose={() => setShowPuzzles(false)} label="Puzzles">

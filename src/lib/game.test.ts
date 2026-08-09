@@ -27,6 +27,7 @@ import {
   tokenBalance,
 } from './hints';
 import { parseModern } from './definitions';
+import { assistFor, isStalled, STALL_IDLE_MS, STALL_MISSES } from './assist';
 
 const puzzle: Puzzle = {
   id: 1,
@@ -671,5 +672,75 @@ describe('puzzleForPlayer', () => {
   it('falls back to the daily when no ladder is present', () => {
     const bare = { ...file, starters: [] };
     expect(puzzleForPlayer(bare, 0, today, 0).warmup).toBeNull();
+  });
+});
+
+describe('isStalled', () => {
+  const base = {
+    idleMs: 0,
+    missesSinceProgress: 0,
+    rowsLeft: 3,
+    tokens: 3,
+    alreadyOffered: false,
+  };
+
+  it('does not fire while the player is making progress', () => {
+    expect(isStalled(base)).toBe(false);
+  });
+
+  it('fires after a long silence', () => {
+    expect(isStalled({ ...base, idleMs: STALL_IDLE_MS })).toBe(true);
+  });
+
+  it('fires after repeated wrong guesses, even with no idle time', () => {
+    expect(isStalled({ ...base, missesSinceProgress: STALL_MISSES })).toBe(true);
+  });
+
+  it('never fires once the grid is done', () => {
+    expect(isStalled({ ...base, idleMs: 99_000, rowsLeft: 0 })).toBe(false);
+  });
+
+  it('does not nag once it has already offered', () => {
+    expect(
+      isStalled({ ...base, idleMs: 99_000, alreadyOffered: true })
+    ).toBe(false);
+  });
+});
+
+describe('assistFor', () => {
+  const unsolved = ['linker', 'inkle', 'kiln'];
+
+  it('targets the shortest row — the cheapest way back into motion', () => {
+    expect(assistFor(unsolved, 9, 1, 3)).toEqual({
+      kind: 'open-word',
+      word: 'kiln',
+      cost: 3,
+    });
+  });
+
+  it('falls back to a letter when a whole word is unaffordable', () => {
+    expect(assistFor(unsolved, 2, 1, 3)).toEqual({
+      kind: 'reveal-letter',
+      word: 'kiln',
+      cost: 1,
+    });
+  });
+
+  it('helps for free when the player has nothing left to spend', () => {
+    // Someone with no tokens is the most likely to quit; charging them at that
+    // exact moment is backwards.
+    expect(assistFor(unsolved, 0, 1, 3)).toEqual({
+      kind: 'free-letter',
+      word: 'kiln',
+      cost: 0,
+    });
+  });
+
+  it('is deterministic when lengths tie', () => {
+    expect(assistFor(['bike', 'acre'], 9, 1, 3)).toMatchObject({ word: 'acre' });
+  });
+
+  it('returns nothing when there is nothing to help with', () => {
+    expect(assistFor([], 9, 1, 3)).toBeNull();
   });
 });
