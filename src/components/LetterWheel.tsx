@@ -281,7 +281,7 @@ export default function LetterWheel({
        * media-query utilities it can't be defeated by CSS source order.
        * The 78vw cap keeps it inside the gutters on a narrow phone.
        */
-      style={{ width: 'min(clamp(196px, 28vh, 296px), 78vw)' }}
+      style={{ width: 'min(clamp(150px, 30vh, 296px), 78vw)' }}
     >
       {/* Matte disc — depth comes from an inset ring, not a glow. */}
       <div

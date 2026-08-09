@@ -17,6 +17,9 @@
  * minimum target is a touch rule and looks oversized with a mouse, and
  * "drag across the letters" is simply the wrong instruction there.
  */
+/* Short screens need every pixel; see viewport.ts for the measurement. */
+@custom-variant short (@media (max-height: 720px));
+
 @custom-variant touch (@media (pointer: coarse));
 @custom-variant mouse (@media (hover: hover) and (pointer: fine));
 

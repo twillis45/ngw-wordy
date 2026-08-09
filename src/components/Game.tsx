@@ -38,6 +38,12 @@ import {
   measureFlight,
 } from '@/lib/flight';
 import {
+  mediaServerSnapshot,
+  mediaSnapshot,
+  SHORT_VIEWPORT,
+  subscribeMedia,
+} from '@/lib/viewport';
+import {
   fullscreenSupported,
   isFullscreen,
   subscribeFullscreen,
@@ -150,6 +156,16 @@ export default function Game({ data }: { data: PuzzleFile }) {
     subscribeFullscreen,
     isFullscreen,
     () => false
+  );
+  /*
+   * On a short screen the six stacked tray rows cannot coexist with the wheel
+   * and the controls — at 320x568 the page overflowed by 239px with everything
+   * already at its minimum. The compact row clue mode uses solves it.
+   */
+  const shortViewport = useSyncExternalStore(
+    subscribeMedia(SHORT_VIEWPORT),
+    mediaSnapshot(SHORT_VIEWPORT),
+    mediaServerSnapshot
   );
   const theme = useSyncExternalStore(
     subscribeTheme,
@@ -590,18 +606,18 @@ export default function Game({ data }: { data: PuzzleFile }) {
    *   >= 1536 wider measure again, rail gains the how-to-play card
    */
   return (
-    <main className="safe-top safe-bottom mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-5 md:max-w-[740px] lg:max-w-[780px] 2xl:max-w-[820px]">
+    <main className="safe-top safe-bottom mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-5 short:px-4 md:max-w-[740px] lg:max-w-[780px] 2xl:max-w-[820px]">
       {/* Header — quiet. Day number and streak are evidence, not the hero. */}
-      <header className="flex items-center justify-between">
+      <header className="flex items-center justify-between gap-2">
         <div>
-          <h1 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+          <h1 className="whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted max-[379px]:text-[12px]">
             Wordy
           </h1>
           <button
             type="button"
             onClick={() => setShowPuzzles(true)}
             aria-haspopup="dialog"
-            className="text-[13px] text-text-muted underline decoration-edge/50 underline-offset-2 transition-colors hover:text-text-secondary"
+            className="whitespace-nowrap text-[13px] text-text-muted underline decoration-edge/50 underline-offset-2 transition-colors hover:text-text-secondary max-[379px]:text-[12px]"
           >
             {warmup !== null ? (
               <>Warm-up {warmup} of {data.starters.length}</>
@@ -617,14 +633,14 @@ export default function Game({ data }: { data: PuzzleFile }) {
           </button>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2 max-[379px]:gap-1.5">
         {fullscreenSupported() && (
           <button
             type="button"
             onClick={() => void toggleFullscreen()}
             aria-label={fullscreen ? 'Exit full screen' : 'Full screen'}
             aria-pressed={fullscreen}
-            className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+            className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
           >
             <FullscreenIcon on={fullscreen} />
           </button>
@@ -633,7 +649,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={cycleTheme}
           aria-label={`Theme: ${theme}. Tap to change.`}
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
         >
           <ThemeIcon theme={theme} />
         </button>
@@ -642,7 +658,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onClick={() => setShowRules(true)}
           aria-haspopup="dialog"
           aria-label="How to play"
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-[15px] font-semibold text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-[15px] font-semibold text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
         >
           ?
         </button>
@@ -650,7 +666,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={() => setMutedPref(!progress.muted)}
           aria-label={progress.muted ? 'Unmute sound' : 'Mute sound'}
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
         >
           <SoundIcon muted={progress.muted} />
         </button>
@@ -674,7 +690,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       </button>
 
       {/* Target grid */}
-      <section aria-label="Words to find" className="mt-4 roomy:mt-6">
+      <section aria-label="Words to find" className="mt-3 short:mt-2 roomy:mt-6">
         <WordTray
           grid={puzzle.grid}
           found={found}
@@ -687,7 +703,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onRevealWord={spendWord}
           hasDefinition={hasDefinition}
           onShowDefinition={openDefinition}
-          compact={progress.clueMode}
+          compact={progress.clueMode || shortViewport}
           activeWord={clueWord}
         />
       </section>
@@ -716,13 +732,13 @@ export default function Game({ data }: { data: PuzzleFile }) {
       {/* Greedy only on phone, where it bottom-anchors the wheel in the thumb
           zone. From tablet up the rail sits below the board so the page
           scrolls anyway — anchoring there just opened a void. */}
-      <div className="min-h-6 flex-1 md:h-3 md:flex-none" />
+      <div className="min-h-6 flex-1 short:min-h-2 md:h-3 md:flex-none" />
 
       {/* Current word — the only place the accent green appears mid-play */}
       <div
         aria-live="polite"
         className={[
-          'mb-3 grid h-10 place-items-center',
+          'mb-3 grid h-10 place-items-center short:mb-1 short:h-8',
           shaking ? 'anim-shake' : '',
         ].join(' ')}
       >
@@ -771,7 +787,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       </div>
 
       {/* Controls */}
-      <div className="mt-4 flex items-center justify-center gap-3">
+      <div className="mt-4 flex items-center justify-center gap-3 short:mt-2">
         <ControlButton
           onClick={() => {
             setLetters((prev) => shuffle(prev));
