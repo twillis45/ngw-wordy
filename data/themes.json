@@ -1,6 +1,6 @@
 {
   "_readme": [
-    "Themed puzzles. This file is the ONLY place a theme is authored — the",
+    "Themed puzzles. This file is the ONLY place a theme is authored \u2014 the",
     "generator merges it over the generated puzzle set, so an editor never",
     "touches code.",
     "",
@@ -18,7 +18,6 @@
     "Cultural themes need a cultural editor. The container is here; the voice",
     "is not something to auto-generate."
   ],
-
   "themes": [
     {
       "id": "kitchen",
@@ -26,7 +25,6 @@
       "blurb": "Six letters, one countertop."
     }
   ],
-
   "puzzles": [
     {
       "base": "faucet",
@@ -36,6 +34,11 @@
         "cafe": "Somewhere you order coffee and stay two hours longer than planned.",
         "cute": "What you call the little jug nobody is allowed to actually use."
       }
+    },
+    {
+      "base": "sauced",
+      "theme": "kitchen",
+      "clues": {}
     }
   ]
 }

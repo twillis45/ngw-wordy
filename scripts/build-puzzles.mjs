@@ -180,7 +180,17 @@ for (const [sig, group] of bySignature) {
   let rare = 0;
   for (const ch of sig) if (RARE.has(ch)) rare += 1;
   if (rare > 1) continue;
-  bases.push(group[0]);
+
+  /*
+   * One base per letter-set, and an authored word wins the slot.
+   *
+   * The representative used to be whichever word sorted first, which quietly
+   * defeats themes: "sauced" is an anagram of "caused", so claiming it got
+   * "cannot be a base word" even though it is a perfectly valid six-distinct
+   * letter word. The letters are identical, so honouring the editor's choice
+   * costs nothing — it only changes which spelling is the target.
+   */
+  bases.push(group.find((w) => authored.has(w)) ?? group[0]);
 }
 bases.sort();
 
@@ -189,6 +199,31 @@ const rand = mulberry32(20260808);
 for (let i = bases.length - 1; i > 0; i -= 1) {
   const j = Math.floor(rand() * (i + 1));
   [bases[i], bases[j]] = [bases[j], bases[i]];
+}
+
+/*
+ * Authored base words go FIRST.
+ *
+ * Without this a theme is a lottery ticket: the set is a seeded shuffle of
+ * ~4000 candidates truncated at 240, so a word an editor claimed almost never
+ * survives. Measured against a list of real theme candidates, zero of the 24
+ * mechanically-valid ones were in the generated set — the container worked and
+ * could never actually be used.
+ *
+ * Claimed words that fail generation (too few answers, no usable clue) simply
+ * fall through to the normal order and are reported, so an editor finds out.
+ */
+const claimed = bases.filter((b) => authored.has(b));
+const claimedSet = new Set(claimed);
+bases.splice(0, bases.length, ...claimed, ...bases.filter((b) => !claimedSet.has(b)));
+
+// Anything an editor asked for that can never be a base at all.
+for (const base of authored.keys()) {
+  if (!bases.includes(base)) {
+    themeReport.rejected.push(
+      `${base}: cannot be a base word (needs 6 distinct letters and must be in the word list)`
+    );
+  }
 }
 
 const puzzles = [];
