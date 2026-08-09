@@ -564,7 +564,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={cycleTheme}
           aria-label={`Theme: ${theme}. Tap to change.`}
-          className="grid h-9 w-9 place-items-center rounded-full border-2 border-edge text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+          className="relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
         >
           <ThemeIcon theme={theme} />
         </button>
@@ -573,7 +573,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onClick={() => setShowRules(true)}
           aria-haspopup="dialog"
           aria-label="How to play"
-          className="grid h-9 w-9 place-items-center rounded-full border-2 border-edge text-[15px] font-semibold text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+          className="relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-[15px] font-semibold text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
         >
           ?
         </button>
@@ -581,7 +581,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={() => setMutedPref(!progress.muted)}
           aria-label={progress.muted ? 'Unmute sound' : 'Mute sound'}
-          className="grid h-9 w-9 place-items-center rounded-full border-2 border-edge text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+          className="relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
         >
           <SoundIcon muted={progress.muted} />
         </button>
@@ -590,7 +590,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
       <div className="mt-4 flex min-h-0 flex-1 flex-col gap-8 md:grid md:grid-cols-[minmax(0,1fr)_260px] md:gap-7 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
         {/* Board column — bounded at every width, centered on desktop. */}
-        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col md:max-w-[440px] md:justify-center md:rounded-3xl md:border md:border-edge md:px-5 md:py-4">
+        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col md:max-w-[440px] md:justify-center relative md:rounded-3xl md:border md:border-edge md:px-5 md:py-4 md:liquid md:backdrop-blur-md md:backdrop-saturate-150">
       {/* On a phone this strip is the ONLY place progress lives, so it is also
           the way into the detail. Inert from tablet up, where the rail shows
           the same ladder permanently. */}
@@ -629,7 +629,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         <button
           type="button"
           onClick={() => setClueCursor((c) => c + 1)}
-          className="mt-3 w-full rounded-xl border-2 border-edge bg-carbon-panel px-3.5 py-2.5 text-left transition-colors hover:border-carbon-strong"
+          className="relative mt-3 w-full rounded-xl border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 px-3.5 py-2.5 text-left transition-colors hover:border-carbon-strong"
         >
           <span className="text-[12px] uppercase tracking-[0.14em] text-text-muted">
             {clueWord.length} letters
@@ -783,7 +783,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           }}
           label={showDef ? `Definition of ${showDef.word}` : 'Definition'}
         >
-          <div className="rounded-2xl border border-edge bg-carbon-panel p-4">
+          <div className="relative rounded-2xl border border-edge liquid backdrop-blur-md backdrop-saturate-150 p-4">
             <h2 className="text-[22px] font-bold uppercase tracking-[0.06em] text-text-primary">
               {showDef?.word ?? ''}
             </h2>
@@ -825,7 +825,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
       {showRules && (
         <Sheet onClose={() => setShowRules(false)} label="How to play">
-          <div className="rounded-2xl border border-edge bg-carbon-panel p-4">
+          <div className="relative rounded-2xl border border-edge liquid backdrop-blur-md backdrop-saturate-150 p-4">
             <h2 className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
               How to play
             </h2>
@@ -842,7 +842,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             </ul>
           </div>
 
-          <div className="mt-4 rounded-2xl border border-edge bg-carbon-panel p-4">
+          <div className="mt-4 rounded-2xl border border-edge liquid backdrop-blur-md backdrop-saturate-150 p-4">
             <h2 className="mb-1 text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
               Ways to play
             </h2>
@@ -904,7 +904,7 @@ function Sheet({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="anim-rise safe-bottom max-h-[82dvh] w-full overflow-y-auto rounded-t-3xl border-t-2 border-edge bg-carbon-body px-5 pt-4"
+        className="anim-rise safe-bottom max-h-[82dvh] w-full overflow-y-auto relative rounded-t-3xl border-t-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 px-5 pt-4"
       >
         {/* Grab handle — signals "drag or tap away", costs one element. */}
         <div
@@ -942,7 +942,7 @@ function Intro({ onDismiss }: { onDismiss: () => void }) {
       className="fixed inset-0 z-[60] grid cursor-pointer place-items-center px-6"
       style={{ background: 'var(--scrim)' }}
     >
-      <div className="anim-rise w-full max-w-[360px] rounded-3xl border-2 border-edge bg-carbon-panel p-6">
+      <div className="anim-rise relative w-full max-w-[360px] rounded-3xl border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 p-6">
         <p className="text-[12px] uppercase tracking-[0.16em] text-text-muted">
           How you&apos;re scored
         </p>
@@ -1111,7 +1111,7 @@ function ControlButton({
       onClick={onClick}
       disabled={disabled}
       {...rest}
-      className="h-11 min-w-[104px] rounded-full border-2 border-edge bg-carbon-panel px-5 text-[14px] font-medium text-text-secondary transition-colors hover:border-carbon-strong hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
+      className="relative h-11 min-w-[104px] rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 px-5 text-[14px] font-medium text-text-secondary transition-colors hover:border-carbon-strong hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
     >
       {children}
     </button>
@@ -1144,7 +1144,7 @@ function CompleteSheet({
   return (
     <div className="fixed inset-0 z-50 grid place-items-end sm:place-items-center"
       style={{ background: 'var(--scrim)' }}>
-      <div className="anim-rise safe-bottom w-full max-w-[420px] rounded-t-3xl border-t-2 border-edge bg-carbon-panel px-6 pt-7 sm:rounded-3xl sm:border">
+      <div className="anim-rise safe-bottom w-full max-w-[420px] relative rounded-t-3xl border-t-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 px-6 pt-7 sm:rounded-3xl sm:border">
         <p className="text-[13px] uppercase tracking-[0.14em] text-text-muted">
           {isDaily ? "Today's puzzle cleared" : 'Puzzle cleared'}
         </p>
@@ -1193,7 +1193,7 @@ function CompleteSheet({
 
 function Stat({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-xl border border-edge bg-carbon-surface-2 py-3">
+    <div className="relative rounded-xl border border-edge liquid liquid-raised backdrop-blur-md backdrop-saturate-150 py-3">
       <dd className="text-[22px] font-bold tabular-nums text-text-primary">
         {value}
       </dd>

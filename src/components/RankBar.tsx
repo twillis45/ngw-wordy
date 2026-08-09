@@ -39,7 +39,7 @@ export default function RankBar({ rank, score }: { rank: Rank; score: number }) 
         aria-valuemax={100}
         aria-valuenow={Math.round(rank.progress * 100)}
         aria-label={`Rank progress: ${rank.name}, ${score} points`}
-        className="relative h-2.5 w-full rounded-full border border-edge/60 bg-carbon-surface-2"
+        className="relative h-2.5 w-full rounded-full border border-edge/60 liquid backdrop-blur-md backdrop-saturate-150"
       >
         <div
           className="absolute inset-y-0 left-0 rounded-full bg-steel-muted transition-[width] duration-700 ease-out"

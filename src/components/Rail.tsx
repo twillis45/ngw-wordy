@@ -187,7 +187,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-2xl border border-edge bg-carbon-panel p-4">
+    <section className="relative rounded-2xl border border-edge liquid backdrop-blur-md backdrop-saturate-150 p-4">
       <div className="mb-3 flex items-baseline justify-between gap-3">
         <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
           {title}
@@ -237,12 +237,12 @@ function Chip({
   onOpen: (word: string) => void;
 }) {
   const cls = [
-    'rounded-md px-2 py-1 text-[13px] font-medium uppercase tracking-[0.06em]',
+    'relative rounded-md px-2 py-1 text-[13px] font-medium uppercase tracking-[0.06em] liquid backdrop-blur-md backdrop-saturate-150',
     tone === 'base'
       ? 'bg-success/15 text-success'
       : tone === 'target'
-        ? 'bg-carbon-surface-2 text-text-primary'
-        : 'bg-carbon-surface-2 text-text-secondary',
+        ? 'text-text-primary'
+        : 'text-text-secondary',
   ].join(' ');
 
   // A word with no entry stays a plain span, so nothing invites a dead tap.

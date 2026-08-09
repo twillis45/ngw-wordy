@@ -235,7 +235,7 @@ export default function LetterWheel({
       {/* Matte disc — depth comes from an inset ring, not a glow. */}
       <div
         aria-hidden
-        className="absolute inset-0 rounded-full border-2 border-edge bg-carbon-panel"
+        className="absolute inset-0 rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150"
         style={{ boxShadow: 'var(--disc-inset)' }}
       />
 
@@ -298,7 +298,7 @@ export default function LetterWheel({
       {pointer && (
         <span
           aria-hidden
-          className="glass-puck pointer-events-none absolute backdrop-saturate-[1.35] backdrop-brightness-[1.12]"
+          className="glass-puck pointer-events-none absolute"
           style={{
             left: `${pointer.x}%`,
             top: `${pointer.y}%`,
@@ -311,7 +311,15 @@ export default function LetterWheel({
             transition:
               'width 110ms ease-out, height 110ms ease-out, border-radius 110ms ease-out',
           }}
-        />
+        >
+          {/* The glass wall: refraction lives here and only here, so the
+              centre of the lens stays clear and the letter reads through it. */}
+          <span
+            aria-hidden
+            className="glass-wall absolute inset-0 backdrop-blur-[5px] backdrop-brightness-125 backdrop-saturate-[1.7]"
+            style={{ borderRadius: 'inherit', padding: '22%' }}
+          />
+        </span>
       )}
 
       {letters.map((letter, i) => {
@@ -347,10 +355,10 @@ export default function LetterWheel({
               // anim-tick both pulses on selection and holds the selected
               // scale, so there's no transform utility fighting the keyframes.
               locked
-                ? 'border-edge/50 bg-carbon-body text-carbon-strong'
+                ? 'border-edge/50 bg-carbon-body/40 text-carbon-strong backdrop-blur-sm'
                 : picked
-                  ? 'anim-tick border-edge bg-steel-dark text-text-primary'
-                  : 'border-edge bg-carbon-surface-2 text-text-primary active:scale-95',
+                  ? 'anim-tick border-edge bg-steel-dark/70 text-text-primary backdrop-blur-md'
+                  : 'border-edge liquid liquid-raised backdrop-blur-md backdrop-saturate-150 text-text-primary active:scale-95',
             ].join(' ')}
             style={{
               left: `${pos.x - TILE / 2}%`,

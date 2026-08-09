@@ -190,36 +190,39 @@ body {
 }
 
 /*
- * The pointer glass — a CLEAR lens, not a frosted disc.
+ * The pointer glass — Liquid Glass, edge-refracting.
  *
- * The whole point of the pointer is that it sits on the letter you are reading,
- * so anything that obscures that letter is a defect. Two things did:
- * backdrop-blur smeared the glyph underneath, and the specular highlight sat
- * as a blob across the middle of it.
+ * The reference (Apple's Liquid Glass slabs) shows what a flat translucent
+ * disc gets wrong: real glass has THICKNESS. Its centre is essentially clear,
+ * and the distortion piles up in the curved wall at the rim, where the
+ * background is compressed and brightened. There is a caustic where light
+ * exits the lower edge, and the whole piece picks up the colour beneath it.
  *
- * So there is no fill and no blur. What remains is what actually reads as
- * glass: a lit rim on the light side, a shaded rim opposite, a thin specular
- * that hugs the top-left EDGE rather than crossing the centre, and a faint
- * optical shift (saturate/brightness, applied on the element) so the content
- * behind is visibly *through* something. The letter stays fully legible.
+ * So refraction here is applied to a RING, not the whole element — the wall
+ * bends what's behind it while the middle stays clear, which is both what the
+ * reference does and what keeps the letter underneath readable.
+ *
+ * The ring is a real child element with Tailwind backdrop utilities rather
+ * than a pseudo-element: Lightning CSS silently dropped a hand-written
+ * backdrop-filter earlier in this build, and a pseudo-element can't take
+ * utility classes.
  */
 .glass-puck {
   background: transparent;
   box-shadow:
-    /* lift off the surface */
-    0 2px 8px -4px color-mix(in srgb, #000 45%, transparent),
-    /* continuous faint rim, so the shape is always readable */
-    inset 0 0 0 1px color-mix(in srgb, var(--color-text-primary) 32%, transparent),
-    /* lit edge, top-left */
-    inset 1.5px 1.5px 0 color-mix(in srgb, var(--color-text-primary) 75%, transparent),
-    /* shaded edge, bottom-right */
-    inset -1.5px -1.5px 0 color-mix(in srgb, #000 30%, transparent);
+    /* contact shadow — tight and close, so it rests ON the surface */
+    0 3px 10px -4px color-mix(in srgb, #000 60%, transparent),
+    /* outer edge of the glass wall */
+    0 0 0 0.5px color-mix(in srgb, var(--color-text-primary) 22%, transparent),
+    /* inner wall, lit from the top-left */
+    inset 1.5px 1.5px 1px color-mix(in srgb, var(--color-text-primary) 70%, transparent),
+    /* the wall's shaded side */
+    inset -1.5px -1px 2px color-mix(in srgb, #000 35%, transparent),
+    /* caustic: light exiting the bottom edge, the brightest line on the piece */
+    inset 0 -2.5px 1px -1px color-mix(in srgb, var(--color-text-primary) 90%, transparent);
 }
 
-/*
- * Specular. Confined to the rim by a gradient that dies at 26%, so the centre
- * of the lens — where the letter is — stays completely clear.
- */
+/* Specular along the top-left rim only — dies before the centre. */
 .glass-puck::after {
   content: '';
   position: absolute;
@@ -227,10 +230,77 @@ body {
   border-radius: inherit;
   pointer-events: none;
   background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--color-text-primary) 60%, transparent) 0%,
-    transparent 26%
+    138deg,
+    color-mix(in srgb, var(--color-text-primary) 75%, transparent) 0%,
+    transparent 22%
   );
+}
+
+/*
+ * The refracting wall. Masked to a ring that follows the element's own
+ * border-radius, so it morphs with the pointer.
+ */
+.glass-wall {
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+/*
+ * Liquid glass, as a surface treatment for everything.
+ *
+ * Traits taken from the reference set (glass square / circle / squircle /
+ * slider): a translucent body that picks up the colour beneath it, a bright
+ * continuous rim, a stronger specular near one corner, a caustic along the
+ * lower edge, and a tight contact shadow so the piece rests on the page.
+ *
+ * The tension worth naming: glass is inherently low-contrast, and this UI was
+ * just tuned to ~13:1 edges for sunlight. So the rim here stays --color-edge
+ * (the measured, functional boundary) rather than a decorative white line. The
+ * surface becomes glass; the thing that makes it readable outdoors does not
+ * change.
+ *
+ * Blur is applied with Tailwind backdrop utilities at the call site, because
+ * Lightning CSS silently dropped a hand-written backdrop-filter earlier.
+ */
+.liquid {
+  /*
+   * Deliberately NO position here. The ::after needs a positioned ancestor,
+   * but setting `position: relative` on the class overrode the `absolute` on
+   * the wheel disc and its tiles and collapsed the whole dial. Statically
+   * positioned callers add `relative` themselves.
+   */
+  background: color-mix(in srgb, var(--color-carbon-panel) 55%, transparent);
+  box-shadow:
+    0 2px 10px -4px color-mix(in srgb, #000 50%, transparent),
+    inset 1px 1px 0 color-mix(in srgb, var(--color-text-primary) 26%, transparent),
+    inset -1px -1px 1px color-mix(in srgb, #000 22%, transparent),
+    inset 0 -2px 1px -1px color-mix(in srgb, var(--color-text-primary) 34%, transparent);
+}
+
+/* Specular: a soft bright spot near the top-left, fading well before centre. */
+.liquid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    138deg,
+    color-mix(in srgb, var(--color-text-primary) 30%, transparent) 0%,
+    transparent 30%
+  );
+}
+
+/* Raised variant — for the pieces that should read as thicker glass. */
+.liquid-raised {
+  background: color-mix(in srgb, var(--color-carbon-surface-2) 70%, transparent);
+  box-shadow:
+    0 4px 14px -5px color-mix(in srgb, #000 60%, transparent),
+    inset 1.5px 1.5px 0 color-mix(in srgb, var(--color-text-primary) 38%, transparent),
+    inset -1.5px -1.5px 2px color-mix(in srgb, #000 28%, transparent),
+    inset 0 -3px 1px -1.5px color-mix(in srgb, var(--color-text-primary) 48%, transparent);
 }
 
 /*
