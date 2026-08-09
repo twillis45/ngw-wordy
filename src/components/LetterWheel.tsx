@@ -35,10 +35,27 @@ const HIT = 13; // % from a tile center that counts as "on" it
  * illusion that the element is pulling the pointer toward it". Morphing only
  * once you're already on the tile would feel like a snap, not a magnet.
  */
-const MAGNET = 16; // % — outer edge of the hit region, where the morph begins
+const MAGNET = 16; // % — where the SHAPE starts to morph
+/**
+ * Attraction reaches further than the morph does.
+ *
+ * These were one number, which forced a bad trade: widening the region to
+ * strengthen the pull also destroyed the free-circle state (at 22% it covered
+ * 88% of the dial). Splitting them means the pull can start early and bite
+ * hard while the shape still stays a circle until you're genuinely close.
+ *
+ * Measured against the dial rather than guessed: at PULL 30 only 2% of the
+ * disc was free of attraction, which is the same mistake in a different
+ * dimension. At 21 it splits roughly 15% free / 26% drawn-in / 59% morphing —
+ * a real untargeted zone, and a wide band where you can feel the tug before
+ * anything changes shape.
+ */
+const PULL = 21; // % — where positional attraction begins
+const PULL_BITE = 1.7; // >1 = weak at the edge, sharply stronger near the tile
 const FREE = 11; // % — diameter of the untargeted pointer
 const TILE_RADIUS_PCT = 28; // rounded-2xl on a tile, as % of tile size
-const PARALLAX = 0.22; // how far a tile leans toward the pointer
+const PARALLAX = 0.3; // how far a tile leans toward the pointer
+const LIFT = 0.07; // how much a tile swells as the pointer settles on it
 
 /**
  * Drag-to-connect letter wheel, thumb-zone sized.
@@ -199,32 +216,45 @@ export default function LetterWheel({
       }
     }
 
-    if (nearest === -1 || best > MAGNET) {
-      return { x: cursor.x, y: cursor.y, size: FREE, radius: 50, target: -1, t: 0 };
+    if (nearest === -1 || best > PULL) {
+      return { x: cursor.x, y: cursor.y, size: FREE, radius: 50, target: -1, t: 0, pull: 0 };
     }
 
-    // Fully committed anywhere on the tile; eased only across the outer ring.
-    const linear =
-      best <= HIT ? 1 : (MAGNET - best) / (MAGNET - HIT);
-    const t = linear * linear * (3 - 2 * linear);
-    const lerp = (a: number, b: number) => a + (b - a) * t;
+    // Positional attraction: begins early, bites hard as you close in.
+    const pRaw = Math.min(1, (PULL - best) / (PULL - HIT));
+    const pull = Math.pow(pRaw * pRaw * (3 - 2 * pRaw), PULL_BITE);
+
+    // Shape: unchanged until you're genuinely near, then fully committed
+    // anywhere on the tile.
+    const mRaw =
+      best <= HIT ? 1 : Math.max(0, (MAGNET - best) / (MAGNET - HIT));
+    const t = mRaw * mRaw * (3 - 2 * mRaw);
+
+    const at = (a: number, b: number, k: number) => a + (b - a) * k;
 
     return {
-      x: lerp(cursor.x, positions[nearest].x),
-      y: lerp(cursor.y, positions[nearest].y),
-      size: lerp(FREE, TILE),
-      radius: lerp(50, TILE_RADIUS_PCT),
+      // Position follows the stronger curve — that is the magnetism you feel.
+      x: at(cursor.x, positions[nearest].x, pull),
+      y: at(cursor.y, positions[nearest].y, pull),
+      size: at(FREE, TILE, t),
+      radius: at(50, TILE_RADIUS_PCT, t),
       target: nearest,
       t,
+      pull,
     };
   })();
 
-  /** A tile leans toward the pointer while it's inside the hit region. */
+  /**
+   * The tile answers the pointer: it leans toward it and swells slightly as
+   * the pointer settles. Half of what makes magnetism legible is the target
+   * reacting, not just the pointer moving.
+   */
   const parallaxFor = (i: number) => {
     if (!pointer || pointer.target !== i || !cursor) return '';
-    const dx = (cursor.x - positions[i].x) * PARALLAX * pointer.t;
-    const dy = (cursor.y - positions[i].y) * PARALLAX * pointer.t;
-    return `translate(${dx}%, ${dy}%)`;
+    const dx = (cursor.x - positions[i].x) * PARALLAX * pointer.pull;
+    const dy = (cursor.y - positions[i].y) * PARALLAX * pointer.pull;
+    const scale = 1 + LIFT * pointer.t;
+    return `translate(${dx}%, ${dy}%) scale(${scale.toFixed(3)})`;
   };
 
   const pathPoints = selected.map((i) => positions[i]);
@@ -394,6 +424,8 @@ export default function LetterWheel({
               width: `${TILE}%`,
               height: `${TILE}%`,
               transform: parallaxFor(i) || undefined,
+              transitionProperty: 'transform, background-color, border-color',
+              transitionDuration: '120ms',
               boxShadow: locked
                 ? 'none'
                 : picked

@@ -2,7 +2,7 @@
  * Tactile feedback: audio + haptics.
  *
  * Sound is synthesized with WebAudio rather than shipped as assets — a few
- * oscillator blips cost nothing and never need loading.
+ * oscillators cost nothing and never need loading.
  *
  * Haptics are the hard part on the web. `navigator.vibrate` has never been
  * supported by Safari on iOS, so the obvious implementation is silently dead
@@ -37,19 +37,106 @@ function audio(): AudioContext | null {
   return ctx;
 }
 
-function blip(freq: number, duration = 0.09, type: OscillatorType = 'sine') {
+/* ── Audio ────────────────────────────────────────────────────────────── */
+
+/**
+ * A single oscillator with an ADSR-ish envelope.
+ *
+ * The previous version ramped one gain node with a fixed curve, which made
+ * every sound the same shape — a plink. Attack and release are separated here
+ * because that shape is most of a sound's character: a fast attack reads as a
+ * tap, a slow one as a swell.
+ */
+function tone(opts: {
+  freq: number;
+  dur?: number;
+  type?: OscillatorType;
+  gain?: number;
+  attack?: number;
+  delay?: number;
+  /** Sweep to this frequency over the note — what makes a sound feel alive. */
+  glideTo?: number;
+  /** Slight detune in cents; two of these together give a chorus. */
+  detune?: number;
+}) {
   const ac = audio();
   if (!ac) return;
+
+  const {
+    freq,
+    dur = 0.12,
+    type = 'sine',
+    gain = 0.12,
+    attack = 0.008,
+    delay = 0,
+    glideTo,
+    detune = 0,
+  } = opts;
+
+  const t0 = ac.currentTime + delay;
   const osc = ac.createOscillator();
-  const gain = ac.createGain();
+  const amp = ac.createGain();
+
   osc.type = type;
-  osc.frequency.setValueAtTime(freq, ac.currentTime);
-  gain.gain.setValueAtTime(0.0001, ac.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.14, ac.currentTime + 0.012);
-  gain.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + duration);
-  osc.connect(gain).connect(ac.destination);
-  osc.start();
-  osc.stop(ac.currentTime + duration + 0.02);
+  osc.detune.value = detune;
+  osc.frequency.setValueAtTime(freq, t0);
+  if (glideTo) osc.frequency.exponentialRampToValueAtTime(glideTo, t0 + dur);
+
+  // A gentle low-pass takes the edge off square/saw without dulling sines.
+  const filter = ac.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.frequency.setValueAtTime(Math.max(1200, freq * 4), t0);
+
+  amp.gain.setValueAtTime(0.0001, t0);
+  amp.gain.exponentialRampToValueAtTime(gain, t0 + attack);
+  amp.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+
+  osc.connect(filter).connect(amp).connect(ac.destination);
+  osc.start(t0);
+  osc.stop(t0 + dur + 0.03);
+}
+
+/** Two detuned voices — thicker and warmer than a bare oscillator. */
+function chord(
+  freq: number,
+  opts: Omit<Parameters<typeof tone>[0], 'freq'>
+) {
+  tone({ ...opts, freq, detune: -6 });
+  tone({ ...opts, freq, detune: 7, gain: (opts.gain ?? 0.12) * 0.6 });
+}
+
+/**
+ * Filtered noise — the "body" under a hit. Pure oscillators sound synthetic;
+ * a short noise transient is what makes a tap read as something touching
+ * something.
+ */
+function noise(opts: { dur?: number; gain?: number; freq?: number } = {}) {
+  const ac = audio();
+  if (!ac) return;
+  const { dur = 0.05, gain = 0.05, freq = 2200 } = opts;
+
+  const frames = Math.max(1, Math.floor(ac.sampleRate * dur));
+  const buffer = ac.createBuffer(1, frames, ac.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < frames; i += 1) {
+    // Decay inside the buffer so the transient dies immediately.
+    data[i] = (Math.random() * 2 - 1) * (1 - i / frames);
+  }
+
+  const src = ac.createBufferSource();
+  src.buffer = buffer;
+
+  const bp = ac.createBiquadFilter();
+  bp.type = 'bandpass';
+  bp.frequency.value = freq;
+  bp.Q.value = 0.9;
+
+  const amp = ac.createGain();
+  amp.gain.setValueAtTime(gain, ac.currentTime);
+  amp.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + dur);
+
+  src.connect(bp).connect(amp).connect(ac.destination);
+  src.start();
 }
 
 /* ── Haptics ──────────────────────────────────────────────────────────── */
@@ -59,10 +146,9 @@ function blip(freq: number, duration = 0.09, type: OscillatorType = 'sine') {
  * emits a real system haptic. Clicking a hidden one inside a user gesture is
  * the only way to get Taptic feedback from Safari, which exposes no haptic API.
  *
- * The tick is a fixed system pattern — we cannot vary its strength. So on iOS
- * the vocabulary is expressed purely as RHYTHM (how many ticks, how spaced),
- * while Android varies duration too. Patterns below are designed so the rhythm
- * alone distinguishes them.
+ * The tick is a fixed system pattern — its strength can't be varied. So on iOS
+ * the vocabulary is RHYTHM: how many ticks and how they're spaced. Patterns
+ * below are designed so rhythm alone distinguishes them with the screen off.
  */
 let hapticLabel: HTMLLabelElement | null = null;
 
@@ -72,8 +158,6 @@ function switchEl(): HTMLLabelElement | null {
 
   const label = document.createElement('label');
   label.setAttribute('aria-hidden', 'true');
-  // Must be in the layout tree for the click to register, but must never be
-  // visible, focusable, or hit-testable.
   label.style.cssText =
     'position:fixed;top:-9999px;left:-9999px;width:0;height:0;' +
     'opacity:0;pointer-events:none;overflow:hidden';
@@ -89,20 +173,22 @@ function switchEl(): HTMLLabelElement | null {
   return label;
 }
 
-function iosTicks(count: number, gap: number) {
+function iosTicks(gaps: number[]) {
   const label = switchEl();
   if (!label) return;
-  for (let i = 0; i < count; i += 1) {
-    if (i === 0) label.click();
-    else setTimeout(() => label.click(), i * gap);
+  let at = 0;
+  label.click();
+  for (const gap of gaps) {
+    at += gap;
+    setTimeout(() => label.click(), at);
   }
 }
 
 /**
  * @param pattern Android vibrate pattern (ms, alternating on/off).
- * @param ticks   iOS rhythm: [count, gap-in-ms].
+ * @param gaps    iOS rhythm: gaps in ms between successive ticks.
  */
-function buzz(pattern: number | number[], ticks: [number, number]) {
+function buzz(pattern: number | number[], gaps: number[]) {
   if (typeof navigator === 'undefined' || muted) return;
 
   // Android/Chromium: the real API, with real durations.
@@ -114,9 +200,8 @@ function buzz(pattern: number | number[], ticks: [number, number]) {
     }
   }
 
-  // iOS Safari: rhythm only.
   try {
-    iosTicks(ticks[0], ticks[1]);
+    iosTicks(gaps);
   } catch {
     /* no haptics available — audio and motion still carry the feedback */
   }
@@ -125,42 +210,77 @@ function buzz(pattern: number | number[], ticks: [number, number]) {
 /* ── The vocabulary ───────────────────────────────────────────────────── */
 
 /**
- * Escalation is deliberate and should be legible with the screen off:
- * one tick to select, two to bank, three broken ticks to reject, a run for
- * completion. Nothing here is decoration.
+ * Escalation is deliberate and should be legible with the screen off. The
+ * previous set was near-uniform — 8ms vs 14ms vs 24ms is not a distinction any
+ * hand can feel — so both the durations and the RHYTHMS are now spread wide:
+ * one light tick to select, a firm double to bank, a broken triple to reject,
+ * an accelerating run for the prize, a long roll for completion.
  */
 export const feedback = {
   /** A letter joins the current word — the lightest thing we can do. */
   tap() {
-    blip(520, 0.05, 'triangle');
-    buzz(8, [1, 0]);
+    noise({ dur: 0.03, gain: 0.035, freq: 3000 });
+    tone({ freq: 620, dur: 0.045, type: 'triangle', gain: 0.07 });
+    buzz(10, []);
   },
-  /** Word accepted into the grid. The one moment that gets a chord. */
+
+  /** Word accepted into the grid. Rises with each word in the puzzle. */
   correct(step = 0) {
     const scale = [523.25, 587.33, 659.25, 783.99, 880, 1046.5];
-    blip(scale[Math.min(step, scale.length - 1)], 0.14, 'sine');
-    buzz(24, [2, 70]);
+    const f = scale[Math.min(step, scale.length - 1)];
+    noise({ dur: 0.04, gain: 0.05, freq: 2400 });
+    chord(f, { dur: 0.2, type: 'sine', gain: 0.13, attack: 0.006 });
+    // A fifth above, quieter and slightly late — a chime, not a beep.
+    tone({ freq: f * 1.5, dur: 0.26, gain: 0.05, delay: 0.045 });
+    buzz([26, 40, 22], [58]);
   },
+
   /** Valid word, but not one of the grid targets — lighter than a target. */
   bonus() {
-    blip(698.46, 0.1, 'sine');
-    buzz(14, [1, 0]);
+    noise({ dur: 0.03, gain: 0.04, freq: 2800 });
+    tone({ freq: 698.46, dur: 0.16, gain: 0.1, glideTo: 880 });
+    buzz(16, []);
   },
-  /** Not a word. Broken rhythm reads as "no" without needing sound. */
+
+  /** Not a word. A falling, broken shape — legible without sound. */
   reject() {
-    blip(180, 0.13, 'sawtooth');
-    buzz([14, 60, 14], [2, 130]);
+    noise({ dur: 0.05, gain: 0.05, freq: 700 });
+    tone({ freq: 240, dur: 0.16, type: 'sawtooth', gain: 0.09, glideTo: 150 });
+    buzz([18, 55, 18], [95]);
   },
+
   /** Already found — a nudge, deliberately duller than either accept. */
   duplicate() {
-    blip(340, 0.07, 'triangle');
-    buzz(6, [1, 0]);
+    tone({ freq: 380, dur: 0.07, type: 'triangle', gain: 0.06 });
+    buzz(8, []);
   },
-  /** Puzzle cleared. The only run of ticks in the whole vocabulary. */
+
+  /** A hint spent. Downward, so it reads as a cost, not a reward. */
+  spend() {
+    tone({ freq: 560, dur: 0.13, type: 'sine', gain: 0.08, glideTo: 380 });
+    buzz([12, 30, 12], [60]);
+  },
+
+  /**
+   * The prize word — every letter used. The biggest sound in the game: a
+   * rising major arpeggio with the root sustained under it.
+   */
+  prize() {
+    noise({ dur: 0.06, gain: 0.06, freq: 2000 });
+    [523.25, 659.25, 783.99, 1046.5].forEach((f, i) =>
+      chord(f, { dur: 0.34, gain: 0.12, delay: i * 0.075, attack: 0.005 })
+    );
+    tone({ freq: 261.63, dur: 0.75, gain: 0.07, attack: 0.03 });
+    // Accelerating run — unmistakable against every other pattern.
+    buzz([30, 45, 30, 40, 30, 35, 55], [70, 60, 50]);
+  },
+
+  /** Puzzle cleared. Slower and broader than the prize — an ending. */
   complete() {
     [523.25, 659.25, 783.99, 1046.5].forEach((f, i) =>
-      setTimeout(() => blip(f, 0.22, 'sine'), i * 95)
+      chord(f, { dur: 0.42, gain: 0.11, delay: i * 0.1 })
     );
-    buzz([20, 60, 20, 60, 20, 60, 45], [5, 110]);
+    tone({ freq: 392, dur: 1.1, gain: 0.06, attack: 0.05, delay: 0.2 });
+    buzz([24, 60, 24, 60, 24, 60, 60], [95, 95, 130]);
   },
 };

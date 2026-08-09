@@ -296,6 +296,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         if (result.isBase) {
           // The word that uses every letter is the hardest thing in the puzzle
           // and used to get the same treatment as a three-letter bonus.
+          feedback.prize();
           celebratePrize(result.word, result.points);
         } else {
           say(`+${result.points}`, 'good');
@@ -467,7 +468,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         return;
       }
       spendHint(puzzleId, r.reveal, r.cost);
-      feedback.bonus();
+      feedback.spend();
       say(`Letter revealed · −${r.cost}`, 'neutral');
     },
     [reveal, tokens, puzzleId, say, rowDone]
@@ -485,7 +486,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         return;
       }
       spendHint(puzzleId, r.reveal, r.cost);
-      feedback.correct(0);
+      feedback.spend();
       say(`${word.toUpperCase()} · −${r.cost}`, 'neutral');
       finishIfDone(360);
     },
