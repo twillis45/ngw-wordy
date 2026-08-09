@@ -306,7 +306,7 @@ export default function LetterWheel({
       {/* Matte disc — depth comes from an inset ring, not a glow. */}
       <div
         aria-hidden
-        className="absolute inset-0 rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150"
+        className="absolute inset-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)]"
       />
 
       {/* Connection path. Drawn under the tiles so it reads as a thread. */}
@@ -434,8 +434,8 @@ export default function LetterWheel({
               locked
                 ? 'border-edge/50 bg-carbon-body/40 text-carbon-strong backdrop-blur-sm'
                 : picked
-                  ? 'anim-tick border-edge bg-steel-dark/70 text-text-primary backdrop-blur-md'
-                  : 'border-edge liquid liquid-raised backdrop-blur-md backdrop-saturate-150 text-text-primary active:scale-95',
+                  ? 'anim-tick border-edge bg-steel-dark/70 text-text-primary backdrop-blur-[var(--glass-blur)]'
+                  : 'border-edge liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary active:scale-95',
             ].join(' ')}
             style={{
               left: `${pos.x - TILE / 2}%`,

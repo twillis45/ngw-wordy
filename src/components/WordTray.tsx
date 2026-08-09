@@ -108,10 +108,10 @@ export default function WordTray({
                 'relative rounded-md border-2 px-2 py-1 text-[13px] font-semibold tabular-nums transition-colors',
                 // Same achievement ladder as the full grid — see below.
                 solved
-                  ? 'border-success liquid liquid-raised backdrop-blur-md backdrop-saturate-150 text-text-primary'
+                  ? 'border-success liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary'
                   : bought
-                    ? 'border-edge/70 liquid liquid-raised backdrop-blur-md backdrop-saturate-150 italic text-text-muted'
-                    : 'border-edge/70 liquid backdrop-blur-md backdrop-saturate-150 text-text-muted',
+                    ? 'border-edge/70 liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] italic text-text-muted'
+                    : 'border-edge/70 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted',
                 solved && word === base ? 'ring-1 ring-success/50' : '',
                 // Mark the row the clue is currently asking about.
                 !done && word === activeWord
@@ -185,11 +185,11 @@ export default function WordTray({
                       // one accent moment Studio Matte allows, which the grid
                       // had stopped spending anywhere.
                       solved
-                        ? 'border-success liquid liquid-raised backdrop-blur-md backdrop-saturate-150 text-text-primary'
+                        ? 'border-success liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary'
                         : bought
                           // Filled, but not earned — structure without accent.
-                          ? 'border-edge/70 liquid liquid-raised backdrop-blur-md backdrop-saturate-150 italic text-text-muted'
-                          : 'border-edge/70 liquid backdrop-blur-md backdrop-saturate-150 text-text-muted',
+                          ? 'border-edge/70 liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] italic text-text-muted'
+                          : 'border-edge/70 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted',
                       solved && isBase ? 'ring-1 ring-success/50' : '',
                       fresh ? 'anim-land anim-sweep' : '',
                     ].join(' ')}

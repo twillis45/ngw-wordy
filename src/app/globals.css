@@ -154,8 +154,24 @@
   --glass-specular-strong: color-mix(in srgb, var(--glass-tint) 78%, transparent);
   --glass-contact: color-mix(in srgb, #000 50%, transparent);
   --glass-contact-strong: color-mix(in srgb, #000 60%, transparent);
-  --glass-blur: 12px;
-  --glass-saturate: 1.5;
+  --glass-blur: 16px;
+  --glass-saturate: 1.8;
+
+  /*
+   * Ambient field — the thing the glass refracts.
+   *
+   * The body was a flat #070809, which meant every backdrop-blur and
+   * backdrop-saturate in the app was filtering a UNIFORM field: blurring one
+   * colour returns that colour, so the filters were mathematically no-ops and
+   * the material could only ever read as tinted plastic. Glass is only legible
+   * as glass when there is structure behind it to bend.
+   *
+   * Three soft steel pools, kept dark on purpose — this has to add gradient,
+   * not brightness, or it eats the sunlight contrast the edges were tuned for.
+   */
+  --ambient-1: color-mix(in srgb, var(--color-steel) 30%, transparent);
+  --ambient-2: color-mix(in srgb, var(--color-steel-muted) 20%, transparent);
+  --ambient-3: color-mix(in srgb, var(--color-steel-dark) 34%, transparent);
 
   /*
    * Letter-slot sizing, fluid rather than bucketed.
@@ -257,6 +273,12 @@
   --glass-contact-strong: color-mix(in srgb, var(--color-edge) 38%, transparent);
   --glass-blur: 14px;
   --glass-saturate: 1.25;
+
+  /* Cool pools on a near-white page: same job, far lower amplitude — light
+     mode is for sunlight, so the field must not gray down the contrast. */
+  --ambient-1: color-mix(in srgb, var(--color-steel) 12%, transparent);
+  --ambient-2: color-mix(in srgb, var(--color-steel-muted) 8%, transparent);
+  --ambient-3: color-mix(in srgb, var(--color-steel-dark) 10%, transparent);
   }
 }
 
@@ -317,6 +339,12 @@
   --glass-contact-strong: color-mix(in srgb, var(--color-edge) 38%, transparent);
   --glass-blur: 14px;
   --glass-saturate: 1.25;
+
+  /* Cool pools on a near-white page: same job, far lower amplitude — light
+     mode is for sunlight, so the field must not gray down the contrast. */
+  --ambient-1: color-mix(in srgb, var(--color-steel) 12%, transparent);
+  --ambient-2: color-mix(in srgb, var(--color-steel-muted) 8%, transparent);
+  --ambient-3: color-mix(in srgb, var(--color-steel-dark) 10%, transparent);
 }
 
 /*
@@ -364,7 +392,13 @@ body {
   position: fixed;
   inset: 0;
   overflow: hidden;
-  background: var(--color-carbon-body);
+  /* Layered over the flat body colour, not replacing it — the solid stays the
+     floor so nothing depends on a gradient resolving. */
+  background:
+    radial-gradient(78% 52% at 16% 8%, var(--ambient-1), transparent 68%),
+    radial-gradient(64% 46% at 92% 34%, var(--ambient-2), transparent 66%),
+    radial-gradient(90% 58% at 50% 104%, var(--ambient-3), transparent 70%),
+    var(--color-carbon-body);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;

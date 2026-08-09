@@ -187,7 +187,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <section className="relative rounded-2xl border border-edge liquid backdrop-blur-md backdrop-saturate-150 p-4">
+    <section className="relative rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
       <div className="mb-3 flex items-baseline justify-between gap-3">
         <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
           {title}
@@ -237,7 +237,7 @@ function Chip({
   onOpen: (word: string) => void;
 }) {
   const cls = [
-    'relative rounded-md px-2 py-1 text-[13px] font-medium uppercase tracking-[0.06em] liquid backdrop-blur-md backdrop-saturate-150',
+    'relative rounded-md px-2 py-1 text-[13px] font-medium uppercase tracking-[0.06em] liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)]',
     tone === 'base'
       ? 'bg-success/15 text-success'
       : tone === 'target'
