@@ -287,10 +287,36 @@ for (const base of bases) {
    * nobody has met, so a claimed puzzle sorts common words to the front and
    * keeps length as the tiebreak.
    */
+  /*
+   * Row selection for a themed puzzle.
+   *
+   * Two problems the generator creates on its own: it takes the longest
+   * cluable words (rachis, incus, ocas — unusable), and even after preferring
+   * common words, half the rows have nothing to do with the theme. CAMPUS came
+   * back with cams, cusp and scum, which no HBCU clue can carry.
+   *
+   * So a theme may list `prefer` — rows the editor wants on the board. They go
+   * first when valid; anything missing falls back to common-then-longest, and
+   * a preference that can't be honoured is reported rather than dropped.
+   */
+  const prefer = authored.get(base)?.prefer ?? [];
+  const preferRank = new Map(prefer.map((w, i) => [w, i]));
+  if (isClaimed) {
+    for (const w of prefer) {
+      if (!answers.includes(w)) {
+        themeReport.rejected.push(
+          `${base}/${w}: preferred row is not makeable from these letters`
+        );
+      }
+    }
+  }
   const rest = answers
     .filter((w) => w !== base)
     .sort((a, b) => {
       if (!isClaimed) return 0;
+      const ra = preferRank.has(a) ? preferRank.get(a) : Infinity;
+      const rb = preferRank.has(b) ? preferRank.get(b) : Infinity;
+      if (ra !== rb) return ra - rb;
       const pa = popular.has(a) ? 0 : 1;
       const pb = popular.has(b) ? 0 : 1;
       return pa - pb || b.length - a.length || a.localeCompare(b);
@@ -300,14 +326,26 @@ for (const base of bases) {
   const grid = [base];
   // No two rows may pose the same question.
   const usedClues = new Set(baseClue ? [clueKey(baseClue)] : []);
+  const authoredClues = authored.get(base)?.clues ?? {};
   for (const w of rest) {
     if (grid.length >= GRID_MAX) break;
-    const c = clueFor(w);
-    if (!c) continue;
-    const k = clueKey(c);
-    if (usedClues.has(k)) continue;
-    usedClues.add(k);
-    clues[w] = c;
+    /*
+     * An authored clue admits a row on its own.
+     *
+     * Rows were gated on Webster being able to clue them, which quietly threw
+     * out exactly the words a theme wants — caps, shave, vocal, sit — even
+     * when the editor had already written their clue. Same mistake as the base
+     * word, one level down: if a human wrote it, the 1913 dictionary has no
+     * vote.
+     */
+    const c = clueFor(w) ?? (authoredClues[w] ? '' : null);
+    if (c === null) continue;
+    if (c) {
+      const k = clueKey(c);
+      if (usedClues.has(k)) continue;
+      usedClues.add(k);
+      clues[w] = c;
+    }
     grid.push(w);
   }
   if (!clues[base] && !authoredBaseClue) {
