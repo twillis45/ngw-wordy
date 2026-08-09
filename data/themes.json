@@ -1,24 +1,48 @@
 {
   "_readme": [
     "Themed puzzles. This file is the ONLY place a theme is authored \u2014 the",
-    "generator merges it over the generated puzzle set, so an editor never",
-    "touches code.",
+    "generator merges it over the generated set, so an editor never touches code.",
     "",
-    "A theme entry claims a base word. If that word survives generation (it",
-    "must be 6 distinct letters and produce enough answers), the puzzle picks",
-    "up the theme name and any clues written here override the auto-generated",
-    "Webster ones. Anything not overridden falls back, so a theme can be",
-    "partially authored and still ship.",
+    "A theme claims a base word. Claimed bases are generated FIRST and win their",
+    "anagram slot, so a claim reliably lands. Clues written here override the",
+    "auto-generated Webster ones; anything not overridden falls back, so a theme",
+    "can ship partially authored.",
     "",
-    "Clue rules, enforced by the build:",
+    "Clue rules, enforced by the build (it prints what it rejected and why):",
     "  - never contain the answer or a 4+ character stem of it",
     "  - 30..120 characters",
     "  - no two rows in a puzzle may pose the same question",
     "",
-    "Cultural themes need a cultural editor. The container is here; the voice",
-    "is not something to auto-generate."
+    "VOICE NOTE: these are a first draft written to prove the pipeline and give",
+    "an editor something to react to. They should be revised by someone with",
+    "standing to write them. Warmth and specificity over slang-as-punchline."
   ],
   "themes": [
+    {
+      "id": "cookout",
+      "name": "The Cookout",
+      "blurb": "Paper plates, folding chairs, somebody's uncle on the grill."
+    },
+    {
+      "id": "rnb90s",
+      "name": "90s R&B",
+      "blurb": "Slow jams, harmonies, and a CD case in the car door."
+    },
+    {
+      "id": "sitcom",
+      "name": "Sitcom Sunday",
+      "blurb": "Reruns, laugh tracks, and everybody's living room."
+    },
+    {
+      "id": "hbcu",
+      "name": "HBCU",
+      "blurb": "The yard, the band, the homecoming."
+    },
+    {
+      "id": "barbershop",
+      "name": "Barbershop",
+      "blurb": "The chair, the clippers, and the argument already in progress."
+    },
     {
       "id": "kitchen",
       "name": "In the Kitchen",
@@ -27,18 +51,124 @@
   ],
   "puzzles": [
     {
+      "base": "cousin",
+      "theme": "cookout",
+      "clues": {
+        "cousin": "The one at every function you can't quite chart on the family tree.",
+        "coins": "What the ice cream truck required, dug out of a car door.",
+        "icons": "The framed faces on the hallway wall, next to the graduation photos.",
+        "cons": "The drawbacks somebody lists before agreeing to host next year.",
+        "ions": "Charged particles \u2014 the science-fair topic that got picked twice.",
+        "nous": "Good sense; the thing the aunties have and say you're short on."
+      }
+    },
+    {
+      "base": "vocals",
+      "theme": "rnb90s",
+      "clues": {
+        "vocals": "The part you rewind for, isolated from everything else.",
+        "coals": "What's still glowing after everybody's eaten.",
+        "cola": "Dark, sweet, and poured over ice in a red cup.",
+        "oval": "The shape of a running track, or a serving platter.",
+        "lac": "A resinous substance from insects, used to make shellac.",
+        "sal": "In an old apothecary's Latin, the common white seasoning."
+      }
+    },
+    {
+      "base": "sample",
+      "theme": "rnb90s",
+      "clues": {
+        "sample": "Four bars borrowed, looped, and turned into something else entirely.",
+        "ample": "More than enough \u2014 the amount of food your grandmother made.",
+        "lapse": "A slip, or a stretch of time quietly passing.",
+        "leaps": "Jumps \u2014 what a chorus does after a quiet verse.",
+        "maple": "A tree with winged seeds, and a syrup.",
+        "pales": "Grows lighter, or fades next to something stronger."
+      }
+    },
+    {
+      "base": "sitcom",
+      "theme": "sitcom",
+      "clues": {
+        "sitcom": "Half an hour, one living room, and everybody back to normal by the end.",
+        "moist": "Slightly damp \u2014 the word the whole internet agreed to hate.",
+        "stoic": "Unbothered on purpose. The dad on every one of these shows.",
+        "mist": "Fine spray hanging in the air, like over a cold drink in July.",
+        "most": "The greatest amount \u2014 what the middle child claims to do.",
+        "its": "Belonging to it. The apostrophe goes nowhere near this one."
+      }
+    },
+    {
+      "base": "laughs",
+      "theme": "sitcom",
+      "clues": {
+        "laughs": "What the track supplies whether the joke earned it or not.",
+        "gush": "To pour out praise a little too enthusiastically.",
+        "hags": "Unkind word for old women; the villain in a fairy tale, retold.",
+        "haul": "To drag the folding table in from the garage.",
+        "lash": "To bind tight \u2014 or the strip that frames an eye.",
+        "shag": "A carpet deep enough to lose a remote in."
+      }
+    },
+    {
+      "base": "campus",
+      "theme": "hbcu",
+      "clues": {
+        "campus": "The yard. Where the band practices and everybody ends up walking.",
+        "camps": "Where the freshmen get sent before the first week starts.",
+        "cams": "Rotating parts that turn a spin into a push.",
+        "cusp": "Right on the edge of becoming something else.",
+        "maps": "What you don't need by October.",
+        "scum": "A film on the surface of standing water."
+      }
+    },
+    {
+      "base": "alumni",
+      "theme": "hbcu",
+      "clues": {
+        "alumni": "The ones who graduated and still come back for the game.",
+        "luna": "Of the moon \u2014 also a big pale-green moth.",
+        "mail": "What used to bring the acceptance letter, in a thick envelope.",
+        "mina": "A talking bird of southern Asia, good at mimicry.",
+        "nail": "To hit something exactly right, the way a routine lands.",
+        "ail": "To trouble or make unwell; what's wrong when nothing specific is."
+      }
+    },
+    {
+      "base": "chairs",
+      "theme": "barbershop",
+      "clues": {
+        "chairs": "Where you wait, and where the conversation actually happens.",
+        "crash": "To drop in without an appointment and hope for a gap.",
+        "hairs": "What ends up on the cape, and on the floor, and on your neck.",
+        "airs": "Putting them on: acting grander than anybody's buying.",
+        "arch": "A curve \u2014 also the shape of a very deliberate eyebrow.",
+        "cars": "What's double-parked outside for the whole afternoon."
+      }
+    },
+    {
+      "base": "shaved",
+      "theme": "barbershop",
+      "clues": {
+        "shaved": "Taken down clean with a blade.",
+        "hades": "The underworld of Greek myth, ruled by a god of the same name.",
+        "heads": "What everybody in the shop turns when the door opens.",
+        "shade": "Cool relief from the sun \u2014 or a remark delivered very politely.",
+        "dash": "A quick run, or a small pour of something into the pan.",
+        "have": "To possess. As in: he does not the receipts."
+      }
+    },
+    {
       "base": "faucet",
       "theme": "kitchen",
       "clues": {
         "faucet": "Where the water comes out, and where the dishes pile up under it.",
         "cafe": "Somewhere you order coffee and stay two hours longer than planned.",
-        "cute": "What you call the little jug nobody is allowed to actually use."
+        "cute": "What you call the little jug nobody is allowed to actually use.",
+        "acute": "Sharp \u2014 a pain, an angle, or a sense of smell near the stove.",
+        "face": "The front of a thing; what you put on before opening the door.",
+        "fate": "What you blame when the cake doesn't rise."
       }
-    },
-    {
-      "base": "sauced",
-      "theme": "kitchen",
-      "clues": {}
     }
   ]
 }

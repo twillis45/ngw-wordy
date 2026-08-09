@@ -230,27 +230,76 @@ const puzzles = [];
 const seenSignatures = new Set();
 
 for (const base of bases) {
-  if (puzzles.length >= COUNT) break;
+  if (puzzles.length >= COUNT) {
+    if (authored.has(base)) {
+      themeReport.rejected.push(`${base}: set was already full at ${COUNT}`);
+    }
+    continue;
+  }
   const sig = letterKey(base);
-  if (seenSignatures.has(sig)) continue;
+  if (seenSignatures.has(sig)) {
+    if (authored.has(base)) {
+      themeReport.rejected.push(`${base}: another puzzle already uses these letters`);
+    }
+    continue;
+  }
+
+  const isClaimed = authored.has(base);
+  const drop = (why) => {
+    if (isClaimed) themeReport.rejected.push(`${base}: ${why}`);
+  };
 
   const letters = base.split('');
   const answers = solve(letters);
-  if (answers.length < MIN_ANSWERS || answers.length > MAX_ANSWERS) continue;
+  if (answers.length < MIN_ANSWERS || answers.length > MAX_ANSWERS) {
+    drop(
+      `${answers.length} answers — needs ${MIN_ANSWERS}-${MAX_ANSWERS}`
+    );
+    continue;
+  }
 
   seenSignatures.add(sig);
 
   // The base must be cluable or the puzzle's centrepiece has no clue.
-  const baseClue = clueFor(base);
-  if (!baseClue) continue;
+  /*
+   * A themed puzzle may supply its own base clue.
+   *
+   * Requiring a Webster clue for the base excluded exactly the words a modern
+   * theme needs — SITCOM, SAMPLE, ALUMNI, SHAVED all failed, and Webster 1913
+   * cannot define "sitcom" because the word did not exist. If an editor has
+   * written the clue, the dictionary has no say.
+   */
+  const authoredBaseClue = authored.get(base)?.clues?.[base];
+  const baseClue = clueFor(base) ?? (authoredBaseClue ? '' : null);
+  if (baseClue === null) {
+    drop('no dictionary clue for the base word, and none authored');
+    continue;
+  }
 
   // Grid = base plus the longest answers that can carry a clue. Falls back to
   // uncluable words only if there aren't enough, and those puzzles are dropped.
-  const rest = answers.filter((w) => w !== base);
-  const clues = { [base]: baseClue };
+  /*
+   * Themed puzzles prefer FAMILIAR rows.
+   *
+   * Grid selection takes the longest cluable words, which is fine for a
+   * generic puzzle and wrong for a themed one: the first themed grids came
+   * back with rachis, incus, conus and ocas. No cookout clue can carry a word
+   * nobody has met, so a claimed puzzle sorts common words to the front and
+   * keeps length as the tiebreak.
+   */
+  const rest = answers
+    .filter((w) => w !== base)
+    .sort((a, b) => {
+      if (!isClaimed) return 0;
+      const pa = popular.has(a) ? 0 : 1;
+      const pb = popular.has(b) ? 0 : 1;
+      return pa - pb || b.length - a.length || a.localeCompare(b);
+    });
+  const clues = {};
+  if (baseClue) clues[base] = baseClue;
   const grid = [base];
   // No two rows may pose the same question.
-  const usedClues = new Set([clueKey(baseClue)]);
+  const usedClues = new Set(baseClue ? [clueKey(baseClue)] : []);
   for (const w of rest) {
     if (grid.length >= GRID_MAX) break;
     const c = clueFor(w);
@@ -261,7 +310,14 @@ for (const base of bases) {
     clues[w] = c;
     grid.push(w);
   }
-  if (grid.length < GRID_MAX) continue;
+  if (!clues[base] && !authoredBaseClue) {
+    drop('base row would have no clue at all');
+    continue;
+  }
+  if (grid.length < GRID_MAX) {
+    drop(`only ${grid.length} of ${GRID_MAX} rows could carry a clue`);
+    continue;
+  }
   const gridSet = new Set(grid);
   const bonus = answers.filter((w) => !gridSet.has(w));
 
