@@ -270,12 +270,12 @@ export default function LetterWheel({
         if (!dragging) setCursor(null);
       }}
       // cursor-none only where the glass pointer replaces the arrow.
-      // cramped:max-h — on a landscape tablet the board column's height isn't
+      // shortwide:max-h — on a landscape tablet the board column's height isn't
       // definite (the md grid sizes it from content), so `height: 100%` has
       // nothing to resolve against and the wheel takes the full 296px cap:
       // 96px more than that screen has to give, and the controls go off the
       // bottom. An explicit ceiling is the only thing that binds there.
-      className="relative aspect-square touch-none select-none cramped:max-h-[200px] mouse:cursor-none"
+      className="relative aspect-square touch-none select-none shortwide:max-h-[200px] mouse:cursor-none"
       /*
        * Sized from the viewport, not from breakpoints.
        *

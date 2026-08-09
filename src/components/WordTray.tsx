@@ -177,11 +177,6 @@ export default function WordTray({
                     aria-hidden={!visible}
                     className={[
                       'relative grid place-items-center rounded-md border-2 font-semibold tabular-nums',
-                      // The full-wheel word is the prize, so it gets real size
-                      // over the others rather than only a ring.
-                      isBase
-                        ? 'h-[34px] w-[30px] text-[17px] cramped:h-[24px] cramped:w-[21px] cramped:text-[13px] roomy:h-[40px] roomy:w-[35px] roomy:text-[20px]'
-                        : 'h-[30px] w-[26px] text-[15px] cramped:h-[21px] cramped:w-[19px] cramped:text-[12px] roomy:h-[35px] roomy:w-[31px] roomy:text-[17px]',
                       // Illumination follows achievement. This was inverted:
                       // a solved tile went `border-transparent` while an empty
                       // slot kept the full-brightness edge, so the placeholders
@@ -199,6 +194,15 @@ export default function WordTray({
                       fresh ? 'anim-land anim-sweep' : '',
                     ].join(' ')}
                     style={{
+                      // The full-wheel word is the prize, so it gets real size
+                      // over the others rather than only a ring. Both scale
+                      // fluidly with the viewport — see --slot-h in globals.
+                      height: isBase ? 'var(--slot-h-base)' : 'var(--slot-h)',
+                      width: 'auto',
+                      aspectRatio: '7 / 8',
+                      fontSize: isBase
+                        ? 'var(--slot-text-base)'
+                        : 'var(--slot-text)',
                       // Stagger so the row fills left to right, in step with
                       // the letters arriving from the wheel.
                       animationDelay: fresh ? `${i * 45}ms` : undefined,
