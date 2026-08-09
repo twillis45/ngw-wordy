@@ -691,7 +691,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
    *   >= 1536 wider measure again, rail gains the how-to-play card
    */
   return (
-    <main className="safe-top safe-bottom mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-5 short:px-4 md:max-w-[740px] lg:max-w-[780px] 2xl:max-w-[820px]">
+    <main className="safe-top safe-bottom mx-auto flex h-dvh w-full max-w-[420px] flex-col overflow-hidden px-5 short:px-4 md:max-w-[740px] lg:max-w-[780px] 2xl:max-w-[820px]">
       {/* Header — quiet. Day number and streak are evidence, not the hero. */}
       <header className="flex items-center justify-between gap-2">
         <div>
@@ -917,7 +917,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             can stretch and center its own contents. */}
         <aside
           aria-label="Your progress"
-          className="hidden md:block md:self-start lg:sticky lg:top-6"
+          className="hidden md:block md:max-h-full md:self-start md:overflow-y-auto lg:sticky lg:top-6"
         >
           {rail}
         </aside>

@@ -234,17 +234,31 @@
   --glass-saturate: 1.25;
 }
 
-html,
-body {
+/*
+ * App shell, not a document.
+ *
+ * The board is laid out to fit exactly, so any scroll is a bug rather than a
+ * feature — and on iOS a scrollable body also rubber-bands under a drag, which
+ * fights the wheel. Fixing the body to the viewport removes both, and every
+ * surface that genuinely can overflow (sheets, the desktop rail) scrolls
+ * inside itself.
+ *
+ * dvh rather than vh so a phone's collapsing browser chrome doesn't leave the
+ * bottom of the board under the toolbar.
+ */
+html {
   height: 100%;
 }
 
 body {
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+  overflow: hidden;
   background: var(--color-carbon-body);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  /* The wheel is a drag surface; never let it scroll or select. */
   overscroll-behavior: none;
 }
 
@@ -533,13 +547,49 @@ body {
 }
 .anim-tick { animation: tick 180ms cubic-bezier(0.34, 1.4, 0.64, 1) both; }
 
-/* A letter landing in the tray: overshoot, then settle. Runs only for words
-   solved in this session — replaying it for restored words would make motion
-   describe state instead of change. */
-.anim-land { animation: tile-pop 300ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+/*
+ * A letter landing in the tray.
+ *
+ * Was a single overshoot. Now it arrives with weight: a compress on impact
+ * before the settle, so the tile reads as having been PUT there rather than
+ * having faded in.
+ */
+@keyframes land {
+  0%   { transform: scale(0.55) translateY(-8px); opacity: 0; }
+  45%  { transform: scale(1.18) translateY(0); opacity: 1; }
+  62%  { transform: scale(0.94); }
+  78%  { transform: scale(1.04); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.anim-land { animation: land 420ms cubic-bezier(0.22, 1, 0.28, 1) both; }
 
-/* Light passing across a just-completed row. Studio Matte's answer to a
-   celebration: an edge highlight sweeping, not a glow or a particle burst. */
+/*
+ * Impact ring — light thrown off the tile as it lands. Sits behind the glyph
+ * via a pseudo-element so it never obscures the letter.
+ */
+@keyframes land-ring {
+  0%   { transform: scale(0.4); opacity: 0.85; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+.anim-land::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1.5px solid var(--color-success);
+  box-shadow: 0 0 12px -2px var(--color-success);
+  animation: land-ring 520ms cubic-bezier(0.16, 0.8, 0.3, 1) both;
+  animation-delay: inherit;
+}
+
+/*
+ * Light passing across a just-completed row.
+ *
+ * Brighter and wider than before, and it now carries a faint colour cast from
+ * the success accent — so a completed row reads as lit from within rather than
+ * merely polished.
+ */
 @keyframes sweep {
   0% { transform: translateX(-140%); opacity: 0; }
   35% { opacity: 1; }
@@ -553,11 +603,13 @@ body {
   pointer-events: none;
   background: linear-gradient(
     100deg,
-    transparent 20%,
-    var(--sweep-color) 48%,
-    transparent 76%
+    transparent 12%,
+    color-mix(in srgb, var(--color-success) 35%, transparent) 38%,
+    var(--sweep-color) 50%,
+    color-mix(in srgb, var(--color-success) 25%, transparent) 62%,
+    transparent 88%
   );
-  animation: sweep 620ms ease-out 120ms both;
+  animation: sweep 700ms cubic-bezier(0.2, 0.7, 0.3, 1) 90ms both;
 }
 
 /* Points earned, rising off the row and fading. */
