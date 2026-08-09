@@ -39,6 +39,8 @@ const puzzle: Puzzle = {
   clues: { clears: 'Makes free of obstruction.' },
   unlockOrder: ['a', 'c', 'e', 'l', 'r', 's'],
   startActive: 4,
+  difficulty: 0.4,
+  theme: null,
 };
 
 describe('scoreWord', () => {

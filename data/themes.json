@@ -1,0 +1,41 @@
+{
+  "_readme": [
+    "Themed puzzles. This file is the ONLY place a theme is authored — the",
+    "generator merges it over the generated puzzle set, so an editor never",
+    "touches code.",
+    "",
+    "A theme entry claims a base word. If that word survives generation (it",
+    "must be 6 distinct letters and produce enough answers), the puzzle picks",
+    "up the theme name and any clues written here override the auto-generated",
+    "Webster ones. Anything not overridden falls back, so a theme can be",
+    "partially authored and still ship.",
+    "",
+    "Clue rules, enforced by the build:",
+    "  - never contain the answer or a 4+ character stem of it",
+    "  - 30..120 characters",
+    "  - no two rows in a puzzle may pose the same question",
+    "",
+    "Cultural themes need a cultural editor. The container is here; the voice",
+    "is not something to auto-generate."
+  ],
+
+  "themes": [
+    {
+      "id": "kitchen",
+      "name": "In the Kitchen",
+      "blurb": "Six letters, one countertop."
+    }
+  ],
+
+  "puzzles": [
+    {
+      "base": "faucet",
+      "theme": "kitchen",
+      "clues": {
+        "faucet": "Where the water comes out, and where the dishes pile up under it.",
+        "cafe": "Somewhere you order coffee and stay two hours longer than planned.",
+        "cute": "What you call the little jug nobody is allowed to actually use."
+      }
+    }
+  ]
+}

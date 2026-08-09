@@ -143,6 +143,41 @@ bundled floor at all.
 `parseModern` is pure and defensively tested against malformed payloads, because
 it parses a third-party shape we don't control.
 
+## Themed puzzles
+
+`data/themes.json` is the only place a theme is authored — an editor never
+touches code. A theme claims a base word; if that word survives generation it
+picks up the theme name, and any clue written there overrides the auto-generated
+Webster one. Anything not overridden falls back, so a theme can ship partially
+authored.
+
+Authored clues go through the **same validation as generated ones** — a
+hand-written clue that contains its own answer is exactly as broken as a machine
+one, and an editor should learn that at build time, not from a player. The build
+prints what it rejected and why:
+
+```
+themes: 1 puzzles, 3 authored clues · 3 REJECTED
+  - faucet/face: clue failed validation      (contained its own answer)
+  - faucet/fate: clue failed validation      (too short)
+  - faucet/nope: not a row in this puzzle
+```
+
+> Cultural themes need a cultural editor. The container is here; the voice is
+> not something to auto-generate.
+
+## Do It For Me
+
+The hint system makes you diagnose your own problem — pick a row, decide what to
+spend. That is the right default and exactly wrong when you are stuck, because
+being stuck means you don't know which row to pick.
+
+`src/lib/assist.ts` watches for a stall (45s idle, or 4 wrong guesses) and
+offers to act. It targets the **shortest** unsolved row, because the cheapest
+win is what restarts momentum. A player with no hints left gets one free —
+they're the most likely to quit, and charging someone at the moment they're
+about to leave is backwards. It offers once per puzzle and never nags.
+
 ## Breakpoints
 
 | Width | Layout |

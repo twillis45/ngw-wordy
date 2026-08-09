@@ -19,6 +19,10 @@ export type Puzzle = {
    */
   unlockOrder: string[];
   startActive: number;
+  /** How hard this puzzle is, 0 (kindest) to 1. Drives the warm-up ladder. */
+  difficulty: number;
+  /** Authored theme, when one claims this puzzle's base word. */
+  theme: { id: string; name: string; blurb: string } | null;
 };
 
 /**

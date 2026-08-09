@@ -34,6 +34,7 @@ const ROOT = path.join(__dirname, '..');
 const WORDLIST = path.join(ROOT, 'data', 'enable1.txt');
 const POPULAR = path.join(ROOT, 'data', 'popular.txt');
 const DICT = path.join(ROOT, 'data', 'webster.json');
+const THEMES = path.join(ROOT, 'data', 'themes.json');
 const OUT = path.join(ROOT, 'public', 'data', 'puzzles.json');
 
 const MIN_LEN = 3;
@@ -90,6 +91,24 @@ const popular = new Set(
     .map((w) => w.trim().toLowerCase())
     .filter(Boolean)
 );
+
+/*
+ * Themes are authored, not generated.
+ *
+ * data/themes.json is merged over the generated set: a theme claims a base
+ * word, and any clue written there overrides the Webster one. Anything not
+ * overridden falls back, so a theme can ship partially authored.
+ *
+ * Authored clues go through the SAME validation as generated ones — a
+ * hand-written clue that contains its own answer is just as broken as a
+ * machine one, and an editor should find that out at build time.
+ */
+const themeFile = JSON.parse(fs.readFileSync(THEMES, 'utf8'));
+const themesById = new Map((themeFile.themes ?? []).map((t) => [t.id, t]));
+const authored = new Map(
+  (themeFile.puzzles ?? []).map((p) => [p.base.toLowerCase(), p])
+);
+const themeReport = { applied: 0, clues: 0, rejected: [] };
 
 const raw = fs.readFileSync(WORDLIST, 'utf8').split('\n');
 const words = [];
@@ -214,6 +233,32 @@ for (const base of bases) {
   const maxScore = answers.reduce((sum, w) => sum + scoreWord(w), 0);
   const ordered = grid.sort((a, b) => b.length - a.length || a.localeCompare(b));
 
+  // Overlay any authored theme for this base word.
+  let theme = null;
+  const authoredEntry = authored.get(base);
+  if (authoredEntry) {
+    const t = themesById.get(authoredEntry.theme);
+    if (!t) {
+      themeReport.rejected.push(`${base}: unknown theme "${authoredEntry.theme}"`);
+    } else {
+      theme = { id: t.id, name: t.name, blurb: t.blurb ?? '' };
+      themeReport.applied += 1;
+      for (const [word, text] of Object.entries(authoredEntry.clues ?? {})) {
+        if (!ordered.includes(word)) {
+          themeReport.rejected.push(`${base}/${word}: not a row in this puzzle`);
+          continue;
+        }
+        const cleaned = redactAnswer(text, word);
+        if (!isUsableClue(cleaned)) {
+          themeReport.rejected.push(`${base}/${word}: clue failed validation`);
+          continue;
+        }
+        clues[word] = cleaned;
+        themeReport.clues += 1;
+      }
+    }
+  }
+
   /*
    * Escalating wheel: the unlock order.
    *
@@ -254,6 +299,7 @@ for (const base of bases) {
   puzzles.push({
     id: puzzles.length + 1,
     difficulty,
+    theme,
     letters: letters.sort(),
     base,
     grid: ordered,
@@ -302,6 +348,11 @@ console.log(
     `  ${(bytes / 1024).toFixed(0)} KB · avg ${avg.toFixed(1)} answers/puzzle\n` +
     `  difficulty: ${diffs[0].toFixed(2)} easiest / ${median.toFixed(2)} median /` +
     ` ${diffs[diffs.length - 1].toFixed(2)} hardest\n` +
+    `  themes: ${themeReport.applied} puzzles, ${themeReport.clues} authored clues` +
+    `${themeReport.rejected.length ? ` · ${themeReport.rejected.length} REJECTED` : ''}\n` +
+    `${themeReport.rejected.map((r) => `    - ${r}`).join('\n')}${
+      themeReport.rejected.length ? '\n' : ''
+    }` +
     `  warm-up ladder: ${starters
       .map((i) => `${puzzles[i].base} (${puzzles[i].difficulty.toFixed(2)})`)
       .join(', ')}`

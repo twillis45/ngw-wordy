@@ -774,6 +774,12 @@ export default function Game({ data }: { data: PuzzleFile }) {
         <RankBar rank={rank} score={score} />
       </button>
 
+      {puzzle.theme && (
+        <p className="mt-2 text-center text-[12px] uppercase tracking-[0.16em] text-success short:mt-1">
+          {puzzle.theme.name}
+        </p>
+      )}
+
       {/* Target grid */}
       <section aria-label="Words to find" className="mt-3 short:mt-2 roomy:mt-6">
         <WordTray
