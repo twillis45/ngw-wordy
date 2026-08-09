@@ -270,7 +270,12 @@ export default function LetterWheel({
         if (!dragging) setCursor(null);
       }}
       // cursor-none only where the glass pointer replaces the arrow.
-      className="relative aspect-square touch-none select-none mouse:cursor-none"
+      // cramped:max-h — on a landscape tablet the board column's height isn't
+      // definite (the md grid sizes it from content), so `height: 100%` has
+      // nothing to resolve against and the wheel takes the full 296px cap:
+      // 96px more than that screen has to give, and the controls go off the
+      // bottom. An explicit ceiling is the only thing that binds there.
+      className="relative aspect-square touch-none select-none cramped:max-h-[200px] mouse:cursor-none"
       /*
        * Sized from the viewport, not from breakpoints.
        *
@@ -281,7 +286,22 @@ export default function LetterWheel({
        * media-query utilities it can't be defeated by CSS source order.
        * The 78vw cap keeps it inside the gutters on a narrow phone.
        */
-      style={{ width: 'min(clamp(150px, var(--wheel-size), 296px), 78vw)' }}
+      style={{
+        // Sized from the HEIGHT its flex parent leaves over, not from a vh
+        // bucket. A bucket can't win: `26vh` under a `max-height: 800px` rule
+        // covers 568 through 800, so a 737-tall phone got the same ratio as a
+        // 568 one and 101px of slack pooled in a spacer above the wheel.
+        // Growing into the leftover instead means the void cannot exist at any
+        // viewport, and the hero gets the space rather than nothing getting it.
+        //
+        // Capping HEIGHT by 78vw is what keeps a narrow phone honest — the box
+        // is square, so a height cap is a width cap. Width stays `auto` so
+        // aspect-ratio derives it; setting both would be a conflict the browser
+        // resolves by dropping the ratio.
+        height: 'clamp(150px, min(100%, 78vw), 296px)',
+        width: 'auto',
+        aspectRatio: '1',
+      }}
     >
       {/* Matte disc — depth comes from an inset ring, not a glow. */}
       <div

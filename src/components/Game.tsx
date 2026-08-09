@@ -768,7 +768,13 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </div>
       </header>
 
-      <div className="mt-4 flex min-h-0 flex-1 shrink flex-col gap-8 short:mt-2 md:grid md:grid-cols-[minmax(0,1fr)_260px] md:gap-7 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
+      {/* grid-rows-[minmax(0,1fr)]: the implicit row is `auto`, so it grows to
+          the rail's full content height and the aside's `md:max-h-full` then
+          resolves against a row that is already too tall — which is why a
+          landscape iPad clipped 46px of the rail off the bottom instead of
+          scrolling it. Bounding the row is what makes max-h-full mean
+          anything. */}
+      <div className="mt-4 flex min-h-0 flex-1 shrink flex-col gap-8 short:mt-2 md:grid md:grid-rows-[minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_260px] md:gap-7 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
         {/* Board column — bounded at every width, centered on desktop. */}
         <div className="mx-auto flex w-full min-h-0 max-w-[420px] flex-1 flex-col md:max-w-[440px] md:justify-center relative md:rounded-3xl md:border md:border-edge md:px-5 md:py-4 md:liquid md:backdrop-blur-md md:backdrop-saturate-150">
       {/* On a phone this strip is the ONLY place progress lives, so it is also
@@ -830,10 +836,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
       )}
 
 
-      {/* Greedy only on phone, where it bottom-anchors the wheel in the thumb
-          zone. From tablet up the rail sits below the board so the page
-          scrolls anyway — anchoring there just opened a void. */}
-      <div className="min-h-0 flex-1 basis-6 md:h-3 md:flex-none md:basis-auto" />
+      {/* A plain gap. This used to be greedy, which is exactly how it became a
+          101px hole on a tall phone — it won the leftover and then had nothing
+          to do with it. The wheel is the greedy box now. */}
+      <div className="h-6 shrink-0 short:h-2 md:h-3" />
 
       {/* Current word — the only place the accent green appears mid-play */}
       <div
@@ -875,8 +881,15 @@ export default function Game({ data }: { data: PuzzleFile }) {
         )}
       </div>
 
-      {/* Wheel — bottom third, thumb zone */}
-      <div className="flex justify-center">
+      {/* Wheel — bottom third, thumb zone. This is the greedy box now: it takes
+          whatever the tray and controls don't, so the board has no slack left
+          to pool anywhere else. */}
+      {/* min-h matches the wheel's own clamp floor. Without it flex hands this
+          box only the leftover — 100px on a 320x568 phone — while the wheel
+          still floors at 150 and bleeds 21px into the hint line above and the
+          controls below. The floor has to be reserved by the FLEX box, because
+          the wheel's `height: 100%` can't feed back into flex sizing. */}
+      <div className="flex min-h-[150px] flex-1 items-center justify-center">
         <LetterWheel
           letters={letters}
           selected={selected}

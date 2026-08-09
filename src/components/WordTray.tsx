@@ -106,10 +106,12 @@ export default function WordTray({
               }
               className={[
                 'relative rounded-md border-2 px-2 py-1 text-[13px] font-semibold tabular-nums transition-colors',
-                done
-                  ? 'border-transparent liquid liquid-raised backdrop-blur-md backdrop-saturate-150 text-text-primary'
-                  : 'border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted',
-                bought && !solved ? 'italic text-text-muted' : '',
+                // Same achievement ladder as the full grid — see below.
+                solved
+                  ? 'border-success liquid liquid-raised backdrop-blur-md backdrop-saturate-150 text-text-primary'
+                  : bought
+                    ? 'border-edge/70 liquid liquid-raised backdrop-blur-md backdrop-saturate-150 italic text-text-muted'
+                    : 'border-edge/70 liquid backdrop-blur-md backdrop-saturate-150 text-text-muted',
                 solved && word === base ? 'ring-1 ring-success/50' : '',
                 // Mark the row the clue is currently asking about.
                 !done && word === activeWord
@@ -127,7 +129,7 @@ export default function WordTray({
   }
 
   return (
-    <div className="flex flex-col items-center gap-1 short:gap-0.5 roomy:gap-2">
+    <div className="flex flex-col items-center gap-1 cramped:gap-0.5 roomy:gap-2">
       {grid.map((word) => {
         const bought = reveal.words.includes(word);
         const solved = found.has(word);
@@ -151,7 +153,7 @@ export default function WordTray({
               onPointerCancel={cancelHold}
               // touch-none: a hold would otherwise raise the selection menu.
               className={[
-                'flex touch-none gap-1 rounded-lg p-1 short:gap-0.5 short:p-0.5 roomy:gap-1.5',
+                'flex touch-none gap-1 rounded-lg p-1 cramped:gap-0.5 cramped:p-0.5 roomy:gap-1.5',
                 actionable || definable
                   ? 'cursor-pointer transition-transform active:scale-[0.98]'
                   : 'cursor-default',
@@ -178,15 +180,21 @@ export default function WordTray({
                       // The full-wheel word is the prize, so it gets real size
                       // over the others rather than only a ring.
                       isBase
-                        ? 'h-[34px] w-[30px] text-[17px] short:h-[24px] short:w-[21px] short:text-[13px] roomy:h-[40px] roomy:w-[35px] roomy:text-[20px]'
-                        : 'h-[30px] w-[26px] text-[15px] short:h-[21px] short:w-[19px] short:text-[12px] roomy:h-[35px] roomy:w-[31px] roomy:text-[17px]',
-                      done
-                        ? 'border-transparent liquid liquid-raised backdrop-blur-md backdrop-saturate-150 text-text-primary'
-                        : 'border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted',
-                      // A word bought with hints reads dimmer than one you
-                      // solved: the grid fills either way, but only one of
-                      // those is an achievement.
-                      bought && !solved ? 'italic text-text-muted' : '',
+                        ? 'h-[34px] w-[30px] text-[17px] cramped:h-[24px] cramped:w-[21px] cramped:text-[13px] roomy:h-[40px] roomy:w-[35px] roomy:text-[20px]'
+                        : 'h-[30px] w-[26px] text-[15px] cramped:h-[21px] cramped:w-[19px] cramped:text-[12px] roomy:h-[35px] roomy:w-[31px] roomy:text-[17px]',
+                      // Illumination follows achievement. This was inverted:
+                      // a solved tile went `border-transparent` while an empty
+                      // slot kept the full-brightness edge, so the placeholders
+                      // were the loudest thing in the grid and solving a word
+                      // made it quieter. Green on the solved tile is also the
+                      // one accent moment Studio Matte allows, which the grid
+                      // had stopped spending anywhere.
+                      solved
+                        ? 'border-success liquid liquid-raised backdrop-blur-md backdrop-saturate-150 text-text-primary'
+                        : bought
+                          // Filled, but not earned — structure without accent.
+                          ? 'border-edge/70 liquid liquid-raised backdrop-blur-md backdrop-saturate-150 italic text-text-muted'
+                          : 'border-edge/70 liquid backdrop-blur-md backdrop-saturate-150 text-text-muted',
                       solved && isBase ? 'ring-1 ring-success/50' : '',
                       fresh ? 'anim-land anim-sweep' : '',
                     ].join(' ')}
