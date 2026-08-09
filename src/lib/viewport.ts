@@ -53,4 +53,4 @@ export const mediaServerSnapshot = () => false;
  * ~200px of that, and the compact row that clue mode already uses is ~34px —
  * so the fix is to reuse it rather than shave every margin to nothing.
  */
-export const SHORT_VIEWPORT = '(max-height: 720px)';
+export const SHORT_VIEWPORT = '(max-height: 800px)';

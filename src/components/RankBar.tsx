@@ -17,13 +17,13 @@ import { RANKS, type Rank } from '@/lib/game';
 export default function RankBar({ rank, score }: { rank: Rank; score: number }) {
   return (
     <div className="w-full">
-      <div className="mb-2 flex items-baseline justify-between gap-3">
+      <div className="mb-2 flex items-baseline justify-between gap-3 short:mb-1">
         {/* Keyed on the name so React remounts it when the rank changes and
             the animation replays. Promotion is a moment; it shouldn't just
             silently swap text. */}
         <span
           key={rank.name}
-          className="anim-rise text-[17px] font-semibold text-text-primary"
+          className="anim-rise text-[17px] font-semibold text-text-primary short:text-[15px]"
         >
           {rank.name}
         </span>
@@ -39,7 +39,7 @@ export default function RankBar({ rank, score }: { rank: Rank; score: number }) 
         aria-valuemax={100}
         aria-valuenow={Math.round(rank.progress * 100)}
         aria-label={`Rank progress: ${rank.name}, ${score} points`}
-        className="relative h-2.5 w-full rounded-full border border-edge/60 liquid backdrop-blur-md backdrop-saturate-150"
+        className="relative h-2.5 w-full rounded-full border border-edge/60 short:h-2 liquid backdrop-blur-md backdrop-saturate-150"
       >
         <div
           className="absolute inset-y-0 left-0 rounded-full bg-steel-muted shadow-[inset_0_1px_0_var(--glass-rim-light-strong)] transition-[width] duration-700 ease-out"

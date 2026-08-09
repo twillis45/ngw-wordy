@@ -18,7 +18,13 @@
  * "drag across the letters" is simply the wrong instruction there.
  */
 /* Short screens need every pixel; see viewport.ts for the measurement. */
-@custom-variant short (@media (max-height: 720px));
+/*
+ * 800, not 720: an iPad in landscape is 768 tall and was falling through the
+ * gap — too short for full sizing, too tall to be treated as short, so it
+ * overflowed by 46px. 800 catches it while leaving the 812 and 844 phones at
+ * full size, which they have room for.
+ */
+@custom-variant short (@media (max-height: 800px));
 
 @custom-variant touch (@media (pointer: coarse));
 @custom-variant mouse (@media (hover: hover) and (pointer: fine));
@@ -107,6 +113,9 @@
   --glass-contact-strong: color-mix(in srgb, #000 60%, transparent);
   --glass-blur: 12px;
   --glass-saturate: 1.5;
+
+  /* The dial is sized from viewport height; short screens get less of it. */
+  --wheel-size: 30vh;
 
   --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, sans-serif;
@@ -243,17 +252,30 @@
  * surface that genuinely can overflow (sheets, the desktop rail) scrolls
  * inside itself.
  *
- * dvh rather than vh so a phone's collapsing browser chrome doesn't leave the
- * bottom of the board under the toolbar.
+ * Sizing comes from `inset: 0` alone, NOT from a dvh height.
+ *
+ * A fixed element with inset:0 already spans exactly the visible fixed area,
+ * whatever the browser chrome is doing. Setting height:100dvh on top of that
+ * fights it: on entry dvh can resolve to the LARGE viewport (chrome collapsed)
+ * while the fixed box is the small one, so the body ends up taller than the
+ * area it is pinned to and the bottom of the board spills off screen.
+ *
+ * One source of truth for the height, and it is the one the browser guarantees.
  */
-html {
+@media (max-height: 800px) {
+  :root {
+    --wheel-size: 26vh;
+  }
+}
+
+html,
+body {
   height: 100%;
 }
 
 body {
   position: fixed;
   inset: 0;
-  height: 100dvh;
   overflow: hidden;
   background: var(--color-carbon-body);
   color: var(--color-text-primary);

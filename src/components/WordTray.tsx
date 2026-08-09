@@ -127,7 +127,7 @@ export default function WordTray({
   }
 
   return (
-    <div className="flex flex-col items-center gap-1 roomy:gap-2">
+    <div className="flex flex-col items-center gap-1 short:gap-0.5 roomy:gap-2">
       {grid.map((word) => {
         const bought = reveal.words.includes(word);
         const solved = found.has(word);
@@ -151,7 +151,7 @@ export default function WordTray({
               onPointerCancel={cancelHold}
               // touch-none: a hold would otherwise raise the selection menu.
               className={[
-                'flex touch-none gap-1 rounded-lg p-1 roomy:gap-1.5',
+                'flex touch-none gap-1 rounded-lg p-1 short:gap-0.5 short:p-0.5 roomy:gap-1.5',
                 actionable || definable
                   ? 'cursor-pointer transition-transform active:scale-[0.98]'
                   : 'cursor-default',
@@ -178,8 +178,8 @@ export default function WordTray({
                       // The full-wheel word is the prize, so it gets real size
                       // over the others rather than only a ring.
                       isBase
-                        ? 'h-[34px] w-[30px] text-[17px] roomy:h-[40px] roomy:w-[35px] roomy:text-[20px]'
-                        : 'h-[30px] w-[26px] text-[15px] roomy:h-[35px] roomy:w-[31px] roomy:text-[17px]',
+                        ? 'h-[34px] w-[30px] text-[17px] short:h-[24px] short:w-[21px] short:text-[13px] roomy:h-[40px] roomy:w-[35px] roomy:text-[20px]'
+                        : 'h-[30px] w-[26px] text-[15px] short:h-[21px] short:w-[19px] short:text-[12px] roomy:h-[35px] roomy:w-[31px] roomy:text-[17px]',
                       done
                         ? 'border-transparent liquid liquid-raised backdrop-blur-md backdrop-saturate-150 text-text-primary'
                         : 'border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted',

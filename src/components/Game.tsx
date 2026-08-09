@@ -39,12 +39,6 @@ import {
 } from '@/lib/flight';
 import { assistFor, isStalled } from '@/lib/assist';
 import {
-  mediaServerSnapshot,
-  mediaSnapshot,
-  SHORT_VIEWPORT,
-  subscribeMedia,
-} from '@/lib/viewport';
-import {
   fullscreenSupported,
   isFullscreen,
   subscribeFullscreen,
@@ -174,16 +168,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
     subscribeFullscreen,
     isFullscreen,
     () => false
-  );
-  /*
-   * On a short screen the six stacked tray rows cannot coexist with the wheel
-   * and the controls — at 320x568 the page overflowed by 239px with everything
-   * already at its minimum. The compact row clue mode uses solves it.
-   */
-  const shortViewport = useSyncExternalStore(
-    subscribeMedia(SHORT_VIEWPORT),
-    mediaSnapshot(SHORT_VIEWPORT),
-    mediaServerSnapshot
   );
   const theme = useSyncExternalStore(
     subscribeTheme,
@@ -695,7 +679,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
    *   >= 1536 wider measure again, rail gains the how-to-play card
    */
   return (
-    <main className="safe-top safe-bottom mx-auto flex h-dvh w-full max-w-[420px] flex-col overflow-hidden px-5 short:px-4 md:max-w-[740px] lg:max-w-[780px] 2xl:max-w-[820px]">
+    <main className="safe-top safe-bottom mx-auto flex h-full w-full max-w-[420px] flex-col overflow-hidden px-5 short:px-4 md:max-w-[740px] lg:max-w-[780px] 2xl:max-w-[820px]">
       {/* Header — quiet. Day number and streak are evidence, not the hero. */}
       <header className="flex items-center justify-between gap-2">
         <div>
@@ -766,9 +750,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </div>
       </header>
 
-      <div className="mt-4 flex min-h-0 flex-1 flex-col gap-8 md:grid md:grid-cols-[minmax(0,1fr)_260px] md:gap-7 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="mt-4 flex min-h-0 flex-1 shrink flex-col gap-8 short:mt-2 md:grid md:grid-cols-[minmax(0,1fr)_260px] md:gap-7 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
         {/* Board column — bounded at every width, centered on desktop. */}
-        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col md:max-w-[440px] md:justify-center relative md:rounded-3xl md:border md:border-edge md:px-5 md:py-4 md:liquid md:backdrop-blur-md md:backdrop-saturate-150">
+        <div className="mx-auto flex w-full min-h-0 max-w-[420px] flex-1 flex-col md:max-w-[440px] md:justify-center relative md:rounded-3xl md:border md:border-edge md:px-5 md:py-4 md:liquid md:backdrop-blur-md md:backdrop-saturate-150">
       {/* On a phone this strip is the ONLY place progress lives, so it is also
           the way into the detail. Inert from tablet up, where the rail shows
           the same ladder permanently. */}
@@ -783,7 +767,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       </button>
 
       {puzzle.theme && (
-        <p className="mt-2 text-center text-[12px] uppercase tracking-[0.16em] text-success short:mt-1">
+        <p className="mt-2 text-center text-[12px] uppercase tracking-[0.16em] text-success short:mt-0.5 short:text-[11px]">
           {puzzle.theme.name}
         </p>
       )}
@@ -802,7 +786,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onRevealWord={spendWord}
           hasDefinition={hasDefinition}
           onShowDefinition={openDefinition}
-          compact={progress.clueMode || shortViewport}
+          compact={progress.clueMode}
           activeWord={clueWord}
         />
       </section>
@@ -831,7 +815,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       {/* Greedy only on phone, where it bottom-anchors the wheel in the thumb
           zone. From tablet up the rail sits below the board so the page
           scrolls anyway — anchoring there just opened a void. */}
-      <div className="min-h-6 flex-1 short:min-h-2 md:h-3 md:flex-none" />
+      <div className="min-h-0 flex-1 basis-6 md:h-3 md:flex-none md:basis-auto" />
 
       {/* Current word — the only place the accent green appears mid-play */}
       <div
@@ -886,7 +870,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       </div>
 
       {/* Controls */}
-      <div className="mt-4 flex items-center justify-center gap-3 short:mt-2">
+      <div className="mt-4 flex items-center justify-center gap-3 short:mt-1">
         <ControlButton
           onClick={() => {
             setLetters((prev) => shuffle(prev));
@@ -912,7 +896,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         type="button"
         onClick={() => setShowWords(true)}
         aria-haspopup="dialog"
-        className="mt-1 inline-flex min-h-11 flex-wrap items-center justify-center gap-x-1 rounded-full px-3 text-center text-[13px] text-text-muted transition-colors hover:text-text-secondary md:min-h-0 md:pointer-events-none md:hover:text-text-muted"
+        className="inline-flex min-h-11 flex-wrap items-center justify-center gap-x-1 rounded-full px-3 text-center text-[13px] text-text-muted transition-colors hover:text-text-secondary md:min-h-0 md:pointer-events-none md:hover:text-text-muted"
       >
         {tokens > 0 ? (
           <>Tap a row for a hint · {tokens} left</>
