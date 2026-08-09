@@ -171,9 +171,10 @@ export function celebrateBonus(opts: {
 
   // Beat 1: the word, as glass.
   const card = document.createElement('div');
-  card.className = 'anim-bonus-in glass-puck';
+  card.className = 'anim-bonus-in glass-card';
   card.style.cssText = [
     'position:fixed',
+    'overflow:hidden',
     `left:${cx}px`,
     `top:${cy}px`,
     'padding:14px 22px',

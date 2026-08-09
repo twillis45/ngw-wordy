@@ -28,6 +28,19 @@ const TILE = 21.2; // % of container
 const HIT = 13; // % from a tile center that counts as "on" it
 
 /**
+ * iPadOS pointer geometry.
+ *
+ * MAGNET is the hit REGION, deliberately wider than the tile: Apple's pointer
+ * starts transforming before it visibly touches a control, "creating the
+ * illusion that the element is pulling the pointer toward it". Morphing only
+ * once you're already on the tile would feel like a snap, not a magnet.
+ */
+const MAGNET = 22; // % — where the morph begins
+const FREE = 14; // % — diameter of the untargeted pointer
+const TILE_RADIUS_PCT = 28; // rounded-2xl on a tile, as % of tile size
+const PARALLAX = 0.14; // how far a tile leans toward the pointer
+
+/**
  * Drag-to-connect letter wheel, thumb-zone sized.
  *
  * Two input paths, both first-class:
@@ -132,6 +145,55 @@ export default function LetterWheel({
     };
   }, [dragging, endDrag]);
 
+  /**
+   * The pointer's relationship to the nearest tile.
+   *
+   * `t` runs 0 at the edge of the hit region to 1 at the tile's centre, and
+   * everything about the pointer is interpolated along it: position, size,
+   * corner radius, and how far the tile leans back. That single value is what
+   * makes the morph continuous rather than a state flip.
+   */
+  const pointer = (() => {
+    if (!dragging || !cursor) return null;
+
+    let nearest = -1;
+    let best = Infinity;
+    for (let i = 0; i < positions.length; i += 1) {
+      if (active && !active.has(letters[i])) continue;
+      const d = Math.hypot(cursor.x - positions[i].x, cursor.y - positions[i].y);
+      if (d < best) {
+        best = d;
+        nearest = i;
+      }
+    }
+
+    if (nearest === -1 || best > MAGNET) {
+      return { x: cursor.x, y: cursor.y, size: FREE, radius: 50, target: -1, t: 0 };
+    }
+
+    // Ease so the pull accelerates as you approach, the way magnetism reads.
+    const linear = 1 - best / MAGNET;
+    const t = linear * linear * (3 - 2 * linear);
+    const lerp = (a: number, b: number) => a + (b - a) * t;
+
+    return {
+      x: lerp(cursor.x, positions[nearest].x),
+      y: lerp(cursor.y, positions[nearest].y),
+      size: lerp(FREE, TILE),
+      radius: lerp(50, TILE_RADIUS_PCT),
+      target: nearest,
+      t,
+    };
+  })();
+
+  /** A tile leans toward the pointer while it's inside the hit region. */
+  const parallaxFor = (i: number) => {
+    if (!pointer || pointer.target !== i || !cursor) return '';
+    const dx = (cursor.x - positions[i].x) * PARALLAX * pointer.t;
+    const dy = (cursor.y - positions[i].y) * PARALLAX * pointer.t;
+    return `translate(${dx}%, ${dy}%)`;
+  };
+
   const pathPoints = selected.map((i) => positions[i]);
 
   return (
@@ -209,18 +271,28 @@ export default function LetterWheel({
         )}
       </svg>
 
-      {/* The glass puck rides under the finger. An HTML element rather than an
-          SVG circle because backdrop-filter needs a real box to refract. */}
-      {dragging && cursor && (
+      {/*
+        The pointer, modelled on iPadOS rather than on a glass orb.
+        It is a translucent blob when free, and MORPHS into the tile's shape as
+        it enters the hit region — so over a control it reads as the control's
+        own highlight rather than something sitting on top of it. An HTML
+        element, not an SVG circle, because backdrop-filter needs a real box.
+      */}
+      {pointer && (
         <span
           aria-hidden
-          className="glass-puck pointer-events-none absolute rounded-full backdrop-blur-[20px] backdrop-saturate-[1.8] backdrop-brightness-110"
+          className="glass-puck pointer-events-none absolute backdrop-blur-[14px] backdrop-saturate-[1.6]"
           style={{
-            left: `${cursor.x}%`,
-            top: `${cursor.y}%`,
-            width: '19%',
-            height: '19%',
+            left: `${pointer.x}%`,
+            top: `${pointer.y}%`,
+            width: `${pointer.size}%`,
+            height: `${pointer.size}%`,
+            borderRadius: `${pointer.radius}%`,
             transform: 'translate(-50%, -50%)',
+            // Short transition only on the morph properties. Position is driven
+            // per-move and must not lag the finger.
+            transition:
+              'width 110ms ease-out, height 110ms ease-out, border-radius 110ms ease-out',
           }}
         />
       )}
@@ -268,6 +340,7 @@ export default function LetterWheel({
               top: `${pos.y - TILE / 2}%`,
               width: `${TILE}%`,
               height: `${TILE}%`,
+              transform: parallaxFor(i) || undefined,
               boxShadow: locked
                 ? 'none'
                 : picked

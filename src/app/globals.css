@@ -190,52 +190,74 @@ body {
 }
 
 /*
- * Glass — the element that rides under your finger across the dial.
+ * The pointer glass.
  *
- * Modelled on Apple's treatment rather than the house no-glow rule, which the
- * brief explicitly set aside for this element. What the references (Apple News
- * share sheet, Apple Notes menus, HBO Max) actually do that a naive frosted
- * circle does not:
+ * Modelled on the iPadOS pointer, NOT on a Liquid Glass sheet — they are
+ * different objects and conflating them was the mistake in the first pass.
+ * Apple's pointer is a quiet, content-adaptive translucent blob: it refracts
+ * what's under it and takes a faint rim, but it does not glow, bloom or
+ * announce itself. Over a control it MORPHS into that control's shape (handled
+ * in LetterWheel) so it reads as the control's own highlight rather than an
+ * object resting on top of it.
  *
- *   1. Heavy blur — ~20px, not 6. Below that it reads as translucent plastic.
- *   2. A saturation lift, so the COLOUR behind bleeds through and tints the
- *      glass. Apple's glass takes its tint from its backdrop; it is never a
- *      fixed white wash.
- *   3. A directional specular rim: bright where light would catch (top-left),
- *      falling to nothing opposite. A uniform 1px border reads as a sticker.
- *   4. A soft drop shadow, so it sits ABOVE the surface instead of on it.
- *   5. A faint bloom — allowed here, and what sells it as lit rather than cut.
+ * Anything brighter competes with the letter it is sitting on, which is the one
+ * thing the player actually needs to read.
  */
 .glass-puck {
-  background: color-mix(in srgb, var(--color-text-primary) 14%, transparent);
+  background: color-mix(in srgb, var(--color-text-primary) 12%, transparent);
   box-shadow:
-    /* lift */
-    0 6px 16px -4px color-mix(in srgb, #000 55%, transparent),
-    /* bloom */
-    0 0 18px -2px color-mix(in srgb, var(--color-steel-muted) 55%, transparent),
-    /* specular rim, top-left */
-    inset 1px 1px 0 color-mix(in srgb, var(--color-text-primary) 85%, transparent),
-    /* shadowed rim, bottom-right */
-    inset -1px -2px 3px color-mix(in srgb, #000 35%, transparent),
-    /* inner body light */
-    inset 0 -6px 12px color-mix(in srgb, var(--color-steel) 35%, transparent);
+    /* a shallow lift, so it sits just above the surface */
+    0 2px 8px -3px color-mix(in srgb, #000 45%, transparent),
+    /* rim light, brighter where light would catch */
+    inset 1px 1px 0 color-mix(in srgb, var(--color-text-primary) 55%, transparent),
+    inset -1px -1px 2px color-mix(in srgb, #000 25%, transparent);
 }
 
-/* The highlight itself: an off-centre crescent, soft-edged, not a ring. */
+/* A soft off-centre highlight. Kept faint — the pointer is not the subject. */
 .glass-puck::after {
   content: '';
   position: absolute;
-  left: 14%;
-  top: 10%;
-  width: 46%;
-  height: 34%;
+  left: 16%;
+  top: 12%;
+  width: 40%;
+  height: 28%;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-text-primary) 45%, transparent);
+  filter: blur(3px);
+}
+
+/*
+ * Card glass — the bonus set-piece.
+ *
+ * This one IS a Liquid Glass sheet and should be dramatic: heavy blur, a
+ * saturation lift so the colour behind bleeds through and tints it, a
+ * directional specular rim, real lift, and a bloom. Opposite job from the
+ * pointer, so opposite settings.
+ */
+.glass-card {
+  background: color-mix(in srgb, var(--color-text-primary) 14%, transparent);
+  box-shadow:
+    0 10px 30px -6px color-mix(in srgb, #000 60%, transparent),
+    0 0 26px -4px color-mix(in srgb, var(--color-steel-muted) 55%, transparent),
+    inset 1px 1px 0 color-mix(in srgb, var(--color-text-primary) 85%, transparent),
+    inset -1px -2px 4px color-mix(in srgb, #000 35%, transparent),
+    inset 0 -8px 16px color-mix(in srgb, var(--color-steel) 35%, transparent);
+}
+.glass-card::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  top: 8%;
+  width: 44%;
+  height: 30%;
   border-radius: 999px;
   background: linear-gradient(
     140deg,
     color-mix(in srgb, var(--color-text-primary) 90%, transparent),
     transparent 70%
   );
-  filter: blur(2.5px);
+  filter: blur(3px);
+  pointer-events: none;
 }
 
 /*
