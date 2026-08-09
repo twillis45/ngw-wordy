@@ -35,10 +35,10 @@ const HIT = 13; // % from a tile center that counts as "on" it
  * illusion that the element is pulling the pointer toward it". Morphing only
  * once you're already on the tile would feel like a snap, not a magnet.
  */
-const MAGNET = 22; // % — where the morph begins
-const FREE = 14; // % — diameter of the untargeted pointer
+const MAGNET = 16; // % — outer edge of the hit region, where the morph begins
+const FREE = 11; // % — diameter of the untargeted pointer
 const TILE_RADIUS_PCT = 28; // rounded-2xl on a tile, as % of tile size
-const PARALLAX = 0.14; // how far a tile leans toward the pointer
+const PARALLAX = 0.22; // how far a tile leans toward the pointer
 
 /**
  * Drag-to-connect letter wheel, thumb-zone sized.
@@ -108,7 +108,13 @@ export default function LetterWheel({
     const hit = hitTest(pt);
     if (hit === -1) return;
     e.preventDefault();
-    boxRef.current?.setPointerCapture(e.pointerId);
+    try {
+      boxRef.current?.setPointerCapture(e.pointerId);
+    } catch {
+      // Capture is an optimisation — it keeps the drag alive outside the box.
+      // It throws if the pointer isn't active, and an uncaught throw here
+      // killed the whole gesture before dragging was ever set.
+    }
     setDragging(true);
     setCursor(pt);
     onClear();
@@ -148,10 +154,20 @@ export default function LetterWheel({
   /**
    * The pointer's relationship to the nearest tile.
    *
-   * `t` runs 0 at the edge of the hit region to 1 at the tile's centre, and
-   * everything about the pointer is interpolated along it: position, size,
-   * corner radius, and how far the tile leans back. That single value is what
-   * makes the morph continuous rather than a state flip.
+   * `t` is 0 outside the hit region, 1 anywhere ON the tile, and eases across
+   * the ring between. Everything interpolates along it — position, size, corner
+   * radius, lean.
+   *
+   * Two numbers here were wrong and made the whole effect invisible:
+   *
+   * MAGNET was 22%, which covers 88% of the disc when tiles sit 36% apart. The
+   * pointer was therefore almost always partially morphed and the free circle
+   * essentially never appeared, so there were no two states to tell apart. At
+   * 16% it covers 59% and the circle is genuinely visible between tiles.
+   *
+   * And `t` only reached 1 at the exact tile CENTRE, so the pointer was
+   * perpetually mid-morph and never decisively snapped — which is what "too
+   * loose" feels like. It now saturates across the whole tile.
    */
   const pointer = (() => {
     if (!dragging || !cursor) return null;
@@ -171,8 +187,9 @@ export default function LetterWheel({
       return { x: cursor.x, y: cursor.y, size: FREE, radius: 50, target: -1, t: 0 };
     }
 
-    // Ease so the pull accelerates as you approach, the way magnetism reads.
-    const linear = 1 - best / MAGNET;
+    // Fully committed anywhere on the tile; eased only across the outer ring.
+    const linear =
+      best <= HIT ? 1 : (MAGNET - best) / (MAGNET - HIT);
     const t = linear * linear * (3 - 2 * linear);
     const lerp = (a: number, b: number) => a + (b - a) * t;
 
