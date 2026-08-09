@@ -8,6 +8,8 @@ import {
   rankFor,
   rankLadder,
   puzzleForPlayer,
+  themeGroups,
+  offsetForIndex,
   scoreWord,
   shareText,
   shuffle,
@@ -744,5 +746,60 @@ describe('assistFor', () => {
 
   it('returns nothing when there is nothing to help with', () => {
     expect(assistFor([], 9, 1, 3)).toBeNull();
+  });
+});
+
+describe('themeGroups', () => {
+  const file = {
+    version: 2,
+    wheel: 6,
+    starters: [],
+    puzzles: [
+      { ...puzzle, theme: { id: 'a', name: 'Alpha', blurb: '' } },
+      { ...puzzle, theme: null },
+      { ...puzzle, theme: { id: 'b', name: 'Beta', blurb: '' } },
+      { ...puzzle, theme: { id: 'a', name: 'Alpha', blurb: '' } },
+    ],
+  };
+
+  it('groups puzzles under their theme', () => {
+    const g = themeGroups(file);
+    expect(g).toHaveLength(2);
+    expect(g[0]).toMatchObject({ id: 'a', indices: [0, 3] });
+  });
+
+  it('ignores unthemed puzzles', () => {
+    expect(themeGroups(file).flatMap((g) => g.indices)).not.toContain(1);
+  });
+
+  it('is empty when nothing is themed', () => {
+    expect(themeGroups({ ...file, puzzles: [{ ...puzzle, theme: null }] })).toEqual(
+      []
+    );
+  });
+});
+
+describe('offsetForIndex', () => {
+  const file = {
+    version: 2,
+    wheel: 6,
+    starters: [],
+    puzzles: Array.from({ length: 240 }, () => puzzle),
+  };
+  const today = new Date(2026, 7, 9);
+
+  it('round-trips through puzzleForPlayer', () => {
+    for (const target of [0, 7, 120, 239]) {
+      const off = offsetForIndex(file, today, target);
+      expect(puzzleForPlayer(file, 99, today, off).index).toBe(target);
+    }
+  });
+
+  it('is 0 for today itself', () => {
+    expect(offsetForIndex(file, today, dailyIndex(today, 240))).toBe(0);
+  });
+
+  it('wraps rather than going negative', () => {
+    expect(offsetForIndex(file, today, 0)).toBeGreaterThanOrEqual(0);
   });
 });

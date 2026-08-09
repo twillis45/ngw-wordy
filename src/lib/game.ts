@@ -113,6 +113,47 @@ export function puzzleForPlayer(
   };
 }
 
+/** Every theme in the set, with the puzzles that carry it. */
+export type ThemeGroup = {
+  id: string;
+  name: string;
+  blurb: string;
+  indices: number[];
+};
+
+export function themeGroups(file: PuzzleFile): ThemeGroup[] {
+  const byId = new Map<string, ThemeGroup>();
+  file.puzzles.forEach((p, i) => {
+    if (!p.theme) return;
+    const g = byId.get(p.theme.id) ?? {
+      id: p.theme.id,
+      name: p.theme.name,
+      blurb: p.theme.blurb,
+      indices: [],
+    };
+    g.indices.push(i);
+    byId.set(p.theme.id, g);
+  });
+  return [...byId.values()].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/**
+ * The offset that lands on an absolute puzzle index.
+ *
+ * Navigation is expressed as an offset from today so the daily stays the
+ * anchor, but a theme picker needs to jump to a specific puzzle — this
+ * converts one to the other, wrapping rather than going out of range.
+ */
+export function offsetForIndex(
+  file: PuzzleFile,
+  today: Date,
+  index: number
+): number {
+  const n = file.puzzles.length;
+  const base = dailyIndex(today, n);
+  return ((index - base) % n + n) % n;
+}
+
 export type SubmitResult =
   | { kind: 'grid'; word: string; points: number; isBase: boolean }
   | { kind: 'bonus'; word: string; points: number }

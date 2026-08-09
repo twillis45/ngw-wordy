@@ -58,6 +58,8 @@ import {
   isReachable,
   dailyIndex,
   puzzleForPlayer,
+  themeGroups,
+  offsetForIndex,
   rankFor,
   scoreWord,
   shareText,
@@ -246,6 +248,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
   const current = selected.map((i) => letters[i]).join('');
   const days = useMemo(() => last7(progress, today), [progress, today]);
+
+  const themes = useMemo(() => themeGroups(data), [data]);
 
   const goToPuzzle = useCallback(
     (nextOffset: number) => {
@@ -711,6 +715,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 Today
                 {progress.streak > 0 ? ` · ${progress.streak} day streak` : ''}
               </>
+            ) : puzzle.theme ? (
+              // "Puzzle +212" is accurate and tells you nothing. On a themed
+              // board the theme IS where you are.
+              <>{puzzle.theme.name}</>
             ) : (
               <>Puzzle {offset > 0 ? `+${offset}` : offset}</>
             )}{' '}
@@ -1092,6 +1100,55 @@ export default function Game({ data }: { data: PuzzleFile }) {
               {Object.keys(progress.words).length} started
             </p>
           </div>
+
+          {/* Themes were unreachable: ten of them existed and the only way to
+              land on one was luck. A set you can't navigate to is a set that
+              doesn't exist. */}
+          {themes.length > 0 && (
+            <div className="relative mt-4 rounded-2xl border border-edge liquid backdrop-blur-md backdrop-saturate-150 p-4">
+              <h2 className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+                Themes
+              </h2>
+              <div className="flex flex-col gap-2">
+                {themes.map((t) => {
+                  const done = t.indices.filter((i) =>
+                    progress.clearedIds.includes(String(data.puzzles[i].id))
+                  ).length;
+                  return (
+                    <button
+                      key={t.id}
+                      type="button"
+                      onClick={() => {
+                        // Land on the first one not yet cleared.
+                        const next =
+                          t.indices.find(
+                            (i) =>
+                              !progress.clearedIds.includes(
+                                String(data.puzzles[i].id)
+                              )
+                          ) ?? t.indices[0];
+                        goToPuzzle(offsetForIndex(data, today, next));
+                        setShowPuzzles(false);
+                      }}
+                      className="liquid-interactive relative flex w-full items-center justify-between gap-3 rounded-xl border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 px-4 py-3 text-left"
+                    >
+                      <span>
+                        <span className="block text-[15px] font-medium text-text-primary">
+                          {t.name}
+                        </span>
+                        <span className="block text-[12px] leading-snug text-text-muted">
+                          {t.blurb}
+                        </span>
+                      </span>
+                      <span className="shrink-0 text-[12px] tabular-nums text-text-muted">
+                        {done}/{t.indices.length}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </Sheet>
       )}
 
