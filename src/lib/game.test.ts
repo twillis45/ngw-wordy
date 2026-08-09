@@ -6,6 +6,7 @@ import {
   isReachable,
   dayKey,
   rankFor,
+  rankLadder,
   scoreWord,
   shareText,
   shuffle,
@@ -93,16 +94,23 @@ describe('submit', () => {
 });
 
 describe('rankFor', () => {
-  it('starts at Novice and tops out at Genius', () => {
+  it('starts at Novice and tops out at Every Word', () => {
     expect(rankFor(0, 100).name).toBe('Novice');
-    expect(rankFor(100, 100).name).toBe('Genius');
+    expect(rankFor(100, 100).name).toBe('Every Word');
+  });
+
+  it('puts Genius within reach rather than at perfection', () => {
+    // 75% is a good day; 100% is a different achievement with its own name.
+    expect(rankFor(75, 100).name).toBe('Genius');
+    expect(rankFor(99, 100).name).toBe('Genius');
+    expect(rankFor(100, 100).name).toBe('Every Word');
   });
 
   it('reports the points needed for the next rank', () => {
-    const r = rankFor(10, 100); // 10% -> Solid, next Sharp at 25%
+    const r = rankFor(10, 100); // 10% -> Solid, next Sharp at 18%
     expect(r.name).toBe('Solid');
     expect(r.next).toBe('Sharp');
-    expect(r.pointsToNext).toBe(15);
+    expect(r.pointsToNext).toBe(8);
   });
 
   it('does not divide by zero on an empty puzzle', () => {
@@ -556,5 +564,65 @@ describe('isReachable', () => {
     expect(isReachable('rote', new Set(['r', 'o', 't', 'e']))).toBe(true);
     expect(isReachable('rote', new Set(['r', 'o', 't']))).toBe(false);
     expect(isReachable('', new Set<string>())).toBe(true);
+  });
+});
+
+describe('rankLadder', () => {
+  it('resolves each rank to a point cost for this puzzle', () => {
+    const l = rankLadder(0, 100);
+    expect(l.map((s) => s.at)).toEqual([0, 8, 18, 30, 45, 60, 75, 100]);
+  });
+
+  it('marks what you have reached and where you are', () => {
+    const l = rankLadder(30, 100); // 30% -> Clever
+    expect(l.find((s) => s.current)?.name).toBe('Clever');
+    expect(l.filter((s) => s.reached).map((s) => s.name)).toEqual([
+      'Novice',
+      'Solid',
+      'Sharp',
+      'Clever',
+    ]);
+  });
+
+  it('says what the next step costs from here, not from zero', () => {
+    const l = rankLadder(30, 100);
+    expect(l.find((s) => s.name === 'Fluent')?.toGo).toBe(15);
+    expect(l.find((s) => s.name === 'Genius')?.toGo).toBe(45);
+  });
+
+  it('reports nothing to go for ranks already earned', () => {
+    expect(
+      rankLadder(30, 100)
+        .filter((s) => s.reached)
+        .every((s) => s.toGo === 0)
+    ).toBe(true);
+  });
+
+  it('survives a zero ceiling', () => {
+    const l = rankLadder(0, 0);
+    expect(l).toHaveLength(8);
+    expect(l.every((s) => s.at === 0)).toBe(true);
+  });
+});
+
+describe('threshold rounding', () => {
+  // 0.55 * 100 === 55.00000000000001, which naively ceils to 56.
+  it('does not inflate a threshold by floating-point dust', () => {
+    expect(rankLadder(0, 100).find((s) => s.name === 'Fluent')?.at).toBe(45);
+  });
+
+  it('keeps rankFor and rankLadder in agreement', () => {
+    for (const max of [100, 137, 213, 999]) {
+      for (const score of [0, 7, 41, 88]) {
+        const r = rankFor(score, max);
+        const ladder = rankLadder(score, max);
+        const current = ladder.find((s) => s.current);
+        expect(current?.name).toBe(r.name);
+        if (r.next) {
+          const next = ladder.find((s) => s.name === r.next);
+          expect(next?.toGo).toBe(r.pointsToNext);
+        }
+      }
+    }
   });
 });

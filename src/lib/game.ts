@@ -115,16 +115,35 @@ export function submit(
   return { kind: 'invalid', word };
 }
 
-/** Rank ladder, Spelling Bee style — a ladder reads better than a number. */
+/**
+ * The rank ladder.
+ *
+ * Ranks measure how much of the WHOLE puzzle you've found — every word the six
+ * letters can make, not just the six target rows. That's ~44 words, so the
+ * targets alone are a small fraction of the total.
+ *
+ * The thresholds used to run 0/10/25/40/55/75/100, which put Genius at 100% —
+ * find every last obscure bonus word. That is Spelling Bee's *Queen Bee*, not
+ * its Genius (70%), and it meant the top of the ladder was effectively
+ * unreachable while the names implied cleverness rather than exhaustiveness.
+ *
+ * Recalibrated so Genius is a good day's play and completionism gets its own
+ * name above it.
+ */
 export const RANKS = [
   { name: 'Novice', at: 0 },
-  { name: 'Solid', at: 0.1 },
-  { name: 'Sharp', at: 0.25 },
-  { name: 'Clever', at: 0.4 },
-  { name: 'Fluent', at: 0.55 },
-  { name: 'Wordsmith', at: 0.75 },
-  { name: 'Genius', at: 1 },
+  { name: 'Solid', at: 0.08 },
+  { name: 'Sharp', at: 0.18 },
+  { name: 'Clever', at: 0.3 },
+  { name: 'Fluent', at: 0.45 },
+  { name: 'Wordsmith', at: 0.6 },
+  { name: 'Genius', at: 0.75 },
+  { name: 'Every Word', at: 1 },
 ] as const;
+
+/** One line explaining what the ladder is actually counting. */
+export const RANK_BASIS =
+  'Ranks count every word the letters can make — not just the six rows.';
 
 export type Rank = {
   name: string;
@@ -149,8 +168,58 @@ export function rankFor(score: number, maxScore: number): Rank {
     index,
     progress: Math.min(1, ratio),
     next: next ? next.name : null,
-    pointsToNext: next ? Math.max(0, Math.ceil(next.at * maxScore) - score) : 0,
+    pointsToNext: next
+      ? Math.max(0, thresholdPoints(next.at, maxScore) - score)
+      : 0,
   };
+}
+
+/**
+ * Points needed to reach a threshold.
+ *
+ * Naive Math.ceil(fraction * max) is wrong: 0.55 * 100 is 55.00000000000001 in
+ * binary floating point, so it ceils to 56 and the player is told a rank costs
+ * a point more than it does. Scrub the dust before rounding up.
+ */
+function thresholdPoints(fraction: number, maxScore: number): number {
+  return Math.ceil(Number((fraction * maxScore).toFixed(6)));
+}
+
+export type LadderStep = {
+  name: string;
+  /** Points this rank starts at, for this puzzle's ceiling. */
+  at: number;
+  reached: boolean;
+  current: boolean;
+  /** Points still needed. 0 once reached. */
+  toGo: number;
+};
+
+/**
+ * The rank ladder in POINTS, not percentages.
+ *
+ * "Clever at 40%" is unusable while playing — you can't act on a percentage of
+ * a total you don't know. Resolving each threshold against this puzzle's
+ * ceiling turns the ladder into something you can aim at: what a rank cost,
+ * and what the next one costs from here.
+ */
+export function rankLadder(score: number, maxScore: number): LadderStep[] {
+  let currentIndex = 0;
+  const ratio = maxScore > 0 ? score / maxScore : 0;
+  for (let i = 0; i < RANKS.length; i += 1) {
+    if (ratio >= RANKS[i].at) currentIndex = i;
+  }
+
+  return RANKS.map((r, i) => {
+    const at = thresholdPoints(r.at, maxScore);
+    return {
+      name: r.name,
+      at,
+      reached: i <= currentIndex,
+      current: i === currentIndex,
+      toGo: i <= currentIndex ? 0 : Math.max(0, at - score),
+    };
+  });
 }
 
 /** Shuffle the wheel without ever returning the same order twice running. */

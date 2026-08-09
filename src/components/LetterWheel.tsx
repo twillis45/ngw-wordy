@@ -168,20 +168,62 @@ export default function LetterWheel({
         className="pointer-events-none absolute inset-0 h-full w-full"
       >
         {pathPoints.length > 0 && (
-          <polyline
-            points={[
-              ...pathPoints.map((p) => `${p.x},${p.y}`),
-              ...(dragging && cursor ? [`${cursor.x},${cursor.y}`] : []),
-            ].join(' ')}
-            fill="none"
-            stroke="var(--color-steel-muted)"
-            strokeWidth={1.9}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            opacity={0.65}
-          />
+          <>
+            {/* Under-stroke: a wider, dimmer line so the thread reads against
+                both a light and a dark disc without needing a glow. */}
+            <polyline
+              points={[
+                ...pathPoints.map((p) => `${p.x},${p.y}`),
+                ...(dragging && cursor ? [`${cursor.x},${cursor.y}`] : []),
+              ].join(' ')}
+              fill="none"
+              stroke="var(--color-edge)"
+              strokeWidth={4.2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              opacity={0.35}
+            />
+            <polyline
+              points={[
+                ...pathPoints.map((p) => `${p.x},${p.y}`),
+                ...(dragging && cursor ? [`${cursor.x},${cursor.y}`] : []),
+              ].join(' ')}
+              fill="none"
+              stroke="var(--color-edge)"
+              strokeWidth={2.6}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* A joint at every letter already taken, so the path reads as a
+                sequence of decisions rather than one continuous scribble. */}
+            {pathPoints.map((p, i) => (
+              <circle
+                key={i}
+                cx={p.x}
+                cy={p.y}
+                r={2.1}
+                fill="var(--color-edge)"
+              />
+            ))}
+          </>
         )}
       </svg>
+
+      {/* The glass puck rides under the finger. An HTML element rather than an
+          SVG circle because backdrop-filter needs a real box to refract. */}
+      {dragging && cursor && (
+        <span
+          aria-hidden
+          className="glass-puck pointer-events-none absolute rounded-full backdrop-blur-[6px] backdrop-saturate-150"
+          style={{
+            left: `${cursor.x}%`,
+            top: `${cursor.y}%`,
+            width: '15%',
+            height: '15%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
+      )}
 
       {letters.map((letter, i) => {
         const pos = positions[i];
@@ -218,7 +260,7 @@ export default function LetterWheel({
               locked
                 ? 'border-edge/50 bg-carbon-body text-carbon-strong'
                 : picked
-                  ? 'anim-tick border-steel bg-steel-dark text-text-primary'
+                  ? 'anim-tick border-edge bg-steel-dark text-text-primary'
                   : 'border-edge bg-carbon-surface-2 text-text-primary active:scale-95',
             ].join(' ')}
             style={{

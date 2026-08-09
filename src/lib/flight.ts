@@ -114,6 +114,59 @@ export function flyLetters(pairs: FlightPair[]): number {
   return DURATION + (pairs.length - 1) * STAGGER;
 }
 
+/**
+ * Send a whole word to a target element — used when a bonus word banks.
+ *
+ * A bonus word previously produced a toast and nothing else, so the counter it
+ * fed appeared to move on its own. Watching the word travel to the number is
+ * what makes the connection legible.
+ */
+export function flyWordTo(word: string, targetSelector: string): number {
+  const host = layer();
+  const target = document.querySelector<HTMLElement>(targetSelector);
+  if (!host || !target || reducedMotion()) return 0;
+
+  const to = target.getBoundingClientRect();
+  const ghost = document.createElement('span');
+  ghost.textContent = word.toUpperCase();
+  ghost.style.cssText = [
+    'position:fixed',
+    'left:50%',
+    `top:${Math.round(window.innerHeight * 0.52)}px`,
+    'transform:translate(-50%,-50%)',
+    'padding:4px 10px',
+    'border-radius:8px',
+    'font-size:15px',
+    'font-weight:700',
+    'letter-spacing:0.06em',
+    'white-space:nowrap',
+    'color:var(--color-success)',
+    'background:var(--color-carbon-surface-2)',
+    'border:2px solid var(--color-edge)',
+    'will-change:transform,opacity',
+  ].join(';');
+  host.appendChild(ghost);
+
+  const from = ghost.getBoundingClientRect();
+  const dx = to.left + to.width / 2 - (from.left + from.width / 2);
+  const dy = to.top + to.height / 2 - (from.top + from.height / 2);
+
+  const anim = ghost.animate(
+    [
+      { transform: 'translate(-50%,-50%) scale(1)', opacity: 0 },
+      { transform: 'translate(-50%,-50%) scale(1.06)', opacity: 1, offset: 0.18 },
+      {
+        transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.5)`,
+        opacity: 0,
+      },
+    ],
+    { duration: 620, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'forwards' }
+  );
+  anim.onfinish = () => ghost.remove();
+  anim.oncancel = () => ghost.remove();
+  return 620;
+}
+
 /** Collect from/to rects for a word. Returns [] if the DOM isn't ready. */
 export function measureFlight(
   word: string,

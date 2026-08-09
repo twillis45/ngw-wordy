@@ -46,8 +46,14 @@
    * carries meaning. Every tile, card and disc edge failed, which is why the
    * board dissolves into one field in bright light — the text was legible and
    * the SHAPES were not. This is the boundary you can actually see.
+   *
+   * Lit to the top of the usable range: ~13:1 on dark, ~11:1 on light. That is
+   * deliberately extreme for a border. Direct sun costs you most of the
+   * apparent contrast, so an edge that looks strong indoors is a suggestion
+   * outdoors. Studio Matte's restraint lives in the SURFACES; the edges are the
+   * one place this UI is allowed to be loud.
    */
-  --color-edge: #647181;
+  --color-edge: #ccd6e4;
 
   /* Steel-blue identity */
   --color-steel: #4e6877;
@@ -68,7 +74,8 @@
      light-on-dark assumption in a shadow or a gradient. */
   --tile-shadow: 0 2px 6px rgba(0, 0, 0, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  --tile-shadow-active: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --tile-shadow-active: inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.35);
   --disc-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   --sweep-color: rgba(238, 240, 244, 0.26);
   --scrim: rgba(0, 0, 0, 0.7);
@@ -98,7 +105,7 @@
   --color-carbon-surface-2: #dfe8f1;
   --color-carbon-border: #a9c0d4;
   --color-carbon-strong: #8fa6b8;
-  --color-edge: #6b8399;
+  --color-edge: #24333f;
 
   --color-steel: #4e6877;
   --color-steel-dark: #3f5b6a;
@@ -115,7 +122,8 @@
 
   --tile-shadow: 0 1px 3px rgba(13, 15, 18, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  --tile-shadow-active: inset 0 1px 2px rgba(13, 15, 18, 0.25);
+  --tile-shadow-active: inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -2px 6px rgba(13, 15, 18, 0.28);
   --disc-inset: inset 0 1px 0 rgba(255, 255, 255, 0.8);
   /* A white sweep is invisible on white; the highlight has to darken. */
   --sweep-color: rgba(13, 15, 18, 0.14);
@@ -133,7 +141,7 @@
   --color-carbon-surface-2: #dfe8f1;
   --color-carbon-border: #a9c0d4;
   --color-carbon-strong: #8fa6b8;
-  --color-edge: #6b8399;
+  --color-edge: #24333f;
 
   --color-steel: #4e6877;
   --color-steel-dark: #3f5b6a;
@@ -150,7 +158,8 @@
 
   --tile-shadow: 0 1px 3px rgba(13, 15, 18, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  --tile-shadow-active: inset 0 1px 2px rgba(13, 15, 18, 0.25);
+  --tile-shadow-active: inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -2px 6px rgba(13, 15, 18, 0.28);
   --disc-inset: inset 0 1px 0 rgba(255, 255, 255, 0.8);
   /* A white sweep is invisible on white; the highlight has to darken. */
   --sweep-color: rgba(13, 15, 18, 0.14);
@@ -178,6 +187,41 @@ body {
 }
 .safe-bottom {
   padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+}
+
+/*
+ * Glass — the element that rides under your finger across the dial.
+ *
+ * Clear-glass realistic per the locked identity: real refraction (backdrop
+ * blur + slight saturation lift), a bright rim where light catches the edge,
+ * and a specular highlight in the upper-left. Explicitly NO glow — glass
+ * bends light, it doesn't emit it.
+ *
+ * backdrop-filter is progressive: without support this stays a translucent
+ * disc with a rim, which is still correct, just flatter.
+ */
+.glass-puck {
+  /* Refraction is applied with Tailwind's backdrop utilities on the element,
+     not here: Lightning CSS silently DROPPED a hand-written backdrop-filter
+     declaration while keeping every other property in this rule. */
+  background: color-mix(in srgb, var(--color-text-primary) 16%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--color-text-primary) 70%, transparent);
+  box-shadow:
+    inset 0 1px 1px color-mix(in srgb, var(--color-text-primary) 55%, transparent),
+    inset 0 -3px 6px color-mix(in srgb, var(--color-steel) 30%, transparent);
+}
+/* The specular: a small off-centre highlight, not a ring. */
+.glass-puck::after {
+  content: '';
+  position: absolute;
+  left: 18%;
+  top: 14%;
+  width: 34%;
+  height: 26%;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-text-primary) 55%, transparent);
+  filter: blur(2px);
 }
 
 /* Tile motion — springy enough to feel physical, short enough to stay

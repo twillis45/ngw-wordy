@@ -30,7 +30,7 @@ import {
   type Definitions,
   type Resolved,
 } from '@/lib/definitions';
-import { flyLetters, measureFlight } from '@/lib/flight';
+import { flyLetters, flyWordTo, measureFlight } from '@/lib/flight';
 import {
   activeLetters,
   clueTarget,
@@ -301,6 +301,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
         feedback.bonus();
         addWord(puzzleId, result.word, true);
         setJustSolved((prev) => new Set(prev).add(result.word));
+        // The word travels to the counter it feeds, so the number visibly
+        // moves because of something rather than on its own.
+        flyWordTo(result.word, '[data-bonus-target]');
         say(`Bonus +${result.points}`, 'good');
         break;
       case 'duplicate':
@@ -498,6 +501,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       bonusFound={bonusFound}
       rank={rank}
       score={score}
+      maxScore={puzzle.maxScore}
       days={days}
       streak={progress.streak}
       bestStreak={progress.bestStreak}
@@ -577,10 +581,21 @@ export default function Game({ data }: { data: PuzzleFile }) {
       <div className="mt-4 flex min-h-0 flex-1 flex-col gap-8 md:grid md:grid-cols-[minmax(0,1fr)_260px] md:gap-7 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
         {/* Board column — bounded at every width, centered on desktop. */}
         <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col md:max-w-[440px] md:justify-center md:rounded-3xl md:border md:border-edge md:px-5 md:py-4">
-      <RankBar rank={rank} score={score} />
+      {/* On a phone this strip is the ONLY place progress lives, so it is also
+          the way into the detail. Inert from tablet up, where the rail shows
+          the same ladder permanently. */}
+      <button
+        type="button"
+        onClick={() => setShowWords(true)}
+        aria-haspopup="dialog"
+        aria-label="Rank and progress details"
+        className="block w-full text-left md:pointer-events-none"
+      >
+        <RankBar rank={rank} score={score} />
+      </button>
 
       {/* Target grid */}
-      <section aria-label="Words to find" className="mt-2 roomy:mt-5">
+      <section aria-label="Words to find" className="mt-4 roomy:mt-6">
         <WordTray
           grid={puzzle.grid}
           found={found}
@@ -628,7 +643,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       <div
         aria-live="polite"
         className={[
-          'mb-2 grid h-10 place-items-center',
+          'mb-3 grid h-10 place-items-center',
           shaking ? 'anim-shake' : '',
         ].join(' ')}
       >
@@ -686,7 +701,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         >
           Shuffle
         </ControlButton>
-        <ControlButton onClick={() => setShowWords(true)}>
+        <ControlButton onClick={() => setShowWords(true)} data-bonus-target>
           {bonusFound.length} bonus
         </ControlButton>
       </div>
@@ -703,7 +718,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         type="button"
         onClick={() => setShowWords(true)}
         aria-haspopup="dialog"
-        className="inline-flex min-h-11 flex-wrap items-center justify-center gap-x-1 rounded-full px-3 text-center text-[13px] text-text-muted transition-colors hover:text-text-secondary md:min-h-0 md:pointer-events-none md:hover:text-text-muted"
+        className="mt-1 inline-flex min-h-11 flex-wrap items-center justify-center gap-x-1 rounded-full px-3 text-center text-[13px] text-text-muted transition-colors hover:text-text-secondary md:min-h-0 md:pointer-events-none md:hover:text-text-muted"
       >
         {tokens > 0 ? (
           <>Tap a row for a hint · {tokens} left</>
@@ -737,6 +752,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             bonusFound={bonusFound}
             rank={rank}
             score={score}
+            maxScore={puzzle.maxScore}
             days={days}
             streak={progress.streak}
             bestStreak={progress.bestStreak}
@@ -1007,16 +1023,18 @@ function ControlButton({
   children,
   onClick,
   disabled,
+  ...rest
 }: {
   children: React.ReactNode;
   onClick: () => void;
   disabled?: boolean;
-}) {
+} & React.ComponentPropsWithoutRef<'button'>) {
   return (
     <button
       type="button"
       onClick={onClick}
       disabled={disabled}
+      {...rest}
       className="h-11 min-w-[104px] rounded-full border-2 border-edge bg-carbon-panel px-5 text-[14px] font-medium text-text-secondary transition-colors hover:border-carbon-strong hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
     >
       {children}

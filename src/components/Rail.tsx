@@ -1,6 +1,6 @@
 'use client';
 
-import { RANKS, type Rank } from '@/lib/game';
+import { RANK_BASIS, rankLadder, type Rank } from '@/lib/game';
 import type { DayCell } from '@/lib/storage';
 
 /**
@@ -21,6 +21,7 @@ type Props = {
   bonusFound: string[];
   rank: Rank;
   score: number;
+  maxScore: number;
   days: DayCell[];
   streak: number;
   bestStreak: number;
@@ -42,6 +43,7 @@ export default function Rail({
   bonusFound,
   rank,
   score,
+  maxScore,
   days,
   streak,
   bestStreak,
@@ -88,37 +90,41 @@ export default function Rail({
       </Card>
 
       <Card title="Rank" meta={rank.next ? `${rank.pointsToNext} to go` : 'Maxed'}>
-        <ol className="flex flex-col gap-1">
-          {RANKS.map((r, i) => {
-            const reached = i <= rank.index;
-            const current = i === rank.index;
-            return (
-              <li
-                key={r.name}
-                aria-current={current ? 'step' : undefined}
+        {/* Without this the names imply cleverness while the numbers measure
+            exhaustiveness, and nothing on screen reconciles them. */}
+        <p className="mb-2.5 text-[12px] leading-snug text-text-muted">
+          {RANK_BASIS}
+        </p>
+        <ol className="flex flex-col gap-0.5">
+          {rankLadder(score, maxScore).map((step) => (
+            <li
+              key={step.name}
+              aria-current={step.current ? 'step' : undefined}
+              className={[
+                'flex items-center gap-2.5 rounded-lg px-2 py-1.5 text-[14px]',
+                step.current ? 'bg-carbon-surface-2 font-semibold' : '',
+                step.reached ? 'text-text-primary' : 'text-text-muted',
+              ].join(' ')}
+            >
+              <span
+                aria-hidden
                 className={[
-                  'flex items-center gap-2.5 rounded-lg px-2 py-1 text-[14px]',
-                  current ? 'bg-carbon-surface-2 font-semibold' : '',
-                  // Reached vs not is carried by the dot and the weight — not
-                  // by dropping the label to an unreadable contrast.
-                  reached ? 'text-text-primary' : 'text-text-muted',
+                  'h-1.5 w-1.5 shrink-0 rounded-full',
+                  step.current
+                    ? 'bg-success'
+                    : step.reached
+                      ? 'bg-steel-muted'
+                      : 'bg-edge',
                 ].join(' ')}
-              >
-                <span
-                  aria-hidden
-                  className={[
-                    'h-1.5 w-1.5 shrink-0 rounded-full',
-                    current
-                      ? 'bg-success'
-                      : reached
-                        ? 'bg-steel-muted'
-                        : 'bg-carbon-strong',
-                  ].join(' ')}
-                />
-                {r.name}
-              </li>
-            );
-          })}
+              />
+              <span className="flex-1">{step.name}</span>
+              {/* What it cost, or what it still costs — a percentage is
+                  unusable mid-game, a point count is something to aim at. */}
+              <span className="text-[12px] tabular-nums text-text-muted">
+                {step.reached ? `${step.at} pts` : `+${step.toGo}`}
+              </span>
+            </li>
+          ))}
         </ol>
       </Card>
 
