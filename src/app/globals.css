@@ -192,36 +192,87 @@ body {
 /*
  * Glass — the element that rides under your finger across the dial.
  *
- * Clear-glass realistic per the locked identity: real refraction (backdrop
- * blur + slight saturation lift), a bright rim where light catches the edge,
- * and a specular highlight in the upper-left. Explicitly NO glow — glass
- * bends light, it doesn't emit it.
+ * Modelled on Apple's treatment rather than the house no-glow rule, which the
+ * brief explicitly set aside for this element. What the references (Apple News
+ * share sheet, Apple Notes menus, HBO Max) actually do that a naive frosted
+ * circle does not:
  *
- * backdrop-filter is progressive: without support this stays a translucent
- * disc with a rim, which is still correct, just flatter.
+ *   1. Heavy blur — ~20px, not 6. Below that it reads as translucent plastic.
+ *   2. A saturation lift, so the COLOUR behind bleeds through and tints the
+ *      glass. Apple's glass takes its tint from its backdrop; it is never a
+ *      fixed white wash.
+ *   3. A directional specular rim: bright where light would catch (top-left),
+ *      falling to nothing opposite. A uniform 1px border reads as a sticker.
+ *   4. A soft drop shadow, so it sits ABOVE the surface instead of on it.
+ *   5. A faint bloom — allowed here, and what sells it as lit rather than cut.
  */
 .glass-puck {
-  /* Refraction is applied with Tailwind's backdrop utilities on the element,
-     not here: Lightning CSS silently DROPPED a hand-written backdrop-filter
-     declaration while keeping every other property in this rule. */
-  background: color-mix(in srgb, var(--color-text-primary) 16%, transparent);
-  border: 1px solid
-    color-mix(in srgb, var(--color-text-primary) 70%, transparent);
+  background: color-mix(in srgb, var(--color-text-primary) 14%, transparent);
   box-shadow:
-    inset 0 1px 1px color-mix(in srgb, var(--color-text-primary) 55%, transparent),
-    inset 0 -3px 6px color-mix(in srgb, var(--color-steel) 30%, transparent);
+    /* lift */
+    0 6px 16px -4px color-mix(in srgb, #000 55%, transparent),
+    /* bloom */
+    0 0 18px -2px color-mix(in srgb, var(--color-steel-muted) 55%, transparent),
+    /* specular rim, top-left */
+    inset 1px 1px 0 color-mix(in srgb, var(--color-text-primary) 85%, transparent),
+    /* shadowed rim, bottom-right */
+    inset -1px -2px 3px color-mix(in srgb, #000 35%, transparent),
+    /* inner body light */
+    inset 0 -6px 12px color-mix(in srgb, var(--color-steel) 35%, transparent);
 }
-/* The specular: a small off-centre highlight, not a ring. */
+
+/* The highlight itself: an off-centre crescent, soft-edged, not a ring. */
 .glass-puck::after {
   content: '';
   position: absolute;
-  left: 18%;
-  top: 14%;
-  width: 34%;
-  height: 26%;
+  left: 14%;
+  top: 10%;
+  width: 46%;
+  height: 34%;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--color-text-primary) 55%, transparent);
-  filter: blur(2px);
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--color-text-primary) 90%, transparent),
+    transparent 70%
+  );
+  filter: blur(2.5px);
+}
+
+/*
+ * The bonus set-piece.
+ *
+ * Bonus words are the retention engine — every extra word scores and every
+ * third earns a hint — and they were getting a 13px toast. This is the one
+ * repeatable moment in the game worth building a scene around.
+ *
+ * Three beats: the word arrives as glass, a ring of light expands past it, then
+ * it travels to the counter it feeds. The counter answers with a pulse, so the
+ * number moves because something arrived.
+ */
+@keyframes bonus-in {
+  0%   { transform: translate(-50%, -50%) scale(0.55) rotate(-6deg); opacity: 0; }
+  55%  { transform: translate(-50%, -50%) scale(1.1) rotate(1.5deg); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
+}
+.anim-bonus-in {
+  animation: bonus-in 420ms cubic-bezier(0.2, 1.5, 0.4, 1) both;
+}
+
+@keyframes bonus-ring {
+  0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 0.85; }
+  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+}
+.anim-bonus-ring {
+  animation: bonus-ring 620ms cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}
+
+@keyframes counter-pop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.16); }
+  100% { transform: scale(1); }
+}
+.anim-counter-pop {
+  animation: counter-pop 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Tile motion — springy enough to feel physical, short enough to stay

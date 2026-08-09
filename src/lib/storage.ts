@@ -39,6 +39,8 @@ export type Progress = {
   /** Ways to play, opt-in and remembered. */
   clueMode: boolean;
   escalating: boolean;
+  /** First-run explainer has been seen and dismissed. */
+  seenIntro: boolean;
 };
 
 /** Stable identity — required as the server snapshot. */
@@ -55,6 +57,7 @@ export const EMPTY: Progress = Object.freeze({
   muted: false,
   clueMode: false,
   escalating: false,
+  seenIntro: false,
 });
 
 let snapshot: Progress = EMPTY;
@@ -220,6 +223,10 @@ export function markCleared(puzzleId: string): Progress {
 
 export function setMutedPref(muted: boolean): Progress {
   return update((p) => (p.muted === muted ? p : { ...p, muted }));
+}
+
+export function markIntroSeen(): Progress {
+  return update((p) => (p.seenIntro ? p : { ...p, seenIntro: true }));
 }
 
 export function setMode(

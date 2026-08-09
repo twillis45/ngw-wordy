@@ -214,12 +214,12 @@ export default function LetterWheel({
       {dragging && cursor && (
         <span
           aria-hidden
-          className="glass-puck pointer-events-none absolute rounded-full backdrop-blur-[6px] backdrop-saturate-150"
+          className="glass-puck pointer-events-none absolute rounded-full backdrop-blur-[20px] backdrop-saturate-[1.8] backdrop-brightness-110"
           style={{
             left: `${cursor.x}%`,
             top: `${cursor.y}%`,
-            width: '15%',
-            height: '15%',
+            width: '19%',
+            height: '19%',
             transform: 'translate(-50%, -50%)',
           }}
         />

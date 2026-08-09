@@ -30,9 +30,11 @@ import {
   type Definitions,
   type Resolved,
 } from '@/lib/definitions';
-import { flyLetters, flyWordTo, measureFlight } from '@/lib/flight';
+import { celebrateBonus, flyLetters, measureFlight } from '@/lib/flight';
 import {
   activeLetters,
+  RANK_BASIS,
+  RANKS,
   clueTarget,
   isReachable,
   dailyIndex,
@@ -51,6 +53,7 @@ import {
   getSnapshot,
   last7,
   markCleared,
+  markIntroSeen,
   revealFor,
   setMode,
   setMutedPref,
@@ -61,6 +64,7 @@ import {
   wordsFor,
 } from '@/lib/storage';
 import {
+  BONUS_PER_TOKEN,
   bonusToNextToken,
   COST_WORD,
   revealLetter,
@@ -301,10 +305,16 @@ export default function Game({ data }: { data: PuzzleFile }) {
         feedback.bonus();
         addWord(puzzleId, result.word, true);
         setJustSolved((prev) => new Set(prev).add(result.word));
-        // The word travels to the counter it feeds, so the number visibly
-        // moves because of something rather than on its own.
-        flyWordTo(result.word, '[data-bonus-target]');
-        say(`Bonus +${result.points}`, 'good');
+        // Every third bonus word buys a hint, so the moment it happens is
+        // worth naming inside the celebration rather than leaving the balance
+        // to change quietly.
+        celebrateBonus({
+          word: result.word,
+          points: result.points,
+          earnedHint:
+            bonusToNextToken(getSnapshot().bonusTotal) === BONUS_PER_TOKEN,
+          targetSelector: '[data-bonus-target]',
+        });
         break;
       case 'duplicate':
         feedback.duplicate();
@@ -763,6 +773,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </Sheet>
       )}
 
+      {!progress.seenIntro && <Intro onDismiss={() => markIntroSeen()} />}
+
       {(showDef !== null || defUpgrading) && (
         <Sheet
           onClose={() => {
@@ -907,6 +919,70 @@ function Sheet({
         >
           Close
         </button>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * First-run explainer.
+ *
+ * The rank names imply cleverness while the numbers measure how much of the
+ * puzzle you found — nothing on screen reconciled that, so a new player met
+ * "Novice" with no idea what would move it. Shown once, and the whole overlay
+ * is the dismiss target: no button to find, no decision to make.
+ */
+function Intro({ onDismiss }: { onDismiss: () => void }) {
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="How ranks work"
+      onClick={onDismiss}
+      className="fixed inset-0 z-[60] grid cursor-pointer place-items-center px-6"
+      style={{ background: 'var(--scrim)' }}
+    >
+      <div className="anim-rise w-full max-w-[360px] rounded-3xl border-2 border-edge bg-carbon-panel p-6">
+        <p className="text-[12px] uppercase tracking-[0.16em] text-text-muted">
+          How you&apos;re scored
+        </p>
+        <h2 className="mt-1.5 text-[22px] font-bold leading-tight text-text-primary">
+          Find as much of the puzzle as you can
+        </h2>
+        <p className="mt-2 text-[14px] leading-relaxed text-text-secondary">
+          {RANK_BASIS} The six rows are the targets — every extra word still
+          counts, and climbs the ladder.
+        </p>
+
+        <ol className="mt-4 flex flex-col gap-1.5">
+          {RANKS.map((r, i) => (
+            <li key={r.name} className="flex items-center gap-3 text-[14px]">
+              <span
+                aria-hidden
+                className={[
+                  'h-1.5 w-1.5 shrink-0 rounded-full',
+                  i === 0 ? 'bg-success' : 'bg-edge',
+                ].join(' ')}
+              />
+              <span
+                className={
+                  i === 0
+                    ? 'flex-1 font-semibold text-text-primary'
+                    : 'flex-1 text-text-secondary'
+                }
+              >
+                {r.name}
+              </span>
+              <span className="text-[12px] tabular-nums text-text-muted">
+                {Math.round(r.at * 100)}%
+              </span>
+            </li>
+          ))}
+        </ol>
+
+        <p className="mt-5 text-center text-[13px] text-text-muted">
+          Tap anywhere to start
+        </p>
       </div>
     </div>
   );

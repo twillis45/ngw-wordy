@@ -115,56 +115,121 @@ export function flyLetters(pairs: FlightPair[]): number {
 }
 
 /**
- * Send a whole word to a target element — used when a bonus word banks.
+ * The bonus set-piece.
  *
- * A bonus word previously produced a toast and nothing else, so the counter it
- * fed appeared to move on its own. Watching the word travel to the number is
- * what makes the connection legible.
+ * A bonus word previously produced a 13px toast, which is a strange amount of
+ * ceremony for the mechanic the whole economy runs on: every extra word scores,
+ * and every third earns a hint. This is a scene in three beats — the word
+ * arrives as glass, a ring of light passes through it, then it travels to the
+ * counter it feeds and the counter answers.
+ *
+ * Imperative DOM for the same reason as the letter flight: it is transient,
+ * nothing reads it, and React state would mean a render pass per beat.
  */
-export function flyWordTo(word: string, targetSelector: string): number {
+export function celebrateBonus(opts: {
+  word: string;
+  points: number;
+  earnedHint: boolean;
+  targetSelector: string;
+}): number {
   const host = layer();
-  const target = document.querySelector<HTMLElement>(targetSelector);
-  if (!host || !target || reducedMotion()) return 0;
+  if (!host) return 0;
 
-  const to = target.getBoundingClientRect();
-  const ghost = document.createElement('span');
-  ghost.textContent = word.toUpperCase();
-  ghost.style.cssText = [
+  const target = document.querySelector<HTMLElement>(opts.targetSelector);
+  const cx = window.innerWidth / 2;
+  const cy = Math.round(window.innerHeight * 0.44);
+
+  // Reduced motion keeps the information and drops the theatre.
+  if (reducedMotion()) {
+    if (target) {
+      target.classList.add('anim-counter-pop');
+      setTimeout(() => target.classList.remove('anim-counter-pop'), 450);
+    }
+    return 0;
+  }
+
+  const ARRIVE = 420;
+  const HOLD = 340;
+  const TRAVEL = 460;
+
+  // Beat 2: the ring. Behind the card, so the card reads as the source.
+  const ring = document.createElement('span');
+  ring.className = 'anim-bonus-ring';
+  ring.style.cssText = [
     'position:fixed',
-    'left:50%',
-    `top:${Math.round(window.innerHeight * 0.52)}px`,
-    'transform:translate(-50%,-50%)',
-    'padding:4px 10px',
-    'border-radius:8px',
-    'font-size:15px',
-    'font-weight:700',
-    'letter-spacing:0.06em',
-    'white-space:nowrap',
-    'color:var(--color-success)',
-    'background:var(--color-carbon-surface-2)',
-    'border:2px solid var(--color-edge)',
+    `left:${cx}px`,
+    `top:${cy}px`,
+    'width:150px',
+    'height:150px',
+    'border-radius:999px',
+    'border:2px solid var(--color-success)',
+    'box-shadow:0 0 24px -2px var(--color-success)',
+    'animation-delay:180ms',
+  ].join(';');
+  host.appendChild(ring);
+  setTimeout(() => ring.remove(), 1000);
+
+  // Beat 1: the word, as glass.
+  const card = document.createElement('div');
+  card.className = 'anim-bonus-in glass-puck';
+  card.style.cssText = [
+    'position:fixed',
+    `left:${cx}px`,
+    `top:${cy}px`,
+    'padding:14px 22px',
+    'border-radius:20px',
+    'display:flex',
+    'flex-direction:column',
+    'align-items:center',
+    'gap:2px',
+    'backdrop-filter:blur(20px) saturate(1.8)',
+    '-webkit-backdrop-filter:blur(20px) saturate(1.8)',
     'will-change:transform,opacity',
   ].join(';');
-  host.appendChild(ghost);
 
-  const from = ghost.getBoundingClientRect();
-  const dx = to.left + to.width / 2 - (from.left + from.width / 2);
-  const dy = to.top + to.height / 2 - (from.top + from.height / 2);
+  const word = document.createElement('span');
+  word.textContent = opts.word.toUpperCase();
+  word.style.cssText =
+    'font-size:26px;font-weight:800;letter-spacing:0.08em;color:var(--color-text-primary);white-space:nowrap';
 
-  const anim = ghost.animate(
-    [
-      { transform: 'translate(-50%,-50%) scale(1)', opacity: 0 },
-      { transform: 'translate(-50%,-50%) scale(1.06)', opacity: 1, offset: 0.18 },
-      {
-        transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.5)`,
-        opacity: 0,
-      },
-    ],
-    { duration: 620, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'forwards' }
-  );
-  anim.onfinish = () => ghost.remove();
-  anim.oncancel = () => ghost.remove();
-  return 620;
+  const sub = document.createElement('span');
+  sub.textContent = opts.earnedHint
+    ? `+${opts.points} · hint earned`
+    : `+${opts.points} bonus`;
+  sub.style.cssText = `font-size:13px;font-weight:600;color:var(--color-success)`;
+
+  card.append(word, sub);
+  host.appendChild(card);
+
+  // Beat 3: travel to the counter, and let the counter answer.
+  setTimeout(() => {
+    const to = target?.getBoundingClientRect();
+    const from = card.getBoundingClientRect();
+    const dx = to ? to.left + to.width / 2 - (from.left + from.width / 2) : 0;
+    const dy = to ? to.top + to.height / 2 - (from.top + from.height / 2) : -80;
+
+    const anim = card.animate(
+      [
+        { transform: 'translate(-50%,-50%) scale(1)', opacity: 1 },
+        {
+          transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.28)`,
+          opacity: 0,
+        },
+      ],
+      { duration: TRAVEL, easing: 'cubic-bezier(0.5, 0, 0.75, 0)', fill: 'forwards' }
+    );
+    anim.onfinish = () => card.remove();
+    anim.oncancel = () => card.remove();
+
+    // Land the pulse as the card arrives, not when it leaves.
+    setTimeout(() => {
+      if (!target) return;
+      target.classList.add('anim-counter-pop');
+      setTimeout(() => target.classList.remove('anim-counter-pop'), 450);
+    }, TRAVEL * 0.75);
+  }, ARRIVE + HOLD);
+
+  return ARRIVE + HOLD + TRAVEL;
 }
 
 /** Collect from/to rects for a word. Returns [] if the DOM isn't ready. */
