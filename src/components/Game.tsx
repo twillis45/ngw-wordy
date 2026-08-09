@@ -139,6 +139,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const [copied, setCopied] = useState(false);
   const [showWords, setShowWords] = useState(false);
   const [showRules, setShowRules] = useState(false);
+  const [showPuzzles, setShowPuzzles] = useState(false);
   const [defs, setDefs] = useState<Definitions | null>(null);
   const [showDef, setShowDef] = useState<Resolved | null>(null);
   const [defUpgrading, setDefUpgrading] = useState(false);
@@ -596,7 +597,12 @@ export default function Game({ data }: { data: PuzzleFile }) {
           <h1 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
             Wordy
           </h1>
-          <p className="text-[13px] text-text-muted">
+          <button
+            type="button"
+            onClick={() => setShowPuzzles(true)}
+            aria-haspopup="dialog"
+            className="text-[13px] text-text-muted underline decoration-edge/50 underline-offset-2 transition-colors hover:text-text-secondary"
+          >
             {warmup !== null ? (
               <>Warm-up {warmup} of {data.starters.length}</>
             ) : isDaily ? (
@@ -605,16 +611,12 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 {progress.streak > 0 ? ` · ${progress.streak} day streak` : ''}
               </>
             ) : (
-              <button
-                type="button"
-                onClick={() => goToPuzzle(0)}
-                className="text-text-secondary underline decoration-carbon-strong underline-offset-2"
-              >
-                Puzzle +{offset} · back to today
-              </button>
-            )}
-          </p>
+              <>Puzzle {offset > 0 ? `+${offset}` : offset}</>
+            )}{' '}
+            ›
+          </button>
         </div>
+
         <div className="flex items-center gap-2">
         {fullscreenSupported() && (
           <button
@@ -890,6 +892,61 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </Sheet>
       )}
 
+      {showPuzzles && (
+        <Sheet onClose={() => setShowPuzzles(false)} label="Puzzles">
+          <div className="relative rounded-2xl border border-edge liquid backdrop-blur-md backdrop-saturate-150 p-4">
+            <h2 className="mb-1 text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+              Puzzles
+            </h2>
+            {/* Nothing is ever lost by leaving: progress is stored per puzzle,
+                so anything you walk away from is exactly where you left it. */}
+            <p className="mb-3 text-[13px] leading-snug text-text-muted">
+              Leave whenever. Every puzzle keeps its own progress, so you can
+              come back to this one exactly where you stopped.
+            </p>
+
+            <div className="flex flex-col gap-2">
+              <PuzzleAction
+                label="Today's puzzle"
+                detail={
+                  progress.streak > 0
+                    ? `${progress.streak} day streak`
+                    : 'Counts toward your streak'
+                }
+                current={isDaily}
+                onClick={() => {
+                  goToPuzzle(0);
+                  setShowPuzzles(false);
+                }}
+              />
+              <PuzzleAction
+                label="Next puzzle"
+                detail="Practice — doesn't affect the streak"
+                onClick={() => {
+                  goToPuzzle(offset + 1);
+                  setShowPuzzles(false);
+                }}
+              />
+              {offset !== 0 && (
+                <PuzzleAction
+                  label="Previous puzzle"
+                  detail="Back one"
+                  onClick={() => {
+                    goToPuzzle(offset - 1);
+                    setShowPuzzles(false);
+                  }}
+                />
+              )}
+            </div>
+
+            <p className="mt-4 text-[12px] leading-snug text-text-muted">
+              {progress.clearedIds.length} cleared ·{' '}
+              {Object.keys(progress.words).length} started
+            </p>
+          </div>
+        </Sheet>
+      )}
+
       {showRules && (
         <Sheet onClose={() => setShowRules(false)} label="How to play">
           <div className="relative rounded-2xl border border-edge liquid backdrop-blur-md backdrop-saturate-150 p-4">
@@ -1064,6 +1121,43 @@ function Intro({ onDismiss }: { onDismiss: () => void }) {
         </p>
       </div>
     </div>
+  );
+}
+
+/** One route out of the current puzzle. */
+function PuzzleAction({
+  label,
+  detail,
+  current,
+  onClick,
+}: {
+  label: string;
+  detail: string;
+  current?: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="liquid-interactive relative flex w-full items-center justify-between gap-3 rounded-xl border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 px-4 py-3 text-left"
+    >
+      <span>
+        <span className="block text-[15px] font-medium text-text-primary">
+          {label}
+        </span>
+        <span className="block text-[12px] leading-snug text-text-muted">
+          {detail}
+        </span>
+      </span>
+      {current ? (
+        <span className="text-[12px] font-semibold text-success">here</span>
+      ) : (
+        <span aria-hidden className="text-[15px] text-text-muted">
+          ›
+        </span>
+      )}
+    </button>
   );
 }
 
