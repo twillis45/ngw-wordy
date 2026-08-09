@@ -29,7 +29,7 @@ function layer(): HTMLElement | null {
   el.setAttribute('aria-hidden', 'true');
   // Above the board, below any sheet. Never hit-testable.
   el.style.cssText =
-    'position:fixed;inset:0;z-index:40;pointer-events:none;overflow:hidden';
+    'position:fixed;inset:0;z-index:55;pointer-events:none;overflow:visible';
   document.body.appendChild(el);
   return el;
 }
@@ -137,23 +137,18 @@ export function celebrateBonus(opts: {
 
   const target = document.querySelector<HTMLElement>(opts.targetSelector);
   const cx = window.innerWidth / 2;
-  const cy = Math.round(window.innerHeight * 0.44);
-  scrimBehind(host, cx, cy, 230, 1100);
+  const cy = Math.round(window.innerHeight * 0.5);
 
-  // Reduced motion keeps the information and drops the theatre.
-  if (reducedMotion()) {
-    if (target) {
-      target.classList.add('anim-counter-pop');
-      setTimeout(() => target.classList.remove('anim-counter-pop'), 450);
-    }
-    return 0;
-  }
+  const reduce = reducedMotion();
+  const ARRIVE = reduce ? 0 : 420;
+  const HOLD = reduce ? 900 : 620;
+  const TRAVEL = reduce ? 260 : 460;
 
-  const ARRIVE = 420;
-  const HOLD = 340;
-  const TRAVEL = 460;
+  scrimBehind(host, cx, cy, 260, ARRIVE + HOLD + TRAVEL);
 
-  // Beat 2: the ring. Behind the card, so the card reads as the source.
+  // Beat 2: the ring. Pure decoration, so this is the part reduced motion
+  // actually drops — the word and the count still arrive either way.
+  if (!reduce) {
   const ring = document.createElement('span');
   ring.className = 'anim-bonus-ring';
   ring.style.cssText = [
@@ -171,6 +166,7 @@ export function celebrateBonus(opts: {
   ].join(';');
   host.appendChild(ring);
   setTimeout(() => ring.remove(), 1000);
+  }
 
   // Beat 1: the word, as glass.
   const card = document.createElement('div');
@@ -190,7 +186,7 @@ export function celebrateBonus(opts: {
     'overflow:hidden',
     `left:${cx}px`,
     `top:${cy}px`,
-    'padding:14px 22px',
+    'padding:18px 28px',
     'border-radius:22px',
     'background:color-mix(in srgb, var(--color-carbon-surface-2) 94%, transparent)',
     'display:flex',
@@ -206,15 +202,17 @@ export function celebrateBonus(opts: {
   const word = document.createElement('span');
   word.textContent = opts.word.toUpperCase();
   word.style.cssText =
-    'font-size:26px;font-weight:800;letter-spacing:0.08em;color:var(--color-text-primary);white-space:nowrap';
+    'font-size:30px;font-weight:800;letter-spacing:0.08em;color:var(--color-text-primary);white-space:nowrap';
 
   const sub = document.createElement('span');
   sub.textContent = opts.earnedHint
     ? `+${opts.points} · hint earned`
     : `+${opts.points} bonus`;
-  sub.style.cssText = `font-size:13px;font-weight:600;color:var(--color-success)`;
+  sub.style.cssText =
+    'font-size:14px;font-weight:700;color:var(--color-success);letter-spacing:0.03em';
 
   card.append(word, sub);
+  if (reduce) card.style.transform = 'translate(-50%, -50%)';
   host.appendChild(card);
 
   // Beat 3: travel to the counter, and let the counter answer.
