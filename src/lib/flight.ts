@@ -138,7 +138,7 @@ export function celebrateBonus(opts: {
   const target = document.querySelector<HTMLElement>(opts.targetSelector);
   const cx = window.innerWidth / 2;
   const cy = Math.round(window.innerHeight * 0.44);
-  scrimBehind(host, cx, cy, 340, 1100);
+  scrimBehind(host, cx, cy, 230, 1100);
 
   // Reduced motion keeps the information and drops the theatre.
   if (reducedMotion()) {
@@ -184,6 +184,7 @@ export function celebrateBonus(opts: {
    * depth comes from the rim, caustic and specular instead of a wall.
    */
   card.className = 'anim-bonus-in liquid liquid-raised';
+  // Denser than a panel: this one sits over the board and has to win.
   card.style.cssText = [
     'position:fixed',
     'overflow:hidden',
@@ -191,6 +192,7 @@ export function celebrateBonus(opts: {
     `top:${cy}px`,
     'padding:14px 22px',
     'border-radius:22px',
+    'background:color-mix(in srgb, var(--color-carbon-surface-2) 94%, transparent)',
     'display:flex',
     'flex-direction:column',
     'align-items:center',
@@ -266,6 +268,9 @@ export function celebrateRank(name: string, toNext: string | null): number {
     'padding:10px 20px',
     'border-radius:999px',
     'border:1px solid var(--color-edge)',
+    // Dense enough to read over the board. The shared glass fill is tuned for
+    // panels sitting on the page, not cards sitting over content.
+    'background:color-mix(in srgb, var(--color-carbon-surface-2) 94%, transparent)',
     'display:flex',
     'align-items:baseline',
     'gap:10px',
@@ -306,6 +311,17 @@ export function celebrateRank(name: string, toNext: string | null): number {
  * backdrop — just not a competing one.
  */
 function scrimBehind(host: HTMLElement, cx: number, cy: number, size: number, ms: number) {
+  /*
+   * A whisper, not a curtain.
+   *
+   * The first version used the modal scrim colour at full size with a 6px
+   * backdrop blur, which on a dark board painted a black cloud over half the
+   * screen — and because the card itself is glass, it then vanished INTO the
+   * cloud. The card has to be the brightest thing in the frame; the scrim's
+   * only job is to stop tray letters reading through it.
+   *
+   * So: tighter, much weaker, no blur, and it dies well before the card's edge.
+   */
   const scrim = document.createElement('span');
   scrim.style.cssText = [
     'position:fixed',
@@ -315,13 +331,13 @@ function scrimBehind(host: HTMLElement, cx: number, cy: number, size: number, ms
     `height:${size}px`,
     'transform:translate(-50%,-50%)',
     'border-radius:999px',
-    'background:radial-gradient(closest-side, var(--scrim), transparent 72%)',
-    'backdrop-filter:blur(6px)',
-    '-webkit-backdrop-filter:blur(6px)',
+    'background:radial-gradient(closest-side,' +
+      ' color-mix(in srgb, var(--color-carbon-body) 78%, transparent) 0%,' +
+      ' transparent 68%)',
   ].join(';');
   host.appendChild(scrim);
   const a = scrim.animate(
-    [{ opacity: 0 }, { opacity: 1, offset: 0.18 }, { opacity: 1, offset: 0.8 }, { opacity: 0 }],
+    [{ opacity: 0 }, { opacity: 1, offset: 0.2 }, { opacity: 1, offset: 0.75 }, { opacity: 0 }],
     { duration: ms, easing: 'ease-out', fill: 'forwards' }
   );
   a.onfinish = () => scrim.remove();
@@ -334,7 +350,7 @@ export function celebratePrize(word: string, points: number): number {
 
   const cx = window.innerWidth / 2;
   const cy = Math.round(window.innerHeight * 0.42);
-  scrimBehind(host, cx, cy, 460, 1500);
+  scrimBehind(host, cx, cy, 300, 1500);
 
   // Two rings, offset, so the light reads as spilling rather than pulsing once.
   [0, 160].forEach((delay) => {
@@ -365,6 +381,7 @@ export function celebratePrize(word: string, points: number): number {
     'padding:20px 30px',
     'border-radius:26px',
     'border:2px solid var(--color-edge)',
+    'background:color-mix(in srgb, var(--color-carbon-surface-2) 94%, transparent)',
     'display:flex',
     'flex-direction:column',
     'align-items:center',
