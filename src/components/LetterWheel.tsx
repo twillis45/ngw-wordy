@@ -287,7 +287,6 @@ export default function LetterWheel({
       <div
         aria-hidden
         className="absolute inset-0 rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150"
-        style={{ boxShadow: 'var(--disc-inset)' }}
       />
 
       {/* Connection path. Drawn under the tiles so it reads as a thread. */}
@@ -426,11 +425,15 @@ export default function LetterWheel({
               transform: parallaxFor(i) || undefined,
               transitionProperty: 'transform, background-color, border-color',
               transitionDuration: '120ms',
+              // Only the non-glass states set a shadow here. A resting tile
+              // carries `.liquid-raised`, whose rim/caustic/contact stack IS
+              // the glass — and an inline shadow silently outranks it, which
+              // is what flattened the wheel back to a plain drop shadow.
               boxShadow: locked
                 ? 'none'
                 : picked
                   ? 'var(--tile-shadow-active)'
-                  : 'var(--tile-shadow)',
+                  : undefined,
             }}
           >
             {letter.toUpperCase()}

@@ -81,11 +81,8 @@
 
   /* Theme-dependent surface treatments, so components don't hardcode a
      light-on-dark assumption in a shadow or a gradient. */
-  --tile-shadow: 0 2px 6px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   --tile-shadow-active: inset 0 1px 0 rgba(255, 255, 255, 0.35),
     inset 0 -2px 6px rgba(0, 0, 0, 0.35);
-  --disc-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   --sweep-color: rgba(238, 240, 244, 0.26);
   --scrim: rgba(0, 0, 0, 0.7);
 
@@ -98,17 +95,29 @@
    * to adjust the material at all. One vocabulary, two themes, one place to
    * tune it.
    */
-  --glass-fill: color-mix(in srgb, var(--color-carbon-panel) 55%, transparent);
-  --glass-fill-raised: color-mix(in srgb, var(--color-carbon-surface-2) 70%, transparent);
-  --glass-rim-light: color-mix(in srgb, var(--color-text-primary) 26%, transparent);
-  --glass-rim-light-strong: color-mix(in srgb, var(--color-text-primary) 38%, transparent);
+  /*
+   * `--glass-tint` is the colour of the LIGHT in the material, and
+   * `--glass-body` the colour of the material itself. Both were previously
+   * keyed to neutral tokens (`--color-text-primary` and bare carbon), which is
+   * what drained the blue out of the glass: every highlight resolved to plain
+   * white over plain grey, so the only steel left in the UI was the 1px edge.
+   * Tinting here re-blues every glass surface at once.
+   */
+  --glass-tint: #cfe1fa;
+  --glass-body: color-mix(in srgb, var(--color-steel) 22%, var(--color-carbon-panel));
+  --glass-body-raised: color-mix(in srgb, var(--color-steel) 26%, var(--color-carbon-surface-2));
+
+  --glass-fill: color-mix(in srgb, var(--glass-body) 55%, transparent);
+  --glass-fill-raised: color-mix(in srgb, var(--glass-body-raised) 70%, transparent);
+  --glass-rim-light: color-mix(in srgb, var(--glass-tint) 30%, transparent);
+  --glass-rim-light-strong: color-mix(in srgb, var(--glass-tint) 44%, transparent);
   --glass-rim-dark: color-mix(in srgb, #000 22%, transparent);
   --glass-rim-dark-strong: color-mix(in srgb, #000 28%, transparent);
   /* Light exiting the lower edge — the brightest line on a piece of glass. */
-  --glass-caustic: color-mix(in srgb, var(--color-text-primary) 34%, transparent);
-  --glass-caustic-strong: color-mix(in srgb, var(--color-text-primary) 48%, transparent);
-  --glass-specular: color-mix(in srgb, var(--color-text-primary) 30%, transparent);
-  --glass-specular-strong: color-mix(in srgb, var(--color-text-primary) 75%, transparent);
+  --glass-caustic: color-mix(in srgb, var(--glass-tint) 38%, transparent);
+  --glass-caustic-strong: color-mix(in srgb, var(--glass-tint) 54%, transparent);
+  --glass-specular: color-mix(in srgb, var(--glass-tint) 34%, transparent);
+  --glass-specular-strong: color-mix(in srgb, var(--glass-tint) 78%, transparent);
   --glass-contact: color-mix(in srgb, #000 50%, transparent);
   --glass-contact-strong: color-mix(in srgb, #000 60%, transparent);
   --glass-blur: 12px;
@@ -157,11 +166,8 @@
   --color-text-secondary: #3b5468;
   --color-text-muted: #54585e;
 
-  --tile-shadow: 0 1px 3px rgba(13, 15, 18, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   --tile-shadow-active: inset 0 1px 0 rgba(255, 255, 255, 0.5),
     inset 0 -2px 6px rgba(13, 15, 18, 0.28);
-  --disc-inset: inset 0 1px 0 rgba(255, 255, 255, 0.8);
   /* A white sweep is invisible on white; the highlight has to darken. */
   --sweep-color: rgba(13, 15, 18, 0.14);
   --scrim: rgba(13, 15, 18, 0.45);
@@ -171,16 +177,23 @@
    * needs a denser fill and darker rims or it reads as flat. Same vocabulary,
    * different values — which is exactly why these are tokens.
    */
-  --glass-fill: color-mix(in srgb, var(--color-carbon-panel) 72%, transparent);
-  --glass-fill-raised: color-mix(in srgb, var(--color-carbon-surface-2) 82%, transparent);
-  --glass-rim-light: color-mix(in srgb, #ffffff 85%, transparent);
-  --glass-rim-light-strong: color-mix(in srgb, #ffffff 95%, transparent);
+  /* Light theme carries the same blue, just from the other direction: the
+     highlight is a cool white rather than a pure one, and the body picks up a
+     few percent of steel so panels read as glass over paper, not as paper. */
+  --glass-tint: #eef4ff;
+  --glass-body: color-mix(in srgb, var(--color-steel) 6%, var(--color-carbon-panel));
+  --glass-body-raised: color-mix(in srgb, var(--color-steel) 8%, var(--color-carbon-surface-2));
+
+  --glass-fill: color-mix(in srgb, var(--glass-body) 72%, transparent);
+  --glass-fill-raised: color-mix(in srgb, var(--glass-body-raised) 82%, transparent);
+  --glass-rim-light: color-mix(in srgb, var(--glass-tint) 85%, transparent);
+  --glass-rim-light-strong: color-mix(in srgb, var(--glass-tint) 95%, transparent);
   --glass-rim-dark: color-mix(in srgb, var(--color-edge) 30%, transparent);
   --glass-rim-dark-strong: color-mix(in srgb, var(--color-edge) 42%, transparent);
-  --glass-caustic: color-mix(in srgb, #ffffff 80%, transparent);
-  --glass-caustic-strong: color-mix(in srgb, #ffffff 95%, transparent);
-  --glass-specular: color-mix(in srgb, #ffffff 70%, transparent);
-  --glass-specular-strong: color-mix(in srgb, #ffffff 92%, transparent);
+  --glass-caustic: color-mix(in srgb, var(--glass-tint) 80%, transparent);
+  --glass-caustic-strong: color-mix(in srgb, var(--glass-tint) 95%, transparent);
+  --glass-specular: color-mix(in srgb, var(--glass-tint) 70%, transparent);
+  --glass-specular-strong: color-mix(in srgb, var(--glass-tint) 92%, transparent);
   --glass-contact: color-mix(in srgb, var(--color-edge) 28%, transparent);
   --glass-contact-strong: color-mix(in srgb, var(--color-edge) 38%, transparent);
   --glass-blur: 14px;
@@ -213,11 +226,8 @@
   --color-text-secondary: #3b5468;
   --color-text-muted: #54585e;
 
-  --tile-shadow: 0 1px 3px rgba(13, 15, 18, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   --tile-shadow-active: inset 0 1px 0 rgba(255, 255, 255, 0.5),
     inset 0 -2px 6px rgba(13, 15, 18, 0.28);
-  --disc-inset: inset 0 1px 0 rgba(255, 255, 255, 0.8);
   /* A white sweep is invisible on white; the highlight has to darken. */
   --sweep-color: rgba(13, 15, 18, 0.14);
   --scrim: rgba(13, 15, 18, 0.45);
@@ -227,16 +237,23 @@
    * needs a denser fill and darker rims or it reads as flat. Same vocabulary,
    * different values — which is exactly why these are tokens.
    */
-  --glass-fill: color-mix(in srgb, var(--color-carbon-panel) 72%, transparent);
-  --glass-fill-raised: color-mix(in srgb, var(--color-carbon-surface-2) 82%, transparent);
-  --glass-rim-light: color-mix(in srgb, #ffffff 85%, transparent);
-  --glass-rim-light-strong: color-mix(in srgb, #ffffff 95%, transparent);
+  /* Light theme carries the same blue, just from the other direction: the
+     highlight is a cool white rather than a pure one, and the body picks up a
+     few percent of steel so panels read as glass over paper, not as paper. */
+  --glass-tint: #eef4ff;
+  --glass-body: color-mix(in srgb, var(--color-steel) 6%, var(--color-carbon-panel));
+  --glass-body-raised: color-mix(in srgb, var(--color-steel) 8%, var(--color-carbon-surface-2));
+
+  --glass-fill: color-mix(in srgb, var(--glass-body) 72%, transparent);
+  --glass-fill-raised: color-mix(in srgb, var(--glass-body-raised) 82%, transparent);
+  --glass-rim-light: color-mix(in srgb, var(--glass-tint) 85%, transparent);
+  --glass-rim-light-strong: color-mix(in srgb, var(--glass-tint) 95%, transparent);
   --glass-rim-dark: color-mix(in srgb, var(--color-edge) 30%, transparent);
   --glass-rim-dark-strong: color-mix(in srgb, var(--color-edge) 42%, transparent);
-  --glass-caustic: color-mix(in srgb, #ffffff 80%, transparent);
-  --glass-caustic-strong: color-mix(in srgb, #ffffff 95%, transparent);
-  --glass-specular: color-mix(in srgb, #ffffff 70%, transparent);
-  --glass-specular-strong: color-mix(in srgb, #ffffff 92%, transparent);
+  --glass-caustic: color-mix(in srgb, var(--glass-tint) 80%, transparent);
+  --glass-caustic-strong: color-mix(in srgb, var(--glass-tint) 95%, transparent);
+  --glass-specular: color-mix(in srgb, var(--glass-tint) 70%, transparent);
+  --glass-specular-strong: color-mix(in srgb, var(--glass-tint) 92%, transparent);
   --glass-contact: color-mix(in srgb, var(--color-edge) 28%, transparent);
   --glass-contact-strong: color-mix(in srgb, var(--color-edge) 38%, transparent);
   --glass-blur: 14px;
