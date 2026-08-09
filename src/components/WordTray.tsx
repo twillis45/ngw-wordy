@@ -153,7 +153,7 @@ export default function WordTray({
               className={[
                 'flex touch-none gap-1 rounded-lg p-1 roomy:gap-1.5',
                 actionable || definable
-                  ? 'cursor-pointer transition-colors hover:bg-carbon-surface-2/60'
+                  ? 'cursor-pointer transition-transform active:scale-[0.98]'
                   : 'cursor-default',
               ].join(' ')}
               aria-label={

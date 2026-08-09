@@ -102,7 +102,7 @@ export default function Rail({
               aria-current={step.current ? 'step' : undefined}
               className={[
                 'flex items-center gap-2.5 rounded-lg px-2 py-1.5 text-[14px]',
-                step.current ? 'bg-carbon-surface-2 font-semibold' : '',
+                step.current ? 'liquid liquid-raised relative font-semibold' : '',
                 step.reached ? 'text-text-primary' : 'text-text-muted',
               ].join(' ')}
             >
@@ -143,7 +143,7 @@ export default function Rail({
                     ? 'border-success/40 bg-success/15 text-success'
                     // Unplayed cells hold no glyph, so no text color here —
                     // carbon-strong is a border token and must never set text.
-                    : 'border-edge/60 bg-carbon-body',
+                    : 'border-edge/60 liquid relative',
                   // Today reads as today whether or not it's been played.
                   i === days.length - 1 ? 'ring-1 ring-steel-muted/40' : '',
                 ].join(' ')}

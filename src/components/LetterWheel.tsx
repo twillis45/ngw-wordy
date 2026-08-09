@@ -60,6 +60,12 @@ export default function LetterWheel({
   const boxRef = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
+  /**
+   * On a mouse the pointer follows HOVER, not just drags — the iPadOS pointer
+   * is always present, and requiring a held button meant desktop users only
+   * ever saw the OS arrow. Touch has no hover, so it stays drag-only there.
+   */
+  const [hovering, setHovering] = useState(false);
 
   const positions = letters.map((_, i) => {
     // Start at the top and go clockwise.
@@ -122,9 +128,19 @@ export default function LetterWheel({
   };
 
   const handleMove = (e: React.PointerEvent) => {
-    if (!dragging || disabled) return;
+    if (disabled) return;
     const pt = localPoint(e);
     if (!pt) return;
+
+    // Track the mouse even when nothing is held down.
+    if (!dragging) {
+      if (e.pointerType === 'mouse') {
+        setHovering(true);
+        setCursor(pt);
+      }
+      return;
+    }
+
     setCursor(pt);
     const hit = hitTest(pt);
     // Re-selecting the letter you're already on is a no-op; the parent
@@ -170,7 +186,7 @@ export default function LetterWheel({
    * loose" feels like. It now saturates across the whole tile.
    */
   const pointer = (() => {
-    if (!dragging || !cursor) return null;
+    if ((!dragging && !hovering) || !cursor) return null;
 
     let nearest = -1;
     let best = Infinity;
@@ -219,7 +235,12 @@ export default function LetterWheel({
       onPointerDown={handleDown}
       onPointerMove={handleMove}
       onPointerUp={endDrag}
-      className="relative aspect-square touch-none select-none"
+      onPointerLeave={() => {
+        setHovering(false);
+        if (!dragging) setCursor(null);
+      }}
+      // cursor-none only where the glass pointer replaces the arrow.
+      className="relative aspect-square touch-none select-none mouse:cursor-none"
       /*
        * Sized from the viewport, not from breakpoints.
        *
@@ -300,12 +321,19 @@ export default function LetterWheel({
           aria-hidden
           className="glass-puck pointer-events-none absolute"
           style={{
-            left: `${pointer.x}%`,
-            top: `${pointer.y}%`,
+            /*
+             * Centred by offsetting left/top by half the size — NOT by
+             * translate(-50%,-50%).
+             *
+             * A transform creates a new BACKDROP ROOT, so the wall's
+             * backdrop-filter had nothing behind it to sample: the refraction
+             * was computing correctly and drawing air.
+             */
+            left: `${pointer.x - pointer.size / 2}%`,
+            top: `${pointer.y - pointer.size / 2}%`,
             width: `${pointer.size}%`,
             height: `${pointer.size}%`,
             borderRadius: `${pointer.radius}%`,
-            transform: 'translate(-50%, -50%)',
             // Short transition only on the morph properties. Position is driven
             // per-move and must not lag the finger.
             transition:
@@ -317,7 +345,7 @@ export default function LetterWheel({
           <span
             aria-hidden
             className="glass-wall absolute inset-0 backdrop-blur-[5px] backdrop-brightness-125 backdrop-saturate-[1.7]"
-            style={{ borderRadius: 'inherit', padding: '22%' }}
+            style={{ borderRadius: 'inherit', padding: '30%' }}
           />
         </span>
       )}

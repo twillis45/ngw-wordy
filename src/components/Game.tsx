@@ -30,7 +30,13 @@ import {
   type Definitions,
   type Resolved,
 } from '@/lib/definitions';
-import { celebrateBonus, flyLetters, measureFlight } from '@/lib/flight';
+import {
+  celebrateBonus,
+  celebratePrize,
+  celebrateRank,
+  flyLetters,
+  measureFlight,
+} from '@/lib/flight';
 import {
   activeLetters,
   RANK_BASIS,
@@ -287,12 +293,29 @@ export default function Game({ data }: { data: PuzzleFile }) {
         if (flightMs > 0) setTimeout(land, flightMs * 0.62);
         else land();
 
-        say(
-          result.isBase
-            ? `${result.word.toUpperCase()} · the long one!`
-            : `+${result.points}`,
-          'good'
+        if (result.isBase) {
+          // The word that uses every letter is the hardest thing in the puzzle
+          // and used to get the same treatment as a three-letter bonus.
+          celebratePrize(result.word, result.points);
+        } else {
+          say(`+${result.points}`, 'good');
+        }
+
+        // Promotion is the one recurring reward with no moment attached to it.
+        const before = rankFor(
+          [...banked].reduce((sum, w) => sum + scoreWord(w, data.wheel), 0),
+          puzzle.maxScore
         );
+        const after = rankFor(
+          [...banked, result.word].reduce(
+            (sum, w) => sum + scoreWord(w, data.wheel),
+            0
+          ),
+          puzzle.maxScore
+        );
+        if (after.index > before.index) {
+          setTimeout(() => celebrateRank(after.name, after.next), 620);
+        }
         // Completion is an event, not a derived effect: it fires on the word
         // that finishes the grid, exactly once, and banks the streak with it.
         if (doneBefore + 1 === puzzle.grid.length) {
@@ -564,7 +587,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={cycleTheme}
           aria-label={`Theme: ${theme}. Tap to change.`}
-          className="relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
         >
           <ThemeIcon theme={theme} />
         </button>
@@ -573,7 +596,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onClick={() => setShowRules(true)}
           aria-haspopup="dialog"
           aria-label="How to play"
-          className="relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-[15px] font-semibold text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-[15px] font-semibold text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
         >
           ?
         </button>
@@ -581,7 +604,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={() => setMutedPref(!progress.muted)}
           aria-label={progress.muted ? 'Unmute sound' : 'Mute sound'}
-          className="relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11"
         >
           <SoundIcon muted={progress.muted} />
         </button>
@@ -629,7 +652,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         <button
           type="button"
           onClick={() => setClueCursor((c) => c + 1)}
-          className="relative mt-3 w-full rounded-xl border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 px-3.5 py-2.5 text-left transition-colors hover:border-carbon-strong"
+          className="liquid-interactive relative mt-3 w-full rounded-xl border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 px-3.5 py-2.5 text-left transition-colors hover:border-carbon-strong"
         >
           <span className="text-[12px] uppercase tracking-[0.14em] text-text-muted">
             {clueWord.length} letters
@@ -909,7 +932,7 @@ function Sheet({
         {/* Grab handle — signals "drag or tap away", costs one element. */}
         <div
           aria-hidden
-          className="mx-auto mb-4 h-1 w-10 rounded-full bg-carbon-strong"
+          className="mx-auto mb-4 h-1 w-10 rounded-full bg-edge/40"
         />
         {children}
         <button
@@ -1011,7 +1034,7 @@ function ModeRow({
         aria-hidden
         className={[
           'mt-0.5 grid h-6 w-10 shrink-0 items-center rounded-full border-2 px-0.5 transition-colors',
-          on ? 'border-steel bg-steel-dark' : 'border-edge bg-carbon-body',
+          on ? 'border-steel bg-steel-dark/80 backdrop-blur-sm' : `border-edge ${'liquid'}`,
         ].join(' ')}
       >
         <span
@@ -1111,7 +1134,7 @@ function ControlButton({
       onClick={onClick}
       disabled={disabled}
       {...rest}
-      className="relative h-11 min-w-[104px] rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 px-5 text-[14px] font-medium text-text-secondary transition-colors hover:border-carbon-strong hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
+      className="liquid-interactive relative h-11 min-w-[104px] rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 px-5 text-[14px] font-medium text-text-secondary transition-colors hover:border-carbon-strong hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
     >
       {children}
     </button>
@@ -1157,7 +1180,7 @@ function CompleteSheet({
         </dl>
 
         {/* Show exactly what gets sent. Nobody shares a card they can't see. */}
-        <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words rounded-xl border border-carbon-border bg-carbon-body px-4 py-3 text-center text-[13px] leading-relaxed text-text-secondary">
+        <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words relative rounded-xl border border-edge liquid backdrop-blur-md backdrop-saturate-150 px-4 py-3 text-center text-[13px] leading-relaxed text-text-secondary">
           {preview}
         </pre>
 
@@ -1166,7 +1189,7 @@ function CompleteSheet({
         <button
           type="button"
           onClick={onNext}
-          className="mt-6 h-12 w-full rounded-full bg-gradient-to-b from-steel to-steel-dark text-[15px] font-semibold text-text-primary"
+          className="liquid-interactive relative mt-6 h-12 w-full rounded-full border-2 border-edge bg-gradient-to-b from-steel/80 to-steel-dark/80 text-[15px] font-semibold text-text-primary backdrop-blur-md"
         >
           Next puzzle →
         </button>
@@ -1174,7 +1197,7 @@ function CompleteSheet({
           <button
             type="button"
             onClick={onShare}
-            className="h-11 flex-1 rounded-full border-2 border-edge text-[14px] text-text-secondary"
+            className="liquid-interactive relative h-11 flex-1 rounded-full border-2 border-edge liquid backdrop-blur-md backdrop-saturate-150 text-[14px] text-text-secondary"
           >
             {copied ? 'Copied' : 'Share'}
           </button>
