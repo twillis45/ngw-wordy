@@ -39,8 +39,10 @@ import {
 } from '@/lib/flight';
 import { assistFor, isStalled } from '@/lib/assist';
 import {
+  autoFullscreenOnFirstGesture,
   fullscreenSupported,
   isFullscreen,
+  rememberFullscreenExit,
   subscribeFullscreen,
   toggleFullscreen,
 } from '@/lib/fullscreen';
@@ -419,6 +421,22 @@ export default function Game({ data }: { data: PuzzleFile }) {
     applyTheme(nextTheme(getThemeSnapshot()));
   }, []);
 
+  // Arm the earliest legal fullscreen request; the listener removes itself.
+  useEffect(() => autoFullscreenOnFirstGesture(), []);
+
+  /*
+   * Stop asking only after a real EXIT.
+   *
+   * The first version fired on mount — fullscreen is false at load, so it
+   * immediately wrote "don't auto-enter" and the feature disabled itself
+   * before it ever ran. Only a true -> false transition counts.
+   */
+  const wasFullscreen = useRef(false);
+  useEffect(() => {
+    if (wasFullscreen.current && !fullscreen) rememberFullscreenExit();
+    wasFullscreen.current = fullscreen;
+  }, [fullscreen]);
+
   useEffect(() => {
     let alive = true;
     void loadDefinitions().then((d) => {
@@ -679,7 +697,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
    *   >= 1536 wider measure again, rail gains the how-to-play card
    */
   return (
-    <main className="safe-top safe-bottom mx-auto flex h-full w-full max-w-[420px] flex-col overflow-hidden px-5 short:px-4 md:max-w-[740px] lg:max-w-[780px] 2xl:max-w-[820px]">
+    <main className="safe-top safe-bottom mx-auto flex h-svh w-full max-w-[420px] flex-col overflow-hidden px-5 short:px-4 md:max-w-[740px] lg:max-w-[780px] 2xl:max-w-[820px]">
       {/* Header — quiet. Day number and streak are evidence, not the hero. */}
       <header className="flex items-center justify-between gap-2">
         <div>

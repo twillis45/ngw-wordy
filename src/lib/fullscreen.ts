@@ -52,6 +52,53 @@ export async function toggleFullscreen(): Promise<void> {
   }
 }
 
+const AUTO_KEY = 'ngw-wordy/fullscreen-auto';
+
+/**
+ * Enter fullscreen at the earliest moment a browser will allow it.
+ *
+ * There is no way to do this on load — every browser rejects a fullscreen
+ * request that isn't inside a user gesture, by design. The first tap or key
+ * press IS a gesture, so that is the earliest honest opportunity.
+ *
+ * It fires once, and if the player ever leaves fullscreen we stop asking. An
+ * app that keeps dragging you back is worse than one that never offered.
+ */
+export function autoFullscreenOnFirstGesture(): () => void {
+  if (typeof document === 'undefined') return () => {};
+  if (!fullscreenSupported()) return () => {};
+
+  try {
+    if (window.localStorage.getItem(AUTO_KEY) === 'off') return () => {};
+  } catch {
+    /* private mode — just proceed */
+  }
+
+  const go = () => {
+    cleanup();
+    if (isFullscreen()) return;
+    void toggleFullscreen();
+  };
+
+  // `once` on each, plus an explicit cleanup so a second gesture never retries.
+  const events: Array<keyof DocumentEventMap> = ['pointerdown', 'keydown'];
+  const cleanup = () => {
+    events.forEach((e) => document.removeEventListener(e, go));
+  };
+  events.forEach((e) => document.addEventListener(e, go, { once: true }));
+
+  return cleanup;
+}
+
+/** Remember that the player left, so we stop pulling them back in. */
+export function rememberFullscreenExit() {
+  try {
+    if (!isFullscreen()) window.localStorage.setItem(AUTO_KEY, 'off');
+  } catch {
+    /* nothing to do */
+  }
+}
+
 /** Subscribe to fullscreen changes from any source, including Esc. */
 export function subscribeFullscreen(listener: () => void): () => void {
   if (typeof document === 'undefined') return () => {};
