@@ -5791,6 +5791,101 @@
         "case",
         "stack"
       ]
+    },
+    {
+      "base": "owners",
+      "theme": "salon",
+      "clues": {
+        "owners": "Two chairs and her name on the license, which is the whole difference.",
+        "owner": "What she is, not what she does — and why nobody can fire her for her politics.",
+        "owns": "The building too, since 1974, which the bank had not expected.",
+        "news": "What travels this block faster from this room than from anywhere else on it.",
+        "worse": "What the appointment book looked like the month she started registering voters.",
+        "rows": "Of dryer chairs, all facing one way, so everybody hears everything."
+      },
+      "prefer": [
+        "owner",
+        "owns",
+        "news",
+        "worse",
+        "rows"
+      ]
+    },
+    {
+      "base": "haired",
+      "theme": "salon",
+      "clues": {
+        "haired": "What she is doing to you for the next four hours. The talking is the other half.",
+        "heard": "What got said in this room in 1957 and did not leave it.",
+        "hired": "What Highlander did with a Charleston beautician who had never taught school.",
+        "idea": "Teaching the literacy test at night, in the back, to people who could lose a job for it.",
+        "heir": "What she left the shop to, along with the chair and the client list.",
+        "head": "Hers, back in the bowl, while the county registrar came up in conversation."
+      },
+      "prefer": [
+        "heard",
+        "hired",
+        "idea",
+        "heir",
+        "head"
+      ]
+    },
+    {
+      "base": "onward",
+      "theme": "reunion",
+      "clues": {
+        "onward": "The direction the Texas branch went in 1943, and they did not come back east.",
+        "road": "Highway 90 west, then the long empty part, then Los Angeles.",
+        "down": "What the shipyard notice never said, and what everybody understood anyway.",
+        "dawn": "When the Sunset Limited pulled out of Houston, because that was the cheap fare.",
+        "word": "What came back to Louisiana about wages in Oakland, and emptied a parish.",
+        "worn": "The one suit, in the one case, on a train that took two days."
+      },
+      "prefer": [
+        "road",
+        "down",
+        "dawn",
+        "word",
+        "worn"
+      ]
+    },
+    {
+      "base": "ordeal",
+      "theme": "reunion",
+      "clues": {
+        "ordeal": "Eighteen seventy, and everything before it, which is the part that takes years.",
+        "older": "The census she can reach. The one before it lists a number, an age, and no name.",
+        "lore": "What the family had instead of documents, and it turned out to be right.",
+        "lead": "A name on a bill of sale, which is the only paper that names him at all.",
+        "role": "Hers on the committee: the one who writes to the county and waits.",
+        "road": "What the family took north, and what the binder now traces backward."
+      },
+      "prefer": [
+        "older",
+        "lore",
+        "lead",
+        "role",
+        "road"
+      ]
+    },
+    {
+      "base": "nights",
+      "theme": "hbcu",
+      "clues": {
+        "nights": "Eight of them on the yard that fall, and the one everybody waits for is the last.",
+        "night": "When it happens, always, because the whole point is not seeing them coming.",
+        "sign": "What they throw at the end, and what the crowd throws back before anybody speaks.",
+        "sight": "What the masks come off for, one at a time, in the order they crossed.",
+        "sting": "What the cane leaves on your palm, and you would do it again tomorrow.",
+        "thing": "The word nobody uses for it, because probate is the word."
+      },
+      "prefer": [
+        "night",
+        "sign",
+        "sight",
+        "sting",
+        "thing"
+      ]
     }
   ]
 }
