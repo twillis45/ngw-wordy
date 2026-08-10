@@ -222,27 +222,90 @@ function iosTicks(gaps: number[]) {
 }
 
 /**
- * @param pattern Android vibrate pattern (ms, alternating on/off).
- * @param gaps    iOS rhythm: gaps in ms between successive ticks.
+ * One rhythm, described once.
+ *
+ * `pulses[i]` buzzes, then `gaps[i]` of silence, then `pulses[i + 1]`. So a
+ * rhythm always has exactly one more pulse than it has gaps.
+ *
+ * WHY THIS TYPE EXISTS. The two platforms were previously given the rhythm
+ * SEPARATELY — an Android `vibrate` array and an iOS gap list — and they
+ * disagreed on six of the eight signals. `iosTicks` fires once and then once
+ * per gap, so it always played `gaps.length + 1` ticks, while the hand-written
+ * Android arrays carried one fewer pulse than the comment beside them claimed.
+ *
+ * The damage was not cosmetic. On Android `bonus` played a single pulse, which
+ * is exactly what `tap` plays — so finding a word felt identical to touching a
+ * letter. `correct` and `duplicate` both came out as two pulses, so the reward
+ * and the "you already had that" shared a rhythm. This module's own comment
+ * says the vocabulary must be "legible with the screen off"; on Android half of
+ * it was not legible at all.
+ *
+ * Deriving both platforms from one description makes that class of drift
+ * impossible rather than merely fixed, and `feedback.test.ts` asserts the
+ * invariant.
  */
-function buzz(pattern: number | number[], gaps: number[]) {
+export type Rhythm = { pulses: number[]; gaps: number[] };
+
+/** Android `vibrate()` wants [on, off, on, off, ... on]. */
+export function androidPattern(r: Rhythm): number[] {
+  const out: number[] = [];
+  r.pulses.forEach((p, i) => {
+    out.push(p);
+    if (i < r.gaps.length) out.push(r.gaps[i]);
+  });
+  return out;
+}
+
+/** How many distinct bumps the hand should feel, on any platform. */
+export function pulseCount(r: Rhythm): number {
+  return r.pulses.length;
+}
+
+function buzz(r: Rhythm) {
   if (typeof navigator === 'undefined' || hapticsMuted) return;
 
   // Android/Chromium: the real API, with real durations.
   if ('vibrate' in navigator) {
     try {
-      if (navigator.vibrate(pattern)) return;
+      if (navigator.vibrate(androidPattern(r))) return;
     } catch {
       /* fall through to the iOS path */
     }
   }
 
   try {
-    iosTicks(gaps);
+    iosTicks(r.gaps);
   } catch {
     /* no haptics available — audio and motion still carry the feedback */
   }
 }
+
+/**
+ * The rhythms, named.
+ *
+ * Exported so the test can assert the vocabulary is actually distinguishable,
+ * which is the part of "does this feel right" that does not need a device in a
+ * hand: two signals that share a pulse count AND a gap pattern are the same
+ * signal, whatever the design intent was.
+ */
+export const RHYTHM = {
+  /** One tick, the lightest thing available. */
+  tap: { pulses: [10], gaps: [] },
+  /** Fast triple — the reward. */
+  correct: { pulses: [26, 22, 26], gaps: [45, 45] },
+  /** Fast double — clearly not a bare tap. */
+  bonus: { pulses: [16, 16], gaps: [45] },
+  /** Long-then-short, broken on purpose. */
+  reject: { pulses: [18, 18, 18], gaps: [110, 45] },
+  /** Slow double — nothing happened. */
+  duplicate: { pulses: [8, 8], gaps: [150] },
+  /** One wide gap, deliberately heavy and slow — a cost. */
+  spend: { pulses: [12, 12], gaps: [190] },
+  /** Accelerating run — unmistakable against everything else. */
+  prize: { pulses: [30, 30, 30, 30, 55], gaps: [70, 60, 50, 45] },
+  /** Decelerating — an ending, not a reward. */
+  complete: { pulses: [24, 24, 24, 24, 60], gaps: [100, 100, 140, 180] },
+} satisfies Record<string, Rhythm>;
 
 /* ── The vocabulary ───────────────────────────────────────────────────── */
 
@@ -258,8 +321,7 @@ export const feedback = {
   tap() {
     noise({ dur: 0.03, gain: 0.035, freq: 3000 });
     tone({ freq: 620, dur: 0.045, type: 'triangle', gain: 0.07 });
-    // tap — one tick, the lightest thing available
-    buzz(10, []);
+    buzz(RHYTHM.tap);
   },
 
   /** Word accepted into the grid. Rises with each word in the puzzle. */
@@ -270,38 +332,33 @@ export const feedback = {
     chord(f, { dur: 0.2, type: 'sine', gain: 0.13, attack: 0.006 });
     // A fifth above, quieter and slightly late — a chime, not a beep.
     tone({ freq: f * 1.5, dur: 0.26, gain: 0.05, delay: 0.045 });
-    // correct — FAST TRIPLE, the reward rhythm
-    buzz([26, 40, 22], [45, 45]);
+    buzz(RHYTHM.correct);
   },
 
   /** Valid word, but not one of the grid targets — lighter than a target. */
   bonus() {
     noise({ dur: 0.03, gain: 0.04, freq: 2800 });
     tone({ freq: 698.46, dur: 0.16, gain: 0.1, glideTo: 880 });
-    // bonus — fast double, clearly not a bare tap
-    buzz(16, [45]);
+    buzz(RHYTHM.bonus);
   },
 
   /** Not a word. A falling, broken shape — legible without sound. */
   reject() {
     noise({ dur: 0.05, gain: 0.05, freq: 700 });
     tone({ freq: 240, dur: 0.16, type: 'sawtooth', gain: 0.09, glideTo: 150 });
-    // reject — long-then-short, broken on purpose
-    buzz([18, 55, 18], [110, 45]);
+    buzz(RHYTHM.reject);
   },
 
   /** Already found — a nudge, deliberately duller than either accept. */
   duplicate() {
     tone({ freq: 380, dur: 0.07, type: 'triangle', gain: 0.06 });
-    // duplicate — slow double = nothing happened
-    buzz(8, [150]);
+    buzz(RHYTHM.duplicate);
   },
 
   /** A hint spent. Downward, so it reads as a cost, not a reward. */
   spend() {
     tone({ freq: 560, dur: 0.13, type: 'sine', gain: 0.08, glideTo: 380 });
-    // spend — ONE wide gap, deliberately heavy and slow
-    buzz([12, 30, 12], [190]);
+    buzz(RHYTHM.spend);
   },
 
   /**
@@ -315,8 +372,7 @@ export const feedback = {
     );
     tone({ freq: 261.63, dur: 0.75, gain: 0.07, attack: 0.03 });
     // Accelerating run — unmistakable against every other pattern.
-    // prize — accelerating run
-    buzz([30, 45, 30, 40, 30, 35, 55], [70, 60, 50, 45]);
+    buzz(RHYTHM.prize);
   },
 
   /** Puzzle cleared. Slower and broader than the prize — an ending. */
@@ -325,7 +381,6 @@ export const feedback = {
       chord(f, { dur: 0.42, gain: 0.11, delay: i * 0.1 })
     );
     tone({ freq: 392, dur: 1.1, gain: 0.06, attack: 0.05, delay: 0.2 });
-    // complete — decelerating, an ending
-    buzz([24, 60, 24, 60, 24, 60, 60], [100, 100, 140, 180]);
+    buzz(RHYTHM.complete);
   },
 };

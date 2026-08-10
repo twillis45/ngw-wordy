@@ -2,12 +2,78 @@ import type { Metadata, Viewport } from 'next';
 import ServiceWorker from '@/components/ServiceWorker';
 import { withBase } from '@/lib/basePath';
 import { NO_FLASH_SCRIPT } from '@/lib/theme';
+import { SITE_URL, absoluteUrl } from '@/lib/site';
 import './globals.css';
 
+/*
+ * One sentence, used in three places — <meta name="description">, og:description
+ * and twitter:description. Written out once because when they drift, the copy a
+ * person sees in a shared link stops matching the copy Google shows, and only
+ * one of the two ever gets updated.
+ *
+ * It says "word game" and "written clues" deliberately: the generic phrasing
+ * ("puzzle app") is what makes this indistinguishable from every anagram
+ * timewaster in the results.
+ */
+const DESCRIPTION =
+  'A six-letter word game with hand-authored puzzles. Find every word on the wheel, then read the clue behind the board — 397 of them, across 20 themes of Black American cultural life.';
+
 export const metadata: Metadata = {
-  title: 'Wordy',
-  description: 'Six letters. How many words can you make?',
+  /*
+   * Resolves every relative URL Next emits for metadata (og:image, canonical).
+   * Without it Next warns at build time and falls back to localhost, which
+   * would ship a social card pointing at the developer's machine.
+   */
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Wordy — six-letter word game',
+    // Sub-pages set their own full title; this keeps any that don't from
+    // losing the product name in a browser tab or a search result.
+    template: '%s — Wordy',
+  },
+  description: DESCRIPTION,
   applicationName: 'Wordy',
+  // Two spellings of a page — with and without the trailing slash, or on the
+  // Pages sub-path as well as the real domain — is one page's rank split in
+  // half. The canonical says which one counts.
+  alternates: { canonical: absoluteUrl('/') },
+  openGraph: {
+    type: 'website',
+    siteName: 'Wordy',
+    title: 'Wordy — six-letter word game',
+    description: DESCRIPTION,
+    url: absoluteUrl('/'),
+    locale: 'en_US',
+    /*
+     * A real, committed PNG rather than a generated one: `output: 'export'`
+     * has no runtime, so next/og's ImageResponse cannot run — and a card with
+     * no image is rendered by every chat app as a bare grey link.
+     *
+     * width/height are declared because crawlers that will not download the
+     * image before rendering the preview (iMessage, Slack on first paste) lay
+     * it out from these; omitting them collapses the card to a thumbnail.
+     */
+    images: [
+      {
+        url: absoluteUrl('/og.png'),
+        width: 1200,
+        height: 630,
+        type: 'image/png',
+        alt: 'The Wordy letter wheel spelling TAPING, beside the name Wordy.',
+      },
+    ],
+  },
+  twitter: {
+    // summary_large_image, not summary: summary crops to a small square and
+    // throws away the half of the card that says what the game is.
+    card: 'summary_large_image',
+    title: 'Wordy — six-letter word game',
+    description: DESCRIPTION,
+    images: [absoluteUrl('/og.png')],
+  },
+  // Safari turns bare numbers in the rules and scores into tappable phone
+  // links otherwise, which is both wrong and a stray blue on a matte UI.
+  formatDetection: { telephone: false, address: false, email: false },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',

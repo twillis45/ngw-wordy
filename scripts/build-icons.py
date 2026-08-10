@@ -72,6 +72,10 @@ def main():
     targets = [
         ("icon-192.png", 192, 1.0),
         ("icon-512.png", 512, 1.0),
+        # 192 maskable as well as 512: Android picks the maskable icon
+        # nearest the launcher's density, and with only a 512 present it
+        # downsamples that on every home screen it draws.
+        ("icon-maskable-192.png", 192, 0.78),
         ("icon-maskable-512.png", 512, 0.78),
         ("apple-touch-icon.png", 180, 1.0),
     ]

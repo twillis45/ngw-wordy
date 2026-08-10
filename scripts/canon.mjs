@@ -72,9 +72,22 @@ export function check(entries = canon.entries) {
   return errs;
 }
 
+/*
+ * Only act as a CLI when actually invoked as one.
+ *
+ * content.test.ts imports `check` from this module, and the block below used
+ * to run on import — so every test run printed the canon summary into the test
+ * output. A module that does I/O just because someone imported a function from
+ * it is a module that cannot be safely reused.
+ */
+const invokedDirectly =
+  process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
 const arg = process.argv[2];
 
-if (arg === '--check') {
+if (!invokedDirectly) {
+  // imported for `check` — do nothing else
+} else if (arg === '--check') {
   const errs = check();
   if (errs.length) {
     process.stdout.write(`${errs.length} problem(s):\n${errs.map((e) => `  - ${e}`).join('\n')}\n`);

@@ -13,6 +13,14 @@ import LetterWheel from './LetterWheel';
 import WordTray from './WordTray';
 import RankBar from './RankBar';
 import Rail from './Rail';
+import {
+  ChevronIcon,
+  FullscreenIcon,
+  HelpIcon,
+  MoonIcon,
+  SoundIcon,
+  SunIcon,
+} from './Icon';
 import { feedback, setHapticsMuted, setMuted } from '@/lib/feedback';
 import {
   applyTheme,
@@ -829,7 +837,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             ) : (
               <>Puzzle {offset > 0 ? `+${offset}` : offset}</>
             )}{' '}
-            ›
+            <ChevronIcon className="inline-block align-[-0.2em]" />
           </button>
         </div>
 
@@ -858,9 +866,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onClick={() => setShowRules(true)}
           aria-haspopup="dialog"
           aria-label="How to play"
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-body font-semibold text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11"
         >
-          ?
+          <HelpIcon />
         </button>
         <button
           type="button"
@@ -1088,7 +1096,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             {bonusToNextToken(progress.bonusTotal) === 1 ? 'word' : 'words'} earns a hint
           </>
         )}
-        <span className="md:hidden"> ›</span>
+        <ChevronIcon className="ml-1 inline-block align-[-0.2em] md:hidden" />
       </button>
         </div>
 
@@ -1540,8 +1548,8 @@ function PuzzleAction({
       {current ? (
         <span className="text-meta font-semibold text-text-primary">here</span>
       ) : (
-        <span aria-hidden className="text-body text-text-muted">
-          ›
+        <span className="text-text-muted">
+          <ChevronIcon />
         </span>
       )}
     </button>
@@ -1593,55 +1601,16 @@ function ModeRow({
   );
 }
 
-function FullscreenIcon({ on }: { on: boolean }) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      {on ? (
-        // Arrows pointing in — the way out.
-        <path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6" />
-      ) : (
-        <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6" />
-      )}
-    </svg>
-  );
-}
-
+/**
+ * 'auto' shows what it's currently following, with a dot to say it's tracking
+ * the system rather than pinned. The dot is a status marker, not part of the
+ * icon, so it lives outside the SVG and never bends the icon convention.
+ */
 function ThemeIcon({ theme }: { theme: Theme }) {
-  // 'auto' shows what it's currently following, with a dot to say it's tracking
-  // the system rather than pinned.
   const showing = effectiveTheme(theme);
   return (
     <span className="relative grid place-items-center">
-      <svg
-        width="17"
-        height="17"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden
-      >
-        {showing === 'light' ? (
-          <>
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" />
-          </>
-        ) : (
-          <path d="M20 14.5A8 8 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" />
-        )}
-      </svg>
+      {showing === 'light' ? <SunIcon /> : <MoonIcon />}
       {theme === 'auto' && (
         <span
           aria-hidden
@@ -1649,32 +1618,6 @@ function ThemeIcon({ theme }: { theme: Theme }) {
         />
       )}
     </span>
-  );
-}
-
-function SoundIcon({ muted }: { muted: boolean }) {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M11 5 6 9H3v6h3l5 4V5Z" />
-      {muted ? (
-        <>
-          <path d="m17 9 4 6" />
-          <path d="m21 9-4 6" />
-        </>
-      ) : (
-        <path d="M15.5 8.5a5 5 0 0 1 0 7" />
-      )}
-    </svg>
   );
 }
 
@@ -1769,6 +1712,9 @@ function CompleteSheet({
           onClick={onNext}
           className="liquid-interactive relative mt-6 h-12 w-full rounded-full border-2 border-edge bg-gradient-to-b from-steel/80 to-steel-dark/80 text-body font-semibold text-text-primary backdrop-blur-[var(--glass-blur)]"
         >
+          {/* The arrow here is typography inside a phrase, not an icon in a
+              slot — it moves with the words and would break the line's rhythm
+              as a fixed 18px SVG. Icon-slot marks all go through ./Icon. */}
           {warmup !== null && warmup < warmupTotal
             ? `Warm-up ${warmup + 1} →`
             : warmup !== null

@@ -2,6 +2,7 @@
 
 import { RANK_BASIS, rankLadder, type Rank } from '@/lib/game';
 import type { DayCell } from '@/lib/storage';
+import { CheckIcon } from './Icon';
 
 /**
  * The evidence rail.
@@ -138,7 +139,7 @@ export default function Rail({
               <span
                 aria-hidden
                 className={[
-                  'grid h-6 w-6 place-items-center rounded-md border-2 text-kicker lg:h-7 lg:w-7',
+                  'grid h-6 w-6 place-items-center rounded-md border-2 lg:h-7 lg:w-7',
                   d.played
                     ? 'border-steel bg-steel-dark/40 text-text-primary'
                     // Unplayed cells hold no glyph, so no text color here —
@@ -148,7 +149,7 @@ export default function Rail({
                   i === days.length - 1 ? 'ring-1 ring-steel-muted/40' : '',
                 ].join(' ')}
               >
-                {d.played ? '✓' : ''}
+                {d.played ? <CheckIcon /> : null}
               </span>
               <span className="text-kicker text-text-muted">{d.label}</span>
             </div>
