@@ -626,6 +626,104 @@
       ],
       "clues": [],
       "replacement": null
+    },
+    {
+      "id": "foodways-baltimore-lake-trout",
+      "cluster": "foodways",
+      "claim": "Baltimore \"lake trout\" is silver hake sold as whiting, and it is carryout culture, not a lodge basement.",
+      "verdict": "corrected",
+      "detail": "The fish identification is confirmed by scientific name — it is neither lake nor trout. But the shipped clue put the phrase in a fraternal-lodge fish fry, and the word is the tell: lake trout belongs to a carryout counter. The replacement uses \"whiting\", accurate and right for the room, and keeps the joke.",
+      "sources": [
+        {
+          "title": "Baltimore Sun — what Baltimore \"lake trout\" actually is",
+          "url": "https://www.baltimoresun.com/2016/02/11/lake-trout-a-baltimore-tradition/",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "fishfry",
+          "base": "whales",
+          "word": "wash"
+        }
+      ],
+      "replacement": {
+        "word": "wash",
+        "clue": "What the paper towels never quite do to your hands after breading forty pounds of whiting."
+      }
+    },
+    {
+      "id": "foodways-chicago-lakefront",
+      "cluster": "foodways",
+      "claim": "Chicago lakefront parking is metered and plate-read, not a permit on the dash; grilling is banned on the beaches and in Grant Park.",
+      "verdict": "corrected",
+      "detail": "The shipped clue had a permit on the dash and a noon ticket sweep. Reality is ParkChicago meters and licence-plate-reading gates. Useful for authors: the Park District picnic permit threshold is 50 people and $45, and this board is a lakefront PARK scene, which is legal, rather than a beach one, which would not be.",
+      "sources": [
+        {
+          "title": "Chicago Park District — picnic permits and lakefront rules",
+          "url": "https://www.chicagoparkdistrict.com/permits/picnic-permits",
+          "kind": "primary"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "cookout",
+          "base": "drinks",
+          "word": "risk"
+        }
+      ],
+      "replacement": {
+        "word": "risk",
+        "clue": "What you take at the lakefront lot, where a camera reads your plate and bills you by the hour."
+      }
+    },
+    {
+      "id": "foodways-regional-fish-and-bbq",
+      "cluster": "foodways",
+      "claim": "The regional food specifics across Fish Fry and The Cookout hold.",
+      "verdict": "verified",
+      "detail": "Milwaukee perch with rye and potato pancakes; Ohio Legion cod; New England haddock; Pittsburgh Knights of Columbus cod with pierogi and haluski; Big Bob Gibson, Decatur 1925, chickens dipped in white sauce AFTER smoking; Central Texas post oak with Big Red (Waco, 1937); eastern NC burn barrel and shovel; SoCal fire rings first-come except Huntington Beach. All three fish-fry institutional strands are documented — Black church fundraising best of the three, the VFW/Legion circuit least.",
+      "sources": [
+        {
+          "title": "Big Bob Gibson Bar-B-Q — Decatur, 1925, white sauce",
+          "url": "https://bigbobgibson.com/pages/our-story",
+          "kind": "primary"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "foodways-front-eye",
+      "cluster": "foodways",
+      "claim": "\"Front eye\" for the front burner is real, living South/Appalachian usage.",
+      "verdict": "unverifiable",
+      "detail": "Real but thinly citable: DARE is paywalled and no published food-writing instance was located. Keep the clue — the risk was that it reads as an ERROR to a non-Southern player, which is a tone question rather than a factual one. \"Icebox\" is generational rather than Southern- or Black-specific, and the packs never claim otherwise.",
+      "sources": [
+        {
+          "title": "Dictionary of American Regional English (paywalled)",
+          "url": "https://www.daredictionary.com/",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "foodways-cast-iron-soap",
+      "cluster": "foodways",
+      "claim": "The no-soap-on-cast-iron rule.",
+      "verdict": "verified",
+      "detail": "A non-finding, recorded so nobody re-opens it: the doctrine does not appear in these packs at all. The two cast-iron clues state the heat-dry and warm-oil steps, which Lodge and America’s Test Kitchen both endorse. For the record, soap does not strip polymerised seasoning — the rule dates to lye soap, and at least one state extension service still prints it as fact.",
+      "sources": [
+        {
+          "title": "Big Bob Gibson Bar-B-Q — Decatur, 1925, white sauce",
+          "url": "https://bigbobgibson.com/pages/our-story",
+          "kind": "primary"
+        }
+      ],
+      "clues": [],
+      "replacement": null
     }
   ],
   "updated": "2026-08-10"

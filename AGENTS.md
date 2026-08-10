@@ -18,6 +18,8 @@ changing or reviewing any of that content, read:
   runs under. It states one limit plainly and it is not negotiable: this is
   structured perspective, **not** community consultation, and a real reader is
   budgeted per pack before anything ships commercially.
+- `docs/AUTHORING.md` — the binding spec for writing clues, including the rules
+  that were bought with mistakes rather than reasoned out in advance.
 - `docs/research/CANON.md` and `data/canon.json` — what the clues actually rest
   on. `node scripts/canon.mjs --open` lists the questions research could not
   settle, which are the only ones a human reader should be spending time on.
