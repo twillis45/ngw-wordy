@@ -547,6 +547,24 @@ export default function Game({ data }: { data: PuzzleFile }) {
   useEffect(() => {
     if (unsolvedRows.length === 0) return;
     const id = setInterval(() => {
+      /*
+       * The stall clock does not run while a dialog is open.
+       *
+       * It used to run during the first-run explainer, so a new player read
+       * the intro for forty-five seconds, dismissed it, and was immediately
+       * met with "Stuck? I'll open the 3-letter one" — before they had seen
+       * the board, let alone failed at it. From the outside that reads as
+       * having to dismiss twice to start playing, which is exactly how it was
+       * reported.
+       *
+       * Resetting the mark rather than merely skipping means time spent in
+       * any sheet — the rules, the puzzle picker, a definition — is not
+       * counted as being stuck either. Being stuck means staring at the board.
+       */
+      if (dialogOpen()) {
+        lastProgress.current = Date.now();
+        return;
+      }
       // Start (or restart) the clock here rather than in render.
       if (clockFor.current !== puzzleId || lastProgress.current === 0) {
         clockFor.current = puzzleId;
