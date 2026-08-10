@@ -48,14 +48,20 @@ export default function Rail({
   days,
   streak,
   bestStreak,
-  howToClassName = 'hidden 2xl:block',
+  /*
+   * Width was never the whole question. This card is the LAST thing in the
+   * rail, so on a wide-but-short window — 1900x980 is an ordinary maximised
+   * Chrome on a laptop — adding it was what pushed the Streak off the bottom,
+   * while a narrower 1440x900 fitted fine. It needs room in both directions.
+   */
+  howToClassName = 'hidden 2xl:[@media(min-height:1000px)]:block',
   hasDefinition,
   onShowDefinition,
 }: Props) {
   const solvedTargets = gridWords.filter((w) => found.has(w));
 
   return (
-    <div className="flex flex-col gap-4 short:gap-2.5">
+    <div className="flex flex-col gap-3 short:gap-2.5">
       <Card title="Your words" meta={`${score} pts`}>
         <Group
           label={`Targets · ${solvedTargets.length}/${gridWords.length}`}
@@ -93,7 +99,11 @@ export default function Rail({
       <Card title="Rank" meta={rank.next ? `${rank.pointsToNext} to go` : 'Maxed'}>
         {/* Without this the names imply cleverness while the numbers measure
             exhaustiveness, and nothing on screen reconciles them. */}
-        <p className="mb-2.5 text-meta leading-snug text-text-muted">
+        {/* Dropped on a short viewport. This same sentence is now the last line
+            of the first-run explainer, so on a screen with no room to spare it
+            is the one thing here a player has already been told — unlike the
+            ladder and the streak, which exist nowhere else on desktop. */}
+        <p className="mb-2.5 hidden text-meta leading-snug text-text-muted short:hidden [@media(min-height:801px)]:block">
           {RANK_BASIS}
         </p>
         <ol className="flex flex-col gap-0.5 short:gap-0">
@@ -102,7 +112,7 @@ export default function Rail({
               key={step.name}
               aria-current={step.current ? 'step' : undefined}
               className={[
-                'flex items-center gap-2.5 rounded-lg px-2 py-1.5 text-body short:py-1 short:text-meta',
+                'flex items-center gap-2.5 rounded-lg px-2 py-1 text-body short:py-0.5 short:text-meta',
                 step.current ? 'liquid liquid-raised relative font-semibold' : '',
                 step.reached ? 'text-text-primary' : 'text-text-muted',
               ].join(' ')}
@@ -188,7 +198,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <section className="relative rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4 short:p-3">
+    <section className="relative rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4 lg:p-3.5 short:p-3">
       <div className="mb-3 flex items-baseline justify-between gap-3">
         <h2 className="text-item font-semibold text-text-primary">
           {title}

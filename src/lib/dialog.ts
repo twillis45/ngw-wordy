@@ -57,10 +57,25 @@ export function useDialog(onClose: () => void) {
         (el) => el.offsetParent !== null || el === document.activeElement
       );
 
-    // Focus the dialog itself rather than its first control: announcing the
-    // dialog's label before its contents is the behaviour screen-reader users
-    // expect, and it avoids landing on a destructive control by accident.
-    node.focus({ preventScroll: true });
+    /*
+     * Focus the dialog itself rather than its first control: announcing the
+     * dialog's label before its contents is the behaviour screen-reader users
+     * expect, and it avoids landing on a destructive control by accident.
+     *
+     * UNLESS the dialog names a primary action. The first-run explainer is the
+     * case that forced this: it has exactly one control, "Start playing", and
+     * with focus parked on the container Enter did nothing at all. A player
+     * arriving by keyboard met a full-screen overlay that Escape closed and
+     * Enter — the key everyone reaches for — did not. It is also how the
+     * failure was found: a scripted key press could not get past the first
+     * screen of the game.
+     *
+     * Marking the action rather than "focus the first/last focusable" keeps it
+     * explicit, so a future dialog with a destructive control does not inherit
+     * a default that lands on it.
+     */
+    const primary = node.querySelector<HTMLElement>('[data-dialog-primary]');
+    (primary ?? node).focus({ preventScroll: true });
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {

@@ -1068,10 +1068,10 @@ body {
   mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
 }
-/* No fade where there is no scrolling: a tall window shows the whole rail. */
-@media (min-height: 900px) {
-  .rail-scroll {
-    mask-image: none;
-    -webkit-mask-image: none;
-  }
-}
+/*
+ * No height exception. There used to be one at 900px, on the theory that a tall
+ * window shows the whole rail — but a 1900x980 Chrome window still overflowed
+ * it, so the fade switched itself off exactly where it was still needed. The
+ * mask is harmless when nothing scrolls: the bottom 28px is empty space, so
+ * there is nothing there to fade.
+ */

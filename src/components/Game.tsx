@@ -894,7 +894,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             surface — the biggest thing on screen — was the one thing that
             wasn't the material. Phone padding is deliberately tighter than the
             tablet's; the wheel gives up the ~16px, which it can afford. */}
-        <div className="mx-auto flex w-full min-h-0 max-w-[420px] flex-1 flex-col rounded-3xl border border-edge-hairline px-3 py-2 cramped:px-2 cramped:py-1 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] md:max-w-[520px] lg:max-w-[600px] xl:max-w-[680px] md:justify-center relative md:border-edge md:px-5 md:py-4">
+        <div className="mx-auto flex w-full min-h-0 max-w-[420px] flex-1 flex-col rounded-3xl border border-edge-hairline px-3 py-3 cramped:px-2 cramped:py-2 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] md:max-w-[520px] lg:max-w-[600px] xl:max-w-[680px] md:justify-center relative md:border-edge md:px-5 md:py-4">
       {/* On a phone this strip is the ONLY place progress lives, so it is also
           the way into the detail. Inert from tablet up, where the rail shows
           the same ladder permanently. */}
@@ -1082,7 +1082,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </ControlButton>
       </div>
 
-      <p className="mt-1.5 hidden text-center text-meta text-text-muted mouse:block">
+      {/* mb-1 keeps this clear of the board card's bottom border — it is the
+          last child inside the card, and at md the card's own py-4 was the only
+          thing between the text and the stroke, which read as a collision. */}
+      <p className="mt-1.5 mb-1 hidden text-center text-meta text-text-muted mouse:block">
         <kbd className="font-sans text-text-secondary">Enter</kbd> to submit ·{' '}
         <kbd className="font-sans text-text-secondary">Space</kbd> to shuffle ·{' '}
         <kbd className="font-sans text-text-secondary">Backspace</kbd> to undo
@@ -1531,6 +1534,7 @@ function Intro({ onDismiss }: { onDismiss: () => void }) {
             launch with nothing to activate. */}
         <button
           type="button"
+          data-dialog-primary
           onClick={onDismiss}
           className="mt-5 h-11 w-full rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-body font-medium text-text-primary"
         >
@@ -1674,7 +1678,7 @@ function ControlButton({
        * Shuffle in particular is a control you reach for when stuck, not one
        * you aim at under time pressure.
        */
-      className="liquid-interactive relative h-7 min-w-[62px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-2.5 text-kicker font-medium text-text-secondary md:h-9 md:min-w-[84px] md:px-3.5 md:text-meta transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
+      className="liquid-interactive relative h-7 min-w-[62px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-2.5 text-kicker font-medium text-text-secondary md:h-8 md:min-w-[80px] md:px-3 md:text-meta transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
     >
       {children}
     </button>

@@ -543,7 +543,17 @@ export default function LetterWheel({
       {pointer && (
         <span
           aria-hidden
-          className="glass-puck pointer-events-none absolute"
+          /*
+            * Above the letters, not under them.
+            *
+            * The puck is rendered before the tiles so the connecting thread
+            * sits beneath them, and it inherited that stacking — so the
+            * cursor slid UNDER the letter it was pointing at, which reads as
+            * the pointer being part of the board rather than a thing hovering
+            * over it. `z-20` lifts it clear; `pointer-events-none` means
+            * lifting it costs no hit-testing.
+            */
+           className="glass-puck pointer-events-none absolute z-20"
           style={{
             /*
              * Centred by offsetting left/top by half the size — NOT by
