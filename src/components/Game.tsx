@@ -235,6 +235,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const rank = rankFor(score, puzzle.maxScore);
 
   const current = selected.map((i) => letters[i]).join('');
+  /*
+   * What a screen reader should hear after an action. Derived, so it cannot
+   * drift from what is on screen, and deliberately terse — rank, score, and
+   * how much is left, which is the information the sighted player gets from
+   * the rank strip for free.
+   */
+  const announcement = toast
+    ? `${toast.text}. ${rank.name}, ${score} points${
+        rank.next ? `, ${rank.pointsToNext} to ${rank.next}` : ''
+      }.`
+    : '';
   const days = useMemo(() => last7(progress, today), [progress, today]);
 
   const themes = useMemo(() => themeGroups(data), [data]);
@@ -753,7 +764,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             onClick={() => void toggleFullscreen()}
             aria-label={fullscreen ? 'Exit full screen' : 'Full screen'}
             aria-pressed={fullscreen}
-            className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+            className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11"
           >
             <FullscreenIcon on={fullscreen} />
           </button>
@@ -762,7 +773,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={cycleTheme}
           aria-label={`Theme: ${theme}. Tap to change.`}
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11"
         >
           <ThemeIcon theme={theme} />
         </button>
@@ -771,7 +782,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onClick={() => setShowRules(true)}
           aria-haspopup="dialog"
           aria-label="How to play"
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-body font-semibold text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-body font-semibold text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11"
         >
           ?
         </button>
@@ -779,7 +790,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={() => setMutedPref(!progress.muted)}
           aria-label={progress.muted ? 'Unmute sound' : 'Mute sound'}
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11"
         >
           <SoundIcon muted={progress.muted} />
         </button>
@@ -866,7 +877,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
       {/* Current word — the only place the accent green appears mid-play */}
       <div
-        aria-live="polite"
+        // No longer a live region: it holds the word being typed, and
+        // announcing it letter-by-letter is noise. Results go to the status
+        // region below, which a toast cannot overwrite.
         className={[
           'mb-3 grid h-10 place-items-center short:mb-1 short:h-8',
           shaking ? 'anim-shake' : '',
@@ -903,6 +916,16 @@ export default function Game({ data }: { data: PuzzleFile }) {
           </span>
         )}
       </div>
+
+      {/*
+        Screen-reader status. Rank promotion was previously conveyed ONLY by a
+        progressbar value change and a visual banner — and a progressbar value
+        is not a status message, so no assistive technology ever spoke it. The
+        player could climb from Solid to Genius in silence.
+      */}
+      <p role="status" aria-live="polite" className="sr-only">
+        {announcement}
+      </p>
 
       {/* Wheel — bottom third, thumb zone. This is the greedy box now: it takes
           whatever the tray and controls don't, so the board has no slack left

@@ -28,9 +28,14 @@ export const viewport: Viewport = {
     { media: '(prefers-color-scheme: dark)', color: '#070809' },
     { media: '(prefers-color-scheme: light)', color: '#eef3f8' },
   ],
-  // The wheel is a drag surface — pinch-zoom would fight it.
-  maximumScale: 1,
-  userScalable: false,
+  /*
+   * Zoom stays ENABLED. `maximumScale: 1` + `userScalable: false` is the
+   * documented WCAG 1.4.4 failure F69: it kills pinch-zoom document-wide, and
+   * because every size in this UI was px it also meant no text could be
+   * enlarged by any route at all. The drag surface is protected by
+   * `touch-action: none` on the wheel itself (LetterWheel), which is the
+   * scoped tool for that job — the viewport is not.
+   */
   viewportFit: 'cover',
 };
 

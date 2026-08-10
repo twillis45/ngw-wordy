@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useState } from 'react';
 import { revealedCount, type RevealState } from '@/lib/hints';
 
 /**
@@ -44,7 +44,13 @@ type Props = {
   activeWord?: string | null;
 };
 
-const HOLD_MS = 450;
+/**
+ * Hint costs, mirrored from lib/hints so the price can be SHOWN before it is
+ * charged. The old flow spent a token on pointer-up and announced the cost
+ * afterwards — money gone, then the receipt.
+ */
+const LETTER_COST = 1;
+const WORD_COST = 3;
 
 export default function WordTray({
   grid,
@@ -61,31 +67,16 @@ export default function WordTray({
   compact,
   activeWord,
 }: Props) {
-  // A hold fires the expensive spend; the trailing tap must then be suppressed
-  // so one gesture never buys twice.
-  const holdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const didHold = useRef(false);
-
-  const startHold = (word: string) => {
-    didHold.current = false;
-    holdTimer.current = setTimeout(() => {
-      didHold.current = true;
-      onRevealWord(word);
-    }, HOLD_MS);
-  };
-
-  const endHold = (word: string) => {
-    if (holdTimer.current) clearTimeout(holdTimer.current);
-    holdTimer.current = null;
-    if (didHold.current) return;
-    onRevealLetter(word);
-  };
-
-  const cancelHold = () => {
-    if (holdTimer.current) clearTimeout(holdTimer.current);
-    holdTimer.current = null;
-    didHold.current = true; // suppress the trailing tap
-  };
+  /*
+   * Which row is showing its hint menu.
+   *
+   * Replaces a 450ms press-and-hold that had no non-pointer equivalent at all
+   * and was documented only in an aria-label — so a sighted touch player could
+   * spend their entire 3-token opening balance by resting a thumb while
+   * thinking, and a keyboard or screen-reader player could not spend anything,
+   * because both reveals fired from pointer events that Enter never produces.
+   */
+  const [menuFor, setMenuFor] = useState<string | null>(null);
 
   if (compact) {
     return (
@@ -114,8 +105,10 @@ export default function WordTray({
                     : 'border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted',
                 
                 // Mark the row the clue is currently asking about.
+                // Was text-secondary vs text-muted — 1.01:1 apart, i.e. no
+                // marker at all. Now carries weight and a ring, not just hue.
                 !done && word === activeWord
-                  ? 'border-steel-muted text-text-secondary'
+                  ? 'border-edge ring-2 ring-steel-muted font-bold text-text-primary'
                   : '',
                 solved && justSolved.has(word) ? 'anim-land' : '',
               ].join(' ')}
@@ -146,24 +139,30 @@ export default function WordTray({
             <button
               type="button"
               disabled={!actionable && !definable}
-              onClick={() => definable && onShowDefinition(word)}
-              onPointerDown={() => actionable && startHold(word)}
-              onPointerUp={() => actionable && endHold(word)}
-              onPointerLeave={cancelHold}
-              onPointerCancel={cancelHold}
-              // touch-none: a hold would otherwise raise the selection menu.
+              // One handler, on CLICK — which keyboard Enter/Space and every
+              // assistive technology produce, and pointer events do not.
+              onClick={() =>
+                definable
+                  ? onShowDefinition(word)
+                  : actionable
+                    ? setMenuFor((cur) => (cur === word ? null : word))
+                    : undefined
+              }
+              aria-expanded={actionable ? menuFor === word : undefined}
+              aria-haspopup={actionable ? 'menu' : undefined}
               className={[
-                'flex touch-none gap-1 rounded-lg p-1 cramped:gap-0.5 cramped:p-0.5 roomy:gap-1.5',
+                'flex gap-1 rounded-lg p-1 cramped:gap-0.5 cramped:p-0.5 roomy:gap-1.5',
+                'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-muted',
                 actionable || definable
                   ? 'cursor-pointer transition-transform active:scale-[0.98]'
                   : 'cursor-default',
               ].join(' ')}
               aria-label={
                 definable
-                  ? `${word}. Tap for the definition.`
+                  ? `${word}. Open the definition.`
                   : done
                     ? `${word.length}-letter word, done`
-                    : `${word.length}-letter word. Tap to reveal a letter, hold to reveal the whole word.`
+                    : `${word.length}-letter word, not found. Open hint options.`
               }
             >
               {word.split('').map((ch, i) => {
@@ -213,6 +212,41 @@ export default function WordTray({
                 );
               })}
             </button>
+
+            {/*
+              Hint menu — real buttons, with the PRICE on the label. Both
+              actions were previously pointer-only and silent about cost.
+            */}
+            {actionable && menuFor === word && (
+              <div
+                role="menu"
+                aria-label={`Hints for the ${word.length}-letter word`}
+                className="absolute left-1/2 top-full z-20 mt-1 flex -translate-x-1/2 gap-1 rounded-xl border-2 border-edge-mid liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-1"
+              >
+                <button
+                  type="button"
+                  role="menuitem"
+                  onClick={() => {
+                    setMenuFor(null);
+                    onRevealLetter(word);
+                  }}
+                  className="whitespace-nowrap rounded-lg px-2.5 py-1.5 text-meta text-text-primary hover:bg-steel-dark/40 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-steel-muted"
+                >
+                  A letter · {LETTER_COST}
+                </button>
+                <button
+                  type="button"
+                  role="menuitem"
+                  onClick={() => {
+                    setMenuFor(null);
+                    onRevealWord(word);
+                  }}
+                  className="whitespace-nowrap rounded-lg px-2.5 py-1.5 text-meta text-text-secondary hover:bg-steel-dark/40 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-steel-muted"
+                >
+                  Whole word · {WORD_COST}
+                </button>
+              </div>
+            )}
 
             {floatFor?.word === word && (
               <span
