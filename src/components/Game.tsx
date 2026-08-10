@@ -1642,15 +1642,16 @@ function ControlButton({
        *
        * The dial is height-constrained on mobile — it takes whatever the column
        * leaves over — so every pixel these give up goes straight to the thing
-       * you actually play with. 32px still clears the 24px WCAG 2.5.8 minimum
-       * with room to spare; it gives up the 44px platform guidance, which is a
-       * deliberate trade, because these are secondary controls a player touches
-       * a handful of times per board against hundreds of touches on the dial.
+       * you actually play with. 28px still clears the 24px WCAG 2.5.8 minimum,
+       * which is the floor this will not go below — it gives up the 44px
+       * platform guidance, and that is a deliberate trade, because these are
+       * secondary controls a player touches a handful of times per board
+       * against hundreds of touches on the dial.
        *
        * Shuffle in particular is a control you reach for when stuck, not one
        * you aim at under time pressure.
        */
-      className="liquid-interactive relative h-8 min-w-[76px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-3 text-kicker font-medium text-text-secondary md:h-10 md:min-w-[98px] md:px-4 md:text-body transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
+      className="liquid-interactive relative h-7 min-w-[62px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-2.5 text-kicker font-medium text-text-secondary md:h-9 md:min-w-[84px] md:px-3.5 md:text-meta transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
     >
       {children}
     </button>

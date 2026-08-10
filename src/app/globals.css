@@ -220,10 +220,20 @@
    * tray and only a 174px dial — and the dial is the thing you drag on. The cap
    * is where the two stop competing.
    */
-  --slot-h: clamp(21px, calc(5.325vh - 9.25px), 32px);
-  --slot-h-base: clamp(24px, calc(5.917vh - 9.61px), 36px);
-  --slot-text: clamp(12px, calc(1.775vh + 1.92px), 16px);
-  --slot-text-base: clamp(13px, calc(2.367vh - 0.44px), 18px);
+  /*
+   * Trimmed a rung: the ramp is shallower and both caps come down ~3px.
+   *
+   * The comment above explains where the caps came from — past ~32px the grid
+   * starts winning space from the WHEEL. That was measured against the FULL
+   * grid, where every row is a word-shaped run of slots. Clue mode is now the
+   * default, and there the rows collapse to a single length chip each, so the
+   * tray needs far less height than the ramp was budgeting for it. What it
+   * gives back goes to the dial.
+   */
+  --slot-h: clamp(19px, calc(4.95vh - 9px), 29px);
+  --slot-h-base: clamp(22px, calc(5.5vh - 9.3px), 33px);
+  --slot-text: clamp(11px, calc(1.66vh + 1.8px), 15px);
+  --slot-text-base: clamp(12px, calc(2.2vh - 0.4px), 17px);
 
   /*
    * Type ramp — six named roles, in rem.
@@ -434,19 +444,19 @@
  */
 @media (min-width: 1280px) and (min-height: 1000px) {
   :root {
-    --slot-h: 44px;
-    --slot-h-base: 52px;
-    --slot-text: 22px;
-    --slot-text-base: 26px;
+    --slot-h: 40px;
+    --slot-h-base: 48px;
+    --slot-text: 20px;
+    --slot-text-base: 24px;
   }
 }
 
 @media (min-width: 768px) and (max-height: 800px) {
   :root {
-    --slot-h: 21px;
-    --slot-h-base: 24px;
-    --slot-text: 12px;
-    --slot-text-base: 13px;
+    --slot-h: 19px;
+    --slot-h-base: 22px;
+    --slot-text: 11px;
+    --slot-text-base: 12px;
   }
 }
 
