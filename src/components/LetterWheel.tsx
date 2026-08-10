@@ -280,15 +280,25 @@ export default function LetterWheel({
   const endDrag = useCallback(() => {
     armed.current = null;
     capturedId.current = null;
+    /*
+     * A MOUSE keeps its pointer after the button comes up; a finger does not.
+     *
+     * This cleared the cursor on every pointerup, so on desktop the puck
+     * vanished the instant you clicked a letter and only reappeared on the
+     * next mouse move — reading as the puck jumping around on click. On touch
+     * clearing is correct, because the finger has actually left the glass.
+     *
+     * `hovering` is the honest test: it is only ever set for a mouse.
+     */
     if (!dragging) {
       // A tap. Leave the selection alone — the click handler appends.
-      setCursor(null);
+      if (!hovering) setCursor(null);
       return;
     }
     setDragging(false);
-    setCursor(null);
+    if (!hovering) setCursor(null);
     onCommit();
-  }, [dragging, onCommit]);
+  }, [dragging, hovering, onCommit]);
 
   // A pointerup outside the wheel must still commit, or a word can be lost.
   useEffect(() => {
