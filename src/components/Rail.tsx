@@ -197,8 +197,13 @@ function Card({
   meta?: string;
   children: React.ReactNode;
 }) {
+  /*
+   * Panel radius, not card radius. These three sit directly on the page beside
+   * the board panel, which makes them its peers — they measured 16px against
+   * its 24px, which read as drift rather than hierarchy.
+   */
   return (
-    <section className="relative rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4 lg:p-3.5 short:p-3">
+    <section className="relative rounded-3xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4 lg:p-3.5 short:p-3">
       <div className="mb-3 flex items-baseline justify-between gap-3">
         <h2 className="text-item font-semibold text-text-primary">
           {title}

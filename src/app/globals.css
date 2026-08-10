@@ -165,6 +165,29 @@
    * which is reserved for done-ness, and it is nowhere near the warm golds the
    * palette bans.
    */
+  /*
+   * Radius by ROLE, not by taste.
+   *
+   * Measured across the built app, the corner radii were 24 / 16 / 12 / 8 with
+   * no rule connecting them — and the two things a player sees side by side on
+   * desktop, the board panel and the three rail panels, disagreed: 24 against
+   * 16. They are peers in the same two-column layout, so that difference was
+   * not hierarchy, it was drift.
+   *
+   * The ladder, top-level surface downwards:
+   *   panel  a surface that sits directly on the page background
+   *   card   a surface nested inside a panel
+   *   inset  a control-sized block inside a card
+   *   row    a list row
+   *
+   * A nested radius should always be smaller than its parent's, or the inner
+   * corner looks like it is bulging out of the outer one.
+   */
+  --radius-panel: 24px;
+  --radius-card: 16px;
+  --radius-inset: 12px;
+  --radius-row: 8px;
+
   --color-select: #e8934a;
   /* The letter ON a selected tile — inverted, because the tile is. */
   --color-select-ink: #12161a;
@@ -1075,3 +1098,29 @@ body {
  * mask is harmless when nothing scrolls: the bottom 28px is empty space, so
  * there is nothing there to fade.
  */
+
+/*
+ * Centre the board, but never above the top edge.
+ *
+ * The board column is `justify-content: center` from tablet up. When its
+ * content is TALLER than the column — an ordinary short-and-wide desktop
+ * window, 950x500 — centring overflows equally in both directions, so the rank
+ * line bled 25px above the panel's own border and the keyboard hint bled 25px
+ * below it. Both read as text colliding with the stroke, which is exactly what
+ * it was.
+ *
+ * `justify-content: safe center` is the textbook fix and it is NOT usable
+ * here: Lightning CSS drops the declaration silently, exactly as it once
+ * dropped a hand-written backdrop-filter in this same file. Verified by
+ * grepping the built stylesheet — zero occurrences, no warning.
+ *
+ * So the centring is gated on there being room for it instead. Above 700px
+ * tall the column fits and centres; below that it starts at the top and any
+ * overflow goes downwards only, where it is visible and scrollable rather than
+ * hidden behind the panel's own border.
+ */
+@media (min-width: 768px) and (min-height: 700px) {
+  .board-center {
+    justify-content: center;
+  }
+}
