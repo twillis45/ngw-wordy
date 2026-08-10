@@ -1,5 +1,27 @@
 # Eight questions from the cultural seat
 
+> **STATUS, 10 Aug 2026 — seven of eight answered.** Each answer changed the
+> catalogue rather than being ticked off:
+>
+> - **Q2 Sitcom Sunday** — answered *breather*. Renamed **Rerun Season**; the
+>   two clues that pulled toward Black canon (`dozens`, `single`) re-pointed.
+> - **Q3 90s R&B** — 25 boards with per-label scenes and named people: Sylvia
+>   Rhone, Missy Elliott, Kandi Burruss, Pebbles.
+> - **Q4 The Cookout's region** — rather than pick one and lose the rest, five
+>   regional packs: Pig Pickin', By the Pound, Tips and a Link, Gulf Coast West
+>   Coast, Which Island.
+> - **Q5 The salon** — the bench's highest-leverage single addition. Now **The
+>   Beauty Shop**, 23 boards, including Bernice Robinson and the Citizenship
+>   School.
+> - **Q6 HBCU band-forward** — de-centred across 26 boards; the band appears
+>   twice.
+> - **Q7 Who is it talking to** — the dignity finding is inverted: 580 clues
+>   carry she/her against 190 he/him.
+> - **Q8 Themed dailies** — confirmed intentional, and the daily now draws from
+>   the authored catalogue only.
+>
+> **Q1, the hallway, is still open and is the one only you can answer.**
+
 The seat reviewed all 5 themed packs, 10 puzzles and 59 clues, and blocked two
 of them **pending answers rather than guessing**. That refusal is the seat
 working: authoring someone's culture from the outside is exactly what it exists

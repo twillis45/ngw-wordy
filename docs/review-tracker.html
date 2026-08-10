@@ -946,28 +946,64 @@
         <article class="item is-you">
           <div class="stripe"></div>
           <div class="body">
-            <h3>Eight questions from the cultural seat</h3>
+            <h3>The cultural seat's eight questions — seven answered</h3>
             <p>
-              Whose 90s R&amp;B, which region's cookout, whether Sitcom Sunday is
-              meant to be Black canon or a deliberate breather. The seat blocked
-              two themes rather than guess. Deferred by your call.
+              The bench blocked two packs rather than guess at the author's own
+              life. Seven of the eight are now settled, and each one changed the
+              catalogue rather than just being ticked off:
             </p>
-            <div class="meta"><span class="chip you">Only you</span><span>cultural stays 4</span></div>
+            <p style="margin-top:8px">
+              <strong>Sitcom Sunday</strong> — answered <em>breather</em>, so it is
+              renamed <strong>Rerun Season</strong> and the two clues that pulled
+              toward Black canon were re-pointed.
+              <strong>90s R&amp;B</strong> — the pack had no point of view; it now
+              has 25 boards with per-label scenes and names attached (Sylvia Rhone,
+              Missy Elliott, Kandi Burruss, Pebbles).
+              <strong>The Cookout's region</strong> — rather than pick one and lose
+              the rest, five regional packs.
+              <strong>The salon</strong> — rated the highest-leverage single
+              addition; it did not exist, and is now 23 boards including the
+              Citizenship School material.
+              <strong>HBCU band-forward</strong> — de-centred across 26 boards.
+              <strong>Who is it talking to</strong> — the dignity finding is
+              inverted: 580 clues carry she/her against 190 he/him.
+              <strong>Themed dailies</strong> — confirmed as the point, and the
+              daily now draws from the authored catalogue only.
+            </p>
+            <p style="margin-top:8px">
+              <strong>Still open, and only you can answer it:</strong> the hallway.
+              <em>"Three framed in the hallway: Martin, Kennedy, and your
+              grandmother."</em> The canonical trio is MLK, JFK and Jesus — swapping
+              Jesus for your grandmother sands the church out of the most
+              church-shaped reference in Black domestic iconography. Deliberate, or
+              a hedge? The bench will not rewrite your family's hallway on a hunch.
+            </p>
+            <div class="meta">
+              <span class="chip you">1 of 8 left</span>
+              <span><code>data/THEME_QUESTIONS.md</code></span>
+              <span class="delta">cultural 4 → 9</span>
+            </div>
           </div>
         </article>
 
-        <article class="item is-blocked">
+        <article class="item is-done">
           <div class="stripe"></div>
           <div class="body">
-            <h3>The platform decision — this is what caps the surface</h3>
+            <h3>The platform decision — made: web first</h3>
             <p>
-              Web-first is chosen, so the store wing should be rescored as web
-              production readiness. Reaching the stores later means a Capacitor
-              shell plus native haptics, notifications, a widget and Game Center
-              to clear Apple's 4.2 bar — roughly 6–10 weeks, with approval not
-              guaranteed on first submission.
+              This was scored as the cap on the surface because a store build is
+              roughly 29 engineering days and the board would not rate a web app
+              against store criteria it had not chosen to meet. The decision was
+              taken: <strong>drive the web build to 9–10 first, defer the stores.</strong>
+              Everything since has been scored on that basis, and the store-facing
+              work that was cheap to do anyway is done — privacy, terms and support
+              routes exist, the manifest carries an id, and the icon set includes a
+              maskable variant.
             </p>
-            <div class="meta"><span class="chip blocked">Decision</span><span>~29 engineering days if pursued</span></div>
+            <div class="meta">
+              <span class="chip done">Decided</span>
+              <span>stores deferred, not abandoned</span>
+            </div>
           </div>
         </article>
 
@@ -1099,17 +1135,27 @@
           </div>
         </article>
 
-        <article class="item is-now">
+        <article class="item is-done">
           <div class="stripe"></div>
           <div class="body">
-            <h3>Put a clue on the share card — the highest-leverage 2 hours</h3>
+            <h3>The share card carries a clue</h3>
             <p>
-              The card emits spoiler-free Wordle tiles. But Wordle's secret was the
-              answer; yours is <em>the line</em>. Right now the moat is invisible from
-              outside the app, so the writing — the only thing with pricing power —
-              never leaves it. A share carrying a clue is a thing a person posts.
+              Wordle's secret was the answer; ours is the line — so a spoiler-free
+              grid of tiles left the only thing with pricing power invisible from
+              outside the app. The card now leads with the theme and a quoted clue
+              from a row the player actually <em>solved</em>, so it can never be a
+              spoiler, and the code says why it sits above the tiles: a reader
+              scanning a feed sees the first line and nothing else.
             </p>
-            <div class="meta"><span class="chip now">Next</span><span>~2 h</span><span><code>game.ts:355</code></span></div>
+            <p style="margin-top:8px">
+              <code>Wordy — Family Reunion · Fluent</code><br>
+              <em>"The Chicago side has it this year, and the program lists all six
+              in the order they went north."</em>
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span><span><code>game.ts:526</code></span>
+              <span class="delta">the writing now leaves the app</span>
+            </div>
           </div>
         </article>
 
@@ -1153,29 +1199,26 @@
         <p class="note">These cannot be closed from the code side.</p>
       </div>
       <div class="grid2">
+        
         <article class="item is-you">
           <div class="stripe"></div>
           <div class="body">
-            <h3>Eight questions from the cultural seat</h3>
+            <h3>A real device for haptics — the code half is closed</h3>
             <p>
-              Whose 90s R&amp;B? Which region's cookout? Is Sitcom Sunday meant to be
-              Black canon or a deliberate breather? The seat refused to guess, and
-              blocked two themes pending answers. Deferred by your call — the wing
-              stays at 4 until it is picked up.
+              "Unverifiable without hardware" was half true, and the half that was
+              checkable was wrong: each signal was handed to Android and iOS
+              separately and six of eight disagreed, so on Android
+              <code>bonus</code> was a single pulse — identical to <code>tap</code>
+              — and <code>correct</code> matched <code>duplicate</code>. Reward and
+              error shared a rhythm. Both platforms now derive from one rhythm and
+              six tests hold the invariant. What is left genuinely needs a hand:
+              whether the vocabulary is legible through a phone case, and whether
+              the iOS tick trick fires more than its first tick.
             </p>
-            <div class="meta"><span class="chip you">Deferred</span></div>
-          </div>
-        </article>
-        <article class="item is-you">
-          <div class="stripe"></div>
-          <div class="body">
-            <h3>A real device for haptics</h3>
-            <p>
-              The iOS haptic trick may only fire its first tick — the one inside the
-              user gesture. If so the whole vocabulary collapses to one buzz and iOS
-              haptics need Core Haptics, i.e. a native shell. Not testable headless.
-            </p>
-            <div class="meta"><span class="chip you">Needs hardware</span></div>
+            <div class="meta">
+              <span class="chip you">Only you</span><span>feel 9 → 10</span>
+              <span><code>feedback.test.ts</code></span>
+            </div>
           </div>
         </article>
       </div>
