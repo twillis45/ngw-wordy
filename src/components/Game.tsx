@@ -529,6 +529,13 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * one can be fetched. No spinner in front of content the player could already
    * be reading — the only wait is when there is no floor to show.
    */
+  /*
+   * The clue this board wrote for the word, when there is one. Authored clues
+   * only exist on themed boards, so this is null on the free-practice set and
+   * the sheet falls back to the dictionary alone.
+   */
+  const themedClue = showDef ? (puzzle.clues?.[showDef.word] ?? null) : null;
+
   const openDefinition = useCallback(
     (word: string) => {
       const entry = lookup(defs, word);
@@ -543,7 +550,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           if (modern) return modern;
           if (current) return current;
           // No floor and no upgrade — say so rather than leaving a blank sheet.
-          return { word, definition: '', source: 'archaic' };
+          return { word, definition: '', source: 'bundled' };
         });
       });
     },
@@ -1190,7 +1197,34 @@ export default function Game({ data }: { data: PuzzleFile }) {
               </p>
             )}
 
-            <p className="mt-3 text-body leading-relaxed text-text-secondary">
+            {/*
+              On a themed board the AUTHORED line comes first, because that is
+              what the word means HERE. A player who taps `cane` on a 90s R&B
+              board and gets "a stick that people can lean on to help them walk"
+              has been handed a fact about English, not about the thing they
+              just solved — and the authored line is the entire reason the
+              themed catalogue is worth anything. The dictionary sense stays
+              underneath, demoted, for the players who wanted the word itself.
+            */}
+            {themedClue && (
+              <div className="mt-3 rounded-2xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-3.5">
+                {puzzle.theme && (
+                  <p className="text-kicker uppercase tracking-[0.16em] text-text-muted">
+                    In {puzzle.theme.name}
+                  </p>
+                )}
+                <p className="mt-1 text-body leading-relaxed text-text-primary">
+                  {themedClue}
+                </p>
+              </div>
+            )}
+
+            <p
+              className={[
+                'text-body leading-relaxed text-text-secondary',
+                themedClue ? 'mt-3 text-meta' : 'mt-3',
+              ].join(' ')}
+            >
               {showDef?.definition
                 ? showDef.definition
                 : defUpgrading
@@ -1202,10 +1236,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 a fact about the source, not a bug to hide. */}
             {showDef?.definition && (
               <p className="mt-3 text-meta text-text-muted">
-                {showDef.source === 'modern'
-                  ? 'Modern dictionary'
-                  : "Webster's Unabridged, 1913"}
-                {defUpgrading && showDef.source === 'archaic'
+                {showDef.source === 'modern' ? 'Modern dictionary' : 'WordNet'}
+                {defUpgrading && showDef.source === 'bundled'
                   ? ' · checking for a newer one…'
                   : ''}
               </p>

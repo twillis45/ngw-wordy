@@ -24,7 +24,14 @@ import { withBase } from './basePath';
 export type Entry = [definition: string, lemma?: string];
 export type Definitions = Record<string, Entry>;
 
-export type Source = 'modern' | 'archaic';
+/*
+ * 'bundled' was called 'archaic' when the bundle WAS Webster 1913. It is
+ * WordNet now — modern, lexicographer-curated — so the old name described the
+ * source's age rather than its role, and the UI was still printing "Webster's
+ * Unabridged, 1913" underneath a WordNet gloss. The distinction that actually
+ * matters is offline-and-shipped versus fetched.
+ */
+export type Source = 'modern' | 'bundled';
 
 export type Resolved = {
   word: string;
@@ -217,6 +224,6 @@ export function fromBundled(word: string, entry: Entry): Resolved {
     word,
     definition: entry[0],
     lemma: entry[1],
-    source: 'archaic',
+    source: 'bundled',
   };
 }
