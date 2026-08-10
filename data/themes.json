@@ -3873,6 +3873,329 @@
         "aide",
         "lard"
       ]
+    },
+    {
+      "base": "chapel",
+      "theme": "hbcu",
+      "clues": {
+        "chapel": "Tuesday morning, required, and the registrar counts heads from the back row.",
+        "place": "Third row left. Nobody assigned it, and by October it is yours.",
+        "heal": "What the choir director says the ten quiet minutes before class are for.",
+        "plea": "The letter you write the dean of students. One page, no excuses.",
+        "each": "One by one, the way the president learns names at a school of nine hundred.",
+        "ache": "What the folding seats leave in your back by the benediction."
+      },
+      "prefer": [
+        "place",
+        "heal",
+        "plea",
+        "each",
+        "ache"
+      ]
+    },
+    {
+      "base": "denial",
+      "theme": "hbcu",
+      "clues": {
+        "denial": "The letter from financial aid in March, and the appeal you file by Friday.",
+        "nailed": "Her thesis defense. The committee had no follow-up questions.",
+        "dean": "She knows your mother's maiden name and your registration hold, both.",
+        "ideal": "The four-year plan on the advising sheet, before the class got cancelled.",
+        "idea": "What the professor makes you defend out loud before she grants it.",
+        "lend": "The graphing calculator that moved through four rooms in one night."
+      },
+      "prefer": [
+        "nailed",
+        "dean",
+        "ideal",
+        "idea",
+        "lend"
+      ]
+    },
+    {
+      "base": "danger",
+      "theme": "hbcu",
+      "clues": {
+        "danger": "The 1 a.m. alert text everybody screenshots and nobody quite believes.",
+        "garden": "The plot behind the ag building she has kept going since 1998.",
+        "grade": "Posted by ID number on the office door, and you count down the list.",
+        "range": "How far the tuba carries across the practice field at seven.",
+        "nerd": "The one who reset the printer for the whole floor and got no thanks.",
+        "read": "Forty pages before Thursday, and she opens with a pop quiz."
+      },
+      "prefer": [
+        "garden",
+        "grade",
+        "range",
+        "nerd",
+        "read"
+      ]
+    },
+    {
+      "base": "pasted",
+      "theme": "hbcu",
+      "clues": {
+        "pasted": "Four layers of flyers on the same pole, and the top one is from October.",
+        "taped": "The lecture she recorded on her phone because the woman talks fast.",
+        "past": "Everything before you got here, which the mural in the union insists on.",
+        "step": "Yard show footwork, learned in a basement at 2 a.m. with the lights low.",
+        "seat": "Saved with a backpack in the caf, and defended.",
+        "date": "The registrar set it, and nobody's excuse moves it."
+      },
+      "prefer": [
+        "taped",
+        "past",
+        "step",
+        "seat",
+        "date"
+      ]
+    },
+    {
+      "base": "stance",
+      "theme": "hbcu",
+      "clues": {
+        "stance": "How she holds herself at the front of the line, still, before the first move.",
+        "scent": "Shea butter and press oil in the elevator of the women's dorm.",
+        "cane": "Painted, wrapped, and never set down where somebody could touch it.",
+        "cast": "The whole department showed for the fall play, professors in row two.",
+        "neat": "How the ironing board in the hall stays busy the night before an interview.",
+        "cent": "Counted twice at the campus store when the meal plan runs out."
+      },
+      "prefer": [
+        "scent",
+        "cane",
+        "cast",
+        "neat",
+        "cent"
+      ]
+    },
+    {
+      "base": "binder",
+      "theme": "hbcu",
+      "clues": {
+        "binder": "Three rings, tabbed by week, and she has not lost a page since freshman year.",
+        "diner": "The place off campus open at 3, where the argument finally finishes.",
+        "bird": "The mascot suit, and only two people on this whole campus know who is in it.",
+        "bred": "Third generation here, and the building still remembers her grandmother.",
+        "ride": "Text the group chat Thursday, split the gas, four hours home.",
+        "red": "The ink she uses, and there is always more of it than you hoped."
+      },
+      "prefer": [
+        "diner",
+        "bird",
+        "bred",
+        "ride",
+        "red"
+      ]
+    },
+    {
+      "base": "bridge",
+      "theme": "hbcu",
+      "clues": {
+        "bridge": "The walkway between the science hall and the library, crossed at 2 a.m.",
+        "ridge": "The long climb up from the first-year dorms. Nobody warns you about it.",
+        "grid": "The practice field chalked out, and the flag corps counting yardage.",
+        "bide": "What you do in the aid office line with a full battery and low hopes.",
+        "dig": "What the archives assistant lets you do in the basement boxes.",
+        "rib": "The gentle kind, from the professor who taught your mother."
+      },
+      "prefer": [
+        "ridge",
+        "grid",
+        "bide",
+        "dig",
+        "rib"
+      ]
+    },
+    {
+      "base": "housed",
+      "theme": "hbcu",
+      "clues": {
+        "housed": "Assigned by lottery in April, and the email lands at midnight.",
+        "house": "Not a building. The six of you on the third floor who cook together.",
+        "shoe": "Wiped at the door before the yard photo, every single time.",
+        "dues": "The chapter treasurer takes them by app now, and she posts who is behind.",
+        "used": "The ninety-dollar edition, four names already written inside the cover.",
+        "shed": "Where facilities keeps the folding chairs for every event on the yard."
+      },
+      "prefer": [
+        "house",
+        "shoe",
+        "dues",
+        "used",
+        "shed"
+      ]
+    },
+    {
+      "base": "sundae",
+      "theme": "hbcu",
+      "clues": {
+        "sundae": "Soft serve at the end of the caf line, built in a paper cup.",
+        "sedan": "Parked crooked outside the library, hazards on, engine still running.",
+        "sane": "What the walk around the track at midnight is actually for.",
+        "send": "What the professor says about your draft at 11:58 p.m.",
+        "sand": "The court behind the rec, where intramurals go when the gym is booked.",
+        "sun": "Already hot at eight, and the class is all the way across campus."
+      },
+      "prefer": [
+        "sedan",
+        "sane",
+        "send",
+        "sand",
+        "sun"
+      ]
+    },
+    {
+      "base": "amends",
+      "theme": "hbcu",
+      "clues": {
+        "amends": "What you make with your roommate before the housing form is due.",
+        "named": "The building carries her, and the plaque explains why in four sentences.",
+        "mean": "What the average has to be for the scholarship to renew in the fall.",
+        "mend": "What the tailor two blocks off campus does for eight dollars.",
+        "made": "The dean's list, and the way your grandmother says it on the phone.",
+        "send": "What the registrar will not do with your transcript until the balance clears."
+      },
+      "prefer": [
+        "named",
+        "mean",
+        "mend",
+        "made",
+        "send"
+      ]
+    },
+    {
+      "base": "agency",
+      "theme": "hbcu",
+      "clues": {
+        "agency": "Whose office you call about the grant, and she picks up on the second ring.",
+        "cagey": "How the roommate gets when you ask her who she was with.",
+        "cage": "The batting one behind the field house, free with a school ID.",
+        "acne": "What the health center hands you something for, without a lecture.",
+        "age": "Twenty-six in a first-year seminar, and the only one doing the reading.",
+        "yen": "The pull toward home around week nine, when nothing has gone wrong exactly."
+      },
+      "prefer": [
+        "cagey",
+        "cage",
+        "acne",
+        "age",
+        "yen"
+      ]
+    },
+    {
+      "base": "canter",
+      "theme": "hbcu",
+      "clues": {
+        "canter": "The riding program at the land-grant school, and the 6 a.m. barn shift.",
+        "cater": "What the alumnae chapter pays somebody to do for the scholarship luncheon.",
+        "crate": "Milk one, flipped over, holding up the speaker out on the yard.",
+        "rent": "Due the first, and the off-campus apartment does not wait on your refund.",
+        "ante": "What the study group raises the week finals start.",
+        "tear": "The gown at the fitting, and the seamstress fixes it in ten minutes."
+      },
+      "prefer": [
+        "cater",
+        "crate",
+        "rent",
+        "ante",
+        "tear"
+      ]
+    },
+    {
+      "base": "ardent",
+      "theme": "hbcu",
+      "clues": {
+        "ardent": "How she talks about this school to anybody who will sit still for it.",
+        "trade": "Two shifts at the caf swapped over text, no manager involved.",
+        "tread": "Worn off the marble stairs by a hundred years of the same climb.",
+        "trend": "What the yard picks up on Monday and is finished with by Friday.",
+        "dent": "In the door of the car she drove all four years and still has.",
+        "rate": "What the credit union on the corner offers, in writing, no table required."
+      },
+      "prefer": [
+        "trade",
+        "tread",
+        "trend",
+        "dent",
+        "rate"
+      ]
+    },
+    {
+      "base": "advent",
+      "theme": "hbcu",
+      "clues": {
+        "advent": "The wreath up front, one candle a week, and the choir rehearsing at seven.",
+        "vent": "What the third-floor lounge is for the night grades post.",
+        "tend": "What the campus minister does, quietly, for the ones who stopped calling home.",
+        "van": "Fifteen seats, the choir tour, and the sign-out sheet in her office.",
+        "tea": "Poured in real cups when the honors society inducts, and you dress for it.",
+        "den": "The lounge with the TV nobody controls and the couch everybody claims."
+      },
+      "prefer": [
+        "vent",
+        "tend",
+        "van",
+        "tea",
+        "den"
+      ]
+    },
+    {
+      "base": "byline",
+      "theme": "hbcu",
+      "clues": {
+        "byline": "Your name in ten-point type over four hundred words on the parking policy.",
+        "line": "Out the door of the business office on the first of the month.",
+        "bye": "The week the schedule gives back, and the coach calls practice anyway.",
+        "lie": "What the attendance policy is, right up until the morning she checks.",
+        "nil": "The balance you are chasing, and the only number that clears the hold.",
+        "bin": "Blue, by the mailroom, where the extra copies of the paper end up."
+      },
+      "prefer": [
+        "line",
+        "bye",
+        "lie",
+        "nil",
+        "bin"
+      ]
+    },
+    {
+      "base": "rained",
+      "theme": "hbcu",
+      "clues": {
+        "rained": "Every year on outdoor convocation, and the tent goes up at six anyway.",
+        "drain": "What the walk from the far lot in August does to a fresh press.",
+        "rain": "Nobody moves. The drumline finishes the cadence in it.",
+        "near": "The dorm two minutes from your eight o'clock, which you did not get.",
+        "arid": "August in Texas, and the window unit in the old hall is losing.",
+        "rein": "What the adviser hands over once she trusts you with the budget."
+      },
+      "prefer": [
+        "drain",
+        "rain",
+        "near",
+        "arid",
+        "rein"
+      ]
+    },
+    {
+      "base": "dancer",
+      "theme": "hbcu",
+      "clues": {
+        "dancer": "Modern technique at eight, and she is the only one already warm.",
+        "dance": "Not the party. The class, barefoot, in the old gym with the good floor.",
+        "cedar": "The chest at the foot of the bed, sent from home with everything folded.",
+        "care": "What the housekeeper on your floor takes of forty people, by name.",
+        "acre": "The whole campus, and you can cross it in nine minutes flat.",
+        "earn": "Twelve hours a week in the library, applied straight to the bill."
+      },
+      "prefer": [
+        "dance",
+        "cedar",
+        "care",
+        "acre",
+        "earn"
+      ]
     }
   ]
 }

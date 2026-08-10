@@ -154,3 +154,62 @@ describe('shipped puzzle content', () => {
     expect(BLOCKLIST.size).toBeGreaterThan(100);
   });
 });
+
+/**
+ * Defects that shipped past this suite once, and must not again.
+ */
+describe('regressions', () => {
+  it('never ships two puzzles built on the same letters', () => {
+    /*
+     * A base is only ever six letters on a dial, so anagrams are the same
+     * puzzle wearing a different name. Authoring produced mantle / mantel /
+     * mental / lament as four separate boards, sacred / scared as two, and
+     * pagers / grapes as two — six wasted boards, each caught only after its
+     * clues were written.
+     */
+    const byLetters = new Map<string, string[]>();
+    for (const p of file.puzzles) {
+      const key = [...p.base].sort().join('');
+      byLetters.set(key, [...(byLetters.get(key) ?? []), p.base]);
+    }
+    const clashes = [...byLetters.values()].filter((v) => v.length > 1);
+    expect(clashes, `same wheel twice: ${JSON.stringify(clashes)}`).toEqual([]);
+  });
+
+  it('never ships a clue that stops before it says what the word is', () => {
+    /*
+     * 44 of 984 generated clues once ended on a function word, because the
+     * gloss lost its object upstream: "hanged as a spy by the.", "The basic
+     * unit of money in." Unanswerable, and they read as breakage rather than
+     * difficulty.
+     */
+    const dangling =
+      /\b(by|of|the|a|an|in|on|to|for|with|and|or|from|that|which|as|at|is|was|were|into|upon|than)\s*\.?\s*$/i;
+    const bad: string[] = [];
+    for (const p of file.puzzles) {
+      for (const [word, clue] of Object.entries(p.clues ?? {})) {
+        if (!p.theme && dangling.test(clue)) bad.push(`${word}: ${clue}`);
+      }
+    }
+    expect(bad.slice(0, 5), `${bad.length} truncated clues`).toEqual([]);
+  });
+
+  it('never lets an authored clue contain its own answer', () => {
+    /*
+     * Authored clues bypass redactAnswer entirely — they are trusted as
+     * written — so the only thing standing between a typo and a board that
+     * gives itself away is this check.
+     */
+    const leaks: string[] = [];
+    for (const p of file.puzzles) {
+      if (!p.theme) continue;
+      for (const [word, clue] of Object.entries(p.clues ?? {})) {
+        const stem = word.slice(0, 4);
+        if (stem.length >= 3 && new RegExp(stem, 'i').test(clue)) {
+          leaks.push(`${p.base}/${word}: ${clue}`);
+        }
+      }
+    }
+    expect(leaks.slice(0, 5), `${leaks.length} clues leak their answer`).toEqual([]);
+  });
+});
