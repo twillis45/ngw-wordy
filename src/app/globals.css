@@ -414,8 +414,15 @@
  * sits beside the board and the controls have to fit under it). Height alone
  * cannot see that; width is what distinguishes it, so it is pinned here.
  */
-/* Roomy screens: let the board grow instead of the empty margin. */
-@media (min-width: 1280px) and (min-height: 860px) {
+/*
+ * Roomy screens: let the board grow instead of the empty margin.
+ *
+ * Gated at 1000px tall, not 860. At 1440x900 the bigger slots took the tray to
+ * 360px and left the DIAL 167px — the grid more than twice the size of the
+ * thing you actually drag on. A big screen should grow both, and when it can
+ * only grow one, the interaction surface wins.
+ */
+@media (min-width: 1280px) and (min-height: 1000px) {
   :root {
     --slot-h: 44px;
     --slot-h-base: 52px;

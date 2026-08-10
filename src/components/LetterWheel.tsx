@@ -27,7 +27,22 @@ type Props = {
  */
 const RADIUS = 36; // % of container, center to a tile's center
 const TILE = 21.2; // % of container
-const HIT = 13; // % from a tile center that counts as "on" it
+/*
+ * Selection radius — deliberately matched to where the pointer LOOKS committed.
+ *
+ * This was 13 while positional attraction starts at PULL (21), so between 13
+ * and 21 the glass pointer was drawn most of the way onto a tile — at 14% away
+ * it is ~93% of the way there, visually merged with the letter — and a click
+ * still did nothing. On desktop, where the OS cursor is hidden and the glass
+ * pointer IS your cursor, that is not "tuning": you aim with the pointer, the
+ * pointer says you are on the letter, and the game disagrees. It reads as taps
+ * not registering.
+ *
+ * 15 is where the pull curve crosses ~0.85, i.e. where it starts looking
+ * committed. Tiles sit 36% apart at six letters, so anything up to 18 is still
+ * unambiguous — there is forgiveness available here and it was not being spent.
+ */
+const HIT = 15; // % from a tile center that counts as "on" it
 
 /**
  * iPadOS pointer geometry.
@@ -53,8 +68,15 @@ const MAGNET = 16; // % — where the SHAPE starts to morph
  * anything changes shape.
  */
 const PULL = 21; // % — where positional attraction begins
-const PULL_BITE = 1.7; // >1 = weak at the edge, sharply stronger near the tile
-const FREE = 11; // % — diameter of the untargeted pointer
+const PULL_BITE = 1.7;
+/** Ceiling on attraction OUTSIDE the selection radius — see `pull` below. */
+const PULL_CAP = 0.66; // >1 = weak at the edge, sharply stronger near the tile
+/*
+ * The untargeted pointer reads as a lens over the board, so it has to be big
+ * enough to feel like it could hold a letter. At 11 it was half a tile — a dot,
+ * not a lens.
+ */
+const FREE = 15; // % — diameter of the untargeted pointer
 const TILE_RADIUS_PCT = 28; // rounded-2xl on a tile, as % of tile size
 /**
  * How far the pointer must travel before a press counts as a drag, in % of
@@ -275,9 +297,22 @@ export default function LetterWheel({
       return { x: cursor.x, y: cursor.y, size: FREE, radius: 50, target: -1, t: 0, pull: 0 };
     }
 
-    // Positional attraction: begins early, bites hard as you close in.
+    /*
+     * Positional attraction: begins early, bites hard as you close in — but is
+     * CAPPED outside the selection radius.
+     *
+     * Without the cap the pointer reached ~0.88 of the way onto a tile it would
+     * refuse to select, so it visually merged with a letter that was not
+     * actually yours. On desktop the OS cursor is hidden and this glass shape
+     * IS the cursor, so that is the pointer lying about where you are — the
+     * clicks-do-nothing complaint.
+     *
+     * Now the pull reads honestly: outside the radius it says "being drawn
+     * toward", and only inside does it say "on it".
+     */
     const pRaw = Math.min(1, (PULL - best) / (PULL - HIT));
-    const pull = Math.pow(pRaw * pRaw * (3 - 2 * pRaw), PULL_BITE);
+    const eased = Math.pow(pRaw * pRaw * (3 - 2 * pRaw), PULL_BITE);
+    const pull = best <= HIT ? 1 : Math.min(eased, PULL_CAP);
 
     // Shape: unchanged until you're genuinely near, then fully committed
     // anywhere on the tile.
@@ -291,7 +326,10 @@ export default function LetterWheel({
       // Position follows the stronger curve — that is the magnetism you feel.
       x: at(cursor.x, positions[nearest].x, pull),
       y: at(cursor.y, positions[nearest].y, pull),
-      size: at(FREE, TILE, t),
+      // Slightly larger than the tile so the committed state visibly
+      // ENCOMPASSES the whole letter rather than sitting exactly on top of it,
+      // which reads as a coincidence rather than a lock.
+      size: at(FREE, TILE * 1.14, t),
       radius: at(50, TILE_RADIUS_PCT, t),
       target: nearest,
       t,
