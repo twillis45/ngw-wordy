@@ -213,3 +213,41 @@ describe('regressions', () => {
     expect(leaks.slice(0, 5), `${leaks.length} clues leak their answer`).toEqual([]);
   });
 });
+
+describe('authored clue corpus', () => {
+  const authored = JSON.parse(
+    readFileSync(path.join(process.cwd(), 'data', 'themes.json'), 'utf8')
+  ) as { puzzles: { base: string; theme: string; clues: Record<string, string> }[] };
+
+  it('never uses the same clue text on two different boards', () => {
+    /*
+     * Two clues shipped verbatim on two boards each — the reunion treasurer's
+     * shirt order and an R&B bridge — because a board authored as a
+     * replacement inherited a line from the board it replaced. A player who
+     * reaches both sees the game repeat itself, which reads as a smaller
+     * catalogue than it is.
+     */
+    const seen = new Map<string, string>();
+    const dupes: string[] = [];
+    for (const p of authored.puzzles) {
+      for (const [word, clue] of Object.entries(p.clues)) {
+        const key = clue.toLowerCase().replace(/[^a-z ]/g, '').trim();
+        const where = `${p.theme}/${p.base}/${word}`;
+        if (seen.has(key)) dupes.push(`${seen.get(key)} == ${where}`);
+        else seen.set(key, where);
+      }
+    }
+    expect(dupes, `${dupes.length} duplicated clues`).toEqual([]);
+  });
+
+  it('does not fall into one sentence shape', () => {
+    /*
+     * Six clues that all open "What ..." read as a machine rather than a
+     * voice. The authoring contract caps that shape at roughly a third; this
+     * is the check that the cap held across 1,798 clues written by many hands.
+     */
+    const clues = authored.puzzles.flatMap((p) => Object.values(p.clues));
+    const what = clues.filter((c) => /^what\b/i.test(c)).length;
+    expect(what / clues.length, 'share of clues opening "What"').toBeLessThan(0.34);
+  });
+});
