@@ -57,7 +57,23 @@ export const EMPTY: Progress = Object.freeze({
   bonusTotal: 0,
   spent: 0,
   muted: false,
-  clueMode: false,
+  /*
+   * ON by default, for exactly the same reason `escalating` is.
+   *
+   * The catalogue is 371 themed boards carrying 2,224 hand-written clues, and
+   * it is the only part of this product with pricing power. With clue mode off,
+   * a player sees none of it: the board renders as rows of blank tiles, the
+   * theme contributes a name and nothing else, and every authored line — the
+   * price she set in 2019, the nine trustees, the census that lists a number
+   * and an age and no name — sits behind a toggle in a settings sheet.
+   *
+   * A first-time player was therefore shown the game's weakest version by
+   * default: six letters, twenty-seven blanks, and no statement of what the
+   * blanks are. That is the "goal comprehension" failure the onboarding wing
+   * scored a 2 for, and it is the same mistake `escalating` had — the
+   * interesting version should be the one you turn OFF.
+   */
+  clueMode: true,
   /*
    * ON by default.
    *

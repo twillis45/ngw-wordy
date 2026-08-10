@@ -51,7 +51,6 @@ import {
 import {
   activeLetters,
   RANK_BASIS,
-  RANKS,
   clueTarget,
   isReachable,
   dailyIndex,
@@ -998,9 +997,12 @@ export default function Game({ data }: { data: PuzzleFile }) {
               <>
             {/* Rendered per modality in CSS rather than from a measured
                 pointer type, so it is correct before hydration. */}
-            <span className="mouse:hidden">Drag across the letters</span>
+            {/* Says WHAT to do, not only how. "Drag across the letters" is a
+                gesture instruction that assumes the player already knows what
+                they are trying to make. */}
+            <span className="mouse:hidden">Drag letters to spell a word</span>
             <span className="hidden mouse:inline">
-              Click the letters, or just type
+              Click letters to spell a word, or type it
             </span>
               </>
             )}
@@ -1457,41 +1459,33 @@ function Intro({ onDismiss }: { onDismiss: () => void }) {
     >
       <div className="anim-rise relative w-full max-w-[360px] rounded-3xl border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-6">
         <p className="text-meta uppercase tracking-[0.16em] text-text-muted">
-          How you&apos;re scored
+          How to play
         </p>
         <h2 className="mt-1.5 text-title font-bold leading-tight text-text-primary">
-          Find as much of the puzzle as you can
+          Six letters. Spell the six words.
         </h2>
         <p className="mt-2 text-body leading-relaxed text-text-secondary">
-          {RANK_BASIS} The six rows are the targets — every extra word still
-          counts, and climbs the ladder.
+          Every word uses only the letters on the wheel. Each row is one word,
+          and the row tells you how long it is. Drag across the letters, or type.
+        </p>
+        <p className="mt-2 text-body leading-relaxed text-text-secondary">
+          Stuck on a row? Tap it for a hint. Any other word you find still
+          counts.
         </p>
 
-        <ol className="mt-4 flex flex-col gap-1.5">
-          {RANKS.map((r, i) => (
-            <li key={r.name} className="flex items-center gap-3 text-body">
-              <span
-                aria-hidden
-                className={[
-                  'h-1.5 w-1.5 shrink-0 rounded-full',
-                  i === 0 ? 'bg-edge' : 'bg-edge-hairline',
-                ].join(' ')}
-              />
-              <span
-                className={
-                  i === 0
-                    ? 'flex-1 font-semibold text-text-primary'
-                    : 'flex-1 text-text-secondary'
-                }
-              >
-                {r.name}
-              </span>
-              <span className="text-meta tabular-nums text-text-muted">
-                {Math.round(r.at * 100)}%
-              </span>
-            </li>
-          ))}
-        </ol>
+        {/*
+          The seven-rung rank ladder used to be the body of this dialog, with a
+          percentage against each rung. It was answering a question a
+          first-timer has not asked yet — they do not know what the game IS, so
+          "Genius, 70%" is noise, and the one thing they needed (each row is a
+          word made from these letters) was nowhere on screen.
+
+          The ladder is still discoverable: it is drawn on the rank bar, and the
+          progress sheet spells it out. Here it gets one line.
+        */}
+        <p className="mt-4 border-t border-edge-hairline pt-4 text-meta leading-relaxed text-text-muted">
+          {RANK_BASIS}
+        </p>
 
         {/* A real button, not just "tap anywhere". The overlay-as-target is
             fine for a pointer and useless without one: it was a non-focusable

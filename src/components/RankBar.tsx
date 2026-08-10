@@ -29,7 +29,18 @@ export default function RankBar({ rank, score }: { rank: Rank; score: number }) 
         </span>
         <span className="text-meta tabular-nums text-text-muted">
           <span className="font-semibold text-text-secondary">{score}</span> pts
-          {rank.next ? ` · ${rank.pointsToNext} to ${rank.next}` : ' · maxed'}
+          {/*
+            "0 pts · 2 to Solid" was the first line a new player read, and every
+            term in it is internal: Solid is a rank they have not been told
+            about, and the distance to it is measured in points they have not
+            been told how to earn. Until the first word lands there is nothing
+            to track, so the slot says what the board is actually for instead.
+          */}
+          {score === 0
+            ? ' · fill the six rows'
+            : rank.next
+              ? ` · ${rank.pointsToNext} to ${rank.next}`
+              : ' · maxed'}
         </span>
       </div>
 
