@@ -1066,19 +1066,36 @@
           </div>
         </article>
 
-        <article class="item is-blocked">
+        <article class="item is-done">
           <div class="stripe"></div>
           <div class="body">
-            <h3>The day-241 wrap starts on day two</h3>
+            <h3>The day-241 wrap — closed, re-opened by me, closed again</h3>
             <p>
-              <code>dailyIndex</code> is <code>epochDay % 240</code> and found words
-              are keyed by puzzle id — so the wrap serves a solved board. But the
-              theme picker already lets a player jump to any index, and the 10 themed
-              puzzles are exactly the ones they will seek out first. Every one is
-              scheduled to return as a "daily". Fix: cycle-key found words, then make
-              the daily walk forward to the first uncleared puzzle.
+              The fix is what the board specified: found words are keyed by
+              puzzle <em>and by lap</em>, and the daily walks forward to the first
+              uncleared board instead of serving the raw seed. The engine comment
+              still states the finding in the board's own terms — it is called a
+              day-241 problem but starts on day <strong>two</strong>, because the
+              theme picker reaches any board and every one a player clears is
+              scheduled to return as a "daily" they have already solved.
             </p>
-            <div class="meta"><span class="chip next">1 day</span><span><code>game.ts:326</code> <code>storage.ts:24</code></span></div>
+            <p style="margin-top:8px">
+              It then broke again, today, from a different change. Narrowing the
+              daily to the authored catalogue took the rotation from 520 boards to
+              397 — but the lap counter still counted laps of all 520. A player
+              who cleared the catalogue would be handed their own solved boards
+              for <strong>up to 123 days</strong> before the counter ticked over
+              and gave them fresh keys. Same bug, different numbers.
+              <code>dailyPoolSize</code> is now the single definition used by both
+              the rotation and the counter, because two things that must agree
+              should not each keep their own copy of the value. A test asserts
+              they agree.
+            </p>
+            <div class="meta">
+              <span class="chip done">Closed</span>
+              <span><code>game.ts</code> <code>storage.ts</code></span>
+              <span class="delta">solved-board window 123 days → 0</span>
+            </div>
           </div>
         </article>
 
