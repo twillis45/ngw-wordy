@@ -713,6 +713,31 @@
 
 
 
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>The dial stopped moving, and a picked letter now looks picked</h3>
+            <p>
+              The slot above the wheel carried <code>h-11</code> and a comment
+              calling it a fixed height. It was not one — it is a flex item in a
+              constrained column, so flexbox shrank it to its content: 18px
+              empty, 32px holding a letter. Picking your first letter grew it
+              14px and pushed the dial 14px down the screen, under your thumb,
+              mid-gesture. <code>shrink-0</code> reserves the space; verified by
+              driving a selection at three viewports, wheel top now identical
+              across empty, one letter and three. Separately, the selected fill
+              was steel-dark at 85% — over dark glass that resolves to #38515e,
+              a few steps off a resting tile, so the ring was doing all the
+              work. Solid steel now, 5.16:1 against the letter.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span><span><code>7e4e55b</code></span>
+              <span class="delta">shift 14px → 0 at 320 / 360 / 390</span>
+            </div>
+          </div>
+        </article>
+
         <article class="item is-done">
           <div class="stripe"></div>
           <div class="body">
