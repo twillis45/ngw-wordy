@@ -458,7 +458,22 @@ export default function LetterWheel({
         // is square, so a height cap is a width cap. Width stays `auto` so
         // aspect-ratio derives it; setting both would be a conflict the browser
         // resolves by dropping the ratio.
-        height: 'clamp(150px, min(100%, 78vw), 296px)',
+        /*
+         * Cap raised 296 -> 340, and the width allowance 78vw -> 86vw.
+         *
+         * On a 390-wide phone the dial was pinned at 296 by the CAP, not by
+         * the space available — the column had room and the ceiling was
+         * refusing it. That ceiling was set when the tray above was much
+         * taller; the chip row and the pills have since given back about 30px
+         * between them, and all of it was landing in empty board rather than
+         * in the thing under your thumb.
+         *
+         * `min(100%, 86vw)` still keeps the box inside its column and inside
+         * the gutters, so the cap only binds on a large phone or a tablet
+         * where there is genuinely more room. Shorter phones stay
+         * height-bound and are unaffected.
+         */
+        height: 'clamp(150px, min(100%, 86vw), 340px)',
         width: 'auto',
         aspectRatio: '1',
         /*

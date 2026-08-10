@@ -2,14 +2,26 @@
 /**
  * Definition extractor — offline, build time.
  *
- * Reads the bulk dictionary in data/webster.json and emits
- * public/data/definitions.json containing ONLY the words the puzzle set can
- * actually produce. That turns a 22MB source into a small asset, and keeps the
- * game working with no network: looking up a definition must not be the one
- * thing that needs a server.
+ * Reads data/wordnet.json and emits public/data/definitions.json containing
+ * ONLY the words the puzzle set can actually produce. That keeps the game
+ * working with no network: looking up a definition must not be the one thing
+ * that needs a server.
  *
- * Source: Webster's Unabridged (public domain), via
- * github.com/matthewreagan/WebstersEnglishDictionary
+ * WORDNET, NOT WEBSTER 1913 — and this file was the last thing still on the
+ * old source. The CLUE pipeline was moved months of work ago, and this one was
+ * missed, so `definitions.json` kept shipping 1913 prose from a data file that
+ * had since been DELETED from the repo. A player tapping `cane` was told:
+ *
+ *   "(Bot.) (a) A name given to several peculiar palms, species of Calamus and
+ *    Dæmanorops, having very long, smooth flexible stems, commonly called
+ *    rattans."
+ *
+ * Field abbreviations, an ash ligature, and a definition of the rattan palm for
+ * a word the player met at a party. That is precisely the register the swap
+ * existed to remove, surviving in the one surface nobody re-checked.
+ *
+ * Source: Princeton WordNet 3.1, via the `wordnet-db` package. Permissive
+ * licence, commercial use allowed. Rebuild the source with `npm run wordnet`.
  *
  * Usage: node scripts/build-definitions.mjs
  */
@@ -20,15 +32,16 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 
-const SOURCE = path.join(ROOT, 'data', 'webster.json');
+const SOURCE = path.join(ROOT, 'data', 'wordnet.json');
 const PUZZLES = path.join(ROOT, 'public', 'data', 'puzzles.json');
 const OUT = path.join(ROOT, 'public', 'data', 'definitions.json');
 
 const MAX_LEN = 165;
 
 /**
- * Webster entries are long, multi-sense, and full of editorial apparatus.
- * Keep the first sense, trimmed to something readable on a phone.
+ * WordNet glosses are already short and single-sense, so most of this is now a
+ * no-op — it is kept because the trimming is harmless and the length cap still
+ * matters on a phone.
  */
 function condense(raw) {
   let text = String(raw)
