@@ -111,7 +111,6 @@ type Toast = { text: string; tone: 'good' | 'bad' | 'neutral'; id: number };
 
 export default function Game({ data }: { data: PuzzleFile }) {
   const today = useMemo(() => new Date(), []);
-  const todayIndex = dailyIndex(today, data.puzzles.length);
 
   /*
    * The daily puzzle is the canonical one — it is what the streak and the
@@ -167,7 +166,44 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const puzzleId = progressKey(puzzle.id, cycle);
   const isDaily = offset === 0 && warmup === null;
 
-  const [letters, setLetters] = useState<string[]>(puzzle.letters);
+  /*
+   * The wheel's letters are DERIVED from the puzzle being rendered, never
+   * tracked alongside it.
+   *
+   * They used to be independent state, seeded once and re-set by hand inside
+   * `goToPuzzle` using its own index formula:
+   *
+   *     data.puzzles[(todayIndex + nextOffset) % data.puzzles.length]
+   *
+   * The puzzle actually shown comes from `puzzleForPlayer`, which skips
+   * cleared boards, can return a warm-up instead, and mods by the daily POOL
+   * rather than the whole file. So two copies of the same arithmetic drifted
+   * apart and the wheel ended up showing one board's letters next to another
+   * board's clues: the theme read "In the Kitchen" while the dial held
+   * shovel's letters, and because escalating mode tests unlocked letters
+   * against the wheel, only the two that happened to appear in both were
+   * live. Two letters, on a game with a three-letter minimum — an unplayable
+   * board, reported by the person playing it.
+   *
+   * Keeping the shuffle in state keyed BY PUZZLE ID, and re-seeding during
+   * render when the id changes, makes the desync unrepresentable: there is no
+   * longer a second place that decides which letters belong to this board.
+   * This is React's documented "adjust state when props change" pattern, not
+   * an effect, so it costs no extra render pass.
+   */
+  const [shuffled, setShuffled] = useState<{ id: number; letters: string[] }>(
+    () => ({ id: puzzle.id, letters: puzzle.letters })
+  );
+  if (shuffled.id !== puzzle.id) {
+    setShuffled({ id: puzzle.id, letters: puzzle.letters });
+  }
+  const letters = shuffled.id === puzzle.id ? shuffled.letters : puzzle.letters;
+  const setLetters = useCallback(
+    (next: (prev: string[]) => string[]) => {
+      setShuffled((prev) => ({ id: prev.id, letters: next(prev.letters) }));
+    },
+    []
+  );
   const [selected, setSelected] = useState<number[]>([]);
   const [toast, setToast] = useState<Toast | null>(null);
   const [shaking, setShaking] = useState(false);
@@ -306,9 +342,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
       setSel([]);
       setJustSolved(new Set());
       setShowComplete(false);
-      setLetters(data.puzzles[(todayIndex + nextOffset) % data.puzzles.length].letters);
+      // No letters here. They follow the resolved puzzle by construction now;
+      // setting them from a second index calculation is what broke.
     },
-    [data.puzzles, todayIndex, setSel]
+    [setSel]
   );
 
   const say = useCallback((text: string, tone: Toast['tone']) => {
@@ -696,7 +733,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [commit, letters, setSel, active]);
+  }, [commit, letters, setSel, active, setLetters]);
 
   /**
    * Hints are targeted: the player taps the row they're stuck on, because

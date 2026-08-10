@@ -12,7 +12,13 @@
  * three.
  */
 import { describe, expect, it } from 'vitest';
-import { dailyCycle, dailyPoolSize, puzzleForPlayer } from './game';
+import {
+  MIN_WORD_LENGTH,
+  activeLetters,
+  dailyCycle,
+  dailyPoolSize,
+  puzzleForPlayer,
+} from './game';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import {
@@ -341,5 +347,41 @@ describe('the wrap', () => {
     const day0 = new Date(Date.UTC(2026, 0, 1));
     const afterLap = new Date(Date.UTC(2026, 0, 1 + pool));
     expect(dailyCycle(afterLap, pool)).toBeGreaterThan(dailyCycle(day0, pool));
+  });
+});
+
+describe('the opening wheel is always playable', () => {
+  it('never starts a board with fewer live letters than a word needs', () => {
+    /*
+     * Escalating mode dims the letters that have not unlocked yet. If the
+     * opening set is smaller than the minimum word length, there is no legal
+     * move at all — the player is looking at a board they cannot start.
+     *
+     * This is the DATA half of a bug that was actually a UI desync: the wheel
+     * kept its own copy of the letters and drifted onto a different board's,
+     * so escalating mode tested one board's unlock list against another
+     * board's letters and left two live. The engine side is asserted here; the
+     * component now derives its letters from the rendered puzzle, so the two
+     * can no longer disagree.
+     */
+    const thin = file.puzzles
+      .map((p) => ({
+        base: p.base,
+        live: activeLetters(p as never, 0, true).size,
+      }))
+      .filter((x) => x.live < MIN_WORD_LENGTH);
+    expect(thin.slice(0, 5), `${thin.length} boards open unplayable`).toEqual([]);
+  });
+
+  it('always leaves at least one legal word on the opening wheel', () => {
+    const stuck: string[] = [];
+    for (const p of file.puzzles) {
+      const live = activeLetters(p as never, 0, true);
+      const playable = [...p.grid, ...p.bonus].some(
+        (w) => w.length >= MIN_WORD_LENGTH && [...w].every((c) => live.has(c))
+      );
+      if (!playable) stuck.push(p.base);
+    }
+    expect(stuck.slice(0, 5), `${stuck.length} boards with no opening move`).toEqual([]);
   });
 });
