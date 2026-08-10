@@ -73,13 +73,53 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE).then((cache) => cache.put(request, copy));
+          /*
+           * Only cache a navigation that actually SUCCEEDED.
+           *
+           * This used to put any resolved response into the cache — an HTTP
+           * error is not a rejected fetch, so a 404, a 500, a maintenance page
+           * or a captive-portal interstitial all became the offline shell, and
+           * stayed the offline shell. Only the network-failure path was
+           * guarded. Same discipline the asset branch already applies below.
+           */
+          if (response && response.ok && response.type === 'basic') {
+            const copy = response.clone();
+            caches.open(CACHE).then((cache) => cache.put(request, copy));
+          }
           return response;
         })
         .catch(() =>
           caches.match(request).then((hit) => hit || caches.match(BASE))
         )
+    );
+    return;
+  }
+
+  /*
+   * Data files get stale-while-revalidate, not cache-first.
+   *
+   * The cache-first rule is justified by Next fingerprinting its assets — true
+   * for /_next/static/*, and false for /data/*.json, which are stable URLs. So
+   * a cache hit never revalidated them, and a content correction could not
+   * reach anyone already installed except via a CACHE version bump that
+   * somebody has to remember. Serve the copy we have, refresh it in the
+   * background, and the next load is current.
+   */
+  if (/\/data\/[^/]+\.json$/.test(new URL(request.url).pathname)) {
+    event.respondWith(
+      caches.open(CACHE).then((cache) =>
+        cache.match(request).then((hit) => {
+          const fresh = fetch(request)
+            .then((response) => {
+              if (response && response.ok && response.type === 'basic') {
+                cache.put(request, response.clone());
+              }
+              return response;
+            })
+            .catch(() => hit);
+          return hit || fresh;
+        })
+      )
     );
     return;
   }

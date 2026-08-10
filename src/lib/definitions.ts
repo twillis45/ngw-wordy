@@ -70,6 +70,28 @@ export function lookup(defs: Definitions | null, word: string): Entry | null {
 
 /* ── Modern upgrade ───────────────────────────────────────────────────── */
 
+/*
+ * The modern-definition upgrade is DISABLED.
+ *
+ * It fetched every word a player tapped from api.dictionaryapi.dev, which
+ * publishes no terms of service, no privacy policy, no licence and no logging
+ * statement. That made it, in order of seriousness:
+ *
+ *   - a third-country transfer of user behaviour plus IP to an undocumented
+ *     processor with no Art. 28 agreement and no Art. 13 disclosure (GDPR);
+ *   - an undisclosed third-party transmission, which fails Play's Families
+ *     policy and COPPA the moment a child plays;
+ *   - redistribution of dictionary text under no licence at all.
+ *
+ * Deleting it buys back a "collects nothing, transmits nothing" posture —
+ * a claim almost no shipped game can make — and lets the CSP lock connect-src
+ * to 'self'. The bundled Webster floor was always the designed default; the
+ * upgrade was the optional half.
+ *
+ * The parser and cache are kept and still tested: if a licensed modern source
+ * is adopted later, only this constant and the fetch need to change.
+ */
+const MODERN_UPGRADE_ENABLED = false;
 const API = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
 const CACHE_KEY = 'ngw-wordy/defs-modern/v1';
 /** Cap so a long-lived browser can't grow this without bound. */
@@ -151,6 +173,7 @@ export function parseModern(payload: unknown): CachedModern | null {
  * instantly and improves in place rather than showing a spinner.
  */
 export async function resolveModern(word: string): Promise<Resolved | null> {
+  if (!MODERN_UPGRADE_ENABLED) return null;
   const cache = readCache();
   const hit = cache[word];
   if (hit?.miss) return null;

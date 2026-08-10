@@ -45,6 +45,34 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/*
+          A static export on GitHub Pages cannot set response headers, so the
+          policy has to travel in the document. This is blast-radius control
+          rather than a patch: there is no user-generated content and exactly
+          one inline script (the theme no-flash, a compile-time constant with
+          no interpolation), so the present-day XSS surface is small — but a
+          supply-chain compromise in a dependency would otherwise have the run
+          of the page.
+
+          `connect-src 'self'` is the load-bearing line. It is only possible
+          because the third-party dictionary fetch was removed; the app now
+          talks to nobody. Note that frame-ancestors is ignored in a meta tag
+          and needs a real header, so it is set where the host allows one.
+        */}
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content={[
+            "default-src 'self'",
+            "script-src 'self' 'unsafe-inline'",
+            "style-src 'self' 'unsafe-inline'",
+            "img-src 'self' data:",
+            "font-src 'self'",
+            "connect-src 'self'",
+            "object-src 'none'",
+            "base-uri 'self'",
+            "form-action 'none'",
+          ].join('; ')}
+        />
         {/* Applies an explicit theme before first paint. Without it, a
             light-mode player gets a dark flash on every load. */}
         <script dangerouslySetInnerHTML={{ __html: NO_FLASH_SCRIPT }} />

@@ -826,3 +826,27 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/*
+ * Legal / support prose.
+ *
+ * Scoped so the game's own hierarchy is untouched: these pages are the one
+ * place in the product that is genuinely a document, and they need heading
+ * rhythm the board UI deliberately does not have.
+ */
+.legal h2 {
+  margin-top: 1rem;
+  font-size: var(--text-item);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.legal a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-edge-mid);
+  text-underline-offset: 3px;
+}
+.legal strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
