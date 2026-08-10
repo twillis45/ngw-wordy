@@ -255,10 +255,19 @@ export function celebrateBonus(opts: {
  */
 export function celebrateRank(name: string, toNext: string | null): number {
   const host = layer();
-  if (!host || reducedMotion()) return 0;
+  if (!host) return 0;
+  /*
+   * Promotion is the one recurring reward with no other channel — the rank
+   * strip changes quietly and a progressbar value change is not announced by
+   * anything. Returning early here meant a reduced-motion player could climb
+   * from Solid to Complete and never be told once.
+   */
+  const reduce = reducedMotion();
 
   const el = document.createElement('div');
-  el.className = 'anim-rank-banner liquid liquid-raised';
+  el.className = reduce
+    ? 'liquid liquid-raised'
+    : 'anim-rank-banner liquid liquid-raised';
   el.style.cssText = [
     'position:fixed',
     'left:50%',
@@ -274,6 +283,8 @@ export function celebrateRank(name: string, toNext: string | null): number {
     'gap:10px',
     'white-space:nowrap',
     'overflow:hidden',
+    // Same reason as the prize card: the keyframes carry the centring.
+    ...(reduce ? ['transform:translate(-50%,0)', 'opacity:1'] : []),
     `backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-saturate))`,
     `-webkit-backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-saturate))`,
   ].join(';');
@@ -344,14 +355,29 @@ function scrimBehind(host: HTMLElement, cx: number, cy: number, size: number, ms
 
 export function celebratePrize(word: string, points: number): number {
   const host = layer();
-  if (!host || reducedMotion()) return 0;
+  if (!host) return 0;
 
+  /*
+   * Reduced motion DEGRADES this; it used to delete it.
+   *
+   * The guard was `if (!host || reducedMotion()) return 0`, so the single
+   * hardest thing in the game — finding the word that uses every letter —
+   * produced nothing at all for a reduced-motion player: the row filled
+   * instantly, the float was crushed to 0.01ms by the global rule, and there
+   * was no toast either because the '+N' say() sits in the else branch of the
+   * prize check. Silence, for the biggest achievement on offer.
+   *
+   * The fix that already existed in celebrateBonus was never generalised, so
+   * this is the same shape: keep the card, hold it longer, drop the motion.
+   */
+  const reduce = reducedMotion();
   const cx = window.innerWidth / 2;
   const cy = Math.round(window.innerHeight * 0.42);
   scrimBehind(host, cx, cy, 300, 1500);
 
   // Two rings, offset, so the light reads as spilling rather than pulsing once.
-  [0, 160].forEach((delay) => {
+  // Pure decoration — the first thing reduced motion gives up.
+  (reduce ? [] : [0, 160]).forEach((delay) => {
     const ring = document.createElement('span');
     ring.className = 'anim-prize-ring';
     ring.style.cssText = [
@@ -370,7 +396,11 @@ export function celebratePrize(word: string, points: number): number {
   });
 
   const card = document.createElement('div');
-  card.className = 'anim-prize-in liquid liquid-raised';
+  // Without the entry animation the card must already be at its resting
+  // opacity, or the global reduced-motion rule leaves it invisible.
+  card.className = reduce
+    ? 'liquid liquid-raised'
+    : 'anim-prize-in liquid liquid-raised';
   card.style.cssText = [
     'position:fixed',
     'overflow:hidden',
@@ -386,7 +416,13 @@ export function celebratePrize(word: string, points: number): number {
     'gap:4px',
     `backdrop-filter:blur(calc(var(--glass-blur) * 2)) saturate(var(--glass-saturate)) brightness(1.1)`,
     `-webkit-backdrop-filter:blur(calc(var(--glass-blur) * 2)) saturate(var(--glass-saturate)) brightness(1.1)`,
-  ].join(';');
+    // Centring normally comes from the keyframes, so without them the card
+    // would sit half its own size off-centre.
+    reduce ? 'transform:translate(-50%,-50%)' : '',
+    reduce ? 'opacity:1' : '',
+  ]
+    .filter(Boolean)
+    .join(';');
 
   const w = document.createElement('span');
   w.textContent = word.toUpperCase();

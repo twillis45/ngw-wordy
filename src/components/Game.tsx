@@ -13,7 +13,7 @@ import LetterWheel from './LetterWheel';
 import WordTray from './WordTray';
 import RankBar from './RankBar';
 import Rail from './Rail';
-import { feedback, setMuted } from '@/lib/feedback';
+import { feedback, setHapticsMuted, setMuted } from '@/lib/feedback';
 import {
   applyTheme,
   effectiveTheme,
@@ -601,6 +601,12 @@ export default function Game({ data }: { data: PuzzleFile }) {
   // Keep the audio module in step with the stored preference.
   useEffect(() => {
     setMuted(progress.muted);
+    /*
+     * Sound and haptics are separate channels. Muting used to kill both, which
+     * is backwards: the player who mutes because they are in a meeting is
+     * exactly the one who still wants to feel the game.
+     */
+    setHapticsMuted(false);
   }, [progress.muted]);
 
   // Desktop players expect to type.

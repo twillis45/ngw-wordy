@@ -13,12 +13,25 @@
 
 let ctx: AudioContext | null = null;
 let muted = false;
+/*
+ * Haptics are a SEPARATE channel from audio.
+ *
+ * `buzz` used to return early on `muted`, so silencing the game also silenced
+ * the taptic feedback — and the player who mutes because they are in a meeting
+ * is exactly the player who most needs the other channel. Muting sound should
+ * mute sound.
+ */
+let hapticsMuted = false;
 
 export function setMuted(next: boolean) {
   muted = next;
 }
 export function isMuted() {
   return muted;
+}
+
+export function setHapticsMuted(next: boolean) {
+  hapticsMuted = next;
 }
 
 function audio(): AudioContext | null {
@@ -35,6 +48,30 @@ function audio(): AudioContext | null {
   // once it is already running.
   if (ctx.state === 'suspended') void ctx.resume();
   return ctx;
+}
+
+/**
+ * One bus for every voice, with a limiter on it.
+ *
+ * Everything used to connect straight to `destination`. `prize()` stacks four
+ * chords — eight oscillators — at 75ms spacing with 340ms decays, over a
+ * sustain and a noise burst; the summed peak comfortably exceeds 1.0. So the
+ * biggest moment in the game was the one most likely to hard-clip, and
+ * clipping on a phone speaker reads as a broken app rather than a triumph.
+ */
+let bus: GainNode | null = null;
+function output(ac: AudioContext): GainNode {
+  if (bus) return bus;
+  const gain = ac.createGain();
+  gain.gain.value = 0.45;
+  const limiter = ac.createDynamicsCompressor();
+  limiter.threshold.value = -12;
+  limiter.ratio.value = 6;
+  limiter.attack.value = 0.003;
+  limiter.release.value = 0.12;
+  gain.connect(limiter).connect(ac.destination);
+  bus = gain;
+  return bus;
 }
 
 /* ── Audio ────────────────────────────────────────────────────────────── */
@@ -91,7 +128,7 @@ function tone(opts: {
   amp.gain.exponentialRampToValueAtTime(gain, t0 + attack);
   amp.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
 
-  osc.connect(filter).connect(amp).connect(ac.destination);
+  osc.connect(filter).connect(amp).connect(output(ac));
   osc.start(t0);
   osc.stop(t0 + dur + 0.03);
 }
@@ -135,7 +172,7 @@ function noise(opts: { dur?: number; gain?: number; freq?: number } = {}) {
   amp.gain.setValueAtTime(gain, ac.currentTime);
   amp.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + dur);
 
-  src.connect(bp).connect(amp).connect(ac.destination);
+  src.connect(bp).connect(amp).connect(output(ac));
   src.start();
 }
 
@@ -189,7 +226,7 @@ function iosTicks(gaps: number[]) {
  * @param gaps    iOS rhythm: gaps in ms between successive ticks.
  */
 function buzz(pattern: number | number[], gaps: number[]) {
-  if (typeof navigator === 'undefined' || muted) return;
+  if (typeof navigator === 'undefined' || hapticsMuted) return;
 
   // Android/Chromium: the real API, with real durations.
   if ('vibrate' in navigator) {
@@ -221,6 +258,7 @@ export const feedback = {
   tap() {
     noise({ dur: 0.03, gain: 0.035, freq: 3000 });
     tone({ freq: 620, dur: 0.045, type: 'triangle', gain: 0.07 });
+    // tap — one tick, the lightest thing available
     buzz(10, []);
   },
 
@@ -232,33 +270,38 @@ export const feedback = {
     chord(f, { dur: 0.2, type: 'sine', gain: 0.13, attack: 0.006 });
     // A fifth above, quieter and slightly late — a chime, not a beep.
     tone({ freq: f * 1.5, dur: 0.26, gain: 0.05, delay: 0.045 });
-    buzz([26, 40, 22], [58]);
+    // correct — FAST TRIPLE, the reward rhythm
+    buzz([26, 40, 22], [45, 45]);
   },
 
   /** Valid word, but not one of the grid targets — lighter than a target. */
   bonus() {
     noise({ dur: 0.03, gain: 0.04, freq: 2800 });
     tone({ freq: 698.46, dur: 0.16, gain: 0.1, glideTo: 880 });
-    buzz(16, []);
+    // bonus — fast double, clearly not a bare tap
+    buzz(16, [45]);
   },
 
   /** Not a word. A falling, broken shape — legible without sound. */
   reject() {
     noise({ dur: 0.05, gain: 0.05, freq: 700 });
     tone({ freq: 240, dur: 0.16, type: 'sawtooth', gain: 0.09, glideTo: 150 });
-    buzz([18, 55, 18], [95]);
+    // reject — long-then-short, broken on purpose
+    buzz([18, 55, 18], [110, 45]);
   },
 
   /** Already found — a nudge, deliberately duller than either accept. */
   duplicate() {
     tone({ freq: 380, dur: 0.07, type: 'triangle', gain: 0.06 });
-    buzz(8, []);
+    // duplicate — slow double = nothing happened
+    buzz(8, [150]);
   },
 
   /** A hint spent. Downward, so it reads as a cost, not a reward. */
   spend() {
     tone({ freq: 560, dur: 0.13, type: 'sine', gain: 0.08, glideTo: 380 });
-    buzz([12, 30, 12], [60]);
+    // spend — ONE wide gap, deliberately heavy and slow
+    buzz([12, 30, 12], [190]);
   },
 
   /**
@@ -272,7 +315,8 @@ export const feedback = {
     );
     tone({ freq: 261.63, dur: 0.75, gain: 0.07, attack: 0.03 });
     // Accelerating run — unmistakable against every other pattern.
-    buzz([30, 45, 30, 40, 30, 35, 55], [70, 60, 50]);
+    // prize — accelerating run
+    buzz([30, 45, 30, 40, 30, 35, 55], [70, 60, 50, 45]);
   },
 
   /** Puzzle cleared. Slower and broader than the prize — an ending. */
@@ -281,6 +325,7 @@ export const feedback = {
       chord(f, { dur: 0.42, gain: 0.11, delay: i * 0.1 })
     );
     tone({ freq: 392, dur: 1.1, gain: 0.06, attack: 0.05, delay: 0.2 });
-    buzz([24, 60, 24, 60, 24, 60, 60], [95, 95, 130]);
+    // complete — decelerating, an ending
+    buzz([24, 60, 24, 60, 24, 60, 60], [100, 100, 140, 180]);
   },
 };
