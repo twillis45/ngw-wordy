@@ -301,6 +301,19 @@ export default function LetterWheel({
         height: 'clamp(150px, min(100%, 78vw), 296px)',
         width: 'auto',
         aspectRatio: '1',
+        /*
+         * Makes the dial a query container so the LETTERS can be sized from
+         * it (13.7cqmin on each tile). The type was a fixed `text-[26px]`
+         * while the dial became fluid, so it was proportionally wrong at both
+         * ends — nearly filling a 31.8px tile on a small phone, undersized in
+         * a 62.7px tile on a tablet.
+         *
+         * Safe for the glass: `container-type` implies `contain: layout size
+         * style`, and it is `contain: PAINT` that establishes a backdrop root.
+         * Verified by measuring the tiles' backdrop-filter after the change —
+         * this is the same trap the pointer's `transform` fell into.
+         */
+        containerType: 'size',
       }}
     >
       {/* Matte disc — depth comes from an inset ring, not a glow. */}
@@ -425,8 +438,13 @@ export default function LetterWheel({
               onSelect(i);
             }}
             className={[
-              'absolute grid place-items-center rounded-2xl border-2 font-bold',
-              'text-[26px] md:text-[29px]',
+              // leading-none is load-bearing, not tidying: the inherited 1.5
+              // line-height gave a 26px letter a 39px line box inside a 36.4px
+              // tile. The box was TALLER than the tile it was centred in, so it
+              // overflowed the bottom and sat every glyph 3.07px low. Measured
+              // horizontal offset was already 0.00 — only the vertical was off,
+              // which is exactly the signature of a line box, not a grid.
+              'absolute grid place-items-center rounded-2xl border-2 font-bold leading-none',
               'transition-[transform,background-color,border-color] duration-150',
               'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-muted',
               // anim-tick both pulses on selection and holds the selected
@@ -449,6 +467,11 @@ export default function LetterWheel({
               top: `${pos.y - TILE / 2}%`,
               width: `${TILE}%`,
               height: `${TILE}%`,
+              // A constant fraction of the dial (see container-type above), so
+              // the letter keeps the same relationship to its tile at every
+              // size — everything else here is already a percentage of the
+              // container, and the type was the one thing that wasn't.
+              fontSize: '13.7cqmin',
               transform: parallaxFor(i) || undefined,
               transitionProperty: 'transform, background-color, border-color',
               transitionDuration: '120ms',
