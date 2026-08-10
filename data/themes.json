@@ -52,6 +52,16 @@
       "id": "sunday",
       "name": "Sunday Dinner",
       "blurb": "Second pew, white gloves, and the pot roast that went in before service."
+    },
+    {
+      "id": "fishfry",
+      "name": "Fish Fry",
+      "blurb": "Twelve dollars, two sides, and the cash box she does not hand to anybody."
+    },
+    {
+      "id": "reunion",
+      "name": "Family Reunion",
+      "blurb": "Matching shirts, a hotel block, a printed program, and the committee that made it happen."
     }
   ],
   "puzzles": [
@@ -1039,6 +1049,462 @@
         "heat",
         "fare",
         "tear"
+      ]
+    },
+    {
+      "base": "raised",
+      "theme": "fishfry",
+      "clues": {
+        "raised": "The whole point of the night. Twenty-two hundred by nine, announced Sunday morning.",
+        "aside": "Where the pastor's box gets set, foil on top, so nobody sells it out from under him.",
+        "ideas": "The suggestion on the wall said add fried chicken. The committee voted it down.",
+        "dries": "What the fish does on a rack of newspaper for ninety seconds. No longer.",
+        "arise": "To come up, the way the question of charging fourteen does at every meeting.",
+        "raid": "What the kids do to the bread bag while nobody is watching the side table."
+      },
+      "prefer": [
+        "aside",
+        "ideas",
+        "dries",
+        "arise",
+        "raid"
+      ]
+    },
+    {
+      "base": "filets",
+      "theme": "fishfry",
+      "clues": {
+        "filets": "Whiting, cut thin, three to a box, because croaker takes too long to cook.",
+        "left": "By seven there is only slaw. The sign gets flipped and the basement door locked.",
+        "list": "Taped to the wall downstairs: who fries, who bags, who counts. She wrote it.",
+        "fist": "What the man in front of you makes when they say the last box is already sold.",
+        "stifle": "To hold something back, the way the screen door fails to hold back the smell.",
+        "lift": "Two people to move the full pot of oil, and neither of them is going to be you."
+      },
+      "prefer": [
+        "left",
+        "list",
+        "fist",
+        "stifle",
+        "lift"
+      ]
+    },
+    {
+      "base": "greasy",
+      "theme": "fishfry",
+      "clues": {
+        "greasy": "Your coat will still smell like this on Tuesday, and you will not mind at all.",
+        "years": "The hand-lettered sign looks the same because the same woman has made it since 1991.",
+        "sage": "The old head at the end of the long table who tells you which piece to ask for.",
+        "gray": "The color the oil turns by the third batch, and the reason she calls for the jug.",
+        "easy": "How the fish comes off the bone when it was fried right. Never a fight.",
+        "rage": "What builds in the line when somebody at the window orders fifteen boxes."
+      },
+      "prefer": [
+        "years",
+        "sage",
+        "gray",
+        "easy",
+        "rage"
+      ]
+    },
+    {
+      "base": "cashed",
+      "theme": "fishfry",
+      "clues": {
+        "cashed": "What the box has to be counted and closed out as before the treasurer lets anybody leave.",
+        "shade": "Where the folding chairs go by four o'clock, and who sits in them is already settled.",
+        "chase": "What the aunties do to the kids circling the hot oil. Twice, then once for real.",
+        "heads": "She counts them coming in the door to know when to drop the last batch.",
+        "ache": "What your feet do at hour five, standing over that fryer for the building fund.",
+        "case": "A flat of hot sauce, bought wholesale, because the little bottles walk off."
+      },
+      "prefer": [
+        "shade",
+        "chase",
+        "heads",
+        "ache",
+        "case"
+      ]
+    },
+    {
+      "base": "parish",
+      "theme": "fishfry",
+      "clues": {
+        "parish": "Whose fish this really is. The money goes straight to the building fund.",
+        "sharp": "Her knife, which she keeps to herself, and her six o'clock start, which she means.",
+        "hairs": "Under a net, all of them, or you are not touching the cornmeal. No discussion.",
+        "ship": "What the boxes do out the back door, twenty at a time, over to the job site.",
+        "rash": "Quick and thoughtless, like promising forty boxes by noon over the phone.",
+        "harp": "To go on about it, the way he does every year about flour versus meal."
+      },
+      "prefer": [
+        "sharp",
+        "hairs",
+        "ship",
+        "rash",
+        "harp"
+      ]
+    },
+    {
+      "base": "carton",
+      "theme": "fishfry",
+      "clues": {
+        "carton": "The hinged styrofoam. It will not close over three pieces, and it never does.",
+        "actor": "Playing it cool in the line like he did not call ahead at two o'clock.",
+        "coat": "What the meal does to the fish in the paper bag she shakes exactly twice.",
+        "corn": "Yellow, fine-ground, in the bag by the door. Not flour. Never flour.",
+        "rant": "The one about how the church across town uses frozen fish. Ten full minutes.",
+        "torn": "What the paper plate is by the time you reach the car. Always take two."
+      },
+      "prefer": [
+        "actor",
+        "coat",
+        "corn",
+        "rant",
+        "torn"
+      ]
+    },
+    {
+      "base": "pounds",
+      "theme": "fishfry",
+      "clues": {
+        "pounds": "How it is sold when it is not sold by the box. Six of whiting, still on ice.",
+        "sound": "The one the basket makes going into the oil. You hear it from the parking lot.",
+        "pond": "Not where this came from. She will tell you the truck comes up from the coast.",
+        "spud": "In the potato salad, if the ladies decided that is a side this year.",
+        "soup": "The other pot on the back burner, for whoever has been standing up all day.",
+        "undo": "What she will not do to the price. Twelve is twelve and the sign is laminated."
+      },
+      "prefer": [
+        "sound",
+        "pond",
+        "spud",
+        "soup",
+        "undo"
+      ]
+    },
+    {
+      "base": "crispy",
+      "theme": "fishfry",
+      "clues": {
+        "crispy": "How the second batch comes out, once the oil finally decides to behave.",
+        "spicy": "The bottle on the table is not optional. She will hand it to you unasked.",
+        "spry": "The eighty-year-old on the register, faster than both teenagers bagging boxes.",
+        "rips": "What the bottom of the bag does when somebody carries four boxes flat.",
+        "pics": "The line, the sign, the loaded plate, all posted before anybody says grace.",
+        "cry": "What the kid does when the last box goes to the man standing in front of him."
+      },
+      "prefer": [
+        "spicy",
+        "spry",
+        "rips",
+        "pics",
+        "cry"
+      ]
+    },
+    {
+      "base": "family",
+      "theme": "reunion",
+      "clues": {
+        "family": "The airbrushed tree on the back of the shirt: four branches and one misspelled surname.",
+        "mail": "Six weeks out, and the aunt with the spreadsheet has everybody's address except yours.",
+        "film": "Somebody's camcorder from 1996, still running in the corner of the banquet room.",
+        "fly": "What the Georgia branch refused to do, so they pulled out at four in the morning instead.",
+        "aim": "The stated purpose on page one of the program, in a font nobody remembers choosing.",
+        "may": "The month on the letterhead, back when the committee still thought July was far off."
+      },
+      "prefer": [
+        "mail",
+        "film",
+        "fly",
+        "aim",
+        "may"
+      ]
+    },
+    {
+      "base": "hotels",
+      "theme": "reunion",
+      "clues": {
+        "hotels": "The block she negotiated in January, and the cousins who booked across the road anyway.",
+        "host": "The branch whose turn it is, and who has been reminding everybody since last summer.",
+        "lost": "The suitcase that went to Atlanta while its owner went on to Memphis.",
+        "shoe": "Kicked off under the banquet chair by ten, carried out to the car by eleven.",
+        "stole": "Across her shoulders for the program photograph, and over the chair by dessert.",
+        "toes": "Stepped on during the electric slide by a nephew who does not know the steps."
+      },
+      "prefer": [
+        "host",
+        "lost",
+        "shoe",
+        "stole",
+        "toes"
+      ]
+    },
+    {
+      "base": "budget",
+      "theme": "reunion",
+      "clues": {
+        "budget": "Printed on the back page: hall, shirts, the bus, and a line item for balloons.",
+        "debt": "What the hall deposit put the committee in until the dues came through in June.",
+        "debut": "The great-grandbaby, carried in at seven weeks and passed the whole length of the head table.",
+        "duet": "The two aunts who sing it every year, in the same key, whether or not it is that key.",
+        "tube": "The banner rode down in one, in the trunk, and came out with a crease down the middle.",
+        "bed": "The rollaway the treasurer gave up so the oldest cousin could have the real one."
+      },
+      "prefer": [
+        "debt",
+        "debut",
+        "duet",
+        "tube",
+        "bed"
+      ]
+    },
+    {
+      "base": "graves",
+      "theme": "reunion",
+      "clues": {
+        "graves": "The Saturday drive out to the church cemetery, with the plot map she printed at home.",
+        "vase": "Screwed into the ground by the headstone, and somebody brought the wrong size again.",
+        "gave": "What the great-uncle did with forty acres in 1948, and why nobody argues about it now.",
+        "sage": "What the program calls the ninety-one-year-old, two lines under her photograph.",
+        "ears": "Hers are the only thing that went, she says, then answers a question from across the room.",
+        "rage": "What the branch nobody asked to help set up is holding, quietly, over by the punch bowl."
+      },
+      "prefer": [
+        "vase",
+        "gave",
+        "sage",
+        "ears",
+        "rage"
+      ]
+    },
+    {
+      "base": "matron",
+      "theme": "reunion",
+      "clues": {
+        "matron": "Introduced first, seated first, and the program spells her name the old way.",
+        "manor": "What the deed calls the home place, though it is four rooms and a tin roof.",
+        "roam": "What the children did through the cemetery while the wreath was being set.",
+        "morn": "The six o'clock service before the drive out, for the ones who can still get up.",
+        "rant": "The genealogy cousin, twenty solid minutes, and you still have not reached the coffee.",
+        "arm": "Offered to the ninety-one-year-old at the door, refused once, and offered again."
+      },
+      "prefer": [
+        "manor",
+        "roam",
+        "morn",
+        "rant",
+        "arm"
+      ]
+    },
+    {
+      "base": "vendor",
+      "theme": "reunion",
+      "clues": {
+        "vendor": "The hall, the bus, the DJ. She had all three under signed contract before Christmas.",
+        "drove": "Eleven hours up from Detroit with three cousins and one working phone charger.",
+        "oven": "The church kitchen's, propped shut with a spoon, and it has been that way for years.",
+        "over": "What the program says the day is at five, and what it is not until well past nine.",
+        "done": "What the treasurer says the shirt order is, and it is not, and she knows it.",
+        "nerd": "The cousin with the laptop and the printed charts, and everybody needs him by noon."
+      },
+      "prefer": [
+        "drove",
+        "oven",
+        "over",
+        "done",
+        "nerd"
+      ]
+    },
+    {
+      "base": "donate",
+      "theme": "reunion",
+      "clues": {
+        "donate": "Twenty a head, and the treasurer's envelope sits out on the registration table all day.",
+        "date": "Third weekend in July, locked two years ahead so the hall would hold the room.",
+        "note": "Handwritten inside every registration packet, the same hand, ninety times over.",
+        "ante": "What every household puts in before a single shirt gets ordered.",
+        "tone": "It changed the second the treasurer opened the ledger at the spring meeting.",
+        "neat": "How the historian keeps the binder: tabs, sleeves, and a laminated cover."
+      },
+      "prefer": [
+        "date",
+        "note",
+        "ante",
+        "tone",
+        "neat"
+      ]
+    },
+    {
+      "base": "albums",
+      "theme": "reunion",
+      "clues": {
+        "albums": "Four of them out on the corner table, and not one is allowed to leave the building.",
+        "album": "The one from 1978, and the argument over which twin is in the yellow chair.",
+        "balm": "Passed down the row in a little tin once the reading of the names begins.",
+        "lamb": "On the banquet menu because the hall would not fry anything on a Saturday.",
+        "slam": "What the trunk did on the eighth of nine trips back out to the car.",
+        "sum": "The figure at the bottom of the treasurer's page, read out loud to the whole room."
+      },
+      "prefer": [
+        "album",
+        "balm",
+        "lamb",
+        "slam",
+        "sum"
+      ]
+    },
+    {
+      "base": "plated",
+      "theme": "fishfry",
+      "clues": {
+        "plated": "How it leaves the window: fish, two sides, bread on top, in eleven seconds flat.",
+        "plate": "Twelve dollars. She set the price in 2019 and has not moved it since.",
+        "taped": "The handwritten menu, stuck to the basement door since six this morning.",
+        "dealt": "What she did with the two teenagers who wandered in at noon: gave them the sinks.",
+        "plea": "What the deacon makes for one more piece of cake. The line is the line.",
+        "late": "What the last two servers were, and the reason the ladies started without them."
+      },
+      "prefer": [
+        "plate",
+        "taped",
+        "dealt",
+        "plea",
+        "late"
+      ]
+    },
+    {
+      "base": "ladies",
+      "theme": "fishfry",
+      "clues": {
+        "ladies": "The Auxiliary. Eleven women, one cash box, and the whole basement answers to them.",
+        "sale": "Second Friday of the month, six to seven-thirty, or until the whiting runs out.",
+        "ideas": "The menu changes she brought to the committee, voted down four to three.",
+        "aside": "The pastor's box, set back on the counter with his name on masking tape.",
+        "said": "What she told the man who asked for a discount, once, and did not repeat.",
+        "aisle": "The path between the folding tables nobody is allowed to block with a cooler."
+      },
+      "prefer": [
+        "sale",
+        "ideas",
+        "aside",
+        "said",
+        "aisle"
+      ]
+    },
+    {
+      "base": "priced",
+      "theme": "fishfry",
+      "clues": {
+        "priced": "Twelve dollars, two pieces, two sides, and the sign has said so for four years.",
+        "price": "What the treasurer will not lower, no matter who is asking or whose cousin he is.",
+        "pride": "What the basement runs on the week the roof fund clears its number.",
+        "cider": "In the cooler beside the red drink, a dollar, and nobody knows who brings it.",
+        "rice": "The side that runs out first every time, so she keeps a second pot back.",
+        "ride": "What the church van gives the ones who ordered ten plates for the job site."
+      },
+      "prefer": [
+        "price",
+        "pride",
+        "cider",
+        "rice",
+        "ride"
+      ]
+    },
+    {
+      "base": "aprons",
+      "theme": "fishfry",
+      "clues": {
+        "aprons": "Hers has the church name stitched on it. Everybody else gets what is on the hook.",
+        "apron": "She ties it in the back at five and does not take it off until the last box goes out.",
+        "snap": "The sound of the cash box closing when a man asks her to make an exception.",
+        "soap": "The sink she assigns to whoever showed up late, and it is not a punishment, she says.",
+        "soar": "What the roof fund total did the Friday the plant let out early.",
+        "pans": "Foil, half-size, taped shut, and counted twice before they go to the job site."
+      },
+      "prefer": [
+        "apron",
+        "snap",
+        "soap",
+        "soar",
+        "pans"
+      ]
+    },
+    {
+      "base": "golden",
+      "theme": "reunion",
+      "clues": {
+        "golden": "The fiftieth, and the two of them are walked in first while the whole room stands.",
+        "lodge": "Where the overflow stayed, eleven miles out, because the block filled by June.",
+        "gold": "The shirt color the host branch took for itself, and the argument that followed.",
+        "done": "What the treasurer says the shirt order is, and it is not, and she knows it.",
+        "long": "How the genealogy cousin's remarks run, every year, past the point of the coffee.",
+        "lone": "The one branch that sent nobody, and the chair she set at the table anyway."
+      },
+      "prefer": [
+        "lodge",
+        "gold",
+        "done",
+        "long",
+        "lone"
+      ]
+    },
+    {
+      "base": "marked",
+      "theme": "reunion",
+      "clues": {
+        "marked": "The stone the committee had cut in the spring, and the plot map she printed at home.",
+        "mark": "What the historian puts beside every name she has confirmed in the county records.",
+        "dream": "What the great-uncle called the forty acres, and the deed is in her binder.",
+        "made": "What she has done with the drive out to the cemetery sixty years running.",
+        "dear": "How the program's opening letter starts, in her handwriting, ninety times over.",
+        "read": "The names, out loud, one at a time, while the tin of balm goes down the row."
+      },
+      "prefer": [
+        "mark",
+        "dream",
+        "made",
+        "dear",
+        "read"
+      ]
+    },
+    {
+      "base": "legacy",
+      "theme": "reunion",
+      "clues": {
+        "legacy": "What the historian's binder is for, and why every tab in it is laminated.",
+        "age": "The number the program prints under her photograph, and it is wrong by two years.",
+        "lace": "On the collar she wears to the memorial service, the same one since 1988.",
+        "clay": "What the cemetery ground is: red, heavy, and hard on one pair of shoes a year.",
+        "gale": "The wind that took the tent in 2009, and they have not stopped bringing it up.",
+        "lay": "What the committee did with the wreath before anybody was allowed to speak."
+      },
+      "prefer": [
+        "age",
+        "lace",
+        "clay",
+        "gale",
+        "lay"
+      ]
+    },
+    {
+      "base": "counts",
+      "theme": "reunion",
+      "clues": {
+        "counts": "What the treasurer does at the door, again at dinner, and once more before she leaves.",
+        "count": "Her number for the banquet, and the four plates that turned up anyway.",
+        "cost": "Twenty a head, printed on page one, and again on the back page in her hand.",
+        "cuts": "What she made to the Sunday brunch when the hall raised its rate in April.",
+        "cot": "Set up in the church annex for the ones who did not book a room in time.",
+        "son": "What the program calls him under his mother’s name, and he is sixty-four."
+      },
+      "prefer": [
+        "count",
+        "cost",
+        "cuts",
+        "cot",
+        "son"
       ]
     }
   ]
