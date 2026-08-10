@@ -74,7 +74,22 @@ const MAX_ANSWERS = 70;
  */
 const MIN_COMMON_ROWS = 4; // of 6
 const MIN_COMMON_ROWS_FEATURED = 5; // themed boards and the warm-up ladder
-const COUNT = Number(process.argv[2] || 240);
+/*
+ * 400, raised from 240.
+ *
+ * Themed boards live INSIDE this sequence rather than beside it, so the cap is
+ * also the ceiling on how much authored content can exist. At 240 an authored
+ * catalogue heading for 300 would have displaced the entire generated set and
+ * then started rejecting packs with "set was already full" — after the clues
+ * were written.
+ *
+ * The two halves are not the same product and should not be sold as one. The
+ * board's ruling on the generated boards is that they are a commodity at zero:
+ * fine as free practice, never billable. They are distinguishable in the
+ * artifact by the presence of a `theme` field, which is the seam any future
+ * paywall should cut along — authored content is the thing with value.
+ */
+const COUNT = Number(process.argv[2] || 400);
 
 // Deterministic PRNG so a given seed always yields the same puzzle set.
 function mulberry32(seed) {
