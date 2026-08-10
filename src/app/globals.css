@@ -127,6 +127,21 @@
   --color-danger: #f27a70;
 
   /* Text ladder */
+  /*
+   * Selection blue — the one place the identity hue goes CHROMATIC.
+   *
+   * A picked tile was filled with `--color-steel`, which is the same
+   * desaturated blue-grey as every resting surface in Studio Matte. It read as
+   * "slightly lighter", not as "this one is yours" — the state was being
+   * carried by a ring and a badge rather than by the tile itself.
+   *
+   * This is a saturated sibling of the same hue, not a new colour: saturation
+   * 0.78 against steel's 0.34, and it MEASURES BETTER against the letter
+   * (5.54:1, up from 5.16). It deliberately does not borrow the success green,
+   * which is reserved for done-ness, and it is nowhere near the warm golds the
+   * palette bans.
+   */
+  --color-select: #20658f;
   --color-text-primary: #eef0f4;
   /*
    * MEASURED, not picked. secondary was #849eb8 at 5.52:1 and muted #9a9ca0 at
@@ -296,6 +311,9 @@
   --color-success: #186438;
   --color-danger: #a82f2f;
 
+  /* Light mode inverts the problem: the letter is near-black, so the fill has
+     to be a light tint of the same hue. 10.16:1 against the letter. */
+  --color-select: #8fc3e6;
   --color-text-primary: #0d0f12;
   /* Light: 16.8 / 9.0 / 6.3. Darker means MORE emphasis here. */
   --color-text-secondary: #2f4353;
@@ -362,6 +380,9 @@
   --color-success: #186438;
   --color-danger: #a82f2f;
 
+  /* Light mode inverts the problem: the letter is near-black, so the fill has
+     to be a light tint of the same hue. 10.16:1 against the letter. */
+  --color-select: #8fc3e6;
   --color-text-primary: #0d0f12;
   /* Light: 16.8 / 9.0 / 6.3. Darker means MORE emphasis here. */
   --color-text-secondary: #2f4353;
@@ -617,6 +638,72 @@ body {
     inset 1.5px 1.5px 0 var(--glass-rim-light-strong),
     inset -1.5px -1.5px 2px var(--glass-rim-dark-strong),
     inset 0 -3px 1px -1.5px var(--glass-caustic-strong);
+}
+
+/*
+ * The dial — the one piece that should read as a thick DISC of glass.
+ *
+ * It was on the base `.liquid`, the same material as a small pill, while being
+ * by far the largest surface on screen and the thing a player stares at. At
+ * that size the base treatment reads as a tinted circle: a linear specular
+ * running top-left to centre is a rectangle's highlight, and on a circle it
+ * just looks like a wash.
+ *
+ * Three things do the work here, in order of how much they matter:
+ *
+ * 1. A RIM SHEEN travelling around the edge. Real glass gathers light at the
+ *    rim and lets it run around the curve, brightest where it faces the
+ *    source and again, weaker, on the far side. That is a conic gradient and
+ *    nothing else can imitate it — this is the change you actually see.
+ * 2. A deeper inset falloff, so the centre sits back from the edge and the
+ *    disc has a thickness rather than an outline.
+ * 3. A wider, softer contact shadow, so it rests ON the board instead of
+ *    being painted onto it.
+ *
+ * The ring is drawn with the mask-composite border trick rather than a real
+ * border, because a border cannot hold a gradient and a second element would
+ * sit above the letter tiles.
+ *
+ * Must stay AFTER .liquid and .liquid-raised: the disc keeps `.liquid` for its
+ * specular ::after, and this needs to win the background and box-shadow.
+ */
+.liquid-disc {
+  background: var(--glass-fill-raised);
+  box-shadow:
+    /* rests on the board rather than floating over it */
+    0 12px 34px -16px var(--glass-contact-strong),
+    inset 2px 2px 0 var(--glass-rim-light-strong),
+    inset -2px -2px 3px var(--glass-rim-dark-strong),
+    /* thickness: the centre falls away from the rim */
+    inset 0 0 30px -12px color-mix(in srgb, var(--color-edge) 42%, transparent),
+    inset 0 -7px 9px -7px var(--glass-caustic-strong);
+}
+
+.liquid-disc::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  /* Thickness of the sheen ring itself. */
+  padding: 2px;
+  background: conic-gradient(
+    from 205deg,
+    transparent 0deg,
+    var(--glass-rim-light-strong) 34deg,
+    transparent 96deg,
+    transparent 232deg,
+    color-mix(in srgb, var(--color-edge) 52%, transparent) 296deg,
+    transparent 348deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
 }
 
 /*

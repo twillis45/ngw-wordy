@@ -476,10 +476,12 @@ export default function LetterWheel({
         containerType: 'size',
       }}
     >
-      {/* Matte disc — depth comes from an inset ring, not a glow. */}
+      {/* The disc. `liquid-disc` carries the rim sheen and the thickness; it
+          keeps `liquid` for the specular highlight, and must win the fill and
+          shadow, which it does by source order in globals.css. */}
       <div
         aria-hidden
-        className="absolute inset-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)]"
+        className="absolute inset-0 rounded-full border-2 border-edge liquid liquid-disc backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)]"
       />
 
       {/* Connection path. Drawn under the tiles so it reads as a thread. */}
@@ -703,7 +705,7 @@ export default function LetterWheel({
                    * No backdrop-blur on this branch any more: the fill is
                    * opaque, so blurring what is behind it is work nobody sees.
                    */
-                  ? 'anim-tick border-edge ring-2 ring-edge/70 bg-steel text-text-primary'
+                  ? 'anim-tick border-select ring-2 ring-edge/80 bg-select text-text-primary'
                   : 'border-edge liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary active:scale-95',
             ].join(' ')}
             style={{
@@ -732,27 +734,14 @@ export default function LetterWheel({
           >
             {letter.toUpperCase()}
             {/*
-              Which letter this was in the word.
-              A drag draws a connecting thread, so the order is visible. A TAP
-              draws nothing — the player had no way to see the sequence they
-              had built, only that some tiles looked different. Shown from the
-              second letter, because a single "1" is noise.
+              No order badge.
+              A number stamped on each tile was carrying the sequence for the
+              TAP path, which the drag thread already showed. But it put a
+              second glyph on a tile whose whole job is to show one letter, and
+              at six selections the dial reads as a scoreboard. The word being
+              built is spelled out in full directly above the wheel — that is
+              the sequence, in the place a player is already looking.
             */}
-            {picked && selected.length > 1 && (
-              <span
-                aria-hidden
-                className="pointer-events-none absolute grid place-items-center rounded-full bg-steel-muted font-semibold text-carbon-body"
-                style={{
-                  top: '-6%',
-                  right: '-6%',
-                  width: '38%',
-                  height: '38%',
-                  fontSize: '5.2cqmin',
-                }}
-              >
-                {order + 1}
-              </span>
-            )}
           </button>
         );
       })}
