@@ -103,7 +103,17 @@ export default function WordTray({
                   : bought
                     ? 'border-edge-mid liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] italic text-text-muted'
                     : 'border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted',
-                
+                /*
+                 * The prize word, marked by SIZE and WEIGHT, not colour.
+                 *
+                 * In the full grid the base row already wins on --slot-h-base,
+                 * so removing its green ring cost nothing. Here it had no size
+                 * advantage and the ring was its only marker — which was also
+                 * colour-only, and success/edge measure 1.00:1 apart under
+                 * protanopia. This says "prize" to everyone.
+                 */
+                word === base ? 'text-body font-bold px-3' : '',
+
                 // Mark the row the clue is currently asking about.
                 // Was text-secondary vs text-muted — 1.01:1 apart, i.e. no
                 // marker at all. Now carries weight and a ring, not just hue.
@@ -230,7 +240,7 @@ export default function WordTray({
                     setMenuFor(null);
                     onRevealLetter(word);
                   }}
-                  className="whitespace-nowrap rounded-lg px-2.5 py-1.5 text-meta text-text-primary hover:bg-steel-dark/40 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-steel-muted"
+                  className="whitespace-nowrap rounded-lg px-2.5 py-1.5 touch:min-h-11 text-meta text-text-primary hover:bg-steel-dark/40 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-steel-muted"
                 >
                   A letter · {LETTER_COST}
                 </button>
@@ -241,7 +251,7 @@ export default function WordTray({
                     setMenuFor(null);
                     onRevealWord(word);
                   }}
-                  className="whitespace-nowrap rounded-lg px-2.5 py-1.5 text-meta text-text-secondary hover:bg-steel-dark/40 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-steel-muted"
+                  className="whitespace-nowrap rounded-lg px-2.5 py-1.5 touch:min-h-11 text-meta text-text-secondary hover:bg-steel-dark/40 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-steel-muted"
                 >
                   Whole word · {WORD_COST}
                 </button>
