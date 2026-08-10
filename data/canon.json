@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "_readme": "Grounded cultural canon. Every entry is a claim the shipped clues rest on, checked against sources. Populated from docs/research/*.md; see docs/research/CANON.md for the contract and scripts/canon.mjs to query it. Entries are keyed to specific clues, and `npm test` fails if a keyed clue no longer exists — so editing a clue out from under its citation is caught rather than silently orphaning the research.",
+  "entries": []
+}

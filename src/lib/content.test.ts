@@ -251,3 +251,20 @@ describe('authored clue corpus', () => {
     expect(what / clues.length, 'share of clues opening "What"').toBeLessThan(0.34);
   });
 });
+
+describe('grounded canon', () => {
+  it('never cites a clue that no longer exists', async () => {
+    /*
+     * The canon (data/canon.json) records what the themed clues rest on:
+     * which factual claims were checked, against what sources, and which are
+     * still open. Its entries are keyed to individual clues.
+     *
+     * A citation pointing at a clue that has since been rewritten is worse
+     * than no citation, because it reads as evidence for text nobody ever
+     * checked. This is the check that keeps the research honest as the clues
+     * keep moving.
+     */
+    const { check } = await import('../../scripts/canon.mjs');
+    expect(check(), 'canon reference problems').toEqual([]);
+  });
+});
