@@ -42,7 +42,6 @@ import {
 import {
   celebrateBonus,
   celebratePrize,
-  celebrateWord,
   celebrateRank,
   flyLetters,
   measureFlight,
@@ -431,8 +430,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
       case 'grid': {
         const solvedBefore = puzzle.grid.filter((w) => banked.has(w)).length;
         feedback.correct(solvedBefore);
-        // The board answers too, and answers louder the further in you are.
-        celebrateWord(solvedBefore);
 
         /*
          * The reveal, three beats inside ~900ms:
