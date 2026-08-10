@@ -294,10 +294,10 @@
    * tray needs far less height than the ramp was budgeting for it. What it
    * gives back goes to the dial.
    */
-  --slot-h: clamp(19px, calc(4.95vh - 9px), 29px);
-  --slot-h-base: clamp(22px, calc(5.5vh - 9.3px), 33px);
-  --slot-text: clamp(11px, calc(1.66vh + 1.8px), 15px);
-  --slot-text-base: clamp(12px, calc(2.2vh - 0.4px), 17px);
+  --slot-h: clamp(17px, calc(4.35vh - 8.2px), 26px);
+  --slot-h-base: clamp(19px, calc(4.8vh - 8.5px), 29px);
+  --slot-text: clamp(10px, calc(1.5vh + 1.6px), 14px);
+  --slot-text-base: clamp(11px, calc(1.95vh - 0.3px), 15px);
 
   /*
    * Type ramp — six named roles, in rem.

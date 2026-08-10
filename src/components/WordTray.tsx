@@ -83,7 +83,18 @@ export default function WordTray({
 
   if (compact) {
     return (
-      <div className="flex flex-wrap items-center justify-center gap-1.5">
+      /*
+       * Clue mode is the default now, so THIS row — not the full grid — is what
+       * a player sees above the wheel on every board. It was sized when it was
+       * a secondary view: px-2 py-1 at meta size came out around 26px a chip,
+       * and six of them plus the clue card were taking the top third of a phone
+       * before the dial got any say. Tightened to the WCAG 2.5.8 floor of 24px,
+       * with the width kept generous so the target stays comfortable.
+       *
+       * Note these are NOT sized by --slot-h. That token drives the full grid
+       * only, which is why shrinking it did nothing visible here.
+       */
+      <div className="flex flex-wrap items-center justify-center gap-1">
         {grid.map((word) => {
           const bought = reveal.words.includes(word);
           const solved = found.has(word);
@@ -99,7 +110,7 @@ export default function WordTray({
                 done ? `${word}, done` : `${word.length}-letter word, not found`
               }
               className={[
-                'relative rounded-md border-2 px-2 py-1 text-meta font-semibold tabular-nums transition-colors',
+                'relative rounded-md border-2 px-1.5 py-0.5 text-kicker font-semibold tabular-nums leading-snug transition-colors',
                 // Same achievement ladder as the full grid — see below.
                 solved
                   ? 'border-success liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary'
@@ -115,7 +126,7 @@ export default function WordTray({
                  * colour-only, and success/edge measure 1.00:1 apart under
                  * protanopia. This says "prize" to everyone.
                  */
-                word === base ? 'text-body font-bold px-3' : '',
+                word === base ? 'text-meta font-bold px-2' : '',
 
                 // Mark the row the clue is currently asking about.
                 // Was text-secondary vs text-muted — 1.01:1 apart, i.e. no

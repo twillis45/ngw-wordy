@@ -1676,16 +1676,19 @@ function ControlButton({
        *
        * The dial is height-constrained on mobile — it takes whatever the column
        * leaves over — so every pixel these give up goes straight to the thing
-       * you actually play with. 28px still clears the 24px WCAG 2.5.8 minimum,
-       * which is the floor this will not go below — it gives up the 44px
-       * platform guidance, and that is a deliberate trade, because these are
-       * secondary controls a player touches a handful of times per board
-       * against hundreds of touches on the dial.
+       * you actually play with. 24px IS the floor — WCAG 2.5.8 requires a
+       * 24x24 target and this is exactly that, so there is no room left
+       * underneath and the next person to shave a pixel here breaks a
+       * conformance criterion rather than a preference.
        *
-       * Shuffle in particular is a control you reach for when stuck, not one
-       * you aim at under time pressure.
+       * It gives up the 44px platform guidance deliberately: these are
+       * secondary controls a player touches a handful of times per board
+       * against hundreds of touches on the dial, and Shuffle in particular is
+       * what you reach for when stuck, not something you aim at under time
+       * pressure. Width stays generous (58px) so the TARGET is comfortable
+       * even though the height is minimal.
        */
-      className="liquid-interactive relative h-7 min-w-[62px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-2.5 text-kicker font-medium text-text-secondary md:h-8 md:min-w-[80px] md:px-3 md:text-meta transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
+      className="liquid-interactive relative h-6 min-w-[58px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-2.5 text-kicker font-medium text-text-secondary md:h-8 md:min-w-[80px] md:px-3 md:text-meta transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
     >
       {children}
     </button>
