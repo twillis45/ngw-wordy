@@ -50,6 +50,7 @@ import {
 } from '@/lib/fullscreen';
 import {
   activeLetters,
+  MIN_WORD_LENGTH,
   RANK_BASIS,
   clueTarget,
   isReachable,
@@ -458,7 +459,13 @@ export default function Game({ data }: { data: PuzzleFile }) {
         break;
       case 'too-short':
         feedback.duplicate();
-        say('Too short', 'neutral');
+        /*
+         * Name the rule, not just the verdict. The wheel prevents this — the
+         * submit button is disabled below the minimum and counts up "1/3" —
+         * so the only way to reach here is by TYPING, where there is no such
+         * signal and "Too short" leaves the player to guess the threshold.
+         */
+        say(`Too short — ${MIN_WORD_LENGTH} letters minimum`, 'neutral');
         break;
       case 'invalid':
         setMissState((m) =>
