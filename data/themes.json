@@ -3560,7 +3560,8 @@
         "held",
         "red",
         "lead"
-      ]
+      ],
+      "scene": "The word, and the man carrying it"
     },
     {
       "base": "shared",
@@ -3579,7 +3580,8 @@
         "red",
         "reads",
         "herd"
-      ]
+      ],
+      "scene": "Two and a half years of not knowing"
     },
     {
       "base": "thread",
@@ -3598,7 +3600,8 @@
         "trade",
         "date",
         "tread"
-      ]
+      ],
+      "scene": "A quilt corner, and a woman who could not write"
     },
     {
       "base": "parked",
@@ -3617,7 +3620,8 @@
         "peak",
         "dare",
         "reap"
-      ]
+      ],
+      "scene": "Emancipation Park: ten acres, 1872"
     },
     {
       "base": "hearty",
@@ -3636,7 +3640,8 @@
         "teary",
         "rate",
         "yeah"
-      ]
+      ],
+      "scene": "The plate at the grounds"
     },
     {
       "base": "framed",
@@ -3655,7 +3660,8 @@
         "read",
         "red",
         "made"
-      ]
+      ],
+      "scene": "The order, hung in the hallway"
     },
     {
       "base": "charts",
@@ -3674,7 +3680,8 @@
         "arts",
         "cart",
         "hats"
-      ]
+      ],
+      "scene": "Which families came off which places"
     },
     {
       "base": "traced",
@@ -3693,7 +3700,8 @@
         "acre",
         "race",
         "card"
-      ]
+      ],
+      "scene": "County deed books, and the name she was looking for"
     },
     {
       "base": "grated",
@@ -3712,7 +3720,8 @@
         "red",
         "grade",
         "gear"
-      ]
+      ],
+      "scene": "Ice cream cranked by hand on the lawn"
     },
     {
       "base": "flared",
@@ -3731,7 +3740,8 @@
         "fare",
         "leaf",
         "real"
-      ]
+      ],
+      "scene": "The pageant, sewn across three living rooms"
     },
     {
       "base": "fedora",
@@ -3750,7 +3760,8 @@
         "rode",
         "redo",
         "fed"
-      ]
+      ],
+      "scene": "What he wears, and does not take off"
     },
     {
       "base": "soared",
@@ -3769,7 +3780,8 @@
         "dears",
         "read",
         "ode"
-      ]
+      ],
+      "scene": "The second verse, once the older voices find it"
     },
     {
       "base": "dreams",
@@ -3788,7 +3800,8 @@
         "sear",
         "red",
         "same"
-      ]
+      ],
+      "scene": "The recitation, and what was not permitted"
     },
     {
       "base": "dreamt",
@@ -3807,7 +3820,8 @@
         "read",
         "term",
         "date"
-      ]
+      ],
+      "scene": "The night of the eighteenth, 1865"
     },
     {
       "base": "beards",
@@ -3826,7 +3840,8 @@
         "based",
         "bears",
         "bared"
-      ]
+      ],
+      "scene": "The four men in the front pew"
     },
     {
       "base": "harden",
@@ -3845,7 +3860,8 @@
         "near",
         "head",
         "red"
-      ]
+      ],
+      "scene": "Seventy years of the promise going unkept"
     },
     {
       "base": "admire",
@@ -3864,7 +3880,8 @@
         "idea",
         "dime",
         "read"
-      ]
+      ],
+      "scene": "The ninety-four-year-old who has not missed one"
     },
     {
       "base": "dearly",
@@ -3883,7 +3900,8 @@
         "year",
         "relay",
         "yard"
-      ]
+      ],
+      "scene": "Kept by the people who kept it alone"
     },
     {
       "base": "braved",
@@ -3902,7 +3920,8 @@
         "drab",
         "read",
         "ave"
-      ]
+      ],
+      "scene": "What the first observances cost"
     },
     {
       "base": "derail",
@@ -3921,7 +3940,8 @@
         "red",
         "aide",
         "lard"
-      ]
+      ],
+      "scene": "What was never managed to it"
     },
     {
       "base": "chapel",
@@ -5741,7 +5761,8 @@
         "tarp",
         "pad",
         "red"
-      ]
+      ],
+      "scene": "Leaving, the week the word arrived"
     },
     {
       "base": "bedpan",
@@ -7436,7 +7457,8 @@
         "soda",
         "sod",
         "rob"
-      ]
+      ],
+      "scene": "Reedy Chapel-AME, Galveston"
     },
     {
       "base": "stared",
@@ -7455,7 +7477,8 @@
         "trades",
         "seat",
         "read"
-      ]
+      ],
+      "scene": "The 29th United States Colored Troops"
     },
     {
       "base": "tandem",
@@ -7474,7 +7497,8 @@
         "meant",
         "meat",
         "mend"
-      ]
+      ],
+      "scene": "Al Edwards, and the 1979 bill"
     },
     {
       "base": "around",
@@ -7493,7 +7517,8 @@
         "urn",
         "nod",
         "dour"
-      ]
+      ],
+      "scene": "The procession, and the elders’ tent"
     },
     {
       "base": "lawyer",
@@ -7512,7 +7537,8 @@
         "wary",
         "year",
         "war"
-      ]
+      ],
+      "scene": "Opal Lee, who walked"
     },
     {
       "base": "hailed",
