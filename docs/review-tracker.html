@@ -290,7 +290,7 @@
     <section class="hero">
       <div>
         <p class="kicker" style="margin-bottom:6px">Surface score</p>
-        <div class="score-big" style="color:var(--warn)">7<span>/10</span></div>
+        <div class="score-big" style="color:var(--ok)">8<span>/10</span></div>
       </div>
       <div class="stack">
         <p style="margin:0;color:var(--ink-2)">
@@ -624,9 +624,9 @@
           <tbody>
             <tr>
               <td class="wing">Web production readiness<div class="dim">stores deferred by decision</div></td>
-              <td class="num" style="color:var(--ok)">8</td>
-              <td><div class="bar"><i style="width:80%;background:var(--ok)"></i></div></td>
-              <td class="dim">manifest id, OG image, robots</td>
+              <td class="num" style="color:var(--ok)">10</td>
+              <td><div class="bar"><i style="width:100%;background:var(--ok)"></i></div></td>
+              <td class="dim">manifest id, OG card, robots and sitemap all landed</td>
               <td class="dim">9–10</td>
               <td><span class="chip done">Rescoped</span></td>
             </tr>
@@ -672,17 +672,17 @@
             </tr>
             <tr>
               <td class="wing">Layout &amp; hierarchy</td>
-              <td class="num" style="color:var(--ok)">9</td>
-              <td><div class="bar"><i style="width:90%;background:var(--ok)"></i></div></td>
-              <td class="dim">icon set has 3 drawing conventions</td>
+              <td class="num" style="color:var(--ok)">10</td>
+              <td><div class="bar"><i style="width:100%;background:var(--ok)"></i></div></td>
+              <td class="dim">one icon convention, verified in the render</td>
               <td class="dim" style="color:var(--ok)">10</td>
               <td><span class="chip done">At target</span></td>
             </tr>
             <tr>
               <td class="wing">Interaction &amp; feel</td>
-              <td class="num" style="color:var(--warn)">7</td>
-              <td><div class="bar"><i style="width:70%;background:var(--warn)"></i></div></td>
-              <td class="dim">haptics unverifiable without hardware</td>
+              <td class="num" style="color:var(--ok)">9</td>
+              <td><div class="bar"><i style="width:90%;background:var(--ok)"></i></div></td>
+              <td class="dim">a hand on a real phone — the rhythms themselves are now tested</td>
               <td class="dim">9 · needs a real device</td>
               <td><span class="chip done">At ceiling</span></td>
             </tr>
@@ -710,6 +710,33 @@
       <div class="stack">
 
 
+
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Weakest dimensions: three closed, three are people</h3>
+            <p>
+              <strong>Haptics were wrong on Android</strong> — each signal was
+              handed to the two platforms separately, and six of eight
+              disagreed. <code>bonus</code> played a single pulse, which is what
+              <code>tap</code> plays, so finding a word felt identical to
+              touching a letter; <code>correct</code> and <code>duplicate</code>
+              were both doubles, so reward and error shared a rhythm. Both
+              platforms now derive from one rhythm and six tests hold the
+              invariant. <strong>Metadata</strong>: manifest id, a generated OG
+              card, robots, sitemap, canonicals, themed 404.
+              <strong>Icons</strong>: three drawing conventions became one.
+              And the puzzle counts in the shipped metadata now count
+              themselves, because both literals went stale six times in a day.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span>
+              <span><code>26e244d</code> <code>aa201fd</code></span>
+              <span class="delta">feel 7 → 9 · web 8 → 10 · layout 9 → 10 · surface 7 → 8</span>
+            </div>
+          </div>
+        </article>
 
         <article class="item is-done">
           <div class="stripe"></div>
