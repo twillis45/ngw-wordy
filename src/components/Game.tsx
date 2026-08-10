@@ -8,6 +8,7 @@ import {
   useState,
   useSyncExternalStore,
 } from 'react';
+import { createPortal } from 'react-dom';
 import LetterWheel from './LetterWheel';
 import WordTray from './WordTray';
 import RankBar from './RankBar';
@@ -38,6 +39,7 @@ import {
   measureFlight,
 } from '@/lib/flight';
 import { assistFor, isStalled } from '@/lib/assist';
+import { dialogOpen, useDialog, useMounted } from '@/lib/dialog';
 import {
   autoFullscreenOnFirstGesture,
   fullscreenSupported,
@@ -559,6 +561,14 @@ export default function Game({ data }: { data: PuzzleFile }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
+      /*
+       * A dialog owns the keyboard while it is open.
+       *
+       * This listener was unconditional, so with a sheet open Space shuffled
+       * the wheel behind it and every letter key selected tiles the player
+       * could not see — state changing invisibly under a modal.
+       */
+      if (dialogOpen()) return;
       if (e.key === 'Enter') {
         e.preventDefault();
         commit();
@@ -1263,18 +1273,27 @@ function Sheet({
   children: React.ReactNode;
   onClose: () => void;
 }) {
-  return (
+  const ref = useDialog(onClose);
+  const mounted = useMounted();
+  if (!mounted) return null;
+  return createPortal(
     <div
+      ref={ref}
       role="dialog"
       aria-modal="true"
       aria-label={label}
-      className="fixed inset-0 z-50 flex items-end"
+      tabIndex={-1}
+      className="fixed inset-0 z-50 flex items-end justify-center outline-none md:items-center"
       style={{ background: 'var(--scrim)' }}
       onClick={onClose}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="anim-rise safe-bottom max-h-[82dvh] w-full overflow-y-auto relative rounded-t-3xl border-t-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-5 pt-4"
+        // max-w/mx-auto: the sheet had neither, so at 1728px "Today's puzzle"
+        // was a 1900px-wide tap target with its chevron marooned ~1600px from
+        // its own label. Centred from md up rather than pinned to the bottom
+        // of a tall desktop viewport.
+        className="anim-rise safe-bottom mx-auto max-h-[82dvh] w-full max-w-[560px] overflow-y-auto relative rounded-t-3xl border-t-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-5 pt-4 md:rounded-3xl md:border-2"
       >
         {/* Grab handle — signals "drag or tap away", costs one element. */}
         <div
@@ -1290,7 +1309,8 @@ function Sheet({
           Close
         </button>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
@@ -1303,13 +1323,18 @@ function Sheet({
  * is the dismiss target: no button to find, no decision to make.
  */
 function Intro({ onDismiss }: { onDismiss: () => void }) {
-  return (
+  const ref = useDialog(onDismiss);
+  const mounted = useMounted();
+  if (!mounted) return null;
+  return createPortal(
     <div
+      ref={ref}
       role="dialog"
       aria-modal="true"
       aria-label="How ranks work"
+      tabIndex={-1}
       onClick={onDismiss}
-      className="fixed inset-0 z-[60] grid cursor-pointer place-items-center px-6"
+      className="fixed inset-0 z-[60] grid cursor-pointer place-items-center px-6 outline-none"
       style={{ background: 'var(--scrim)' }}
     >
       <div className="anim-rise relative w-full max-w-[360px] rounded-3xl border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-6">
@@ -1350,11 +1375,20 @@ function Intro({ onDismiss }: { onDismiss: () => void }) {
           ))}
         </ol>
 
-        <p className="mt-5 text-center text-[13px] text-text-muted">
-          Tap anywhere to start
-        </p>
+        {/* A real button, not just "tap anywhere". The overlay-as-target is
+            fine for a pointer and useless without one: it was a non-focusable
+            div, so a keyboard-only player was trapped behind this on first
+            launch with nothing to activate. */}
+        <button
+          type="button"
+          onClick={onDismiss}
+          className="mt-5 h-11 w-full rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-[14px] font-medium text-text-primary"
+        >
+          Start playing
+        </button>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
