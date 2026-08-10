@@ -64,6 +64,7 @@ import {
   isReachable,
   dailyIndex,
   dailyCycle,
+  dailyPoolSize,
   progressKey,
   puzzleForPlayer,
   themeGroups,
@@ -156,7 +157,13 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * Found words are keyed by puzzle AND lap. Without the lap, finishing the
    * catalogue once means every future board arrives pre-solved.
    */
-  const cycle = dailyCycle(today, data.puzzles.length);
+  /*
+   * Laps of the DAILY POOL, not of the whole file. The daily rotates through
+   * the authored catalogue; counting laps of all 520 boards would leave a
+   * player who cleared the catalogue looking at their own solved boards until
+   * the wider counter caught up.
+   */
+  const cycle = dailyCycle(today, dailyPoolSize(data));
   const puzzleId = progressKey(puzzle.id, cycle);
   const isDaily = offset === 0 && warmup === null;
 

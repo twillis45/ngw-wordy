@@ -104,6 +104,23 @@ export function progressKey(puzzleId: string | number, cycle = 0): string {
   return cycle === 0 ? String(puzzleId) : `${puzzleId}#${cycle}`;
 }
 
+/**
+ * How many puzzles the daily actually rotates through.
+ *
+ * The authored catalogue, when there is one. This has to be a single exported
+ * definition because TWO things depend on it and they must agree: the daily's
+ * seed, and the lap counter that keys stored progress. When the daily was
+ * narrowed to authored boards only, the lap counter was still counting laps of
+ * the whole 520-board set — so a player who cleared all 397 would be served
+ * their own solved boards for up to 123 days before the cycle ticked over and
+ * gave them fresh storage keys. That is the day-241 bug again, wearing
+ * different numbers, which is exactly why the value now has one home.
+ */
+export function dailyPoolSize(file: PuzzleFile): number {
+  const themed = file.puzzles.filter((p) => p.theme).length;
+  return themed > 0 ? themed : file.puzzles.length;
+}
+
 /** How many complete laps of the catalogue have elapsed. */
 export function dailyCycle(date: Date, total: number): number {
   const epoch = Math.floor(
@@ -148,9 +165,8 @@ export function puzzleForPlayer(
    * Falls back to the full set if nothing is authored, so a build with an empty
    * themes.json still produces a playable daily rather than dividing by zero.
    */
-  const themedCount = file.puzzles.filter((p) => p.theme).length;
   const total = file.puzzles.length;
-  const dailyPool = themedCount > 0 ? themedCount : total;
+  const dailyPool = dailyPoolSize(file);
   const seed = dailyIndex(today, dailyPool);
 
   // An explicit offset is the player steering; never second-guess it.

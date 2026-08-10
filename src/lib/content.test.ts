@@ -12,7 +12,7 @@
  * three.
  */
 import { describe, expect, it } from 'vitest';
-import { puzzleForPlayer } from './game';
+import { dailyCycle, dailyPoolSize, puzzleForPlayer } from './game';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import {
@@ -312,5 +312,34 @@ describe('the daily never serves a generated board', () => {
       if (!file.puzzles[index].theme) generic.push(`${d.toISOString().slice(0, 10)}`);
     }
     expect(generic.slice(0, 5), `${generic.length} generated dailies in a year`).toEqual([]);
+  });
+});
+
+describe('the wrap', () => {
+  it('counts laps of the same pool the daily rotates through', () => {
+    /*
+     * The day-241 bug was: the daily served a board the player had already
+     * finished, because progress is keyed per puzzle and the rotation came back
+     * around. The fix is a lap counter that changes the storage key.
+     *
+     * It only works if the counter and the rotation agree on how many puzzles
+     * a lap IS. Narrowing the daily to authored boards without narrowing the
+     * counter re-opened the same hole, 123 days wide.
+     */
+    const asFile = {
+      version: 2,
+      wheel: 6,
+      starters: [],
+      puzzles: file.puzzles,
+    } as unknown as Parameters<typeof dailyPoolSize>[0];
+
+    const pool = dailyPoolSize(asFile);
+    expect(pool).toBe(file.puzzles.filter((p) => p.theme).length);
+
+    // The day after a full lap must land on a different storage cycle than
+    // day zero, or the replay reuses the finished board's key.
+    const day0 = new Date(Date.UTC(2026, 0, 1));
+    const afterLap = new Date(Date.UTC(2026, 0, 1 + pool));
+    expect(dailyCycle(afterLap, pool)).toBeGreaterThan(dailyCycle(day0, pool));
   });
 });
