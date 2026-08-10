@@ -91,7 +91,7 @@
     {
       "id": "juneteenth",
       "name": "The Nineteenth",
-      "blurb": "A paper read out loud on a Galveston balcony, two and a half years late."
+      "blurb": "A paper read out loud in Galveston, two and a half years late."
     }
   ],
   "puzzles": [
@@ -1730,7 +1730,7 @@
       "base": "latino",
       "theme": "salon",
       "clues": {
-        "latino": "The Dominican shop two blocks over, where a blowout runs an hour and costs less.",
+        "latino": "The Dominican shop two blocks over: walk in, ninety minutes, out for twenty-five dollars.",
         "lion": "What a fresh set of curls makes a four-year-old, roaring at her own reflection.",
         "loan": "How the second dryer got bought, and she paid it back a year early.",
         "into": "Where the rollers go before the hood comes down on your head.",
@@ -2886,22 +2886,22 @@
       ]
     },
     {
-      "base": "jesuit",
+      "base": "priest",
       "theme": "homecoming",
       "clues": {
-        "jesuit": "Xavier in New Orleans. Fifteen hundred students, mass on Sunday, and a pharmacy school.",
-        "suite": "The one room the chapter books with a kitchenette, and everybody ends up in it.",
-        "suit": "Seersucker, and he has had it pressed for this specific Saturday since 1997.",
-        "ties": "Bow, clip-on, or borrowed from a roommate ten minutes before the brunch.",
-        "just": "How many the whole college enrolls: eight hundred, and the dean knows most of the names.",
-        "site": "The old campus, four buildings and a chapel, on the national register since 1974."
+        "priest": "New Orleans has a college downtown run by these men. The Catholic HBCU nearby was founded by nuns.",
+        "site": "Where the Sisters of the Blessed Sacrament opened a secondary school in 1915.",
+        "rites": "Crowning, coronation, and the parade: the weekend holds more of them than the school year does.",
+        "step": "What the Divine Nine chapters put on Friday night, judged loudly by everybody watching.",
+        "strip": "The pharmacy school's white coats in a line at the ceremony, a few hundred strong.",
+        "tires": "Four bald ones on the drive down, and she made it anyway, same as every year since 1994."
       },
       "prefer": [
-        "suite",
-        "suit",
-        "ties",
-        "just",
-        "site"
+        "site",
+        "rites",
+        "step",
+        "strip",
+        "tires"
       ]
     },
     {
@@ -3216,7 +3216,7 @@
         "duet": "Two people, one frame, and if it looks like one body moving, it worked.",
         "suit": "Pressed, cream colored, and he will not sit down in it before the second set.",
         "tied": "Double-knotted at the start of the night so nothing comes loose on a turn.",
-        "dust": "What she shakes onto a sticky gym floor, from a bottle she has had for years.",
+        "dust": "What a rubber sole leaves on a swept floor, and why nobody here wears one.",
         "side": "The travel goes this way, not forward, and that is what beginners keep getting wrong."
       },
       "prefer": [
@@ -3520,7 +3520,7 @@
         "share": "What the program asks the oldest woman present to do, and she takes all the time she wants.",
         "shade": "Under the pecans by ten, because the program runs long and it is June in Texas.",
         "hears": "What the whole street does when the band turns the corner two blocks off.",
-        "reads": "How the order goes: the plainest language the government ever managed, and only five sentences.",
+        "reads": "How the order goes: four sentences, the plainest language the government ever managed.",
         "herd": "What the trail riders bring into town ahead of the parade, and the avenue smells like it after."
       },
       "prefer": [
@@ -3536,7 +3536,7 @@
       "theme": "juneteenth",
       "clues": {
         "thread": "The year stitched into the quilt corner by a woman who had no other way to write it down.",
-        "earth": "Ten acres of it in Houston, bought in 1872 by four men who had been born owned.",
+        "earth": "Ten acres of it in Houston, 1872, bought by nine trustees for eight hundred dollars.",
         "heart": "The reading is that. Everything else on the printed order is arranged around it.",
         "trade": "What the county archive still records in dollars, with a first name and no surname after it.",
         "date": "June nineteenth, not the first of January. Texas counts from when the word actually landed.",
@@ -3558,7 +3558,7 @@
         "park": "What Houston took title to in 1916, and what the neighborhood never once stopped calling its own.",
         "dark": "When the pit crew lights it Thursday, so the beef is right by Saturday morning.",
         "peak": "Noon, when the program reaches the order and even the children under the tent go quiet.",
-        "dare": "What it took to hold the second one in 1866, in a state that had just lost and was not sorry.",
+        "dare": "What it took to hold the very first one in 1866, in a state that had lost and was not sorry.",
         "reap": "What the order never mentioned: land, or how a freed man was supposed to come by any."
       },
       "prefer": [
@@ -3574,7 +3574,7 @@
       "theme": "juneteenth",
       "clues": {
         "hearty": "How the plate gets built at the grounds: nothing on it is small and the line moves slow.",
-        "year": "Eighteen sixty-three, sixty-four, sixty-five — all of them after the paper was already signed.",
+        "year": "Sixty-three, sixty-four, sixty-five: the paper took effect at the start of the first one.",
         "heat": "Eleven in the morning on the Gulf coast, and the program does not move indoors for it.",
         "teary": "How the ninety-year-old gets at the second verse, which half the room has to hum.",
         "rate": "What the judges score first: the recitation. Poise second. The dress not at all.",
@@ -3653,7 +3653,7 @@
         "great": "Her grandmother's grandmother stood on the Strand in 1865. That is four names, and she can say all four.",
         "gate": "The one at the county fairgrounds that stayed shut to them, which is why the rodeo has its own.",
         "age": "What the oldest man present is asked, into the microphone, and he takes his time answering.",
-        "grade": "What Texas schools let out for long before any calendar up north carried the day at all.",
+        "grade": "What Texas gave the day in 1980, first in the nation, when no calendar up north carried it.",
         "gear": "Saddle, rope and a good hat, loaded Friday night for the ride into town."
       },
       "prefer": [
@@ -3689,7 +3689,7 @@
       "clues": {
         "fedora": "Grey, brushed the night before, and it does not leave his head once, not even at the pit.",
         "road": "The one out of the port in June 1865, full of people going to see about their own.",
-        "era": "What ended at Ashton Villa, and what began the next morning, which was the harder part.",
+        "era": "What ended in Galveston that June, and what began the next morning, which was harder.",
         "rode": "How the queen goes down the avenue: on the back of a convertible somebody waxed at dawn.",
         "redo": "What the committee does to the program every spring, and the order of service never changes.",
         "fed": "What it became in 2021, and half the offices that closed had never said the word out loud before."
@@ -3768,7 +3768,7 @@
         "beads": "Sewn onto the crown by hand, and it goes on the new one at the end of the night.",
         "based": "Galveston. Not Washington, not Richmond. That is the argument every June with somebody from out of state.",
         "bears": "What the marker on the seawall says in eighty words, and it took twenty years to get it put up.",
-        "bared": "What the order did in five sentences, about a thing every person in the room already knew."
+        "bared": "What four sentences did, about a thing every person standing there already knew."
       },
       "prefer": [
         "bread",
@@ -3844,7 +3844,7 @@
         "rev": "The bikes at the back of the line, kept idling until the drum majors clear the corner.",
         "drab": "What the day is not. Every color is out, and the flag has its own.",
         "bad": "What the roads inland were that June, and people walked them anyway to carry the news.",
-        "ave": "Emancipation, in Houston: the street the parade uses, and the name the neighborhood fought to restore."
+        "ave": "Emancipation, in Houston: the street the parade uses, and a Confederate's name taken off it in 2017."
       },
       "prefer": [
         "bear",
@@ -4999,7 +4999,7 @@
       "theme": "rnb90s",
       "clues": {
         "mentor": "The producer who put her group on a B-side first, then let them keep the publishing.",
-        "metro": "Three rooms over a Philadelphia subway grate; the walls shook when the express came.",
+        "metro": "Twelfth and Callowhill, where the city's soul got cut in a tuxedo for thirty years.",
         "tenor": "He takes the second line in the quartet and the whole last verse by himself.",
         "term": "Two albums and an option. What her lawyer struck through before anybody signed.",
         "omen": "The first four bars of the drum program. You already know how the record ends.",
@@ -5020,7 +5020,7 @@
         "notice": "Thirty days in writing before she walked from the label, taped to the studio door.",
         "tonic": "Home key. The last chorus leaves it a whole step up and never comes back down.",
         "coin": "Quarter in the diner jukebox slot, and she punches the slow one twice.",
-        "cent": "A penny a record after the split, which is what four of them each took home.",
+        "cent": "Fifty-six of them per album, split three ways, and the lawyers called that a deal.",
         "icon": "Her silhouette on the tour poster. Nobody prints the name because nobody has to.",
         "into": "Where the ad-lib takes the final chorus: up and clear over the top of the choir."
       },

@@ -1,5 +1,632 @@
 {
   "version": 1,
   "_readme": "Grounded cultural canon. Every entry is a claim the shipped clues rest on, checked against sources. Populated from docs/research/*.md; see docs/research/CANON.md for the contract and scripts/canon.mjs to query it. Entries are keyed to specific clues, and `npm test` fails if a keyed clue no longer exists — so editing a clue out from under its citation is caught rather than silently orphaning the research.",
-  "entries": []
+  "entries": [
+    {
+      "id": "shop-conk-history",
+      "cluster": "the-shop",
+      "claim": "The conk was a lye-based hair straightening process (congolene: lye, egg, potato) dominant from roughly the 1920s to the 1960s, and it burned.",
+      "verdict": "verified",
+      "detail": "Malcolm X describes his first conk in Roxbury around 1941 at age sixteen, and concludes it was \"my first really big step toward self-degradation\". The process was displaced by the Afro during the 1960s. The chemistry and the chronology are settled; the TONE question the bench asked is not — see shop-conk-tone.",
+      "sources": [
+        {
+          "title": "Byrd & Tharps, Hair Story: Untangling the Roots of Black Hair in America",
+          "url": "https://www.amazon.com/Hair-Story-Untangling-Roots-America/dp/1250046572",
+          "kind": "scholarship"
+        },
+        {
+          "title": "Quincy T. Mills, Cutting Along the Color Line (Penn Press, 2013)",
+          "url": "https://www.pennpress.org/9780812245417/cutting-along-the-color-line/",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "barbershop",
+          "base": "conked",
+          "word": "conked"
+        }
+      ],
+      "replacement": null
+    },
+    {
+      "id": "shop-conk-tone",
+      "cluster": "the-shop",
+      "claim": "Whether the conk clue reads as respect for the old heads or as novelty at their expense.",
+      "verdict": "tone",
+      "detail": "Not answerable from sources, and research does not settle it. Malcolm X’s own conclusion was that the conk was self-degradation, so a clue treating it as period colour is standing on top of that judgement whether it means to or not. Needs a reader old enough to have had one.",
+      "sources": [],
+      "clues": [
+        {
+          "theme": "barbershop",
+          "base": "conked",
+          "word": "conked"
+        }
+      ],
+      "replacement": null
+    },
+    {
+      "id": "shop-barbershop-institution",
+      "cluster": "the-shop",
+      "claim": "The Black barbershop is a documented institution of Black public life, not just a business.",
+      "verdict": "verified",
+      "detail": "Mills inverts the assumption usefully: in the 19th century Black barbers largely served white-only clienteles by custom, and the Black room as a Black space was won after 1890. Harris-Perry treats it as a site of everyday political talk.",
+      "sources": [
+        {
+          "title": "Quincy T. Mills, Cutting Along the Color Line (Penn Press, 2013)",
+          "url": "https://www.pennpress.org/9780812245417/cutting-along-the-color-line/",
+          "kind": "scholarship"
+        },
+        {
+          "title": "Melissa Harris-Perry, Barbershops, Bibles, and BET (Princeton, 2004)",
+          "url": "https://archive.org/details/barbershopsbible0000harr",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "shop-guard-numbers",
+      "cluster": "the-shop",
+      "claim": "Clipper guard numbers are standardised across brands; a #2 is a quarter inch.",
+      "verdict": "verified",
+      "detail": "Fade vs taper and line-up/edge-up are used in the packs the way barbers use them. One piece of vocabulary the packs do not use and could: the taper lever, around a sixteenth of an inch.",
+      "sources": [
+        {
+          "title": "Clipper guard sizes chart",
+          "url": "https://buybarber.com/blogs/news/clipper-guard-sizes-chart",
+          "kind": "community"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "shop-booth-rental",
+      "cluster": "the-shop",
+      "claim": "A stylist commonly rents her own chair, paying the shop owner as a landlord rather than working for wages.",
+      "verdict": "verified",
+      "detail": "Booth renters are 1099 independent contractors. The pack’s \"two hundred a week\" sits mid-range against a sourced $150-300/week. The alternative model is commission, typically a 40-60% split.",
+      "sources": [
+        {
+          "title": "Employee vs booth renter vs independent contractor in the salon industry",
+          "url": "https://biz.booksy.com/en-us/blog/employee-vs-booth-renter-vs-independent-contractor-key-differences-in-the-salon-industry",
+          "kind": "community"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "shop-dominican-blowout",
+      "cluster": "the-shop",
+      "claim": "A Dominican blowout takes about ninety minutes and costs around twenty-five dollars.",
+      "verdict": "corrected",
+      "detail": "The shipped clue read \"where a blowout runs an hour and costs less\" — an hour understates the sourced figure of roughly ninety minutes, and \"costs less\" was doing the work a number does better.",
+      "sources": [
+        {
+          "title": "The Dominican blowout, explained",
+          "url": "https://fashionista.com/2013/07/five-reasons-why-you-should-be-getting-a-dominican-style-blowout",
+          "kind": "community"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "salon",
+          "base": "latino",
+          "word": "latino"
+        }
+      ],
+      "replacement": {
+        "word": "latino",
+        "clue": "The Dominican shop two blocks over: walk in, ninety minutes, out for twenty-five dollars."
+      }
+    },
+    {
+      "id": "shop-wash-day",
+      "cluster": "the-shop",
+      "claim": "Wash day is a multi-hour ritual, not a wash.",
+      "verdict": "verified",
+      "detail": "Sourced wash range is 30-90 minutes for the washing itself; the pack’s \"ten until noon\" describes the full wash-and-style, which is how the sources use the term. Imprecise rather than wrong.",
+      "sources": [
+        {
+          "title": "CNN — wash day, photographed",
+          "url": "https://edition.cnn.com/2024/04/19/style/wash-day-photos-black-hair-tomesha-faxio",
+          "kind": "scholarship"
+        },
+        {
+          "title": "Byrd & Tharps, Hair Story: Untangling the Roots of Black Hair in America",
+          "url": "https://www.amazon.com/Hair-Story-Untangling-Roots-America/dp/1250046572",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "salon",
+          "base": "waters",
+          "word": "waters"
+        }
+      ],
+      "replacement": null
+    },
+    {
+      "id": "shop-crown-act",
+      "cluster": "the-shop",
+      "claim": "The CROWN Act bans natural-hair discrimination. California was first, 3 July 2019. It is NOT federal law.",
+      "verdict": "verified",
+      "detail": "The House passed it 235-189; it never cleared the Senate. Reintroduced 26 February 2025 as H.R. 1638 / S. 751. Roughly 30 states have adopted a version. NOTE FOR AUTHORS: never put the state count in a clue — it goes stale and the clue becomes wrong without anyone touching it.",
+      "sources": [
+        {
+          "title": "The CROWN Act — official campaign site",
+          "url": "https://www.thecrownact.com/about",
+          "kind": "primary"
+        },
+        {
+          "title": "NAACP Legal Defense Fund — natural hair discrimination",
+          "url": "https://www.naacpldf.org/natural-hair-discrimination/",
+          "kind": "primary"
+        },
+        {
+          "title": "Jackson Lewis — House passes the CROWN Act",
+          "url": "https://www.jacksonlewis.com/insights/house-passes-crown-act-ban-natural-hair-discrimination-workplace",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "shop-licensing-race-history",
+      "cluster": "the-shop",
+      "claim": "Cosmetology and barber licensing has a race history, and braiding licensure is its live continuation.",
+      "verdict": "verified",
+      "detail": "Braiding was licensure-regulated in 24 states as of 2014; Utah’s scheme was struck down in 2012 as \"wholly irrational\". This links the salon’s ownership spine to the barbershop’s licensing history — the same regulatory weapon, aimed at women, still in use.",
+      "sources": [
+        {
+          "title": "Regulating Beauty: The Licensing of Barbers and Beauticians in Alabama and the Nation (Enterprise & Society, Cambridge)",
+          "url": "https://www.cambridge.org/core/journals/enterprise-and-society/article/regulating-beauty-the-licensing-of-barbers-and-beauticians-in-alabama-and-the-nation/69A7A5E320A13E01E7192699B6AC6E4E",
+          "kind": "scholarship"
+        },
+        {
+          "title": "Institute for Justice — hair braiding licensure litigation",
+          "url": "https://ij.org/issues/economic-liberty/braiding/",
+          "kind": "primary"
+        },
+        {
+          "title": "NPR — It’s Now Legal To Braid Hair In Utah Without A License (2012)",
+          "url": "https://www.npr.org/sections/money/2012/08/09/158498244/its-now-legal-to-braid-hair-in-utah-without-a-license",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "shop-walker-economic-independence",
+      "cluster": "the-shop",
+      "claim": "The beauty shop is a documented site of Black women’s economic independence, via Madam C.J. Walker and Annie Turnbo Malone.",
+      "verdict": "verified",
+      "detail": "Neither Walker nor Malone is named anywhere in the shipped salon pack. See shop-missing-beauty-shop-politics for why that absence costs the pack its strongest material.",
+      "sources": [
+        {
+          "title": "Library of Congress — Madam C.J. Walker",
+          "url": "https://blogs.loc.gov/headlinesandheroes/2020/05/madam-c-j-walker/",
+          "kind": "primary"
+        },
+        {
+          "title": "Tiffany M. Gill, Beauty Shop Politics (Univ. of Illinois Press, 2010)",
+          "url": "https://www.press.uillinois.edu/books/?id=p076961",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "shop-missing-beauty-shop-politics",
+      "cluster": "the-shop",
+      "claim": "The salon pack has practice but no political history — the single largest gap found in either pack.",
+      "verdict": "verified",
+      "detail": "Gill’s Beauty Shop Politics documents the beauty shop as a civil-rights organising site. Bernice Robinson, a 41-year-old Charleston beautician, taught Highlander’s first Citizenship School, and women were prepared for literacy tests in her shop at night — precisely BECAUSE a beautician’s income came from Black clients, so white employers had no economic leverage over her. That is the salon’s answer to the barbershop’s institutional weight, and the pack does not have it.",
+      "sources": [
+        {
+          "title": "Tiffany M. Gill, Beauty Shop Politics (Univ. of Illinois Press, 2010)",
+          "url": "https://www.press.uillinois.edu/books/?id=p076961",
+          "kind": "scholarship"
+        },
+        {
+          "title": "Interview: Tiffany Gill on beauty shops as a birthplace of activism (UT Austin)",
+          "url": "https://liberalarts.utexas.edu/caaas/news/historian-dr-tiffany-gill-sees-beauty-shops-as-birthplace-of-activism",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "shop-permit-term-unanchored",
+      "cluster": "the-shop",
+      "claim": "The barbershop clue \"The old word for the cut, still used here\" names no actual word.",
+      "verdict": "unverifiable",
+      "detail": "Barber trade glossaries and regional vocabulary searched; nothing anchors it, because there is nothing to anchor — the clue asserts a term exists without naming it. Either name the word or accept it as pure atmosphere resting on nothing.",
+      "sources": [
+        {
+          "title": "Clipper guard sizes chart",
+          "url": "https://buybarber.com/blogs/news/clipper-guard-sizes-chart",
+          "kind": "community"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "barbershop",
+          "base": "permit",
+          "word": "term"
+        }
+      ],
+      "replacement": null
+    },
+    {
+      "id": "juneteenth-order-four-sentences",
+      "cluster": "juneteenth",
+      "claim": "General Order No. 3 is four sentences.",
+      "verdict": "corrected",
+      "detail": "Two shipped clues said five — the most-repeated factual error in the pack, and it sat in its most quotable clue. The National Archives text runs four: all slaves are free; absolute equality of personal rights; freedmen advised to remain and work for wages; not to collect at military posts. Some renderings collapse it to three. Nobody counts five.",
+      "sources": [
+        {
+          "title": "National Archives — General Order No. 3, the original document",
+          "url": "https://www.archives.gov/news/articles/juneteenth-original-document",
+          "kind": "primary"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "juneteenth",
+          "base": "shared",
+          "word": "reads"
+        },
+        {
+          "theme": "juneteenth",
+          "base": "beards",
+          "word": "bared"
+        }
+      ],
+      "replacement": {
+        "word": "reads",
+        "clue": "How the order goes: four sentences, the plainest language the government ever managed."
+      }
+    },
+    {
+      "id": "juneteenth-emancipation-park-purchase",
+      "cluster": "juneteenth",
+      "claim": "Emancipation Park, Houston: ten acres bought in 1872 for $800 by nine trustees; the city took title in 1916.",
+      "verdict": "corrected",
+      "detail": "The shipped clue said \"four men\". The four-name short form (Allen, Brock, Yates, Dibble) describes the leadership, not the purchasers; the marker names nine trustees of the Colored People of Harris County Festival Association buying for a subscribing community. The pack’s own `parked` clue already said \"freedmen\", so the two clues contradicted each other.",
+      "sources": [
+        {
+          "title": "Historical Marker Database — The Legacy of Emancipation Park",
+          "url": "https://www.hmdb.org/m.asp?m=171255",
+          "kind": "primary"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "juneteenth",
+          "base": "thread",
+          "word": "earth"
+        }
+      ],
+      "replacement": {
+        "word": "earth",
+        "clue": "Ten acres of it in Houston, 1872, bought by nine trustees for eight hundred dollars."
+      }
+    },
+    {
+      "id": "juneteenth-first-observance-1866",
+      "cluster": "juneteenth",
+      "claim": "The first public observance of the anniversary was in 1866, in Houston.",
+      "verdict": "corrected",
+      "detail": "The shipped clue called 1866 \"the second one\". 19 June 1865 was the day of the order, not a celebration of it. The 1866 observance was a parade led by Elias Dibble as president and Sandy Parker as marshal. Off by one, in a way a Texas reader catches immediately.",
+      "sources": [
+        {
+          "title": "Britannica — Juneteenth",
+          "url": "https://www.britannica.com/topic/Juneteenth",
+          "kind": "scholarship"
+        },
+        {
+          "title": "Rice University historian on the 1866 Houston observance (KXAN)",
+          "url": "https://www.kxan.com/news/texas/first-juneteenth-celebration-was-held-in-houston-rice-scholar-says/",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "juneteenth",
+          "base": "parked",
+          "word": "dare"
+        }
+      ],
+      "replacement": {
+        "word": "dare",
+        "clue": "What it took to hold the very first one in 1866, in a state that had lost and was not sorry."
+      }
+    },
+    {
+      "id": "juneteenth-emancipation-avenue",
+      "cluster": "juneteenth",
+      "claim": "Houston renamed Dowling Street to Emancipation Avenue in January 2017.",
+      "verdict": "corrected",
+      "detail": "The shipped clue said the neighbourhood fought to \"restore\" the name. The street never carried it — it was named for Confederate commander Richard \"Dick\" Dowling, and the change, led by Rep. Garnet Coleman, was won rather than restored. Timed to Juneteenth 2017 and the park’s $33m reopening.",
+      "sources": [
+        {
+          "title": "City of Houston — Dowling Street renamed to Emancipation Avenue",
+          "url": "https://www.houstontx.gov/planning/AboutPD/news_releases17/Renaming-of-Dowling_Press-Release.pdf",
+          "kind": "primary"
+        },
+        {
+          "title": "Houston Public Media — Dowling Street to be renamed (Jan 2017)",
+          "url": "https://www.houstonpublicmedia.org/articles/news/local/2017/01/12/183416/houstons-dowling-street-to-be-renamed-emancipation-avenue/",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "juneteenth",
+          "base": "braved",
+          "word": "ave"
+        }
+      ],
+      "replacement": {
+        "word": "ave",
+        "clue": "Emancipation, in Houston: the street the parade uses, and a Confederate's name taken off it in 2017."
+      }
+    },
+    {
+      "id": "juneteenth-ashton-villa-balcony",
+      "cluster": "juneteenth",
+      "claim": "Granger read the order from the balcony of Ashton Villa.",
+      "verdict": "corrected",
+      "detail": "FOLKLORE, not evidence. No contemporaneous source places the reading there. Documented sites are the Union headquarters at the Osterman Building, the 1861 Custom House, the courthouse, and the \"Negro Church\" — today’s Reedy Chapel-AME. The belief is sustained by an annual Sons of Union Veterans reenactment performed AT Ashton Villa, a commemoration widely mistaken for the event it commemorates. The `era` clue asserted it as fact and the THEME BLURB asserted it flatly; both were rewritten.",
+      "sources": [
+        {
+          "title": "National Archives — General Order No. 3, the original document",
+          "url": "https://www.archives.gov/news/articles/juneteenth-original-document",
+          "kind": "primary"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "juneteenth",
+          "base": "fedora",
+          "word": "era"
+        }
+      ],
+      "replacement": {
+        "word": "era",
+        "clue": "What ended in Galveston that June, and what began the next morning, which was harder."
+      }
+    },
+    {
+      "id": "juneteenth-red-drink-lineage",
+      "cluster": "juneteenth",
+      "claim": "The red drink descends from West African hibiscus and kola traditions.",
+      "verdict": "unverifiable",
+      "detail": "WEAKLY SOURCED and widely repeated as fact. Opie, Miller and Twitty all hedge — \"may come from\", \"some historians believe\". There is plant provenance and colour symbolism, and no documentary chain. The shipped clue is already the safe version and claims no unbroken line. Keep it, and refuse any edit that hardens it.",
+      "sources": [
+        {
+          "title": "Britannica — Juneteenth",
+          "url": "https://www.britannica.com/topic/Juneteenth",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "juneteenth",
+          "base": "framed",
+          "word": "red"
+        }
+      ],
+      "replacement": null
+    },
+    {
+      "id": "juneteenth-texas-1980-holiday",
+      "cluster": "juneteenth",
+      "claim": "Texas made Juneteenth a state holiday in 1980, the first state to do so.",
+      "verdict": "corrected",
+      "detail": "The shipped clue had Texas schools letting out for the day, which is unsourceable and probably false — Emancipation Day is a partial-staffing state-employee holiday and school years end before 19 June. The real fact is stronger anyway.",
+      "sources": [
+        {
+          "title": "Britannica — Juneteenth",
+          "url": "https://www.britannica.com/topic/Juneteenth",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "juneteenth",
+          "base": "grated",
+          "word": "grade"
+        }
+      ],
+      "replacement": {
+        "word": "grade",
+        "clue": "What Texas gave the day in 1980, first in the nation, when no calendar up north carried it."
+      }
+    },
+    {
+      "id": "hbcu-gender-ratio",
+      "cluster": "institutions",
+      "claim": "HBCU enrollment is roughly 64% women, and has been women-majority every year since 1976.",
+      "verdict": "verified",
+      "detail": "NCES fall 2018: 142,108 women of 223,163 total — 63.7%, about 1:1.75. The premise two packs were authored on (\"60%+\") was conservative rather than wrong. No board needs changing.",
+      "sources": [
+        {
+          "title": "NCES — HBCU enrollment by sex",
+          "url": "https://nces.ed.gov/programs/digest/d19/tables/dt19_313.20.asp",
+          "kind": "primary"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "hbcu-xavier-not-jesuit",
+      "cluster": "institutions",
+      "claim": "Xavier University of Louisiana is the only Catholic HBCU, founded by Katharine Drexel and the Sisters of the Blessed Sacrament — NOT a Jesuit institution.",
+      "verdict": "corrected",
+      "detail": "A whole shipped board was built on the false premise, with three errors at once: Xavier is not Jesuit (Loyola New Orleans is, and is not an HBCU); enrollment is 3,181 as of fall 2023, not \"fifteen hundred\"; and the board’s own second clue said \"eight hundred\", contradicting its first. No Jesuit institution is an HBCU, so the base word could not carry the board honestly however the clues were rewritten. Re-based to `priest`, with the correction itself now in the base clue.",
+      "sources": [
+        {
+          "title": "Xavier University of Louisiana — facts and figures",
+          "url": "https://www.xula.edu/about/factsandfigures/index.html",
+          "kind": "primary"
+        }
+      ],
+      "clues": [],
+      "replacement": {
+        "word": "priest",
+        "clue": "New Orleans has a college downtown run by these men. The Catholic HBCU nearby was founded by nuns."
+      }
+    },
+    {
+      "id": "rnb90s-royalty-rate",
+      "cluster": "music-and-games",
+      "claim": "A 90s R&B group royalty ran around 56 cents per album, split among the members.",
+      "verdict": "corrected",
+      "detail": "The shipped clue said \"a penny a record\" — off by roughly twentyfold. TLC’s 1991 LaFace deal paid 56c per album split three ways, about 19c each. The real number is more damning than the invented one, which is usually how this goes.",
+      "sources": [
+        {
+          "title": "TLC’s LaFace royalty terms, reported",
+          "url": "https://www.latimes.com/archives/la-xpm-1995-07-04-fi-20444-story.html",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "rnb90s",
+          "base": "notice",
+          "word": "cent"
+        }
+      ],
+      "replacement": {
+        "word": "cent",
+        "clue": "Fifty-six of them per album, split three ways, and the lawyers called that a deal."
+      }
+    },
+    {
+      "id": "rnb90s-philly-studio",
+      "cluster": "music-and-games",
+      "claim": "Philadelphia’s soul studio of record is Sigma Sound, 212 N. 12th Street.",
+      "verdict": "corrected",
+      "detail": "The shipped clue invented \"three rooms over a Philadelphia subway grate\" — evocative and resting on nothing. Sigma is the real room, and Joe Tarsia’s description of the Philly sound as Black music \"in a tuxedo\" is the better image.",
+      "sources": [
+        {
+          "title": "Sigma Sound Studios, 212 N. 12th St., Philadelphia",
+          "url": "https://www.discogs.com/label/265136-Sigma-Sound-Studios",
+          "kind": "community"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "rnb90s",
+          "base": "mentor",
+          "word": "metro"
+        }
+      ],
+      "replacement": {
+        "word": "metro",
+        "clue": "Twelfth and Callowhill, where the city's soul got cut in a tuxedo for thirty years."
+      }
+    },
+    {
+      "id": "rnb90s-new-jack-swing-1987",
+      "cluster": "music-and-games",
+      "claim": "New jack swing was named in 1987, not the 1990s.",
+      "verdict": "verified",
+      "detail": "Barry Michael Cooper coined it in the Village Voice, 18 October 1987, writing about Teddy Riley. No shipped clue gets this wrong; recorded so none ever does.",
+      "sources": [
+        {
+          "title": "Barry Michael Cooper coins \"new jack swing\", Village Voice, 18 Oct 1987",
+          "url": "https://www.villagevoice.com/teddy-riley-new-jack-swing/",
+          "kind": "primary"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "rnb90s-quiet-storm",
+      "cluster": "music-and-games",
+      "claim": "Quiet storm is a radio format, originated by Melvin Lindsey at WHUR in May 1976 and named by Cathy Hughes.",
+      "verdict": "verified",
+      "detail": "Three shipped clues rest on this and all hold.",
+      "sources": [
+        {
+          "title": "WHUR — the Quiet Storm format, Melvin Lindsey, 1976",
+          "url": "https://whur.com/quiet-storm/",
+          "kind": "primary"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "steppers-sticky-floor",
+      "cluster": "music-and-games",
+      "claim": "The Chicago stepping answer to a sticky floor is the shoe, not the floor.",
+      "verdict": "corrected",
+      "detail": "The shipped clue had her shaking powder onto a sticky gym floor. Powdered dance-floor wax is a real product, but within the community powder is the crutch of dancers \"who don’t pick up their feet\", many studios forbid it, and the actual fix is leather or suede soles, brushed. The clue also contradicted the pack’s own `sole` clue, which is verified and correct.",
+      "sources": [
+        {
+          "title": "Cumbe Dance — Chicago Style Steppin’, sole guidance",
+          "url": "https://www.cumbedance.org/chicago-style-steppin",
+          "kind": "community"
+        }
+      ],
+      "clues": [
+        {
+          "theme": "steppers",
+          "base": "duties",
+          "word": "dust"
+        }
+      ],
+      "replacement": {
+        "word": "dust",
+        "clue": "What a rubber sole leaves on a swept floor, and why nobody here wears one."
+      }
+    },
+    {
+      "id": "spades-terminology-gap",
+      "cluster": "music-and-games",
+      "claim": "The spades pack never says \"board\" (the four-book minimum) or \"set\", and its two joker clues describe two different decks.",
+      "verdict": "verified",
+      "detail": "Terminology otherwise checks out against McIntyre: book, renege (three books or 100 points, challenger must prove it), blind bids gated on being 100 or 140 behind, game to 250/300/500, bags recorded beside the bid. The joker inconsistency is an authoring fix, not a research question — pick one deck.",
+      "sources": [
+        {
+          "title": "Amina McIntyre, on spades, American Journal of Play (2021)",
+          "url": "https://www.museumofplay.org/app/uploads/2022/01/13-2-Article-1-Spades.pdf",
+          "kind": "scholarship"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    },
+    {
+      "id": "eyes-on-the-prize-corpus",
+      "cluster": "eyes-on-the-prize",
+      "claim": "Eyes on the Prize is 14 episodes across two series (1987, 1990); Series II was never commercially rights-cleared.",
+      "verdict": "verified",
+      "detail": "Roughly 130 songs licensed; PBS broadcast rights ended 1993 and licences lapsed by 1995, pushing VHS sets near $1,000 by 2005. Ford and Gilder funded re-clearance and Series I was restored in 2005. This is why the WashU interview outtakes — not the films — are the practical research door. Companion books are in copyright and are cited, never reproduced.",
+      "sources": [
+        {
+          "title": "Washington University — Henry Hampton Collection (Eyes on the Prize)",
+          "url": "https://library.wustl.edu/spec/filmandmedia/collections/henry-hampton-collection/",
+          "kind": "primary"
+        }
+      ],
+      "clues": [],
+      "replacement": null
+    }
+  ],
+  "updated": "2026-08-10"
 }
