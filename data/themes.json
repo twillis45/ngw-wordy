@@ -87,6 +87,11 @@
       "id": "steppers",
       "name": "The Line Forms",
       "blurb": "Nobody announced it — by the second verse there are four rows and your aunt is in front."
+    },
+    {
+      "id": "juneteenth",
+      "name": "The Nineteenth",
+      "blurb": "A paper read out loud on a Galveston balcony, two and a half years late."
     }
   ],
   "puzzles": [
@@ -3411,6 +3416,462 @@
         "heat",
         "thaw",
         "whet"
+      ]
+    },
+    {
+      "base": "safety",
+      "theme": "church",
+      "clues": {
+        "safety": "Dark suits, earpieces, and the retired deputy who trains that ministry is somebody's grandmother.",
+        "fast": "Twenty-one days every January, no meat, and the daily scripture goes out on the church group text.",
+        "yeast": "None of it in the Communion bread, because that first meal was eaten by people in a hurry to leave.",
+        "stay": "What the deacons do at the altar rail after dismissal, until the last person kneeling gets up.",
+        "aye": "How the clerk records each trustee in the minutes when a motion carries, one name at a time.",
+        "teas": "The urn in the fellowship hall after second service, hot water and honey, singers pouring first."
+      },
+      "prefer": [
+        "fast",
+        "yeast",
+        "stay",
+        "aye",
+        "teas"
+      ]
+    },
+    {
+      "base": "inmate",
+      "theme": "church",
+      "clues": {
+        "inmate": "The jail ministry writes forty of them by name, and the van goes upstate the second Saturday.",
+        "mint": "Out of her purse, cellophane crackling, passed down the pew to the coughing child mid-sermon.",
+        "meant": "What the deacon swears he did not do, once the bulletin announcement came out sideways.",
+        "time": "Twenty minutes a man on visiting day, and the sisters split the list before they sign in.",
+        "neat": "The old deacon's shirt, pressed by his own hand since his wife passed, collar sharp by seven.",
+        "team": "The dozen who ride upstate in the van: two drivers, one cooler, a box of stamped envelopes."
+      },
+      "prefer": [
+        "mint",
+        "meant",
+        "time",
+        "neat",
+        "team"
+      ]
+    },
+    {
+      "base": "salute",
+      "theme": "church",
+      "clues": {
+        "salute": "What the Men's Day program calls the part where the founders are named and the room stands.",
+        "least": "The Matthew 25 line the pastor preaches every November, about who you did it unto.",
+        "salt": "The bag the trustees set by the front steps in January, so nobody goes down on the ice.",
+        "sale": "Rummage in the fellowship hall, Saturday eight to two, and the ledger goes home with the treasurer.",
+        "slate": "The officers read out at the annual meeting, typed since October by the nominating chair.",
+        "tales": "What the old deacons trade in the vestibule about the pastor before this one, half of it true."
+      },
+      "prefer": [
+        "least",
+        "salt",
+        "sale",
+        "slate",
+        "tales"
+      ]
+    },
+    {
+      "base": "famine",
+      "theme": "church",
+      "clues": {
+        "famine": "Joseph stored grain against it, and the basement pantry runs the same way: shelf full before the need.",
+        "fan": "Cardboard, wooden handle, the funeral home's name on the back, working harder than the window unit.",
+        "amen": "The corner where the deacons sit, and the one word back from it that keeps a preacher moving.",
+        "men": "A dozen of them cook and serve the annual breakfast, badly and proudly, one Saturday in October.",
+        "main": "The water line under the lot let go in February, and the treasurer cut the check that same day.",
+        "fine": "How everybody answers the greeter at the door, whether it is true that morning or not."
+      },
+      "prefer": [
+        "fan",
+        "amen",
+        "men",
+        "main",
+        "fine"
+      ]
+    },
+    {
+      "base": "herald",
+      "theme": "juneteenth",
+      "clues": {
+        "herald": "In 1865 the word still meant a man on a balcony with somebody else's paper in his hand.",
+        "heard": "Galveston, June nineteenth, and Texas finally got the news it had been kept from.",
+        "read": "What the committee does with the minutes book before one dollar gets voted on.",
+        "held": "The pageant is not on the courthouse lawn. That was never allowed. It is on ground they bought.",
+        "hard": "What thirty months of being kept in the dark was, and no part of the day pretends otherwise.",
+        "lead": "What the girls' drill team does, whistle and all, in front of the flatbed carrying the queen."
+      },
+      "prefer": [
+        "heard",
+        "read",
+        "held",
+        "hard",
+        "lead"
+      ]
+    },
+    {
+      "base": "shared",
+      "theme": "juneteenth",
+      "clues": {
+        "shared": "What the news was not, for two full cotton seasons. That is the whole reason for the date.",
+        "share": "What the program asks the oldest woman present to do, and she takes all the time she wants.",
+        "shade": "Under the pecans by ten, because the program runs long and it is June in Texas.",
+        "hears": "What the whole street does when the band turns the corner two blocks off.",
+        "reads": "How the order goes: the plainest language the government ever managed, and only five sentences.",
+        "herd": "What the trail riders bring into town ahead of the parade, and the avenue smells like it after."
+      },
+      "prefer": [
+        "share",
+        "shade",
+        "hears",
+        "reads",
+        "herd"
+      ]
+    },
+    {
+      "base": "thread",
+      "theme": "juneteenth",
+      "clues": {
+        "thread": "The year stitched into the quilt corner by a woman who had no other way to write it down.",
+        "earth": "Ten acres of it in Houston, bought in 1872 by four men who had been born owned.",
+        "heart": "The reading is that. Everything else on the printed order is arranged around it.",
+        "trade": "What the county archive still records in dollars, with a first name and no surname after it.",
+        "date": "June nineteenth, not the first of January. Texas counts from when the word actually landed.",
+        "tread": "What the brick streets of Freedmen's Town were laid for, by hand, by the people living on them."
+      },
+      "prefer": [
+        "earth",
+        "heart",
+        "trade",
+        "date",
+        "tread"
+      ]
+    },
+    {
+      "base": "parked",
+      "theme": "juneteenth",
+      "clues": {
+        "parked": "Ten acres in Houston, 1872, bought by freedmen because every other green space was closed to them.",
+        "park": "What Houston took title to in 1916, and what the neighborhood never once stopped calling its own.",
+        "dark": "When the pit crew lights it Thursday, so the beef is right by Saturday morning.",
+        "peak": "Noon, when the program reaches the order and even the children under the tent go quiet.",
+        "dare": "What it took to hold the second one in 1866, in a state that had just lost and was not sorry.",
+        "reap": "What the order never mentioned: land, or how a freed man was supposed to come by any."
+      },
+      "prefer": [
+        "park",
+        "dark",
+        "peak",
+        "dare",
+        "reap"
+      ]
+    },
+    {
+      "base": "hearty",
+      "theme": "juneteenth",
+      "clues": {
+        "hearty": "How the plate gets built at the grounds: nothing on it is small and the line moves slow.",
+        "year": "Eighteen sixty-three, sixty-four, sixty-five — all of them after the paper was already signed.",
+        "heat": "Eleven in the morning on the Gulf coast, and the program does not move indoors for it.",
+        "teary": "How the ninety-year-old gets at the second verse, which half the room has to hum.",
+        "rate": "What the judges score first: the recitation. Poise second. The dress not at all.",
+        "yeah": "What comes back from the crowd at the line about all slaves being free. Not applause. Just that."
+      },
+      "prefer": [
+        "year",
+        "heat",
+        "teary",
+        "rate",
+        "yeah"
+      ]
+    },
+    {
+      "base": "framed",
+      "theme": "juneteenth",
+      "clues": {
+        "framed": "The order, printed and hung in the hallway between the church anniversary photo and the diplomas.",
+        "fade": "What the mimeographed programs from the seventies did in her box, and she keeps every one.",
+        "farm": "What people walked off of upriver the week the word came down, and kept on walking.",
+        "fear": "The reason some waited for the crop to come in, and the reason others did not wait at all.",
+        "red": "Hibiscus once, strawberry soda now, and the color was never the point of it.",
+        "made": "What a surname was in 1865: chosen, written down, and defended ever since."
+      },
+      "prefer": [
+        "fade",
+        "farm",
+        "fear",
+        "red",
+        "made"
+      ]
+    },
+    {
+      "base": "charts",
+      "theme": "juneteenth",
+      "clues": {
+        "charts": "Pinned up in the church annex: which families came off which places, and where they went after.",
+        "cash": "What the scholarship is not. It is a check, and the bank teller already knows her name.",
+        "star": "The Texas one, bursting on the flag Ben Haith drew in 1997, over an arc for the new horizon.",
+        "arts": "The recitation contest: General Order No. 3 from memory, and the eleven-year-old misses nothing.",
+        "cart": "What the ice came in on, in blocks, before anybody at the grounds had a machine.",
+        "hats": "White and wide, on the ushers who walk the elders to their seats, and nobody argues with them."
+      },
+      "prefer": [
+        "cash",
+        "star",
+        "arts",
+        "cart",
+        "hats"
+      ]
+    },
+    {
+      "base": "traced",
+      "theme": "juneteenth",
+      "clues": {
+        "traced": "What she did through the county deed books until she found the name and the year they bought.",
+        "cedar": "The chest the church minutes live in, 1867 forward, and she keeps the only key to it.",
+        "care": "What the roadside marker gets twice a year, from one woman, with a wire brush.",
+        "acre": "Freedom colonies: bought cheap, worked hard, and a few of those towns are still on the map.",
+        "race": "What they run at the fairgrounds before the bull riding, and the announcer knows everybody's people.",
+        "card": "Handed out at the door: order of service on one side, the words to the anthem on the other."
+      },
+      "prefer": [
+        "cedar",
+        "care",
+        "acre",
+        "race",
+        "card"
+      ]
+    },
+    {
+      "base": "grated",
+      "theme": "juneteenth",
+      "clues": {
+        "grated": "Nutmeg over the ice cream the church ladies crank by hand on the side lawn.",
+        "great": "Her grandmother's grandmother stood on the Strand in 1865. That is four names, and she can say all four.",
+        "gate": "The one at the county fairgrounds that stayed shut to them, which is why the rodeo has its own.",
+        "age": "What the oldest man present is asked, into the microphone, and he takes his time answering.",
+        "grade": "What Texas schools let out for long before any calendar up north carried the day at all.",
+        "gear": "Saddle, rope and a good hat, loaded Friday night for the ride into town."
+      },
+      "prefer": [
+        "great",
+        "gate",
+        "age",
+        "grade",
+        "gear"
+      ]
+    },
+    {
+      "base": "flared",
+      "theme": "juneteenth",
+      "clues": {
+        "flared": "What the pageant skirts do on the turn, sewn across three living rooms over five weeks.",
+        "fled": "What some did that same afternoon, on foot, toward a county where they had people waiting.",
+        "deal": "What the order offered in place of land: wages, and a strong suggestion to stay where they were.",
+        "fare": "Two dollars round trip on the chartered bus down to the island, and the church covers the children.",
+        "leaf": "The shade at the far end where the domino table sets up and does not move until dusk.",
+        "real": "Absolute equality of personal rights: five words in the order, argued into being one century at a time."
+      },
+      "prefer": [
+        "fled",
+        "deal",
+        "fare",
+        "leaf",
+        "real"
+      ]
+    },
+    {
+      "base": "fedora",
+      "theme": "juneteenth",
+      "clues": {
+        "fedora": "Grey, brushed the night before, and it does not leave his head once, not even at the pit.",
+        "road": "The one out of the port in June 1865, full of people going to see about their own.",
+        "era": "What ended at Ashton Villa, and what began the next morning, which was the harder part.",
+        "rode": "How the queen goes down the avenue: on the back of a convertible somebody waxed at dawn.",
+        "redo": "What the committee does to the program every spring, and the order of service never changes.",
+        "fed": "What it became in 2021, and half the offices that closed had never said the word out loud before."
+      },
+      "prefer": [
+        "road",
+        "era",
+        "rode",
+        "redo",
+        "fed"
+      ]
+    },
+    {
+      "base": "soared",
+      "theme": "juneteenth",
+      "clues": {
+        "soared": "What the second verse does once the older voices find it and the room stops pretending.",
+        "soda": "Big Red, by the case, and in this state that is not a trend or a joke. It is just what gets bought.",
+        "rose": "What the whole tent does when the flag with the bursting star comes up the aisle.",
+        "dears": "What the elders call the children they are correcting, right up until they mean it differently.",
+        "sore": "What the feet are by four, and why the pageant shoes come off on the church steps.",
+        "ode": "What the eighth grader's poem is, whether or not she would ever call it that."
+      },
+      "prefer": [
+        "soda",
+        "rose",
+        "dears",
+        "sore",
+        "ode"
+      ]
+    },
+    {
+      "base": "dreams",
+      "theme": "juneteenth",
+      "clues": {
+        "dreams": "What the girl in the recitation says her great-grandmother was not permitted to have out loud.",
+        "seam": "Let out twice on the white dress, because she has grown since Easter and the pageant is in June.",
+        "arms": "What two thousand Union soldiers carried into Galveston, and the reason the paper got obeyed.",
+        "sear": "What the beef gets over pecan wood on Thursday night, before the long slow part begins.",
+        "dear": "What a printed name is, when it is the only one your family ever got to choose.",
+        "same": "The route the parade has taken longer than anybody living can remember: down the avenue, past the church."
+      },
+      "prefer": [
+        "seam",
+        "arms",
+        "sear",
+        "dear",
+        "same"
+      ]
+    },
+    {
+      "base": "dreamt",
+      "theme": "juneteenth",
+      "clues": {
+        "dreamt": "The night of the eighteenth, 1865, when nobody on the island yet knew what the morning held.",
+        "meat": "Beef here, and links. Whatever they do with pork elsewhere is elsewhere's business.",
+        "team": "Eleven men cooking in shifts from Thursday dark to Saturday noon, off a schedule taped to the wall.",
+        "read": "What the man at the podium does slowly while everyone stands: no commentary, start to finish.",
+        "term": "Employer and hired labor: the words the order swapped in, and the world did not follow.",
+        "tame": "What the day is not, by four, when the band comes back out and the street fills up again."
+      },
+      "prefer": [
+        "meat",
+        "team",
+        "read",
+        "term",
+        "tame"
+      ]
+    },
+    {
+      "base": "beards",
+      "theme": "juneteenth",
+      "clues": {
+        "beards": "White, on the four men in the front pew who were boys when their grandfathers still told it.",
+        "bread": "Baked Friday at the church so the Saturday kitchen only has to warm the pans.",
+        "beads": "Sewn onto the crown by hand, and it goes on the new one at the end of the night.",
+        "based": "Galveston. Not Washington, not Richmond. That is the argument every June with somebody from out of state.",
+        "bears": "What the marker on the seawall says in eighty words, and it took twenty years to get it put up.",
+        "bared": "What the order did in five sentences, about a thing every person in the room already knew."
+      },
+      "prefer": [
+        "bread",
+        "beads",
+        "based",
+        "bears",
+        "bared"
+      ]
+    },
+    {
+      "base": "harden",
+      "theme": "juneteenth",
+      "clues": {
+        "harden": "What the seventy years after 1865 did to the promise, and the day still gets kept on time.",
+        "earn": "What the order said the freed would now do for wages, on the same ground, for the same man.",
+        "hand": "What the program was first set down by, in 1954, and the committee still uses her wording.",
+        "near": "Sixty miles between the port and places nobody told, and the road was open the whole time.",
+        "head": "Where the elders sit, and nobody takes those seats without being walked to them first.",
+        "ran": "What some could not do, because there was nowhere to go, and staying was its own decision."
+      },
+      "prefer": [
+        "earn",
+        "hand",
+        "near",
+        "head",
+        "ran"
+      ]
+    },
+    {
+      "base": "admire",
+      "theme": "juneteenth",
+      "clues": {
+        "admire": "What you cannot help doing at the ninety-four-year-old who has not missed a nineteenth since 1948.",
+        "media": "The trucks that turn up in 2021 and ask an elder to explain her whole life in thirty seconds.",
+        "ride": "What the queen's little brother gets on the fire truck, once, and talks about all year.",
+        "idea": "Whose it was to walk from Fort Worth toward Washington at eighty-nine, and keep walking until it passed.",
+        "dime": "What the children brought for the park fund, and the treasurer counted it in front of them.",
+        "aimed": "Where the committee's money goes: the scholarship first, the sound system second, the tent last."
+      },
+      "prefer": [
+        "media",
+        "ride",
+        "idea",
+        "dime",
+        "aimed"
+      ]
+    },
+    {
+      "base": "dearly",
+      "theme": "juneteenth",
+      "clues": {
+        "dearly": "How the day is held by the people who kept it when no calendar anywhere else would.",
+        "delay": "Thirty months of it, with the paper already law the whole time. That is what the date is about.",
+        "early": "Four in the morning at the grounds, and the men at the pit have been there six hours.",
+        "ready": "What the contestant is, and has been since March, and she will tell you so herself.",
+        "relay": "How the word actually traveled in 1865: port to the next place, and the next, by mouth.",
+        "yard": "Of white cotton, bought for the ushers' sashes and cut out on her dining table."
+      },
+      "prefer": [
+        "delay",
+        "early",
+        "ready",
+        "relay",
+        "yard"
+      ]
+    },
+    {
+      "base": "braved",
+      "theme": "juneteenth",
+      "clues": {
+        "braved": "What the people who put on the first ones did, before any law in Texas said they could gather.",
+        "bear": "What the descendants do with the name: carry it, and say it in full when anybody asks.",
+        "rev": "The bikes at the back of the line, kept idling until the drum majors clear the corner.",
+        "drab": "What the day is not. Every color is out, and the flag has its own.",
+        "bad": "What the roads inland were that June, and people walked them anyway to carry the news.",
+        "ave": "Emancipation, in Houston: the street the parade uses, and the name the neighborhood fought to restore."
+      },
+      "prefer": [
+        "bear",
+        "rev",
+        "drab",
+        "bad",
+        "ave"
+      ]
+    },
+    {
+      "base": "derail",
+      "theme": "juneteenth",
+      "clues": {
+        "derail": "What nobody ever managed to do to the observance, not in 1866, not in 1900, not in the quiet years.",
+        "dial": "What the chairwoman still does, from a paper list, to ninety households every May.",
+        "lied": "What the planters told the people through two cotton seasons, until one of them finally slipped.",
+        "rail": "The one the elders lean on going up the church steps, painted every spring before the nineteenth.",
+        "aide": "The teenager assigned to the ninety-year-old for the whole program, with a fan and a cold bottle.",
+        "lard": "In the teacake dough, the way the recipe card says, and the card is in her mother's hand."
+      },
+      "prefer": [
+        "dial",
+        "lied",
+        "rail",
+        "aide",
+        "lard"
       ]
     }
   ]
