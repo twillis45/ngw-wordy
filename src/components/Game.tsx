@@ -944,7 +944,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       {/* A plain gap. This used to be greedy, which is exactly how it became a
           101px hole on a tall phone — it won the leftover and then had nothing
           to do with it. The wheel is the greedy box now. */}
-      <div className="h-6 shrink-0 short:h-2 md:h-3" />
+      <div className="h-3 shrink-0 short:h-2 md:h-3" />
 
       {/* Current word — the only place the accent green appears mid-play */}
       <div
@@ -964,7 +964,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
            * mouse, where it is 26px and fits — so a touchscreen laptop hits it
            * and a desktop with a mouse never does.
            */
-          'mb-3 grid h-11 place-items-center short:mb-1 short:h-9',
+          'mb-1.5 grid h-11 place-items-center short:mb-1 short:h-9',
           shaking ? 'anim-shake' : '',
         ].join(' ')}
       >
@@ -1039,7 +1039,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       </div>
 
       {/* Controls */}
-      <div className="mt-4 flex items-center justify-center gap-3 short:mt-1">
+      <div className="mt-2 flex items-center justify-center gap-2.5 md:mt-4 md:gap-3 short:mt-1">
         <ControlButton
           onClick={() => {
             setLetters((prev) => shuffle(prev));
@@ -1693,7 +1693,17 @@ function ControlButton({
       onClick={onClick}
       disabled={disabled}
       {...rest}
-      className="liquid-interactive relative h-11 min-w-[104px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-5 text-body font-medium text-text-secondary transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
+      /*
+       * Smaller on a phone so the DIAL can be bigger.
+       *
+       * The dial is height-constrained on mobile — it takes whatever the
+       * column leaves over — so every pixel these give up goes straight to the
+       * thing you actually play with. 40px keeps them well clear of the 24px
+       * WCAG minimum for a target; it gives up the 44px platform guidance,
+       * which is a deliberate trade for a bigger interaction surface, and the
+       * pills are secondary controls that a player uses far less than the dial.
+       */
+      className="liquid-interactive relative h-10 min-w-[92px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 text-meta font-medium text-text-secondary md:h-11 md:min-w-[104px] md:px-5 md:text-body transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
     >
       {children}
     </button>
