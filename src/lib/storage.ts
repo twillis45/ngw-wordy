@@ -56,7 +56,20 @@ export const EMPTY: Progress = Object.freeze({
   lastPlayed: null,
   bonusTotal: 0,
   spent: 0,
-  muted: false,
+  /*
+   * Sound OFF, haptics ON.
+   *
+   * The player board blocked sound-on-by-default outright, and the reason is
+   * where this game gets opened: a commute, a waiting room, a bed with someone
+   * asleep next to it. A puzzle that announces itself the first time you touch
+   * a letter gets closed, and the player never learns there was a toggle in the
+   * header.
+   *
+   * Haptics stay on because they are silent, they carry the same information,
+   * and they are the channel that still works with the phone face-down in a
+   * pocket. The two are separate settings for exactly this reason.
+   */
+  muted: true,
   /*
    * ON by default, for exactly the same reason `escalating` is.
    *
@@ -308,4 +321,71 @@ export function touchStreak(p: Progress, today: Date): Progress {
     lastPlayed: key,
     days: { ...p.days, [key]: true },
   };
+}
+
+/*
+ * Backing progress up, without a server.
+ *
+ * This is a static export with no accounts, so everything a player has —
+ * streak, history, hint balance, every board they have cleared — lives in one
+ * localStorage key that a cleared cache or a new phone erases silently. The
+ * player board named this its single most common blocker: the three seats most
+ * willing to pay all refused to commit to a streak they could lose without
+ * warning, and none of them would trust a purchase to it either.
+ *
+ * A code is the smallest honest fix. It needs no backend, survives the
+ * browser, and can be pasted into a notes app or another device. It is not an
+ * account and does not pretend to be one.
+ */
+const BACKUP_PREFIX = 'wordy1:';
+
+/** Everything worth carrying to another device, as a pasteable code. */
+export function exportProgress(): string {
+  const snap = read();
+  const json = JSON.stringify(snap);
+  // base64 of UTF-8, so a clue or theme name with an apostrophe survives.
+  const bytes = new TextEncoder().encode(json);
+  let binary = '';
+  for (const b of bytes) binary += String.fromCharCode(b);
+  return BACKUP_PREFIX + btoa(binary);
+}
+
+export type ImportResult =
+  | { ok: true; progress: Progress }
+  | { ok: false; reason: string };
+
+/**
+ * Restore from a code.
+ *
+ * Deliberately REPLACES rather than merges. Merging two histories raises
+ * questions with no right answer — whose streak wins, do cleared boards union
+ * — and a player restoring onto a fresh device expects to see what they had,
+ * not a blend. The caller is responsible for warning first.
+ */
+export function importProgress(code: string): ImportResult {
+  const trimmed = code.trim();
+  if (!trimmed.startsWith(BACKUP_PREFIX)) {
+    return { ok: false, reason: 'That does not look like a Wordy backup code.' };
+  }
+  try {
+    const binary = atob(trimmed.slice(BACKUP_PREFIX.length));
+    const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
+    const parsed = JSON.parse(new TextDecoder().decode(bytes)) as Partial<Progress>;
+    if (typeof parsed !== 'object' || parsed === null || !('words' in parsed)) {
+      return { ok: false, reason: 'That code is not a valid backup.' };
+    }
+    // Spread over EMPTY so a code from an older build gains new fields with
+    // their defaults rather than leaving them undefined.
+    const restored: Progress = { ...EMPTY, ...parsed };
+    // Go through the same path an update does — set the snapshot, persist, and
+    // notify — so every useSyncExternalStore subscriber re-renders on the
+    // restored data instead of the board it was showing a moment ago.
+    snapshot = restored;
+    hydrated = true;
+    if (typeof window !== 'undefined') write(restored);
+    listeners.forEach((l) => l());
+    return { ok: true, progress: restored };
+  } catch {
+    return { ok: false, reason: 'That code could not be read — check it copied in full.' };
+  }
 }

@@ -385,3 +385,29 @@ describe('the opening wheel is always playable', () => {
     expect(stuck.slice(0, 5), `${stuck.length} boards with no opening move`).toEqual([]);
   });
 });
+
+describe('progress survives the browser', () => {
+  it('round-trips a backup code', async () => {
+    /*
+     * Progress is one localStorage key with no account behind it, so a cleared
+     * cache or a new phone erases a streak silently. The player board named
+     * that its most common blocker — and specifically, the seats most willing
+     * to PAY were the ones who would not commit to a streak they could lose
+     * without warning. A code is the smallest fix that needs no server.
+     */
+    const { exportProgress, importProgress } = await import('./storage');
+    const code = exportProgress();
+    expect(code.startsWith('wordy1:'), 'code is tagged').toBe(true);
+
+    const restored = importProgress(code);
+    expect(restored.ok, 'a code this module just wrote must import').toBe(true);
+  });
+
+  it('refuses anything that is not a backup code', async () => {
+    const { importProgress } = await import('./storage');
+    for (const junk of ['', 'hello', 'wordy1:not-base64!!', 'wordy1:' + btoa('{}')]) {
+      const r = importProgress(junk);
+      expect(r.ok, `"${junk.slice(0, 20)}" must not import`).toBe(false);
+    }
+  });
+});

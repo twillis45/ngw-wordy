@@ -109,7 +109,26 @@ export function useDialog(onClose: () => void) {
     return () => {
       node.removeEventListener('keydown', onKeyDown);
       for (const el of siblings) el.removeAttribute('inert');
-      previouslyFocused?.focus?.({ preventScroll: true });
+      /*
+       * Restore focus, and if there is nowhere to restore it TO, put it at the
+       * top of the game rather than on <body>.
+       *
+       * The first-run explainer is the case: it opens on load with nothing
+       * focused, so `previouslyFocused` is <body>, focusing it is a no-op, and
+       * dismissing the overlay left focus on the body — measured. From there
+       * the next Tab restarts at the browser's own chrome, so the very first
+       * thing a keyboard-only player does after "Start playing" is leave the
+       * page. `main` is given a programmatic-only tabindex so it can receive
+       * focus without joining the Tab order.
+       */
+      if (previouslyFocused && previouslyFocused !== document.body) {
+        previouslyFocused.focus({ preventScroll: true });
+        return;
+      }
+      const main = document.querySelector('main');
+      if (!main) return;
+      main.setAttribute('tabindex', '-1');
+      main.focus({ preventScroll: true });
     };
   }, []);
 

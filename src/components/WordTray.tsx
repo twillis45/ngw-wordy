@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { revealedCount, type RevealState } from '@/lib/hints';
 
 /**
@@ -81,6 +81,50 @@ export default function WordTray({
    */
   const [menuFor, setMenuFor] = useState<string | null>(null);
 
+  /*
+   * The row that opened the menu, so closing can put focus back on it.
+   *
+   * Choosing a hint unmounts the menu item that was focused, and focus then
+   * falls to `document.body` — measured. From there Tab restarts at the top of
+   * the document, so a keyboard player who bought a letter was thrown back to
+   * the page header and had to walk the whole board again to buy a second one.
+   */
+  const openerRef = useRef<HTMLButtonElement | null>(null);
+  const closeMenu = useCallback(() => {
+    setMenuFor(null);
+    openerRef.current?.focus();
+  }, []);
+
+  /*
+   * Escape closes the menu, and a press anywhere else dismisses it.
+   *
+   * `role="menu"` sets an expectation the markup was not meeting: there was no
+   * Escape and no outside dismissal at all, so once open the only ways out
+   * were to buy something or to press the row again — and Escape, the key
+   * every keyboard and screen-reader user reaches for first, did nothing.
+   * Capture phase so the game's window-level key handler cannot see it.
+   */
+  useEffect(() => {
+    if (menuFor === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      e.preventDefault();
+      e.stopPropagation();
+      closeMenu();
+    };
+    const onPointer = (e: PointerEvent) => {
+      const el = e.target as HTMLElement | null;
+      if (el?.closest('[data-hint-menu],[data-hint-opener]')) return;
+      setMenuFor(null);
+    };
+    window.addEventListener('keydown', onKey, true);
+    window.addEventListener('pointerdown', onPointer, true);
+    return () => {
+      window.removeEventListener('keydown', onKey, true);
+      window.removeEventListener('pointerdown', onPointer, true);
+    };
+  }, [menuFor, closeMenu]);
+
   if (compact) {
     return (
       /*
@@ -100,17 +144,46 @@ export default function WordTray({
           const solved = found.has(word);
           const done = solved || bought;
           const definable = done && hasDefinition(word);
+          const actionable = canHint && !done;
           return (
+            <div key={word} className="relative flex items-center">
             <button
-              key={word}
               type="button"
-              disabled={!definable}
-              onClick={() => definable && onShowDefinition(word)}
+              data-hint-opener
+              ref={(el) => {
+                if (menuFor === word) openerRef.current = el;
+              }}
+              disabled={!definable && !actionable}
+              onClick={() =>
+                definable
+                  ? onShowDefinition(word)
+                  : actionable
+                    ? setMenuFor((cur) => (cur === word ? null : word))
+                    : undefined
+              }
+              aria-expanded={actionable ? menuFor === word : undefined}
+              aria-haspopup={actionable ? 'menu' : undefined}
+              /*
+               * Clue mode is the DEFAULT, so this chip — not the full grid —
+               * is the row control on almost every board. It was
+               * `disabled={!definable}`, i.e. inert until solved, which meant
+               * the whole hint economy was unreachable in the default mode by
+               * every input including a pointer, while the line under the
+               * wheel still read "Tap a row to choose a hint · 3 left". The
+               * chip now opens the same priced menu the full grid does.
+               */
               aria-label={
-                done ? `${word}, done` : `${word.length}-letter word, not found`
+                done
+                  ? `${word}, done`
+                  : actionable
+                    ? `${word.length}-letter word, not found. Open hint options.`
+                    : `${word.length}-letter word, not found`
               }
               className={[
-                'relative rounded-md border-2 px-1.5 py-0.5 text-kicker font-semibold tabular-nums leading-snug transition-colors',
+                // min-h/min-w hold the WCAG 2.5.8 floor. Measured 23.3x23.1 at
+                // 390px — the padding alone had never actually reached 24, so
+                // the comment below described an intent, not the rendered box.
+                'relative grid min-h-6 min-w-6 place-items-center rounded-md border-2 px-1.5 py-0.5 text-kicker font-semibold tabular-nums leading-snug transition-colors',
                 // Same achievement ladder as the full grid — see below.
                 solved
                   ? 'border-success liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary'
@@ -139,6 +212,21 @@ export default function WordTray({
             >
               {done ? word.toUpperCase() : word.length}
             </button>
+            {actionable && menuFor === word && (
+              <HintMenu
+                word={word}
+                tokens={tokens}
+                onLetter={() => {
+                  closeMenu();
+                  onRevealLetter(word);
+                }}
+                onWord={() => {
+                  closeMenu();
+                  onRevealWord(word);
+                }}
+              />
+            )}
+            </div>
           );
         })}
       </div>
@@ -162,6 +250,10 @@ export default function WordTray({
           <div key={word} className="relative flex items-center">
             <button
               type="button"
+              data-hint-opener
+              ref={(el) => {
+                if (menuFor === word) openerRef.current = el;
+              }}
               disabled={!actionable && !definable}
               // One handler, on CLICK — which keyboard Enter/Space and every
               // assistive technology produce, and pointer events do not.
@@ -242,51 +334,19 @@ export default function WordTray({
               })}
             </button>
 
-            {/*
-              Hint menu — real buttons, with the PRICE on the label. Both
-              actions were previously pointer-only and silent about cost.
-            */}
             {actionable && menuFor === word && (
-              <div
-                role="menu"
-                aria-label={`Hints for the ${word.length}-letter word`}
-                /*
-                 * Reads as a chooser, not a decoration. It replaced a tap that
-                 * used to reveal a letter outright, so if it is easy to miss
-                 * the player concludes the tap did nothing — which is exactly
-                 * what was reported. Full-strength edge and a contact shadow
-                 * so it separates from the grid behind it.
-                 */
-                className="absolute left-1/2 top-full z-20 mt-1.5 flex -translate-x-1/2 gap-1 rounded-xl border-2 border-edge liquid liquid-raised shadow-[0_8px_20px_-8px_rgba(0,0,0,0.75)] backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-1"
-              >
-                {/*
-                  Affordability is checked HERE, not just in the engine.
-                  spendWord already refuses when the balance is short — but the
-                  menu was offering "Whole word · 3" to a player holding 2, and
-                  clicking it did nothing at all. A control that is offered,
-                  costs nothing to press, and silently declines is worse than
-                  one that is plainly out of reach.
-                */}
-                <HintOption
-                  label="A letter"
-                  cost={LETTER_COST}
-                  balance={tokens}
-                  onChoose={() => {
-                    setMenuFor(null);
-                    onRevealLetter(word);
-                  }}
-                />
-                <HintOption
-                  label="Whole word"
-                  cost={WORD_COST}
-                  balance={tokens}
-                  muted
-                  onChoose={() => {
-                    setMenuFor(null);
-                    onRevealWord(word);
-                  }}
-                />
-              </div>
+              <HintMenu
+                word={word}
+                tokens={tokens}
+                onLetter={() => {
+                  closeMenu();
+                  onRevealLetter(word);
+                }}
+                onWord={() => {
+                  closeMenu();
+                  onRevealWord(word);
+                }}
+              />
             )}
 
             {floatFor?.word === word && (
@@ -308,6 +368,78 @@ export default function WordTray({
           </div>
         );
       })}
+    </div>
+  );
+}
+
+/**
+ * Hint menu — real buttons, with the PRICE on the label. Both actions were
+ * previously pointer-only and silent about cost.
+ *
+ * Shared by the full grid and the compact clue-mode chips, because they had
+ * drifted: only the grid had it, and the grid is the mode nobody is in by
+ * default.
+ */
+function HintMenu({
+  word,
+  tokens,
+  onLetter,
+  onWord,
+}: {
+  word: string;
+  tokens: number;
+  onLetter: () => void;
+  onWord: () => void;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  /*
+   * Move focus into the menu when it opens.
+   *
+   * `aria-haspopup="menu"` promises a menu opens; leaving focus on the row
+   * meant a screen-reader user was told a menu appeared and then given no way
+   * to reach it except a Tab into unannounced space. Focusing the first item
+   * is the documented behaviour for a menu button, unlike a dialog.
+   */
+  useEffect(() => {
+    ref.current?.querySelector<HTMLButtonElement>('button:not([disabled])')?.focus();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      role="menu"
+      data-hint-menu
+      aria-label={`Hints for the ${word.length}-letter word`}
+      /*
+       * Reads as a chooser, not a decoration. It replaced a tap that used to
+       * reveal a letter outright, so if it is easy to miss the player
+       * concludes the tap did nothing — which is exactly what was reported.
+       * Full-strength edge and a contact shadow so it separates from the grid
+       * behind it.
+       */
+      className="absolute left-1/2 top-full z-20 mt-1.5 flex -translate-x-1/2 gap-1 rounded-xl border-2 border-edge liquid liquid-raised shadow-[0_8px_20px_-8px_rgba(0,0,0,0.75)] backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-1"
+    >
+      {/*
+        Affordability is checked HERE, not just in the engine. spendWord
+        already refuses when the balance is short — but the menu was offering
+        "Whole word · 3" to a player holding 2, and clicking it did nothing at
+        all. A control that is offered, costs nothing to press, and silently
+        declines is worse than one that is plainly out of reach.
+      */}
+      <HintOption
+        label="A letter"
+        cost={LETTER_COST}
+        balance={tokens}
+        onChoose={onLetter}
+      />
+      <HintOption
+        label="Whole word"
+        cost={WORD_COST}
+        balance={tokens}
+        muted
+        onChoose={onWord}
+      />
     </div>
   );
 }

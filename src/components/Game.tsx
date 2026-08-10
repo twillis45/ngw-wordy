@@ -79,6 +79,8 @@ import {
   type PuzzleFile,
 } from '@/lib/game';
 import {
+  exportProgress,
+  importProgress,
   addWord,
   configureMigration,
   getServerSnapshot,
@@ -704,6 +706,31 @@ export default function Game({ data }: { data: PuzzleFile }) {
        * could not see — state changing invisibly under a modal.
        */
       if (dialogOpen()) return;
+      /*
+       * A focused control owns Enter and Space; this listener does not.
+       *
+       * Enter and Space are how a button is pressed without a pointer, and
+       * this handler was calling preventDefault on both unconditionally — so
+       * with focus on Shuffle, on a wheel tile, on a row, on the header icons,
+       * pressing either key ran commit()/shuffle() instead of activating the
+       * thing that was focused. Measured: every button on the board reported
+       * zero clicks after Tab-to-it, Enter, Space. That is a total keyboard
+       * operability failure (WCAG 2.1.1) hiding behind a board that LOOKS
+       * keyboard-friendly because typing letters works.
+       *
+       * Letters and Backspace stay global on purpose: typing a word is the
+       * desktop input model and must keep working wherever focus happens to
+       * be. Only the two activation keys are handed back.
+       */
+      const el = e.target as HTMLElement | null;
+      if (
+        (e.key === 'Enter' || e.key === ' ') &&
+        el &&
+        el !== document.body &&
+        el.closest('a[href],button,[role="switch"],[role="menuitem"],input,select,textarea,[tabindex]:not([tabindex="-1"])')
+      ) {
+        return;
+      }
       if (e.key === 'Enter') {
         e.preventDefault();
         commit();
@@ -872,7 +899,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
             type="button"
             onClick={() => setShowPuzzles(true)}
             aria-haspopup="dialog"
-            className="whitespace-nowrap text-meta text-text-muted underline decoration-edge/50 underline-offset-2 transition-colors hover:text-text-secondary max-[379px]:text-meta"
+            /* min-h-6 is WCAG 2.5.8's floor, not a style choice: this measured
+               20.6px tall at 390px, so the app's only route to the puzzle
+               picker and the themes was an undersized target. */
+            className="inline-flex min-h-6 items-center whitespace-nowrap text-meta text-text-muted underline decoration-edge/50 underline-offset-2 transition-colors hover:text-text-secondary max-[379px]:text-meta"
           >
             {warmup !== null ? (
               <>Warm-up {warmup} of {data.starters.length}</>
@@ -1109,8 +1139,20 @@ export default function Game({ data }: { data: PuzzleFile }) {
         is not a status message, so no assistive technology ever spoke it. The
         player could climb from Solid to Genius in silence.
       */}
+      {/*
+        The text is keyed by the toast's id so a REPEATED message is still a
+        DOM mutation. `announcement` is derived, so rejecting the same word
+        twice produced the identical string both times — React wrote nothing,
+        the live region never changed, and the second rejection was silent.
+        Rejections repeating is the normal case, not an edge one.
+
+        The region element itself stays mounted: replacing the live region
+        rather than its contents is the classic way to get nothing announced
+        at all, because a region added in the same tick as its text is not
+        treated as a change.
+      */}
       <p role="status" aria-live="polite" className="sr-only">
-        {announcement}
+        <span key={toast?.id ?? 'idle'}>{announcement}</span>
       </p>
 
       {/* Wheel — bottom third, thumb zone. This is the greedy box now: it takes
@@ -1466,8 +1508,11 @@ export default function Game({ data }: { data: PuzzleFile }) {
             <h2 className="mb-1 text-item font-semibold text-text-primary">
               Ways to play
             </h2>
+            {/* Both are ON now. The line said "off by default" long after that
+                stopped being true, which taught a player the opposite of what
+                the screen was doing. */}
             <p className="mb-3 text-meta text-text-muted">
-              Both are off by default. Turn one on and the puzzle changes shape.
+              Both are on. Turn one off and the puzzle changes shape.
             </p>
             <ModeRow
               label="Clue mode"
@@ -1481,6 +1526,70 @@ export default function Game({ data }: { data: PuzzleFile }) {
               on={progress.escalating}
               onToggle={(v) => setMode('escalating', v)}
             />
+          </div>
+
+          {/*
+            Backup lives here because this sheet is the only place a player
+            already goes to change how the game works.
+
+            Progress is one localStorage key: streak, history, hint balance,
+            every board cleared. A cleared cache or a new phone erases all of
+            it silently, and the player board named that its most common
+            blocker — the seats most willing to PAY were the ones who refused
+            to commit to a streak they could lose without warning. This is not
+            an account and does not pretend to be one; it is a code that
+            survives the browser.
+          */}
+          <div className="mt-4 rounded-2xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-5">
+            <h2 className="text-title font-bold leading-tight text-text-primary">
+              Back up your progress
+            </h2>
+            <p className="mt-1.5 mb-3 text-meta leading-relaxed text-text-muted">
+              There are no accounts. Your streak and everything you have cleared
+              live in this browser, so copy this code somewhere safe — it
+              restores them on another device.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={async () => {
+                  try {
+                    await navigator.clipboard.writeText(exportProgress());
+                    say('Backup code copied', 'good');
+                  } catch {
+                    say('Could not copy — check clipboard permission', 'bad');
+                  }
+                }}
+                className="liquid-interactive h-10 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
+              >
+                Copy my code
+              </button>
+              <button
+                type="button"
+                onClick={async () => {
+                  let code = '';
+                  try {
+                    code = await navigator.clipboard.readText();
+                  } catch {
+                    say('Paste blocked — allow clipboard access', 'bad');
+                    return;
+                  }
+                  const result = importProgress(code);
+                  say(
+                    result.ok ? 'Progress restored' : result.reason,
+                    result.ok ? 'good' : 'bad'
+                  );
+                }}
+                className="liquid-interactive h-10 rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-secondary"
+              >
+                Restore from clipboard
+              </button>
+            </div>
+            {/* Said before the button is pressed, not after. Restoring replaces
+                what is here; merging two histories has no right answer. */}
+            <p className="mt-2.5 text-kicker leading-snug text-text-muted">
+              Restoring replaces the progress in this browser.
+            </p>
           </div>
         </Sheet>
       )}
@@ -1818,7 +1927,19 @@ function CompleteSheet({
    * be: the counter was fine, the way out of the sheet was not.
    */
   const ref = useDialog(onClose);
-  return (
+  /*
+   * Portalled, for the same reason every other sheet is.
+   *
+   * Rendered inline it was a DESCENDANT of <main>, and `useDialog` skips any
+   * element that contains the dialog — an element cannot make its own ancestor
+   * inert. So the whole board behind the summary stayed in the screen-reader's
+   * reading order and in the Tab order: the trap kept Tab inside, but a
+   * virtual cursor walked straight through six solved rows and a wheel that no
+   * longer did anything. Only the last sheet in the game had this.
+   */
+  const mounted = useMounted();
+  if (!mounted) return null;
+  return createPortal(
     <div
       ref={ref}
       role="dialog"
@@ -1886,7 +2007,8 @@ function CompleteSheet({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
