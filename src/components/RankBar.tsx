@@ -23,11 +23,11 @@ export default function RankBar({ rank, score }: { rank: Rank; score: number }) 
             silently swap text. */}
         <span
           key={rank.name}
-          className="anim-rise text-[17px] font-semibold text-text-primary short:text-[15px]"
+          className="anim-rise text-item font-semibold text-text-primary short:text-body"
         >
           {rank.name}
         </span>
-        <span className="text-[13px] tabular-nums text-text-muted">
+        <span className="text-meta tabular-nums text-text-muted">
           <span className="font-semibold text-text-secondary">{score}</span> pts
           {rank.next ? ` · ${rank.pointsToNext} to ${rank.next}` : ' · maxed'}
         </span>

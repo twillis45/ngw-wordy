@@ -105,14 +105,14 @@ export default function WordTray({
                 done ? `${word}, done` : `${word.length}-letter word, not found`
               }
               className={[
-                'relative rounded-md border-2 px-2 py-1 text-[13px] font-semibold tabular-nums transition-colors',
+                'relative rounded-md border-2 px-2 py-1 text-meta font-semibold tabular-nums transition-colors',
                 // Same achievement ladder as the full grid — see below.
                 solved
                   ? 'border-success liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary'
                   : bought
-                    ? 'border-edge/70 liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] italic text-text-muted'
-                    : 'border-edge/70 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted',
-                solved && word === base ? 'ring-1 ring-success/50' : '',
+                    ? 'border-edge-mid liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] italic text-text-muted'
+                    : 'border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted',
+                
                 // Mark the row the clue is currently asking about.
                 !done && word === activeWord
                   ? 'border-steel-muted text-text-secondary'
@@ -188,9 +188,9 @@ export default function WordTray({
                         ? 'border-success liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary'
                         : bought
                           // Filled, but not earned — structure without accent.
-                          ? 'border-edge/70 liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] italic text-text-muted'
-                          : 'border-edge/70 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted',
-                      solved && isBase ? 'ring-1 ring-success/50' : '',
+                          ? 'border-edge-mid liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] italic text-text-muted'
+                          : 'border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted',
+                      
                       fresh ? 'anim-land anim-sweep' : '',
                     ].join(' ')}
                     style={{
@@ -217,7 +217,7 @@ export default function WordTray({
             {floatFor?.word === word && (
               <span
                 aria-hidden
-                className="anim-float pointer-events-none absolute -top-1 left-1/2 text-[15px] font-bold text-success"
+                className="anim-float pointer-events-none absolute -top-1 left-1/2 text-body font-bold text-success"
               >
                 +{floatFor.points}
               </span>

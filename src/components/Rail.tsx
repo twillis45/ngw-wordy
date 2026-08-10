@@ -92,7 +92,7 @@ export default function Rail({
       <Card title="Rank" meta={rank.next ? `${rank.pointsToNext} to go` : 'Maxed'}>
         {/* Without this the names imply cleverness while the numbers measure
             exhaustiveness, and nothing on screen reconciles them. */}
-        <p className="mb-2.5 text-[12px] leading-snug text-text-muted">
+        <p className="mb-2.5 text-meta leading-snug text-text-muted">
           {RANK_BASIS}
         </p>
         <ol className="flex flex-col gap-0.5">
@@ -101,7 +101,7 @@ export default function Rail({
               key={step.name}
               aria-current={step.current ? 'step' : undefined}
               className={[
-                'flex items-center gap-2.5 rounded-lg px-2 py-1.5 text-[14px]',
+                'flex items-center gap-2.5 rounded-lg px-2 py-1.5 text-body',
                 step.current ? 'liquid liquid-raised relative font-semibold' : '',
                 step.reached ? 'text-text-primary' : 'text-text-muted',
               ].join(' ')}
@@ -111,7 +111,7 @@ export default function Rail({
                 className={[
                   'h-1.5 w-1.5 shrink-0 rounded-full',
                   step.current
-                    ? 'bg-success'
+                    ? 'bg-edge'
                     : step.reached
                       ? 'bg-steel-muted'
                       : 'bg-edge',
@@ -120,7 +120,7 @@ export default function Rail({
               <span className="flex-1">{step.name}</span>
               {/* What it cost, or what it still costs — a percentage is
                   unusable mid-game, a point count is something to aim at. */}
-              <span className="text-[12px] tabular-nums text-text-muted">
+              <span className="text-meta tabular-nums text-text-muted">
                 {step.reached ? `${step.at} pts` : `+${step.toGo}`}
               </span>
             </li>
@@ -138,9 +138,9 @@ export default function Rail({
               <span
                 aria-hidden
                 className={[
-                  'grid h-6 w-6 place-items-center rounded-md border-2 text-[11px] lg:h-7 lg:w-7',
+                  'grid h-6 w-6 place-items-center rounded-md border-2 text-kicker lg:h-7 lg:w-7',
                   d.played
-                    ? 'border-success/40 bg-success/15 text-success'
+                    ? 'border-steel bg-steel-dark/40 text-text-primary'
                     // Unplayed cells hold no glyph, so no text color here —
                     // carbon-strong is a border token and must never set text.
                     : 'border-edge/60 liquid relative',
@@ -150,11 +150,11 @@ export default function Rail({
               >
                 {d.played ? '✓' : ''}
               </span>
-              <span className="text-[11px] text-text-muted">{d.label}</span>
+              <span className="text-kicker text-text-muted">{d.label}</span>
             </div>
           ))}
         </div>
-        <p className="mt-3 text-[13px] text-text-muted">
+        <p className="mt-3 text-meta text-text-muted">
           {streak > 1
             ? `${streak} days in a row.`
             : 'Play tomorrow to start a streak.'}
@@ -163,7 +163,7 @@ export default function Rail({
 
       <div className={howToClassName}>
         <Card title="How to play">
-          <ul className="flex flex-col gap-2 text-[14px] leading-relaxed text-text-secondary">
+          <ul className="flex flex-col gap-2 text-body leading-relaxed text-text-secondary">
             <li>Drag across the wheel, or just type.</li>
             <li>Fill every row to clear the grid.</li>
             <li>
@@ -189,11 +189,11 @@ function Card({
   return (
     <section className="relative rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
       <div className="mb-3 flex items-baseline justify-between gap-3">
-        <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+        <h2 className="text-item font-semibold text-text-primary">
           {title}
         </h2>
         {meta && (
-          <span className="text-[13px] tabular-nums text-text-muted">
+          <span className="text-meta tabular-nums text-text-muted">
             {meta}
           </span>
         )}
@@ -215,11 +215,11 @@ function Group({
   const has = children.length > 0;
   return (
     <div className="mb-3 last:mb-0">
-      <p className="mb-1.5 text-[12px] text-text-muted">{label}</p>
+      <p className="mb-1.5 text-meta text-text-muted">{label}</p>
       {has ? (
         <div className="flex flex-wrap gap-1.5">{children}</div>
       ) : (
-        <p className="text-[13px] text-text-muted">{empty}</p>
+        <p className="text-meta text-text-muted">{empty}</p>
       )}
     </div>
   );
@@ -237,11 +237,11 @@ function Chip({
   onOpen: (word: string) => void;
 }) {
   const cls = [
-    'relative rounded-md px-2 py-1 text-[13px] font-medium uppercase tracking-[0.06em] liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)]',
+    'relative rounded-md px-2 py-1 text-meta font-medium uppercase tracking-[0.06em] liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)]',
     tone === 'base'
-      ? 'bg-success/15 text-success'
+      ? 'liquid-raised bg-success/15 text-success'
       : tone === 'target'
-        ? 'text-text-primary'
+        ? 'liquid-raised text-text-primary'
         : 'text-text-secondary',
   ].join(' ');
 

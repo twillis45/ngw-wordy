@@ -358,7 +358,7 @@ export default function LetterWheel({
         aspectRatio: '1',
         /*
          * Makes the dial a query container so the LETTERS can be sized from
-         * it (13.7cqmin on each tile). The type was a fixed `text-[26px]`
+         * it (13.7cqmin on each tile). The type was a fixed `text-hero`
          * while the dial became fluid, so it was proportionally wrong at both
          * ends — nearly filling a 31.8px tile on a small phone, undersized in
          * a 62.7px tile on a tablet.
@@ -491,8 +491,8 @@ export default function LetterWheel({
             'tracking-[0.08em] transition-colors',
             'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-muted',
             selected.length < MIN_WORD
-              ? 'border-edge/45 text-text-muted'
-              : 'border-success bg-steel-dark/60 text-text-primary active:scale-95',
+              ? 'border-edge-hairline text-text-muted'
+              : 'border-edge bg-steel-dark/60 text-text-primary active:scale-95',
           ].join(' ')}
           style={{
             width: '30%',

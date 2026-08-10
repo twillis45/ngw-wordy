@@ -98,6 +98,25 @@
    */
   --color-edge: #ccd6e4;
 
+  /*
+   * The edge, tiered.
+   *
+   * `--color-edge` is lit to ~13:1 for sunlight, which is right for the ONE
+   * boundary that carries meaning and wrong for all of them. Applied to every
+   * tile, card, pill, slot and disc it put 36 objects on one screen at
+   * identical visual priority, so nothing could be the hero. Strong is for
+   * interactive surfaces, mid for containers, hairline for absence.
+   */
+  --color-edge-mid: color-mix(in srgb, var(--color-edge) 55%, transparent);
+  /*
+   * Hairline is DECORATIVE only — grouping borders on cards. Measured 2.2:1
+   * dark / 1.8:1 light, i.e. under the 3:1 that WCAG 1.4.11 asks of any
+   * boundary needed to identify a component. Empty grid slots ARE such a
+   * component, so they take edge-mid, not this. Accessibility overrides the
+   * "make it quieter" instinct.
+   */
+  --color-edge-hairline: color-mix(in srgb, var(--color-edge) 30%, transparent);
+
   /* Steel-blue identity */
   --color-steel: #4e6877;
   --color-steel-dark: #3f5b6a;
@@ -106,11 +125,16 @@
   /* Status anchors */
   --color-success: #4fae7a;
   --color-danger: #f27a70;
-  --color-amber: #eca13f;
 
   /* Text ladder */
   --color-text-primary: #eef0f4;
-  --color-text-secondary: #849eb8;
+  /*
+   * MEASURED, not picked. secondary was #849eb8 at 5.52:1 and muted #9a9ca0 at
+   * 5.58:1 — 0.3% apart in luminance, i.e. the same tier under two names, which
+   * made every de-emphasis decision downstream a no-op that only changed hue.
+   * The ladder is now 13.4 / 9.0 / 5.6 on the panel.
+   */
+  --color-text-secondary: #a9caeb;
   --color-text-muted: #9a9ca0;
 
   /* Theme-dependent surface treatments, so components don't hardcode a
@@ -201,6 +225,22 @@
   --slot-text: clamp(12px, calc(1.775vh + 1.92px), 16px);
   --slot-text-base: clamp(13px, calc(2.367vh - 0.44px), 18px);
 
+  /*
+   * Type ramp — six named roles, in rem.
+   *
+   * 68 of 77 size declarations were between 11 and 15px, with 12 and 13 each
+   * doing four different jobs. That is consistency, not hierarchy: at arm's
+   * length the tiers were indistinguishable. rem rather than px so browser and
+   * OS text scaling actually reach the UI (px does not, which is half of the
+   * WCAG 1.4.4 failure).
+   */
+  --text-kicker: 0.6875rem; /* 11 — uppercase labels only */
+  --text-meta: 0.75rem; /* 12 — captions, counts, secondary detail */
+  --text-body: 0.9375rem; /* 15 — running text and list-item titles */
+  --text-item: 1.0625rem; /* 17 — card and section titles */
+  --text-title: 1.375rem; /* 22 — modal titles */
+  --text-hero: 2rem; /* 32 — the one set-piece per screen */
+
   --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, sans-serif;
 }
@@ -235,10 +275,10 @@
 
   --color-success: #186438;
   --color-danger: #a82f2f;
-  --color-amber: #8a5a10;
 
   --color-text-primary: #0d0f12;
-  --color-text-secondary: #3b5468;
+  /* Light: 16.8 / 9.0 / 6.3. Darker means MORE emphasis here. */
+  --color-text-secondary: #2f4353;
   --color-text-muted: #54585e;
 
   --tile-shadow-active: inset 0 1px 0 rgba(255, 255, 255, 0.5),
@@ -301,10 +341,10 @@
 
   --color-success: #186438;
   --color-danger: #a82f2f;
-  --color-amber: #8a5a10;
 
   --color-text-primary: #0d0f12;
-  --color-text-secondary: #3b5468;
+  /* Light: 16.8 / 9.0 / 6.3. Darker means MORE emphasis here. */
+  --color-text-secondary: #2f4353;
   --color-text-muted: #54585e;
 
   --tile-shadow-active: inset 0 1px 0 rgba(255, 255, 255, 0.5),
@@ -374,6 +414,16 @@
  * sits beside the board and the controls have to fit under it). Height alone
  * cannot see that; width is what distinguishes it, so it is pinned here.
  */
+/* Roomy screens: let the board grow instead of the empty margin. */
+@media (min-width: 1280px) and (min-height: 860px) {
+  :root {
+    --slot-h: 44px;
+    --slot-h-base: 52px;
+    --slot-text: 22px;
+    --slot-text-base: 26px;
+  }
+}
+
 @media (min-width: 768px) and (max-height: 800px) {
   :root {
     --slot-h: 21px;

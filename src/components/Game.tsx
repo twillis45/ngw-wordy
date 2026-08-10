@@ -715,18 +715,18 @@ export default function Game({ data }: { data: PuzzleFile }) {
    *   >= 1536 wider measure again, rail gains the how-to-play card
    */
   return (
-    <main className="safe-top safe-bottom mx-auto flex h-svh w-full max-w-[420px] flex-col overflow-hidden px-5 short:px-4 md:max-w-[740px] lg:max-w-[780px] 2xl:max-w-[820px]">
+    <main className="safe-top safe-bottom mx-auto flex h-svh w-full max-w-[420px] flex-col overflow-hidden px-5 short:px-4 md:max-w-[860px] lg:max-w-[1040px] xl:max-w-[1180px] 2xl:max-w-[1320px]">
       {/* Header — quiet. Day number and streak are evidence, not the hero. */}
       <header className="flex items-center justify-between gap-2">
         <div>
-          <h1 className="whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted max-[379px]:text-[12px]">
+          <h1 className="whitespace-nowrap text-item font-semibold text-text-primary max-[379px]:text-meta">
             Wordy
           </h1>
           <button
             type="button"
             onClick={() => setShowPuzzles(true)}
             aria-haspopup="dialog"
-            className="whitespace-nowrap text-[13px] text-text-muted underline decoration-edge/50 underline-offset-2 transition-colors hover:text-text-secondary max-[379px]:text-[12px]"
+            className="whitespace-nowrap text-meta text-text-muted underline decoration-edge/50 underline-offset-2 transition-colors hover:text-text-secondary max-[379px]:text-meta"
           >
             {warmup !== null ? (
               <>Warm-up {warmup} of {data.starters.length}</>
@@ -753,7 +753,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             onClick={() => void toggleFullscreen()}
             aria-label={fullscreen ? 'Exit full screen' : 'Full screen'}
             aria-pressed={fullscreen}
-            className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted transition-colors hover:border-text-primary hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+            className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
           >
             <FullscreenIcon on={fullscreen} />
           </button>
@@ -762,7 +762,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={cycleTheme}
           aria-label={`Theme: ${theme}. Tap to change.`}
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted transition-colors hover:border-text-primary hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
         >
           <ThemeIcon theme={theme} />
         </button>
@@ -771,7 +771,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onClick={() => setShowRules(true)}
           aria-haspopup="dialog"
           aria-label="How to play"
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-[15px] font-semibold text-text-muted transition-colors hover:border-text-primary hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-body font-semibold text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
         >
           ?
         </button>
@@ -779,7 +779,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={() => setMutedPref(!progress.muted)}
           aria-label={progress.muted ? 'Unmute sound' : 'Mute sound'}
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted transition-colors hover:border-text-primary hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
         >
           <SoundIcon muted={progress.muted} />
         </button>
@@ -792,14 +792,14 @@ export default function Game({ data }: { data: PuzzleFile }) {
           landscape iPad clipped 46px of the rail off the bottom instead of
           scrolling it. Bounding the row is what makes max-h-full mean
           anything. */}
-      <div className="mt-4 flex min-h-0 flex-1 shrink flex-col gap-8 short:mt-2 md:grid md:grid-rows-[minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_260px] md:gap-7 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="mt-4 flex min-h-0 flex-1 shrink flex-col gap-8 short:mt-2 md:grid md:grid-rows-[minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_280px] md:gap-7 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-10 2xl:grid-cols-[minmax(0,1fr)_400px]">
         {/* Board column — bounded at every width, centered on desktop. */}
         {/* The glass sheet is no longer md-only. On a phone the play area was
             bare carbon with glass bits floating on it, so the app's main
             surface — the biggest thing on screen — was the one thing that
             wasn't the material. Phone padding is deliberately tighter than the
             tablet's; the wheel gives up the ~16px, which it can afford. */}
-        <div className="mx-auto flex w-full min-h-0 max-w-[420px] flex-1 flex-col rounded-3xl border border-edge/45 px-3 py-2 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] md:max-w-[440px] md:justify-center relative md:border-edge md:px-5 md:py-4">
+        <div className="mx-auto flex w-full min-h-0 max-w-[420px] flex-1 flex-col rounded-3xl border border-edge-hairline px-3 py-2 cramped:px-2 cramped:py-1 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] md:max-w-[520px] lg:max-w-[600px] xl:max-w-[680px] md:justify-center relative md:border-edge md:px-5 md:py-4">
       {/* On a phone this strip is the ONLY place progress lives, so it is also
           the way into the detail. Inert from tablet up, where the rail shows
           the same ladder permanently. */}
@@ -814,7 +814,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       </button>
 
       {puzzle.theme && (
-        <p className="mt-2 text-center text-[12px] uppercase tracking-[0.16em] text-success short:mt-0.5 short:text-[11px]">
+        <p className="mt-2 text-center text-kicker uppercase tracking-[0.18em] text-text-secondary short:mt-0.5">
           {puzzle.theme.name}
         </p>
       )}
@@ -844,15 +844,15 @@ export default function Game({ data }: { data: PuzzleFile }) {
         <button
           type="button"
           onClick={() => setClueCursor((c) => c + 1)}
-          className="liquid-interactive relative mt-3 w-full rounded-xl border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-3.5 py-2.5 text-left transition-colors hover:border-text-primary"
+          className="liquid-interactive relative mt-3 w-full rounded-xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-3.5 py-2.5 text-left transition-colors hover:border-text-primary"
         >
-          <span className="text-[12px] uppercase tracking-[0.14em] text-text-muted">
+          <span className="text-meta uppercase tracking-[0.14em] text-text-muted">
             {clueWord.length} letters
             {puzzle.grid.filter((w) => !rowDone(w)).length > 1
               ? ' · tap for the next clue'
               : ''}
           </span>
-          <span className="mt-1 line-clamp-3 block text-[14px] leading-snug text-text-secondary roomy:text-[15px]">
+          <span className="mt-1 line-clamp-3 block text-body leading-snug text-text-secondary roomy:text-body">
             {puzzle.clues[clueWord]}
           </span>
         </button>
@@ -876,7 +876,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           <span
             key={toast.id}
             className={[
-              'anim-rise text-[15px] font-semibold',
+              'anim-rise text-body font-semibold',
               toast.tone === 'good'
                 ? 'text-success'
                 : toast.tone === 'bad'
@@ -887,13 +887,13 @@ export default function Game({ data }: { data: PuzzleFile }) {
             {toast.text}
           </span>
         ) : current ? (
-          <span className="text-[28px] font-bold tracking-[0.14em] text-text-primary md:text-[32px]">
+          <span className="text-hero font-bold tracking-[0.14em] text-text-primary md:text-hero">
             {current.toUpperCase()}
           </span>
         ) : (
           // An empty hero slot read as a hole in the layout, and nothing on
           // screen said how to enter a word. One muted line fixes both.
-          <span className="text-[13px] text-text-muted">
+          <span className="text-meta text-text-muted">
             {/* Rendered per modality in CSS rather than from a measured
                 pointer type, so it is correct before hydration. */}
             <span className="mouse:hidden">Drag across the letters</span>
@@ -939,7 +939,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </ControlButton>
       </div>
 
-      <p className="mt-1.5 hidden text-center text-[12px] text-text-muted mouse:block">
+      <p className="mt-1.5 hidden text-center text-meta text-text-muted mouse:block">
         <kbd className="font-sans text-text-secondary">Enter</kbd> to submit ·{' '}
         <kbd className="font-sans text-text-secondary">Space</kbd> to shuffle ·{' '}
         <kbd className="font-sans text-text-secondary">Backspace</kbd> to undo
@@ -951,7 +951,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         type="button"
         onClick={() => setShowWords(true)}
         aria-haspopup="dialog"
-        className="inline-flex min-h-11 flex-wrap items-center justify-center gap-x-1 rounded-full px-3 text-center text-[13px] text-text-muted transition-colors hover:text-text-secondary md:min-h-0 md:pointer-events-none md:hover:text-text-muted"
+        className="inline-flex min-h-11 flex-wrap items-center justify-center gap-x-1 rounded-full px-3 text-center text-meta text-text-muted transition-colors hover:text-text-secondary md:min-h-0 md:pointer-events-none md:hover:text-text-muted"
       >
         {tokens > 0 ? (
           <>Tap a row for a hint · {tokens} left</>
@@ -1006,23 +1006,23 @@ export default function Game({ data }: { data: PuzzleFile }) {
           }}
           label={showDef ? `Definition of ${showDef.word}` : 'Definition'}
         >
-          <div className="relative rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
-            <h2 className="text-[22px] font-bold uppercase tracking-[0.06em] text-text-primary">
+          <div className="relative rounded-2xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
+            <h2 className="text-title font-bold uppercase tracking-[0.06em] text-text-primary">
               {showDef?.word ?? ''}
             </h2>
 
             {showDef?.partOfSpeech && (
-              <p className="mt-1 text-[13px] italic text-text-muted">
+              <p className="mt-1 text-meta italic text-text-muted">
                 {showDef.partOfSpeech}
               </p>
             )}
             {showDef?.lemma && (
-              <p className="mt-1 text-[13px] text-text-muted">
+              <p className="mt-1 text-meta text-text-muted">
                 from <span className="text-text-secondary">{showDef.lemma}</span>
               </p>
             )}
 
-            <p className="mt-3 text-[15px] leading-relaxed text-text-secondary">
+            <p className="mt-3 text-body leading-relaxed text-text-secondary">
               {showDef?.definition
                 ? showDef.definition
                 : defUpgrading
@@ -1033,7 +1033,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             {/* Say where it came from. A Victorian reading of a modern word is
                 a fact about the source, not a bug to hide. */}
             {showDef?.definition && (
-              <p className="mt-3 text-[12px] text-text-muted">
+              <p className="mt-3 text-meta text-text-muted">
                 {showDef.source === 'modern'
                   ? 'Modern dictionary'
                   : "Webster's Unabridged, 1913"}
@@ -1052,17 +1052,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
           if (!plan) return null;
           return (
             <Sheet onClose={() => setAssistOpen(false)} label="Need a hand?">
-              <div className="relative rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-5">
-                <p className="text-[12px] uppercase tracking-[0.16em] text-text-muted">
+              <div className="relative rounded-2xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-5">
+                <p className="text-meta uppercase tracking-[0.16em] text-text-muted">
                   Stuck?
                 </p>
-                <h2 className="mt-1.5 text-[20px] font-bold leading-tight text-text-primary">
+                <h2 className="mt-1.5 text-title font-bold leading-tight text-text-primary">
                   {plan.kind === 'open-word'
                     ? `I'll open the ${plan.word.length}-letter one`
                     : `I'll start the ${plan.word.length}-letter one`}
                 </h2>
                 {/* Say the cost before acting, never after. */}
-                <p className="mt-2 text-[14px] leading-relaxed text-text-secondary">
+                <p className="mt-2 text-body leading-relaxed text-text-secondary">
                   {plan.cost === 0
                     ? 'You&rsquo;re out of hints, so this one&rsquo;s free.'
                     : `Costs ${plan.cost} ${plan.cost === 1 ? 'hint' : 'hints'}. You have ${tokens}.`}
@@ -1071,14 +1071,14 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 <button
                   type="button"
                   onClick={acceptAssist}
-                  className="liquid-interactive relative mt-5 h-12 w-full rounded-full border-2 border-edge bg-gradient-to-b from-steel/80 to-steel-dark/80 text-[15px] font-semibold text-text-primary backdrop-blur-[var(--glass-blur)]"
+                  className="liquid-interactive relative mt-5 h-12 w-full rounded-full border-2 border-edge bg-gradient-to-b from-steel/80 to-steel-dark/80 text-body font-semibold text-text-primary backdrop-blur-[var(--glass-blur)]"
                 >
                   Do it for me
                 </button>
                 <button
                   type="button"
                   onClick={() => setAssistOpen(false)}
-                  className="mt-2 h-11 w-full rounded-full text-[14px] text-text-muted"
+                  className="mt-2 h-11 w-full rounded-full text-body text-text-muted"
                 >
                   I&rsquo;ve got it
                 </button>
@@ -1089,13 +1089,13 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
       {showPuzzles && (
         <Sheet onClose={() => setShowPuzzles(false)} label="Puzzles">
-          <div className="relative rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
-            <h2 className="mb-1 text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+          <div className="relative rounded-2xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
+            <h2 className="mb-1 text-item font-semibold text-text-primary">
               Puzzles
             </h2>
             {/* Nothing is ever lost by leaving: progress is stored per puzzle,
                 so anything you walk away from is exactly where you left it. */}
-            <p className="mb-3 text-[13px] leading-snug text-text-muted">
+            <p className="mb-3 text-meta leading-snug text-text-muted">
               Leave whenever. Every puzzle keeps its own progress, so you can
               come back to this one exactly where you stopped.
             </p>
@@ -1134,7 +1134,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
               )}
             </div>
 
-            <p className="mt-4 text-[12px] leading-snug text-text-muted">
+            <p className="mt-4 text-meta leading-snug text-text-muted">
               {progress.clearedIds.length} cleared ·{' '}
               {Object.keys(progress.words).length} started
             </p>
@@ -1145,7 +1145,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
               doesn't exist. */}
           {themes.length > 0 && (
             <div className="relative mt-4 rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
-              <h2 className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+              <h2 className="mb-3 text-item font-semibold text-text-primary">
                 Themes
               </h2>
               <div className="flex flex-col gap-2">
@@ -1169,17 +1169,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
                         goToPuzzle(offsetForIndex(data, today, next));
                         setShowPuzzles(false);
                       }}
-                      className="liquid-interactive relative flex w-full items-center justify-between gap-3 rounded-xl border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3 text-left"
+                      className="liquid-interactive relative flex w-full items-center justify-between gap-3 rounded-xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3 text-left"
                     >
                       <span>
-                        <span className="block text-[15px] font-medium text-text-primary">
+                        <span className="block text-body font-medium text-text-primary">
                           {t.name}
                         </span>
-                        <span className="block text-[12px] leading-snug text-text-muted">
+                        <span className="block text-meta leading-snug text-text-muted">
                           {t.blurb}
                         </span>
                       </span>
-                      <span className="shrink-0 text-[12px] tabular-nums text-text-muted">
+                      <span className="shrink-0 text-meta tabular-nums text-text-muted">
                         {done}/{t.indices.length}
                       </span>
                     </button>
@@ -1193,11 +1193,11 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
       {showRules && (
         <Sheet onClose={() => setShowRules(false)} label="How to play">
-          <div className="relative rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
-            <h2 className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+          <div className="relative rounded-2xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
+            <h2 className="mb-3 text-item font-semibold text-text-primary">
               How to play
             </h2>
-            <ul className="flex flex-col gap-2.5 text-[15px] leading-relaxed text-text-secondary">
+            <ul className="flex flex-col gap-2.5 text-body leading-relaxed text-text-secondary">
               <li>Drag across the wheel to spell a word — or just type it.</li>
               <li>Fill every row in the grid to finish the puzzle.</li>
               <li>
@@ -1211,10 +1211,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
           </div>
 
           <div className="mt-4 rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
-            <h2 className="mb-1 text-[13px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+            <h2 className="mb-1 text-item font-semibold text-text-primary">
               Ways to play
             </h2>
-            <p className="mb-3 text-[13px] text-text-muted">
+            <p className="mb-3 text-meta text-text-muted">
               Both are off by default. Turn one on and the puzzle changes shape.
             </p>
             <ModeRow
@@ -1304,7 +1304,7 @@ function Sheet({
         <button
           type="button"
           onClick={onClose}
-          className="mt-4 h-11 w-full rounded-full border-2 border-edge text-[14px] text-text-secondary"
+          className="mt-4 h-11 w-full rounded-full border-2 border-edge-mid text-body text-text-secondary"
         >
           Close
         </button>
@@ -1338,25 +1338,25 @@ function Intro({ onDismiss }: { onDismiss: () => void }) {
       style={{ background: 'var(--scrim)' }}
     >
       <div className="anim-rise relative w-full max-w-[360px] rounded-3xl border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-6">
-        <p className="text-[12px] uppercase tracking-[0.16em] text-text-muted">
+        <p className="text-meta uppercase tracking-[0.16em] text-text-muted">
           How you&apos;re scored
         </p>
-        <h2 className="mt-1.5 text-[22px] font-bold leading-tight text-text-primary">
+        <h2 className="mt-1.5 text-title font-bold leading-tight text-text-primary">
           Find as much of the puzzle as you can
         </h2>
-        <p className="mt-2 text-[14px] leading-relaxed text-text-secondary">
+        <p className="mt-2 text-body leading-relaxed text-text-secondary">
           {RANK_BASIS} The six rows are the targets — every extra word still
           counts, and climbs the ladder.
         </p>
 
         <ol className="mt-4 flex flex-col gap-1.5">
           {RANKS.map((r, i) => (
-            <li key={r.name} className="flex items-center gap-3 text-[14px]">
+            <li key={r.name} className="flex items-center gap-3 text-body">
               <span
                 aria-hidden
                 className={[
                   'h-1.5 w-1.5 shrink-0 rounded-full',
-                  i === 0 ? 'bg-success' : 'bg-edge',
+                  i === 0 ? 'bg-edge' : 'bg-edge-hairline',
                 ].join(' ')}
               />
               <span
@@ -1368,7 +1368,7 @@ function Intro({ onDismiss }: { onDismiss: () => void }) {
               >
                 {r.name}
               </span>
-              <span className="text-[12px] tabular-nums text-text-muted">
+              <span className="text-meta tabular-nums text-text-muted">
                 {Math.round(r.at * 100)}%
               </span>
             </li>
@@ -1382,7 +1382,7 @@ function Intro({ onDismiss }: { onDismiss: () => void }) {
         <button
           type="button"
           onClick={onDismiss}
-          className="mt-5 h-11 w-full rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-[14px] font-medium text-text-primary"
+          className="mt-5 h-11 w-full rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-body font-medium text-text-primary"
         >
           Start playing
         </button>
@@ -1408,20 +1408,20 @@ function PuzzleAction({
     <button
       type="button"
       onClick={onClick}
-      className="liquid-interactive relative flex w-full items-center justify-between gap-3 rounded-xl border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3 text-left"
+      className="liquid-interactive relative flex w-full items-center justify-between gap-3 rounded-xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3 text-left"
     >
       <span>
-        <span className="block text-[15px] font-medium text-text-primary">
+        <span className="block text-body font-medium text-text-primary">
           {label}
         </span>
-        <span className="block text-[12px] leading-snug text-text-muted">
+        <span className="block text-meta leading-snug text-text-muted">
           {detail}
         </span>
       </span>
       {current ? (
-        <span className="text-[12px] font-semibold text-success">here</span>
+        <span className="text-meta font-semibold text-text-primary">here</span>
       ) : (
-        <span aria-hidden className="text-[15px] text-text-muted">
+        <span aria-hidden className="text-body text-text-muted">
           ›
         </span>
       )}
@@ -1463,10 +1463,10 @@ function ModeRow({
         />
       </span>
       <span>
-        <span className="block text-[15px] font-medium text-text-primary">
+        <span className="block text-body font-medium text-text-primary">
           {label}
         </span>
-        <span className="block text-[13px] leading-snug text-text-muted">
+        <span className="block text-meta leading-snug text-text-muted">
           {detail}
         </span>
       </span>
@@ -1575,7 +1575,7 @@ function ControlButton({
       onClick={onClick}
       disabled={disabled}
       {...rest}
-      className="liquid-interactive relative h-11 min-w-[104px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-5 text-[14px] font-medium text-text-secondary transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
+      className="liquid-interactive relative h-11 min-w-[104px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-5 text-body font-medium text-text-secondary transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
     >
       {children}
     </button>
@@ -1613,14 +1613,14 @@ function CompleteSheet({
     <div className="fixed inset-0 z-50 grid place-items-end sm:place-items-center"
       style={{ background: 'var(--scrim)' }}>
       <div className="anim-rise safe-bottom w-full max-w-[420px] relative rounded-t-3xl border-t-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-6 pt-7 sm:rounded-3xl sm:border">
-        <p className="text-[13px] uppercase tracking-[0.14em] text-text-muted">
+        <p className="text-kicker uppercase tracking-[0.18em] text-text-secondary">
           {warmup !== null
             ? `Warm-up ${warmup} cleared`
             : isDaily
               ? "Today's puzzle cleared"
               : 'Puzzle cleared'}
         </p>
-        <h2 className="mt-1 text-[28px] font-bold text-text-primary">{rank}</h2>
+        <h2 className="mt-1 text-hero font-bold text-text-primary">{rank}</h2>
 
         <dl className="mt-5 grid grid-cols-3 gap-3 text-center">
           <Stat label="Score" value={score} />
@@ -1629,7 +1629,7 @@ function CompleteSheet({
         </dl>
 
         {/* Show exactly what gets sent. Nobody shares a card they can't see. */}
-        <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words relative rounded-xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3 text-center text-[13px] leading-relaxed text-text-secondary">
+        <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words relative rounded-xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3 text-center text-meta leading-relaxed text-text-secondary">
           {preview}
         </pre>
 
@@ -1638,7 +1638,7 @@ function CompleteSheet({
         <button
           type="button"
           onClick={onNext}
-          className="liquid-interactive relative mt-6 h-12 w-full rounded-full border-2 border-edge bg-gradient-to-b from-steel/80 to-steel-dark/80 text-[15px] font-semibold text-text-primary backdrop-blur-[var(--glass-blur)]"
+          className="liquid-interactive relative mt-6 h-12 w-full rounded-full border-2 border-edge bg-gradient-to-b from-steel/80 to-steel-dark/80 text-body font-semibold text-text-primary backdrop-blur-[var(--glass-blur)]"
         >
           {warmup !== null && warmup < warmupTotal
             ? `Warm-up ${warmup + 1} →`
@@ -1650,14 +1650,14 @@ function CompleteSheet({
           <button
             type="button"
             onClick={onShare}
-            className="liquid-interactive relative h-11 flex-1 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-[14px] text-text-secondary"
+            className="liquid-interactive relative h-11 flex-1 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-body text-text-secondary"
           >
             {copied ? 'Copied' : 'Share'}
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="h-11 flex-1 rounded-full text-[14px] text-text-muted"
+            className="h-11 flex-1 rounded-full text-body text-text-muted"
           >
             Keep looking
           </button>
@@ -1669,11 +1669,11 @@ function CompleteSheet({
 
 function Stat({ label, value }: { label: string; value: number }) {
   return (
-    <div className="relative rounded-xl border border-edge liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] py-3">
-      <dd className="text-[22px] font-bold tabular-nums text-text-primary">
+    <div className="relative rounded-xl border border-edge-mid liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] py-3">
+      <dd className="text-title font-bold tabular-nums text-text-primary">
         {value}
       </dd>
-      <dt className="text-[12px] text-text-muted">{label}</dt>
+      <dt className="text-meta text-text-muted">{label}</dt>
     </div>
   );
 }
