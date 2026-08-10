@@ -1124,3 +1124,37 @@ body {
     justify-content: center;
   }
 }
+
+/*
+ * The board answering back when a target lands.
+ *
+ * The word-level reveal was already good — letters fly, the row sweeps, the
+ * points float — but all of it happens INSIDE one row, so clearing the sixth
+ * target felt the same as clearing the first. The audio already escalates with
+ * each word; nothing on screen did.
+ *
+ * This is a bloom of light behind the whole board, thrown from the dial, in
+ * the success hue. It is deliberately NOT confetti or a badge: the game-feel
+ * seat's rule is juice on the moment without theatre, so the thing that
+ * celebrates is the material the game is already made of — glass catching
+ * light — rather than an object arriving from outside to congratulate you.
+ *
+ * Scaled by the caller so the sixth word blooms wider and brighter than the
+ * first, which is the same escalation the audio has always had.
+ */
+@keyframes board-bloom {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+  22% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+.anim-board-bloom {
+  animation: board-bloom var(--bloom-ms, 620ms) cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}

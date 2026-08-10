@@ -483,3 +483,53 @@ export function measureFlight(
 
   return pairs;
 }
+
+/**
+ * A bloom of light behind the board when a target word lands.
+ *
+ * `step` is how many rows were already solved, so the sixth word throws a
+ * wider, brighter bloom than the first — the same escalation `feedback.correct`
+ * has always had in the audio, which until now had no visual counterpart. Every
+ * target felt identical on screen no matter how far in you were.
+ *
+ * Anchored on the DIAL rather than the viewport centre: the light should look
+ * like it came off the thing the player just used. Falls back to the middle of
+ * the screen if the wheel is not mounted.
+ *
+ * Reduced motion drops it entirely. It carries no information — the row fills,
+ * the points float, the sound plays — so unlike the prize card there is nothing
+ * here worth degrading rather than removing.
+ */
+export function celebrateWord(step: number): void {
+  const host = layer();
+  if (!host || reducedMotion()) return;
+
+  const dial = document.querySelector('[data-wheel-tile]')?.parentElement;
+  const r = dial?.getBoundingClientRect();
+  const cx = r ? r.left + r.width / 2 : window.innerWidth / 2;
+  const cy = r ? r.top + r.height / 2 : window.innerHeight / 2;
+
+  // 0..1 across a six-row board, so the ramp is gentle rather than a jump.
+  const t = Math.min(1, step / 5);
+  const size = Math.round(window.innerWidth * (1.1 + t * 0.7));
+  const ms = 560 + Math.round(t * 220);
+  const peak = 0.1 + t * 0.14;
+
+  const bloom = document.createElement('span');
+  bloom.className = 'anim-board-bloom';
+  bloom.style.cssText = [
+    'position:fixed',
+    `left:${cx}px`,
+    `top:${cy}px`,
+    `width:${size}px`,
+    `height:${size}px`,
+    'border-radius:999px',
+    'pointer-events:none',
+    `--bloom-ms:${ms}ms`,
+    `background:radial-gradient(circle, color-mix(in srgb, var(--color-success) ${Math.round(
+      peak * 100
+    )}%, transparent) 0%, transparent 62%)`,
+  ].join(';');
+  host.appendChild(bloom);
+  setTimeout(() => bloom.remove(), ms + 80);
+}
