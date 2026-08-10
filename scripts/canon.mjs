@@ -81,6 +81,50 @@ if (arg === '--check') {
     process.exit(1);
   }
   process.stdout.write(`canon OK — ${canon.entries.length} entries, all references resolve\n`);
+} else if (arg === '--brief') {
+  /*
+   * The reader brief.
+   *
+   * The last two points of cultural authenticity are not researchable — a
+   * citation can confirm the conk's chemistry and cannot say whether the clue
+   * reads as respect or as novelty to someone who lived it. That gap closes
+   * with a paid community reader, and the difference between "budget a reader"
+   * as a good intention and as a thing that actually happens is whether
+   * somebody has to spend a day assembling the questions first.
+   *
+   * This emits that day's work as a document: per pack, only the questions
+   * research could not settle, each with the exact clue text quoted so the
+   * reader answers rather than hunts.
+   */
+  const open = canon.entries.filter((e) => e.verdict === 'tone' || e.verdict === 'unverifiable');
+  const byCluster = new Map();
+  for (const e of open) byCluster.set(e.cluster, [...(byCluster.get(e.cluster) ?? []), e]);
+
+  let out = `# Community reader brief\n\n`;
+  out += `Generated from data/canon.json. Everything a source could settle has been\n`;
+  out += `settled and is recorded there; what follows is only what it could not.\n\n`;
+  out += `Per docs/CULTURAL_BOARD.md this repo's authoring process is structured\n`;
+  out += `perspective, not community consultation. These are the questions that need\n`;
+  out += `a person who has lived the thing, and they are deliberately few — a reader\n`;
+  out += `should be paid for judgement, not for reading 2,000 clues looking for it.\n\n`;
+  out += `**How to answer:** each item quotes the shipped clue. Say whether it lands,\n`;
+  out += `and if it does not, say what is wrong with it. "It's fine" is a useful\n`;
+  out += `answer. So is "nobody says that."\n\n`;
+
+  if (!open.length) out += `_Nothing open._\n`;
+  for (const [cluster, items] of [...byCluster].sort()) {
+    out += `\n## ${cluster}\n\n`;
+    for (const e of items) {
+      out += `### ${e.claim}\n\n`;
+      if (e.detail) out += `${e.detail}\n\n`;
+      for (const c of e.clues ?? []) {
+        const key = `${c.theme}/${c.base}/${c.word}`;
+        out += `> **${c.word}** (${c.theme}) — ${live.get(key) ?? '(clue no longer present)'}\n\n`;
+      }
+      out += `**Your answer:**\n\n\n`;
+    }
+  }
+  process.stdout.write(out);
 } else if (arg === '--open') {
   const open = canon.entries.filter((e) => e.verdict === 'tone' || e.verdict === 'unverifiable');
   if (!open.length) process.stdout.write('nothing open\n');
