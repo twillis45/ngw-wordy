@@ -128,8 +128,30 @@ export function puzzleForPlayer(
     return { index: ladder[warmupsDone], warmup: warmupsDone + 1 };
   }
 
+  /*
+   * The daily is drawn from the AUTHORED catalogue only.
+   *
+   * The board's ruling on the generated boards is that they are a commodity —
+   * fine as free practice, never billable — and the set is 397 authored against
+   * 123 generated. Seeding the daily across all 520 meant a dictionary
+   * definition was the day's puzzle roughly one day in four: "(used of persons
+   * or the military) characterized by having or bearing arms" landing in the
+   * same slot as a hand-written clue about a treasurer counting a shirt order.
+   * That is the "two different products" complaint, and shipping both under one
+   * rotation is what made it a liability rather than a bonus.
+   *
+   * build-puzzles.mjs places authored boards FIRST, so the themed catalogue is
+   * the contiguous head of the array and its length is the whole seed space.
+   * The generated boards stay reachable — the puzzle picker walks the full set —
+   * they are just never what a player is served as today's game.
+   *
+   * Falls back to the full set if nothing is authored, so a build with an empty
+   * themes.json still produces a playable daily rather than dividing by zero.
+   */
+  const themedCount = file.puzzles.filter((p) => p.theme).length;
   const total = file.puzzles.length;
-  const seed = dailyIndex(today, total);
+  const dailyPool = themedCount > 0 ? themedCount : total;
+  const seed = dailyIndex(today, dailyPool);
 
   // An explicit offset is the player steering; never second-guess it.
   if (offset !== 0) {
@@ -150,8 +172,8 @@ export function puzzleForPlayer(
    * Walking forward keeps it deterministic and serverless, and makes browsing
    * the themes free rather than a way to poison your own calendar.
    */
-  for (let step = 0; step < total; step += 1) {
-    const i = (seed + step) % total;
+  for (let step = 0; step < dailyPool; step += 1) {
+    const i = (seed + step) % dailyPool;
     if (!cleared.has(String(file.puzzles[i].id))) {
       return { index: i, warmup: null };
     }

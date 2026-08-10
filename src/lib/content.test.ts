@@ -12,6 +12,7 @@
  * three.
  */
 import { describe, expect, it } from 'vitest';
+import { puzzleForPlayer } from './game';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import {
@@ -278,5 +279,26 @@ describe('grounded canon', () => {
      */
     const { check } = await import('../../scripts/canon.mjs');
     expect(check(), 'canon reference problems').toEqual([]);
+  });
+});
+
+describe('the daily never serves a generated board', () => {
+  it('draws a year of dailies from the authored catalogue only', () => {
+    /*
+     * The generated boards are a commodity the board ruled must stay free and
+     * unbilled. Seeding the daily across the whole set served one roughly every
+     * fourth day — a WordNet definition in the same slot as a hand-written
+     * clue, which is the "two different products" problem the ruling names.
+     */
+    const themed = file.puzzles.filter((p) => p.theme).length;
+    expect(themed, 'catalogue must not be empty').toBeGreaterThan(0);
+
+    const generic: string[] = [];
+    for (let day = 0; day < 365; day += 1) {
+      const d = new Date(Date.UTC(2026, 0, 1 + day));
+      const { index } = puzzleForPlayer(file, 99, d, 0, new Set());
+      if (!file.puzzles[index].theme) generic.push(`${d.toISOString().slice(0, 10)}`);
+    }
+    expect(generic.slice(0, 5), `${generic.length} generated dailies in a year`).toEqual([]);
   });
 });
