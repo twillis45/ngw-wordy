@@ -277,7 +277,7 @@
   <div class="wrap">
     <header>
       <p class="kicker">NGW · Wordy · review board tracker</p>
-      <h1>Two wings up to 9. The paid question has an answer, and it isn't code.</h1>
+      <h1>Two wings at 9, the daily fixed, and the puzzles gated on quality.</h1>
       <p class="lede">
         Render-first pass run 9 Aug 2026 against the production export — seven
         viewports, six states, forty-two screenshots. Every wing scores its own
@@ -418,6 +418,63 @@
           </div>
         </article>
 
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>The daily stops serving boards you already finished</h3>
+            <p>
+              Described as a day-241 problem; it was a day-two problem, because
+              the theme picker reaches any index long before the calendar does —
+              so the ten themed puzzles were each scheduled to return as an
+              already-solved "daily". The daily now walks forward to the first
+              uncleared board, and found words are keyed by lap so finishing the
+              catalogue gives a fresh sheet rather than 240 finished ones.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span><span><code>c93fbfd</code></span>
+              <span>deterministic · no backend</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>The share card carries a clue</h3>
+            <p>
+              It led with "Wordy #205" and shape tiles — Wordle grammar. Wordle's
+              secret is the answer, so shape is all it can show; Wordy's secret is
+              the <em>line</em>. Shape-only meant the one asset with pricing power
+              never left the app. The clue is always from a row the player solved,
+              so it cannot spoil the board. The day number is deleted, not fixed:
+              a warm-up player was sharing "#1" the day everyone else shared "#205".
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span><span><code>c93fbfd</code></span>
+              <span class="delta">the board called this the highest-leverage 2 hrs</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Puzzles gated on quality, not just validity</h3>
+            <p>
+              The generator called its bad boards "hard". One shipped
+              <code>burse</code> / <code>druse</code> / <code>dures</code>, the last
+              clued from a German musical term. Added a common-word floor, a
+              common base word, a tighter answer band, a stem-collision rule, and
+              a register filter for taxonomy and anatomy clues. Authored themed
+              boards are exempt — a heuristic should not outvote the editor.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span><span><code>af153fb</code></span>
+              <span class="delta">common rows 54.4% → 75.9% · under-half 72 → 0 · zero-common 3 → 0</span>
+            </div>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -484,9 +541,9 @@
             </tr>
             <tr>
               <td class="wing">Game design &amp; core loop</td>
-              <td class="num" style="color:var(--warn)">3</td>
-              <td><div class="bar"><i style="width:30%;background:var(--warn)"></i></div></td>
-              <td class="dim">retention — day-241 serves a solved board</td>
+              <td class="num" style="color:var(--warn)">5</td>
+              <td><div class="bar"><i style="width:50%;background:var(--warn)"></i></div></td>
+              <td class="dim">ranks measure what the UI never states</td>
               <td class="dim">8–9</td>
               <td><span class="chip next">Queued</span></td>
             </tr>
@@ -659,7 +716,7 @@
               <td class="num" style="color:var(--bad)">1.7</td><td class="num">12</td><td class="num">20</td></tr>
             <tr><td class="wing">Hand-written clues</td><td class="num" style="color:var(--bad)">59</td><td class="num">576</td><td class="num">1,440</td></tr>
             <tr><td class="wing">Themed play time</td><td class="num" style="color:var(--bad)">80 min</td><td class="num">~10 h</td><td class="num">~25 h</td></tr>
-            <tr><td class="wing">Boards under 50% common words</td><td class="num" style="color:var(--bad)">72 / 240</td><td class="num">0</td><td class="num">0</td></tr>
+            <tr><td class="wing">Boards under 50% common words</td><td class="num" style="color:var(--ok)">0 / 240</td><td class="num">0</td><td class="num">0</td></tr>
           </tbody>
         </table>
       </div>
