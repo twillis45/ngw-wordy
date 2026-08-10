@@ -1,0 +1,644 @@
+<title>Wordy — Review Board Tracker</title>
+
+<style>
+  /*
+   * Studio Matte, borrowed from the product this tracks.
+   * Tokens mirror src/app/globals.css so the tracker reads as part of the
+   * same system — carbon surfaces, steel-blue identity, ONE accent (success
+   * green) reserved for "done". Danger is semantic, not an accent.
+   */
+  :root {
+    --body: #070809;
+    --panel: #121518;
+    --surface: #171b1f;
+    --edge: #ccd6e4;
+    --hairline: #232830;
+    --steel: #4e6877;
+    --steel-muted: #6f8794;
+    --ok: #4fae7a;
+    --warn: #eca13f;
+    --bad: #f27a70;
+    --ink: #eef0f4;
+    --ink-2: #a9bccd;
+    --ink-3: #7d8894;
+    --shadow: 0 1px 0 rgba(207, 225, 250, 0.06) inset,
+      0 8px 24px -18px rgba(0, 0, 0, 0.9);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme='dark']) {
+      --body: #eef3f8;
+      --panel: #ffffff;
+      --surface: #e4ecf4;
+      --edge: #24333f;
+      --hairline: #c2d3e2;
+      --steel: #3f5b6a;
+      --steel-muted: #3f5b6a;
+      --ok: #186438;
+      --warn: #8a5a10;
+      --bad: #a82f2f;
+      --ink: #0d0f12;
+      --ink-2: #33485a;
+      --ink-3: #55636f;
+      --shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 8px 22px -18px rgba(13, 25, 40, 0.5);
+    }
+  }
+  :root[data-theme='light'] {
+    --body: #eef3f8;
+    --panel: #ffffff;
+    --surface: #e4ecf4;
+    --edge: #24333f;
+    --hairline: #c2d3e2;
+    --steel: #3f5b6a;
+    --steel-muted: #3f5b6a;
+    --ok: #186438;
+    --warn: #8a5a10;
+    --bad: #a82f2f;
+    --ink: #0d0f12;
+    --ink-2: #33485a;
+    --ink-3: #55636f;
+    --shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      0 8px 22px -18px rgba(13, 25, 40, 0.5);
+  }
+  :root[data-theme='dark'] {
+    --body: #070809;
+    --panel: #121518;
+    --surface: #171b1f;
+    --edge: #ccd6e4;
+    --hairline: #232830;
+    --steel: #4e6877;
+    --steel-muted: #6f8794;
+    --ok: #4fae7a;
+    --warn: #eca13f;
+    --bad: #f27a70;
+    --ink: #eef0f4;
+    --ink-2: #a9bccd;
+    --ink-3: #7d8894;
+  }
+
+  * { box-sizing: border-box; }
+
+  .page {
+    /* Mono for everything that is data — scores, dates, file:line, hashes.
+       This tracker is mostly numbers and code references, so the monospace
+       is the working face and the sans is the voice. */
+    --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+      'Liberation Mono', monospace;
+    background: var(--body);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    margin: 0;
+    padding: clamp(20px, 4vw, 56px) clamp(16px, 4vw, 40px) 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 40px; }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-size: clamp(28px, 4.4vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0;
+    text-wrap: balance;
+    font-weight: 650;
+  }
+  h2 {
+    font-size: 20px;
+    letter-spacing: -0.012em;
+    margin: 0 0 4px;
+    font-weight: 620;
+  }
+  .lede { color: var(--ink-2); margin: 12px 0 0; max-width: 62ch; }
+  .note { color: var(--ink-3); font-size: 13.5px; margin: 6px 0 0; max-width: 68ch; }
+
+  /* ---- the headline number ------------------------------------------- */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 20px;
+    padding: clamp(20px, 3vw, 32px);
+    box-shadow: var(--shadow);
+  }
+  @media (min-width: 760px) {
+    .hero { grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 36px; }
+  }
+  .score-big {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(56px, 11vw, 92px);
+    line-height: 0.86;
+    letter-spacing: -0.05em;
+    color: var(--bad);
+    font-weight: 600;
+  }
+  .score-big span { font-size: 0.34em; color: var(--ink-3); letter-spacing: 0; }
+
+  /* ---- generic surfaces ---------------------------------------------- */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: clamp(18px, 2.4vw, 26px);
+    box-shadow: var(--shadow);
+  }
+  .stack { display: grid; gap: 14px; }
+  .section-head { display: grid; gap: 2px; margin-bottom: 18px; }
+
+  /* ---- table ---------------------------------------------------------- */
+  .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 660px; }
+  th, td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--hairline);
+    vertical-align: middle;
+  }
+  thead th {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 500;
+    border-bottom-color: var(--edge);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.wing { font-weight: 560; }
+  .dim { color: var(--ink-3); font-size: 13px; }
+  .num {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  /* Score bar: form as well as number, with the bless line drawn at 10. */
+  .bar {
+    position: relative;
+    width: 116px;
+    height: 7px;
+    border-radius: 99px;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    overflow: hidden;
+  }
+  .bar > i { display: block; height: 100%; border-radius: 99px; }
+
+  /* ---- chips ---------------------------------------------------------- */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 99px;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+  }
+  .chip.done { color: var(--ok); }
+  .chip.now { color: var(--edge); }
+  .chip.next { color: var(--steel-muted); }
+  .chip.blocked { color: var(--bad); }
+  .chip.you { color: var(--warn); }
+
+  /* ---- work items ----------------------------------------------------- */
+  .item {
+    display: grid;
+    grid-template-columns: 4px minmax(0, 1fr);
+    gap: 0 16px;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .item > .stripe { background: var(--hairline); }
+  .item.is-done > .stripe { background: var(--ok); }
+  .item.is-now > .stripe { background: var(--edge); }
+  .item.is-blocked > .stripe { background: var(--bad); }
+  .item.is-you > .stripe { background: var(--warn); }
+  .item > .body { padding: 14px 16px 15px 0; display: grid; gap: 7px; }
+  .item h3 { font-size: 15px; margin: 0; font-weight: 570; letter-spacing: -0.006em; }
+  .item p { margin: 0; font-size: 13.5px; color: var(--ink-2); max-width: 74ch; }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-3);
+  }
+  code {
+    font-family: var(--mono);
+    font-size: 0.92em;
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 5px;
+    padding: 1px 5px;
+    color: var(--ink-2);
+  }
+  .delta { color: var(--ok); font-family: var(--mono); font-size: 11.5px; }
+
+  .grid2 { display: grid; gap: 14px; }
+  @media (min-width: 720px) { .grid2 { grid-template-columns: 1fr 1fr; } }
+
+  ul.plain { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+  ul.plain li { color: var(--ink-2); font-size: 13.5px; }
+
+  hr.rule { border: 0; border-top: 1px solid var(--hairline); margin: 0; }
+
+  a { color: var(--ink); text-decoration-color: var(--steel-muted); }
+  a:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--steel-muted);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  footer { color: var(--ink-3); font-size: 12.5px; font-family: var(--mono); }
+</style>
+
+<div class="page">
+  <div class="wrap">
+    <header>
+      <p class="kicker">NGW · Wordy · review board tracker</p>
+      <h1>Nine wings reviewed it. Three things shipped since.</h1>
+      <p class="lede">
+        Render-first pass run 9 Aug 2026 against the production export — seven
+        viewports, six states, forty-two screenshots. Every wing scored its own
+        dimensions and the surface takes the lowest one.
+      </p>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="kicker" style="margin-bottom:6px">Surface score</p>
+        <div class="score-big">0.5<span>/10</span></div>
+      </div>
+      <div class="stack">
+        <p style="margin:0;color:var(--ink-2)">
+          The surface scores as its <strong style="color:var(--ink)">lowest wing</strong>,
+          and that wing is Store readiness. No native app exists, so no amount of
+          UI, accessibility or game-design work moves this number. <strong style="color:var(--ink)">The
+          platform decision caps everything else on the board.</strong>
+        </p>
+        <p class="note" style="margin:0">
+          Decision taken: web to 9–10 first. Under that scope the Store wing is
+          rescored as <em>web production readiness</em> — currently 6.5, reachable
+          9–10 — and the surface ceiling rises with it.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Shipped since the review</h2>
+        <p class="note">All verified against the production build, not the dev server.</p>
+      </div>
+      <div class="stack">
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Slurs removed from shipped puzzle data</h3>
+            <p>
+              ENABLE1 is a Scrabble lexicon and nothing filtered it. <code>dago</code>
+              was a <em>grid</em> word — a required target with a dictionary gloss —
+              alongside <code>spic</code>, <code>chink</code> and <code>rape</code>.
+              Filtered at wordlist load so no consumer can reach one; clue prose
+              gated separately, because Webster 1913 uses period-racial language in
+              otherwise ordinary definitions.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span>
+              <span><code>8a67d2e</code></span>
+              <span>9 Aug</span>
+              <span class="delta">30 offences → 0 · 148 words filtered</span>
+              <span>sw cache → v3 so installed players actually get it</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Tapping the dial plays the game</h3>
+            <p>
+              <code>pointerdown</code> entered drag state, so <code>pointerup</code>
+              committed — a single tap cleared the word, selected one letter and
+              submitted it. There was no submit control anywhere, so drag was the
+              only input path in the game. Two wings found this independently.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span>
+              <span><code>d9ff88c</code></span>
+              <span>9 Aug</span>
+              <span class="delta">motor 1 → 8 · discoverability 1 → 7</span>
+              <span>+ Enter control, 51×51, in the dial centre</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Dialogs behave like dialogs</h3>
+            <p>
+              Focus never moved in, Escape did nothing, and the intro's only
+              dismiss target was a non-focusable div. The window key handler ran
+              unconditionally, so Space shuffled the wheel behind an open sheet.
+              Both dialogs are now portalled to <code>body</code> — an element
+              cannot make its own ancestor inert, which is why it silently failed.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span>
+              <span><code>1165d0f</code></span>
+              <span>9 Aug</span>
+              <span class="delta">keyboard 3 → 7</span>
+              <span>+ sheet max-width fixed (was ~1900px wide at 1728)</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>Wing scorecard</h2>
+        <p class="note">
+          Ordered lowest first — that is the fix order. A wing scores as its own
+          weakest dimension, so raising an 8 while a 2 stands changes nothing.
+        </p>
+      </div>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Wing</th>
+              <th scope="col">Score</th>
+              <th scope="col"></th>
+              <th scope="col">Weakest dimension</th>
+              <th scope="col">Ceiling</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="wing">Store readiness<div class="dim">web · iOS · Android</div></td>
+              <td class="num" style="color:var(--bad)">0.5</td>
+              <td><div class="bar"><i style="width:5%;background:var(--bad)"></i></div></td>
+              <td class="dim">no native app; Apple 4.2</td>
+              <td class="dim">9–10 as web-only</td>
+              <td><span class="chip next">Rescoped</span></td>
+            </tr>
+            <tr>
+              <td class="wing">Monetization &amp; pay</td>
+              <td class="num" style="color:var(--bad)">1</td>
+              <td><div class="bar"><i style="width:10%;background:var(--bad)"></i></div></td>
+              <td class="dim">billing architecture · content depth 3</td>
+              <td class="dim">9 once content is deep</td>
+              <td><span class="chip next">Decided</span></td>
+            </tr>
+            <tr>
+              <td class="wing">Accessibility</td>
+              <td class="num" style="color:var(--warn)">2</td>
+              <td><div class="bar"><i style="width:20%;background:var(--warn)"></i></div></td>
+              <td class="dim">screen reader 2 · zoom 2</td>
+              <td class="dim">9</td>
+              <td><span class="chip now">In progress</span></td>
+            </tr>
+            <tr>
+              <td class="wing">Onboarding &amp; friction</td>
+              <td class="num" style="color:var(--warn)">2</td>
+              <td><div class="bar"><i style="width:20%;background:var(--warn)"></i></div></td>
+              <td class="dim">goal comprehension · error prevention</td>
+              <td class="dim">9</td>
+              <td><span class="chip next">Next</span></td>
+            </tr>
+            <tr>
+              <td class="wing">Security, privacy &amp; IP</td>
+              <td class="num" style="color:var(--warn)">2</td>
+              <td><div class="bar"><i style="width:20%;background:var(--warn)"></i></div></td>
+              <td class="dim">no privacy policy · IP clearance 4</td>
+              <td class="dim">9–10</td>
+              <td><span class="chip next">Queued</span></td>
+            </tr>
+            <tr>
+              <td class="wing">Game design &amp; core loop</td>
+              <td class="num" style="color:var(--warn)">3</td>
+              <td><div class="bar"><i style="width:30%;background:var(--warn)"></i></div></td>
+              <td class="dim">retention — day-241 serves a solved board</td>
+              <td class="dim">8–9</td>
+              <td><span class="chip next">Queued</span></td>
+            </tr>
+            <tr>
+              <td class="wing">Layout &amp; hierarchy</td>
+              <td class="num" style="color:var(--warn)">3</td>
+              <td><div class="bar"><i style="width:30%;background:var(--warn)"></i></div></td>
+              <td class="dim">inverted semantic hierarchy</td>
+              <td class="dim" style="color:var(--ok)">10 — the only one</td>
+              <td><span class="chip next">Queued</span></td>
+            </tr>
+            <tr>
+              <td class="wing">Interaction &amp; feel</td>
+              <td class="num" style="color:var(--warn)">3</td>
+              <td><div class="bar"><i style="width:30%;background:var(--warn)"></i></div></td>
+              <td class="dim">haptics 3 · reduced-motion parity 3</td>
+              <td class="dim">9 · needs a real device</td>
+              <td><span class="chip next">Queued</span></td>
+            </tr>
+            <tr>
+              <td class="wing">Cultural authenticity</td>
+              <td class="num" style="color:var(--warn)">4</td>
+              <td><div class="bar"><i style="width:40%;background:var(--warn)"></i></div></td>
+              <td class="dim">internal diversity · depth</td>
+              <td class="dim">~7 without you, 10 with</td>
+              <td><span class="chip you">Deferred</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Remaining work, in fix order</h2>
+        <p class="note">Effort is focused engineering days, not calendar days.</p>
+      </div>
+      <div class="stack">
+
+        <article class="item is-now">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Finish accessibility → 8–9</h3>
+            <p>
+              Hints are pointer-event-only, so keyboard and AT users cannot use the
+              hint system at all — and the row's aria-label describes an operation
+              they cannot perform. Then: restore pinch zoom (<code>userScalable:false</code>
+              is a documented WCAG 1.4.4 failure), announce rank changes, split the
+              live region so a toast cannot clobber a result, fix the 1.01:1
+              clue-mode marker, drop <code>max-[379px]:h-9</code> which shrinks
+              targets on the smallest phones.
+            </p>
+            <div class="meta">
+              <span class="chip now">In progress</span>
+              <span>~2 d</span>
+              <span>blocks: WCAG 2.2 AA</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Onboarding → 9</h3>
+            <p>
+              The first screen explains scoring and never says what the game is.
+              Teach the verb, keep the instruction until the first word lands, put
+              a price on a hint before charging it, promote the Themes door out of a
+              13px muted line, fix the literal <code>&amp;rsquo;</code> that renders
+              in the assist copy, and stop telling phone players they can "just type it".
+            </p>
+            <div class="meta"><span class="chip next">Next</span><span>~2 d</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Layout &amp; hierarchy → 10</h3>
+            <p>
+              The only wing that can honestly reach a 10, because it is scored on
+              measurements. <code>secondary</code> and <code>muted</code> are 0.3%
+              apart in luminance — two of three contrast tiers are one tier. Section
+              titles are the smallest, dimmest text in their own cards. The accent is
+              spent eight times. Type ramp collapses to six named steps in <code>rem</code>,
+              which also carries the dynamic-type half of the accessibility work.
+            </p>
+            <div class="meta"><span class="chip next">Queued</span><span>~3 d</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Security, privacy &amp; IP → 9–10</h3>
+            <p>
+              Publish privacy, terms and support routes — both stores hard-block
+              without them, and with no analytics the policy is ten honest sentences.
+              Drop <code>dictionaryapi.dev</code>: it has no terms, licence or privacy
+              policy and currently receives every word a player taps. Swap Webster 1913
+              for WordNet, which resolves the licence question and the archaic-clue
+              problem at once. Then CSP, the <code>response.ok</code> guard, LICENSE.
+            </p>
+            <div class="meta"><span class="chip next">Queued</span><span>~3 d</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Game design &amp; loop → 8–9</h3>
+            <p>
+              Clearing every row — what the UI tells you to do — earns rank 3 of 8,
+              because ranks measure every word the letters can make. Re-anchor them.
+              Ship escalating mode on by default; it is the idea that makes this
+              structurally interesting and it is switched off. Raise the 45s assist
+              and stop playing the win sound for a word the player didn't find.
+              Generate 730+ puzzles so day 241 stops serving a solved board.
+            </p>
+            <div class="meta"><span class="chip next">Queued</span><span>~4 d</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Interaction &amp; feel → 9</h3>
+            <p>
+              Reduced motion still silences the prize and rank celebrations entirely —
+              the fix landed only on bonus. Seven feedback events collapse to four
+              distinguishable iOS patterns; spending a hint feels identical to banking
+              a word. Muting audio also kills haptics, which is backwards. No master
+              limiter, so the biggest moment is the one most likely to clip.
+            </p>
+            <div class="meta">
+              <span class="chip next">Queued</span><span>~3 d</span>
+              <span>haptics unverifiable without hardware</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Waiting on you</h2>
+        <p class="note">These cannot be closed from the code side.</p>
+      </div>
+      <div class="grid2">
+        <article class="item is-you">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Eight questions from the cultural seat</h3>
+            <p>
+              Whose 90s R&amp;B? Which region's cookout? Is Sitcom Sunday meant to be
+              Black canon or a deliberate breather? The seat refused to guess, and
+              blocked two themes pending answers. Deferred by your call — the wing
+              stays at 4 until it is picked up.
+            </p>
+            <div class="meta"><span class="chip you">Deferred</span></div>
+          </div>
+        </article>
+        <article class="item is-you">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>A real device for haptics</h3>
+            <p>
+              The iOS haptic trick may only fire its first tick — the one inside the
+              user gesture. If so the whole vocabulary collapses to one buzz and iOS
+              haptics need Core Haptics, i.e. a native shell. Not testable headless.
+            </p>
+            <div class="meta"><span class="chip you">Needs hardware</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>Decisions on record</h2>
+      </div>
+      <ul class="plain">
+        <li><strong style="color:var(--ink)">Platform:</strong> web to 9–10 first. Stores deferred, not abandoned — the same work clears Apple's 4.2 bar later.</li>
+        <li><strong style="color:var(--ink)">Money:</strong> free now; a single one-time $4.99 unlock once themed content is deep. The only SKU a backend-less app can honestly support — consumables don't restore.</li>
+        <li><strong style="color:var(--ink)">Themes:</strong> deferred pending the eight questions.</li>
+        <li><strong style="color:var(--ink)">Never ship:</strong> a streak-freeze or streak-repair SKU. The streak resets hard to 1, which is honest while nothing is sold and predatory the moment something is.</li>
+      </ul>
+    </section>
+
+    <hr class="rule" />
+    <footer>
+      Board roster · <code>docs/REVIEW_BOARD_GAME_WING.md</code> &nbsp;·&nbsp;
+      Re-render · <code>node scripts/capture-review.mjs &lt;url&gt;</code> &nbsp;·&nbsp;
+      Bless threshold is 10+, and nothing here is blessed yet.
+    </footer>
+  </div>
+</div>
