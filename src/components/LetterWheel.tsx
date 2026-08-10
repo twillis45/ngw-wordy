@@ -52,7 +52,18 @@ const HIT = 15; // % from a tile center that counts as "on" it
  * illusion that the element is pulling the pointer toward it". Morphing only
  * once you're already on the tile would feel like a snap, not a magnet.
  */
-const MAGNET = 16; // % — where the SHAPE starts to morph
+/*
+ * Where the SHAPE starts to morph. The ramp is MAGNET - HIT wide, and that
+ * width is the whole point: raising HIT to 15 while this sat at 16 left a ONE
+ * PERCENT ramp, so the morph became a step — 13px of size appearing from a
+ * hair of mouse movement, which reads as the puck jumping.
+ *
+ * 19 gives a 4% ramp. Tiles are 36% apart, so the midpoint between two is 18%
+ * from each: there the puck is only ~16% morphed, which keeps the free circle
+ * genuinely visible between letters — the property the original 16 was
+ * protecting.
+ */
+const MAGNET = 19; // % — where the SHAPE starts to morph
 /**
  * Attraction reaches further than the morph does.
  *
@@ -323,8 +334,21 @@ export default function LetterWheel({
       }
     }
 
+    /*
+     * The resting size is computed ONCE, because it is used by two branches
+     * and they were disagreeing.
+     *
+     * The untargeted branch returned a bare FREE while the targeted branch
+     * applied the desktop boost, so crossing the attraction boundary popped
+     * the puck 25% larger with the mouse perfectly still. The centre never
+     * moved — which is why measuring drift kept reporting zero — but a shape
+     * that changes size on its own still reads as the pointer moving, and it
+     * fires exactly as you approach a letter.
+     */
+    const rest = byMouse ? FREE * 1.25 : FREE;
+
     if (nearest === -1 || best > PULL) {
-      return { x: cursor.x, y: cursor.y, size: FREE, radius: 50, target: -1, t: 0, pull: 0 };
+      return { x: cursor.x, y: cursor.y, size: rest, radius: 50, target: -1, t: 0, pull: 0 };
     }
 
     /*
@@ -360,8 +384,9 @@ export default function LetterWheel({
       // ENCOMPASSES the whole letter rather than sitting exactly on top of it,
       // which reads as a coincidence rather than a lock.
       // Bigger on a mouse: this is standing in for the OS cursor, so it has
-      // to be findable at a glance on a 1728px screen.
-      size: at(byMouse ? FREE * 1.25 : FREE, TILE * 1.14, t),
+      // to be findable at a glance on a 1728px screen. Same `rest` as the
+      // untargeted branch, so there is no step where they meet.
+      size: at(rest, TILE * 1.14, t),
       radius: at(50, TILE_RADIUS_PCT, t),
       target: nearest,
       t,
