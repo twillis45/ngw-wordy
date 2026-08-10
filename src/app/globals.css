@@ -240,6 +240,16 @@
   --text-item: 1.0625rem; /* 17 — card and section titles */
   --text-title: 1.375rem; /* 22 — modal titles */
   --text-hero: 2rem; /* 32 — the one set-piece per screen */
+  /*
+   * The word being spelled, on a pointer device.
+   *
+   * 32px is right on a phone held at reading distance, where the dial fills
+   * the thumb zone and the word is the only thing above it. On a desktop you
+   * sit further back and the word sits in a much wider field, so the same size
+   * reads as shouting. A step down, still clearly the largest live text on the
+   * screen.
+   */
+  --text-word-desk: 1.625rem; /* 26 */
 
   --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, sans-serif;

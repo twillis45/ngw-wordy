@@ -953,7 +953,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             {toast.text}
           </span>
         ) : current ? (
-          <span className="text-hero font-bold tracking-[0.14em] text-text-primary md:text-hero">
+          <span className="text-hero font-bold tracking-[0.14em] text-text-primary mouse:text-word-desk">
             {current.toUpperCase()}
           </span>
         ) : (
