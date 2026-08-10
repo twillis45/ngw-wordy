@@ -55,7 +55,7 @@ export default function Rail({
   const solvedTargets = gridWords.filter((w) => found.has(w));
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 short:gap-2.5">
       <Card title="Your words" meta={`${score} pts`}>
         <Group
           label={`Targets · ${solvedTargets.length}/${gridWords.length}`}
@@ -96,13 +96,13 @@ export default function Rail({
         <p className="mb-2.5 text-meta leading-snug text-text-muted">
           {RANK_BASIS}
         </p>
-        <ol className="flex flex-col gap-0.5">
+        <ol className="flex flex-col gap-0.5 short:gap-0">
           {rankLadder(score, maxScore).map((step) => (
             <li
               key={step.name}
               aria-current={step.current ? 'step' : undefined}
               className={[
-                'flex items-center gap-2.5 rounded-lg px-2 py-1.5 text-body',
+                'flex items-center gap-2.5 rounded-lg px-2 py-1.5 text-body short:py-1 short:text-meta',
                 step.current ? 'liquid liquid-raised relative font-semibold' : '',
                 step.reached ? 'text-text-primary' : 'text-text-muted',
               ].join(' ')}
@@ -135,7 +135,7 @@ export default function Rail({
       >
         <div className="flex items-end justify-between gap-1">
           {days.map((d, i) => (
-            <div key={d.key} className="flex flex-col items-center gap-1.5">
+            <div key={d.key} className="flex flex-col items-center gap-1.5 short:gap-1">
               <span
                 aria-hidden
                 className={[
@@ -188,7 +188,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <section className="relative rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
+    <section className="relative rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4 short:p-3">
       <div className="mb-3 flex items-baseline justify-between gap-3">
         <h2 className="text-item font-semibold text-text-primary">
           {title}

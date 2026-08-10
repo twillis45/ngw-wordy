@@ -1117,7 +1117,18 @@ export default function Game({ data }: { data: PuzzleFile }) {
             can stretch and center its own contents. */}
         <aside
           aria-label="Your progress"
-          className="hidden md:block md:max-h-full md:self-start md:overflow-y-auto lg:sticky lg:top-6"
+          /*
+           * `rail-scroll` fades the bottom edge when there is more below.
+           *
+           * The rail was silently CLIPPED on the two commonest laptop
+           * heights — 133px at 1280x720, 85px at 1366x768 — and the part cut
+           * off is the Streak card at the end. It scrolled, but nothing said
+           * so: a flat cut at the container edge reads as the end of the
+           * content, so a player on a 720p screen simply never learned the
+           * streak existed. The short: compaction above recovers most of it;
+           * the fade covers whatever is left at any height.
+           */
+          className="rail-scroll hidden md:block md:max-h-full md:self-start md:overflow-y-auto lg:sticky lg:top-6"
         >
           {rail}
         </aside>

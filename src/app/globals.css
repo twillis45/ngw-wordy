@@ -1051,3 +1051,27 @@ body {
   color: var(--color-text-primary);
   font-weight: 600;
 }
+
+/*
+ * A scroll container that admits it scrolls.
+ *
+ * The evidence rail is `overflow-y: auto`, which on a short laptop cut the
+ * Streak card off at a hard edge. A flat cut at a container boundary reads as
+ * the end of the content — so the affordance has to be in the material, not in
+ * a scrollbar the OS may not draw at all.
+ *
+ * The mask fades the last 28px only while there is something below: at
+ * scroll-end the browser has nothing left to fade, and `mask-image` on a
+ * fully-scrolled box is visually inert.
+ */
+.rail-scroll {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
+}
+/* No fade where there is no scrolling: a tall window shows the whole rail. */
+@media (min-height: 900px) {
+  .rail-scroll {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
