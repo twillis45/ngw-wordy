@@ -55,6 +55,8 @@ import {
   clueTarget,
   isReachable,
   dailyIndex,
+  dailyCycle,
+  progressKey,
   puzzleForPlayer,
   themeGroups,
   offsetForIndex,
@@ -129,14 +131,24 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * average and the day-1 puzzle was 33% — four of six rows obscure. A first
    * game has to be winnable or there is no second one.
    */
+  const clearedSet = useMemo(
+    () => new Set(progress.clearedIds),
+    [progress.clearedIds]
+  );
   const { index, warmup } = puzzleForPlayer(
     data,
     progress.warmupsDone,
     today,
-    offset
+    offset,
+    clearedSet
   );
   const puzzle: Puzzle = data.puzzles[index];
-  const puzzleId = String(puzzle.id);
+  /*
+   * Found words are keyed by puzzle AND lap. Without the lap, finishing the
+   * catalogue once means every future board arrives pre-solved.
+   */
+  const cycle = dailyCycle(today, data.puzzles.length);
+  const puzzleId = progressKey(puzzle.id, cycle);
   const isDaily = offset === 0 && warmup === null;
 
   const [letters, setLetters] = useState<string[]>(puzzle.letters);
@@ -662,7 +674,18 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
   const shareCard = () =>
     shareText({
-      dayNumber: index + 1,
+      theme: puzzle.theme?.name ?? null,
+      /*
+       * Quote a clue from a row the player actually SOLVED — never an unsolved
+       * one, which would spoil the board for whoever reads the post. Longest
+       * solved row first: the longer the word, the more the clue had to work.
+       */
+      clue:
+        puzzle.grid
+          .filter((w) => found.has(w))
+          .sort((a, b) => b.length - a.length)
+          .map((w) => puzzle.clues?.[w])
+          .find((c): c is string => Boolean(c)) ?? null,
       rank: rank.name,
       score,
       // Tray order, so the shape a reader sees is the shape the player saw.

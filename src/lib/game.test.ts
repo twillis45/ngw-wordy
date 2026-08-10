@@ -15,6 +15,8 @@ import {
   shuffle,
   submit,
   type Puzzle,
+  dailyCycle,
+  progressKey,
 } from './game';
 import { EMPTY, migrateV1, touchStreak, type Progress } from './storage';
 import {
@@ -163,7 +165,6 @@ describe('shareText', () => {
 
   it('reveals shape and rank but never a word', () => {
     const text = shareText({
-      dayNumber: 12,
       rank: 'Fluent',
       score: 61,
       tiles: tiles('bx x..'.replace(' ', '')),
@@ -171,7 +172,7 @@ describe('shareText', () => {
       streak: 5,
       url: 'https://wordy.example',
     });
-    expect(text).toContain('Wordy #12 — Fluent');
+    expect(text).toContain('Wordy — Fluent');
     // No answer from the puzzle may appear anywhere in the card.
     for (const answer of [...puzzle.grid, ...puzzle.bonus]) {
       expect(text.toLowerCase()).not.toContain(answer);
@@ -180,7 +181,6 @@ describe('shareText', () => {
 
   it('marks the full-wheel word distinctly from the rest', () => {
     const text = shareText({
-      dayNumber: 1,
       rank: 'Genius',
       score: 100,
       tiles: tiles('bxx'),
@@ -192,7 +192,6 @@ describe('shareText', () => {
 
   it('shows misses', () => {
     const text = shareText({
-      dayNumber: 1,
       rank: 'Solid',
       score: 8,
       tiles: tiles('.x.'),
@@ -204,7 +203,6 @@ describe('shareText', () => {
 
   it('omits bonus, streak and url when they have nothing to say', () => {
     const text = shareText({
-      dayNumber: 3,
       rank: 'Novice',
       score: 4,
       tiles: tiles('..'),
@@ -217,9 +215,36 @@ describe('shareText', () => {
     expect(text.trim().split('\n')).toHaveLength(3);
   });
 
+  it('leads with the clue, because that is the part worth quoting', () => {
+    const text = shareText({
+      theme: 'The Cookout',
+      clue: 'Dug out the couch when you heard the truck turn onto the street.',
+      rank: 'Clever',
+      score: 40,
+      tiles: tiles('bxx'),
+      bonusFound: 0,
+      streak: 1,
+    });
+    const lines = text.split('\n');
+    expect(lines[0]).toBe('Wordy — The Cookout · Clever');
+    // Above the tiles: a reader scanning a feed sees line one and nothing else.
+    expect(lines[1]).toContain('Dug out the couch');
+    expect(lines[2]).toContain('🟩');
+  });
+
+  it('still names the game when a board has no theme', () => {
+    const text = shareText({
+      rank: 'Solid',
+      score: 8,
+      tiles: tiles('x'),
+      bonusFound: 0,
+      streak: 1,
+    });
+    expect(text.split('\n')[0]).toBe('Wordy — Solid');
+  });
+
   it('includes bonus, streak and url when they do', () => {
     const text = shareText({
-      dayNumber: 3,
       rank: 'Genius',
       score: 99,
       tiles: tiles('bxx'),
@@ -801,5 +826,65 @@ describe('offsetForIndex', () => {
 
   it('wraps rather than going negative', () => {
     expect(offsetForIndex(file, today, 0)).toBeGreaterThanOrEqual(0);
+  });
+});
+
+
+describe('the daily never serves a board you already finished', () => {
+  /*
+   * Regression: `dailyIndex` is `epochDay % total` and found words are keyed by
+   * puzzle, so the plain seed returns a solved board. It reads as a day-241
+   * problem and is actually a day-two problem, because the theme picker lets a
+   * player reach any index long before the calendar does.
+   */
+  const file = {
+    wheel: 6,
+    starters: [],
+    puzzles: Array.from({ length: 5 }, (_, i) => ({ id: i })),
+  } as unknown as Parameters<typeof puzzleForPlayer>[0];
+
+  const day = new Date(2026, 7, 9);
+  const seed = dailyIndex(day, 5);
+
+  it('returns the seed when nothing is cleared', () => {
+    expect(puzzleForPlayer(file, 0, day, 0, new Set()).index).toBe(seed);
+  });
+
+  it('walks past a cleared puzzle instead of re-serving it', () => {
+    const cleared = new Set([String(seed)]);
+    expect(puzzleForPlayer(file, 0, day, 0, cleared).index).toBe((seed + 1) % 5);
+  });
+
+  it('walks past a RUN of cleared puzzles', () => {
+    const cleared = new Set(
+      [0, 1, 2].map((k) => String((seed + k) % 5))
+    );
+    expect(puzzleForPlayer(file, 0, day, 0, cleared).index).toBe((seed + 3) % 5);
+  });
+
+  it('falls back to the seed once the whole catalogue is cleared', () => {
+    const cleared = new Set(['0', '1', '2', '3', '4']);
+    expect(puzzleForPlayer(file, 0, day, 0, cleared).index).toBe(seed);
+  });
+
+  it('never overrides an explicit offset — that is the player steering', () => {
+    const cleared = new Set([String((seed + 1) % 5)]);
+    expect(puzzleForPlayer(file, 0, day, 1, cleared).index).toBe((seed + 1) % 5);
+  });
+});
+
+describe('progress keys are scoped to the lap', () => {
+  it('keeps the bare id on lap zero so nobody needs migrating', () => {
+    expect(progressKey(42, 0)).toBe('42');
+  });
+
+  it('separates later laps, so a second pass is a fresh sheet', () => {
+    expect(progressKey(42, 1)).toBe('42#1');
+    expect(progressKey(42, 1)).not.toBe(progressKey(42, 0));
+  });
+
+  it('counts laps from the epoch day, not from a stored counter', () => {
+    expect(dailyCycle(new Date(2026, 7, 9), 240)).toBeGreaterThan(0);
+    expect(dailyCycle(new Date(2026, 7, 9), 1_000_000)).toBe(0);
   });
 });

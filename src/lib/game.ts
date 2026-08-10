@@ -92,11 +92,33 @@ export type PuzzleFile = {
  * So new players get a short warm-up on the kindest puzzles in the set before
  * joining the daily. It is stated plainly in the UI rather than hidden.
  */
+/**
+ * Storage key for a puzzle's found words.
+ *
+ * Plain puzzle ids meant a player who got all the way round the catalogue was
+ * served their own completed board. The cycle number makes lap two a genuinely
+ * fresh sheet without duplicating any content, and lap zero keeps the bare id
+ * so no migration is needed for anyone playing today.
+ */
+export function progressKey(puzzleId: string | number, cycle = 0): string {
+  return cycle === 0 ? String(puzzleId) : `${puzzleId}#${cycle}`;
+}
+
+/** How many complete laps of the catalogue have elapsed. */
+export function dailyCycle(date: Date, total: number): number {
+  const epoch = Math.floor(
+    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000
+  );
+  return Math.max(0, Math.floor(epoch / total));
+}
+
 export function puzzleForPlayer(
   file: PuzzleFile,
   warmupsDone: number,
   today: Date,
-  offset: number
+  offset: number,
+  /** Puzzle ids already finished — the daily skips them. */
+  cleared: ReadonlySet<string> = new Set()
 ): { index: number; warmup: number | null } {
   const ladder = file.starters ?? [];
 
@@ -106,11 +128,37 @@ export function puzzleForPlayer(
     return { index: ladder[warmupsDone], warmup: warmupsDone + 1 };
   }
 
-  const base = dailyIndex(today, file.puzzles.length);
-  return {
-    index: (base + offset + file.puzzles.length) % file.puzzles.length,
-    warmup: null,
-  };
+  const total = file.puzzles.length;
+  const seed = dailyIndex(today, total);
+
+  // An explicit offset is the player steering; never second-guess it.
+  if (offset !== 0) {
+    return { index: (seed + offset + total) % total, warmup: null };
+  }
+
+  /*
+   * The daily is the first UNCLEARED puzzle from today's seed, not the seed
+   * itself.
+   *
+   * `dailyIndex` is `epochDay % total`, and found words are keyed by puzzle,
+   * so the plain seed serves a board the player has already finished. That is
+   * usually described as a day-241 problem, but it starts on day TWO: the
+   * theme picker lets anyone jump to any index, and the ten themed puzzles are
+   * exactly the ones a new player seeks out first — so every one of them is
+   * scheduled to come back as a "daily" that is already solved.
+   *
+   * Walking forward keeps it deterministic and serverless, and makes browsing
+   * the themes free rather than a way to poison your own calendar.
+   */
+  for (let step = 0; step < total; step += 1) {
+    const i = (seed + step) % total;
+    if (!cleared.has(String(file.puzzles[i].id))) {
+      return { index: i, warmup: null };
+    }
+  }
+
+  // Everything is cleared. Cycle-keyed storage makes the replay a fresh board.
+  return { index: seed, warmup: null };
 }
 
 /** Every theme in the set, with the puzzles that carry it. */
@@ -352,8 +400,29 @@ const SQ_MISSED = '⬛';
 
 export type ShareTile = { solved: boolean; isBase: boolean };
 
+/**
+ * The share card.
+ *
+ * This used to lead with "Wordy #205" and a strip of shape tiles — Wordle
+ * grammar. But Wordle's card works because its secret was the ANSWER, so the
+ * shape is all you can safely show. Wordy's secret is the CLUE, and the clues
+ * are the only part of this game nobody else can generate. Emitting shape-only
+ * meant the one asset with pricing power never left the app.
+ *
+ * The day number is also gone rather than fixed: it read `index + 1`, so a
+ * player still in the warm-up ladder shared "#1" on the same calendar day
+ * everyone else shared "#205" — a handshake that didn't shake. And now that
+ * the daily walks past puzzles you have already cleared, there is no shared
+ * number left to claim honestly.
+ *
+ * A clue is only ever shared from a row the player SOLVED, so this can never
+ * spoil a puzzle for the person reading it.
+ */
 export function shareText(opts: {
-  dayNumber: number;
+  /** The pack this board came from, when it has one. */
+  theme?: string | null;
+  /** A clue from a row the player solved — the thing worth quoting. */
+  clue?: string | null;
   rank: string;
   score: number;
   tiles: ShareTile[];
@@ -377,8 +446,15 @@ export function shareText(opts: {
     .filter(Boolean)
     .join(' · ');
 
+  const heading = opts.theme
+    ? `Wordy — ${opts.theme} · ${opts.rank}`
+    : `Wordy — ${opts.rank}`;
+
   return [
-    `Wordy #${opts.dayNumber} — ${opts.rank}`,
+    heading,
+    // The line is the product. It goes above the tiles, because a reader
+    // scanning a feed sees the first line and nothing else.
+    opts.clue ? `"${opts.clue}"` : null,
     shape,
     evidence,
     opts.url,
