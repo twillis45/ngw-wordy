@@ -355,6 +355,27 @@ export default function Game({ data }: { data: PuzzleFile }) {
     setToast({ text, tone, id: toastId.current });
   }, []);
 
+  /*
+   * Announcements with no toast behind them.
+   *
+   * The two biggest rewards in the game are drawn ONLY into the celebration
+   * layer, and that layer is `aria-hidden` — correctly, it is decoration. But
+   * `say()` was never called for either, so a screen-reader player got nothing
+   * at all for solving the six-letter prize word (the `isBase` branch has no
+   * say(), it hands off to celebratePrize) and nothing for a rank promotion.
+   * The one player who cannot see the card is the one who was told least.
+   *
+   * Separate from `toast` because routing these through say() would paint a
+   * text toast on top of the celebration card — the visual design already
+   * says this, twice would be a regression.
+   */
+  const [srSay, setSrSay] = useState<{ text: string; id: number } | null>(null);
+  const srId = useRef(0);
+  const announceOnly = useCallback((text: string) => {
+    srId.current += 1;
+    setSrSay({ text, id: srId.current });
+  }, []);
+
   useEffect(() => {
     if (!toast) return;
     const t = setTimeout(() => setToast(null), 1400);
@@ -469,6 +490,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
           // and used to get the same treatment as a three-letter bonus.
           feedback.prize();
           celebratePrize(result.word, result.points);
+          announceOnly(
+            `${result.word.toUpperCase()}, the word that uses every letter. Plus ${result.points} points.`
+          );
         } else {
           say(`+${result.points}`, 'good');
         }
@@ -487,6 +511,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
         const after = rankFor(gridPoints([...banked, result.word]), max);
         if (after.index > before.index) {
           setTimeout(() => celebrateRank(after.name, after.next), 620);
+          // Delayed to match the banner, so it does not interrupt the '+N'
+          // that is still being read. Once, on the transition only.
+          setTimeout(
+            () =>
+              announceOnly(
+                after.next
+                  ? `Promoted to ${after.name}. ${after.pointsToNext} to ${after.next}.`
+                  : `Promoted to ${after.name}.`
+              ),
+            620
+          );
         }
         break;
       }
@@ -531,7 +566,16 @@ export default function Game({ data }: { data: PuzzleFile }) {
         say('Not a word', 'bad');
         break;
     }
-  }, [letters, puzzle, data.wheel, puzzleId, say, setSel, finishIfDone]);
+  }, [
+    letters,
+    puzzle,
+    data.wheel,
+    puzzleId,
+    say,
+    announceOnly,
+    setSel,
+    finishIfDone,
+  ]);
 
   const cycleTheme = useCallback(() => {
     applyTheme(nextTheme(getThemeSnapshot()));
@@ -1153,6 +1197,12 @@ export default function Game({ data }: { data: PuzzleFile }) {
       */}
       <p role="status" aria-live="polite" className="sr-only">
         <span key={toast?.id ?? 'idle'}>{announcement}</span>
+      </p>
+      {/* Second region so a prize or a promotion cannot overwrite the '+N'
+          that is mid-announcement in the first one — a polite region that
+          changes twice inside a tick reads only the last value. */}
+      <p role="status" aria-live="polite" className="sr-only">
+        <span key={srSay?.id ?? 'idle'}>{srSay?.text ?? ''}</span>
       </p>
 
       {/* Wheel — bottom third, thumb zone. This is the greedy box now: it takes
