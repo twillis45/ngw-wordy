@@ -253,7 +253,7 @@ function Chip({
       type="button"
       onClick={() => onOpen(word)}
       aria-label={`${word}. Show definition.`}
-      className={`${cls} underline decoration-carbon-strong decoration-dotted underline-offset-2 transition-colors hover:decoration-steel-muted`}
+      className={`${cls} underline decoration-steel-muted decoration-dotted underline-offset-2 transition-colors hover:decoration-steel-muted`}
     >
       {word}
     </button>

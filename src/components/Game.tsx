@@ -735,7 +735,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             onClick={() => void toggleFullscreen()}
             aria-label={fullscreen ? 'Exit full screen' : 'Full screen'}
             aria-pressed={fullscreen}
-            className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+            className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted transition-colors hover:border-text-primary hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
           >
             <FullscreenIcon on={fullscreen} />
           </button>
@@ -744,7 +744,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={cycleTheme}
           aria-label={`Theme: ${theme}. Tap to change.`}
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted transition-colors hover:border-text-primary hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
         >
           <ThemeIcon theme={theme} />
         </button>
@@ -753,7 +753,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onClick={() => setShowRules(true)}
           aria-haspopup="dialog"
           aria-label="How to play"
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-[15px] font-semibold text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-[15px] font-semibold text-text-muted transition-colors hover:border-text-primary hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
         >
           ?
         </button>
@@ -761,7 +761,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={() => setMutedPref(!progress.muted)}
           aria-label={progress.muted ? 'Unmute sound' : 'Mute sound'}
-          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted transition-colors hover:border-carbon-strong hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
+          className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted transition-colors hover:border-text-primary hover:text-text-secondary touch:h-11 touch:w-11 max-[379px]:h-9 max-[379px]:w-9"
         >
           <SoundIcon muted={progress.muted} />
         </button>
@@ -826,7 +826,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         <button
           type="button"
           onClick={() => setClueCursor((c) => c + 1)}
-          className="liquid-interactive relative mt-3 w-full rounded-xl border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-3.5 py-2.5 text-left transition-colors hover:border-carbon-strong"
+          className="liquid-interactive relative mt-3 w-full rounded-xl border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-3.5 py-2.5 text-left transition-colors hover:border-text-primary"
         >
           <span className="text-[12px] uppercase tracking-[0.14em] text-text-muted">
             {clueWord.length} letters
@@ -1532,7 +1532,7 @@ function ControlButton({
       onClick={onClick}
       disabled={disabled}
       {...rest}
-      className="liquid-interactive relative h-11 min-w-[104px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-5 text-[14px] font-medium text-text-secondary transition-colors hover:border-carbon-strong hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
+      className="liquid-interactive relative h-11 min-w-[104px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-5 text-[14px] font-medium text-text-secondary transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
     >
       {children}
     </button>

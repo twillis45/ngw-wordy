@@ -431,8 +431,15 @@ export default function LetterWheel({
               'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-muted',
               // anim-tick both pulses on selection and holds the selected
               // scale, so there's no transform utility fighting the keyframes.
+              // A locked tile is DIM, not blank. `text-carbon-strong` on this
+              // fill measured 1.32:1 — the letter was rendered and invisible,
+              // so a locked puck read as an empty one and the mode looked
+              // broken. It also defeated this component's whole premise: the
+              // letters stay on the wheel so you can see what's coming.
+              // Muted text is 5.53:1 here against the active tile's 13.33:1,
+              // which is a legible letter that still plainly isn't yours yet.
               locked
-                ? 'border-edge/50 bg-carbon-body/40 text-carbon-strong backdrop-blur-sm'
+                ? 'border-edge/60 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted'
                 : picked
                   ? 'anim-tick border-edge bg-steel-dark/70 text-text-primary backdrop-blur-[var(--glass-blur)]'
                   : 'border-edge liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary active:scale-95',
