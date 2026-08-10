@@ -17,6 +17,7 @@ import path from 'node:path';
 import { BLOCKLIST, SLUR_LIST, isBlocked } from '../../scripts/lib/blocklist.mjs';
 
 type Puzzle = {
+  theme?: { name: string } | null;
   grid: string[];
   bonus: string[];
   base: string;
@@ -42,6 +43,54 @@ function shippedWords(p: Puzzle): string[] {
     ...Object.keys(p.clues ?? {}),
   ];
 }
+
+const popular = new Set(
+  readFileSync(path.join(process.cwd(), 'data', 'popular.txt'), 'utf8')
+    .split('\n')
+    .map((w) => w.trim().toLowerCase())
+    .filter(Boolean)
+);
+
+/**
+ * Quality floors.
+ *
+ * The generator produced VALID puzzles, not good ones: 72 of 240 boards had
+ * under half their rows in common use and three had NONE — one shipped
+ * `burse` / `druse` / `dures`, the last clued from a German musical term.
+ * That is not a hard puzzle, it is an unanswerable one, and "difficulty" was
+ * quietly labelling it as the former.
+ */
+describe('puzzle quality floors', () => {
+  const common = (p: Puzzle) => p.grid.filter((w) => popular.has(w)).length;
+
+  it('never ships a board with under half its rows in common use', () => {
+    const bad = file.puzzles
+      .filter((p) => common(p) / p.grid.length < 0.5)
+      .map((p) => `${p.base}: ${common(p)}/${p.grid.length}`);
+    expect(bad).toEqual([]);
+  });
+
+  it('never ships a board whose base word nobody has met', () => {
+    const bad = file.puzzles.filter((p) => !popular.has(p.base)).map((p) => p.base);
+    expect(bad).toEqual([]);
+  });
+
+  it('keeps the grid mostly answerable — 4 of 6 rows, on average better', () => {
+    const avg =
+      file.puzzles.reduce((s, p) => s + common(p), 0) / file.puzzles.length;
+    expect(avg).toBeGreaterThan(4);
+  });
+
+  it('keeps the answer count in a band, so a rank costs a similar effort daily', () => {
+    // Authored themed boards are deliberately exempt from the tight band.
+    const generated = file.puzzles.filter((p) => !p.theme);
+    for (const p of generated) {
+      const n = p.grid.length + p.bonus.length;
+      expect(n, `${p.base} has ${n} answers`).toBeGreaterThanOrEqual(30);
+      expect(n, `${p.base} has ${n} answers`).toBeLessThanOrEqual(70);
+    }
+  });
+});
 
 describe('shipped puzzle content', () => {
   it('ships a non-trivial number of puzzles (guards a broken build)', () => {

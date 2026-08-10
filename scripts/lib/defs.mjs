@@ -195,8 +195,28 @@ export function isUsableClue(clue) {
   if (/\b(pers\.|sing\.|plur\.|pres\.|imp\.|p\.\s*p\.|3d|2d)\s/i.test(clue)) {
     return false;
   }
-  // "See Yaws." as the whole substance, even when it isn't the first token.
+  /*
+   * Cross-references, at ANY length. The 60-char guard let long entries
+   * through, so `longe` shipped as "A thrust. See Lunge. Smollett. ...Same as
+   * 4th." — technically a definition, useless as a clue, and it tells the
+   * player to go and look somewhere that doesn't exist in this game.
+   */
+  if (/\bsee\s+[A-Z]/.test(clue)) return false;
   if (/\bsee\b/i.test(clue) && clue.length < 60) return false;
+
+  /*
+   * Register filter. Webster's 1913 is full of taxonomy, anatomy and
+   * pathology, and those clues are unanswerable rather than hard: `ureas`,
+   * `uveas`, `varus` and `druse` all shipped as scoring rows. A puzzle clue
+   * has to be something a person could plausibly arrive at.
+   */
+  if (
+    /\b(genus|subgenus|family of|order of|zool|bot\.|anat|pathol|chem\.|geol|min\.|her\.|mus\.|naut|a genus|the typical genus|crystall)/i.test(
+      clue
+    )
+  ) {
+    return false;
+  }
 
   const words = clue.replace(/———/g, '').split(/\s+/).filter((w) => w.length > 2);
   return words.length >= 5;

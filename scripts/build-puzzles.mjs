@@ -43,8 +43,27 @@ const WHEEL = 6;
 // 6 target rows is what fits above the wheel on a 375x812 screen without
 // scrolling. Everything else the letters can make becomes a bonus word.
 const GRID_MAX = 6;
-const MIN_ANSWERS = 24; // reject thin puzzles
-const MAX_ANSWERS = 110; // reject overwhelming ones
+/*
+ * Answer band, tightened from 24-110.
+ *
+ * maxScore scales with the answer count, so a 24-answer board and a 96-answer
+ * board asked wildly different amounts of work for the same rank name — which
+ * made the ladder meaningless from one day to the next. A narrower band makes
+ * "Genius" mean roughly the same thing every day.
+ */
+const MIN_ANSWERS = 30;
+const MAX_ANSWERS = 70;
+
+/*
+ * How much of a grid must be words people actually know.
+ *
+ * The generator produced VALID puzzles, not good ones: 72 of 240 boards had
+ * under half their rows in common use, and three had NONE — id 89 shipped
+ * `burse` / `druse` / `dures`, the last clued from a German musical term. A
+ * board like that is not difficult, it is unanswerable.
+ */
+const MIN_COMMON_ROWS = 4; // of 6
+const MIN_COMMON_ROWS_FEATURED = 5; // themed boards and the warm-up ladder
 const COUNT = Number(process.argv[2] || 240);
 
 // Deterministic PRNG so a given seed always yields the same puzzle set.
@@ -277,10 +296,17 @@ for (const base of bases) {
 
   const letters = base.split('');
   const answers = solve(letters);
-  if (answers.length < MIN_ANSWERS || answers.length > MAX_ANSWERS) {
-    drop(
-      `${answers.length} answers — needs ${MIN_ANSWERS}-${MAX_ANSWERS}`
-    );
+  /*
+   * Authored boards get the old, wider band. The tight band exists so a rank
+   * name costs roughly the same effort from one day to the next across the
+   * GENERATED rotation; a themed board is a deliberate editorial choice, and
+   * hand-written puzzles are the scarcest thing in this project. A heuristic
+   * should not outvote the editor.
+   */
+  const lo = isClaimed ? 24 : MIN_ANSWERS;
+  const hi = isClaimed ? 110 : MAX_ANSWERS;
+  if (answers.length < lo || answers.length > hi) {
+    drop(`${answers.length} answers — needs ${lo}-${hi}`);
     continue;
   }
 
@@ -352,9 +378,22 @@ for (const base of bases) {
   const grid = [base];
   // No two rows may pose the same question.
   const usedClues = new Set(baseClue ? [clueKey(baseClue)] : []);
+  /*
+   * No two rows sharing a stem.
+   *
+   * Only duplicate clue TEXT was checked, so id 18 shipped `longe` and
+   * `longes` as separate rows — the same word twice, which reads as the
+   * generator padding the board.
+   */
+  const stem = (w) => w.slice(0, 4);
+  const usedStems = new Set([stem(base)]);
   const authoredClues = authored.get(base)?.clues ?? {};
   for (const w of rest) {
     if (grid.length >= GRID_MAX) break;
+    // An authored or preferred row is exempt: the editor picked it knowing
+    // what else is on the board.
+    const chosen = Boolean(authoredClues[w]) || preferRank.has(w);
+    if (!chosen && usedStems.has(stem(w))) continue;
     /*
      * An authored clue admits a row on its own.
      *
@@ -372,6 +411,7 @@ for (const base of bases) {
       usedClues.add(k);
       clues[w] = c;
     }
+    usedStems.add(stem(w));
     grid.push(w);
   }
   if (!clues[base] && !authoredBaseClue) {
@@ -382,6 +422,27 @@ for (const base of bases) {
     drop(`only ${grid.length} of ${GRID_MAX} rows could carry a clue`);
     continue;
   }
+  /*
+   * The common-word floor, applied AFTER the grid is chosen.
+   *
+   * Difficulty already scored familiarity, but only as a 0.15 penalty on the
+   * base word — it never rejected anything. So a board could be 0/6 common
+   * words and still ship, just labelled "hard". Hard and unanswerable are not
+   * the same thing, and only one of them is a puzzle.
+   */
+  const commonRows = grid.filter((w) => popular.has(w)).length;
+  const floor = isClaimed ? MIN_COMMON_ROWS_FEATURED : MIN_COMMON_ROWS;
+  if (commonRows < Math.min(floor, grid.length)) {
+    drop(`${commonRows}/${grid.length} common rows — needs ${floor}`);
+    continue;
+  }
+  // The base word is the board's centrepiece and its prize; it may not be a
+  // word nobody has met.
+  if (!popular.has(base)) {
+    drop('base word is not in common use');
+    continue;
+  }
+
   const gridSet = new Set(grid);
   const bonus = answers.filter((w) => !gridSet.has(w));
 
