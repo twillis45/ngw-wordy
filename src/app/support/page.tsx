@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import Legal from '@/components/Legal';
+import { absoluteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Support — Wordy',
+  title: 'Support',
   description: 'Help with Wordy, and what it is built from.',
+  alternates: { canonical: absoluteUrl('/support/') },
 };
 
 /**

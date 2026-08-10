@@ -17,6 +17,14 @@ import math
 import os
 from PIL import Image, ImageDraw, ImageFont
 
+# The counts are COUNTED, not typed. Both changed six times in one authoring
+# session; a card that states a stale number is worse than one that states none.
+import json as _json, pathlib as _pathlib
+_themes = _json.loads((_pathlib.Path(__file__).parent.parent / "data" / "themes.json").read_text())
+THEMED = len(_themes["puzzles"])
+THEMES = len({p["theme"] for p in _themes["puzzles"]})
+
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "public", "og.png")
 
@@ -103,10 +111,10 @@ def main():
     d.text((x, 268 * SS), "Six letters. How many words can you make?",
            font=font(30 * SS), fill=TEXT_SECONDARY, anchor="ls")
     d.text((x, 330 * SS),
-           "397 hand-authored puzzles with written clues,",
+           f"{THEMED} hand-authored puzzles with written clues,",
            font=font(26 * SS), fill=TEXT_MUTED, anchor="ls")
     d.text((x, 368 * SS),
-           "across 20 themes of Black American cultural life.",
+           f"across {THEMES} themes of Black American cultural life.",
            font=font(26 * SS), fill=TEXT_MUTED, anchor="ls")
 
     # Steel underline under the copy block: the single accent the Attention

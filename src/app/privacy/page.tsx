@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import Legal from '@/components/Legal';
+import { absoluteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Privacy — Wordy',
+  title: 'Privacy',
   description: 'What Wordy stores, and what it sends. (Nothing leaves your device.)',
+  alternates: { canonical: absoluteUrl('/privacy/') },
 };
 
 /**

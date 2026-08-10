@@ -3,6 +3,7 @@ import ServiceWorker from '@/components/ServiceWorker';
 import { withBase } from '@/lib/basePath';
 import { NO_FLASH_SCRIPT } from '@/lib/theme';
 import { SITE_URL, absoluteUrl } from '@/lib/site';
+import themes from '../../data/themes.json';
 import './globals.css';
 
 /*
@@ -15,8 +16,21 @@ import './globals.css';
  * ("puzzle app") is what makes this indistinguishable from every anagram
  * timewaster in the results.
  */
+/*
+ * The counts are COUNTED, not typed.
+ *
+ * They were literals — "397 of them, across 20 themes" — and both numbers
+ * changed six times in a single authoring session. A hard-coded count in
+ * shipped metadata is a claim that silently becomes false: nothing fails, no
+ * test breaks, and the description a crawler reads is simply wrong until
+ * somebody happens to notice. docs/AUTHORING.md already forbids this inside
+ * clues; the rule is no different here.
+ */
+const themed = themes.puzzles.length;
+const themeCount = new Set(themes.puzzles.map((p) => p.theme)).size;
+
 const DESCRIPTION =
-  'A six-letter word game with hand-authored puzzles. Find every word on the wheel, then read the clue behind the board — 397 of them, across 20 themes of Black American cultural life.';
+  `A six-letter word game with hand-authored puzzles. Find every word on the wheel, then read the clue behind the board — ${themed} of them, across ${themeCount} themes of Black American cultural life.`;
 
 export const metadata: Metadata = {
   /*
@@ -84,7 +98,15 @@ export const metadata: Metadata = {
       { url: withBase('/icon-192.png'), sizes: '192x192', type: 'image/png' },
       { url: withBase('/icon-512.png'), sizes: '512x512', type: 'image/png' },
     ],
-    apple: withBase('/apple-touch-icon.png'),
+    // 180x180 stated: iOS picks the apple-touch-icon nearest its target size,
+    // and an unsized entry is treated as a last resort behind any sized one.
+    apple: [
+      {
+        url: withBase('/apple-touch-icon.png'),
+        sizes: '180x180',
+        type: 'image/png',
+      },
+    ],
   },
 };
 
