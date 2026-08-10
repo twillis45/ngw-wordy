@@ -277,11 +277,13 @@
   <div class="wrap">
     <header>
       <p class="kicker">NGW · Wordy · review board tracker</p>
-      <h1>Nine wings reviewed it. Three things shipped since.</h1>
+      <h1>Two wings up to 9. The paid question has an answer, and it isn't code.</h1>
       <p class="lede">
         Render-first pass run 9 Aug 2026 against the production export — seven
-        viewports, six states, forty-two screenshots. Every wing scored its own
-        dimensions and the surface takes the lowest one.
+        viewports, six states, forty-two screenshots. Every wing scores its own
+        dimensions and the surface takes the lowest one. Layout and accessibility
+        have since been driven up; the board has separately answered what a paid
+        product would require.
       </p>
     </header>
 
@@ -375,6 +377,47 @@
           </div>
         </article>
 
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Hierarchy, type ladder and the accent</h3>
+            <p>
+              <code>secondary</code> measured 5.52:1 and <code>muted</code> 5.58:1 —
+              two of three tiers were one tier under two names, so every
+              de-emphasis only changed hue. Section titles were smaller and dimmer
+              than the body they labelled, in six places. Type collapsed to six
+              named roles in <code>rem</code>, which also carries OS text scaling.
+              Green now means "found word" and nothing else.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span>
+              <span><code>73d8284</code></span>
+              <span class="delta">layout 3 → 9 · tiers 16.1 / 10.8 / 6.7</span>
+              <span class="delta">widescreen dead field 47% → 24%</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Hints reachable, page zoomable, rank announced</h3>
+            <p>
+              Hints fired from pointer events only, so keyboard and screen-reader
+              players could not use the hint system at all — while the row's label
+              described the operation they couldn't perform. Now a real menu on
+              click with the price on the label. Zoom restored (WCAG F69), and rank
+              promotion is announced instead of climbing in silence.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span>
+              <span><code>767b384</code> <code>165e969</code></span>
+              <span class="delta">accessibility 1 → 9</span>
+              <span>every grid state now differs without hue</span>
+            </div>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -417,11 +460,11 @@
             </tr>
             <tr>
               <td class="wing">Accessibility</td>
-              <td class="num" style="color:var(--warn)">2</td>
-              <td><div class="bar"><i style="width:20%;background:var(--warn)"></i></div></td>
-              <td class="dim">screen reader 2 · zoom 2</td>
-              <td class="dim">9</td>
-              <td><span class="chip now">In progress</span></td>
+              <td class="num" style="color:var(--ok)">9</td>
+              <td><div class="bar"><i style="width:90%;background:var(--ok)"></i></div></td>
+              <td class="dim">needs a device pass for 10</td>
+              <td class="dim">10</td>
+              <td><span class="chip done">At target</span></td>
             </tr>
             <tr>
               <td class="wing">Onboarding &amp; friction</td>
@@ -449,11 +492,11 @@
             </tr>
             <tr>
               <td class="wing">Layout &amp; hierarchy</td>
-              <td class="num" style="color:var(--warn)">3</td>
-              <td><div class="bar"><i style="width:30%;background:var(--warn)"></i></div></td>
-              <td class="dim">inverted semantic hierarchy</td>
-              <td class="dim" style="color:var(--ok)">10 — the only one</td>
-              <td><span class="chip next">Queued</span></td>
+              <td class="num" style="color:var(--ok)">9</td>
+              <td><div class="bar"><i style="width:90%;background:var(--ok)"></i></div></td>
+              <td class="dim">icon set has 3 drawing conventions</td>
+              <td class="dim" style="color:var(--ok)">10</td>
+              <td><span class="chip done">At target</span></td>
             </tr>
             <tr>
               <td class="wing">Interaction &amp; feel</td>
@@ -586,6 +629,121 @@
         </article>
 
       </div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>What a 10+ paid app requires</h2>
+        <p class="note">
+          Joint session, 9 Aug — monetization &amp; strategy plus content depth.
+          Readiness to charge today: <strong style="color:var(--bad)">2.5 / 10</strong>.
+          The engineering is nearly free; the content is the entire cost.
+        </p>
+      </div>
+
+      <div class="scroll" style="margin-bottom:18px">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Measure</th>
+              <th scope="col">Today</th>
+              <th scope="col">Paid floor</th>
+              <th scope="col">Paid good</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="wing">Themed puzzles<div class="dim">the only sellable asset</div></td>
+              <td class="num" style="color:var(--bad)">10</td><td class="num">96</td><td class="num">240</td></tr>
+            <tr><td class="wing">Themes</td><td class="num" style="color:var(--warn)">6</td><td class="num">8</td><td class="num">12</td></tr>
+            <tr><td class="wing">Puzzles per theme<div class="dim">≤4 is a demo, 12 is a set</div></td>
+              <td class="num" style="color:var(--bad)">1.7</td><td class="num">12</td><td class="num">20</td></tr>
+            <tr><td class="wing">Hand-written clues</td><td class="num" style="color:var(--bad)">59</td><td class="num">576</td><td class="num">1,440</td></tr>
+            <tr><td class="wing">Themed play time</td><td class="num" style="color:var(--bad)">80 min</td><td class="num">~10 h</td><td class="num">~25 h</td></tr>
+            <tr><td class="wing">Boards under 50% common words</td><td class="num" style="color:var(--bad)">72 / 240</td><td class="num">0</td><td class="num">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stack">
+        <article class="item is-blocked">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>The 230 generic puzzles are a liability, not a catalogue</h3>
+            <p>
+              96% of a paying customer's experience is raw truncated 1913 Webster
+              prose — <em>"mise: the issue in a writ of right"</em> — against the 4%
+              that reads <em>"mail: the thick envelope. You knew from the weight
+              before you opened it."</em> Two different products. Generated puzzles
+              with dictionary definitions are a commodity at $0 in unlimited supply;
+              the board was unanimous that adding more is "adding zeroes to a zero."
+              Keep them as free practice. Never bill for them.
+            </p>
+            <div class="meta"><span class="chip blocked">Blocker</span><span>content 3.0/10</span></div>
+          </div>
+        </article>
+
+        <article class="item is-blocked">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>The day-241 wrap starts on day two</h3>
+            <p>
+              <code>dailyIndex</code> is <code>epochDay % 240</code> and found words
+              are keyed by puzzle id — so the wrap serves a solved board. But the
+              theme picker already lets a player jump to any index, and the 10 themed
+              puzzles are exactly the ones they will seek out first. Every one is
+              scheduled to return as a "daily". Fix: cycle-key found words, then make
+              the daily walk forward to the first uncleared puzzle.
+            </p>
+            <div class="meta"><span class="chip next">1 day</span><span><code>game.ts:326</code> <code>storage.ts:24</code></span></div>
+          </div>
+        </article>
+
+        <article class="item is-now">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Put a clue on the share card — the highest-leverage 2 hours</h3>
+            <p>
+              The card emits spoiler-free Wordle tiles. But Wordle's secret was the
+              answer; yours is <em>the line</em>. Right now the moat is invisible from
+              outside the app, so the writing — the only thing with pricing power —
+              never leaves it. A share carrying a clue is a thing a person posts.
+            </p>
+            <div class="meta"><span class="chip now">Next</span><span>~2 h</span><span><code>game.ts:355</code></span></div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>The free-hint line is blessed — do not touch it</h3>
+            <p>
+              <code>assist.ts:69</code> gives a free letter to a player who stalls
+              with zero tokens. Because the model is a one-time unlock rather than
+              consumables, a stalled player is a churn event, not a revenue event —
+              the incentive to monetize frustration is already structurally gone. The
+              wall goes at the pack boundary: never mid-puzzle, never mid-hint, and
+              the upsell fires on completion, not on a stall.
+            </p>
+            <div class="meta"><span class="chip done">Blessed as-is</span><span>never sell a hint token</span></div>
+          </div>
+        </article>
+      </div>
+
+      <p class="note" style="margin-top:16px">
+        <strong style="color:var(--ink)">Price:</strong> $4.99 is validated — for the
+        <em>plan</em>, not the product. At today's 10 themed puzzles it's a $1.99 app
+        that ends before dinner. Ceiling is $6.99 with ~100 themed puzzles and
+        <code>escalating</code> mode surfaced as a named mechanic instead of a buried
+        toggle. <strong style="color:var(--ink)">Timeline:</strong> ~26 weeks solo, of
+        which 24 are authoring and 2 are engineering.
+      </p>
+      <p class="note">
+        <strong style="color:var(--ink)">The honest risk:</strong> the writing does not
+        scale and it is the entire product. The likely failure isn't a bad app — it's a
+        good app with a tired second half. Second: an insider-voice product with no
+        insider distribution is a tree falling in a forest. The pack list is a
+        distribution plan disguised as a content plan.
+      </p>
     </section>
 
     <section>
