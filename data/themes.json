@@ -7165,6 +7165,500 @@
         "pin",
         "ping"
       ]
+    },
+    {
+      "base": "filmed",
+      "theme": "reunion",
+      "clues": {
+        "filmed": "Eight consecutive nights on ABC in January 1977, and the reading rooms were never quiet again.",
+        "filed": "What she did with the request for the 1870 schedule, then waited eleven weeks for an answer.",
+        "life": "What she has given forty years to, beginning the winter the whole country watched one family.",
+        "fled": "What the man in the story did, and the county he named got repeated at every table for years.",
+        "dime": "She kept a roll of them for the copier in the reading room, back when that was the whole system.",
+        "mild": "How she describes the room before that winter: quiet, half empty, and easy to get a seat in."
+      },
+      "prefer": [
+        "filed",
+        "life",
+        "fled",
+        "dime",
+        "mild"
+      ]
+    },
+    {
+      "base": "charms",
+      "theme": "reunion",
+      "clues": {
+        "charms": "The road out of Harlem had none, so Victor Hugo Green printed a list of where you could stop.",
+        "cars": "Two of them nose to tail out of Norfolk, so that neither one would be alone after dark.",
+        "cash": "The whole trip's worth folded in an envelope, since half the stops would not take her money.",
+        "march": "What her grandfather did in Washington in 1963, having driven six states without once stopping.",
+        "crash": "What they feared more than the miles, because the nearest hospital was not a sure thing.",
+        "marsh": "The only place to pull over past Waycross, and every one of them stayed where they were."
+      },
+      "prefer": [
+        "cars",
+        "cash",
+        "march",
+        "crash",
+        "marsh"
+      ]
+    },
+    {
+      "base": "cradle",
+      "theme": "reunion",
+      "clues": {
+        "cradle": "What the National Mall became for one weekend a year, from 1986 on, for hundreds of thousands.",
+        "lead": "What Dorothy Height did with the National Council of Negro Women from 1957 until 1998.",
+        "raced": "What the church buses did down I-95 to make the Mall before the tents opened Saturday.",
+        "dare": "What she did from the podium: name what the country said about Black families, and refuse it.",
+        "card": "The one on the folding table for the mailing list, and thousands of hands went past it.",
+        "real": "What she insisted the family was, in public, against every study that said otherwise."
+      },
+      "prefer": [
+        "lead",
+        "raced",
+        "dare",
+        "card",
+        "real"
+      ]
+    },
+    {
+      "base": "arches",
+      "theme": "reunion",
+      "clues": {
+        "arches": "The county courthouse in Alabama, and she has been up its steps three summers running.",
+        "search": "Eighteen sixty, line after line: age, sex, colour, and not one name. She goes through it anyway.",
+        "reach": "The 1850 schedule is the far end of it — a tick mark, an age, and nothing to hold on to.",
+        "aches": "What six hours at the microfilm reader gives her, and she books the machine again for Monday.",
+        "share": "What she will not do with a guess. Only the names she can put a document behind.",
+        "chase": "What she does with a probate inventory instead, because an estate list had to write people down."
+      },
+      "prefer": [
+        "search",
+        "reach",
+        "aches",
+        "share",
+        "chase"
+      ]
+    },
+    {
+      "base": "clears",
+      "theme": "reunion",
+      "clues": {
+        "clears": "What the 1999 judgment in the Black farmers' case did for some accounts, and not for lost years.",
+        "acres": "Sixteen million of them in Black hands in 1910; four point seven million by 2017.",
+        "cares": "What the county loan officer did not, and she kept every denial letter, dated, in order.",
+        "laser": "The church office printer ran her paperwork off at two in the morning: forms, deadlines, receipts.",
+        "seal": "What the notary put on the claim before she drove it to the post office herself.",
+        "sale": "What a court can force when land passes with no will, and this family had one drawn up."
+      },
+      "prefer": [
+        "acres",
+        "cares",
+        "laser",
+        "seal",
+        "sale"
+      ]
+    },
+    {
+      "base": "bakers",
+      "theme": "fishfry",
+      "clues": {
+        "bakers": "Montgomery, 1956: women selling pound cake and sweet potato pie, and not one of their names on any of it.",
+        "break": "What the city expected the walkers to do by Christmas. They kept walking for three hundred eighty-one days.",
+        "bears": "Who the risk actually sat on. Not the men at the microphone. The cook who got fired for testifying.",
+        "sake": "For the good of. Why the pies moved through a cab stand instead of a storefront with a name over the door.",
+        "ears": "Too many of them in a Montgomery kitchen that year, which is exactly why nobody said whose pie this was.",
+        "sear": "What the whiting does the moment it hits the grease in a kitchen that is funding a bus boycott."
+      },
+      "prefer": [
+        "break",
+        "bears",
+        "sake",
+        "ears",
+        "sear"
+      ]
+    },
+    {
+      "base": "banker",
+      "theme": "fishfry",
+      "clues": {
+        "banker": "The job Georgia Gilmore did for the boycott with no title and no office: money in, money out, every Monday.",
+        "bank": "Not where the fried-fish money slept. It slept in a coffee can and changed hands at the mass meeting.",
+        "earn": "What losing the cafeteria job did not stop her doing. She moved the whole operation into her own kitchen.",
+        "rank": "What the ministers had and she did not, though her envelope paid the gas for the carpool that moved everybody.",
+        "bare": "What the shoe leather went down to, walking to work across a city for more than a year rather than ride.",
+        "near": "Not far. But the club she named claimed to come from no place at all, so no boss could trace a seller."
+      },
+      "prefer": [
+        "bank",
+        "earn",
+        "rank",
+        "bare",
+        "near"
+      ]
+    },
+    {
+      "base": "tavern",
+      "theme": "fishfry",
+      "clues": {
+        "tavern": "Bar in front, fryers in back. A Wisconsin arrangement that began when selling beer stopped being legal.",
+        "vat": "The deep one in back she bought used in 1988 and has never once let anybody else drain.",
+        "rent": "What the food money covered during the ban, when a saloon could not sell the thing it was built to sell.",
+        "vent": "The hood over the fryers, and the reason the whole block knows what day it is by four in the afternoon.",
+        "neat": "How the old man at the end of the bar takes his brandy, and the one order she does not have to write down.",
+        "ante": "A dollar into the meat raffle before the first plates go out. The ticket roll lives beside the register."
+      },
+      "prefer": [
+        "vat",
+        "rent",
+        "vent",
+        "neat",
+        "ante"
+      ]
+    },
+    {
+      "base": "braces",
+      "theme": "fishfry",
+      "clues": {
+        "braces": "What she does against the counter at two in the morning when the buzzer on the carryout door goes off.",
+        "crabs": "The other half of the window menu, steamed and sold by the dozen at whatever the marker board says.",
+        "carbs": "Two slices of plain white bread that the lake trout overhangs on every side. Nobody is counting.",
+        "case": "The lit warmer at the plexiglass window where the fillets wait under a lamp until the bars let out.",
+        "cabs": "Double-parked out front with the flashers going while somebody runs in for two boxes and hot sauce.",
+        "scare": "What the price of a whole fried whiting has never managed to do to a line on Pennsylvania Avenue."
+      },
+      "prefer": [
+        "crabs",
+        "carbs",
+        "case",
+        "cabs",
+        "scare"
+      ]
+    },
+    {
+      "base": "carbon",
+      "theme": "westcoast",
+      "clues": {
+        "carbon": "What the green paint on a Newport Beach fire ring says you are allowed to burn. Wood is not on that list.",
+        "corn": "Still in the husk, shoved to the edge of the coals, turned with tongs by whoever is standing closest.",
+        "can": "What the chimney starter really is: a tin cylinder full of holes with a handle, and it beats lighter fluid.",
+        "ban": "What a no-burn day amounts to, posted by the air district and enforced by a man who drives the sand.",
+        "car": "Backed in at Corona del Mar by seven so the ice chest only has to travel thirty feet to the pit.",
+        "arc": "The curve the concrete rings follow above the tide line, set a hundred feet apart because a rule says so."
+      },
+      "prefer": [
+        "corn",
+        "can",
+        "ban",
+        "car",
+        "arc"
+      ]
+    },
+    {
+      "base": "embark",
+      "theme": "cookout",
+      "clues": {
+        "embark": "What the skiffs do off Pensacola before light, cast nets folded, hunting the dark patch under the water.",
+        "amber": "The color a mullet turns after four hours over smoldering oak, and nothing in a bottle fakes it.",
+        "beam": "The width of the boat, which settles how many people are eating off one morning's haul.",
+        "mark": "What she reads on the water first: a ripple, a flash, a shadow moving wrong. Then somebody throws.",
+        "bake": "Not how the coast does it. Biloxi bacon goes in grease or over oak, and the oven stays cold all day.",
+        "rake": "Pulled through the oak coals to level them out before the split fish ever touches the grate."
+      },
+      "prefer": [
+        "amber",
+        "beam",
+        "mark",
+        "bake",
+        "rake"
+      ]
+    },
+    {
+      "base": "boards",
+      "theme": "juneteenth",
+      "clues": {
+        "boards": "Reedy Chapel-AME on Broadway, Galveston: the church in the record of that day, still keeping the nineteenth.",
+        "broad": "The Galveston street the AME congregation has stood on since long before anybody put up a marker.",
+        "board": "Planks over sawhorses on the chapel lawn by seven, and the pans start arriving before the tables are level.",
+        "ado": "The reading is done without it. She opens the doors at eleven and the talking stops on its own.",
+        "sod": "The churchyard the folding chairs sink into by noon, and nobody gets up to fix it.",
+        "rob": "Holding the news back two more harvests amounted to this, whatever anyone at the time called it instead."
+      },
+      "prefer": [
+        "broad",
+        "board",
+        "ado",
+        "sod",
+        "rob"
+      ]
+    },
+    {
+      "base": "stared",
+      "theme": "juneteenth",
+      "clues": {
+        "stared": "The 29th United States Colored Troops did this back, in uniform, at men who had owned people that spring.",
+        "dares": "A Black soldier in Galveston in 1865 did this every time he walked the length of the street in blue.",
+        "rest": "The regiment got none. The fighting stopped in April and Texas still had to be sat on.",
+        "trades": "The service taught them these, and the wages the order promised would not pay a living for one.",
+        "seat": "Front row, kept for the men who march in Union blue, and the children want that bench every year.",
+        "ears": "People took the words in with these, because Texas law had made sure they could not check the page."
+      },
+      "prefer": [
+        "dares",
+        "rest",
+        "trades",
+        "seat",
+        "ears"
+      ]
+    },
+    {
+      "base": "tandem",
+      "theme": "juneteenth",
+      "clues": {
+        "tandem": "How it moved in 1979: a freshman from Houston filed in February, and the whole state calendar came with him.",
+        "amend": "House Bill 1016 did this to the Texas statute books, in a session where no other state had tried it.",
+        "named": "Al Edwards. Say it out loud, because Texas got the day first and hardly anybody says his.",
+        "meant": "First in the nation bought four decades: Texas carried the day long before Washington moved at all.",
+        "ante": "Texas put this up in 1979, effective 1980, with not one other legislature willing to match it yet.",
+        "mend": "A date on a calendar does not do this by itself, and the women who keep the program will say so first."
+      },
+      "prefer": [
+        "amend",
+        "named",
+        "meant",
+        "ante",
+        "mend"
+      ]
+    },
+    {
+      "base": "around",
+      "theme": "juneteenth",
+      "clues": {
+        "around": "How the procession goes at the ten acres: the long way, past the elders' tent, so everybody gets seen.",
+        "run": "A child in Houston could do this on public grass from 1922 to 1940 in exactly one place in the city.",
+        "our": "The possessive that stuck to those ten acres, for the eighteen years Houston kept every other gate shut.",
+        "urn": "Sweet tea by the gallon on the end of the table, and it empties well before the program does.",
+        "nod": "The woman at the gate gives the elders this, and none of them has been asked for a dollar in fifty years.",
+        "dour": "The register the day never once hits, not in the invocation and not in the reading itself."
+      },
+      "prefer": [
+        "run",
+        "our",
+        "urn",
+        "nod",
+        "dour"
+      ]
+    },
+    {
+      "base": "lawyer",
+      "theme": "juneteenth",
+      "clues": {
+        "lawyer": "Opal Lee was not one. She taught school, then she started walking, and Washington signed it anyway.",
+        "yea": "Four hundred and fifteen of them in the House on the sixteenth of June, 2021. Fourteen went the other way.",
+        "law": "The seventeenth of June, 2021: the bill picks up a number, one seventeen dash seventeen, and she is in the room.",
+        "wary": "How the people who had kept it for a century took the news that offices would now be closing for it.",
+        "rely": "What the observance never once got to do on any government, in Texas or out of it, before that summer.",
+        "war": "What was over in April of 1865, two months before anybody in Texas was told a thing about it."
+      },
+      "prefer": [
+        "yea",
+        "law",
+        "wary",
+        "rely",
+        "war"
+      ]
+    },
+    {
+      "base": "hailed",
+      "theme": "rnb90s",
+      "clues": {
+        "hailed": "August 1994. She took the chair at Elektra, the first Black woman running a major, and the trades ran it big.",
+        "deal": "By the end of that same year the whole Elektra group answered to her, not one imprint.",
+        "head": "She became this of four labels at once, and nobody in the industry had done it before her.",
+        "lead": "First position. She gave it to the record she believed in, over the one with the bigger budget.",
+        "held": "The chair, through three mergers, while the men around her got reorganized out.",
+        "idea": "The one she had about a writer from Portsmouth: put her out front, not behind the board."
+      },
+      "prefer": [
+        "deal",
+        "head",
+        "lead",
+        "held",
+        "idea"
+      ]
+    },
+    {
+      "base": "studio",
+      "theme": "rnb90s",
+      "clues": {
+        "studio": "Where she cut the 1997 record for the imprint she owned outright at twenty-two.",
+        "suit": "Nobody in one signed off on her label. The Black woman running the company did that herself.",
+        "dust": "The boxes of demo tapes gathered it at home in Portsmouth before the call finally came.",
+        "outs": "The clauses her lawyer counted twice in 1996, before she agreed to write, produce and own.",
+        "dots": "They connect across her career map: writer, then producer, then owner, in that order.",
+        "sit": "She would not do this behind the board while somebody else took the front of the record."
+      },
+      "prefer": [
+        "suit",
+        "dust",
+        "outs",
+        "dots",
+        "sit"
+      ]
+    },
+    {
+      "base": "posing",
+      "theme": "rnb90s",
+      "clues": {
+        "posing": "Four Atlanta women arranged for the group photo, and by 1999 two of them are writing other people's hits.",
+        "sign": "The two of them did it to the split sheet with the producer, in the room, before the tape rolled.",
+        "song": "1999. Two members of one Atlanta group wrote it for another, and the rap verse came from inside that trio.",
+        "sing": "The writers did it on the demo, so the other group would know exactly how the hook lands.",
+        "spin": "It got one every hour that spring, and the publishing check still arrives for it.",
+        "pin": "It holds the credit sheet to the wall: three names there, and not one of them alone."
+      },
+      "prefer": [
+        "sign",
+        "song",
+        "sing",
+        "spin",
+        "pin"
+      ]
+    },
+    {
+      "base": "nearly",
+      "theme": "rnb90s",
+      "clues": {
+        "nearly": "How close the three of them were to nothing, before a woman's production company put them under contract.",
+        "year": "1989, when she stopped performing and opened the production company that would sign them.",
+        "earn": "They did it on paper; the figures that actually reached them were something else entirely.",
+        "early": "1991, before the first single, is when the management and publishing papers got signed.",
+        "learn": "They did it about points and recoupment the hard way, and the industry read the filing.",
+        "rely": "Being nineteen and doing this on the adult holding the pen is the problem in one line."
+      },
+      "prefer": [
+        "year",
+        "earn",
+        "early",
+        "learn",
+        "rely"
+      ]
+    },
+    {
+      "base": "tamper",
+      "theme": "rnb90s",
+      "clues": {
+        "tamper": "Nobody could do this to those 1991 papers until a court got involved three years later.",
+        "term": "The length the 1991 signing locked in, and the reason the 1994 filing had to happen at all.",
+        "tape": "Multi-platinum on it, and the group still walked into bankruptcy court in July 1995.",
+        "rate": "What the 1996 renegotiation finally moved, after five years of the old arrangement.",
+        "team": "Three of them, one lawsuit, and both the label and the production company named in it.",
+        "part": "Each of the three finally held this much of a catalogue that had already sold in the millions."
+      },
+      "prefer": [
+        "term",
+        "tape",
+        "rate",
+        "team",
+        "part"
+      ]
+    },
+    {
+      "base": "banged",
+      "theme": "hbcu",
+      "clues": {
+        "banged": "The bass drum, on the one, and two hundred people on the yard feel it in the chest.",
+        "band": "Before the change it marched like a military unit: straight lines, squared corners, no hips.",
+        "began": "What the showtime style did in 1947, rather than always having been the way it is done.",
+        "badge": "What the drum major carries on the chest of the uniform, and it is not decoration to him.",
+        "bend": "The knee does it on the eighth count now, which corps style would never have allowed.",
+        "aged": "Seventy-odd years of the same style, and the alumni section still knows the cadence cold."
+      },
+      "prefer": [
+        "band",
+        "began",
+        "badge",
+        "bend",
+        "aged"
+      ]
+    },
+    {
+      "base": "throws",
+      "theme": "hbcu",
+      "clues": {
+        "throws": "The alumni association did it to the first one, on a model borrowed from the Ivy League.",
+        "host": "Howard, in 1924, for a game against Lincoln that the graduates built a whole weekend around.",
+        "show": "That 1924 weekend put one on besides football, because the point was the return, not the score.",
+        "worth": "The value of the thing, and a Thanksgiving Day game in 1893 already had it on both campuses.",
+        "two": "The number of schools in that 1893 game, and each of them still counts the rivalry from there.",
+        "row": "Where the oldest returning class sits, and nobody has to be told to leave it empty."
+      },
+      "prefer": [
+        "host",
+        "show",
+        "worth",
+        "two",
+        "row"
+      ]
+    },
+    {
+      "base": "banter",
+      "theme": "hbcu",
+      "clues": {
+        "banter": "The hearing room is not this, when the president arrives with the state match figures in a folder.",
+        "bran": "The mill still turns it out at nineteen schools chartered under an act passed in 1890.",
+        "earn": "Those nineteen do it in federal dollars, and the state is supposed to match one for one.",
+        "rate": "Per student, the 1890 campuses run under their 1862 neighbors, and a foundation put the gap on paper.",
+        "ante": "The state's share of the land-grant money, short-paid by several legislatures for decades.",
+        "bar": "The 1862 campuses were funded above it while the 1890 campuses stayed under."
+      },
+      "prefer": [
+        "bran",
+        "earn",
+        "rate",
+        "ante",
+        "bar"
+      ]
+    },
+    {
+      "base": "nearby",
+      "theme": "hbcu",
+      "clues": {
+        "nearby": "The house two blocks off campus where a line meets now, because none of it happens in the open.",
+        "year": "1989. The open process ended after a death at Morehouse, and the presentation became the reveal.",
+        "ban": "The organizations put one on the above-ground process themselves, rather than wait to be told.",
+        "bare": "The new format strips it to this: no weeks of marching in daylight, one night and the crossing.",
+        "ear": "The crowd guesses with it, since nothing is out on the yard to see any more.",
+        "ran": "A line did this openly across campus for weeks, until it stopped for good."
+      },
+      "prefer": [
+        "year",
+        "ban",
+        "bare",
+        "ear",
+        "ran"
+      ]
+    },
+    {
+      "base": "thorns",
+      "theme": "hbcu",
+      "clues": {
+        "thorns": "What the hedge between the two campuses gives you if you cut across instead of walking around.",
+        "horns": "The brass belongs to the men's college; the dance line and the flags belong to the women's college.",
+        "horn": "One of them, carried to eight o'clock rehearsal by a first-year who has not eaten yet.",
+        "host": "Which campus the rehearsal field belongs to, though half the performers walk over from the other.",
+        "short": "What the women's college is by one measure only: no marching unit of its own, by arrangement.",
+        "ton": "The equipment truck hauls one to every away game, and the flags weigh almost nothing in it."
+      },
+      "prefer": [
+        "horns",
+        "horn",
+        "host",
+        "short",
+        "ton"
+      ]
     }
   ]
 }

@@ -14,7 +14,11 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { BLOCKLIST, SLUR_LIST, isBlocked } from '../../scripts/lib/blocklist.mjs';
+import {
+  BLOCKLIST,
+  containsSlur,
+  isBlocked,
+} from '../../scripts/lib/blocklist.mjs';
 
 type Puzzle = {
   theme?: { name: string } | null;
@@ -129,15 +133,23 @@ describe('shipped puzzle content', () => {
   });
 
   it('contains no slur anywhere in clue TEXT either', () => {
-    // A clue is prose, so match on word boundaries rather than substring —
-    // otherwise legitimate words containing a blocked substring would trip it.
+    /*
+     * Delegates to containsSlur rather than re-implementing the scan, which
+     * is how this test and the build came to disagree: the test tokenised the
+     * raw clue, so it flagged "the National Council of Negro Women" — Mary
+     * McLeod Bethune's organisation, led by Dorothy Height from 1957 to 1998,
+     * still operating under that name.
+     *
+     * The gate exists to catch Webster's 1913 using period racial vocabulary
+     * inside ordinary entries. It should not stop a game about Black American
+     * life from naming the institutions Black Americans built and named
+     * themselves. containsSlur carries that exemption list; two copies of the
+     * rule meant only one of them had it.
+     */
     const offenders: string[] = [];
     for (const p of file.puzzles) {
       for (const [word, clue] of Object.entries(p.clues ?? {})) {
-        const tokens = String(clue).toLowerCase().match(/[a-z]+/g) ?? [];
-        for (const t of tokens) {
-          if (SLUR_LIST.includes(t)) offenders.push(`${word}: "${clue}"`);
-        }
+        if (containsSlur(clue)) offenders.push(`${word}: "${clue}"`);
       }
     }
     expect(offenders).toEqual([]);

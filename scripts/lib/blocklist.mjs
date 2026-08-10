@@ -126,7 +126,40 @@ const PROSE_SLURS = new Set([
   'esquimaux', 'aborigines',
 ]);
 
+/*
+ * Institutions that name themselves with a word the filter otherwise blocks.
+ *
+ * The gate above exists because Webster's 1913 used period racial vocabulary
+ * inside ordinary entries — `obis` shipped with "sorcery... practiced among the
+ * negroes of the". That is the case it must keep catching.
+ *
+ * It is not this case. The National Council of Negro Women is Mary McLeod
+ * Bethune's organisation, founded in 1935, led by Dorothy Height from 1957 to
+ * 1998, and still operating under that name. The United Negro College Fund
+ * still raises money for HBCUs under that name. The Negro Leagues are what the
+ * Negro Leagues were called. A filter that cannot let a game about Black
+ * American life name these is not protecting anybody — it is erasing the
+ * institutions Black Americans built and named themselves, which is a worse
+ * failure than the one it was written to prevent.
+ *
+ * So: exact institutional names pass, and the bare word still does not.
+ */
+const PROPER_NAMES = [
+  'national council of negro women',
+  'united negro college fund',
+  'negro motorist green book',
+  'negro leagues',
+  'negro league',
+  'negro national league',
+  'american negro theatre',
+  'negro ensemble company',
+  'journal of negro history',
+  'association for the study of negro life and history',
+];
+
 export function containsSlur(text) {
-  const tokens = String(text).toLowerCase().match(/[a-z]+/g) ?? [];
+  let scrubbed = String(text).toLowerCase();
+  for (const name of PROPER_NAMES) scrubbed = scrubbed.split(name).join(' ');
+  const tokens = scrubbed.match(/[a-z]+/g) ?? [];
   return tokens.some((t) => PROSE_SLURS.has(t));
 }
