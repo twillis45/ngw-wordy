@@ -62,6 +62,21 @@
       "id": "reunion",
       "name": "Family Reunion",
       "blurb": "Matching shirts, a hotel block, a printed program, and the committee that made it happen."
+    },
+    {
+      "id": "salon",
+      "name": "The Beauty Shop",
+      "blurb": "Twenty-two bottles, a standing Saturday, and an appointment that takes all day."
+    },
+    {
+      "id": "spades",
+      "name": "The Card Table",
+      "blurb": "Four chairs, a bid you have to make, and a score kept on the back of an envelope."
+    },
+    {
+      "id": "church",
+      "name": "Sunday Service",
+      "blurb": "The organ, the usher's white glove, and the front row that decides everything."
     }
   ],
   "puzzles": [
@@ -1505,6 +1520,1127 @@
         "cuts",
         "cot",
         "son"
+      ]
+    },
+    {
+      "base": "polish",
+      "theme": "salon",
+      "clues": {
+        "polish": "Twenty-two bottles on the rack, and she still knows which one you wore last June.",
+        "spoil": "What she does to a client of thirty years: hot towel, foot soak, no upcharge.",
+        "lips": "She lines her own in the mirror between clients without once looking at her hands.",
+        "oils": "Four bottles on the shelf, three nearly empty, and one kept back for the scalp.",
+        "slip": "The little paper she writes your next date on and tucks into your purse.",
+        "shop": "Her name is on the sign out front, and the lease is in her name too."
+      },
+      "prefer": [
+        "spoil",
+        "lips",
+        "oils",
+        "slip",
+        "shop"
+      ]
+    },
+    {
+      "base": "places",
+      "theme": "salon",
+      "clues": {
+        "places": "She holds two on Saturday morning for the women who raised her.",
+        "laces": "What her granddaughter finally managed on her own sneakers under the dryer.",
+        "scalp": "She parts it with the comb tip and says speak up the second it stings.",
+        "space": "She gave the back room to a young braider for a year and took nothing.",
+        "clasp": "The hook at your throat, and the one on the necklace she made you take off.",
+        "place": "You do not take somebody else's slot in the book. Everybody knows this."
+      },
+      "prefer": [
+        "laces",
+        "scalp",
+        "space",
+        "clasp",
+        "place"
+      ]
+    },
+    {
+      "base": "camper",
+      "theme": "salon",
+      "clues": {
+        "camper": "Books at nine, still here at four, and nobody minds her one bit.",
+        "perm": "1984, a rod on every section, and a smell that got into the curtains.",
+        "cream": "Comes in a tub with a plastic stick, and she times it to the minute, never past.",
+        "care": "What thirty years of the same two hands actually is, whatever the receipt says.",
+        "pace": "She works one head at a time and will not be hurried by anybody's carpool.",
+        "cram": "What Easter week does to a book that was already full."
+      },
+      "prefer": [
+        "perm",
+        "cream",
+        "care",
+        "pace",
+        "cram"
+      ]
+    },
+    {
+      "base": "preach",
+      "theme": "salon",
+      "clues": {
+        "preach": "She is going to tell you about that man again, and she is not wrong.",
+        "perch": "How the little one sits on a phone book so her head clears the mirror.",
+        "reach": "The top shelf where the good conditioner lives, behind retail she never pushes.",
+        "cheap": "What her prices are not, and she will explain why to your face.",
+        "peach": "The wall color since the day she opened, and no, she is not changing it.",
+        "hear": "What the whole room did, and what nobody will repeat outside the door."
+      },
+      "prefer": [
+        "perch",
+        "reach",
+        "cheap",
+        "peach",
+        "hear"
+      ]
+    },
+    {
+      "base": "metals",
+      "theme": "salon",
+      "clues": {
+        "metals": "Comb, shears, flat iron: everything that matters here is heavy and hot.",
+        "steam": "It comes off the towel and off the neck and fogs the mirror by noon.",
+        "melts": "What the grease does the second the hot comb touches it.",
+        "meals": "Nobody leaves the building at noon; a girl runs to the corner for everybody.",
+        "seal": "What the last pass of the iron is meant to do to the cuticle.",
+        "tame": "What she promises the child's hair will be by the time she stands up."
+      },
+      "prefer": [
+        "steam",
+        "melts",
+        "meals",
+        "seal",
+        "tame"
+      ]
+    },
+    {
+      "base": "rental",
+      "theme": "salon",
+      "clues": {
+        "rental": "Two hundred a week for the station by the window, paid to the woman up front.",
+        "rent": "What she quit paying somebody else the year she signed her own lease.",
+        "learn": "She started sweeping at fourteen and had a license in her hand at nineteen.",
+        "later": "Come at four, she said. You came at four. You were seen at six.",
+        "alert": "The bell over the door, so she knows who walked in without turning around.",
+        "tale": "The one about the bridal party that arrived nine deep and unbooked."
+      },
+      "prefer": [
+        "rent",
+        "learn",
+        "later",
+        "alert",
+        "tale"
+      ]
+    },
+    {
+      "base": "entail",
+      "theme": "salon",
+      "clues": {
+        "entail": "What just a trim actually means: two hours, a wash, and a whole conversation.",
+        "nail": "The tech in the back corner works Thursdays only and has her own clientele.",
+        "tail": "The bit left long at the back that her mother will not let anybody cut.",
+        "line": "She draws it with the comb tip, straight enough to check against a ruler.",
+        "tile": "Black and white squares underfoot, mopped after every single head.",
+        "lint": "What the towels leave on a dark sweater, so a brush lives by the mirror."
+      },
+      "prefer": [
+        "nail",
+        "tail",
+        "line",
+        "tile",
+        "lint"
+      ]
+    },
+    {
+      "base": "parent",
+      "theme": "salon",
+      "clues": {
+        "parent": "Holds her purse in her lap four hours and never once says hurry up.",
+        "part": "Where she starts on your head, and where your daughter squirms the most.",
+        "pane": "The window she keeps her station beside, for the light and for who walks by.",
+        "tape": "Holds the appointment card to the mirror, curled and yellow at the corners.",
+        "neat": "How she leaves the shelf at closing, every bottle turned label out.",
+        "tear": "What the comb will not do, so long as she works the ends first."
+      },
+      "prefer": [
+        "part",
+        "pane",
+        "tape",
+        "neat",
+        "tear"
+      ]
+    },
+    {
+      "base": "wonder",
+      "theme": "salon",
+      "clues": {
+        "wonder": "What you do under the hood: whether she will ever actually retire.",
+        "owner": "She does heads all day and does the books after everybody has gone home.",
+        "done": "She spins you around and says nothing, because she does not have to.",
+        "word": "Hers is the whole contract. No deposit, no card kept on file.",
+        "redo": "Free if you come back inside a week, and she will not discuss it further.",
+        "worn": "How the third step behind the counter looks after twenty-two years."
+      },
+      "prefer": [
+        "owner",
+        "done",
+        "word",
+        "redo",
+        "worn"
+      ]
+    },
+    {
+      "base": "insert",
+      "theme": "salon",
+      "clues": {
+        "insert": "The extra piece she sews in, matched so close nobody thinks to count.",
+        "rinse": "Head back, warm water, and the one minute in six hours when nobody talks.",
+        "rest": "What the edge of the bowl gives your neck, with a folded towel underneath.",
+        "stern": "How she gets exactly once, when a child will not put her head down.",
+        "tires": "What a full Saturday does to your back, and somehow not to hers.",
+        "site": "The corner unit she picked, after two years of looking, for the parking."
+      },
+      "prefer": [
+        "rinse",
+        "rest",
+        "stern",
+        "tires",
+        "site"
+      ]
+    },
+    {
+      "base": "latino",
+      "theme": "salon",
+      "clues": {
+        "latino": "The Dominican shop two blocks over, where a blowout runs an hour and costs less.",
+        "lion": "What a fresh set of curls makes a four-year-old, roaring at her own reflection.",
+        "loan": "How the second dryer got bought, and she paid it back a year early.",
+        "into": "Where the rollers go before the hood comes down on your head.",
+        "alto": "Where she sings on Sunday, and where half her Saturday book sings too.",
+        "ton": "How much hair comes off that floor by closing, or near enough."
+      },
+      "prefer": [
+        "lion",
+        "loan",
+        "into",
+        "alto",
+        "ton"
+      ]
+    },
+    {
+      "base": "placid",
+      "theme": "salon",
+      "clues": {
+        "placid": "How a screaming toddler goes the second warm water hits her head.",
+        "clip": "Six of them holding your sections while she works on the seventh.",
+        "paid": "Cash in the apron pocket, and she writes it in the book either way.",
+        "acid": "What a relaxer is not, though your grandmother will call it that anyway.",
+        "dial": "On the hood, and it has been stuck on medium since about 2011.",
+        "plaid": "The school skirt she has to wear, so the braids have to match it."
+      },
+      "prefer": [
+        "clip",
+        "paid",
+        "acid",
+        "dial",
+        "plaid"
+      ]
+    },
+    {
+      "base": "spinal",
+      "theme": "salon",
+      "clues": {
+        "spinal": "Down to here, she says, touching the small of the girl's back.",
+        "snip": "The small sound near your ear that makes every mother in the room flinch.",
+        "pins": "A mouthful of them, because both her hands are already busy.",
+        "plain": "How she wears her own most days, because she is at work.",
+        "pain": "Beauty is not supposed to hurt, she says. Speak up if it does.",
+        "span": "Thirty-one years between the first appointment and this one."
+      },
+      "prefer": [
+        "snip",
+        "pins",
+        "plain",
+        "pain",
+        "span"
+      ]
+    },
+    {
+      "base": "streak",
+      "theme": "salon",
+      "clues": {
+        "streak": "The silver one at her temple she has refused to color since 2009.",
+        "rake": "What her fingers do through your roots, checking how dry it got.",
+        "take": "How long it really is. She said all day on the phone and she meant it.",
+        "task": "Sweeping between heads, and the youngest does it without being asked.",
+        "star": "The photo by the register: a client who made it, signed to her by name.",
+        "stare": "What the whole room does when somebody walks in with a new color."
+      },
+      "prefer": [
+        "rake",
+        "take",
+        "task",
+        "star",
+        "stare"
+      ]
+    },
+    {
+      "base": "staked",
+      "theme": "salon",
+      "clues": {
+        "staked": "What she did on a corner storefront in 1998 with a tax refund.",
+        "asked": "What she never did for permission, from anybody, before she signed.",
+        "dates": "Written in pencil in a spiral book, because people move things.",
+        "desk": "Up front, with the phone, the book, and a dish of butterscotch.",
+        "sake": "For the peace of it, she quit taking walk-ins on Saturdays altogether.",
+        "stake": "What she has in your wedding, your job interview, and your mother's funeral."
+      },
+      "prefer": [
+        "asked",
+        "dates",
+        "desk",
+        "sake",
+        "stake"
+      ]
+    },
+    {
+      "base": "steady",
+      "theme": "salon",
+      "clues": {
+        "steady": "Nine in the morning, every other Saturday, same seat, since the first Bush.",
+        "stay": "You did not plan on being here this long, and you are not leaving.",
+        "easy": "What none of this is, though her hands make it look that way.",
+        "days": "The two she takes off, and everybody knows better than to call.",
+        "seat": "Under the hood, with a magazine from four years ago on your lap.",
+        "stead": "When she had surgery, her niece worked in her place and lost nobody."
+      },
+      "prefer": [
+        "stay",
+        "easy",
+        "days",
+        "seat",
+        "stead"
+      ]
+    },
+    {
+      "base": "strewn",
+      "theme": "salon",
+      "clues": {
+        "strewn": "The floor by two o'clock: black, brown, honey, and somebody's silver.",
+        "sewn": "Track by track with a curved needle, and she checks the tension each row.",
+        "stew": "Simmering in a pot in the back all winter, and she will fix you some.",
+        "news": "Who is sick, who is moving, who is expecting. Ahead of any group chat.",
+        "nest": "What she calls the matted patch at the crown after two weeks in a bonnet.",
+        "went": "Where the young stylist did when she opened her own place, with a blessing."
+      },
+      "prefer": [
+        "sewn",
+        "stew",
+        "news",
+        "nest",
+        "went"
+      ]
+    },
+    {
+      "base": "sweaty",
+      "theme": "salon",
+      "clues": {
+        "sweaty": "Your edges after the gym, and the reason she asked when you last washed.",
+        "sweat": "What the hood gets out of you in July with the AC struggling.",
+        "waste": "Two inches of split ends, and she will not pretend otherwise.",
+        "sway": "The hips of the woman at the sink when the radio hits the right song.",
+        "ways": "She has three of laying a part, and picks by the shape of your face.",
+        "west": "The side the afternoon sun hits, which keeps that one station warm."
+      },
+      "prefer": [
+        "sweat",
+        "waste",
+        "sway",
+        "ways",
+        "west"
+      ]
+    },
+    {
+      "base": "tangle",
+      "theme": "salon",
+      "clues": {
+        "tangle": "Two weeks of ignoring it, and now it is a forty-minute problem.",
+        "angel": "What she calls the child sitting still, loud enough for the one who is not.",
+        "agent": "She is her own: no booking app, no manager, her number on the card.",
+        "gate": "The little one at the top of the steps, so no toddler reaches the iron.",
+        "lean": "How she stands all day, one hip on the counter, and her feet know it.",
+        "teal": "The smock color she has bought in bulk since the nineties."
+      },
+      "prefer": [
+        "angel",
+        "agent",
+        "gate",
+        "lean",
+        "teal"
+      ]
+    },
+    {
+      "base": "trends",
+      "theme": "salon",
+      "clues": {
+        "trends": "She has watched them come back around twice now and chases none of them.",
+        "trend": "Whatever the girls bring in on their phones, she has already done once.",
+        "sent": "That photo from the internet at eleven at night: can you do this?",
+        "tend": "What she does to a scalp that has been under braids a month too long.",
+        "reds": "Copper, auburn, cherry. She mixes two of the three and writes nothing down.",
+        "tens": "What she gets paid in, folded, and she still writes out the receipt."
+      },
+      "prefer": [
+        "trend",
+        "sent",
+        "tend",
+        "reds",
+        "tens"
+      ]
+    },
+    {
+      "base": "waters",
+      "theme": "salon",
+      "clues": {
+        "waters": "What wash day runs through, gallon after gallon, from ten until noon.",
+        "water": "Warm at the neck, cooler on the last pass, and she asks how it feels.",
+        "straw": "How your ends feel in February, and she says protein, not more grease.",
+        "wear": "What you will do with this style for six weeks, wrapped every night.",
+        "sear": "What the iron would do if she rushed, and she does not rush.",
+        "wares": "The oils and satin caps she keeps by the register, priced fair."
+      },
+      "prefer": [
+        "water",
+        "straw",
+        "wear",
+        "sear",
+        "wares"
+      ]
+    },
+    {
+      "base": "talked",
+      "theme": "spades",
+      "clues": {
+        "talked": "She won the hand before a card fell, running her mouth the whole way.",
+        "dealt": "Thirteen apiece, one at a time, and nobody touches theirs until the last lands.",
+        "delta": "The gap between what you bid and what you actually took. Write it small.",
+        "take": "A book pulled in with a spade nobody at this table saw coming.",
+        "late": "You got here at nine. They started at eight and your partner sat alone.",
+        "talk": "Half of this game, and none of it is anywhere in the rules."
+      },
+      "prefer": [
+        "dealt",
+        "delta",
+        "take",
+        "late",
+        "talk"
+      ]
+    },
+    {
+      "base": "master",
+      "theme": "spades",
+      "clues": {
+        "master": "Nobody calls her that out loud, and nobody sits in her chair either.",
+        "smart": "Throwing a low one on purpose and letting the table think you slipped.",
+        "mates": "Partners, assigned by the cut, and you live with what you get.",
+        "stare": "What comes across the table when you lead the wrong suit.",
+        "teams": "Two and two. Chairs moved so nobody sits beside the one they came with.",
+        "rate": "How fast the cards come off her thumb. One per player, no looking."
+      },
+      "prefer": [
+        "smart",
+        "mates",
+        "stare",
+        "teams",
+        "rate"
+      ]
+    },
+    {
+      "base": "handle",
+      "theme": "spades",
+      "clues": {
+        "handle": "The name written on the score pad. Not the one on his license.",
+        "hand": "Thirteen cards fanned in a grip nobody across from you can see into.",
+        "deal": "To pass them out, one at a time, starting left of the cut.",
+        "lead": "The first card down. Everything after it has to answer that suit.",
+        "held": "Kept back three rounds on purpose, waiting on the right moment.",
+        "lean": "How he tips toward the middle once the bidding gets serious."
+      },
+      "prefer": [
+        "hand",
+        "deal",
+        "lead",
+        "held",
+        "lean"
+      ]
+    },
+    {
+      "base": "played",
+      "theme": "spades",
+      "clues": {
+        "played": "Set down face up, and there is no reaching back for it now.",
+        "delay": "The long pause before she chooses, which tells you absolutely nothing.",
+        "lady": "The queen. Worth nothing alone, deadly sitting behind the ace.",
+        "plea": "One book, partner, just one — said with the eyebrows only.",
+        "pled": "Begged, past tense. For a cut, for a re-deal, for one more round.",
+        "play": "What these four have done in the same kitchen corner every Friday since 1994."
+      },
+      "prefer": [
+        "delay",
+        "lady",
+        "plea",
+        "pled",
+        "play"
+      ]
+    },
+    {
+      "base": "pleads",
+      "theme": "spades",
+      "clues": {
+        "pleads": "What he does when the bid is seven and he is holding two low spades.",
+        "spade": "The suit that beats everything and the one you cannot lead first.",
+        "deals": "One after another until somebody crosses five hundred.",
+        "leads": "Whoever took the last book starts the next one. No discussion.",
+        "pals": "Two men who have been losing to the same two women for eleven years.",
+        "sale": "What this is not. Nobody is playing for a dollar and everybody is serious."
+      },
+      "prefer": [
+        "spade",
+        "deals",
+        "leads",
+        "pals",
+        "sale"
+      ]
+    },
+    {
+      "base": "tackle",
+      "theme": "spades",
+      "clues": {
+        "tackle": "To take on a bid of six holding three low cards and a lot of nerve.",
+        "lack": "Out of the suit at last, which means you finally get to cut.",
+        "tale": "The one about that hand in 1998, told again, longer than last time.",
+        "lace": "Thread it through the eyelets — or the trim on the cloth that has covered this table thirty years.",
+        "let": "Allow it. She ruled, the card stands, and the round goes on.",
+        "cake": "Somebody's birthday is in the other room. The game does not stop for it."
+      },
+      "prefer": [
+        "lack",
+        "tale",
+        "lace",
+        "let",
+        "cake"
+      ]
+    },
+    {
+      "base": "racked",
+      "theme": "spades",
+      "clues": {
+        "racked": "Up two hundred and forty points before the second deck came out.",
+        "cared": "If she didn't, she would not correct your count every single round.",
+        "deck": "Fifty-two, jokers pulled out and set on the windowsill.",
+        "dark": "Bidding blind. Neither of you looked and he said six anyway.",
+        "rake": "To pull the four cards in and stack them face down. Your book.",
+        "read": "What she does to your face in two seconds, before you sort a thing."
+      },
+      "prefer": [
+        "cared",
+        "deck",
+        "dark",
+        "rake",
+        "read"
+      ]
+    },
+    {
+      "base": "sacred",
+      "theme": "spades",
+      "clues": {
+        "sacred": "The corner of the kitchen where the table lives. Nobody moves it, not even to paint.",
+        "cards": "Kept in a rubber band on top of the refrigerator, out of reach.",
+        "dares": "He said nil out loud, at eleven o'clock, with everybody listening.",
+        "scar": "The ring a cold glass left on the wood in 1991, still there.",
+        "cased": "He read the whole table before he bid — faces, chairs, and the pad.",
+        "acre": "How much room he wants to sort thirteen cards, at a table this small."
+      },
+      "prefer": [
+        "cards",
+        "dares",
+        "scar",
+        "cased",
+        "acre"
+      ]
+    },
+    {
+      "base": "spread",
+      "theme": "spades",
+      "clues": {
+        "spread": "Two hundred points between the teams and three hands left to close it.",
+        "spare": "The extra chair dragged in from the porch when a fifth person shows up.",
+        "spear": "To stab clean through. What the little joker does to the ace you saved.",
+        "reap": "Collect what the bid promised, once the last book is finally in.",
+        "pare": "Trim it down. What the bid becomes after one look across the table.",
+        "ears": "Wide open at this table, which is why nobody spells anything out loud."
+      },
+      "prefer": [
+        "spare",
+        "spear",
+        "reap",
+        "pare",
+        "ears"
+      ]
+    },
+    {
+      "base": "placed",
+      "theme": "spades",
+      "clues": {
+        "placed": "Set down and settled. That card is where it is and it is not moving.",
+        "place": "First, second, third — the finishing order she writes down without being asked.",
+        "clap": "One flat hand on the wood when the last book comes home.",
+        "pace": "Four hands an hour, and the new guy is slowing it down.",
+        "pale": "The color he turns when his ace gets cut on the first round.",
+        "leap": "From four books to seven in one breath, and no way to take it back."
+      },
+      "prefer": [
+        "place",
+        "clap",
+        "pace",
+        "pale",
+        "leap"
+      ]
+    },
+    {
+      "base": "luster",
+      "theme": "spades",
+      "clues": {
+        "luster": "The shine long gone off a deck that has been through ten thousand hands.",
+        "result": "What lands on the pad: her team plus one-forty, his team minus ten.",
+        "rules": "House ones. Written nowhere, enforced completely, and she is the authority.",
+        "rest": "The other cards in your hand, the ones that will never take a book.",
+        "true": "Accurate. How she describes her own count when you dare question it.",
+        "sure": "How he sounded bidding seven. He was not, and everybody knew."
+      },
+      "prefer": [
+        "result",
+        "rules",
+        "rest",
+        "true",
+        "sure"
+      ]
+    },
+    {
+      "base": "reacts",
+      "theme": "spades",
+      "clues": {
+        "reacts": "The face he makes when the queen falls, which is why she watches him and not her cards.",
+        "cater": "To bend a whole evening around one person: the one who will not be spoken to while bidding.",
+        "star": "The one everybody wants across from them. She has not lost a Friday since March.",
+        "cast": "To throw one down. He regrets it before the four cards are gathered up.",
+        "aces": "Four in the deck, and one of them is getting cut tonight.",
+        "crest": "The high point of the night, somewhere in the middle of the third game."
+      },
+      "prefer": [
+        "cater",
+        "star",
+        "cast",
+        "aces",
+        "crest"
+      ]
+    },
+    {
+      "base": "facets",
+      "theme": "spades",
+      "clues": {
+        "facets": "Bidding, counting, watching people — you can be good at two and still lose.",
+        "facts": "She has them all: the date, the score, and who reneged in 2009.",
+        "safe": "A bid of four holding six spades. Nobody at the table respects it.",
+        "fast": "The one-handed shuffle she does while telling a story about her sister.",
+        "fate": "Whatever the cut hands you. You bid it anyway and say nothing.",
+        "seat": "The one against the wall. His since 1996, and no, you cannot have it."
+      },
+      "prefer": [
+        "facts",
+        "safe",
+        "fast",
+        "fate",
+        "seat"
+      ]
+    },
+    {
+      "base": "calmed",
+      "theme": "spades",
+      "clues": {
+        "calmed": "It took two rounds and a fresh glass of ice water after the renege argument.",
+        "medal": "There is no trophy here. There is a name on the back of an envelope.",
+        "made": "Bid four, took four. Nothing extra, nothing owed to anybody.",
+        "calm": "How she stays while he is up out of his chair about a card he threw himself.",
+        "clam": "What he goes quiet as, the second he works out that he is set.",
+        "lame": "The excuse about the light, the chair, the deck. Heard it all before."
+      },
+      "prefer": [
+        "medal",
+        "made",
+        "calm",
+        "clam",
+        "lame"
+      ]
+    },
+    {
+      "base": "scaled",
+      "theme": "spades",
+      "clues": {
+        "scaled": "The bid climbed four, five, six, because neither side would back down.",
+        "scale": "What the whole night is measured on: five hundred, and not one point more.",
+        "case": "The little box the deck came in, gone since the second week.",
+        "seal": "To close it out — the last book taken quietly with a two.",
+        "laced": "How she talks: sweet on top, something else underneath it.",
+        "ales": "Bottles sweating on the counter. Never, ever set on the table itself."
+      },
+      "prefer": [
+        "scale",
+        "case",
+        "seal",
+        "laced",
+        "ales"
+      ]
+    },
+    {
+      "base": "packed",
+      "theme": "spades",
+      "clues": {
+        "packed": "Six chairs in a kitchen corner built for four, and nobody minds.",
+        "aced": "Cut clean by the highest card in the game.",
+        "peak": "The loudest minute of the whole night, and it is only 9:15.",
+        "peck": "The small kiss she gives him after taking every book he bid.",
+        "paced": "He walked the length of the kitchen twice before throwing one card.",
+        "ape": "To copy. He bids whatever she just bid and it has never once worked."
+      },
+      "prefer": [
+        "aced",
+        "peak",
+        "peck",
+        "paced",
+        "ape"
+      ]
+    },
+    {
+      "base": "bailed",
+      "theme": "spades",
+      "clues": {
+        "bailed": "He got up at ten-thirty down two hundred. They still bring it up.",
+        "abide": "Live with it. The call was made, the call stands, on to the next.",
+        "idea": "Bidding nil with the ace of spades still sitting in your hand.",
+        "lied": "About the count, once, in 2004, and it is still the first thing anybody says.",
+        "bled": "Points, three at a time, all night, with nobody noticing until the end.",
+        "idle": "Sitting this round out, watching, and not permitted to say one word."
+      },
+      "prefer": [
+        "abide",
+        "idea",
+        "lied",
+        "bled",
+        "idle"
+      ]
+    },
+    {
+      "base": "gasped",
+      "theme": "spades",
+      "clues": {
+        "gasped": "All four did it at once when the little joker fell on the first book.",
+        "page": "Torn off, folded in half, tucked under the sugar bowl for next Friday.",
+        "sage": "Whoever she is at your table: she says the rule out loud and it is over.",
+        "gaps": "The holes in his suits, which she counted two rounds ago.",
+        "ages": "How long the man on the left takes to bid. Every single time.",
+        "pads": "Yellow, legal, one per year, in a stack in the same drawer."
+      },
+      "prefer": [
+        "page",
+        "sage",
+        "gaps",
+        "ages",
+        "pads"
+      ]
+    },
+    {
+      "base": "arched",
+      "theme": "spades",
+      "clues": {
+        "arched": "One eyebrow, and the bid across the table dropped by two.",
+        "reach": "He went for a card, hovered over it, and pulled his hand back.",
+        "heard": "Everything at this table is, including what you said under your breath.",
+        "hard": "The ten of spades on the first lead. That is a message, not a mistake.",
+        "dare": "Go on and cut it. She did not say it out loud and she did not have to.",
+        "herd": "To move a group along, which is what she does to four grown adults who cannot decide."
+      },
+      "prefer": [
+        "reach",
+        "heard",
+        "hard",
+        "dare",
+        "herd"
+      ]
+    },
+    {
+      "base": "graced",
+      "theme": "spades",
+      "clues": {
+        "graced": "She sat down at eight and the whole table straightened up.",
+        "grace": "What she shows the man who set her last week, by dealing him in again.",
+        "rage": "Two seconds of it, then a laugh, then he shuffles.",
+        "card": "One of thirteen, and somehow always the wrong one.",
+        "drag": "The long stretch between the bid and the first lead while he sorts twice.",
+        "dear": "What she calls him right before she cuts his ace."
+      },
+      "prefer": [
+        "grace",
+        "rage",
+        "card",
+        "drag",
+        "dear"
+      ]
+    },
+    {
+      "base": "praise",
+      "theme": "church",
+      "clues": {
+        "praise": "The team goes up ten minutes before the choir does, and the room is standing by the second song.",
+        "raise": "What the hands do without being told, all down the row, on the run into the chorus.",
+        "pairs": "White gloves come out of her purse in twos, one set for her and one for whoever forgot.",
+        "spare": "The extra offering envelope she keeps in her Bible for the visitor sitting beside her.",
+        "rise": "What the whole building does on the last verse, and the ushers step back off the doors.",
+        "ears": "The sound man's, and the exact second he pulls the guest preacher's mic back down."
+      },
+      "prefer": [
+        "raise",
+        "pairs",
+        "spare",
+        "rise",
+        "ears"
+      ]
+    },
+    {
+      "base": "choirs",
+      "theme": "church",
+      "clues": {
+        "choirs": "Three of them here: the mass, the youth, and the men's, and only one gets second Sunday.",
+        "choir": "The A selection is theirs. The B selection is why Thursday rehearsal ran until ten.",
+        "rich": "Not a word for this congregation. A word for what eleven voices do in a room built for sixty.",
+        "sir": "What the junior usher calls a man twice his age, because the board taught him to.",
+        "his": "Whose robe went missing before the anniversary, and who alone carries the closet key.",
+        "chi": "The Greek letter standing in for Christ in the shorthand painted on the fellowship hall banner."
+      },
+      "prefer": [
+        "choir",
+        "rich",
+        "sir",
+        "his",
+        "chi"
+      ]
+    },
+    {
+      "base": "gloves",
+      "theme": "church",
+      "clues": {
+        "gloves": "Cotton, white, and a fresh set in her vestibule drawer for the girl on the junior board.",
+        "glove": "One hand up, one hand folded, and the cotton on both means she is working, not visiting.",
+        "solve": "What the board does with a full room and four empty seats, in under a minute, without speaking.",
+        "egos": "What the minister of music and the drummer have been managing between them since March.",
+        "lose": "What she will not do: the count, the keys, or her place at the back of the sanctuary.",
+        "ogle": "What you do not do to a visitor's crown, no matter how wide the brim gets."
+      },
+      "prefer": [
+        "glove",
+        "solve",
+        "egos",
+        "lose",
+        "ogle"
+      ]
+    },
+    {
+      "base": "rushed",
+      "theme": "church",
+      "clues": {
+        "rushed": "Nothing about the eleven o'clock is, and the parking lot at one-thirty settles the argument.",
+        "usher": "She stands the whole hour at the door and seats you when the song allows, not when you arrive.",
+        "herds": "What the megachurch parking team does with two hundred cars and one working exit.",
+        "hers": "The chair by the vestibule window. It has a cushion on it and nobody has to be told.",
+        "dues": "What the auxiliary collects in January, in cash, into a ledger she takes home with her.",
+        "sure": "How the woman in the front row says a thing once, and it becomes the plan."
+      },
+      "prefer": [
+        "usher",
+        "herds",
+        "hers",
+        "dues",
+        "sure"
+      ]
+    },
+    {
+      "base": "maiden",
+      "theme": "church",
+      "clues": {
+        "maiden": "The surname the mothers still use for her in the roll book, sixty years after the wedding.",
+        "amend": "What the clerk does to the minutes when the trustees remember the vote differently.",
+        "aide": "Armor-bearer is the word here: water, towel, and the Bible carried a half-step behind.",
+        "mind": "What she made up about the carpet color, and the trustee meeting is a formality.",
+        "dime": "What went into the plate from a child's hand, and the woman beside her did not correct it.",
+        "named": "Cut in brass beside the fellowship hall door, after the vote, and she was in the room for it."
+      },
+      "prefer": [
+        "amend",
+        "aide",
+        "mind",
+        "dime",
+        "named"
+      ]
+    },
+    {
+      "base": "remain",
+      "theme": "church",
+      "clues": {
+        "remain": "What the mothers do after the benediction, seated, while the building empties around them.",
+        "rein": "What the board chair keeps on a young minister who wants to change the order of service.",
+        "rain": "Why the church van makes two trips, and why the ushers keep towels stacked by the door.",
+        "near": "Where the nurses' unit sits: aisle end, two rows back, in white, watching everything.",
+        "earn": "Nobody does the front pew. You are seated in it by somebody, or you are not.",
+        "mine": "What the sopranos call the alto line the week the director reassigns it."
+      },
+      "prefer": [
+        "rein",
+        "rain",
+        "near",
+        "earn",
+        "mine"
+      ]
+    },
+    {
+      "base": "humane",
+      "theme": "church",
+      "clues": {
+        "humane": "What the benevolence fund is for: a light bill, a bus ticket, and no questions in the meeting.",
+        "human": "What the pastor admits to being, once, from the pulpit, and the room goes very quiet.",
+        "ahem": "The clerk's, into a live mic, when the reading has gone four minutes past its slot.",
+        "mean": "What she does not have to be. She simply looks, and the whole back row sits down.",
+        "hum": "What the keyboard holds under the altar call, low, until somebody finally comes down.",
+        "menu": "Typed for the repast and taped inside the hall door, and the family never sees a bill."
+      },
+      "prefer": [
+        "human",
+        "ahem",
+        "mean",
+        "hum",
+        "menu"
+      ]
+    },
+    {
+      "base": "easily",
+      "theme": "church",
+      "clues": {
+        "easily": "Nothing about a three-hour Women's Day program happens this way, and no one expected it to.",
+        "aisle": "Hers to run, and the child who bolts up it during prayer gets caught by the elbow.",
+        "seal": "What the clerk presses into the certificate before the baptism goes into the book.",
+        "easy": "How the drummer starts the shout music, and it is not, and the whole room knows better.",
+        "yes": "What the mothers' board says, and only then does the trustee board pretend it decided.",
+        "lays": "What the nurse in white does over the woman who caught the spirit, quick, without a word."
+      },
+      "prefer": [
+        "aisle",
+        "seal",
+        "easy",
+        "yes",
+        "lays"
+      ]
+    },
+    {
+      "base": "fasten",
+      "theme": "church",
+      "clues": {
+        "fasten": "What she does to the hat pin at the door, so the crown will not move for three hours.",
+        "safe": "Bolted into the pastor's office, and the two women with the combination are not the pastor.",
+        "seat": "There are seven in the front row and every one of them belongs to a woman by name.",
+        "sent": "The sick-and-shut-in card, in her hand, every Monday, with stamps she buys herself.",
+        "nest": "The choir loft after service: three hymnals, two hats, and somebody's reading glasses.",
+        "east": "Which way the old sanctuary was built to face, and why the sun hits the third pew at eleven."
+      },
+      "prefer": [
+        "safe",
+        "seat",
+        "sent",
+        "nest",
+        "east"
+      ]
+    },
+    {
+      "base": "mouths",
+      "theme": "church",
+      "clues": {
+        "mouths": "Forty of them open on the same word, and the third row can hear which one came in early.",
+        "shout": "The music behind it: two chords, the drummer, and not one person sitting down.",
+        "south": "Where the pastor's people came up from, which is why devotional service still opens the morning.",
+        "must": "What the basement smells like in August, and the trustees have been told about it twice.",
+        "thou": "The pronoun the old deacon still prays in, and nobody has ever asked him to stop.",
+        "most": "What the eleven o'clock has of everything: cars, children, and folks who came for one song."
+      },
+      "prefer": [
+        "shout",
+        "south",
+        "must",
+        "thou",
+        "most"
+      ]
+    },
+    {
+      "base": "pianos",
+      "theme": "church",
+      "clues": {
+        "pianos": "The upright in the annex and the one up front, and only one has been tuned this year.",
+        "pains": "What the eighty-two-year-old at the keyboard plays straight through, and she has not missed a Sunday.",
+        "pins": "In the hat, in the corsage, and in the little cushion she keeps in the vestibule drawer.",
+        "naps": "The child laid across two laps in the fourth pew, out cold before the offering is lifted.",
+        "span": "Sixty-one years between the oldest usher on duty and the youngest, and both are on the door.",
+        "spin": "What the young minister of music put on the anniversary hymn, and the mothers had thoughts."
+      },
+      "prefer": [
+        "pains",
+        "pins",
+        "naps",
+        "span",
+        "spin"
+      ]
+    },
+    {
+      "base": "probes",
+      "theme": "church",
+      "clues": {
+        "probes": "What the finance committee does to the roof estimate: line by line, twice, before any vote.",
+        "robes": "Burgundy with gold, forty-two of them, and one woman holds the key to that closet.",
+        "sober": "How the second service runs at the campus church: lights low, no tambourine, out in seventy minutes.",
+        "prose": "What the announcements turn into, when they were only ever supposed to be a list.",
+        "ropes": "The stanchion kind across the last four pews, until the board opens them at the second song.",
+        "reps": "The three run-throughs of the anniversary selection, Thursday night, after everybody worked all day."
+      },
+      "prefer": [
+        "robes",
+        "sober",
+        "prose",
+        "ropes",
+        "reps"
+      ]
+    },
+    {
+      "base": "bolder",
+      "theme": "church",
+      "clues": {
+        "bolder": "What the youth choir got by the third verse, once the church mothers stood up behind them.",
+        "lord": "The word the whole room says back to her, uncued, the moment she opens the devotional.",
+        "older": "The two women walked in on an arm, and the service does not begin until they are down.",
+        "role": "Hers is nowhere on the printed program, and the building would stall by ten past eleven without it.",
+        "lore": "Which pew flooded in '96, which pastor left in '04. She has all of it and no one wrote it down.",
+        "bored": "The teenager in the balcony, right up until the drums come in on the second chorus."
+      },
+      "prefer": [
+        "lord",
+        "older",
+        "role",
+        "lore",
+        "bored"
+      ]
+    },
+    {
+      "base": "losing",
+      "theme": "church",
+      "clues": {
+        "losing": "What the roll book says about the fourth pew, and why she is on the phone Monday morning.",
+        "lingo": "Tarry service, A and B selection, armor-bearer. Nobody explains a word of it to a visitor.",
+        "sing": "What six hundred people do when the power cuts out: no keyboard, no mic, still on pitch.",
+        "sign": "Out front, plastic letters, and the title she changes Tuesday with a suction cup pole.",
+        "oils": "Anointing, in a little bottle in her purse, and she reaches the hospital before the pastor does.",
+        "lions": "Daniel's, drawn on butcher paper down the basement wall for children's church."
+      },
+      "prefer": [
+        "lingo",
+        "sing",
+        "sign",
+        "oils",
+        "lions"
+      ]
+    },
+    {
+      "base": "broken",
+      "theme": "church",
+      "clues": {
+        "broken": "The third step up to the loft, since spring, and the trustees have priced the repair twice.",
+        "broke": "What the church was in 1994, and the eleven women who took up a Friday collection until it wasn't.",
+        "bone": "What the old song says the Lord can do with the dry ones, and the balcony stands for that verse.",
+        "born": "What the testimony always circles back to, and she gives the date and the street address.",
+        "knob": "Missing off the basement door since Easter, and everybody knows to push it with a hip.",
+        "one": "How many services a storefront keeps, and it holds forty people at capacity."
+      },
+      "prefer": [
+        "broke",
+        "bone",
+        "born",
+        "knob",
+        "one"
+      ]
+    },
+    {
+      "base": "bronze",
+      "theme": "church",
+      "clues": {
+        "bronze": "The plaque by the door with the founding members on it, and two of them are still in the building.",
+        "zone": "What the ushers cut the sanctuary into, four of them, one woman answering for each.",
+        "zero": "Where the building fund started in January, and the thermometer on the wall is filled in by hand.",
+        "bore": "Not what ninety minutes of preaching is, if the man behind you is keeping time on the pew back.",
+        "nor": "The word in the old benediction, neither this ___ that, and half the room says it right along.",
+        "bro": "What the young men call each other out in the lot at one-thirty, out of their mothers' hearing."
+      },
+      "prefer": [
+        "zone",
+        "zero",
+        "bore",
+        "nor",
+        "bro"
+      ]
+    },
+    {
+      "base": "dragon",
+      "theme": "church",
+      "clues": {
+        "dragon": "The red one out of Revelation, and the guest evangelist drew it on the easel pad in marker.",
+        "grand": "The march at the anniversary: two by two down the center, oldest board first, nobody hurrying.",
+        "road": "Eleven miles of it for the pastor who serves two charges, and the second service starts at three.",
+        "rang": "The office phone, all Monday, about one line in yesterday's announcements.",
+        "nod": "Hers, from the rear of the sanctuary, and only then do the doors come open.",
+        "darn": "What the seamstress does to a hem in the vestibule, ten minutes before the processional."
+      },
+      "prefer": [
+        "grand",
+        "road",
+        "rang",
+        "nod",
+        "darn"
+      ]
+    },
+    {
+      "base": "lacked",
+      "theme": "spades",
+      "clues": {
+        "lacked": "What his hand did all night. He bid six anyway, and he made it, and nobody has recovered.",
+        "deal": "Her turn, and she squares the pile twice before a single card moves.",
+        "deck": "Fifty-two, minus the two jokers somebody's nephew lost in 2011.",
+        "lack": "What nobody at this table will admit to, least of all after a set.",
+        "lead": "The first card down, and the whole hand turns on whether she went low or high.",
+        "ace": "The one card he holds back too long, every time, and she counts on it."
+      },
+      "prefer": [
+        "deal",
+        "deck",
+        "lack",
+        "lead",
+        "ace"
       ]
     }
   ]

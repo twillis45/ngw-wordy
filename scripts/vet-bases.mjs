@@ -51,11 +51,22 @@ const popular = new Set(
     .map((w) => w.trim().toLowerCase())
 );
 
-const claimed = new Set(
-  JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'themes.json'), 'utf8')).puzzles.map(
-    (p) => p.base
-  )
-);
+const existing = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'data', 'themes.json'), 'utf8')
+).puzzles.map((p) => p.base);
+const claimed = new Set(existing);
+
+/*
+ * Claim the LETTER SET, not just the word.
+ *
+ * A base is only ever seen by the player as six letters on a wheel, so two
+ * anagrams are the same puzzle wearing different names. Vetting on the word
+ * alone let `mantle`, `mantel`, `mental` and `lament` through as four separate
+ * boards, and `sacred`/`scared` as two — the build caught them, but only after
+ * the clues were written, which is the cost this script exists to avoid.
+ */
+const letterKey = (w) => [...w].sort().join('');
+const claimedSets = new Set(existing.map(letterKey));
 
 /*
  * Bucket the wordlist by letter set. Testing every word against every candidate
@@ -93,6 +104,7 @@ for (const base of words) {
   if (new Set(base).size !== 6) continue;
   if (!popular.has(base)) continue;
   if (claimed.has(base)) continue;
+  if (claimedSets.has(letterKey(base))) continue;
 
   const answers = answersFor(base);
   if (answers.length < MIN_ANSWERS || answers.length > MAX_ANSWERS) continue;
@@ -102,6 +114,9 @@ for (const base of words) {
     .sort((a, b) => b.length - a.length || a.localeCompare(b));
   if (rows.length + 1 < MIN_COMMON_ROWS) continue;
 
+  // The pool must not offer two anagrams of each other either, or two authors
+  // pick the same wheel independently and one of them is wasted work.
+  claimedSets.add(letterKey(base));
   pool.push({ base, answers: answers.length, rows });
 }
 
