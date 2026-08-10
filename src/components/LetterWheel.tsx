@@ -116,6 +116,15 @@ export default function LetterWheel({
    * ever saw the OS arrow. Touch has no hover, so it stays drag-only there.
    */
   const [hovering, setHovering] = useState(false);
+  /*
+   * Magnetism is a TOUCH affordance, and on a mouse it is actively wrong.
+   *
+   * With `mouse:cursor-none` the glass shape IS the cursor, so positional
+   * attraction means the thing you are steering slides sideways on its own
+   * while you are trying to aim it. On a finger that reads as the tile pulling
+   * you in; on a mouse it reads as the cursor being taken away from you.
+   */
+  const [byMouse, setByMouse] = useState(false);
 
   const positions = letters.map((_, i) => {
     // Start at the top and go clockwise.
@@ -195,6 +204,7 @@ export default function LetterWheel({
       // It throws if the pointer isn't active, and an uncaught throw here
       // killed the whole gesture before dragging was ever set.
     }
+    setByMouse(e.pointerType === 'mouse');
     armed.current = { x: pt.x, y: pt.y, i: hit };
     dragged.current = false;
     setCursor(pt);
@@ -225,6 +235,7 @@ export default function LetterWheel({
       // Track the mouse even when nothing is held down.
       if (e.pointerType === 'mouse') {
         setHovering(true);
+        setByMouse(true);
         setCursor(pt);
       }
       return;
@@ -312,7 +323,7 @@ export default function LetterWheel({
      */
     const pRaw = Math.min(1, (PULL - best) / (PULL - HIT));
     const eased = Math.pow(pRaw * pRaw * (3 - 2 * pRaw), PULL_BITE);
-    const pull = best <= HIT ? 1 : Math.min(eased, PULL_CAP);
+    const pull = byMouse ? 0 : best <= HIT ? 1 : Math.min(eased, PULL_CAP);
 
     // Shape: unchanged until you're genuinely near, then fully committed
     // anywhere on the tile.
@@ -329,7 +340,9 @@ export default function LetterWheel({
       // Slightly larger than the tile so the committed state visibly
       // ENCOMPASSES the whole letter rather than sitting exactly on top of it,
       // which reads as a coincidence rather than a lock.
-      size: at(FREE, TILE * 1.14, t),
+      // Bigger on a mouse: this is standing in for the OS cursor, so it has
+      // to be findable at a glance on a 1728px screen.
+      size: at(byMouse ? FREE * 1.25 : FREE, TILE * 1.14, t),
       radius: at(50, TILE_RADIUS_PCT, t),
       target: nearest,
       t,

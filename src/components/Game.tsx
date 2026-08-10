@@ -892,6 +892,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           justSolved={justSolved}
           floatFor={floatFor}
           canHint={tokens > 0}
+          tokens={tokens}
           onRevealLetter={spendLetter}
           onRevealWord={spendWord}
           hasDefinition={hasDefinition}

@@ -504,6 +504,24 @@ body {
     inset 0 -2.5px 1px -1px var(--glass-caustic-strong);
 }
 
+/*
+ * On a mouse this puck REPLACES the OS cursor (`mouse:cursor-none`), so it has
+ * to carry a cursor's job: be findable instantly on a big screen. The touch
+ * version can afford to be a whisper because a finger already knows where it
+ * is; a mouse pointer that is a whisper is a lost cursor.
+ */
+@media (hover: hover) and (pointer: fine) {
+  .glass-puck {
+    box-shadow:
+      0 4px 14px -4px var(--glass-contact-strong),
+      0 0 0 1.25px var(--glass-rim-light-strong),
+      0 0 0 2.5px var(--glass-contact),
+      inset 2px 2px 1.5px var(--glass-specular-strong),
+      inset -2px -1.5px 2.5px var(--glass-rim-dark-strong),
+      inset 0 -3px 1.5px -1px var(--glass-caustic-strong);
+  }
+}
+
 /* Specular along the top-left rim only — dies before the centre. */
 .glass-puck::after {
   content: '';

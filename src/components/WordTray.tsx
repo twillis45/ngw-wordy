@@ -29,6 +29,8 @@ type Props = {
   /** Points to float off the row that was just completed. */
   floatFor?: { word: string; points: number } | null;
   canHint: boolean;
+  /** Current balance, so a price the player cannot pay is not offered. */
+  tokens: number;
   onRevealLetter: (word: string) => void;
   onRevealWord: (word: string) => void;
   /** Gated on presence — a word with no entry must not look tappable. */
@@ -60,6 +62,7 @@ export default function WordTray({
   justSolved,
   floatFor,
   canHint,
+  tokens,
   onRevealLetter,
   onRevealWord,
   hasDefinition,
@@ -167,12 +170,17 @@ export default function WordTray({
                   ? 'cursor-pointer transition-transform active:scale-[0.98]'
                   : 'cursor-default',
               ].join(' ')}
+              // Don't promise options that cannot be opened: with no hints
+              // left the row is disabled, and saying "open hint options"
+              // is the control lying about what it does.
               aria-label={
                 definable
                   ? `${word}. Open the definition.`
                   : done
                     ? `${word.length}-letter word, done`
-                    : `${word.length}-letter word, not found. Open hint options.`
+                    : actionable
+                      ? `${word.length}-letter word, not found. Open hint options.`
+                      : `${word.length}-letter word, not found. No hints left.`
               }
             >
               {word.split('').map((ch, i) => {
@@ -233,28 +241,33 @@ export default function WordTray({
                 aria-label={`Hints for the ${word.length}-letter word`}
                 className="absolute left-1/2 top-full z-20 mt-1 flex -translate-x-1/2 gap-1 rounded-xl border-2 border-edge-mid liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-1"
               >
-                <button
-                  type="button"
-                  role="menuitem"
-                  onClick={() => {
+                {/*
+                  Affordability is checked HERE, not just in the engine.
+                  spendWord already refuses when the balance is short — but the
+                  menu was offering "Whole word · 3" to a player holding 2, and
+                  clicking it did nothing at all. A control that is offered,
+                  costs nothing to press, and silently declines is worse than
+                  one that is plainly out of reach.
+                */}
+                <HintOption
+                  label="A letter"
+                  cost={LETTER_COST}
+                  balance={tokens}
+                  onChoose={() => {
                     setMenuFor(null);
                     onRevealLetter(word);
                   }}
-                  className="whitespace-nowrap rounded-lg px-2.5 py-1.5 touch:min-h-11 text-meta text-text-primary hover:bg-steel-dark/40 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-steel-muted"
-                >
-                  A letter · {LETTER_COST}
-                </button>
-                <button
-                  type="button"
-                  role="menuitem"
-                  onClick={() => {
+                />
+                <HintOption
+                  label="Whole word"
+                  cost={WORD_COST}
+                  balance={tokens}
+                  muted
+                  onChoose={() => {
                     setMenuFor(null);
                     onRevealWord(word);
                   }}
-                  className="whitespace-nowrap rounded-lg px-2.5 py-1.5 touch:min-h-11 text-meta text-text-secondary hover:bg-steel-dark/40 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-steel-muted"
-                >
-                  Whole word · {WORD_COST}
-                </button>
+                />
               </div>
             )}
 
@@ -278,5 +291,50 @@ export default function WordTray({
         );
       })}
     </div>
+  );
+}
+
+/**
+ * One priced option in the hint menu.
+ *
+ * Disabled rather than hidden when unaffordable: the price is information the
+ * player needs in order to understand the economy, and hiding it just makes
+ * the menu change shape for reasons they cannot see.
+ */
+function HintOption({
+  label,
+  cost,
+  balance,
+  muted,
+  onChoose,
+}: {
+  label: string;
+  cost: number;
+  balance: number;
+  muted?: boolean;
+  onChoose: () => void;
+}) {
+  const affordable = balance >= cost;
+  return (
+    <button
+      type="button"
+      role="menuitem"
+      disabled={!affordable}
+      onClick={onChoose}
+      aria-label={
+        affordable
+          ? `${label}, costs ${cost} hint${cost === 1 ? '' : 's'}`
+          : `${label} needs ${cost} hints, you have ${balance}`
+      }
+      className={[
+        'whitespace-nowrap rounded-lg px-2.5 py-1.5 touch:min-h-11 text-meta',
+        'focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-steel-muted',
+        affordable
+          ? `${muted ? 'text-text-secondary' : 'text-text-primary'} hover:bg-steel-dark/40`
+          : 'cursor-not-allowed text-text-muted opacity-50',
+      ].join(' ')}
+    >
+      {label} · {cost}
+    </button>
   );
 }
