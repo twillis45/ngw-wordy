@@ -500,6 +500,7 @@ const median = diffs[Math.floor(diffs.length / 2)];
 
 console.log(
   `Wrote ${puzzles.length} puzzles -> ${OUT}\n` +
+    `  ${blockedCount} blocked words filtered from the wordlist\n` +
     `  ${(bytes / 1024).toFixed(0)} KB · avg ${avg.toFixed(1)} answers/puzzle\n` +
     `  difficulty: ${diffs[0].toFixed(2)} easiest / ${median.toFixed(2)} median /` +
     ` ${diffs[diffs.length - 1].toFixed(2)} hardest\n` +

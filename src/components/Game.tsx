@@ -261,14 +261,22 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
   const pick = useCallback(
     (i: number) => {
-      setSel((prev) => {
-        if (prev.includes(i)) return prev;
-        feedback.tap();
-        return [...prev, i];
-      });
+      // Feedback is computed OUTSIDE the updater: a state updater must be
+      // pure, and React can legitimately invoke it twice (StrictMode, or
+      // concurrent re-entry), which double-fired the haptic and clicked the
+      // hidden iOS switch element twice.
+      if (!selRef.current.includes(i)) feedback.tap();
+      setSel((prev) => (prev.includes(i) ? prev : [...prev, i]));
     },
     [setSel]
   );
+
+  /** Backspace, for the tap path — tapping the last letter takes it back. */
+  const undoLetter = useCallback(() => {
+    if (selRef.current.length === 0) return;
+    feedback.tap();
+    setSel((prev) => prev.slice(0, -1));
+  }, [setSel]);
 
   /**
    * Fires exactly once, from either path that can finish a grid: submitting the
@@ -901,6 +909,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onSelect={pick}
           onCommit={commit}
           onClear={() => setSel([])}
+          onUndo={undoLetter}
           active={active}
         />
       </div>

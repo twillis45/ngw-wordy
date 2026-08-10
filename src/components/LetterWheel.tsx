@@ -9,6 +9,8 @@ type Props = {
   onSelect: (index: number) => void;
   onCommit: () => void;
   onClear: () => void;
+  /** Remove the last-picked letter — the tap path's Backspace. */
+  onUndo: () => void;
   disabled?: boolean;
   /**
    * Escalating mode: letters not yet unlocked. They stay on the wheel so the
@@ -54,6 +56,14 @@ const PULL = 21; // % — where positional attraction begins
 const PULL_BITE = 1.7; // >1 = weak at the edge, sharply stronger near the tile
 const FREE = 11; // % — diameter of the untargeted pointer
 const TILE_RADIUS_PCT = 28; // rounded-2xl on a tile, as % of tile size
+/**
+ * How far the pointer must travel before a press counts as a drag, in % of
+ * the dial. Tiles sit 36% apart, so 3% is far below "moved toward a
+ * neighbour" and comfortably above the jitter of a thumb resting on glass.
+ */
+const DRAG_SLOP = 3;
+/** Shortest scoreable word — mirrors MIN_LEN in the puzzle generator. */
+const MIN_WORD = 3;
 const PARALLAX = 0.3; // how far a tile leans toward the pointer
 const LIFT = 0.07; // how much a tile swells as the pointer settles on it
 
@@ -71,6 +81,7 @@ export default function LetterWheel({
   onSelect,
   onCommit,
   onClear,
+  onUndo,
   disabled,
   active,
 }: Props) {
@@ -124,13 +135,37 @@ export default function LetterWheel({
     [positions, active, letters]
   );
 
+  /**
+   * A press is not yet a drag.
+   *
+   * This component claimed "two input paths, both first-class: drag… tap a
+   * tile". Only one existed. `handleDown` used to enter drag state on
+   * pointerdown, so pointerup ran `onCommit` — meaning a single TAP cleared
+   * the word, selected one letter, and submitted it. "Too short." Every tap
+   * after that wiped the one before, so there was no way to build a word
+   * without a sustained multi-target drag, and no submit control anywhere.
+   *
+   * That made the game unplayable with VoiceOver, TalkBack, Switch Control or
+   * any tremor, and it is where a first-time player quits — six round glossy
+   * tiles are the most button-looking things on the screen, and pressing one
+   * returned a scolding.
+   *
+   * So: pointerdown only ARMS a gesture. It becomes a drag on movement past a
+   * threshold; otherwise pointerup leaves it alone and the tile's own click
+   * handler appends the letter. Click also covers keyboard and AT activation
+   * for free, which is why the tap path lives there rather than in pointerup.
+   */
+  const armed = useRef<{ x: number; y: number; i: number } | null>(null);
+  /** Set when a gesture became a drag, so the trailing click is ignored. */
+  const dragged = useRef(false);
+
   const handleDown = (e: React.PointerEvent) => {
     if (disabled) return;
     const pt = localPoint(e);
     if (!pt) return;
     const hit = hitTest(pt);
     if (hit === -1) return;
-    e.preventDefault();
+    // NOT preventDefault: that suppresses the click event the tap path needs.
     try {
       boxRef.current?.setPointerCapture(e.pointerId);
     } catch {
@@ -138,10 +173,9 @@ export default function LetterWheel({
       // It throws if the pointer isn't active, and an uncaught throw here
       // killed the whole gesture before dragging was ever set.
     }
-    setDragging(true);
+    armed.current = { x: pt.x, y: pt.y, i: hit };
+    dragged.current = false;
     setCursor(pt);
-    onClear();
-    onSelect(hit);
   };
 
   const handleMove = (e: React.PointerEvent) => {
@@ -149,8 +183,24 @@ export default function LetterWheel({
     const pt = localPoint(e);
     if (!pt) return;
 
-    // Track the mouse even when nothing is held down.
     if (!dragging) {
+      const start = armed.current;
+      if (start) {
+        setCursor(pt);
+        // Promote to a drag only once the pointer has actually travelled.
+        if (Math.hypot(pt.x - start.x, pt.y - start.y) > DRAG_SLOP) {
+          dragged.current = true;
+          setDragging(true);
+          // The path begins at the tile that was pressed, not at wherever the
+          // pointer happened to cross the threshold.
+          onClear();
+          onSelect(start.i);
+          const hit = hitTest(pt);
+          if (hit !== -1) onSelect(hit);
+        }
+        return;
+      }
+      // Track the mouse even when nothing is held down.
       if (e.pointerType === 'mouse') {
         setHovering(true);
         setCursor(pt);
@@ -166,7 +216,12 @@ export default function LetterWheel({
   };
 
   const endDrag = useCallback(() => {
-    if (!dragging) return;
+    armed.current = null;
+    if (!dragging) {
+      // A tap. Leave the selection alone — the click handler appends.
+      setCursor(null);
+      return;
+    }
     setDragging(false);
     setCursor(null);
     onCommit();
@@ -412,6 +467,44 @@ export default function LetterWheel({
         </span>
       )}
 
+      {/*
+        The submit control. There wasn't one.
+        Committing was reachable only by ending a drag or pressing Enter, so on
+        a touch device with no keyboard the drag was the ONLY way to enter a
+        word. This lives in the dial's dead centre: it costs no layout on a
+        board we already had to fight for vertical space on, it is inside the
+        thumb arc, and it appears only once there is something to submit.
+      */}
+      {selected.length > 0 && (
+        <button
+          type="button"
+          onClick={onCommit}
+          disabled={disabled || selected.length < MIN_WORD}
+          aria-label={
+            selected.length < MIN_WORD
+              ? `Word too short — ${MIN_WORD} letters minimum`
+              : 'Submit word'
+          }
+          className={[
+            'absolute left-1/2 top-1/2 z-10 grid -translate-x-1/2 -translate-y-1/2',
+            'place-items-center rounded-full border-2 font-semibold uppercase',
+            'tracking-[0.08em] transition-colors',
+            'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-muted',
+            selected.length < MIN_WORD
+              ? 'border-edge/45 text-text-muted'
+              : 'border-success bg-steel-dark/60 text-text-primary active:scale-95',
+          ].join(' ')}
+          style={{
+            width: '30%',
+            height: '30%',
+            fontSize: '7cqmin',
+            // Matches the tiles: sized from the dial so it scales with it.
+          }}
+        >
+          {selected.length < MIN_WORD ? `${selected.length}/${MIN_WORD}` : 'Enter'}
+        </button>
+      )}
+
       {letters.map((letter, i) => {
         const pos = positions[i];
         const order = selected.indexOf(i);
@@ -433,8 +526,18 @@ export default function LetterWheel({
             }${picked ? `, selected position ${order + 1}` : ''}`}
             aria-pressed={picked}
             onClick={() => {
+              if (locked) return;
               // Ignore the synthetic click that follows a drag.
-              if (dragging || locked) return;
+              if (dragged.current) {
+                dragged.current = false;
+                return;
+              }
+              // Tapping the letter you added last takes it back, so the tap
+              // path has an undo without needing a keyboard Backspace.
+              if (selected.length > 0 && selected[selected.length - 1] === i) {
+                onUndo();
+                return;
+              }
               onSelect(i);
             }}
             className={[

@@ -14,7 +14,7 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { BLOCKLIST, SLUR_LIST, containsSlur, isBlocked } from '../../scripts/lib/blocklist.mjs';
+import { BLOCKLIST, SLUR_LIST, isBlocked } from '../../scripts/lib/blocklist.mjs';
 
 type Puzzle = {
   grid: string[];
