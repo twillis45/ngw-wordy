@@ -72,7 +72,9 @@ function legalRows(base) {
   });
 }
 
-const only = process.argv[2];
+// Flags are not theme filters — `--all` was being read as a theme id, which
+// matched nothing and reported zero opportunities.
+const only = process.argv.slice(2).find((a) => !a.startsWith('-'));
 const opportunities = [];
 let scored = 0;
 let onTheme = 0;
@@ -107,7 +109,8 @@ process.stdout.write(
     (100 * onTheme) / scored
   )}%)\n\n`
 );
-for (const o of opportunities.slice(0, 24)) {
+const cap = process.argv.includes('--all') ? opportunities.length : 24;
+for (const o of opportunities.slice(0, cap)) {
   process.stdout.write(
     `${o.theme}/${o.base}\n  generic rows : ${o.generic.join(' ')}\n  could use    : ${o.available.join(' ')}\n`
   );
