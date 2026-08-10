@@ -107,6 +107,16 @@
       "id": "caribbean",
       "name": "Which Island",
       "blurb": "Six flags off one fire escape, and every pot in the yard is somebody's mother's."
+    },
+    {
+      "id": "carolina",
+      "name": "Pig Pickin'",
+      "blurb": "Oak burning down in a barrel at ten at night, one hog split flat, and a bucket of vinegar with no tomato in it."
+    },
+    {
+      "id": "chicago",
+      "name": "Tips and a Link",
+      "blurb": "Hickory burning in a glass box on Seventy-Fifth, and a paper sack already going dark at the bottom."
     }
   ],
   "puzzles": [
@@ -6698,6 +6708,462 @@
         "lane",
         "leg",
         "lace"
+      ]
+    },
+    {
+      "base": "shovel",
+      "theme": "carolina",
+      "clues": {
+        "shovel": "Flat-bladed, kept leaning on the barrel, and it never digs a thing all night. Coals ride on it, nothing else.",
+        "shove": "What nobody does to a man crossing a dark yard with a load of live coals. You step back and let him by.",
+        "holes": "Cut in the tin lid so the smoke has somewhere to go, and you read the fire by what comes out of them.",
+        "hose": "Dragged the length of the yard, because the spigot is at the house and the fire is down by the fence.",
+        "love": "What he means, having said nothing for six hours, when he hands you the first piece of crackling.",
+        "hoes": "Two of them still standing in the shed corner, from the garden that grew the collards for tomorrow."
+      },
+      "prefer": [
+        "shove",
+        "holes",
+        "hose",
+        "love",
+        "hoes"
+      ]
+    },
+    {
+      "base": "piglet",
+      "theme": "carolina",
+      "clues": {
+        "piglet": "Not what goes on. The one you want dresses out near a hundred and forty pounds, split down the back and flat.",
+        "pit": "Cinder block, waist high, sheet tin for a lid, and it lives under a shelter behind the fellowship hall.",
+        "pig": "What a picking means: the whole animal, and people walk up and take the meat off it themselves.",
+        "leg": "Four of them, splayed flat across the block, and nobody eats until the back pair goes soft.",
+        "lit": "What the barrel is by eight in the evening, hours before anything goes near the fire.",
+        "pile": "Oak split in June and stacked by the fence so it is dry and quiet by October."
+      },
+      "prefer": [
+        "pit",
+        "pig",
+        "leg",
+        "lit",
+        "pile"
+      ]
+    },
+    {
+      "base": "bylaws",
+      "theme": "carolina",
+      "clues": {
+        "bylaws": "The fire department keeps them in a binder, and the plate-sale money can go to equipment and to nothing else.",
+        "slaw": "White and chopped fine, and it goes on the sandwich, not beside it. Red means you drove a hundred miles west.",
+        "laws": "The unwritten ones. First: nobody who slept through the night gets to say when the meat is done.",
+        "saw": "Runs on the tailgate, cuts oak to stove length, and exactly one man is allowed to touch it.",
+        "swab": "A rag knotted onto a broom handle, dunked in the bucket, run over the meat every hour till daylight.",
+        "way": "There is one, it is her mother's, and no man has ever argued her off it."
+      },
+      "prefer": [
+        "slaw",
+        "laws",
+        "saw",
+        "swab",
+        "way"
+      ]
+    },
+    {
+      "base": "clause",
+      "theme": "carolina",
+      "clues": {
+        "clause": "The one in the rental agreement for the towable cooker: back by noon, ashes out, or she keeps the deposit.",
+        "sauce": "Cider vinegar, crushed red pepper, black pepper, salt. Add tomato and you are cooking another state's food.",
+        "scale": "At the packing house, where dressed weight settles the argument about whether one animal will feed everybody.",
+        "sale": "Tickets went out three Sundays ahead. By Thursday she was writing names on the back of the list.",
+        "cause": "The rescue squad needs a truck, and every dollar off these plates goes on that one line of the ledger.",
+        "clue": "The color of the smoke gives you one, and the man who has done this forty years does not need it."
+      },
+      "prefer": [
+        "sauce",
+        "scale",
+        "sale",
+        "cause",
+        "clue"
+      ]
+    },
+    {
+      "base": "hating",
+      "theme": "carolina",
+      "clues": {
+        "hating": "Not what it is, whatever it sounds like, when he gets going about Lexington and the ketchup in their dip.",
+        "night": "The animal goes on before dark and comes off after breakfast, and the hours between belong to two men and a radio.",
+        "gnat": "Comes up off the ditch bank at dusk in a cloud and goes straight for the eyes of whoever is minding the fire.",
+        "hat": "Mesh back, feed store on the front, and it comes off one time all day, in the kitchen, for the blessing.",
+        "tin": "The sheet laid over the block, weighted down with two bricks, and you lift a corner to look.",
+        "hang": "What the smoke does in your clothes so plainly people at work on Monday ask you who cooked."
+      },
+      "prefer": [
+        "night",
+        "gnat",
+        "hat",
+        "tin",
+        "hang"
+      ]
+    },
+    {
+      "base": "planet",
+      "theme": "carolina",
+      "clues": {
+        "planet": "What the yard feels like at four in the morning: one lantern, one man, and the coals breathing.",
+        "plate": "Chopped meat, slaw, boiled potatoes, two hush puppies, in a foam box, and the line is out the door by eleven.",
+        "plan": "Written on the back of a bulletin: who buys, who cooks, who chops, who counts the money. Her handwriting.",
+        "pan": "Set under the drip so the fat can be caught and carried to the cornbread, which is the whole point of it.",
+        "ten": "How many trays of banana pudding she signed up for. She brought eleven.",
+        "pale": "How the coals look before they are worth carrying: dusted white, no flame left on them at all."
+      },
+      "prefer": [
+        "plate",
+        "plan",
+        "pan",
+        "ten",
+        "pale"
+      ]
+    },
+    {
+      "base": "pastry",
+      "theme": "carolina",
+      "clues": {
+        "pastry": "Nobody in the hall uses the word. It is pies, pudding, and a pound cake under a glass dome.",
+        "tarp": "Blue, thrown over the woodpile in September and held down with two blocks and an old wheel rim.",
+        "tray": "Steam kind, riding to the hall in a trunk on a bed of towels so the meat is still hot when it lands.",
+        "party": "What they call it out of state. Here it is a picking, and the difference matters to the people saying it.",
+        "pray": "What the cook does alone at four in the morning, before he lifts the lid and looks at what he has.",
+        "spray": "A bottle of vinegar and water kept within arm's reach for the second the fat catches and flares."
+      },
+      "prefer": [
+        "tarp",
+        "tray",
+        "party",
+        "pray",
+        "spray"
+      ]
+    },
+    {
+      "base": "oracle",
+      "theme": "carolina",
+      "clues": {
+        "oracle": "The eighty-year-old in the folding chair, asked twice an hour whether it is ready, answering in one word.",
+        "coal": "Carried on a flat blade from the barrel to the fire, one load every fifteen minutes, all night.",
+        "acre": "The one behind the house, cut Friday so nobody's chair sinks and no child disappears in the grass.",
+        "oral": "How the recipe exists. There is no card, and the woman holding it has never once written it down.",
+        "clear": "The sauce is so thin and see-through that the first time you are handed it you think somebody poured you water.",
+        "cola": "A New Bern druggist mixed the first one in 1893, which is why the cooler out here is not neutral ground."
+      },
+      "prefer": [
+        "coal",
+        "acre",
+        "oral",
+        "clear",
+        "cola"
+      ]
+    },
+    {
+      "base": "failed",
+      "theme": "carolina",
+      "clues": {
+        "failed": "What his first hog did, at nineteen, in front of everybody, and he still tells it on himself.",
+        "field": "Tobacco, and the picking waits until the last barn comes out and there is finally a free Saturday.",
+        "fade": "What the letters on the plate-sale sign do by the third year it goes back up on the same post.",
+        "deal": "Made with the packing house in August: two hogs, dressed, held on ice until Friday morning.",
+        "laid": "How the animal goes on: split down the backbone, opened flat, four people lifting it together.",
+        "dial": "The one on the thermometer nobody trusts. He goes by the sound the fat makes."
+      },
+      "prefer": [
+        "field",
+        "fade",
+        "deal",
+        "laid",
+        "dial"
+      ]
+    },
+    {
+      "base": "pantry",
+      "theme": "carolina",
+      "clues": {
+        "pantry": "Church kitchen shelves: number ten cans, paper boats by the hundred, and the good aluminum she counts twice.",
+        "rant": "Fifteen minutes on what they do to it in Lexington, delivered to a man who already agrees with every word.",
+        "pay": "Nobody at the fire takes any, and the man who once asked about gas money has not lived it down.",
+        "nap": "Taken in the cab of the truck at three in the morning, forty minutes, boots still on.",
+        "ran": "What the plates did by one o'clock last fall, which is why she doubled the order this year.",
+        "yarn": "She works it in a lawn chair beside the fire through her whole shift, and nobody suggests she go inside."
+      },
+      "prefer": [
+        "rant",
+        "pay",
+        "nap",
+        "ran",
+        "yarn"
+      ]
+    },
+    {
+      "base": "turban",
+      "theme": "carolina",
+      "clues": {
+        "turban": "Not the word she uses for it. Hers is tied before daylight and comes off when the last pan is dried.",
+        "barn": "The tobacco kind out back, empty since bulk curing came in, and the folding tables live in it now.",
+        "turn": "Done once, near the end, with two boards and four people, and it is the only nervous minute of the night.",
+        "bun": "Soft, white, cheap, and the chopped meat goes on it with slaw and not one thing else.",
+        "tub": "Where the sauce gets mixed by the gallon, with a wooden paddle kept for nothing else.",
+        "burnt": "What the middle would get if the coals went under it, so they are banked at the shoulders and hams instead."
+      },
+      "prefer": [
+        "barn",
+        "turn",
+        "bun",
+        "tub",
+        "burnt"
+      ]
+    },
+    {
+      "base": "sought",
+      "theme": "chicago",
+      "clues": {
+        "sought": "Wages, a school, a room of your own: what she boarded the Illinois Central to find.",
+        "south": "The Side that has Lem's on Seventy-Fifth, and half the argument about who does tips best.",
+        "tough": "The cartilage running through a rib end. You chew around it, and that is the point of the cut.",
+        "hogs": "What the Union Stock Yards took in by the million until 1971, the industry this food grew up beside.",
+        "host": "Whoever's turn it is this year, decided in April by the woman who runs the group text.",
+        "shut": "The corner shop is this every Monday, and nobody on the block bothers driving by to check."
+      },
+      "prefer": [
+        "south",
+        "tough",
+        "hogs",
+        "host",
+        "shut"
+      ]
+    },
+    {
+      "base": "upshot",
+      "theme": "chicago",
+      "clues": {
+        "upshot": "After the wait, the bag, the ride home: two pounds of ends and a link, and nobody speaks.",
+        "shop": "Not a restaurant. Four feet of standing room and a menu board with the prices taped over twice.",
+        "push": "What you do with the bill into the little turntable, and what she does with the sack coming back.",
+        "stop": "The Seventy-Ninth bus lets out at the door, which is why the line is longest around six.",
+        "pots": "Two behind the window, kept warm: the mild one, and the one they will warn you about.",
+        "tops": "Where the fries go once the meat is in: over it, never beside it, so the sauce runs down."
+      },
+      "prefer": [
+        "shop",
+        "push",
+        "stop",
+        "pots",
+        "tops"
+      ]
+    },
+    {
+      "base": "polite",
+      "theme": "chicago",
+      "clues": {
+        "polite": "Say good evening before you say your order. The woman who owns the place notices who does.",
+        "tip": "The trimmed end of a spare rib, cartilage and all, cheap because the packer had no use for it.",
+        "pile": "How it comes out onto the plate at home: no arranging, no garnish, the whole order in a heap.",
+        "pit": "Glass-fronted, brick-lined, hickory burning down at one end. The box this city built its barbecue in.",
+        "tile": "Floor, walls, ceiling to shoulder height, so the whole front room hoses down at eleven at night.",
+        "lit": "The hickory has been this since five in the morning, hours before the first order is taken."
+      },
+      "prefer": [
+        "tip",
+        "pile",
+        "pit",
+        "tile",
+        "lit"
+      ]
+    },
+    {
+      "base": "bruise",
+      "theme": "chicago",
+      "clues": {
+        "bruise": "The color the sky over the water goes the week everybody admits the season is finished.",
+        "ribs": "The whole rack, which is not what this city is known for. The ends are.",
+        "rub": "Salt, pepper, paprika and whatever else she will not name, worked in the night before.",
+        "sure": "She is, about the sauce, having made it the same way since her mother had the shop.",
+        "busier": "Friday after payday against any Tuesday in February. It is not a close comparison.",
+        "rise": "White bread out of a plastic sleeve never had to do it before going under the meat."
+      },
+      "prefer": [
+        "ribs",
+        "rub",
+        "sure",
+        "busier",
+        "rise"
+      ]
+    },
+    {
+      "base": "clouds",
+      "theme": "chicago",
+      "clues": {
+        "clouds": "What comes over the fence from the garage all Saturday, so the neighbor two doors down knows the menu.",
+        "soul": "The word this city put on the food once it came up from the Delta and needed a name on a sign.",
+        "loud": "The radio in the alley, the fan on the smoker, and two card games going at once behind the garage.",
+        "sold": "By the pound at the window, and by two on a Saturday afternoon there is nothing left to buy.",
+        "could": "She said the alley would hold it, and she was right: forty people and every garage door up.",
+        "duo": "Ends and a link in the same sack. Ordering only one of them marks you as new to the block."
+      },
+      "prefer": [
+        "soul",
+        "loud",
+        "sold",
+        "could",
+        "duo"
+      ]
+    },
+    {
+      "base": "closed",
+      "theme": "chicago",
+      "clues": {
+        "closed": "What the good shop is on Christmas and New Year's, and the sign has said so since her father ran it.",
+        "cold": "What the brick room never is, even in January. It holds heat for hours after the fire is out.",
+        "old": "The smoker is this, and nobody will let anybody weld a new door onto it.",
+        "sled": "A child drags one past the shop window in January while her mother waits for a number.",
+        "dose": "How much sauce goes on when you say extra: enough that the fries at the bottom turn orange.",
+        "lose": "Four months of the year go out here, and that is exactly why nobody wastes a warm Saturday."
+      },
+      "prefer": [
+        "cold",
+        "old",
+        "sled",
+        "dose",
+        "lose"
+      ]
+    },
+    {
+      "base": "locate",
+      "theme": "chicago",
+      "clues": {
+        "locate": "You do it at seven in the morning to a free table with no permit on it, and then you hope.",
+        "coal": "Dumped in the red can when you are done, never on the grass, and never in a park that forbids it.",
+        "coat": "On the back of the folding chair by nine at night in June, because the wind comes off the water.",
+        "late": "What the application cannot be: fifty people or more and the Park District wants it well ahead.",
+        "tale": "The one about the cousin who set a grill on the sand and got a lesson about where that is legal.",
+        "ale": "Not allowed at any size without the permit, along with amplified sound and anything with a tent."
+      },
+      "prefer": [
+        "coal",
+        "coat",
+        "late",
+        "tale",
+        "ale"
+      ]
+    },
+    {
+      "base": "coward",
+      "theme": "chicago",
+      "clues": {
+        "coward": "They call the cousin this for asking sauce on the side, and he answers to it all afternoon.",
+        "ward": "Yours is the office that signs the street-closure request, and the woman at that desk knows your block.",
+        "crowd": "Forty on the pavement by two, and the folding tables came out of three different basements.",
+        "road": "The barricades come off at eight and it goes back to being one, with grease marks by the curb.",
+        "word": "She gave the neighbor one about the noise, and the whole block held her to it.",
+        "card": "The sign in the window says they do not take one, which is why the machine by the door stays busy."
+      },
+      "prefer": [
+        "ward",
+        "crowd",
+        "road",
+        "word",
+        "card"
+      ]
+    },
+    {
+      "base": "baring",
+      "theme": "chicago",
+      "clues": {
+        "baring": "What the parkway trees are doing by the first week of November, all the way down the block.",
+        "bag": "Brown paper, doubled, already going dark at the bottom before you get back to the corner.",
+        "bring": "What she tells you to do with a cooler and nothing else, because the food is handled.",
+        "rain": "The tent goes up in the yard whether it comes or not. She has watched the forecast since Wednesday.",
+        "ring": "The phone does it all afternoon on Memorial Day, and nobody behind the counter has time to answer.",
+        "grab": "You do not do it yourself. Stand where she points and wait for your number to be called."
+      },
+      "prefer": [
+        "bag",
+        "bring",
+        "rain",
+        "ring",
+        "grab"
+      ]
+    },
+    {
+      "base": "ankles",
+      "theme": "chicago",
+      "clues": {
+        "ankles": "What the wind finds first, in the gap over your socks, standing outside a shop in February.",
+        "lake": "Right there, and you still cannot set a grill on the sand. The shore is where it is banned outright.",
+        "kale": "The greens are not this. Collards, smoked turkey, and she will hear no discussion about it.",
+        "sale": "What the block club runs off a card table on the corner, plates going to whoever paid ahead.",
+        "lean": "The woman ahead of you is doing it on the counter, ordering for a whole house off a list.",
+        "sneak": "The children do it with the fries on the ride home, and she pretends not to notice."
+      },
+      "prefer": [
+        "lake",
+        "kale",
+        "sale",
+        "lean",
+        "sneak"
+      ]
+    },
+    {
+      "base": "carved",
+      "theme": "chicago",
+      "clues": {
+        "carved": "Not the word for it. A cleaver, a wooden block, and eight strokes straight through the order.",
+        "crave": "The smell out of the roof vent does it to people two blocks away who were not even hungry.",
+        "ave": "Halsted, Ashland, Western: the long ones that run the length of the city, and the shops sit on them.",
+        "acre": "The yard behind a two-flat is not one. Twenty feet of concrete, a fence, and the smoker.",
+        "read": "She does it to the line, counting heads and putting more on before anybody has ordered.",
+        "dare": "Nobody does it with her sauce. Asking twice gets you a look and a change of subject."
+      },
+      "prefer": [
+        "crave",
+        "ave",
+        "acre",
+        "read",
+        "dare"
+      ]
+    },
+    {
+      "base": "crafts",
+      "theme": "chicago",
+      "clues": {
+        "crafts": "Nobody in the shop would use the word. It is a trade, learned standing beside somebody for years.",
+        "scarf": "Hers holds the smell of the smoke room for a week, and she stopped apologizing for that long ago.",
+        "fat": "It renders down through the cartilage and into the fries underneath. Take it out and there is no dish.",
+        "fast": "How the line moves once the shift lets out: name, order, money, sack, next.",
+        "cars": "Double-parked on both sides of Madison with the hazards on, because there is nowhere to leave one.",
+        "cast": "The coals do it across the ceiling of the back room every time the door swings open."
+      },
+      "prefer": [
+        "scarf",
+        "fat",
+        "fast",
+        "cars",
+        "cast"
+      ]
+    },
+    {
+      "base": "hoping",
+      "theme": "carolina",
+      "clues": {
+        "hoping": "What the man at the barrel does about the weather, from four until the meat is ready.",
+        "hog": "Split flat, skin down, a hundred and forty pounds, and it takes the whole night.",
+        "pig": "What the church sign says they are picking on Saturday, plates from eleven.",
+        "hop": "What the ash does when the shovel drops it under the cooker, which is why you stand back.",
+        "pin": "What holds the wire down over the cooker, bent out of shape from six years of this.",
+        "ping": "The sound the tin lid makes as it cools, and how she knows the fire has dropped."
+      },
+      "prefer": [
+        "hog",
+        "pig",
+        "hop",
+        "pin",
+        "ping"
       ]
     }
   ]

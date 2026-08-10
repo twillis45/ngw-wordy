@@ -38,6 +38,18 @@ const MIN_ANSWERS = 24;
 const MAX_ANSWERS = 110;
 const MIN_COMMON_ROWS = 5; // featured floor, base included
 
+/*
+ * At most ONE of these, matching build-puzzles.mjs, so the wheel stays
+ * solvable-feeling.
+ *
+ * This script exists to make rejection impossible, and it shipped without this
+ * rule — so it offered `knives` (k and v) as viable and an author spent a board
+ * on it before the build refused it. A vetting tool that does not enforce every
+ * rule the build enforces is worse than no vetting tool, because people trust
+ * it.
+ */
+const RARE = new Set(['j', 'q', 'x', 'z', 'v', 'w', 'k']);
+
 const words = fs
   .readFileSync(path.join(ROOT, 'data', 'enable1.txt'), 'utf8')
   .split('\n')
@@ -105,6 +117,7 @@ for (const base of words) {
   if (!popular.has(base)) continue;
   if (claimed.has(base)) continue;
   if (claimedSets.has(letterKey(base))) continue;
+  if ([...base].filter((c) => RARE.has(c)).length > 1) continue;
 
   const answers = answersFor(base);
   if (answers.length < MIN_ANSWERS || answers.length > MAX_ANSWERS) continue;
