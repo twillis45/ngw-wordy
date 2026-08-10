@@ -510,7 +510,23 @@ for (const base of bases) {
     if (!t) {
       themeReport.rejected.push(`${base}: unknown theme "${authoredEntry.theme}"`);
     } else {
-      theme = { id: t.id, name: t.name, blurb: t.blurb ?? '' };
+      /*
+       * `scene` names what THIS BOARD is about, which the theme name cannot.
+       *
+       * Clue mode shows one clue at a time, so a board's subject never
+       * assembles in front of the player. A row like `sole` is genuinely
+       * on-theme — it is the sole WRITING CREDIT, on a board about clearance
+       * and publishing — but the theme label says "90s R&B" and nothing bridges
+       * the two. Asked how a player would know the board was about credits, the
+       * honest answer was that they would not. This is the bridge, and it is
+       * optional so a board without one loses nothing.
+       */
+      theme = {
+        id: t.id,
+        name: t.name,
+        blurb: t.blurb ?? '',
+        scene: authoredEntry.scene ?? null,
+      };
       themeReport.applied += 1;
       for (const [word, text] of Object.entries(authoredEntry.clues ?? {})) {
         if (!ordered.includes(word)) {

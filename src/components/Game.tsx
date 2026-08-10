@@ -960,9 +960,20 @@ export default function Game({ data }: { data: PuzzleFile }) {
       </button>
 
       {puzzle.theme && (
-        <p className="mt-2 text-center text-kicker uppercase tracking-[0.18em] text-text-secondary short:mt-0.5">
-          {puzzle.theme.name}
-        </p>
+        <div className="mt-2 text-center short:mt-0.5">
+          <p className="text-kicker uppercase tracking-[0.18em] text-text-secondary">
+            {puzzle.theme.name}
+          </p>
+          {/* The board's own subject. Clue mode reveals one clue at a time, so
+              without this the scene a board is built around never assembles —
+              a player meets `sole` on a board about writing credits with
+              nothing anywhere saying so. */}
+          {puzzle.theme.scene && (
+            <p className="mt-0.5 text-meta italic leading-snug text-text-muted">
+              {puzzle.theme.scene}
+            </p>
+          )}
+        </div>
       )}
 
       {/* Target grid */}

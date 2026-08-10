@@ -156,7 +156,8 @@
         "cola",
         "also",
         "coals"
-      ]
+      ],
+      "scene": "The take, and the ad libs after it"
     },
     {
       "base": "sample",
@@ -175,7 +176,8 @@
         "plea",
         "leaps",
         "ample"
-      ]
+      ],
+      "scene": "Borrowing four bars"
     },
     {
       "base": "sitcom",
@@ -370,14 +372,14 @@
       "clues": {
         "anthem": "Lift Every Voice. The second verse, and your grandmother knows it cold.",
         "amen": "Said early, by one man in the back, and it is not a question he is asking.",
-        "meant": "What the whole row decided that line was about, and it was about them.",
         "name": "On the back of the funeral home fan, with a phone number underneath it.",
         "meat": "Sunday's is a roast. Wednesday's is whatever is left of Sunday's.",
-        "math": "What the ushers do in the back with the count, twice, before it is read."
+        "math": "What the ushers do in the back with the count, twice, before it is read.",
+        "ham": "Scored in diamonds, studded with cloves, and the pineapple rings go on last."
       },
       "prefer": [
         "amen",
-        "meant",
+        "ham",
         "name",
         "meat",
         "math"
@@ -428,14 +430,14 @@
         "mashed": "Real potatoes, the whole afternoon, and the mixer stays in the cabinet.",
         "shade": "On the porch after the meal, or what your cousin just quietly threw.",
         "heads": "Bowed, all of them, before one fork is allowed to touch one plate.",
-        "made": "From scratch, and she will say it that way while you are eating it.",
         "mesh": "The screen door that slams no matter how gently you think you closed it.",
-        "shed": "Where the extra folding chairs get carried back to when plates are cleared."
+        "shed": "Where the extra folding chairs get carried back to when plates are cleared.",
+        "ham": "Scored in diamonds, cloves at the corners, and the pineapple rings are not up for discussion."
       },
       "prefer": [
         "shade",
         "heads",
-        "made",
+        "ham",
         "mesh",
         "shed"
       ]
@@ -468,15 +470,16 @@
         "pearl": "One on a chain, over the collarbone, in the portrait from '96.",
         "layer": "The jacket he keeps on all night in August because of the shirt under it.",
         "plea": "Two verses of apology and a key change, and she still does not pick up.",
-        "pale": "The light off the dashboard clock, the only thing on at two in the morning."
+        "play": "Press it and the song starts halfway in, because nobody ever rewound all the way back."
       },
       "prefer": [
         "relay",
         "pearl",
         "layer",
         "plea",
-        "pale"
-      ]
+        "play"
+      ],
+      "scene": "The car, the changer, the drive"
     },
     {
       "base": "singer",
@@ -495,26 +498,28 @@
         "resin",
         "grin",
         "sign"
-      ]
+      ],
+      "scene": "One mic, one stool"
     },
     {
       "base": "slower",
       "theme": "rnb90s",
       "clues": {
         "slower": "What he asked for at the booth, and half the floor sat down.",
-        "lower": "What his hand did to the dial once it stopped being about anybody else.",
         "swore": "On the porch at seventeen, that this one was going to be permanent.",
         "worse": "The second tape she made him, and it still lives in the car door.",
         "rose": "One, still in the gas station plastic, handed over at 11:40.",
-        "wore": "The velour set, in the mall portrait, with the laser background."
+        "wore": "The velour set, in the mall portrait, with the laser background.",
+        "slow": "The last four of the night, back to back, and the lights come down to almost nothing."
       },
       "prefer": [
-        "lower",
+        "slow",
         "swore",
         "worse",
         "rose",
         "wore"
-      ]
+      ],
+      "scene": "The tempo, and what it does to a room"
     },
     {
       "base": "chorus",
@@ -533,7 +538,8 @@
         "sour",
         "such",
         "ouch"
-      ]
+      ],
+      "scene": "The part everybody already knows"
     },
     {
       "base": "dances",
@@ -541,18 +547,19 @@
       "clues": {
         "dances": "He knows two, and he does both at every single reception.",
         "dance": "Arms on the shoulders, four inches of daylight, chaperone watching.",
-        "cased": "The whole rack, twice, before spending the eight dollars.",
         "scan": "Down the spine of the shelf, hunting the one with the sticker.",
         "sand": "Still in the floor mats in November, from one July weekend.",
-        "sedan": "Four doors, somebody's mother's, and the deck in the dash is the only reason to sit in it."
+        "sedan": "Four doors, somebody's mother's, and the deck in the dash is the only reason to sit in it.",
+        "case": "The hinge snapped in the car door years ago and the disc still lives inside it."
       },
       "prefer": [
         "dance",
-        "cased",
+        "case",
         "scan",
         "sedan",
         "sand"
-      ]
+      ],
+      "scene": "Records, and the floor they end up on"
     },
     {
       "base": "minute",
@@ -571,7 +578,8 @@
         "tune",
         "untie",
         "unite"
-      ]
+      ],
+      "scene": "Intros, outros and the long way in"
     },
     {
       "base": "candle",
@@ -590,7 +598,8 @@
         "dance",
         "land",
         "lace"
-      ]
+      ],
+      "scene": "Making the room ready"
     },
     {
       "base": "trunks",
@@ -609,7 +618,8 @@
         "stunk",
         "rust",
         "nuts"
-      ]
+      ],
+      "scene": "Summer, and what it left behind"
     },
     {
       "base": "hearts",
@@ -628,7 +638,8 @@
         "earth",
         "hates",
         "stare"
-      ]
+      ],
+      "scene": "Tracklists written out by hand"
     },
     {
       "base": "pagers",
@@ -647,7 +658,8 @@
         "rages",
         "sage",
         "ears"
-      ]
+      ],
+      "scene": "How you reached somebody in 1994"
     },
     {
       "base": "cruise",
@@ -666,7 +678,8 @@
         "cries",
         "sure",
         "rise"
-      ]
+      ],
+      "scene": "Windows down, nowhere to be"
     },
     {
       "base": "sauced",
@@ -790,14 +803,14 @@
         "boil": "The pot out on the propane burner, because it will never fit on the stove.",
         "oiled": "The grates, with half an onion on a fork, before anything touches them.",
         "idle": "Two men standing over the pit doing nothing at all, and doing it seriously.",
-        "lobe": "Where the good earrings go, and they go in only after the cooking is done.",
-        "deli": "The plastic tub the potato salad arrived in. It has never fooled anybody."
+        "deli": "The plastic tub the potato salad arrived in. It has never fooled anybody.",
+        "lid": "Lifted an inch, water sloshing, and she tells you to shut it before the cold gets out."
       },
       "prefer": [
         "boil",
         "oiled",
         "idle",
-        "lobe",
+        "lid",
         "deli"
       ]
     },
@@ -827,14 +840,14 @@
         "spiced": "The rub went on last night, which is why nobody could get into the fridge.",
         "spice": "The tin with no label on it that she will not let you take a picture of.",
         "dice": "What he does to the onion, small, so the children cannot see it and refuse.",
-        "iced": "Sweet enough to stand a spoon in, in the yellow cooler with the spout.",
         "side": "There are eleven of them and exactly one kind of meat left on the table.",
-        "pies": "Sweet potato, two of them, and one is already spoken for by name."
+        "pies": "Sweet potato, two of them, and one is already spoken for by name.",
+        "ice": "Twenty pounds from the gas station, and somebody has to go back for more by two o'clock."
       },
       "prefer": [
         "spice",
         "dice",
-        "iced",
+        "ice",
         "side",
         "pies"
       ]
@@ -1114,14 +1127,14 @@
         "ideas": "The suggestion on the wall said add fried chicken. The committee voted it down.",
         "dries": "What the fish does on a rack of newspaper for ninety seconds. No longer.",
         "arise": "To come up, the way the question of charging fourteen does at every meeting.",
-        "raid": "What the kids do to the bread bag while nobody is watching the side table."
+        "side": "Spaghetti and slaw in the little tray, and a box is not a box without one of them."
       },
       "prefer": [
         "aside",
         "ideas",
         "dries",
         "arise",
-        "raid"
+        "side"
       ]
     },
     {
@@ -1170,14 +1183,14 @@
         "shade": "Where the folding chairs go by four o'clock, and who sits in them is already settled.",
         "chase": "What the aunties do to the kids circling the hot oil. Twice, then once for real.",
         "heads": "She counts them coming in the door to know when to drop the last batch.",
-        "ache": "What your feet do at hour five, standing over that fryer for the building fund.",
-        "case": "A flat of hot sauce, bought wholesale, because the little bottles walk off."
+        "case": "A flat of hot sauce, bought wholesale, because the little bottles walk off.",
+        "cash": "No cards, no app, no exceptions, and the sign taped by the door has said so since 1988."
       },
       "prefer": [
         "shade",
         "chase",
         "heads",
-        "ache",
+        "cash",
         "case"
       ]
     },
@@ -1247,14 +1260,14 @@
         "spry": "The eighty-year-old on the register, faster than both teenagers bagging boxes.",
         "rips": "What the bottom of the bag does when somebody carries four boxes flat.",
         "pics": "The line, the sign, the loaded plate, all posted before anybody says grace.",
-        "cry": "What the kid does when the last box goes to the man standing in front of him."
+        "crisp": "Fish that snaps when you bite through the cornmeal, and she can hear it from the door."
       },
       "prefer": [
         "spicy",
         "spry",
         "rips",
         "pics",
-        "cry"
+        "crisp"
       ]
     },
     {
@@ -1285,14 +1298,14 @@
         "lost": "The suitcase that went to Atlanta while its owner went on to Memphis.",
         "shoe": "Kicked off under the banquet chair by ten, carried out to the car by eleven.",
         "stole": "Across her shoulders for the program photograph, and over the chair by dessert.",
-        "toes": "Stepped on during the electric slide by a nephew who does not know the steps."
+        "hotel": "Two queens on the third floor, and the waffle iron in the lobby is running by six."
       },
       "prefer": [
         "host",
         "lost",
         "shoe",
         "stole",
-        "toes"
+        "hotel"
       ]
     },
     {
@@ -1323,14 +1336,14 @@
         "gave": "What the great-uncle did with forty acres in 1948, and why nobody argues about it now.",
         "sage": "What the program calls the ninety-one-year-old, two lines under her photograph.",
         "ears": "Hers are the only thing that went, she says, then answers a question from across the room.",
-        "rage": "What the branch nobody asked to help set up is holding, quietly, over by the punch bowl."
+        "grave": "Three rows in from the fence line, and she brought her own clippers for the edging."
       },
       "prefer": [
         "vase",
         "gave",
         "sage",
         "ears",
-        "rage"
+        "grave"
       ]
     },
     {
@@ -1398,14 +1411,14 @@
         "album": "The one from 1978, and the argument over which twin is in the yellow chair.",
         "balm": "Passed down the row in a little tin once the reading of the names begins.",
         "lamb": "On the banquet menu because the hall would not fry anything on a Saturday.",
-        "slam": "What the trunk did on the eighth of nine trips back out to the car.",
-        "sum": "The figure at the bottom of the treasurer's page, read out loud to the whole room."
+        "sum": "The figure at the bottom of the treasurer's page, read out loud to the whole room.",
+        "bus": "Chartered for the Sunday ride out to the home place, and she holds the roster at the door."
       },
       "prefer": [
         "album",
         "balm",
         "lamb",
-        "slam",
+        "bus",
         "sum"
       ]
     },
@@ -1434,14 +1447,14 @@
       "clues": {
         "ladies": "The Auxiliary. Eleven women, one cash box, and the whole basement answers to them.",
         "sale": "Second Friday of the month, six to seven-thirty, or until the whiting runs out.",
-        "ideas": "The menu changes she brought to the committee, voted down four to three.",
         "aside": "The pastor's box, set back on the counter with his name on masking tape.",
         "said": "What she told the man who asked for a discount, once, and did not repeat.",
-        "aisle": "The path between the folding tables nobody is allowed to block with a cooler."
+        "aisle": "The path between the folding tables nobody is allowed to block with a cooler.",
+        "side": "Slaw in the little cup, and the spaghetti tray goes out at six-fifteen exactly."
       },
       "prefer": [
         "sale",
-        "ideas",
+        "side",
         "aside",
         "said",
         "aisle"
@@ -1474,14 +1487,14 @@
         "apron": "She ties it in the back at five and does not take it off until the last box goes out.",
         "snap": "The sound of the cash box closing when a man asks her to make an exception.",
         "soap": "The sink she assigns to whoever showed up late, and it is not a punishment, she says.",
-        "soar": "What the roof fund total did the Friday the plant let out early.",
-        "pans": "Foil, half-size, taped shut, and counted twice before they go to the job site."
+        "pans": "Foil, half-size, taped shut, and counted twice before they go to the job site.",
+        "pan": "Cast iron, half a lifetime seasoned, and only two people are allowed to wash it."
       },
       "prefer": [
         "apron",
         "snap",
         "soap",
-        "soar",
+        "pan",
         "pans"
       ]
     },
@@ -1568,14 +1581,14 @@
         "polish": "Twenty-two bottles on the rack, and she still knows which one you wore last June.",
         "spoil": "What she does to a client of thirty years: hot towel, foot soak, no upcharge.",
         "lips": "She lines her own in the mirror between clients without once looking at her hands.",
-        "oils": "Four bottles on the shelf, three nearly empty, and one kept back for the scalp.",
         "slip": "The little paper she writes your next date on and tucks into your purse.",
-        "shop": "Her name is on the sign out front, and the lease is in her name too."
+        "shop": "Her name is on the sign out front, and the lease is in her name too.",
+        "oil": "A few drops worked into the scalp with one fingertip, parted row by row across her head."
       },
       "prefer": [
         "spoil",
         "lips",
-        "oils",
+        "oil",
         "slip",
         "shop"
       ]
@@ -1588,14 +1601,14 @@
         "laces": "What her granddaughter finally managed on her own sneakers under the dryer.",
         "scalp": "She parts it with the comb tip and says speak up the second it stings.",
         "space": "She gave the back room to a young braider for a year and took nothing.",
-        "clasp": "The hook at your throat, and the one on the necklace she made you take off.",
-        "place": "You do not take somebody else's slot in the book. Everybody knows this."
+        "place": "You do not take somebody else's slot in the book. Everybody knows this.",
+        "cape": "Snapped shut at the back of your neck, and it still lets clippings down your collar."
       },
       "prefer": [
         "laces",
         "scalp",
         "space",
-        "clasp",
+        "cape",
         "place"
       ]
     },
@@ -1608,14 +1621,14 @@
         "cream": "Comes in a tub with a plastic stick, and she times it to the minute, never past.",
         "care": "What thirty years of the same two hands actually is, whatever the receipt says.",
         "pace": "She works one head at a time and will not be hurried by anybody's carpool.",
-        "cram": "What Easter week does to a book that was already full."
+        "cap": "Satin, and she asks whether you actually wore yours to bed every night this week."
       },
       "prefer": [
         "perm",
         "cream",
         "care",
         "pace",
-        "cram"
+        "cap"
       ]
     },
     {
@@ -1627,14 +1640,14 @@
         "reach": "The top shelf where the good conditioner lives, behind retail she never pushes.",
         "cheap": "What her prices are not, and she will explain why to your face.",
         "peach": "The wall color since the day she opened, and no, she is not changing it.",
-        "hear": "What the whole room did, and what nobody will repeat outside the door."
+        "cape": "Black nylon, tied twice, and she flicks it out like a bullfighter before it settles."
       },
       "prefer": [
         "perch",
         "reach",
         "cheap",
         "peach",
-        "hear"
+        "cape"
       ]
     },
     {
@@ -1646,14 +1659,14 @@
         "melts": "What the grease does the second the hot comb touches it.",
         "meals": "Nobody leaves the building at noon; a girl runs to the corner for everybody.",
         "seal": "What the last pass of the iron is meant to do to the cuticle.",
-        "tame": "What she promises the child's hair will be by the time she stands up."
+        "seat": "Yours is under the middle mirror, and the woman ahead of you is still under the dryer."
       },
       "prefer": [
         "steam",
         "melts",
         "meals",
         "seal",
-        "tame"
+        "seat"
       ]
     },
     {
@@ -1702,14 +1715,14 @@
         "part": "Where she starts on your head, and where your daughter squirms the most.",
         "pane": "The window she keeps her station beside, for the light and for who walks by.",
         "tape": "Holds the appointment card to the mirror, curled and yellow at the corners.",
-        "neat": "How she leaves the shelf at closing, every bottle turned label out.",
-        "tear": "What the comb will not do, so long as she works the ends first."
+        "tear": "What the comb will not do, so long as she works the ends first.",
+        "rent": "Her chair costs her a flat fee every Friday, in an envelope, and she has never been late."
       },
       "prefer": [
         "part",
         "pane",
         "tape",
-        "neat",
+        "rent",
         "tear"
       ]
     },
@@ -1721,14 +1734,14 @@
         "owner": "She does heads all day and does the books after everybody has gone home.",
         "done": "She spins you around and says nothing, because she does not have to.",
         "word": "Hers is the whole contract. No deposit, no card kept on file.",
-        "redo": "Free if you come back inside a week, and she will not discuss it further.",
-        "worn": "How the third step behind the counter looks after twenty-two years."
+        "worn": "How the third step behind the counter looks after twenty-two years.",
+        "rod": "Perm ones, gray and pink by diameter, sorted in the drawer she keeps to herself."
       },
       "prefer": [
         "owner",
         "done",
         "word",
-        "redo",
+        "rod",
         "worn"
       ]
     },
@@ -1740,14 +1753,14 @@
         "rinse": "Head back, warm water, and the one minute in six hours when nobody talks.",
         "rest": "What the edge of the bowl gives your neck, with a folded towel underneath.",
         "stern": "How she gets exactly once, when a child will not put her head down.",
-        "tires": "What a full Saturday does to your back, and somehow not to hers.",
-        "site": "The corner unit she picked, after two years of looking, for the parking."
+        "site": "The corner unit she picked, after two years of looking, for the parking.",
+        "set": "Wound on rods Friday, dried under the hood, and combed out into something that lasts."
       },
       "prefer": [
         "rinse",
         "rest",
         "stern",
-        "tires",
+        "set",
         "site"
       ]
     },
@@ -1758,14 +1771,14 @@
         "latino": "The Dominican shop two blocks over: walk in, ninety minutes, out for twenty-five dollars.",
         "lion": "What a fresh set of curls makes a four-year-old, roaring at her own reflection.",
         "loan": "How the second dryer got bought, and she paid it back a year early.",
-        "into": "Where the rollers go before the hood comes down on your head.",
         "alto": "Where she sings on Sunday, and where half her Saturday book sings too.",
-        "ton": "How much hair comes off that floor by closing, or near enough."
+        "ton": "How much hair comes off that floor by closing, or near enough.",
+        "nail": "The tech at the window table works on your hands while your color is processing."
       },
       "prefer": [
         "lion",
         "loan",
-        "into",
+        "nail",
         "alto",
         "ton"
       ]
@@ -1777,14 +1790,14 @@
         "placid": "How a screaming toddler goes the second warm water hits her head.",
         "clip": "Six of them holding your sections while she works on the seventh.",
         "paid": "Cash in the apron pocket, and she writes it in the book either way.",
-        "acid": "What a relaxer is not, though your grandmother will call it that anyway.",
         "dial": "On the hood, and it has been stuck on medium since about 2011.",
-        "plaid": "The school skirt she has to wear, so the braids have to match it."
+        "plaid": "The school skirt she has to wear, so the braids have to match it.",
+        "cap": "Clear plastic over the conditioner, and you sit under the hood twenty minutes wearing it."
       },
       "prefer": [
         "clip",
         "paid",
-        "acid",
+        "cap",
         "dial",
         "plaid"
       ]
@@ -1814,14 +1827,14 @@
       "clues": {
         "streak": "The silver one at her temple she has refused to color since 2009.",
         "rake": "What her fingers do through your roots, checking how dry it got.",
-        "take": "How long it really is. She said all day on the phone and she meant it.",
         "task": "Sweeping between heads, and the youngest does it without being asked.",
         "star": "The photo by the register: a client who made it, signed to her by name.",
-        "stare": "What the whole room does when somebody walks in with a new color."
+        "stare": "What the whole room does when somebody walks in with a new color.",
+        "set": "Rods go in wet, gray ones at the crown, and she picks the size without asking."
       },
       "prefer": [
         "rake",
-        "take",
+        "set",
         "task",
         "star",
         "stare"
@@ -1835,14 +1848,14 @@
         "asked": "What she never did for permission, from anybody, before she signed.",
         "dates": "Written in pencil in a spiral book, because people move things.",
         "desk": "Up front, with the phone, the book, and a dish of butterscotch.",
-        "sake": "For the peace of it, she quit taking walk-ins on Saturdays altogether.",
-        "stake": "What she has in your wedding, your job interview, and your mother's funeral."
+        "stake": "What she has in your wedding, your job interview, and your mother's funeral.",
+        "seat": "Four at the mirrors, two at the dryers, one by the door for whoever is waiting."
       },
       "prefer": [
         "asked",
         "dates",
         "desk",
-        "sake",
+        "seat",
         "stake"
       ]
     },
@@ -1852,14 +1865,14 @@
       "clues": {
         "steady": "Nine in the morning, every other Saturday, same seat, since the first Bush.",
         "stay": "You did not plan on being here this long, and you are not leaving.",
-        "easy": "What none of this is, though her hands make it look that way.",
         "days": "The two she takes off, and everybody knows better than to call.",
         "seat": "Under the hood, with a magazine from four years ago on your lap.",
-        "stead": "When she had surgery, her niece worked in her place and lost nobody."
+        "stead": "When she had surgery, her niece worked in her place and lost nobody.",
+        "set": "Rollers on Friday, a scarf over it, and the whole thing has to hold through Sunday."
       },
       "prefer": [
         "stay",
-        "easy",
+        "set",
         "days",
         "seat",
         "stead"
@@ -1871,14 +1884,14 @@
       "clues": {
         "strewn": "The floor by two o'clock: black, brown, honey, and somebody's silver.",
         "sewn": "Track by track with a curved needle, and she checks the tension each row.",
-        "stew": "Simmering in a pot in the back all winter, and she will fix you some.",
         "news": "Who is sick, who is moving, who is expecting. Ahead of any group chat.",
         "nest": "What she calls the matted patch at the crown after two weeks in a bonnet.",
-        "went": "Where the young stylist did when she opened her own place, with a blessing."
+        "went": "Where the young stylist did when she opened her own place, with a blessing.",
+        "rent": "Due on the first, paid before anything else in the shop, and never once late."
       },
       "prefer": [
         "sewn",
-        "stew",
+        "rent",
         "news",
         "nest",
         "went"
@@ -1893,14 +1906,14 @@
         "waste": "Two inches of split ends, and she will not pretend otherwise.",
         "sway": "The hips of the woman at the sink when the radio hits the right song.",
         "ways": "She has three of laying a part, and picks by the shape of your face.",
-        "west": "The side the afternoon sun hits, which keeps that one station warm."
+        "seat": "The one by the window, claimed by a woman who has come every other Thursday since 1997."
       },
       "prefer": [
         "sweat",
         "waste",
         "sway",
         "ways",
-        "west"
+        "seat"
       ]
     },
     {
@@ -1908,14 +1921,14 @@
       "theme": "salon",
       "clues": {
         "tangle": "Two weeks of ignoring it, and now it is a forty-minute problem.",
-        "angel": "What she calls the child sitting still, loud enough for the one who is not.",
         "agent": "She is her own: no booking app, no manager, her number on the card.",
         "gate": "The little one at the top of the steps, so no toddler reaches the iron.",
         "lean": "How she stands all day, one hip on the counter, and her feet know it.",
-        "teal": "The smock color she has bought in bulk since the nineties."
+        "teal": "The smock color she has bought in bulk since the nineties.",
+        "gel": "A dab from the blue jar at the edges, smoothed down with a soft brush and tied."
       },
       "prefer": [
-        "angel",
+        "gel",
         "agent",
         "gate",
         "lean",
@@ -1948,14 +1961,14 @@
         "waters": "What wash day runs through, gallon after gallon, from ten until noon.",
         "water": "Warm at the neck, cooler on the last pass, and she asks how it feels.",
         "straw": "How your ends feel in February, and she says protein, not more grease.",
-        "wear": "What you will do with this style for six weeks, wrapped every night.",
         "sear": "What the iron would do if she rushed, and she does not rush.",
-        "wares": "The oils and satin caps she keeps by the register, priced fair."
+        "wares": "The oils and satin caps she keeps by the register, priced fair.",
+        "set": "Rollers straight from the bowl, and she picks the size by how tight you want it."
       },
       "prefer": [
         "water",
         "straw",
-        "wear",
+        "set",
         "sear",
         "wares"
       ]
@@ -1966,14 +1979,14 @@
       "clues": {
         "talked": "She won the hand before a card fell, running her mouth the whole way.",
         "dealt": "Thirteen apiece, one at a time, and nobody touches theirs until the last lands.",
-        "delta": "The gap between what you bid and what you actually took. Write it small.",
         "take": "A book pulled in with a spade nobody at this table saw coming.",
         "late": "You got here at nine. They started at eight and your partner sat alone.",
-        "talk": "Half of this game, and none of it is anywhere in the rules."
+        "talk": "Half of this game, and none of it is anywhere in the rules.",
+        "deal": "Whoever shuffles gets accused of stacking it, every single hand, and nobody means it."
       },
       "prefer": [
         "dealt",
-        "delta",
+        "deal",
         "take",
         "late",
         "talk"
@@ -1988,14 +2001,14 @@
         "mates": "Partners, assigned by the cut, and you live with what you get.",
         "stare": "What comes across the table when you lead the wrong suit.",
         "teams": "Two and two. Chairs moved so nobody sits beside the one they came with.",
-        "rate": "How fast the cards come off her thumb. One per player, no looking."
+        "set": "Bid six, took four, and the other side says the number out loud twice."
       },
       "prefer": [
         "smart",
         "mates",
         "stare",
         "teams",
-        "rate"
+        "set"
       ]
     },
     {
@@ -2025,14 +2038,14 @@
         "delay": "The long pause before she chooses, which tells you absolutely nothing.",
         "lady": "The queen. Worth nothing alone, deadly sitting behind the ace.",
         "plea": "One book, partner, just one — said with the eyebrows only.",
-        "pled": "Begged, past tense. For a cut, for a re-deal, for one more round.",
-        "play": "What these four have done in the same kitchen corner every Friday since 1994."
+        "play": "What these four have done in the same kitchen corner every Friday since 1994.",
+        "pad": "Yellow legal, the running total in her handwriting, and nobody else writes on it."
       },
       "prefer": [
         "delay",
         "lady",
         "plea",
-        "pled",
+        "pad",
         "play"
       ]
     },
@@ -2064,14 +2077,14 @@
         "tale": "The one about that hand in 1998, told again, longer than last time.",
         "lace": "Thread it through the eyelets — or the trim on the cloth that has covered this table thirty years.",
         "let": "Allow it. She ruled, the card stands, and the round goes on.",
-        "cake": "Somebody's birthday is in the other room. The game does not stop for it."
+        "talk": "Across the table, over the cards, and half the reason anybody came out tonight."
       },
       "prefer": [
         "lack",
         "tale",
         "lace",
         "let",
-        "cake"
+        "talk"
       ]
     },
     {
@@ -2120,14 +2133,14 @@
         "spare": "The extra chair dragged in from the porch when a fifth person shows up.",
         "spear": "To stab clean through. What the little joker does to the ace you saved.",
         "reap": "Collect what the bid promised, once the last book is finally in.",
-        "pare": "Trim it down. What the bid becomes after one look across the table.",
-        "ears": "Wide open at this table, which is why nobody spells anything out loud."
+        "ears": "Wide open at this table, which is why nobody spells anything out loud.",
+        "spade": "Thirteen in the deck plus two jokers, and every one of them is worth watching."
       },
       "prefer": [
         "spare",
         "spear",
         "reap",
-        "pare",
+        "spade",
         "ears"
       ]
     },
@@ -2139,14 +2152,14 @@
         "place": "First, second, third — the finishing order she writes down without being asked.",
         "clap": "One flat hand on the wood when the last book comes home.",
         "pace": "Four hands an hour, and the new guy is slowing it down.",
-        "pale": "The color he turns when his ace gets cut on the first round.",
-        "leap": "From four books to seven in one breath, and no way to take it back."
+        "leap": "From four books to seven in one breath, and no way to take it back.",
+        "deal": "Thirteen apiece, one at a time, and she will not be hurried through it."
       },
       "prefer": [
         "place",
         "clap",
         "pace",
-        "pale",
+        "deal",
         "leap"
       ]
     },
@@ -2158,14 +2171,14 @@
         "result": "What lands on the pad: her team plus one-forty, his team minus ten.",
         "rules": "House ones. Written nowhere, enforced completely, and she is the authority.",
         "rest": "The other cards in your hand, the ones that will never take a book.",
-        "true": "Accurate. How she describes her own count when you dare question it.",
-        "sure": "How he sounded bidding seven. He was not, and everybody knew."
+        "sure": "How he sounded bidding seven. He was not, and everybody knew.",
+        "set": "Bid five, took three, and the other team writes the number down with relish."
       },
       "prefer": [
         "result",
         "rules",
         "rest",
-        "true",
+        "set",
         "sure"
       ]
     },
@@ -2178,14 +2191,14 @@
         "star": "The one everybody wants across from them. She has not lost a Friday since March.",
         "cast": "To throw one down. He regrets it before the four cards are gathered up.",
         "aces": "Four in the deck, and one of them is getting cut tonight.",
-        "crest": "The high point of the night, somewhere in the middle of the third game."
+        "seat": "Against the window, hers since the first Friday, and the guest gets the folding one."
       },
       "prefer": [
         "cater",
         "star",
         "cast",
         "aces",
-        "crest"
+        "seat"
       ]
     },
     {
@@ -2196,14 +2209,14 @@
         "facts": "She has them all: the date, the score, and who reneged in 2009.",
         "safe": "A bid of four holding six spades. Nobody at the table respects it.",
         "fast": "The one-handed shuffle she does while telling a story about her sister.",
-        "fate": "Whatever the cut hands you. You bid it anyway and say nothing.",
-        "seat": "The one against the wall. His since 1996, and no, you cannot have it."
+        "seat": "The one against the wall. His since 1996, and no, you cannot have it.",
+        "ace": "Held back one round too long, and now there is nothing left to take with it."
       },
       "prefer": [
         "facts",
         "safe",
         "fast",
-        "fate",
+        "ace",
         "seat"
       ]
     },
@@ -2216,14 +2229,14 @@
         "made": "Bid four, took four. Nothing extra, nothing owed to anybody.",
         "calm": "How she stays while he is up out of his chair about a card he threw himself.",
         "clam": "What he goes quiet as, the second he works out that he is set.",
-        "lame": "The excuse about the light, the chair, the deck. Heard it all before."
+        "deal": "Cut to the left, thirteen apiece, and the argument pauses while cards come off."
       },
       "prefer": [
         "medal",
         "made",
         "calm",
         "clam",
-        "lame"
+        "deal"
       ]
     },
     {
@@ -2232,14 +2245,14 @@
       "clues": {
         "scaled": "The bid climbed four, five, six, because neither side would back down.",
         "scale": "What the whole night is measured on: five hundred, and not one point more.",
-        "case": "The little box the deck came in, gone since the second week.",
         "seal": "To close it out — the last book taken quietly with a two.",
         "laced": "How she talks: sweet on top, something else underneath it.",
-        "ales": "Bottles sweating on the counter. Never, ever set on the table itself."
+        "ales": "Bottles sweating on the counter. Never, ever set on the table itself.",
+        "ace": "She led with it on the first book, to see who would be fool enough to cut."
       },
       "prefer": [
         "scale",
-        "case",
+        "ace",
         "seal",
         "laced",
         "ales"
@@ -2252,14 +2265,14 @@
         "packed": "Six chairs in a kitchen corner built for four, and nobody minds.",
         "aced": "Cut clean by the highest card in the game.",
         "peak": "The loudest minute of the whole night, and it is only 9:15.",
-        "peck": "The small kiss she gives him after taking every book he bid.",
         "paced": "He walked the length of the kitchen twice before throwing one card.",
-        "ape": "To copy. He bids whatever she just bid and it has never once worked."
+        "ape": "To copy. He bids whatever she just bid and it has never once worked.",
+        "deck": "Bought new for New Year's and already soft at every corner by March."
       },
       "prefer": [
         "aced",
         "peak",
-        "peck",
+        "deck",
         "paced",
         "ape"
       ]
@@ -2290,14 +2303,14 @@
         "gasped": "All four did it at once when the little joker fell on the first book.",
         "page": "Torn off, folded in half, tucked under the sugar bowl for next Friday.",
         "sage": "Whoever she is at your table: she says the rule out loud and it is over.",
-        "gaps": "The holes in his suits, which she counted two rounds ago.",
         "ages": "How long the man on the left takes to bid. Every single time.",
-        "pads": "Yellow, legal, one per year, in a stack in the same drawer."
+        "pads": "Yellow, legal, one per year, in a stack in the same drawer.",
+        "spade": "Cut a diamond with one and the book is yours, whatever was led into it."
       },
       "prefer": [
         "page",
         "sage",
-        "gaps",
+        "spade",
         "ages",
         "pads"
       ]
@@ -2330,14 +2343,14 @@
         "rage": "Two seconds of it, then a laugh, then he shuffles.",
         "card": "One of thirteen, and somehow always the wrong one.",
         "drag": "The long stretch between the bid and the first lead while he sorts twice.",
-        "dear": "What she calls him right before she cuts his ace."
+        "ace": "Third from the top behind both jokers, unless this house plays deuces above it."
       },
       "prefer": [
         "grace",
         "rage",
         "card",
         "drag",
-        "dear"
+        "ace"
       ]
     },
     {
@@ -2421,14 +2434,14 @@
       "theme": "church",
       "clues": {
         "maiden": "The surname the mothers still use for her in the roll book, sixty years after the wedding.",
-        "amend": "What the clerk does to the minutes when the trustees remember the vote differently.",
         "aide": "Armor-bearer is the word here: water, towel, and the Bible carried a half-step behind.",
         "mind": "What she made up about the carpet color, and the trustee meeting is a formality.",
         "dime": "What went into the plate from a child's hand, and the woman beside her did not correct it.",
-        "named": "Cut in brass beside the fellowship hall door, after the vote, and she was in the room for it."
+        "named": "Cut in brass beside the fellowship hall door, after the vote, and she was in the room for it.",
+        "amen": "The one word the room says back, and the deacon's lands a half-beat ahead of everybody."
       },
       "prefer": [
-        "amend",
+        "amen",
         "aide",
         "mind",
         "dime",
@@ -2440,14 +2453,14 @@
       "theme": "church",
       "clues": {
         "remain": "What the mothers do after the benediction, seated, while the building empties around them.",
-        "rein": "What the board chair keeps on a young minister who wants to change the order of service.",
         "rain": "Why the church van makes two trips, and why the ushers keep towels stacked by the door.",
         "near": "Where the nurses' unit sits: aisle end, two rows back, in white, watching everything.",
         "earn": "Nobody does the front pew. You are seated in it by somebody, or you are not.",
-        "mine": "What the sopranos call the alto line the week the director reassigns it."
+        "mine": "What the sopranos call the alto line the week the director reassigns it.",
+        "amen": "Two syllables from the mother in the third pew, and he takes it as permission to keep going."
       },
       "prefer": [
-        "rein",
+        "amen",
         "rain",
         "near",
         "earn",
@@ -2460,14 +2473,14 @@
       "clues": {
         "humane": "What the benevolence fund is for: a light bill, a bus ticket, and no questions in the meeting.",
         "human": "What the pastor admits to being, once, from the pulpit, and the room goes very quiet.",
-        "ahem": "The clerk's, into a live mic, when the reading has gone four minutes past its slot.",
         "mean": "What she does not have to be. She simply looks, and the whole back row sits down.",
         "hum": "What the keyboard holds under the altar call, low, until somebody finally comes down.",
-        "menu": "Typed for the repast and taped inside the hall door, and the family never sees a bill."
+        "menu": "Typed for the repast and taped inside the hall door, and the family never sees a bill.",
+        "amen": "Printed nowhere in the program, and still the last word of every prayer in the building."
       },
       "prefer": [
         "human",
-        "ahem",
+        "amen",
         "mean",
         "hum",
         "menu"
@@ -2500,14 +2513,14 @@
         "safe": "Bolted into the pastor's office, and the two women with the combination are not the pastor.",
         "seat": "There are seven in the front row and every one of them belongs to a woman by name.",
         "sent": "The sick-and-shut-in card, in her hand, every Monday, with stamps she buys herself.",
-        "nest": "The choir loft after service: three hymnals, two hats, and somebody's reading glasses.",
-        "east": "Which way the old sanctuary was built to face, and why the sun hits the third pew at eleven."
+        "east": "Which way the old sanctuary was built to face, and why the sun hits the third pew at eleven.",
+        "fan": "Cardboard on a wooden stick, worked steady through the sermon by three women in one pew."
       },
       "prefer": [
         "safe",
         "seat",
         "sent",
-        "nest",
+        "fan",
         "east"
       ]
     },
@@ -2535,14 +2548,14 @@
       "theme": "church",
       "clues": {
         "pianos": "The upright in the annex and the one up front, and only one has been tuned this year.",
-        "pains": "What the eighty-two-year-old at the keyboard plays straight through, and she has not missed a Sunday.",
         "pins": "In the hat, in the corsage, and in the little cushion she keeps in the vestibule drawer.",
         "naps": "The child laid across two laps in the fourth pew, out cold before the offering is lifted.",
         "span": "Sixty-one years between the oldest usher on duty and the youngest, and both are on the door.",
-        "spin": "What the young minister of music put on the anniversary hymn, and the mothers had thoughts."
+        "spin": "What the young minister of music put on the anniversary hymn, and the mothers had thoughts.",
+        "piano": "Middle C sticks, and she has played around it for two years without telling the trustees."
       },
       "prefer": [
-        "pains",
+        "piano",
         "pins",
         "naps",
         "span",
@@ -2577,14 +2590,14 @@
         "older": "The two women walked in on an arm, and the service does not begin until they are down.",
         "role": "Hers is nowhere on the printed program, and the building would stall by ten past eleven without it.",
         "lore": "Which pew flooded in '96, which pastor left in '04. She has all of it and no one wrote it down.",
-        "bored": "The teenager in the balcony, right up until the drums come in on the second chorus."
+        "robe": "Zipped over her Sunday dress in the choir room, and the hem has to clear her shoes."
       },
       "prefer": [
         "lord",
         "older",
         "role",
         "lore",
-        "bored"
+        "robe"
       ]
     },
     {
@@ -2592,14 +2605,14 @@
       "theme": "church",
       "clues": {
         "losing": "What the roll book says about the fourth pew, and why she is on the phone Monday morning.",
-        "lingo": "Tarry service, A and B selection, armor-bearer. Nobody explains a word of it to a visitor.",
         "sing": "What six hundred people do when the power cuts out: no keyboard, no mic, still on pitch.",
         "sign": "Out front, plastic letters, and the title she changes Tuesday with a suction cup pole.",
         "oils": "Anointing, in a little bottle in her purse, and she reaches the hospital before the pastor does.",
-        "lions": "Daniel's, drawn on butcher paper down the basement wall for children's church."
+        "lions": "Daniel's, drawn on butcher paper down the basement wall for children's church.",
+        "song": "The A selection: four minutes on the printed page, and the organist knows it will run eleven."
       },
       "prefer": [
-        "lingo",
+        "song",
         "sing",
         "sign",
         "oils",
@@ -2615,14 +2628,14 @@
         "bone": "What the old song says the Lord can do with the dry ones, and the balcony stands for that verse.",
         "born": "What the testimony always circles back to, and she gives the date and the street address.",
         "knob": "Missing off the basement door since Easter, and everybody knows to push it with a hip.",
-        "one": "How many services a storefront keeps, and it holds forty people at capacity."
+        "robe": "Handed back at the door with the cuffs turned in, and she checks each for the cleaner."
       },
       "prefer": [
         "broke",
         "bone",
         "born",
         "knob",
-        "one"
+        "robe"
       ]
     },
     {
@@ -2634,14 +2647,14 @@
         "zero": "Where the building fund started in January, and the thermometer on the wall is filled in by hand.",
         "bore": "Not what ninety minutes of preaching is, if the man behind you is keeping time on the pew back.",
         "nor": "The word in the old benediction, neither this ___ that, and half the room says it right along.",
-        "bro": "What the young men call each other out in the lot at one-thirty, out of their mothers' hearing."
+        "robe": "White for the anniversary, pressed Saturday night, hung on the rolling rack by height."
       },
       "prefer": [
         "zone",
         "zero",
         "bore",
         "nor",
-        "bro"
+        "robe"
       ]
     },
     {
@@ -2651,14 +2664,14 @@
         "dragon": "The red one out of Revelation, and the guest evangelist drew it on the easel pad in marker.",
         "grand": "The march at the anniversary: two by two down the center, oldest board first, nobody hurrying.",
         "road": "Eleven miles of it for the pastor who serves two charges, and the second service starts at three.",
-        "rang": "The office phone, all Monday, about one line in yesterday's announcements.",
         "nod": "Hers, from the rear of the sanctuary, and only then do the doors come open.",
-        "darn": "What the seamstress does to a hem in the vestibule, ten minutes before the processional."
+        "darn": "What the seamstress does to a hem in the vestibule, ten minutes before the processional.",
+        "organ": "Pipes in the loft, a Hammond down front, and she works the pedals in stocking feet."
       },
       "prefer": [
         "grand",
         "road",
-        "rang",
+        "organ",
         "nod",
         "darn"
       ]
@@ -2710,14 +2723,14 @@
         "flats": "She changes into them at the corner of Third, heels in her hand, still marching.",
         "last": "The engineering club's entry rolls at the end every year, and it has never broken down.",
         "lost": "The little cousin, for four whole minutes, between the fire truck and the pep squad.",
-        "salt": "What the town spread in 2019, when the parade route iced over in October."
+        "lot": "Tailgate spaces sold by the space, and one family has held the corner since 1988."
       },
       "prefer": [
         "float",
         "flats",
         "last",
         "lost",
-        "salt"
+        "lot"
       ]
     },
     {
@@ -2728,14 +2741,14 @@
         "rites": "The parts of the show that never change, because the chapter of 1971 is watching.",
         "tried": "Out for the line four times before they took her, and now she calls the cadence.",
         "tires": "The bus rolled in on four bald ones from a chapter three states over.",
-        "rest": "Ninety seconds between sets, and not one person uses it to sit down.",
-        "tier": "The upper level fills first, because that is where you can actually see the formations."
+        "tier": "The upper level fills first, because that is where you can actually see the formations.",
+        "ride": "The cymbal the drumline leans on all the way down the parade route."
       },
       "prefer": [
         "rites",
         "tried",
         "tires",
-        "rest",
+        "ride",
         "tier"
       ]
     },
@@ -2745,14 +2758,14 @@
       "clues": {
         "staged": "The coronation looked effortless. Three rehearsals, a lighting cue sheet, and her clipboard.",
         "stage": "Built Thursday in the gym, struck Sunday, and the risers go back to the music department.",
-        "dates": "Two schools, one weekend in October, and the alumni office locked them in a year out.",
         "gates": "Open at ten. The line for the field house started forming somewhere around six.",
         "sage": "The retired dean of students, eighty-four, who still gets the first word at the luncheon.",
-        "seat": "Section F, row 12. The same four people have held it since the Clinton administration."
+        "seat": "Section F, row 12. The same four people have held it since the Clinton administration.",
+        "tag": "Every cooler in the lot has one on it with a chapter name and a phone number."
       },
       "prefer": [
         "stage",
-        "dates",
+        "tag",
         "gates",
         "sage",
         "seat"
@@ -2767,14 +2780,14 @@
         "great": "The class of '74 says theirs was the last real one. The class of '89 says the same.",
         "hear": "You can tell whose band it is from a mile off, and the small school's is thirty people.",
         "tear": "In her eye when the roll of departed classmates is read at the Sunday service.",
-        "rage": "What the shuttle driver holds in for four hours of the same six blocks."
+        "gate": "Twenty dollars at the field house, cash, and the line wraps past the bookstore."
       },
       "prefer": [
         "heart",
         "great",
         "hear",
         "tear",
-        "rage"
+        "gate"
       ]
     },
     {
@@ -2784,14 +2797,14 @@
         "loathe": "What she does to the third-floor ice machine, and she books the same room anyway.",
         "hotel": "Sold out since March. The overflow is forty minutes up the interstate in Meridian.",
         "late": "Check-in is three. The lobby is a full reunion by noon and the desk gave up arguing.",
-        "hate": "What the front desk clerk, a junior on work-study, will not admit to by Saturday.",
         "oath": "The one the new chapter officers take at the alumnae breakfast, hands flat on the table.",
-        "tale": "The one about the '81 bus breaking down, and it grows a new detail every October."
+        "tale": "The one about the '81 bus breaking down, and it grows a new detail every October.",
+        "lot": "Gravel behind the field house, and the same families park in the same corner every year."
       },
       "prefer": [
         "hotel",
         "late",
-        "hate",
+        "lot",
         "oath",
         "tale"
       ]
@@ -2802,14 +2815,14 @@
       "clues": {
         "clothe": "What four generations of one family do for Saturday, in the same two colors.",
         "cloth": "Vinyl, school colors, clipped to the folding table because the wind comes off the field.",
-        "echo": "The chant from the far end of the pavement comes back at you two seconds later.",
         "hole": "In the '94 shirt, under the arm, and she wears it every single October regardless.",
         "lot": "Gate C. Space assignments by chapter, and the map went out in September.",
-        "toe": "Her heel sank in the grass, so she is walking the rest of the route on the front of one foot."
+        "toe": "Her heel sank in the grass, so she is walking the rest of the route on the front of one foot.",
+        "hotel": "Booked in January for October, and the block downtown was gone by the second week of February."
       },
       "prefer": [
         "cloth",
-        "echo",
+        "hotel",
         "hole",
         "lot",
         "toe"
@@ -2820,14 +2833,14 @@
       "theme": "homecoming",
       "clues": {
         "editor": "Nineteen years on the alumni magazine, and she knows which photographs start fights.",
-        "doer": "The chapter president who actually shows up Thursday to unload the truck herself.",
         "redo": "The cover, twice, because the first one cropped the small school's band right out.",
         "riot": "The comment section under the parade photographs, and she moderates it personally.",
         "rode": "Twelve hours from Houston in a van with four classmates and one good playlist.",
-        "tore": "The '68 banner, on the fence, and the archivist has already asked for the pieces."
+        "tore": "The '68 banner, on the fence, and the archivist has already asked for the pieces.",
+        "tie": "Black, clip-on for the ones who never learned, and the ball starts at nine."
       },
       "prefer": [
-        "doer",
+        "tie",
         "redo",
         "riot",
         "rode",
@@ -2843,14 +2856,14 @@
         "anger": "What the bookstore caused by ordering the sweatshirts in the wrong shade of red.",
         "gear": "Two duffels: one for the field on Saturday, one for the black-tie thing that night.",
         "rent": "The homecoming committee pays it on a storage unit twelve months of the year.",
-        "near": "The hotel is not. The house she grew up in is four blocks from the stadium."
+        "gate": "Wristband checked, cooler opened, and the woman working it went to school with your mother."
       },
       "prefer": [
         "grant",
         "anger",
         "gear",
         "rent",
-        "near"
+        "gate"
       ]
     },
     {
@@ -2918,14 +2931,14 @@
         "site": "Where the Sisters of the Blessed Sacrament opened a secondary school in 1915.",
         "rites": "Crowning, coronation, and the parade: the weekend holds more of them than the school year does.",
         "step": "What the Divine Nine chapters put on Friday night, judged loudly by everybody watching.",
-        "strip": "The pharmacy school's white coats in a line at the ceremony, a few hundred strong.",
-        "tires": "Four bald ones on the drive down, and she made it anyway, same as every year since 1994."
+        "tires": "Four bald ones on the drive down, and she made it anyway, same as every year since 1994.",
+        "tie": "Knotted in the car mirror at the gate, because the alumni brunch has a dress code."
       },
       "prefer": [
         "site",
         "rites",
         "step",
-        "strip",
+        "tie",
         "tires"
       ]
     },
@@ -2938,14 +2951,14 @@
         "tens": "What the little cousins get handed at the entrance, folded, with instructions.",
         "sang": "The alma mater, all four verses, and the ones who know two of them hum the rest.",
         "ages": "The spread under one canopy: eighty-nine down to a baby in a school-colors onesie.",
-        "ants": "Whatever you set on the grass finds them in a minute. Everything goes on the table."
+        "tag": "Stick-on, with the class year in marker under the name, because the year is the point."
       },
       "prefer": [
         "agent",
         "tens",
         "sang",
         "ages",
-        "ants"
+        "tag"
       ]
     },
     {
@@ -2954,14 +2967,14 @@
       "clues": {
         "gasket": "Blew one outside Tuscaloosa in '08, and the story has improved every October since.",
         "steak": "On the grill at the dentist's canopy, while everybody else is eating wings from a foil pan.",
-        "takes": "The drive, if you leave before the Thursday traffic. Fourteen hours if you do not.",
         "task": "Hers is the shuttle schedule and the wristbands, and it has been hers for nine years.",
         "tags": "The hanger on the mirror, plus a license plate from four states over.",
-        "gate": "Where the shuttle drops you, and where you will lose your whole group for an hour."
+        "gate": "Where the shuttle drops you, and where you will lose your whole group for an hour.",
+        "seat": "Nobody uses one before halftime, and nobody uses one after it either."
       },
       "prefer": [
         "steak",
-        "takes",
+        "seat",
         "task",
         "tags",
         "gate"
@@ -2974,14 +2987,14 @@
         "outage": "The power at the tents died at nine Saturday and three chapters shared one generator.",
         "auto": "The one she drove up from Mobile, with a decal in the back window from 1993.",
         "goat": "The argument under the canopy: best quarterback the school ever had, settled by nobody.",
-        "tug": "What the wind does to the canopy legs somebody forgot to weight down.",
         "gut": "The feeling in her stomach walking into the chapel for the first time in a decade.",
-        "out": "The lights, the coolers, and the last three people, at two in the morning."
+        "out": "The lights, the coolers, and the last three people, at two in the morning.",
+        "tag": "Written in marker on masking tape, because registration ran out of printed ones."
       },
       "prefer": [
         "auto",
         "goat",
-        "tug",
+        "tag",
         "gut",
         "out"
       ]
@@ -2995,14 +3008,14 @@
         "lines": "Four at the registration table, sorted by decade, and the one for the '70s moves slowest.",
         "list": "Taped inside the canopy: who brings the ice, who brings the chairs, who brings nothing.",
         "lens": "The photographer's, a foot long, and she has shot this weekend for twenty-two years.",
-        "lets": "The dean hears the step practice at one in the morning and, this weekend only, allows it."
+        "tie": "The game ended even in '77, and both schools still say they were robbed."
       },
       "prefer": [
         "silent",
         "lines",
         "list",
         "lens",
-        "lets"
+        "tie"
       ]
     },
     {
@@ -3013,14 +3026,14 @@
         "shirt": "Class year across the back in three-inch numbers, and the dues paid for the whole order.",
         "heirs": "The grandchildren at the tailgate, in school colors, before they can spell the school.",
         "hers": "The canopy, the coolers, the folding tables. All of it, and everybody knows it.",
-        "hires": "The alumni office takes on three student workers for the weekend, and pays them on time.",
-        "rise": "The whole section stands when the 1975 queen is walked out at halftime."
+        "rise": "The whole section stands when the 1975 queen is walked out at halftime.",
+        "tie": "Bow, and the ninety-year-old in the reviewing stand has worn one to every parade."
       },
       "prefer": [
         "shirt",
         "heirs",
         "hers",
-        "hires",
+        "tie",
         "rise"
       ]
     },
@@ -3031,14 +3044,14 @@
         "comers": "First-timers. Somebody's coworker who has never once seen anything like this.",
         "comes": "What the class of '84 does every October, recession or not, funeral or not.",
         "more": "What the DJ plays at midnight when the pavement was supposed to clear at eleven.",
-        "some": "Of that class, a good number pledged nothing at all and have not missed a weekend since.",
         "rose": "Laid on the memorial bench for the classmate who did not make it to this one.",
-        "core": "Eleven people who never left the state, and they hold the entire thing together."
+        "core": "Eleven people who never left the state, and they hold the entire thing together.",
+        "score": "Seventeen to fourteen at the half, and the band is the reason nobody left the stands."
       },
       "prefer": [
         "comes",
         "more",
-        "some",
+        "score",
         "rose",
         "core"
       ]
@@ -3051,14 +3064,14 @@
         "able": "Ninety-one, uses a walker on the grass, and still does the whole parade route.",
         "bear": "To carry it: the flag, the banner, the name of a class that is down to nine people.",
         "real": "What the rivalry is, and the two athletic directors are godparents to each other's kids.",
-        "rely": "What the committee does on the same eleven volunteers, year after year after year.",
-        "bare": "The field at seven Sunday morning, except for one canopy nobody has claimed."
+        "bare": "The field at seven Sunday morning, except for one canopy nobody has claimed.",
+        "year": "Nineteen ninety-four across the back of the shirt, and forty were ordered in that size."
       },
       "prefer": [
         "able",
         "bear",
         "real",
-        "rely",
+        "year",
         "bare"
       ]
     },
@@ -3088,14 +3101,14 @@
         "instep": "The high arch of the foot; a well-made loafer creases right across it by year two.",
         "step": "One count. Left, and the weight moves with you.",
         "spin": "He turns her out and catches her hand coming back, right on the four.",
-        "spent": "Two hours on a Tuesday, and the only thing she has to show is a better walk.",
         "pins": "Her hair is laid, the wrap held with two of these, and it will not move all night.",
-        "tips": "The toe ends of a pair, worn pale from a thousand pivots on hardwood."
+        "tips": "The toe ends of a pair, worn pale from a thousand pivots on hardwood.",
+        "set": "Two songs, then a break, and the DJ runs four of them before the lights come up."
       },
       "prefer": [
         "step",
         "spin",
-        "spent",
+        "set",
         "pins",
         "tips"
       ]
@@ -3108,14 +3121,14 @@
         "towel": "Folded over his shoulder by the third song, because the hall runs hot in August.",
         "welts": "What the new patent leather leaves across the top of her foot by midnight.",
         "west": "The side of Chicago that gets named first whenever the argument starts.",
-        "slot": "The gap in the second row that opens when somebody sits a song out early.",
-        "twos": "The count everybody learns before anything else: one and one, over and over."
+        "twos": "The count everybody learns before anything else: one and one, over and over.",
+        "slow": "The drag near the end of the night, when the tempo drops and couples lock in."
       },
       "prefer": [
         "towel",
         "welts",
         "west",
-        "slot",
+        "slow",
         "twos"
       ]
     },
@@ -3124,14 +3137,14 @@
       "theme": "steppers",
       "clues": {
         "elbows": "Kept in, never out. Swing them wide in a crowded line and you will hear about it.",
-        "elbow": "The bend in the arm that a good frame keeps absolutely quiet.",
         "below": "Under the hem is where you look if you actually want to learn the footwork.",
         "sole": "Suede, brushed with a wire brush, so it slides on a gym floor and grips on wood.",
         "bows": "At the end of the set he inclines his head and she nods back. That is the ceremony.",
-        "blew": "The DJ's speaker gave out mid-song and the line kept going without it."
+        "blew": "The DJ's speaker gave out mid-song and the line kept going without it.",
+        "slow": "The drag record at the end of the night, and couples who sat all evening finally get up."
       },
       "prefer": [
-        "elbow",
+        "slow",
         "below",
         "sole",
         "bows",
@@ -3147,14 +3160,14 @@
         "later": "The advanced hour starts when the beginners clear out, and it runs past midnight.",
         "heart": "What the tradition runs on, and what her doctor says is in better shape than his.",
         "halt": "One raised palm from the front of the room and forty people stop mid-count.",
-        "real": "The difference between a class routine and what happens at a set on Saturday."
+        "heat": "The hall runs ten degrees hotter by the third song and the windows fog from inside."
       },
       "prefer": [
         "alter",
         "later",
         "heart",
         "halt",
-        "real"
+        "heat"
       ]
     },
     {
@@ -3185,14 +3198,14 @@
         "short": "The version taught to beginners: sixteen counts, no turn, no styling.",
         "rest": "Between songs: the fanning, the water, and somebody's aunt saying just one more.",
         "host": "Whoever rented the hall collects at the door and remembers every single face.",
-        "those": "The ones who learned it in the seventies and never needed a class in their lives."
+        "set": "The middle of the three, when the floor is fullest and nobody is sitting down."
       },
       "prefer": [
         "shoe",
         "short",
         "rest",
         "host",
-        "those"
+        "set"
       ]
     },
     {
@@ -3223,14 +3236,14 @@
         "chase": "The pattern where she travels and he follows her line clear across the floor.",
         "aches": "Sunday morning, both hips, and worth every minute of it.",
         "chest": "Held up, shoulders down. The posture that tells the room you have had a class.",
-        "haste": "Rushing the count is the beginner's tell. The music is not going anywhere."
+        "set": "The flyer said nine until two, cash at the door, and the floor is only ever wood."
       },
       "prefer": [
         "teach",
         "chase",
         "aches",
         "chest",
-        "haste"
+        "set"
       ]
     },
     {
@@ -3260,14 +3273,14 @@
         "slide": "The one everybody knows: four walls, a quarter turn, and the whole reception joins in.",
         "list": "What she keeps of who has paid and who is still promising to.",
         "tiles": "Waxed squares in the church basement, and you can hear the whole room on them.",
-        "tide": "How the line moves. One row forward, everybody at once, then back.",
-        "lets": "She never turns a beginner down. One song, and she counts it in his ear."
+        "lets": "She never turns a beginner down. One song, and she counts it in his ear.",
+        "set": "Written on an index card in the booth: eight in a row, no talking between them."
       },
       "prefer": [
         "slide",
         "list",
         "tiles",
-        "tide",
+        "set",
         "lets"
       ]
     },
@@ -3280,14 +3293,14 @@
         "miles": "Forty each way from the south suburbs, every Tuesday, for one hour of class.",
         "dimes": "Turning on one is the whole point, and it takes about a year to get there.",
         "mild": "How she corrects. Quiet, one word, and nobody else in the room hears it.",
-        "slim": "The margin between on the beat and just behind it, which the room can always see."
+        "slide": "The four-wall line dance the reception does, which the steppers wait out at the bar."
       },
       "prefer": [
         "smile",
         "miles",
         "dimes",
         "mild",
-        "slim"
+        "slide"
       ]
     },
     {
@@ -3299,14 +3312,14 @@
         "spot": "Eyes on one mark on the back wall so the turn does not take you down with it.",
         "stop": "When the record ends, forty people freeze on the last count and the room laughs.",
         "opted": "She chose the partner dance over the line dance and has not looked back.",
-        "dote": "How the old heads treat a teenager who shows up alone and actually tries."
+        "step": "One, two, rock back. Eight counts you will keep practicing for a year."
       },
       "prefer": [
         "posed",
         "spot",
         "stop",
         "opted",
-        "dote"
+        "step"
       ]
     },
     {
@@ -3337,14 +3350,14 @@
         "setup": "Table at the door, speaker in the corner, floor swept, all of it done by seven.",
         "upset": "What he was when the count got away from him in front of everybody.",
         "sure": "She never looks down at her own feet, not once, the entire song.",
-        "true": "Beat-perfect, and the old heads will say so out loud, which they rarely do."
+        "step": "The first one a beginner is given, and she will work on that alone for a month."
       },
       "prefer": [
         "purse",
         "setup",
         "upset",
         "sure",
-        "true"
+        "step"
       ]
     },
     {
@@ -3375,14 +3388,14 @@
         "sold": "Tickets for the anniversary set went in two days, every one of them through her.",
         "toes": "Never landed on if the lead is doing his job properly.",
         "lose": "What you do to the count the second you start watching your own feet.",
-        "dole": "How she hands out a compliment. One at a time, and you remember getting it."
+        "sole": "Shaved thin at the shoe man downtown, so the floor gives his foot nothing to catch on."
       },
       "prefer": [
         "told",
         "sold",
         "toes",
         "lose",
-        "dole"
+        "sole"
       ]
     },
     {
@@ -3391,14 +3404,14 @@
       "clues": {
         "spring": "What the good ones have in the knee, so the walk looks like it costs nothing.",
         "grip": "Light. Two fingers and a palm. Anything harder and she will not dance with you twice.",
-        "grins": "Traded across the floor between two couples who have been rivals since 1994.",
         "rings": "They come off before class, because they catch on fabric and on hands.",
         "sign": "A small lift of her chin, and he knows the turn is coming.",
-        "sing": "The whole room does the second verse out loud and nobody drops the count."
+        "sing": "The whole room does the second verse out loud and nobody drops the count.",
+        "spin": "One full turn under his arm, and her shoulders stay level the whole way around."
       },
       "prefer": [
         "grip",
-        "grins",
+        "spin",
         "rings",
         "sign",
         "sing"
@@ -3432,14 +3445,14 @@
         "tale": "How the hall got its name, retold by whoever is standing nearest the door.",
         "heat": "Forty bodies, no air conditioning, and the windows painted shut since 1970.",
         "thaw": "The first twenty minutes, when the room is stiff and nobody wants to go first.",
-        "whet": "What one good record does to a room that was ten minutes from going home."
+        "hat": "Kept on all night indoors, and it does not shift through a single turn on the floor."
       },
       "prefer": [
         "hale",
         "tale",
         "heat",
         "thaw",
-        "whet"
+        "hat"
       ]
     },
     {
@@ -3450,14 +3463,14 @@
         "fast": "Twenty-one days every January, no meat, and the daily scripture goes out on the church group text.",
         "yeast": "None of it in the Communion bread, because that first meal was eaten by people in a hurry to leave.",
         "stay": "What the deacons do at the altar rail after dismissal, until the last person kneeling gets up.",
-        "aye": "How the clerk records each trustee in the minutes when a motion carries, one name at a time.",
-        "teas": "The urn in the fellowship hall after second service, hot water and honey, singers pouring first."
+        "teas": "The urn in the fellowship hall after second service, hot water and honey, singers pouring first.",
+        "seat": "Third pew, left side, hers since 1978, and a visitor gets moved out of it kindly."
       },
       "prefer": [
         "fast",
         "yeast",
         "stay",
-        "aye",
+        "seat",
         "teas"
       ]
     },
@@ -3467,14 +3480,14 @@
       "clues": {
         "inmate": "The jail ministry writes forty of them by name, and the van goes upstate the second Saturday.",
         "mint": "Out of her purse, cellophane crackling, passed down the pew to the coughing child mid-sermon.",
-        "meant": "What the deacon swears he did not do, once the bulletin announcement came out sideways.",
         "time": "Twenty minutes a man on visiting day, and the sisters split the list before they sign in.",
         "neat": "The old deacon's shirt, pressed by his own hand since his wife passed, collar sharp by seven.",
-        "team": "The dozen who ride upstate in the van: two drivers, one cooler, a box of stamped envelopes."
+        "team": "The dozen who ride upstate in the van: two drivers, one cooler, a box of stamped envelopes.",
+        "amen": "What comes back from the folding chairs in the dayroom: quiet, but every man there."
       },
       "prefer": [
         "mint",
-        "meant",
+        "amen",
         "time",
         "neat",
         "team"
@@ -3489,14 +3502,14 @@
         "salt": "The bag the trustees set by the front steps in January, so nobody goes down on the ice.",
         "sale": "Rummage in the fellowship hall, Saturday eight to two, and the ledger goes home with the treasurer.",
         "slate": "The officers read out at the annual meeting, typed since October by the nominating chair.",
-        "tales": "What the old deacons trade in the vestibule about the pastor before this one, half of it true."
+        "seat": "Folding, in the overflow room, and the ushers open that section only when the balcony fills."
       },
       "prefer": [
         "least",
         "salt",
         "sale",
         "slate",
-        "tales"
+        "seat"
       ]
     },
     {
@@ -3526,14 +3539,14 @@
         "heard": "Galveston, June nineteenth, and Texas finally got the news it had been kept from.",
         "read": "What the committee does with the minutes book before one dollar gets voted on.",
         "held": "The pageant is not on the courthouse lawn. That was never allowed. It is on ground they bought.",
-        "hard": "What thirty months of being kept in the dark was, and no part of the day pretends otherwise.",
-        "lead": "What the girls' drill team does, whistle and all, in front of the flatbed carrying the queen."
+        "lead": "What the girls' drill team does, whistle and all, in front of the flatbed carrying the queen.",
+        "red": "The one color on the drink table by rule, and the cake icing matches the cups."
       },
       "prefer": [
         "heard",
         "read",
         "held",
-        "hard",
+        "red",
         "lead"
       ]
     },
@@ -3544,14 +3557,14 @@
         "shared": "What the news was not, for two full cotton seasons. That is the whole reason for the date.",
         "share": "What the program asks the oldest woman present to do, and she takes all the time she wants.",
         "shade": "Under the pecans by ten, because the program runs long and it is June in Texas.",
-        "hears": "What the whole street does when the band turns the corner two blocks off.",
         "reads": "How the order goes: four sentences, the plainest language the government ever managed.",
-        "herd": "What the trail riders bring into town ahead of the parade, and the avenue smells like it after."
+        "herd": "What the trail riders bring into town ahead of the parade, and the avenue smells like it after.",
+        "red": "The stripe on the flag, the queen's sash, the plastic cups: one color runs the whole avenue."
       },
       "prefer": [
         "share",
         "shade",
-        "hears",
+        "red",
         "reads",
         "herd"
       ]
@@ -3620,14 +3633,14 @@
         "framed": "The order, printed and hung in the hallway between the church anniversary photo and the diplomas.",
         "fade": "What the mimeographed programs from the seventies did in her box, and she keeps every one.",
         "farm": "What people walked off of upriver the week the word came down, and kept on walking.",
-        "fear": "The reason some waited for the crop to come in, and the reason others did not wait at all.",
         "red": "Hibiscus once, strawberry soda now, and the color was never the point of it.",
-        "made": "What a surname was in 1865: chosen, written down, and defended ever since."
+        "made": "What a surname was in 1865: chosen, written down, and defended ever since.",
+        "read": "Aloud from the courthouse steps every June, four sentences, by a different child each time."
       },
       "prefer": [
         "fade",
         "farm",
-        "fear",
+        "read",
         "red",
         "made"
       ]
@@ -3657,14 +3670,14 @@
       "clues": {
         "traced": "What she did through the county deed books until she found the name and the year they bought.",
         "cedar": "The chest the church minutes live in, 1867 forward, and she keeps the only key to it.",
-        "care": "What the roadside marker gets twice a year, from one woman, with a wire brush.",
         "acre": "Freedom colonies: bought cheap, worked hard, and a few of those towns are still on the map.",
         "race": "What they run at the fairgrounds before the bull riding, and the announcer knows everybody's people.",
-        "card": "Handed out at the door: order of service on one side, the words to the anthem on the other."
+        "card": "Handed out at the door: order of service on one side, the words to the anthem on the other.",
+        "date": "The nineteenth lands midweek, so the church moved the whole program to Saturday."
       },
       "prefer": [
         "cedar",
-        "care",
+        "date",
         "acre",
         "race",
         "card"
@@ -3677,14 +3690,14 @@
         "grated": "Nutmeg over the ice cream the church ladies crank by hand on the side lawn.",
         "great": "Her grandmother's grandmother stood on the Strand in 1865. That is four names, and she can say all four.",
         "gate": "The one at the county fairgrounds that stayed shut to them, which is why the rodeo has its own.",
-        "age": "What the oldest man present is asked, into the microphone, and he takes his time answering.",
         "grade": "What Texas gave the day in 1980, first in the nation, when no calendar up north carried it.",
-        "gear": "Saddle, rope and a good hat, loaded Friday night for the ride into town."
+        "gear": "Saddle, rope and a good hat, loaded Friday night for the ride into town.",
+        "red": "Strawberry soda in a washtub of ice, and the little ones get the first bottles."
       },
       "prefer": [
         "great",
         "gate",
-        "age",
+        "red",
         "grade",
         "gear"
       ]
@@ -3735,14 +3748,14 @@
         "soda": "Big Red, by the case, and in this state that is not a trend or a joke. It is just what gets bought.",
         "rose": "What the whole tent does when the flag with the bursting star comes up the aisle.",
         "dears": "What the elders call the children they are correcting, right up until they mean it differently.",
-        "sore": "What the feet are by four, and why the pageant shoes come off on the church steps.",
-        "ode": "What the eighth grader's poem is, whether or not she would ever call it that."
+        "ode": "What the eighth grader's poem is, whether or not she would ever call it that.",
+        "read": "Two hundred family names off the church roll, aloud, and the tent stays quiet through all of it."
       },
       "prefer": [
         "soda",
         "rose",
         "dears",
-        "sore",
+        "read",
         "ode"
       ]
     },
@@ -3754,14 +3767,14 @@
         "seam": "Let out twice on the white dress, because she has grown since Easter and the pageant is in June.",
         "arms": "What two thousand Union soldiers carried into Galveston, and the reason the paper got obeyed.",
         "sear": "What the beef gets over pecan wood on Thursday night, before the long slow part begins.",
-        "dear": "What a printed name is, when it is the only one your family ever got to choose.",
-        "same": "The route the parade has taken longer than anybody living can remember: down the avenue, past the church."
+        "same": "The route the parade has taken longer than anybody living can remember: down the avenue, past the church.",
+        "red": "Strawberry soda by the case in the cooler, and the paper plates never survive a spill of it."
       },
       "prefer": [
         "seam",
         "arms",
         "sear",
-        "dear",
+        "red",
         "same"
       ]
     },
@@ -3774,14 +3787,14 @@
         "team": "Eleven men cooking in shifts from Thursday dark to Saturday noon, off a schedule taped to the wall.",
         "read": "What the man at the podium does slowly while everyone stands: no commentary, start to finish.",
         "term": "Employer and hired labor: the words the order swapped in, and the world did not follow.",
-        "tame": "What the day is not, by four, when the band comes back out and the street fills up again."
+        "date": "The nineteenth, and the committee will not slide it to the nearest Saturday for anybody."
       },
       "prefer": [
         "meat",
         "team",
         "read",
         "term",
-        "tame"
+        "date"
       ]
     },
     {
@@ -3812,14 +3825,14 @@
         "hand": "What the program was first set down by, in 1954, and the committee still uses her wording.",
         "near": "Sixty miles between the port and places nobody told, and the road was open the whole time.",
         "head": "Where the elders sit, and nobody takes those seats without being walked to them first.",
-        "ran": "What some could not do, because there was nowhere to go, and staying was its own decision."
+        "red": "The gelatin ring on the dessert table, one color, and the mold comes home empty every year."
       },
       "prefer": [
         "earn",
         "hand",
         "near",
         "head",
-        "ran"
+        "red"
       ]
     },
     {
@@ -3831,14 +3844,14 @@
         "ride": "What the queen's little brother gets on the fire truck, once, and talks about all year.",
         "idea": "Whose it was to walk from Fort Worth toward Washington at eighty-nine, and keep walking until it passed.",
         "dime": "What the children brought for the park fund, and the treasurer counted it in front of them.",
-        "aimed": "Where the committee's money goes: the scholarship first, the sound system second, the tent last."
+        "read": "Done from the flatbed with a bullhorn the year the sound system quit, and nobody left."
       },
       "prefer": [
         "media",
         "ride",
         "idea",
         "dime",
-        "aimed"
+        "read"
       ]
     },
     {
@@ -3848,14 +3861,14 @@
         "dearly": "How the day is held by the people who kept it when no calendar anywhere else would.",
         "delay": "Thirty months of it, with the paper already law the whole time. That is what the date is about.",
         "early": "Four in the morning at the grounds, and the men at the pit have been there six hours.",
-        "ready": "What the contestant is, and has been since March, and she will tell you so herself.",
         "relay": "How the word actually traveled in 1865: port to the next place, and the next, by mouth.",
-        "yard": "Of white cotton, bought for the ushers' sashes and cut out on her dining table."
+        "yard": "Of white cotton, bought for the ushers' sashes and cut out on her dining table.",
+        "year": "1865 goes on the banner, and under it the count of every one held since."
       },
       "prefer": [
         "delay",
         "early",
-        "ready",
+        "year",
         "relay",
         "yard"
       ]
@@ -3868,14 +3881,14 @@
         "bear": "What the descendants do with the name: carry it, and say it in full when anybody asks.",
         "rev": "The bikes at the back of the line, kept idling until the drum majors clear the corner.",
         "drab": "What the day is not. Every color is out, and the flag has its own.",
-        "bad": "What the roads inland were that June, and people walked them anyway to carry the news.",
-        "ave": "Emancipation, in Houston: the street the parade uses, and a Confederate's name taken off it in 2017."
+        "ave": "Emancipation, in Houston: the street the parade uses, and a Confederate's name taken off it in 2017.",
+        "read": "No microphone that first year, so it got done twice, once at each end of the yard."
       },
       "prefer": [
         "bear",
         "rev",
         "drab",
-        "bad",
+        "read",
         "ave"
       ]
     },
@@ -3886,14 +3899,14 @@
         "derail": "What nobody ever managed to do to the observance, not in 1866, not in 1900, not in the quiet years.",
         "dial": "What the chairwoman still does, from a paper list, to ninety households every May.",
         "lied": "What the planters told the people through two cotton seasons, until one of them finally slipped.",
-        "rail": "The one the elders lean on going up the church steps, painted every spring before the nineteenth.",
         "aide": "The teenager assigned to the ninety-year-old for the whole program, with a fan and a cold bottle.",
-        "lard": "In the teacake dough, the way the recipe card says, and the card is in her mother's hand."
+        "lard": "In the teacake dough, the way the recipe card says, and the card is in her mother's hand.",
+        "red": "The velvet cake under the glass dome, cut only after the last speaker sits down."
       },
       "prefer": [
         "dial",
         "lied",
-        "rail",
+        "red",
         "aide",
         "lard"
       ]
@@ -3906,14 +3919,14 @@
         "place": "Third row left. Nobody assigned it, and by October it is yours.",
         "heal": "What the choir director says the ten quiet minutes before class are for.",
         "plea": "The letter you write the dean of students. One page, no excuses.",
-        "each": "One by one, the way the president learns names at a school of nine hundred.",
-        "ache": "What the folding seats leave in your back by the benediction."
+        "ache": "What the folding seats leave in your back by the benediction.",
+        "cape": "The drum major's, gold on the underside, and it flips over his back on the high step."
       },
       "prefer": [
         "place",
         "heal",
         "plea",
-        "each",
+        "cape",
         "ache"
       ]
     },
@@ -3924,14 +3937,14 @@
         "denial": "The letter from financial aid in March, and the appeal you file by Friday.",
         "nailed": "Her thesis defense. The committee had no follow-up questions.",
         "dean": "She knows your mother's maiden name and your registration hold, both.",
-        "ideal": "The four-year plan on the advising sheet, before the class got cancelled.",
         "idea": "What the professor makes you defend out loud before she grants it.",
-        "lend": "The graphing calculator that moved through four rooms in one night."
+        "lend": "The graphing calculator that moved through four rooms in one night.",
+        "line": "Outside the bursar's office the first week of the term, out the door and down the stairs."
       },
       "prefer": [
         "nailed",
         "dean",
-        "ideal",
+        "line",
         "idea",
         "lend"
       ]
@@ -3944,14 +3957,14 @@
         "garden": "The plot behind the ag building she has kept going since 1998.",
         "grade": "Posted by ID number on the office door, and you count down the list.",
         "range": "How far the tuba carries across the practice field at seven.",
-        "nerd": "The one who reset the printer for the whole floor and got no thanks.",
-        "read": "Forty pages before Thursday, and she opens with a pop quiz."
+        "read": "Forty pages before Thursday, and she opens with a pop quiz.",
+        "dean": "Her office door stays open, and the chair across from it is never empty for long."
       },
       "prefer": [
         "garden",
         "grade",
         "range",
-        "nerd",
+        "dean",
         "read"
       ]
     },
@@ -3982,14 +3995,14 @@
         "scent": "Shea butter and press oil in the elevator of the women's dorm.",
         "cane": "Painted, wrapped, and never set down where somebody could touch it.",
         "cast": "The whole department showed for the fall play, professors in row two.",
-        "neat": "How the ironing board in the hall stays busy the night before an interview.",
-        "cent": "Counted twice at the campus store when the meal plan runs out."
+        "cent": "Counted twice at the campus store when the meal plan runs out.",
+        "seat": "Held with a backpack in the front row of a class that fills before the bell."
       },
       "prefer": [
         "scent",
         "cane",
         "cast",
-        "neat",
+        "seat",
         "cent"
       ]
     },
@@ -4002,14 +4015,14 @@
         "bird": "The mascot suit, and only two people on this whole campus know who is in it.",
         "bred": "Third generation here, and the building still remembers her grandmother.",
         "ride": "Text the group chat Thursday, split the gas, four hours home.",
-        "red": "The ink she uses, and there is always more of it than you hoped."
+        "bid": "The card slid under the door at two in the morning, and she still keeps it in her wallet."
       },
       "prefer": [
         "diner",
         "bird",
         "bred",
         "ride",
-        "red"
+        "bid"
       ]
     },
     {
@@ -4019,14 +4032,14 @@
         "bridge": "The walkway between the science hall and the library, crossed at 2 a.m.",
         "ridge": "The long climb up from the first-year dorms. Nobody warns you about it.",
         "grid": "The practice field chalked out, and the flag corps counting yardage.",
-        "bide": "What you do in the aid office line with a full battery and low hopes.",
         "dig": "What the archives assistant lets you do in the basement boxes.",
-        "rib": "The gentle kind, from the professor who taught your mother."
+        "rib": "The gentle kind, from the professor who taught your mother.",
+        "ride": "The senior with a car takes four of you to the store on Sunday, gas money optional."
       },
       "prefer": [
         "ridge",
         "grid",
-        "bide",
+        "ride",
         "dig",
         "rib"
       ]
@@ -4056,14 +4069,14 @@
       "clues": {
         "sundae": "Soft serve at the end of the caf line, built in a paper cup.",
         "sedan": "Parked crooked outside the library, hazards on, engine still running.",
-        "sane": "What the walk around the track at midnight is actually for.",
         "send": "What the professor says about your draft at 11:58 p.m.",
         "sand": "The court behind the rec, where intramurals go when the gym is booked.",
-        "sun": "Already hot at eight, and the class is all the way across campus."
+        "sun": "Already hot at eight, and the class is all the way across campus.",
+        "dean": "She knows your mother's name, your grades, and which excuse you used last semester."
       },
       "prefer": [
         "sedan",
-        "sane",
+        "dean",
         "send",
         "sand",
         "sun"
@@ -4077,14 +4090,14 @@
         "named": "The building carries her, and the plaque explains why in four sentences.",
         "mean": "What the average has to be for the scholarship to renew in the fall.",
         "mend": "What the tailor two blocks off campus does for eight dollars.",
-        "made": "The dean's list, and the way your grandmother says it on the phone.",
-        "send": "What the registrar will not do with your transcript until the balance clears."
+        "send": "What the registrar will not do with your transcript until the balance clears.",
+        "dean": "Fifteen minutes late to her own meeting because a first-year stopped her on the walkway."
       },
       "prefer": [
         "named",
         "mean",
         "mend",
-        "made",
+        "dean",
         "send"
       ]
     },
@@ -4097,14 +4110,14 @@
         "cage": "The batting one behind the field house, free with a school ID.",
         "acne": "What the health center hands you something for, without a lecture.",
         "age": "Twenty-six in a first-year seminar, and the only one doing the reading.",
-        "yen": "The pull toward home around week nine, when nothing has gone wrong exactly."
+        "cane": "Struck once on the pavement at the step show, and the whole yard answers it back."
       },
       "prefer": [
         "cagey",
         "cage",
         "acne",
         "age",
-        "yen"
+        "cane"
       ]
     },
     {
@@ -4115,14 +4128,14 @@
         "cater": "What the alumnae chapter pays somebody to do for the scholarship luncheon.",
         "crate": "Milk one, flipped over, holding up the speaker out on the yard.",
         "rent": "Due the first, and the off-campus apartment does not wait on your refund.",
-        "ante": "What the study group raises the week finals start.",
-        "tear": "The gown at the fitting, and the seamstress fixes it in ten minutes."
+        "tear": "The gown at the fitting, and the seamstress fixes it in ten minutes.",
+        "cane": "Twirled, never leaned on, and the man who taught him the wrist is sixty-two years old."
       },
       "prefer": [
         "cater",
         "crate",
         "rent",
-        "ante",
+        "cane",
         "tear"
       ]
     },
@@ -4133,14 +4146,14 @@
         "ardent": "How she talks about this school to anybody who will sit still for it.",
         "trade": "Two shifts at the caf swapped over text, no manager involved.",
         "tread": "Worn off the marble stairs by a hundred years of the same climb.",
-        "trend": "What the yard picks up on Monday and is finished with by Friday.",
         "dent": "In the door of the car she drove all four years and still has.",
-        "rate": "What the credit union on the corner offers, in writing, no table required."
+        "rate": "What the credit union on the corner offers, in writing, no table required.",
+        "dean": "She wrote the recommendation on a Sunday, and that is why the fellowship came through."
       },
       "prefer": [
         "trade",
         "tread",
-        "trend",
+        "dean",
         "dent",
         "rate"
       ]
@@ -4150,14 +4163,14 @@
       "theme": "hbcu",
       "clues": {
         "advent": "The wreath up front, one candle a week, and the choir rehearsing at seven.",
-        "vent": "What the third-floor lounge is for the night grades post.",
         "tend": "What the campus minister does, quietly, for the ones who stopped calling home.",
         "van": "Fifteen seats, the choir tour, and the sign-out sheet in her office.",
         "tea": "Poured in real cups when the honors society inducts, and you dress for it.",
-        "den": "The lounge with the TV nobody controls and the couch everybody claims."
+        "den": "The lounge with the TV nobody controls and the couch everybody claims.",
+        "dean": "Her name is on the letter that put you on probation and on the one that took you off."
       },
       "prefer": [
-        "vent",
+        "dean",
         "tend",
         "van",
         "tea",
@@ -4191,14 +4204,14 @@
         "drain": "What the walk from the far lot in August does to a fresh press.",
         "rain": "Nobody moves. The drumline finishes the cadence in it.",
         "near": "The dorm two minutes from your eight o'clock, which you did not get.",
-        "arid": "August in Texas, and the window unit in the old hall is losing.",
-        "rein": "What the adviser hands over once she trusts you with the budget."
+        "rein": "What the adviser hands over once she trusts you with the budget.",
+        "dean": "Her door stays open until six, and the probation letter comes with a plan stapled to it."
       },
       "prefer": [
         "drain",
         "rain",
         "near",
-        "arid",
+        "dean",
         "rein"
       ]
     },
@@ -4210,14 +4223,14 @@
         "dance": "Not the party. The class, barefoot, in the old gym with the good floor.",
         "cedar": "The chest at the foot of the bed, sent from home with everything folded.",
         "care": "What the housekeeper on your floor takes of forty people, by name.",
-        "acre": "The whole campus, and you can cross it in nine minutes flat.",
-        "earn": "Twelve hours a week in the library, applied straight to the bill."
+        "earn": "Twelve hours a week in the library, applied straight to the bill.",
+        "cane": "Twirled on the yard at homecoming, painted in chapter colors, and it never touches grass."
       },
       "prefer": [
         "dance",
         "cedar",
         "care",
-        "acre",
+        "cane",
         "earn"
       ]
     },
@@ -4305,14 +4318,14 @@
         "clip": "What he does around the ears while telling you to put your chin down.",
         "pile": "Under the chair by four o'clock: everybody's Saturday, swept into one.",
         "pin": "Holds forty years of Polaroids to the corkboard by the door.",
-        "nice": "What the mother says when she means it is finally short enough.",
-        "pen": "Chained to the counter, for the check nobody under thirty writes anymore."
+        "pen": "Chained to the counter, for the check nobody under thirty writes anymore.",
+        "line": "Straight across the forehead with the razor, and you could check it against a ruler."
       },
       "prefer": [
         "clip",
         "pile",
         "pin",
-        "nice",
+        "line",
         "pen"
       ]
     },
@@ -4323,14 +4336,14 @@
         "client": "Same head, same chair, every other Thursday since 2003.",
         "cent": "He has not raised the price one of these since the shop moved across the street.",
         "lint": "The brush and the powder, then the flick at your shoulder before you stand.",
-        "tile": "Black and white squares on the floor, cracked by the door, mopped anyway.",
         "tin": "The old coffee can where the combs soak blue all day.",
-        "tie": "What the deacon loosens before he sits, and knots again at the mirror."
+        "tie": "What the deacon loosens before he sits, and knots again at the mirror.",
+        "line": "Four deep on a Saturday, and he calls you up with a nod at the chair, never by name."
       },
       "prefer": [
         "cent",
         "lint",
-        "tile",
+        "line",
         "tin",
         "tie"
       ]
@@ -4344,14 +4357,14 @@
         "prime": "Saturday morning, ten to two, the hours nobody here gives up.",
         "timer": "Nobody sets one, but everybody knows a good fade takes forty minutes.",
         "term": "The old word for the cut, still used here, whatever the kid in chair four says.",
-        "time": "Two hours on a Saturday, and you knew that when you walked in."
+        "tip": "Ten on a thirty-five dollar cut, and she has never once had to bring it up herself."
       },
       "prefer": [
         "trim",
         "prime",
         "timer",
         "term",
-        "time"
+        "tip"
       ]
     },
     {
@@ -4362,14 +4375,14 @@
         "prom": "Third Saturday in May, six kids deep, all wanting the same edge.",
         "trio": "The three chairs still working, out of the five bolted to the floor.",
         "tip": "Folded into his palm at the handshake, never left on the counter.",
-        "pro": "Twenty years on the same head. He does not measure anymore.",
-        "top": "Where the length stays when the sides go down to nothing."
+        "top": "Where the length stays when the sides go down to nothing.",
+        "trim": "The beard, not the head: he tilts your chin up and works out from the jaw."
       },
       "prefer": [
         "prom",
         "trio",
         "tip",
-        "pro",
+        "trim",
         "top"
       ]
     },
@@ -4378,14 +4391,14 @@
       "theme": "barbershop",
       "clues": {
         "champs": "Whoever is on the muted screen, and whoever is still defending the 1996 team.",
-        "champ": "What he calls the six-year-old to get him to sit still.",
         "camp": "Where the boy is headed Sunday, which is why he is getting it low today.",
         "sham": "What the old head calls the twenty-dollar designer fade down the block.",
         "amp": "The little one behind the counter feeding the speaker through a taped cord.",
-        "cap": "What the boy puts back on the second he steps outside, ruining it."
+        "cap": "What the boy puts back on the second he steps outside, ruining it.",
+        "cash": "The card reader arrived in 2019 and he still counts the drawer by hand at seven."
       },
       "prefer": [
-        "champ",
+        "cash",
         "camp",
         "sham",
         "amp",
@@ -4419,14 +4432,14 @@
         "code": "Nobody wrote it down: you do not take a man's regular slot, ever.",
         "coke": "Glass bottle from the machine in the corner, still cold, still a dollar.",
         "done": "He spins the chair, holds up the mirror, and that is the whole announcement.",
-        "once": "How many times he asks how you want it. Answer carefully.",
-        "den": "What the back room becomes after six, with the space heater and the good chairs."
+        "den": "What the back room becomes after six, with the space heater and the good chairs.",
+        "neck": "Hot towel there first, then the straight razor, and you do not move your head at all."
       },
       "prefer": [
         "code",
         "coke",
         "done",
-        "once",
+        "neck",
         "den"
       ]
     },
@@ -4457,14 +4470,14 @@
         "chin": "Down. He says it once and taps it, and after that you just know.",
         "inch": "How much his wife said to take. He takes half and calls it even.",
         "scan": "What you do to the room from the door: who is here, whose turn, how long.",
-        "shin": "The part of your leg the footrest hits when the chair is pumped too high.",
-        "can": "Sprayed cold on the back of your neck at the end, asked for or not."
+        "can": "Sprayed cold on the back of your neck at the end, asked for or not.",
+        "cash": "Twenty on the counter, no card reader in here, and she makes your change out of a cigar box."
       },
       "prefer": [
         "chin",
         "inch",
         "scan",
-        "shin",
+        "cash",
         "can"
       ]
     },
@@ -4496,14 +4509,14 @@
         "deaf": "The old head in the corner is nearly it, which is why he talks the loudest.",
         "fled": "What the four-year-old did when the clippers came on. Under the sink.",
         "able": "She can cut anybody's head in here better, and every one of them knows it.",
-        "fad": "Every few years a new one walks in on somebody's phone screen."
+        "blade": "The one he keeps wrapped in a towel in his own drawer, and no other hand in here touches it."
       },
       "prefer": [
         "fade",
         "deaf",
         "fled",
         "able",
-        "fad"
+        "blade"
       ]
     },
     {
@@ -4515,14 +4528,14 @@
         "cuts": "She knows six by name at the meat counter and asks for the one not in the case.",
         "rust": "What the iron gets if you leave it wet, and why she dries it over the flame.",
         "curt": "How she answers when a guest asks whether that stove really runs hot. Five words.",
-        "suit": "What the tall pot does for greens and for absolutely nothing else in this house."
+        "stir": "Anticlockwise, wooden spoon, and she does it without ever once looking down into the gravy."
       },
       "prefer": [
         "crust",
         "cuts",
         "rust",
         "curt",
-        "suit"
+        "stir"
       ]
     },
     {
@@ -4532,14 +4545,14 @@
         "merits": "Her pound cake has them. You may say so once, then she hands you a plate.",
         "timers": "The stove has two. She has not touched either one since the Ford administration.",
         "items": "Four of them on the back of an envelope, in her hand, and she will not read it out.",
-        "term": "What she calls a sauce that broke, and it is not a word she uses in company.",
         "mist": "What the window over the sink does the minute the greens hit the water.",
-        "rest": "What the meat does on the board for ten minutes while you keep your hands off."
+        "rest": "What the meat does on the board for ten minutes while you keep your hands off.",
+        "stir": "Figure eights with the wooden spoon, and she counts to sixty before she lets you quit."
       },
       "prefer": [
         "timers",
         "items",
-        "term",
+        "stir",
         "mist",
         "rest"
       ]
@@ -4627,14 +4640,14 @@
         "backed": "Two women, one recipe, and she stood by hers when the church put it to a vote.",
         "baked": "Since four in the morning, and the whole house knew it before anybody got up.",
         "cake": "Three layers, no box, and the method is not written down anywhere on this earth.",
-        "deck": "The cards get cleared off the table the minute the flour comes out. Every time.",
         "back": "Where the good pan lives: far shelf, behind everything, out of reach on purpose.",
-        "ace": "What she is with a paring blade, and she is not handing it to you to find out."
+        "ace": "What she is with a paring blade, and she is not handing it to you to find out.",
+        "bake": "What the sweet potato pies do while the greens hold the entire top of the stove hostage."
       },
       "prefer": [
         "baked",
         "cake",
-        "deck",
+        "bake",
         "back",
         "ace"
       ]
@@ -4647,14 +4660,14 @@
         "foil": "Two layers over the pan, tight, and you do not lift it in the car on the way.",
         "fold": "Not stir. Under and over, twelve passes, and she counts them out loud for you.",
         "file": "Three strokes on the steel before she cuts anything, standing right at the sink.",
-        "life": "How long that pan has been in this family: hers, her mother's, and one before.",
-        "lid": "It has not matched its pot since 1988. It still sits down flush and that is that."
+        "lid": "It has not matched its pot since 1988. It still sits down flush and that is that.",
+        "oil": "Poured into the skillet until it shimmers, and she judges it by the sound, never by a clock."
       },
       "prefer": [
         "foil",
         "fold",
         "file",
-        "life",
+        "oil",
         "lid"
       ]
     },
@@ -4665,14 +4678,14 @@
         "coiled": "The burner, orange in a dark kitchen, and she reads it without touching the dial.",
         "coil": "Wrapped and clipped, the cord on a mixer she bought in 1979 that still runs.",
         "cold": "How the plate has to be before the icing goes anywhere near it. She will wait.",
-        "code": "The unwritten one: her pans, her drawer, her stove, and you ask before you touch.",
         "dice": "Even squares off the flat of the blade, done before you have found a bowl.",
-        "ice": "The tray she still cracks by hand, because the machine kind tastes like the freezer."
+        "ice": "The tray she still cracks by hand, because the machine kind tastes like the freezer.",
+        "lid": "Cracked half an inch so the pot has somewhere to breathe and her range stays clean."
       },
       "prefer": [
         "coil",
         "cold",
-        "code",
+        "lid",
         "dice",
         "ice"
       ]
@@ -4762,14 +4775,14 @@
         "bath": "The double boiler, which here is a bowl set over water, because she never bought one.",
         "beat": "Three hundred strokes by hand. She counts them and she has never once been wrong.",
         "head": "Of the garlic, smashed flat under the pan and peeled out in a single motion.",
-        "tab": "She keeps one on who has her dishes. A notebook, with names, and with dates."
+        "heat": "She holds a palm flat over the closed door and knows the number without ever opening it."
       },
       "prefer": [
         "bathe",
         "bath",
         "beat",
         "head",
-        "tab"
+        "heat"
       ]
     },
     {
@@ -4778,14 +4791,14 @@
       "clues": {
         "mobile": "The little cart she rolls out, because there is no room to sit down in here.",
         "lime": "Rolled hard under her palm on the counter first. That is where the juice comes from.",
-        "mile": "How far down the hall the smell gets before the first person knocks on the door.",
         "limb": "The pecan tree out back, and the reason there is a bag of them in the freezer.",
         "oil": "A film wiped onto the iron with a paper towel while the pan is still warm.",
-        "limbo": "Where the last slice sits: nobody will claim it and nobody will throw it out."
+        "limbo": "Where the last slice sits: nobody will claim it and nobody will throw it out.",
+        "boil": "Never a hard one for greens: barely a tremble at the edge of the water, held three hours."
       },
       "prefer": [
         "lime",
-        "mile",
+        "boil",
         "limb",
         "oil",
         "limbo"
@@ -4800,14 +4813,14 @@
         "dust": "Flour over everything by seven, including the radio and the top of the icebox.",
         "stud": "She found it herself and drove the nail in to hang the heavy pot. It has held.",
         "dual": "Two ovens was the one thing she asked for, and the only remodel she ever wanted.",
-        "lad": "The grandson who wants to learn. He gets onions and nothing sharper than that yet."
+        "salt": "Out of her palm, never a spoon, and she has never once had to taste and fix it afterward."
       },
       "prefer": [
         "adult",
         "dust",
         "stud",
         "dual",
-        "lad"
+        "salt"
       ]
     },
     {
@@ -4837,14 +4850,14 @@
         "best": "The dishes that live behind glass all week and come out for this one meal.",
         "rest": "What she takes only after the last plate is dried and the last pan put up.",
         "seat": "The one at the head is not yours, and nobody has ever had to say so twice.",
-        "stare": "Sent across the table with no words attached, and the subject changes.",
-        "bare": "The table never is. Something goes down over the wood first, even for family."
+        "bare": "The table never is. Something goes down over the wood first, even for family.",
+        "tea": "Sweet, in the good pitcher, brewed before church so it is cold by the time grace is done."
       },
       "prefer": [
         "best",
         "rest",
         "seat",
-        "stare",
+        "tea",
         "bare"
       ]
     },
@@ -4854,14 +4867,14 @@
       "clues": {
         "faster": "How the children eat, hoping to get excused before the grown talk starts.",
         "feast": "It is not one. It is a weekday menu on a Sunday schedule, every single week.",
-        "after": "The hours nobody schedules anything in, because you will still be at that table.",
         "safe": "Where the silver sits Monday through Saturday, and she knows the combination.",
         "fare": "Nothing new, ever. The same six dishes, in the same order, in the same bowls.",
-        "fret": "What the new girlfriend does over which fork, until an aunt waves it off."
+        "fret": "What the new girlfriend does over which fork, until an aunt waves it off.",
+        "tea": "Sweet, in the good pitcher, and the first glass poured goes to whoever did the cooking."
       },
       "prefer": [
         "feast",
-        "after",
+        "tea",
         "safe",
         "fare",
         "fret"
@@ -4875,14 +4888,14 @@
         "yeast": "The rolls have been rising under a dish towel on top of the stove since nine.",
         "stay": "Nobody leaves right when eating is over. You do it another hour, minimum.",
         "yams": "Candied, in the orange dish, and that dish has never held anything else.",
-        "seam": "Runs down the middle of the cloth, right where the leaf goes into the table.",
-        "stem": "Glasses with one come down off the top shelf twice a year, and this is once."
+        "stem": "Glasses with one come down off the top shelf twice a year, and this is once.",
+        "tea": "Brewed in a jar on the back step Saturday, sweetened while it is still hot."
       },
       "prefer": [
         "yeast",
         "stay",
         "yams",
-        "seam",
+        "tea",
         "stem"
       ]
     },
@@ -4893,14 +4906,14 @@
         "extras": "Two card tables in the hallway, because the good one only holds eight.",
         "extra": "The place setting she lays anyway, in case somebody's friend turns up hungry.",
         "ears": "The children keep theirs open while pretending to be busy with the dog.",
-        "tear": "What the youngest lets go when she hears she is in the hallway again.",
         "teas": "Two pitchers on the counter: the sweet one, and the one for your uncle's sugar.",
-        "east": "The window the table faces, so two o'clock light lands right on the cake dome."
+        "east": "The window the table faces, so two o'clock light lands right on the cake dome.",
+        "seat": "The one by the kitchen door goes to whoever gets up the most, which is how she planned it."
       },
       "prefer": [
         "extra",
         "ears",
-        "tear",
+        "seat",
         "teas",
         "east"
       ]
@@ -4914,14 +4927,14 @@
         "rice": "Under the gravy, and there is one correct ratio, decided long before you.",
         "cried": "The baby, straight through grace, and not one eye opened early to look.",
         "iced": "The cake got its coat on Friday and has been sitting untouched under glass.",
-        "ride": "Who collects your great-aunt is settled by Thursday, in the family group text."
+        "ice": "Chipped off the block into the good glasses last, so nothing goes weak before the blessing."
       },
       "prefer": [
         "dine",
         "rice",
         "cried",
         "iced",
-        "ride"
+        "ice"
       ]
     },
     {
@@ -4931,14 +4944,14 @@
         "pricey": "The roast she buys anyway, every single week, and never says what it ran.",
         "price": "What the ham cost. Announced by nobody, guessed at by everybody at the table.",
         "pry": "The aunts start in on your love life before the plates are even cleared.",
-        "icy": "The look that crosses the table the second somebody brings up the house.",
         "rye": "Granddaddy's bottle, over the refrigerator, poured once the children go outside.",
-        "ripe": "She thumbed every peach in the bin Saturday for the cobbler, and put four back."
+        "ripe": "She thumbed every peach in the bin Saturday for the cobbler, and put four back.",
+        "pie": "Sweet potato, not pumpkin, and no version of this table treats that as a question."
       },
       "prefer": [
         "price",
         "pry",
-        "icy",
+        "pie",
         "rye",
         "ripe"
       ]
@@ -4952,14 +4965,14 @@
         "late": "Arriving that way gets remembered, discussed, and brought up again next week.",
         "salt": "On the table already. Reaching for it before you taste is the unforgivable one.",
         "tales": "Told once the plates are pushed back, and the third version is always the best.",
-        "slate": "Wiped clean here. Whatever Friday was does not get to come to this table."
+        "seat": "Yours is the one you had at nine years old, and nobody has been promoted since."
       },
       "prefer": [
         "lace",
         "late",
         "salt",
         "tales",
-        "slate"
+        "seat"
       ]
     },
     {
@@ -4968,14 +4981,14 @@
       "clues": {
         "hasten": "Nobody does. Four hours at that table, and leaving early is a thing people note.",
         "nest": "The napkins folded into the water glasses like something is meant to hatch.",
-        "than": "There is no better cook in this family, and saying it out loud starts something.",
         "neat": "How the table gets set the night before: forks squared, chairs pushed in.",
         "tens": "Two of them, folded, pressed into each grandchild's hand on the way out.",
-        "heat": "The rolls go back in for five minutes because your uncle finally turned up."
+        "heat": "The rolls go back in for five minutes because your uncle finally turned up.",
+        "seat": "The chair at the head is hers, and the youngest gets the piano bench pulled up."
       },
       "prefer": [
         "nest",
-        "than",
+        "seat",
         "neat",
         "tens",
         "heat"
@@ -4990,14 +5003,14 @@
         "heir": "Who gets the china is settled: she wrote it on a card taped inside the cabinet.",
         "chin": "The youngest wears his dessert on his, and an aunt has the napkin out already.",
         "inch": "What she has never given on the seating, no matter who asks to switch.",
-        "rein": "What she keeps on the conversation the second anybody starts in on politics."
+        "rice": "Baked with sugar and raisins, out of the same white dish, and the crust on top is the point."
       },
       "prefer": [
         "rich",
         "heir",
         "chin",
         "inch",
-        "rein"
+        "rice"
       ]
     },
     {
@@ -5009,15 +5022,16 @@
         "stone": "What the sisters' harmony sits on: one held organ chord, unmoving under all of it.",
         "host": "She reads the countdown Sunday night and calls number one before the ad break.",
         "shoe": "Suede, brushed twice, worn to the video shoot and never once after.",
-        "tens": "What the tape counter reads at the ad-lib, and she rewinds to it every time."
+        "tone": "Church-trained, and you hear the Sunday in it before she finishes the opening line."
       },
       "prefer": [
         "notes",
         "stone",
         "host",
         "shoe",
-        "tens"
-      ]
+        "tone"
+      ],
+      "scene": "Uptown: the voice and the title"
     },
     {
       "base": "mentor",
@@ -5027,16 +5041,17 @@
         "metro": "Twelfth and Callowhill, where the city's soul got cut in a tuxedo for thirty years.",
         "tenor": "He takes the second line in the quartet and the whole last verse by himself.",
         "term": "Two albums and an option. What her lawyer struck through before anybody signed.",
-        "omen": "The first four bars of the drum program. You already know how the record ends.",
-        "more": "What the engineer wrote on the tape box next to the ad-lib pass: one again, louder."
+        "more": "What the engineer wrote on the tape box next to the ad-lib pass: one again, louder.",
+        "note": "He wrote three words in the margin of her lyric sheet and she rebuilt the bridge that night."
       },
       "prefer": [
         "metro",
         "tenor",
         "term",
-        "omen",
+        "note",
         "more"
-      ]
+      ],
+      "scene": "The producer who let them keep the publishing"
     },
     {
       "base": "notice",
@@ -5047,15 +5062,16 @@
         "coin": "Quarter in the diner jukebox slot, and she punches the slow one twice.",
         "cent": "Fifty-six of them per album, split three ways, and the lawyers called that a deal.",
         "icon": "Her silhouette on the tour poster. Nobody prints the name because nobody has to.",
-        "into": "Where the ad-lib takes the final chorus: up and clear over the top of the choir."
+        "note": "Written on the back of a deposit slip in the car, and it turned into the second verse."
       },
       "prefer": [
         "tonic",
         "coin",
         "cent",
         "icon",
-        "into"
-      ]
+        "note"
+      ],
+      "scene": "Walking away from a label"
     },
     {
       "base": "soften",
@@ -5066,15 +5082,16 @@
         "font": "The label's gold script down the cassette spine, unreadable at arm's length.",
         "soft": "How the ballad opens: brushed snare, no kick at all, until bar nine.",
         "sent": "She mailed the four-track demo to A&R herself, no manager, return address in pen.",
-        "tones": "What the keyboard patch list calls them: bell, glass, and one just named Rhodes."
+        "note": "Blue, bent a half step by the guitar in the final eight bars, and then the record is over."
       },
       "prefer": [
         "often",
         "font",
         "soft",
         "sent",
-        "tones"
-      ]
+        "note"
+      ],
+      "scene": "What the engineer does to a whisper"
     },
     {
       "base": "stolen",
@@ -5084,16 +5101,17 @@
         "stole": "White fur over the gown at the awards, carried up the stairs like a robe.",
         "lens": "What the director kept fogging for the rain scene, half the video budget gone.",
         "lone": "One voice, no stack, no double: the a cappella eight bars the album opens on.",
-        "sole": "Not hers alone — three of them wrote it in a room, and they kept the publishing.",
-        "lent": "She gave the group her guide vocal for the demo and never got the tape back."
+        "lent": "She gave the group her guide vocal for the demo and never got the tape back.",
+        "tone": "Going off on a pager at two in the morning, and the whole second verse is about who sent it."
       },
       "prefer": [
         "stole",
         "lens",
         "lone",
-        "sole",
+        "tone",
         "lent"
-      ]
+      ],
+      "scene": "Clearance, credits and who got paid"
     },
     {
       "base": "ornate",
@@ -5103,16 +5121,17 @@
         "rate": "Studio B by the hour, and the budget says finish the lead vocal before midnight.",
         "note": "Held eight bars at the end while the band drops out from under her entirely.",
         "earn": "What the four of them took in points instead of an advance, and it paid longer.",
-        "tear": "One down the cheek in the second verse, and the director kept that take.",
-        "torn": "The gym flyer off the pole, corner still taped, the DJ's name down at the bottom."
+        "torn": "The gym flyer off the pole, corner still taped, the DJ's name down at the bottom.",
+        "tone": "Two takes in, the engineer stops asking: she hears the room and moves the microphone herself."
       },
       "prefer": [
         "rate",
         "note",
         "earn",
-        "tear",
+        "tone",
         "torn"
-      ]
+      ],
+      "scene": "LaFace, and how the cover was shot"
     },
     {
       "base": "townie",
@@ -5122,16 +5141,17 @@
         "town": "Population four thousand, one station, and it played her demo before anybody.",
         "twin": "Two of the four are, and only one of them can hold the high harmony.",
         "nite": "Spelled that way on the flyer because the club spelled it that way on the awning.",
-        "wine": "A cooler in the fridge for the anniversary; her tape runs longer than dinner.",
-        "went": "She left on the Greyhound with one cassette and came back with a deal."
+        "went": "She left on the Greyhound with one cassette and came back with a deal.",
+        "note": "Folded into a triangle, slid under the door, with the tape number written on the back."
       },
       "prefer": [
         "town",
         "twin",
         "nite",
-        "wine",
+        "note",
         "went"
-      ]
+      ],
+      "scene": "The one who stayed home"
     },
     {
       "base": "asking",
@@ -5178,14 +5198,14 @@
         "anchor": "What the hall is for this stretch of the river. Catfish money, and it stays with the local.",
         "ranch": "The dressing the young hands want in a cup. The retirees pretend not to hear them.",
         "horn": "The yard blast at three-thirty. Twenty minutes later there are eighty boxes on the table.",
-        "arch": "Where the line bends around the flagpole once the second shift lets out.",
         "can": "Tin of pickled peppers on every table. The steward's wife buys them by the flat.",
-        "car": "Where half the boxes end up, engine running, double-parked along the fence."
+        "car": "Where half the boxes end up, engine running, double-parked along the fence.",
+        "corn": "Boiled ears in the second pan, buttered by a woman who has done nothing else since four."
       },
       "prefer": [
         "ranch",
         "horn",
-        "arch",
+        "corn",
         "can",
         "car"
       ]
@@ -5199,14 +5219,14 @@
         "math": "The clerk's arithmetic at nine o'clock, done twice, and she does not want help with it.",
         "malt": "In the cooler behind the bar, two dollars, and the license is taped up above it.",
         "heat": "What comes off the two fryers by seven, and why the back door stays propped in February.",
-        "tale": "The one about the year the walleye did not come, told by a man who was not there."
+        "meal": "Cod, boiled potatoes, slaw and a roll, in a foam clamshell that will not close flat."
       },
       "prefer": [
         "metal",
         "math",
         "malt",
         "heat",
-        "tale"
+        "meal"
       ]
     },
     {
@@ -5215,14 +5235,14 @@
       "clues": {
         "measly": "What the alderman's check looked like beside what the block club raised in one night.",
         "yams": "Candied, in a foil half-pan, brought by a woman who has voted in every primary since 1972.",
-        "easy": "How he thought the endorsement would come. She let him stand in the line like everybody.",
         "lays": "What she does with the precinct map on the table once the plates are cleared away.",
         "same": "The rented hall, the folding chairs, the speech: identical to two years ago.",
-        "sly": "How he works the room, shaking hands down the whole line without buying a plate."
+        "sly": "How he works the room, shaking hands down the whole line without buying a plate.",
+        "meal": "Two pieces, white bread underneath, spaghetti beside it, handed over in a foam box."
       },
       "prefer": [
         "yams",
-        "easy",
+        "meal",
         "lays",
         "same",
         "sly"
@@ -5233,14 +5253,14 @@
       "theme": "fishfry",
       "clues": {
         "legion": "Post 47. The bar in front, the fryers in back, and the cod comes in on Thursday.",
-        "lingo": "The talk in this hall: cases, shifts, ranks. Nobody explains it and nobody has to.",
         "long": "How the wait runs after five, out past the pool table and into the parking lot.",
         "lion": "The other club in town, the one that does chicken, which everybody insists is worse.",
         "leg": "The bad one that keeps him on the register instead of the fryer. He still shows up.",
-        "gone": "What the last twelve dinners are by six-fifteen, and the adjutant tells you so herself."
+        "gone": "What the last twelve dinners are by six-fifteen, and the adjutant tells you so herself.",
+        "oil": "Changed Wednesday, strained every night, and the man who does it says that is the whole secret."
       },
       "prefer": [
-        "lingo",
+        "oil",
         "long",
         "lion",
         "leg",
@@ -5254,14 +5274,14 @@
         "flames": "What the company answers pages for, and what the fryer is not permitted to make in the bay.",
         "false": "The alarm that pulled four of them off the line at six-forty, dinners still boxed.",
         "safe": "The little one in the chief's office where the night's money sleeps until Monday.",
-        "self": "Take the rolls on your own. That end of the table is unstaffed and always has been.",
         "fame": "What the haddock has across three towns, which is why cars line up at four-thirty.",
-        "slam": "The bay door dropping at eight. That is the sound of the night being over."
+        "slam": "The bay door dropping at eight. That is the sound of the night being over.",
+        "sale": "Tickets go at the bay door, ten dollars, and the treasurer marks every one off her sheet."
       },
       "prefer": [
         "false",
         "safe",
-        "self",
+        "sale",
         "fame",
         "slam"
       ]
@@ -5275,14 +5295,14 @@
         "shed": "Out back, where the folding tables and the six-foot hoagie trays wait all year.",
         "side": "Pierogi or haluski, pick one, and the woman with the tongs will not let you take both.",
         "hide": "What the last cod sandwich cannot do from the man who has been in line since four.",
-        "dies": "What the noise in the hall does the minute the Grand Knight's wife takes the microphone."
+        "fish": "Lake perch if the shipment came, cod if it did not, and the sign gets changed by hand."
       },
       "prefer": [
         "dish",
         "shed",
         "side",
         "hide",
-        "dies"
+        "fish"
       ]
     },
     {
@@ -5293,14 +5313,14 @@
         "ribs": "She pulls a rack off early for the children, because the whole hog will not be ready until dark.",
         "fire": "Oak, lit in a barrel at eleven at night, so the coals can be shoveled under the hog by two.",
         "fries": "The teenagers walk up to the store and come back with a paper sack of them, salt in the bottom.",
-        "rise": "What the whole yard does at once when the pound cake comes out of somebody's back seat.",
-        "brie": "The cousin who moved to Charlotte brought a cheese board. It sat all day next to the deviled eggs."
+        "brie": "The cousin who moved to Charlotte brought a cheese board. It sat all day next to the deviled eggs.",
+        "rib": "One bone, handed to you off the block before the platter goes out, and you eat it standing."
       },
       "prefer": [
         "ribs",
         "fire",
         "fries",
-        "rise",
+        "rib",
         "brie"
       ]
     },
@@ -5310,14 +5330,14 @@
       "clues": {
         "candor": "Grandmother's, aimed at your job, your car, and the girl you brought, in that order.",
         "corn": "Off a truck on the two-lane that morning, shucked on the back steps into a paper sack.",
-        "acorn": "What the big oak drops on the hood all afternoon, and still nobody moves the car.",
         "cord": "Orange, run out the kitchen window and taped down flat where the children come through.",
         "road": "Two lanes and a grain elevator, and everybody who passes lifts one finger off the wheel.",
-        "can": "The green bug spray one, shaken hard and handed down the picnic bench at dusk."
+        "can": "The green bug spray one, shaken hard and handed down the picnic bench at dusk.",
+        "card": "Spades, and the table has been the same four women since before you could see over it."
       },
       "prefer": [
         "corn",
-        "acorn",
+        "card",
         "cord",
         "road",
         "can"
@@ -5332,14 +5352,14 @@
         "hoarse": "How she sounds by four, having called the same four children out of the water since noon.",
         "share": "What the next ring over does with their charcoal when yours runs low, and no discussion about it.",
         "sear": "Grate down low and the fat catches. That black edge is the part of the tri-tip everybody wants.",
-        "arose": "What the four of them did at five in the morning to get over the bridge before the traffic."
+        "ash": "Carried to the metal can by the path in a coffee tin, still warm, because the sand is not for that."
       },
       "prefer": [
         "shore",
         "hoarse",
         "share",
         "sear",
-        "arose"
+        "ash"
       ]
     },
     {
@@ -5349,14 +5369,14 @@
         "peanut": "Punch blended with condensed milk and nutmeg, and the elders get poured for first.",
         "pan": "Foil, half size, curry goat down into the corners, wrapped twice for the ride back to Flatbush.",
         "tape": "Blue, wound around the pole so the string lights do not come down on anybody's head.",
-        "pant": "What the dog does flat under the bench, waiting on a bone that is definitely coming.",
         "pane": "The kitchen window one, pushed all the way up so the pot can go straight out to the yard.",
-        "ten": "The number of pounds of rice and peas she cooks whether forty show up or eighty."
+        "ten": "The number of pounds of rice and peas she cooks whether forty show up or eighty.",
+        "aunt": "No blood relation, but she has cooked for this yard every summer since before you were born."
       },
       "prefer": [
         "pan",
         "tape",
-        "pant",
+        "aunt",
         "pane",
         "ten"
       ]
@@ -5484,14 +5504,14 @@
         "ago": "Fifty years since the first one, in a union hall on Ridge Avenue, and page one says so.",
         "ode": "The cousin who teaches English wrote one for the banquet and read it in under four minutes.",
         "dog": "The one the fish market keeps out front, and every child on the street knows it by name.",
-        "ego": "What the side that hosted last year brought along with the leftover banner."
+        "badge": "Clipped to a lanyard so the cousins from Detroit can read your mother's name before yours."
       },
       "prefer": [
         "abode",
         "ago",
         "ode",
         "dog",
-        "ego"
+        "badge"
       ]
     },
     {
@@ -5503,14 +5523,14 @@
         "name": "What the historian corrected in the county record, spelled the way it was before a clerk changed it.",
         "team": "Blue against gold at the park Saturday morning, and the winning side is printed in the program.",
         "game": "Dominoes in the corner of the ballroom until the hotel staff started stacking chairs around them.",
-        "gate": "B-24 at Newark, eleven of them in matching shirts, and the flight is already two hours late."
+        "tag": "Sewn into the collar of the reunion shirt, and it itches every last one of them by noon."
       },
       "prefer": [
         "agent",
         "name",
         "team",
         "game",
-        "gate"
+        "tag"
       ]
     },
     {
@@ -5518,14 +5538,14 @@
       "theme": "reunion",
       "clues": {
         "badges": "Two hundred, alphabetized in a shoebox, and every side of the family has its own ribbon color.",
-        "based": "The committee is run out of one apartment in North Philadelphia, and has been for nine years.",
         "beads": "Around her neck for the group photograph, and a toddler has both hands in them by dessert.",
         "ages": "The column the historian added to the roster this year, and three people asked her to take it off.",
         "bags": "Piled behind the front desk at eleven because nobody can check in until three.",
-        "gas": "Two hundred and forty dollars of it up I-75 and back, split four ways at the first stop."
+        "gas": "Two hundred and forty dollars of it up I-75 and back, split four ways at the first stop.",
+        "badge": "Hers says Committee, and it gets her past the hotel front desk without a word being asked."
       },
       "prefer": [
-        "based",
+        "badge",
         "beads",
         "ages",
         "bags",
@@ -5538,14 +5558,14 @@
       "clues": {
         "anemic": "What the turnout from the youngest cousins was, and the committee said so out loud in September.",
         "cinema": "The old one on Woodward, rented for two hours on Friday night for the slideshow.",
-        "manic": "How the ballroom looks at nine on Friday, three carloads arriving at once and no chairs left.",
         "cane": "Hooked over the back of her chair at the head table, and she will not walk in with it.",
         "main": "The street the old store stood on, and half of that side is a parking lot now.",
-        "mince": "What the chairwoman does not do with words when the shirt money comes up short."
+        "mince": "What the chairwoman does not do with words when the shirt money comes up short.",
+        "name": "Called out at the microphone one branch at a time, oldest living first, and everybody stands."
       },
       "prefer": [
         "cinema",
-        "manic",
+        "name",
         "cane",
         "main",
         "mince"
@@ -5560,14 +5580,14 @@
         "grade": "What the retired principal still asks the college cousins about, one at a time, by first name.",
         "gear": "The DJ's, up the loading dock at four, and the hall wants all of it out by midnight.",
         "drag": "What the banner does on the ballroom carpet because the ceiling hooks sit two feet too low.",
-        "brag": "What they have earned the right to do, having filled the hall two years running."
+        "badge": "The safety pin on the back of it bends by Friday, and half the hall is using tape instead."
       },
       "prefer": [
         "bread",
         "grade",
         "gear",
         "drag",
-        "brag"
+        "badge"
       ]
     },
     {
@@ -5617,14 +5637,14 @@
         "copy": "What the boy wants of the picture on his phone, and his head does not grow that way.",
         "icy": "The window in February, and the chair nearest the door that nobody ever chooses.",
         "cop": "Parks out front, walks in in uniform, and waits his turn behind three other men.",
-        "coy": "How the young barber gets the minute you ask him who actually taught him."
+        "clip": "The guard number he calls out loud before the machine ever touches the back of your neck."
       },
       "prefer": [
         "oil",
         "copy",
         "icy",
         "cop",
-        "coy"
+        "clip"
       ]
     },
     {
@@ -5636,14 +5656,14 @@
         "tape": "The paper strip tucked under your collar so nothing gets down the back of your shirt.",
         "rite": "A boy's first one, and his mother goes home with the curls in a sandwich bag.",
         "tire": "By the fifth head the standing catches up with him and he works one song off the stool.",
-        "trip": "What the cord across the floor is waiting to cause, and he steps over it without looking."
+        "part": "Cut in with the corner of the blade, ruler-straight, and he checks it in the hand mirror twice."
       },
       "prefer": [
         "pair",
         "tape",
         "rite",
         "tire",
-        "trip"
+        "part"
       ]
     },
     {
@@ -5652,14 +5672,14 @@
       "clues": {
         "soiled": "The excuse she will not hear about the floor at nine. Her class swept it at six.",
         "solid": "How her count is. No rushing, no drifting, dead on the beat for the whole song.",
-        "sidle": "How you cross a crowded floor mid-song: sideways, small steps, apologizing to nobody.",
         "oiled": "What the hinge on the hall door is not, so it announces every single late arrival.",
         "slid": "What his heel did on somebody's spilled drink, and he worked it into the turn.",
-        "lied": "What the flyer did about the beginner hour, which has never once started at seven."
+        "lied": "What the flyer did about the beginner hour, which has never once started at seven.",
+        "slide": "Two counts across the boards with the foot never leaving them, which is why she checks the wax."
       },
       "prefer": [
         "solid",
-        "sidle",
+        "slide",
         "oiled",
         "slid",
         "lied"
@@ -5673,14 +5693,14 @@
         "filed": "How forty cousins get on: two rows, arm's length, and she claps them into place.",
         "fled": "What the teenagers did when the old four-wall started, and came back for the next one.",
         "self": "Who you are dancing for in this one. No partner, no frame, and that is the point.",
-        "idle": "Nobody gets to be it against the wall. The back row is for learning, not watching.",
-        "life": "Sixty-two years old, front and center, and everyone behind her is copying her feet."
+        "life": "Sixty-two years old, front and center, and everyone behind her is copying her feet.",
+        "slide": "Heel out, weight shifting, and the foot travels a whole step without ever leaving the floor."
       },
       "prefer": [
         "filed",
         "fled",
         "self",
-        "idle",
+        "slide",
         "life"
       ]
     },
@@ -5693,14 +5713,14 @@
         "drape": "Black and gold over the podium where the order is read, ironed that morning on the church steps.",
         "tarp": "Blue, over the sound board by nine, because June on the Gulf will open up without warning.",
         "pad": "The one the treasurer writes gate receipts on, carbon torn off and handed to you.",
-        "pat": "What an usher gives the back of a man who goes quiet during the reading."
+        "red": "The soda, the watermelon, the punch: one color runs the length of the table."
       },
       "prefer": [
         "parted",
         "drape",
         "tarp",
         "pad",
-        "pat"
+        "red"
       ]
     },
     {
@@ -5711,14 +5731,14 @@
         "pane": "Cracked in the third-floor stairwell since your mother went here. Taped. Still cracked.",
         "nap": "Twenty minutes on the library's second floor, backpack for a pillow, alarm set for seminar.",
         "pen": "Handed out at the front of the exam room, and she counts them out and counts them back.",
-        "bend": "What four hours over a microscope stage does to your back before the lab report is due.",
-        "bean": "Ground fresh at the shop in the union, and the line is longest at nine fifty."
+        "bean": "Ground fresh at the shop in the union, and the line is longest at nine fifty.",
+        "band": "Six in the morning on the practice field, and three dorms hear every count of it."
       },
       "prefer": [
         "pane",
         "nap",
         "pen",
-        "bend",
+        "band",
         "bean"
       ]
     },
@@ -5729,14 +5749,14 @@
         "oblige": "Asked to take on the whole thing for Saturday. She said no, and did not soften it.",
         "globe": "The milk-glass shade over her worktable. She changed the bulb herself, on a chair.",
         "ogle": "What the neighbor's boy does at the cooling racks until she hands him a broken one.",
-        "beg": "What the mail carrier does out loud, every time there is something sweet by the door.",
         "ego": "She has one about her crust, and she has earned every inch of it twice over.",
-        "log": "The order book by the phone: name, date, deposit paid, all of it in pencil."
+        "log": "The order book by the phone: name, date, deposit paid, all of it in pencil.",
+        "boil": "Sugar taken to hard crack, and she watches the pot instead of the clock, every single time."
       },
       "prefer": [
         "globe",
         "ogle",
-        "beg",
+        "boil",
         "ego",
         "log"
       ]
@@ -5750,14 +5770,14 @@
         "list": "Every price on it went up the week the flour did, and not one customer argued.",
         "star": "She puts one by the names who pay when they say they will. There are not many.",
         "last": "Her iron skillet will outlive every person standing in this room, and she has said so.",
-        "liar": "One word for the cousin who swore he never touched the icing, wearing it on his sleeve."
+        "salt": "A pinch goes into the caramel and a pinch goes over her shoulder, and she explains neither."
       },
       "prefer": [
         "stair",
         "list",
         "star",
         "last",
-        "liar"
+        "salt"
       ]
     },
     {
@@ -5768,14 +5788,14 @@
         "doily": "Paper, under the cake, cut out with the scissors she keeps for nothing else.",
         "body": "What the gravy has after an hour, and no shortcut on this earth gets it there sooner.",
         "bold": "How she seasons. A full hand, tasted once, and never once corrected downward.",
-        "idly": "Nobody stands around that way in here. Empty hands get found something to do.",
-        "idol": "Her mother's photograph over the icebox, with a recipe card wedged behind the frame."
+        "idol": "Her mother's photograph over the icebox, with a recipe card wedged behind the frame.",
+        "boil": "The greens go in when the pot is rolling and not one minute before that."
       },
       "prefer": [
         "doily",
         "body",
         "bold",
-        "idly",
+        "boil",
         "idol"
       ]
     },
@@ -5803,14 +5823,14 @@
       "theme": "sunday",
       "clues": {
         "casket": "Carried out of the church at eleven. By two the family was at her table, eating.",
-        "stake": "Everybody here has one in the house, and she is the one who says how it gets divided.",
         "steak": "What she declines to serve on a Sunday, no matter which grandson asks for it by name.",
         "cakes": "Two of them under the dome on the sideboard, and one is spoken for before grace.",
         "case": "She makes one, from her chair, for why the house is not being sold. That ends it.",
-        "stack": "Plates arrive in one and land in front of her. Nobody at this table serves himself."
+        "stack": "Plates arrive in one and land in front of her. Nobody at this table serves himself.",
+        "tea": "Poured from the glass pitcher that only comes out when the leaf is in the table."
       },
       "prefer": [
-        "stake",
+        "tea",
         "steak",
         "cakes",
         "case",
@@ -5920,14 +5940,14 @@
         "tapes": "Labelled in marker, recorded over twice, and the last ten minutes always missing.",
         "space": "Between the couch and the screen, which your mother measured with her voice.",
         "cast": "Seven regulars, one set, and a neighbour who walks in without knocking.",
-        "paste": "What the network did with three unaired episodes to make a Christmas special.",
-        "east": "Eight, seven central, and the whole country knew what that meant."
+        "east": "Eight, seven central, and the whole country knew what that meant.",
+        "act": "Three of them plus a tag scene, and the biggest laugh has to land before each break."
       },
       "prefer": [
         "tapes",
         "space",
         "cast",
-        "paste",
+        "act",
         "east"
       ]
     },
@@ -5940,14 +5960,14 @@
         "coast": "Where the show taped, whatever town it claimed to be set in.",
         "roast": "Sunday dinner on screen, cooked by nobody, steaming from a hidden dish of water.",
         "carts": "What the crew rolled the walls in on, because the whole house is three sides.",
-        "cars": "Parked in the driveway set, never driven, doors that open onto the parking lot."
+        "star": "Top billing, a producer credit by season four, and she used both on the writers' room."
       },
       "prefer": [
         "actor",
         "coast",
         "roast",
         "carts",
-        "cars"
+        "star"
       ]
     },
     {
@@ -5957,14 +5977,14 @@
         "swatch": "What the set designer brought the network, and how the couch ended up orange.",
         "watch": "What you did at the same hour every week, because there was no other way to.",
         "cast": "Put on his arm in one episode, gone by the next, never mentioned again.",
-        "chat": "The two minutes before the theme song, which told you what the trouble was.",
         "wash": "What the laugh track did to a line that had not earned it.",
-        "hats": "The father’s, on the hook by the door, the way you knew he was home."
+        "hats": "The father’s, on the hook by the door, the way you knew he was home.",
+        "act": "Two of them, a break for the commercials, and the trouble had to be fixed before the credits."
       },
       "prefer": [
         "watch",
         "cast",
-        "chat",
+        "act",
         "wash",
         "hats"
       ]
@@ -5977,14 +5997,14 @@
         "tunes": "Thirty seconds, sung, explaining the entire premise so nobody had to ask.",
         "seat": "His, and everyone knew it, and the joke was somebody else being in it.",
         "aunts": "Two of them, visiting, and the episode is over the moment they agree on anything.",
-        "neat": "How the apartment stayed on a salary the show never once explained.",
-        "nest": "What it was called when the last one left, which lasted about four episodes."
+        "nest": "What it was called when the last one left, which lasted about four episodes.",
+        "set": "Three walls and no fourth, and the audience risers roll into place on Friday afternoon."
       },
       "prefer": [
         "tunes",
         "seat",
         "aunts",
-        "neat",
+        "set",
         "nest"
       ]
     },
@@ -5996,14 +6016,14 @@
         "stage": "Three walls, a fake window, and four hundred people breathing on the other side.",
         "gates": "The studio ones, where the line for tickets started at six in the morning.",
         "seat": "Bleachers, bolted down, and a man with a microphone warming you up for an hour.",
-        "yeast": "What the prop kitchen never had, in a kitchen where nobody ever finished cooking.",
-        "easy": "What twenty-two minutes made it look, which is the whole craft of it."
+        "easy": "What twenty-two minutes made it look, which is the whole craft of it.",
+        "set": "The staircase that went nowhere and the front door opening onto two feet of plywood."
       },
       "prefer": [
         "stage",
         "gates",
         "seat",
-        "yeast",
+        "set",
         "easy"
       ]
     },
@@ -6015,14 +6035,14 @@
         "track": "Recorded in 1953, reused for forty years, and some of those people were dead.",
         "stack": "Of scripts on the table read, each one a different colour for each rewrite.",
         "racks": "Where the wardrobe hung, sorted by episode, the same shirt in five sizes.",
-        "cart": "What wheeled the cake in for the hundredth episode, and everybody cried anyway.",
-        "star": "Whose name went above the title, and whose trailer was closest to the door."
+        "star": "Whose name went above the title, and whose trailer was closest to the door.",
+        "cast": "Lined up for the curtain call, and the one hired last gets announced first on purpose."
       },
       "prefer": [
         "track",
         "stack",
         "racks",
-        "cart",
+        "cast",
         "star"
       ]
     },
@@ -6054,14 +6074,14 @@
         "reach": "Her arm, all the way across the table, for the last hot link before anybody can call a vote on it.",
         "crab": "Bought off the boat in San Pedro on the way down, dumped live into the ice with the sodas.",
         "herb": "Thyme and bay leaves from the Louisiana side of the family, still going into the pot in Oakland.",
-        "care": "What she says she does not, out loud, about the neighbors' opinion of smoke at nine in the morning."
+        "car": "Trunk open on the sand road, the ice chest wedged in where the spare tyre should be."
       },
       "prefer": [
         "beach",
         "reach",
         "crab",
         "herb",
-        "care"
+        "car"
       ]
     },
     {
@@ -6073,14 +6093,14 @@
         "pack": "How the links come from the counter, and the reason she buys two before anyone has said who is coming.",
         "rack": "The grate she scrubs with a balled-up sheet of foil while the coals settle to grey.",
         "cake": "Yellow with chocolate frosting, held on a lap the whole drive so the freeway cannot slide it.",
-        "race": "Between you and the sun, since the coals are not ready and the little ones started asking at noon."
+        "car": "Circling Leimert twice for a space, and the folding chairs are riding on somebody's lap."
       },
       "prefer": [
         "park",
         "pack",
         "rack",
         "cake",
-        "race"
+        "car"
       ]
     },
     {
@@ -6108,14 +6128,14 @@
       "clues": {
         "triple": "How much the pan of macaroni has to grow once a cousin says she is bringing her whole church group.",
         "trip": "Ninety minutes on the 10 with aluminum trays belted into the back seat and the links riding on ice.",
-        "tire": "What the jack comes out for on the shoulder near Pomona, while everyone else keeps eating in the back.",
         "pier": "You can smell three families' grills walking out over the water at Balboa before you see a single one.",
         "rite": "The first Saturday after Easter, same park every year, and nobody has ever mailed an invitation.",
-        "pile": "Of trays by the trash can at six, stacked and washed anyway because two of them belong to your mother."
+        "pile": "Of trays by the trash can at six, stacked and washed anyway because two of them belong to your mother.",
+        "tip": "Left on the folding table for the DJ's nephew, in singles, because nobody carries anything larger."
       },
       "prefer": [
         "trip",
-        "tire",
+        "tip",
         "pier",
         "rite",
         "pile"
@@ -6130,14 +6150,14 @@
         "cigar": "Lit only after the plates are down, on the far side of the lot, by the uncle who claims he quit.",
         "grain": "Which way you cut the tri-tip against, and the one thing here that nobody will argue with her about.",
         "rain": "The thing you are not planning around in February, which is the whole reason this feels easy here.",
-        "ran": "What the ice did an hour ago, which is why somebody is already halfway to the store."
+        "ring": "Hers goes on a chain now, because her hands swell in the smoke and she will not risk it."
       },
       "prefer": [
         "car",
         "cigar",
         "grain",
         "rain",
-        "ran"
+        "ring"
       ]
     },
     {
@@ -6145,14 +6165,14 @@
       "theme": "westcoast",
       "clues": {
         "arming": "What the Richmond shipyard was busy doing in 1943, the year her family got off the train from Louisiana.",
-        "main": "Not the sides, not the sweets: the tray everybody drove out here for, resting under a towel.",
         "gain": "What two shifts at the yard bought — a house on 108th and room enough behind it to set a pit.",
         "arm": "Held palm-down over the coals to count seconds, the only thermometer anybody here has ever trusted.",
         "rim": "The lip of the pot the gumbo sticks to, scraped with a spoon before anybody gets a second bowl.",
-        "grim": "How her face goes when a cousin suggests store sauce for links she has been making since Beaumont."
+        "grim": "How her face goes when a cousin suggests store sauce for links she has been making since Beaumont.",
+        "ring": "Of folding chairs pulled around the pit, and the loudest argument always holds the middle."
       },
       "prefer": [
-        "main",
+        "ring",
         "gain",
         "arm",
         "rim",
@@ -6206,14 +6226,14 @@
         "crisp": "How the skin on a link comes off the hot side, split down the middle and blistered.",
         "spice": "The red tin from her mother's kitchen in Lake Charles, refilled for thirty years, never replaced.",
         "rice": "Cooked at home the night before and carried in the big pot, because gumbo is not going on bread.",
-        "ripe": "How the watermelon has to sound when she thumps it, and why she spends four minutes choosing."
+        "pier": "Crab nets over the rail at Berkeley on a Saturday, and nobody out there is doing it for sport."
       },
       "prefer": [
         "prices",
         "crisp",
         "spice",
         "rice",
-        "ripe"
+        "pier"
       ]
     },
     {
@@ -6224,14 +6244,14 @@
         "bring": "The question in every group text by Wednesday, answered by her with a list and assignments.",
         "iron": "The heavy skillet that came west on the train and still gets the cornbread, set right on the coals.",
         "born": "Half the grown folks here were, in Texas or Louisiana; every child running around, in this county.",
-        "rob": "What the gulls do to an open pan at the shoreline table the second you turn your back.",
-        "bingo": "The card-table game the aunties set up once the sun drops, quarters going into a coffee can."
+        "bingo": "The card-table game the aunties set up once the sun drops, quarters going into a coffee can.",
+        "ring": "The bell on the ice cream truck does it at four and empties the picnic table in seconds."
       },
       "prefer": [
         "bring",
         "iron",
         "born",
-        "rob",
+        "ring",
         "bingo"
       ]
     },
@@ -6260,14 +6280,14 @@
       "clues": {
         "barked": "Thirteen hours of smoke and coarse pepper made that crust. Black as a boot and not one bit burnt.",
         "bread": "Two slices out of the sleeve, laid down first so they catch whatever runs off the meat.",
-        "break": "The only one he takes is at four in the morning, standing up, with coffee gone cold.",
         "bark": "What the man behind you does when the line stops. She weighs at her own speed regardless.",
         "dark": "It is still that when the fire gets built, and the doors do not open for another six hours.",
-        "baker": "Her name is on the pie case out front, and the crew in the pit room answers to her on Sundays."
+        "baker": "Her name is on the pie case out front, and the crew in the pit room answers to her on Sundays.",
+        "red": "The smoke line sitting a quarter inch under the crust, and she will not sell a slice without it."
       },
       "prefer": [
         "bread",
-        "break",
+        "red",
         "bark",
         "dark",
         "baker"
@@ -6319,14 +6339,14 @@
         "back": "The room behind the meat case, where the smoke was, because the store out front sold groceries.",
         "rack": "Links hang in rows on it above the coals, curved and dripping, in a cabinet the family welded themselves.",
         "acre": "The fenced ground beside where customers park, and the split wood is stacked shoulder high on it.",
-        "brake": "What the eighteen-wheelers hit coming into Elgin, because the smoke crosses the highway at the light.",
-        "cake": "Nobody drives here for it, but somebody's mother sends one every Friday and it is gone within the hour."
+        "cake": "Nobody drives here for it, but somebody's mother sends one every Friday and it is gone within the hour.",
+        "bark": "The crust splits under the knife, and the sound it makes is how she knows the wrap held."
       },
       "prefer": [
         "back",
         "rack",
         "acre",
-        "brake",
+        "bark",
         "cake"
       ]
     },
@@ -6358,14 +6378,14 @@
         "pinto": "Beans in a pot off to the side, and half this county will tell you they do not belong on the tray.",
         "pint": "How the sauce is sold here: in a jar, to take home. It is not going anywhere near the meat in this room.",
         "tips": "The trimmings she scoops into a pan for the regulars, priced low and gone before the doors open.",
-        "snip": "What the scissors do to the chain of links, one twist at a time, straight down onto the paper."
+        "pit": "Brick, forty feet of it, and the woman running the fire has not let it go out since Thursday."
       },
       "prefer": [
         "point",
         "pinto",
         "pint",
         "tips",
-        "snip"
+        "pit"
       ]
     },
     {
@@ -6376,14 +6396,14 @@
         "rust": "What never gets sanded off the smoker, because what is built up inside it is worth more than paint.",
         "rest": "An hour wrapped in the warmer before she cuts, and she will not shorten it for anybody living.",
         "dust": "The caliche off the lot, settled on every windshield in the line by noon.",
-        "true": "What the story about the pit surviving the fire mostly is, minus the part about the mayor.",
-        "used": "The slicer, bought secondhand off a grocery closing in Taylor, and still the sharpest thing in here."
+        "used": "The slicer, bought secondhand off a grocery closing in Taylor, and still the sharpest thing in here.",
+        "red": "The cooler case of strawberry soda by the door, the only thing in here nobody had to cook."
       },
       "prefer": [
         "rust",
         "rest",
         "dust",
-        "true",
+        "red",
         "used"
       ]
     },
@@ -6394,14 +6414,14 @@
         "soaked": "What the butcher paper is by the time you reach a table, and that is the whole point of the paper.",
         "oak": "Post — the short, gnarled one that grows out here, and the only wood that goes in that firebox.",
         "asked": "Lean or moist. She poses it once, knife already up, and the line behind you can hear you stall.",
-        "sake": "\"For your grandmother's,\" she says, and pushes the extra half pound across without charging for it.",
         "desk": "The rolltop in the office corner, where the ledgers from the grocery years are still stacked.",
-        "dose": "What an hour out back gives you: eyes running, clothes ruined, and you go again tomorrow."
+        "dose": "What an hour out back gives you: eyes running, clothes ruined, and you go again tomorrow.",
+        "soda": "Glass bottles standing in a cooler of ice by the register, opener screwed to the side."
       },
       "prefer": [
         "oak",
         "asked",
-        "sake",
+        "soda",
         "desk",
         "dose"
       ]
@@ -6415,14 +6435,14 @@
         "wash": "What they do to the block with a brush and hot water every night, down to the bare maple.",
         "show": "What she does not put on. No flourish, no bottle waved over anything. The knife and the scale.",
         "dash": "Where the ticket ends up in the truck, folded once, because you are eating in the cab in the lot.",
-        "had": "\"They it at eleven.\" Meaning the brisket is gone and you should have left the house earlier."
+        "soda": "Big Red and grape in the case, and the church crowd clears both out before one o'clock."
       },
       "prefer": [
         "saw",
         "wash",
         "show",
         "dash",
-        "had"
+        "soda"
       ]
     },
     {
@@ -6433,14 +6453,14 @@
         "ready": "What it is when it is, and no clock in this building has ever been given a vote on the matter.",
         "yard": "Out back: the woodpile, two dogs, and a trailer pit nobody has moved since the day it was welded.",
         "year": "How long the split oak sits before it burns. Green makes a sour smoke and she can taste it.",
-        "fade": "The hand-painted sign has done it to almost nothing, and repainting is out of the question.",
-        "dry": "What a brisket goes if you rush the wrap, and the whole crew hears about it for a week."
+        "dry": "What a brisket goes if you rush the wrap, and the whole crew hears about it for a week.",
+        "red": "The needle on the pit gauge sits in it all afternoon and she cooks by feel regardless."
       },
       "prefer": [
         "ready",
         "yard",
         "year",
-        "fade",
+        "red",
         "dry"
       ]
     },
@@ -6452,14 +6472,14 @@
         "pit": "Brick, indoors, fire at one end and the meat at the other. Nothing like the barrels you have seen.",
         "cost": "By the pound, weighed in front of you, and the number on the scale is the entire conversation.",
         "spot": "Yours, held by a cousin while you go move the truck, and the people behind you allow it.",
-        "stop": "What the whole town is on the highway, and half the traffic pulling off carries out-of-county plates.",
-        "cot": "In the corner by the office, for the two hours between the last fire and the first slice."
+        "cot": "In the corner by the office, for the two hours between the last fire and the first slice.",
+        "post": "Cedar, sunk in the fence line, holding the split oak stack up on the windward side."
       },
       "prefer": [
         "pit",
         "cost",
         "spot",
-        "stop",
+        "post",
         "cot"
       ]
     },
@@ -6469,14 +6489,14 @@
       "clues": {
         "fridge": "The walk-in, packed with trimmed briskets on sheet pans, and she counts them before she goes home.",
         "fire": "Built at two in the morning and never let out again until the last brisket comes off the iron.",
-        "grief": "What the cousin from Tyler gives them over the missing sauce, every visit, chopped-pork loyalty and all.",
         "grid": "The iron the meat lies on, scraped with a brick between cooks and never washed with anything else.",
         "ride": "Ninety minutes out from town for a table, and the people who make it call that nothing.",
-        "ridge": "The seam of fat she leaves standing along the edge, because trimming it flush would be a mistake."
+        "ridge": "The seam of fat she leaves standing along the edge, because trimming it flush would be a mistake.",
+        "red": "The coals under the grate glow it all night, and they never go fully over to grey."
       },
       "prefer": [
         "fire",
-        "grief",
+        "red",
         "grid",
         "ride",
         "ridge"
@@ -6526,14 +6546,14 @@
       "clues": {
         "pecans": "Miss Dorothy next door sends her pie over the fence, and the rice pot goes back the other way.",
         "peas": "Red kidney, not pigeon, if the pot is Jamaican. Say it wrong in a Trini kitchen and get a lecture.",
-        "snap": "What the phone does over the whole table before one single person is allowed to eat.",
         "cans": "Coconut milk, four of them, because the fresh nuts sold here are never worth what they cost.",
         "case": "Ting by the twenty-four, bought at the warehouse on Saturday and hidden until Sunday.",
-        "pace": "How she works: seasoning on Thursday, stewing on Friday, and Saturday she only reheats."
+        "pace": "How she works: seasoning on Thursday, stewing on Friday, and Saturday she only reheats.",
+        "cane": "Cut into lengths at the roadside stand, and you chew it and spit the fiber out."
       },
       "prefer": [
         "peas",
-        "snap",
+        "cane",
         "cans",
         "case",
         "pace"
@@ -6566,14 +6586,14 @@
         "ocean": "What lies between the two grandmothers, and the reason the recipe arrived by phone.",
         "cone": "Orange, borrowed off the block, holding the parking spot for the pot lady until noon.",
         "nose": "His runs after one bite. He says he is fine, and he is not.",
-        "once": "How many times you may ask if it is peppery. The second time is rudeness.",
-        "son": "The one sent to the store three times because he keeps forgetting the browning."
+        "son": "The one sent to the store three times because he keeps forgetting the browning.",
+        "cane": "Rum comes from it, and the bottle for the black cake has been steeping fruit since August."
       },
       "prefer": [
         "ocean",
         "cone",
         "nose",
-        "once",
+        "cane",
         "son"
       ]
     },
@@ -6584,14 +6604,14 @@
         "carmen": "Everybody's aunt, nobody's actual aunt, and she holds the box hand money for eleven people.",
         "cream": "The coconut comes in a can here, and this is what she skims off the top of it.",
         "name": "Hers is taped to the pot, taped to the tray, and written in the book where the money is kept.",
-        "mean": "'Small piece' from her: half a pound of oxtail and no argument about it.",
         "came": "The barrel did this in November, with shoes inside and the seasoning you cannot get here.",
-        "care": "Her work at the hospital runs nights, which is why Sunday cooking begins on Saturday."
+        "care": "Her work at the hospital runs nights, which is why Sunday cooking begins on Saturday.",
+        "cane": "The sugar she boils down for the sorrel, because the bagged kind never tastes the same."
       },
       "prefer": [
         "cream",
         "name",
-        "mean",
+        "cane",
         "came",
         "care"
       ]
@@ -6602,14 +6622,14 @@
       "clues": {
         "change": "What she counts out of the coffee tin for the susu, and her book is straighter than the bank's.",
         "hang": "The flags do this off the fire escape all Labor Day weekend. Six of them, six different countries.",
-        "each": "How the plates go out: one to a person, and she says when you may come back.",
         "ache": "The back does this after eight hours over a drum, and she is out there again on Sunday.",
         "hen": "Not the young bird. She wants the old one for the pot and pays more to get it.",
-        "cage": "The box fan has one over the blades, and the grease on it is older than the youngest cousin."
+        "cage": "The box fan has one over the blades, and the grease on it is older than the youngest cousin.",
+        "cane": "The mill in Vere her grandfather cut for, and why nobody in this family takes their tea plain."
       },
       "prefer": [
         "hang",
-        "each",
+        "cane",
         "ache",
         "hen",
         "cage"
@@ -6623,14 +6643,14 @@
         "scale": "The one at the meat counter, and she watches the needle rather than the man.",
         "seal": "The lid no longer does it, so a plate goes on top and a weight goes on the plate.",
         "sale": "What the church calls it when the plates go out Sunday to cover somebody's airfare home.",
-        "lens": "The one on the phone that the whole parade gets watched through by a cousin standing right there.",
-        "lean": "How the pot sits on the milk crate, with somebody's hand on it the entire ride."
+        "lean": "How the pot sits on the milk crate, with somebody's hand on it the entire ride.",
+        "cane": "Juice pressed green and cloudy at the parkway stand, sold in a cup with lime squeezed in."
       },
       "prefer": [
         "scale",
         "seal",
         "sale",
-        "lens",
+        "cane",
         "lean"
       ]
     },
@@ -6642,14 +6662,14 @@
         "scare": "What the landlord's letter did, and the whole block knew before she reached the corner.",
         "cares": "The only thing she does more of than cook, and why six people hold her spare key.",
         "ears": "The speaker box is aimed at everybody's, and the man across the street has called twice.",
-        "near": "How close the new balcony is to the yard, which is the whole trouble with the smoke.",
-        "cars": "Parked three deep down the block on Sunday, and everybody knows whose is whose."
+        "cars": "Parked three deep down the block on Sunday, and everybody knows whose is whose.",
+        "cane": "Cut joints in the bodega cooler, and the children chew them down to fibre on the stoop."
       },
       "prefer": [
         "scare",
         "cares",
         "ears",
-        "near",
+        "cane",
         "cars"
       ]
     },
@@ -6659,14 +6679,14 @@
       "clues": {
         "fiance": "He has met her mother once. He is being fed until he says something about the pepper.",
         "cafe": "What his people call the place with the patties. The sign outside says bakery.",
-        "face": "Everybody in the room reads hers before the plate is even set down.",
         "fine": "What he says, sweating, on the second forkful, and not one person at the table believes him.",
         "nice": "What her mother says about him, and the tone decides whether the date moves.",
-        "fan": "Set in the doorway so the smoke goes out and not into everybody's church clothes."
+        "fan": "Set in the doorway so the smoke goes out and not into everybody's church clothes.",
+        "cane": "The stalk he was handed to try, and he chewed the fibre and swallowed it in front of everybody."
       },
       "prefer": [
         "cafe",
-        "face",
+        "cane",
         "fine",
         "nice",
         "fan"
@@ -6699,14 +6719,14 @@
         "clang": "The pan being tuned in the yard through August, and the neighbours have stopped calling about it.",
         "angel": "The eulogy called her one and left out that she ran the family's money for fifty years.",
         "lane": "Closed from Utica to Grand Army, with the barricades going up Sunday night.",
-        "leg": "The folding table is short one, and a paint can under that corner has fixed it for nine years.",
-        "lace": "On the good tablecloth, which only comes out when the pastor is expected."
+        "lace": "On the good tablecloth, which only comes out when the pastor is expected.",
+        "cane": "The field her father cut in before the flight up to Brooklyn, and he mentions it every Sunday."
       },
       "prefer": [
         "clang",
         "angel",
         "lane",
-        "leg",
+        "cane",
         "lace"
       ]
     },
@@ -6868,14 +6888,14 @@
       "clues": {
         "failed": "What his first hog did, at nineteen, in front of everybody, and he still tells it on himself.",
         "field": "Tobacco, and the picking waits until the last barn comes out and there is finally a free Saturday.",
-        "fade": "What the letters on the plate-sale sign do by the third year it goes back up on the same post.",
         "deal": "Made with the packing house in August: two hogs, dressed, held on ice until Friday morning.",
         "laid": "How the animal goes on: split down the backbone, opened flat, four people lifting it together.",
-        "dial": "The one on the thermometer nobody trusts. He goes by the sound the fat makes."
+        "dial": "The one on the thermometer nobody trusts. He goes by the sound the fat makes.",
+        "lid": "Sheet of tin weighted with a cinder block, lowered over the pit when the wind gets up."
       },
       "prefer": [
         "field",
-        "fade",
+        "lid",
         "deal",
         "laid",
         "dial"
@@ -6889,14 +6909,14 @@
         "rant": "Fifteen minutes on what they do to it in Lexington, delivered to a man who already agrees with every word.",
         "pay": "Nobody at the fire takes any, and the man who once asked about gas money has not lived it down.",
         "nap": "Taken in the cab of the truck at three in the morning, forty minutes, boots still on.",
-        "ran": "What the plates did by one o'clock last fall, which is why she doubled the order this year.",
-        "yarn": "She works it in a lawn chair beside the fire through her whole shift, and nobody suggests she go inside."
+        "yarn": "She works it in a lawn chair beside the fire through her whole shift, and nobody suggests she go inside.",
+        "tray": "Chopped, slaw, hush puppies, a slice of white bread, handed across the counter in that order."
       },
       "prefer": [
         "rant",
         "pay",
         "nap",
-        "ran",
+        "tray",
         "yarn"
       ]
     },
@@ -6928,14 +6948,14 @@
         "tough": "The cartilage running through a rib end. You chew around it, and that is the point of the cut.",
         "hogs": "What the Union Stock Yards took in by the million until 1971, the industry this food grew up beside.",
         "host": "Whoever's turn it is this year, decided in April by the woman who runs the group text.",
-        "shut": "The corner shop is this every Monday, and nobody on the block bothers driving by to check."
+        "hot": "Mild or the other one, asked through the glass, and there is no third answer available."
       },
       "prefer": [
         "south",
         "tough",
         "hogs",
         "host",
-        "shut"
+        "hot"
       ]
     },
     {
@@ -6945,14 +6965,14 @@
         "upshot": "After the wait, the bag, the ride home: two pounds of ends and a link, and nobody speaks.",
         "shop": "Not a restaurant. Four feet of standing room and a menu board with the prices taped over twice.",
         "push": "What you do with the bill into the little turntable, and what she does with the sack coming back.",
-        "stop": "The Seventy-Ninth bus lets out at the door, which is why the line is longest around six.",
         "pots": "Two behind the window, kept warm: the mild one, and the one they will warn you about.",
-        "tops": "Where the fries go once the meat is in: over it, never beside it, so the sauce runs down."
+        "tops": "Where the fries go once the meat is in: over it, never beside it, so the sauce runs down.",
+        "south": "Stony Island, Cottage Grove, Seventy-Ninth: everywhere worth arguing about is on one half of the map."
       },
       "prefer": [
         "shop",
         "push",
-        "stop",
+        "south",
         "pots",
         "tops"
       ]
@@ -6963,14 +6983,14 @@
       "clues": {
         "polite": "Say good evening before you say your order. The woman who owns the place notices who does.",
         "tip": "The trimmed end of a spare rib, cartilage and all, cheap because the packer had no use for it.",
-        "pile": "How it comes out onto the plate at home: no arranging, no garnish, the whole order in a heap.",
         "pit": "Glass-fronted, brick-lined, hickory burning down at one end. The box this city built its barbecue in.",
         "tile": "Floor, walls, ceiling to shoulder height, so the whole front room hoses down at eleven at night.",
-        "lit": "The hickory has been this since five in the morning, hours before the first order is taken."
+        "lit": "The hickory has been this since five in the morning, hours before the first order is taken.",
+        "lot": "Six spaces of cracked asphalt beside the shop, and the smoker takes up two of them."
       },
       "prefer": [
         "tip",
-        "pile",
+        "lot",
         "pit",
         "tile",
         "lit"
@@ -6984,14 +7004,14 @@
         "ribs": "The whole rack, which is not what this city is known for. The ends are.",
         "rub": "Salt, pepper, paprika and whatever else she will not name, worked in the night before.",
         "sure": "She is, about the sauce, having made it the same way since her mother had the shop.",
-        "busier": "Friday after payday against any Tuesday in February. It is not a close comparison.",
-        "rise": "White bread out of a plastic sleeve never had to do it before going under the meat."
+        "rise": "White bread out of a plastic sleeve never had to do it before going under the meat.",
+        "bus": "Forty minutes home with the warm box on your lap, and every rider knows what you are carrying."
       },
       "prefer": [
         "ribs",
         "rub",
         "sure",
-        "busier",
+        "bus",
         "rise"
       ]
     },
@@ -7003,14 +7023,14 @@
         "soul": "The word this city put on the food once it came up from the Delta and needed a name on a sign.",
         "loud": "The radio in the alley, the fan on the smoker, and two card games going at once behind the garage.",
         "sold": "By the pound at the window, and by two on a Saturday afternoon there is nothing left to buy.",
-        "could": "She said the alley would hold it, and she was right: forty people and every garage door up.",
-        "duo": "Ends and a link in the same sack. Ordering only one of them marks you as new to the block."
+        "duo": "Ends and a link in the same sack. Ordering only one of them marks you as new to the block.",
+        "cold": "The pop in the chest by the garage door, buried so deep in ice your hand aches getting one."
       },
       "prefer": [
         "soul",
         "loud",
         "sold",
-        "could",
+        "cold",
         "duo"
       ]
     },
@@ -7041,14 +7061,14 @@
         "coal": "Dumped in the red can when you are done, never on the grass, and never in a park that forbids it.",
         "coat": "On the back of the folding chair by nine at night in June, because the wind comes off the water.",
         "late": "What the application cannot be: fifty people or more and the Park District wants it well ahead.",
-        "tale": "The one about the cousin who set a grill on the sand and got a lesson about where that is legal.",
-        "ale": "Not allowed at any size without the permit, along with amplified sound and anything with a tent."
+        "ale": "Not allowed at any size without the permit, along with amplified sound and anything with a tent.",
+        "lot": "Where the trucks back in on Seventy-Fifth, and the line to the window starts at the curb."
       },
       "prefer": [
         "coal",
         "coat",
         "late",
-        "tale",
+        "lot",
         "ale"
       ]
     },
@@ -7079,14 +7099,14 @@
         "bag": "Brown paper, doubled, already going dark at the bottom before you get back to the corner.",
         "bring": "What she tells you to do with a cooler and nothing else, because the food is handled.",
         "rain": "The tent goes up in the yard whether it comes or not. She has watched the forecast since Wednesday.",
-        "ring": "The phone does it all afternoon on Memorial Day, and nobody behind the counter has time to answer.",
-        "grab": "You do not do it yourself. Stand where she points and wait for your number to be called."
+        "grab": "You do not do it yourself. Stand where she points and wait for your number to be called.",
+        "rib": "Spare, cut down to the tip end, and this city built a whole trade on the part nobody wanted."
       },
       "prefer": [
         "bag",
         "bring",
         "rain",
-        "ring",
+        "rib",
         "grab"
       ]
     },
@@ -7118,14 +7138,14 @@
         "ave": "Halsted, Ashland, Western: the long ones that run the length of the city, and the shops sit on them.",
         "acre": "The yard behind a two-flat is not one. Twenty feet of concrete, a fence, and the smoker.",
         "read": "She does it to the line, counting heads and putting more on before anybody has ordered.",
-        "dare": "Nobody does it with her sauce. Asking twice gets you a look and a change of subject."
+        "card": "Taped inside the glass: no checks, and the machine for anything else has been broken since June."
       },
       "prefer": [
         "crave",
         "ave",
         "acre",
         "read",
-        "dare"
+        "card"
       ]
     },
     {
@@ -7382,14 +7402,14 @@
         "boards": "Reedy Chapel-AME on Broadway, Galveston: the church in the record of that day, still keeping the nineteenth.",
         "broad": "The Galveston street the AME congregation has stood on since long before anybody put up a marker.",
         "board": "Planks over sawhorses on the chapel lawn by seven, and the pans start arriving before the tables are level.",
-        "ado": "The reading is done without it. She opens the doors at eleven and the talking stops on its own.",
         "sod": "The churchyard the folding chairs sink into by noon, and nobody gets up to fix it.",
-        "rob": "Holding the news back two more harvests amounted to this, whatever anyone at the time called it instead."
+        "rob": "Holding the news back two more harvests amounted to this, whatever anyone at the time called it instead.",
+        "soda": "Strawberry, in the cooler on the lawn, and the red drink is the one thing nobody has to explain."
       },
       "prefer": [
         "broad",
         "board",
-        "ado",
+        "soda",
         "sod",
         "rob"
       ]
@@ -7403,14 +7423,14 @@
         "rest": "The regiment got none. The fighting stopped in April and Texas still had to be sat on.",
         "trades": "The service taught them these, and the wages the order promised would not pay a living for one.",
         "seat": "Front row, kept for the men who march in Union blue, and the children want that bench every year.",
-        "ears": "People took the words in with these, because Texas law had made sure they could not check the page."
+        "read": "Done out loud every June from a folding lectern, by a man wearing white gloves."
       },
       "prefer": [
         "dares",
         "rest",
         "trades",
         "seat",
-        "ears"
+        "read"
       ]
     },
     {
@@ -7421,14 +7441,14 @@
         "amend": "House Bill 1016 did this to the Texas statute books, in a session where no other state had tried it.",
         "named": "Al Edwards. Say it out loud, because Texas got the day first and hardly anybody says his.",
         "meant": "First in the nation bought four decades: Texas carried the day long before Washington moved at all.",
-        "ante": "Texas put this up in 1979, effective 1980, with not one other legislature willing to match it yet.",
-        "mend": "A date on a calendar does not do this by itself, and the women who keep the program will say so first."
+        "mend": "A date on a calendar does not do this by itself, and the women who keep the program will say so first.",
+        "meat": "Brisket over pecan since long before any legislature took an interest in the nineteenth."
       },
       "prefer": [
         "amend",
         "named",
         "meant",
-        "ante",
+        "meat",
         "mend"
       ]
     },
@@ -7459,14 +7479,14 @@
         "yea": "Four hundred and fifteen of them in the House on the sixteenth of June, 2021. Fourteen went the other way.",
         "law": "The seventeenth of June, 2021: the bill picks up a number, one seventeen dash seventeen, and she is in the room.",
         "wary": "How the people who had kept it for a century took the news that offices would now be closing for it.",
-        "rely": "What the observance never once got to do on any government, in Texas or out of it, before that summer.",
-        "war": "What was over in April of 1865, two months before anybody in Texas was told a thing about it."
+        "war": "What was over in April of 1865, two months before anybody in Texas was told a thing about it.",
+        "year": "Eighteen sixty-five in Texas, and the news was already two and a half old when it arrived."
       },
       "prefer": [
         "yea",
         "law",
         "wary",
-        "rely",
+        "year",
         "war"
       ]
     },
@@ -7487,7 +7507,8 @@
         "lead",
         "held",
         "idea"
-      ]
+      ],
+      "scene": "The first Black woman to run a major label"
     },
     {
       "base": "studio",
@@ -7497,16 +7518,17 @@
         "suit": "Nobody in one signed off on her label. The Black woman running the company did that herself.",
         "dust": "The boxes of demo tapes gathered it at home in Portsmouth before the call finally came.",
         "outs": "The clauses her lawyer counted twice in 1996, before she agreed to write, produce and own.",
-        "dots": "They connect across her career map: writer, then producer, then owner, in that order.",
-        "sit": "She would not do this behind the board while somebody else took the front of the record."
+        "sit": "She would not do this behind the board while somebody else took the front of the record.",
+        "duo": "Two voices, one microphone, and the harmony on the bridge was worked out in her mother's basement."
       },
       "prefer": [
         "suit",
         "dust",
         "outs",
-        "dots",
+        "duo",
         "sit"
-      ]
+      ],
+      "scene": "Owning the imprint outright, at twenty-two"
     },
     {
       "base": "posing",
@@ -7525,7 +7547,8 @@
         "sing",
         "spin",
         "pin"
-      ]
+      ],
+      "scene": "The group photo, and who was writing by 1999"
     },
     {
       "base": "nearly",
@@ -7544,7 +7567,8 @@
         "early",
         "learn",
         "rely"
-      ]
+      ],
+      "scene": "The contract that nearly did not happen"
     },
     {
       "base": "tamper",
@@ -7563,7 +7587,8 @@
         "rate",
         "team",
         "part"
-      ]
+      ],
+      "scene": "The 1991 papers, and the court that read them"
     },
     {
       "base": "banged",
@@ -7574,14 +7599,14 @@
         "began": "What the showtime style did in 1947, rather than always having been the way it is done.",
         "badge": "What the drum major carries on the chest of the uniform, and it is not decoration to him.",
         "bend": "The knee does it on the eighth count now, which corps style would never have allowed.",
-        "aged": "Seventy-odd years of the same style, and the alumni section still knows the cadence cold."
+        "dean": "She signs off on whether the drumline travels, and the director's budget crosses her desk first."
       },
       "prefer": [
         "band",
         "began",
         "badge",
         "bend",
-        "aged"
+        "dean"
       ]
     },
     {

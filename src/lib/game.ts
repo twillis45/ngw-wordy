@@ -22,7 +22,13 @@ export type Puzzle = {
   /** How hard this puzzle is, 0 (kindest) to 1. Drives the warm-up ladder. */
   difficulty: number;
   /** Authored theme, when one claims this puzzle's base word. */
-  theme: { id: string; name: string; blurb: string } | null;
+  theme: {
+    id: string;
+    name: string;
+    blurb: string;
+    /** What THIS board is about — see build-puzzles.mjs for why. */
+    scene?: string | null;
+  } | null;
 };
 
 /**
