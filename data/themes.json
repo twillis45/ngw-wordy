@@ -4975,6 +4975,291 @@
         "inch",
         "rein"
       ]
+    },
+    {
+      "base": "honest",
+      "theme": "rnb90s",
+      "clues": {
+        "honest": "What the Uptown album promised in its title, in a voice already sanded rough at twenty-one.",
+        "notes": "Four-part stack, and the lowest man is holding the one nobody in the car can hum.",
+        "stone": "What the sisters' harmony sits on: one held organ chord, unmoving under all of it.",
+        "host": "She reads the countdown Sunday night and calls number one before the ad break.",
+        "shoe": "Suede, brushed twice, worn to the video shoot and never once after.",
+        "tens": "What the tape counter reads at the ad-lib, and she rewinds to it every time."
+      },
+      "prefer": [
+        "notes",
+        "stone",
+        "host",
+        "shoe",
+        "tens"
+      ]
+    },
+    {
+      "base": "mentor",
+      "theme": "rnb90s",
+      "clues": {
+        "mentor": "The producer who put her group on a B-side first, then let them keep the publishing.",
+        "metro": "Three rooms over a Philadelphia subway grate; the walls shook when the express came.",
+        "tenor": "He takes the second line in the quartet and the whole last verse by himself.",
+        "term": "Two albums and an option. What her lawyer struck through before anybody signed.",
+        "omen": "The first four bars of the drum program. You already know how the record ends.",
+        "more": "What the engineer wrote on the tape box next to the ad-lib pass: one again, louder."
+      },
+      "prefer": [
+        "metro",
+        "tenor",
+        "term",
+        "omen",
+        "more"
+      ]
+    },
+    {
+      "base": "notice",
+      "theme": "rnb90s",
+      "clues": {
+        "notice": "Thirty days in writing before she walked from the label, taped to the studio door.",
+        "tonic": "Home key. The last chorus leaves it a whole step up and never comes back down.",
+        "coin": "Quarter in the diner jukebox slot, and she punches the slow one twice.",
+        "cent": "A penny a record after the split, which is what four of them each took home.",
+        "icon": "Her silhouette on the tour poster. Nobody prints the name because nobody has to.",
+        "into": "Where the ad-lib takes the final chorus: up and clear over the top of the choir."
+      },
+      "prefer": [
+        "tonic",
+        "coin",
+        "cent",
+        "icon",
+        "into"
+      ]
+    },
+    {
+      "base": "soften",
+      "theme": "rnb90s",
+      "clues": {
+        "soften": "What the compressor does to her breath so a whisper still sits over the bassline.",
+        "often": "Twice an hour after ten at night, until the request line finally stopped ringing.",
+        "font": "The label's gold script down the cassette spine, unreadable at arm's length.",
+        "soft": "How the ballad opens: brushed snare, no kick at all, until bar nine.",
+        "sent": "She mailed the four-track demo to A&R herself, no manager, return address in pen.",
+        "tones": "What the keyboard patch list calls them: bell, glass, and one just named Rhodes."
+      },
+      "prefer": [
+        "often",
+        "font",
+        "soft",
+        "sent",
+        "tones"
+      ]
+    },
+    {
+      "base": "stolen",
+      "theme": "rnb90s",
+      "clues": {
+        "stolen": "Four bars nobody cleared in 1991, and the writer's daughter collected in court.",
+        "stole": "White fur over the gown at the awards, carried up the stairs like a robe.",
+        "lens": "What the director kept fogging for the rain scene, half the video budget gone.",
+        "lone": "One voice, no stack, no double: the a cappella eight bars the album opens on.",
+        "sole": "The writing credit, hers and nobody else's, on a record four men produced.",
+        "lent": "She gave the group her guide vocal for the demo and never got the tape back."
+      },
+      "prefer": [
+        "stole",
+        "lens",
+        "lone",
+        "sole",
+        "lent"
+      ]
+    },
+    {
+      "base": "ornate",
+      "theme": "rnb90s",
+      "clues": {
+        "ornate": "The Atlanta label's cover art: gold leaf, heavy drape, four women shot like a painting.",
+        "rate": "Studio B by the hour, and the budget says finish the lead vocal before midnight.",
+        "note": "Held eight bars at the end while the band drops out from under her entirely.",
+        "earn": "What the four of them took in points instead of an advance, and it paid longer.",
+        "tear": "One down the cheek in the second verse, and the director kept that take.",
+        "torn": "The gym flyer off the pole, corner still taped, the DJ's name down at the bottom."
+      },
+      "prefer": [
+        "rate",
+        "note",
+        "earn",
+        "tear",
+        "torn"
+      ]
+    },
+    {
+      "base": "townie",
+      "theme": "rnb90s",
+      "clues": {
+        "townie": "The one who stayed, and still knows which corner the group used to sing on.",
+        "town": "Population four thousand, one station, and it played her demo before anybody.",
+        "twin": "Two of the four are, and only one of them can hold the high harmony.",
+        "nite": "Spelled that way on the flyer because the club spelled it that way on the awning.",
+        "wine": "A cooler in the fridge for the anniversary; her tape runs longer than dinner.",
+        "went": "She left on the Greyhound with one cassette and came back with a deal."
+      },
+      "prefer": [
+        "town",
+        "twin",
+        "nite",
+        "wine",
+        "went"
+      ]
+    },
+    {
+      "base": "asking",
+      "theme": "fishfry",
+      "clues": {
+        "asking": "What the post commander does over the mic at six: who still needs a perch plate?",
+        "gains": "What the relief fund shows after Friday, in the treasurer's hand, two columns, no calculator.",
+        "sign": "Poster board by the coat rack: PERCH $14, RYE BREAD, POTATO PANCAKES, FRIDAYS ONLY.",
+        "sink": "The three-tub washup by the walk-in. Her daughter runs it and keeps everybody moving.",
+        "snag": "A hitch, like the license copy nobody can find twenty minutes before doors open.",
+        "kin": "Your people. They eat first only if they worked the line, and never otherwise."
+      },
+      "prefer": [
+        "gains",
+        "sign",
+        "sink",
+        "snag",
+        "kin"
+      ]
+    },
+    {
+      "base": "whales",
+      "theme": "fishfry",
+      "clues": {
+        "whales": "What the lodge quietly calls the big buyers: the man who takes forty boxes to his garage.",
+        "slaw": "Between the two slices of white bread, and if you say no she puts it on anyway.",
+        "sale": "What the shoe-polish lettering in the lodge window announces, repainted every month.",
+        "wash": "What the paper towels never quite do to your hands after breading forty pounds of lake trout.",
+        "laws": "The liquor board's rules, which the trustee can recite, and does, at every meeting.",
+        "heals": "What the lodge fund does for a member's light bill, quietly, and nobody names names."
+      },
+      "prefer": [
+        "slaw",
+        "sale",
+        "wash",
+        "laws",
+        "heals"
+      ]
+    },
+    {
+      "base": "anchor",
+      "theme": "fishfry",
+      "clues": {
+        "anchor": "What the hall is for this stretch of the river. Catfish money, and it stays with the local.",
+        "ranch": "The dressing the young hands want in a cup. The retirees pretend not to hear them.",
+        "horn": "The yard blast at three-thirty. Twenty minutes later there are eighty boxes on the table.",
+        "arch": "Where the line bends around the flagpole once the second shift lets out.",
+        "can": "Tin of pickled peppers on every table. The steward's wife buys them by the flat.",
+        "car": "Where half the boxes end up, engine running, double-parked along the fence."
+      },
+      "prefer": [
+        "ranch",
+        "horn",
+        "arch",
+        "can",
+        "car"
+      ]
+    },
+    {
+      "base": "hamlet",
+      "theme": "fishfry",
+      "clues": {
+        "hamlet": "Four hundred people, one blinking light, and a township hall that seats ninety on a good night.",
+        "metal": "The folding tables, the fry baskets, the ash bucket by the door: all of it cold to the touch.",
+        "math": "The clerk's arithmetic at nine o'clock, done twice, and she does not want help with it.",
+        "malt": "In the cooler behind the bar, two dollars, and the license is taped up above it.",
+        "heat": "What comes off the two fryers by seven, and why the back door stays propped in February.",
+        "tale": "The one about the year the walleye did not come, told by a man who was not there."
+      },
+      "prefer": [
+        "metal",
+        "math",
+        "malt",
+        "heat",
+        "tale"
+      ]
+    },
+    {
+      "base": "measly",
+      "theme": "fishfry",
+      "clues": {
+        "measly": "What the alderman's check looked like beside what the block club raised in one night.",
+        "yams": "Candied, in a foil half-pan, brought by a woman who has voted in every primary since 1972.",
+        "easy": "How he thought the endorsement would come. She let him stand in the line like everybody.",
+        "lays": "What she does with the precinct map on the table once the plates are cleared away.",
+        "same": "The rented hall, the folding chairs, the speech: identical to two years ago.",
+        "sly": "How he works the room, shaking hands down the whole line without buying a plate."
+      },
+      "prefer": [
+        "yams",
+        "easy",
+        "lays",
+        "same",
+        "sly"
+      ]
+    },
+    {
+      "base": "legion",
+      "theme": "fishfry",
+      "clues": {
+        "legion": "Post 47. The bar in front, the fryers in back, and the cod comes in on Thursday.",
+        "lingo": "The talk in this hall: cases, shifts, ranks. Nobody explains it and nobody has to.",
+        "long": "How the wait runs after five, out past the pool table and into the parking lot.",
+        "lion": "The other club in town, the one that does chicken, which everybody insists is worse.",
+        "leg": "The bad one that keeps him on the register instead of the fryer. He still shows up.",
+        "gone": "What the last twelve dinners are by six-fifteen, and the adjutant tells you so herself."
+      },
+      "prefer": [
+        "lingo",
+        "long",
+        "lion",
+        "leg",
+        "gone"
+      ]
+    },
+    {
+      "base": "flames",
+      "theme": "fishfry",
+      "clues": {
+        "flames": "What the company answers pages for, and what the fryer is not permitted to make in the bay.",
+        "false": "The alarm that pulled four of them off the line at six-forty, dinners still boxed.",
+        "safe": "The little one in the chief's office where the night's money sleeps until Monday.",
+        "self": "Take the rolls on your own. That end of the table is unstaffed and always has been.",
+        "fame": "What the haddock has across three towns, which is why cars line up at four-thirty.",
+        "slam": "The bay door dropping at eight. That is the sound of the night being over."
+      },
+      "prefer": [
+        "false",
+        "safe",
+        "self",
+        "fame",
+        "slam"
+      ]
+    },
+    {
+      "base": "fished",
+      "theme": "fishfry",
+      "clues": {
+        "fished": "What half the hall did all summer, and what the lot smells like every Friday in Lent.",
+        "dish": "The pierogi pan the ladies bring covered and carry home washed, every single week.",
+        "shed": "Out back, where the folding tables and the six-foot hoagie trays wait all year.",
+        "side": "Pierogi or haluski, pick one, and the woman with the tongs will not let you take both.",
+        "hide": "What the last cod sandwich cannot do from the man who has been in line since four.",
+        "dies": "What the noise in the hall does the minute the Grand Knight's wife takes the microphone."
+      },
+      "prefer": [
+        "dish",
+        "shed",
+        "side",
+        "hide",
+        "dies"
+      ]
     }
   ]
 }
