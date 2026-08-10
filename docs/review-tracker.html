@@ -639,10 +639,10 @@
               <td><span class="chip done">Decided</span></td>
             </tr>
             <tr>
-              <td class="wing">Accessibility</td>
+              <td class="wing">Accessibility<div class="dim">the 9 was wrong — see below</div></td>
               <td class="num" style="color:var(--ok)">9</td>
               <td><div class="bar"><i style="width:90%;background:var(--ok)"></i></div></td>
-              <td class="dim">needs a device pass for 10</td>
+              <td class="dim">a real device: VoiceOver, TalkBack, switch control</td>
               <td class="dim">10</td>
               <td><span class="chip done">At target</span></td>
             </tr>
@@ -756,6 +756,107 @@
             <div class="meta">
               <span class="chip done">Done</span><span><code>d95f4d8</code></span>
               <span class="delta">dial 296px @390 · 236 @360 · 150 @320, nothing scrolls</span>
+            </div>
+          </div>
+        </article>
+
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Accessibility audit — the board was not keyboard operable at all</h3>
+            <p>
+              axe reported <strong>zero violations</strong> at three
+              viewport/theme combinations, and reading that as "accessible" was
+              the mistake: axe cannot press a key. The window key handler called
+              <code>preventDefault</code> on Enter and Space unconditionally, so
+              <strong>no control on the board could be activated by keyboard</strong>
+              — not Shuffle, not a letter, not a row, not a header icon. Measured
+              zero activations. That is a flat WCAG 2.1.1 failure, which means
+              the 9 this wing carried all day was wrong.
+            </p>
+            <p style="margin-top:8px">
+              Six more the scanner cannot model: the hint economy was unreachable
+              in the DEFAULT mode (clue-mode chips were disabled while the line
+              below said "tap a row for a hint"); the hint menu had no Escape and
+              dropped focus to <code>&lt;body&gt;</code>; the completion sheet was
+              the only sheet not portalled, so a screen reader walked the dead
+              board behind it; <strong>the prize word and every rank promotion
+              were announced to nobody</strong>, drawn only into the aria-hidden
+              celebration layer; repeated messages never re-announced; and two
+              controls sat under the 24px floor. All fixed, all verified by
+              driving real keys rather than reading the diff.
+            </p>
+            <div class="meta">
+              <span class="chip done">Fixed</span><span><code>0ee261e</code></span>
+              <span class="delta">keyboard activations 0 → working · controls under 24px: 2 → 0</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Player board seated — 31 players, and a price</h3>
+            <p>
+              Beginners to competitive, teen to 70s, commuters and bedtime
+              players, low-vision / CVD / motor-limited / screen-reader /
+              dyslexic seats, NYT Games and Wordscapes and Words With Friends
+              demographics, plus spenders and never-payers. Each answered what
+              makes it sticky, what gets it to 10+, and what they would pay.
+            </p>
+            <p style="margin-top:8px">
+              <strong>Their price: $14.99 one-time</strong> for the full
+              catalogue — spread $4.99–$19.99, median $9.99 across 15 seats; 8
+              would take $2.99–$4.99/mo only for durable history; 6 would never
+              pay. The free tier must keep the daily, all 123 practice boards,
+              two full themed packs, and <strong>every accessibility setting</strong>
+              — they block charging for accessibility outright. Also blocked: a
+              paid tier before an in-app teach, default timers or streak
+              punishment, sound-on by default, and shipping a themed pack with no
+              per-board note.
+            </p>
+            <p style="margin-top:8px">
+              Two of their top three blockers were <strong>already false</strong>
+              and were not acted on — they reported no first-run teach when the
+              explainer opens "Six letters. Spell the six words.", and a
+              daily-gated catalogue when the picker reaches all 397. That bench
+              reviewed without running the build, which is worth knowing before
+              its other findings are trusted.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span><span><code>docs/PLAYER_BOARD.md</code></span>
+              <span class="delta">social 1/10 is their lowest dimension</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Progress can leave the browser; boards say what they are about</h3>
+            <p>
+              The board's most-named blocker was that progress is not durable —
+              and the seats naming it were the ones most willing to pay. Streak,
+              history, hint balance and every cleared board lived in one
+              localStorage key a cache clear erases silently. There is now a
+              backup code: copy it, paste it on another device. No account, no
+              server, and restoring <em>replaces</em> rather than merges, with the
+              warning shown before the button. Sound now starts OFF, haptics stay
+              on — a puzzle that announces itself on a commute gets closed before
+              the player finds the toggle.
+            </p>
+            <p style="margin-top:8px">
+              And 75 of 397 boards now carry a <strong>scene</strong> — a line
+              under the theme name saying what THAT board is about, because clue
+              mode shows one clue at a time and the subject never assembled.
+              <em>Fish Fry / Georgia Gilmore, and the money.</em>
+              <em>The Nineteenth / The 29th United States Colored Troops.</em>
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span>
+              <span><code>55bfb7e</code> <code>405df04</code></span>
+              <span class="delta">scenes 0 → 75 of 397</span>
             </div>
           </div>
         </article>
