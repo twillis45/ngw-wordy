@@ -128,7 +128,31 @@
 
   /* Text ladder */
   /*
-   * Selection blue — the one place the identity hue goes CHROMATIC.
+   * Selection amber — the one place this palette leaves its own hue family,
+   * on purpose.
+   *
+   * Everything in Studio Matte lives in the blue-grey band around 202 degrees.
+   * That is what makes it coherent, and it is also why a selected tile kept
+   * disappearing: any blue fill is a neighbour of the surface it sits on, so
+   * "picked" could only ever be a shade, never a different thing. Steel read as
+   * slightly lighter; a saturated ocean blue read as a nicer slightly lighter.
+   *
+   * 202 + 180 = 22 degrees, which is amber. This sits at 28 — a near-complement
+   * chosen because it measured better than the exact one. It is the single
+   * loudest thing on the board and it is doing the single most important job on
+   * the board.
+   *
+   * It is LIGHT with a dark letter, which is the opposite of every other tile,
+   * and that inversion is most of the effect: 7.53:1 on the letter and 7.59:1
+   * against the panel behind it. A dark rust at the same hue managed 3.23:1
+   * against the panel — legible, but it sank into the board instead of sitting
+   * on it.
+   *
+   * Two things this deliberately is NOT: the success green, which stays
+   * reserved for done-ness, and the danger red at 5 degrees. Amber at 28 is
+   * close enough to red that it is worth saying out loud — it is kept apart by
+   * being far lighter, by never appearing as text, and by danger only ever
+   * showing up as a word in the toast slot, never as a fill.
    *
    * A picked tile was filled with `--color-steel`, which is the same
    * desaturated blue-grey as every resting surface in Studio Matte. It read as
@@ -141,7 +165,9 @@
    * which is reserved for done-ness, and it is nowhere near the warm golds the
    * palette bans.
    */
-  --color-select: #20658f;
+  --color-select: #e8934a;
+  /* The letter ON a selected tile — inverted, because the tile is. */
+  --color-select-ink: #12161a;
   --color-text-primary: #eef0f4;
   /*
    * MEASURED, not picked. secondary was #849eb8 at 5.52:1 and muted #9a9ca0 at
@@ -311,9 +337,11 @@
   --color-success: #186438;
   --color-danger: #a82f2f;
 
-  /* Light mode inverts the problem: the letter is near-black, so the fill has
-     to be a light tint of the same hue. 10.16:1 against the letter. */
-  --color-select: #8fc3e6;
+  /* Light mode inverts the inversion: the board is white, so the amber goes
+     deep and the letter goes light. 4.91:1 on the letter, 5.20:1 against the
+     panel — it still has to be the loudest thing on a bright screen. */
+  --color-select: #a85712;
+  --color-select-ink: #fff7ef;
   --color-text-primary: #0d0f12;
   /* Light: 16.8 / 9.0 / 6.3. Darker means MORE emphasis here. */
   --color-text-secondary: #2f4353;
@@ -380,9 +408,11 @@
   --color-success: #186438;
   --color-danger: #a82f2f;
 
-  /* Light mode inverts the problem: the letter is near-black, so the fill has
-     to be a light tint of the same hue. 10.16:1 against the letter. */
-  --color-select: #8fc3e6;
+  /* Light mode inverts the inversion: the board is white, so the amber goes
+     deep and the letter goes light. 4.91:1 on the letter, 5.20:1 against the
+     panel — it still has to be the loudest thing on a bright screen. */
+  --color-select: #a85712;
+  --color-select-ink: #fff7ef;
   --color-text-primary: #0d0f12;
   /* Light: 16.8 / 9.0 / 6.3. Darker means MORE emphasis here. */
   --color-text-secondary: #2f4353;

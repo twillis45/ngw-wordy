@@ -705,7 +705,7 @@ export default function LetterWheel({
                    * No backdrop-blur on this branch any more: the fill is
                    * opaque, so blurring what is behind it is work nobody sees.
                    */
-                  ? 'anim-tick border-select ring-2 ring-edge/80 bg-select text-text-primary'
+                  ? 'anim-tick border-select ring-2 ring-select/40 bg-select text-select-ink'
                   : 'border-edge liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary active:scale-95',
             ].join(' ')}
             style={{
