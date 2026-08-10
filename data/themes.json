@@ -30,8 +30,8 @@
     },
     {
       "id": "sitcom",
-      "name": "Sitcom Sunday",
-      "blurb": "Reruns, laugh tracks, and everybody's living room."
+      "name": "Rerun Season",
+      "blurb": "Whatever was on after school, in whoever’s living room."
     },
     {
       "id": "hbcu",
@@ -894,7 +894,7 @@
       "base": "dozens",
       "theme": "sitcom",
       "clues": {
-        "dozens": "Your-mama jokes, escalating, a circle forming, and somebody keeping score.",
+        "dozens": "Two of them a season, and the last one always ends on a hug and a freeze frame.",
         "nose": "How the pot finds you from the top of the stairs before anybody calls you.",
         "zones": "What he does out in the recliner nine minutes into the evening news.",
         "ones": "Counted out of a birthday card by the smallest cousin, twice, out loud.",
@@ -1008,7 +1008,7 @@
       "base": "single",
       "theme": "sitcom",
       "clues": {
-        "single": "One apartment, four women, and a phone cord stretched into the hallway.",
+        "single": "One apartment, four women, and a phone cord stretched into the hallway for privacy.",
         "lines": "What the phone has two of, and one belongs to the answering machine.",
         "lens": "What the boyfriend brings, then takes forty pictures of the brunch table.",
         "legs": "What the heels are for, and they come off the second the door shuts.",
@@ -5885,6 +5885,120 @@
         "sight",
         "sting",
         "thing"
+      ]
+    },
+    {
+      "base": "aspect",
+      "theme": "sitcom",
+      "clues": {
+        "aspect": "Four by three, with the curved corners, and everybody sat closer than they needed to.",
+        "tapes": "Labelled in marker, recorded over twice, and the last ten minutes always missing.",
+        "space": "Between the couch and the screen, which your mother measured with her voice.",
+        "cast": "Seven regulars, one set, and a neighbour who walks in without knocking.",
+        "paste": "What the network did with three unaired episodes to make a Christmas special.",
+        "east": "Eight, seven central, and the whole country knew what that meant."
+      },
+      "prefer": [
+        "tapes",
+        "space",
+        "cast",
+        "paste",
+        "east"
+      ]
+    },
+    {
+      "base": "actors",
+      "theme": "sitcom",
+      "clues": {
+        "actors": "Billed in the opening, in an order somebody’s agent fought hard about.",
+        "actor": "The one who wanted out by season six, and got written a job in another city.",
+        "coast": "Where the show taped, whatever town it claimed to be set in.",
+        "roast": "Sunday dinner on screen, cooked by nobody, steaming from a hidden dish of water.",
+        "carts": "What the crew rolled the walls in on, because the whole house is three sides.",
+        "cars": "Parked in the driveway set, never driven, doors that open onto the parking lot."
+      },
+      "prefer": [
+        "actor",
+        "coast",
+        "roast",
+        "carts",
+        "cars"
+      ]
+    },
+    {
+      "base": "swatch",
+      "theme": "sitcom",
+      "clues": {
+        "swatch": "What the set designer brought the network, and how the couch ended up orange.",
+        "watch": "What you did at the same hour every week, because there was no other way to.",
+        "cast": "Put on his arm in one episode, gone by the next, never mentioned again.",
+        "chat": "The two minutes before the theme song, which told you what the trouble was.",
+        "wash": "What the laugh track did to a line that had not earned it.",
+        "hats": "The father’s, on the hook by the door, the way you knew he was home."
+      },
+      "prefer": [
+        "watch",
+        "cast",
+        "chat",
+        "wash",
+        "hats"
+      ]
+    },
+    {
+      "base": "unseat",
+      "theme": "sitcom",
+      "clues": {
+        "unseat": "What a new show at eight tried to do to the one that had been there nine years.",
+        "tunes": "Thirty seconds, sung, explaining the entire premise so nobody had to ask.",
+        "seat": "His, and everyone knew it, and the joke was somebody else being in it.",
+        "aunts": "Two of them, visiting, and the episode is over the moment they agree on anything.",
+        "neat": "How the apartment stayed on a salary the show never once explained.",
+        "nest": "What it was called when the last one left, which lasted about four episodes."
+      },
+      "prefer": [
+        "tunes",
+        "seat",
+        "aunts",
+        "neat",
+        "nest"
+      ]
+    },
+    {
+      "base": "gayest",
+      "theme": "sitcom",
+      "clues": {
+        "gayest": "The superlative in the theme song, back when the word in it only meant cheerful.",
+        "stage": "Three walls, a fake window, and four hundred people breathing on the other side.",
+        "gates": "The studio ones, where the line for tickets started at six in the morning.",
+        "seat": "Bleachers, bolted down, and a man with a microphone warming you up for an hour.",
+        "yeast": "What the prop kitchen never had, in a kitchen where nobody ever finished cooking.",
+        "easy": "What twenty-two minutes made it look, which is the whole craft of it."
+      },
+      "prefer": [
+        "stage",
+        "gates",
+        "seat",
+        "yeast",
+        "easy"
+      ]
+    },
+    {
+      "base": "tracks",
+      "theme": "sitcom",
+      "clues": {
+        "tracks": "What the cameras rolled on, three of them, so nobody had to shoot it twice.",
+        "track": "Recorded in 1953, reused for forty years, and some of those people were dead.",
+        "stack": "Of scripts on the table read, each one a different colour for each rewrite.",
+        "racks": "Where the wardrobe hung, sorted by episode, the same shirt in five sizes.",
+        "cart": "What wheeled the cake in for the hundredth episode, and everybody cried anyway.",
+        "star": "Whose name went above the title, and whose trailer was closest to the door."
+      },
+      "prefer": [
+        "track",
+        "stack",
+        "racks",
+        "cart",
+        "star"
       ]
     }
   ]

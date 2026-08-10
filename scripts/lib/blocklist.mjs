@@ -76,8 +76,34 @@ const HARM = [
   'lynchings', 'suicide', 'suicides',
 ];
 
+/*
+ * Words that are not slurs and are perfectly ordinary English, but which no
+ * player should ever be asked to SPELL FOR POINTS in this game.
+ *
+ * The catalogue is 305 hand-authored boards about Black American life. A
+ * generated board that scores a player for finding `racist`, or `slave`, or
+ * `massa` in a letter wheel is not edgy, it is the product tripping over its
+ * own subject — and because generated boards are drawn from a seeded shuffle,
+ * nobody would have chosen it or noticed until a player did.
+ *
+ * Found by accident: `racist` surfaced in the vetted BASE pool, meaning a
+ * different seed or a larger set could have promoted it to a board's base
+ * word. None of these currently ship. That is luck, not design, and this list
+ * is the design.
+ */
+const RACIAL_HARM = [
+  'racist', 'racists', 'racism', 'racisms',
+  'slave', 'slaves', 'slaver', 'slavers', 'slavery', 'slaved', 'slaving',
+  'massa', 'massas', 'mammy', 'mammies', 'picaninny', 'pickaninny',
+  'noose', 'nooses', 'klan', 'klans', 'chattel', 'chattels',
+  'segregate', 'segregated', 'segregates', 'segregation',
+  'apartheid', 'colonize', 'colonized', 'colonizer', 'colonizers',
+  'whipping', 'whippings', 'shackle', 'shackles', 'shackled',
+  'bondage', 'bondages', 'overseer', 'overseers',
+];
+
 export const SLUR_LIST = SLURS;
-export const BLOCKLIST = new Set([...SLURS, ...CRUDE, ...HARM]);
+export const BLOCKLIST = new Set([...SLURS, ...CRUDE, ...HARM, ...RACIAL_HARM]);
 
 /** True when a word must never be shown to a player. */
 export function isBlocked(word) {
