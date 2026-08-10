@@ -24,6 +24,7 @@ import {
   clueText,
   defineWord,
   indexSource,
+  isTruncatedGloss,
   isUsableClue,
   redactAnswer,
 } from './lib/defs.mjs';
@@ -102,6 +103,7 @@ function clueFor(word) {
   if (!entry) return null;
   const clue = redactAnswer(clueText(entry[0]), word, entry[1]);
   if (!isUsableClue(clue)) return null;
+  if (isTruncatedGloss(clue)) return null;
   /*
    * Filtering the ANSWER is not enough — the clue is 1913 prose.
    *

@@ -268,3 +268,25 @@ export function isUsableClue(clue) {
 export function clueKey(clue) {
   return clue.replace(/———/g, '').replace(/\W+/g, ' ').trim().slice(0, 60).toLowerCase();
 }
+
+/**
+ * Did this gloss stop before it finished saying what the word is?
+ *
+ * DICTIONARY-ONLY. A generated gloss that ends on a function word lost its
+ * object somewhere upstream and reads as a bug rather than a hard clue: `haled`
+ * shipped as "A soldier of the American Revolution who was hanged as a spy by
+ * the." and `peso` as "The basic unit of money in." Measured across the built
+ * set, 44 of 984 generated clues (4.5%) ended this way — the most visible
+ * quality defect left in the free tier, and every one is unanswerable because
+ * the identifying half of the sentence is missing.
+ *
+ * This deliberately does NOT live in isUsableClue, which also gates authored
+ * clues. Applied there it rejected seven hand-written boards whose last word is
+ * a perfectly good function word — "...and it is not, and she knows it." A
+ * human ending a sentence on `the` means it; WordNet doing it is damage.
+ */
+export function isTruncatedGloss(clue) {
+  return /\b(by|of|the|a|an|in|on|to|for|with|and|or|from|that|which|as|at|is|was|were|into|upon|than)\s*\.?\s*$/i.test(
+    clue
+  );
+}
