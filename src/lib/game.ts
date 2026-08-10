@@ -253,8 +253,23 @@ export function offsetForIndex(
   today: Date,
   index: number
 ): number {
+  /*
+   * The base must be the SAME seed the daily resolves from.
+   *
+   * `puzzleForPlayer` seeds with `dailyIndex(today, dailyPoolSize(file))` —
+   * the authored catalogue — and then applies an offset across the whole
+   * file. This computed its base from `dailyIndex(today, file.puzzles.length)`
+   * instead, so the two disagreed by however far those two indices had drifted
+   * apart, and every theme card in the picker landed on the WRONG pack:
+   * clicking "The Cookout" opened The Beauty Shop.
+   *
+   * That is the third bug from one cause — the daily pool size being computed
+   * in more than one place. The lap counter was the first, the wheel's letters
+   * the second. `dailyPoolSize` is the single definition; this was the last
+   * caller still doing its own arithmetic.
+   */
   const n = file.puzzles.length;
-  const base = dailyIndex(today, n);
+  const base = dailyIndex(today, dailyPoolSize(file));
   return ((index - base) % n + n) % n;
 }
 
