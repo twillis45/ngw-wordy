@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "puzzles": "node scripts/build-puzzles.mjs 400",
+    "puzzles": "node scripts/build-puzzles.mjs 520",
     "icons": "python3 scripts/build-icons.py",
     "definitions": "node scripts/build-definitions.mjs",
     "wordnet": "node scripts/build-wordnet.mjs"

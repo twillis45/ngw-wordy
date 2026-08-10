@@ -88,8 +88,20 @@ const MIN_COMMON_ROWS_FEATURED = 5; // themed boards and the warm-up ladder
  * fine as free practice, never billable. They are distinguishable in the
  * artifact by the presence of a `theme` field, which is the seam any future
  * paywall should cut along — authored content is the thing with value.
+ *
+ * 520, raised again from 400 — and this time to protect the FREE half.
+ *
+ * The original complaint was that 96% of the set was generated dictionary
+ * boards and only 4% was authored. Authoring inverted that so hard it broke
+ * the other way: at 400 the catalogue was 397 authored and THREE generated,
+ * which leaves a free tier of three puzzles. A player who has not paid gets
+ * essentially nothing to practise on, and the board's own ruling — keep them,
+ * never bill for them — assumes there are some to keep.
+ *
+ * Authored boards are placed first, so this number is really "how much free
+ * practice sits behind the catalogue". 520 leaves about 120.
  */
-const COUNT = Number(process.argv[2] || 400);
+const COUNT = Number(process.argv[2] || 520);
 
 // Deterministic PRNG so a given seed always yields the same puzzle set.
 function mulberry32(seed) {
