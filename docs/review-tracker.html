@@ -277,7 +277,7 @@
   <div class="wrap">
     <header>
       <p class="kicker">NGW · Wordy · review board tracker</p>
-      <h1>Two wings at 9, the daily fixed, and the puzzles gated on quality.</h1>
+      <h1>Five wings moved. What's left is writing, not engineering.</h1>
       <p class="lede">
         Render-first pass run 9 Aug 2026 against the production export — seven
         viewports, six states, forty-two screenshots. Every wing scores its own
@@ -475,6 +475,45 @@
           </div>
         </article>
 
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Ranks measure what the game asks for</h3>
+            <p>
+              The rules said "fill every row." Ranks measured every word the six
+              letters can make — and the rows are worth a mean <strong>27.4%</strong>
+              of that. So clearing the grid, exactly as instructed, showed "Sharp":
+              rank 3 of 8, with five ranks greyed out above it, gated on ~37 bonus
+              words the player was never shown. Ranks now measure the grid;
+              clearing it reads <em>Complete</em>. Extra words still score and
+              still pay out in hints — their own honest track.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span><span><code>a573edd</code></span>
+              <span class="delta">cleared grid: rank 3 of 8 → top rank</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>The interesting mode is on by default</h3>
+            <p>
+              Escalating mode — the search space grows as you clear rows, so row six
+              is a different problem from row one — is the one structurally novel
+              thing in the game, and it shipped off, buried in a sheet labelled
+              "Both are off by default." The warm-up ladder still runs without it
+              (a new player is learning one rule at a time), and it now explains
+              itself in the coach line the moment a letter is actually locked.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span><span><code>a573edd</code></span>
+              <span>players turn it off now, instead of finding it</span>
+            </div>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -541,9 +580,9 @@
             </tr>
             <tr>
               <td class="wing">Game design &amp; core loop</td>
-              <td class="num" style="color:var(--warn)">5</td>
-              <td><div class="bar"><i style="width:50%;background:var(--warn)"></i></div></td>
-              <td class="dim">ranks measure what the UI never states</td>
+              <td class="num" style="color:var(--warn)">7</td>
+              <td><div class="bar"><i style="width:70%;background:var(--warn)"></i></div></td>
+              <td class="dim">retention — themed catalogue is 10 puzzles</td>
               <td class="dim">8–9</td>
               <td><span class="chip next">Queued</span></td>
             </tr>
