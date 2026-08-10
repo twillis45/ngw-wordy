@@ -189,6 +189,8 @@ export default function LetterWheel({
   const armed = useRef<{ x: number; y: number; i: number } | null>(null);
   /** Set when a gesture became a drag, so the trailing click is ignored. */
   const dragged = useRef(false);
+  /** Pointer id to capture IF this gesture becomes a drag. */
+  const capturedId = useRef<number | null>(null);
 
   const handleDown = (e: React.PointerEvent) => {
     if (disabled) return;
@@ -196,14 +198,21 @@ export default function LetterWheel({
     if (!pt) return;
     const hit = hitTest(pt);
     if (hit === -1) return;
-    // NOT preventDefault: that suppresses the click event the tap path needs.
-    try {
-      boxRef.current?.setPointerCapture(e.pointerId);
-    } catch {
-      // Capture is an optimisation — it keeps the drag alive outside the box.
-      // It throws if the pointer isn't active, and an uncaught throw here
-      // killed the whole gesture before dragging was ever set.
-    }
+    /*
+     * NO pointer capture here, and no preventDefault. Both kill the tap.
+     *
+     * Capturing on pointerdown retargets the subsequent pointerup to the
+     * CONTAINER, so the browser computes `click` against the container rather
+     * than the tile — and the tile's onClick never runs. That is why clicking
+     * a letter did nothing on desktop while a synthetic element.click() in a
+     * test passed: the synthetic call skips the real event flow entirely, so
+     * it could not see this.
+     *
+     * Capture is only needed to keep a DRAG alive outside the box, so it is
+     * taken at the moment a drag actually starts (see handleMove) and not a
+     * moment earlier.
+     */
+    capturedId.current = e.pointerId;
     setByMouse(e.pointerType === 'mouse');
     armed.current = { x: pt.x, y: pt.y, i: hit };
     dragged.current = false;
@@ -222,6 +231,15 @@ export default function LetterWheel({
         // Promote to a drag only once the pointer has actually travelled.
         if (Math.hypot(pt.x - start.x, pt.y - start.y) > DRAG_SLOP) {
           dragged.current = true;
+          // Now it is a drag, so keep it alive if the pointer leaves the box.
+          if (capturedId.current !== null) {
+            try {
+              boxRef.current?.setPointerCapture(capturedId.current);
+            } catch {
+              // Capture is an optimisation; losing it only costs us tracking
+              // outside the element, and it throws if the pointer went away.
+            }
+          }
           setDragging(true);
           // The path begins at the tile that was pressed, not at wherever the
           // pointer happened to cross the threshold.
@@ -250,6 +268,7 @@ export default function LetterWheel({
 
   const endDrag = useCallback(() => {
     armed.current = null;
+    capturedId.current = null;
     if (!dragging) {
       // A tap. Leave the selection alone — the click handler appends.
       setCursor(null);
@@ -497,15 +516,32 @@ export default function LetterWheel({
              * backdrop-filter had nothing behind it to sample: the refraction
              * was computing correctly and drawing air.
              */
-            left: `${pointer.x - pointer.size / 2}%`,
-            top: `${pointer.y - pointer.size / 2}%`,
-            width: `${pointer.size}%`,
-            height: `${pointer.size}%`,
+            /*
+             * Anchored at the pointer, centred by NEGATIVE MARGIN — not by
+             * subtracting half the size from left/top.
+             *
+             * That subtraction is why the puck drifted when a letter was
+             * selected: `left` jumped to its new value the instant the size
+             * changed, while `width` eased over 110ms, so the visual centre
+             * slid several pixels through every morph. Margin changes in
+             * lockstep with size instead, so the centre holds still.
+             *
+             * cqmin, because the dial is a square query container — 1cqmin is
+             * 1% of it, so these are the same numbers the geometry already uses,
+             * and a margin in cqmin resolves against the container rather than
+             * against the ambiguous percentage basis.
+             */
+            left: `${pointer.x}%`,
+            top: `${pointer.y}%`,
+            width: `${pointer.size}cqmin`,
+            height: `${pointer.size}cqmin`,
+            marginLeft: `${-pointer.size / 2}cqmin`,
+            marginTop: `${-pointer.size / 2}cqmin`,
             borderRadius: `${pointer.radius}%`,
-            // Short transition only on the morph properties. Position is driven
-            // per-move and must not lag the finger.
+            // Size and its centring margin ease together; position never eases,
+            // so the puck cannot lag the pointer.
             transition:
-              'width 110ms ease-out, height 110ms ease-out, border-radius 110ms ease-out',
+              'width 110ms ease-out, height 110ms ease-out, margin-left 110ms ease-out, margin-top 110ms ease-out, border-radius 110ms ease-out',
           }}
         >
           {/* The glass wall: refraction lives here and only here, so the
