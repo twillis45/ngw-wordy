@@ -58,7 +58,18 @@ export const EMPTY: Progress = Object.freeze({
   spent: 0,
   muted: false,
   clueMode: false,
-  escalating: false,
+  /*
+   * ON by default.
+   *
+   * This is the one structurally novel thing in the game — the search space
+   * GROWS as you clear rows, so row six is a different problem from row one —
+   * and it shipped switched off, buried in a sheet under the how-to, labelled
+   * "Both are off by default." The default game was therefore one repeated
+   * action with no decision in it beyond "shuffle or don't".
+   *
+   * Players should have to turn the interesting version OFF, not find it.
+   */
+  escalating: true,
   seenIntro: false,
   warmupsDone: 0,
 });

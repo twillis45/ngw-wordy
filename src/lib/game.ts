@@ -266,12 +266,31 @@ export const RANKS = [
   { name: 'Fluent', at: 0.45 },
   { name: 'Wordsmith', at: 0.6 },
   { name: 'Genius', at: 0.75 },
-  { name: 'Every Word', at: 1 },
+  { name: 'Complete', at: 1 },
 ] as const;
 
 /** One line explaining what the ladder is actually counting. */
 export const RANK_BASIS =
-  'Ranks count every word the letters can make — not just the six rows.';
+  'Ranks track the six rows. Extra words still score, and every 3 earns a hint.';
+
+/**
+ * The points available from the SIX ROWS, which is what ranks measure.
+ *
+ * They used to measure `maxScore` — every word the six letters can make, ~44
+ * of them. Measured across the shipped set, the grid is worth a mean 27.4% of
+ * that. So a player did exactly what the game told them to do ("fill every row
+ * to finish the puzzle"), cleared it, and was shown "Sharp" — rank 3 of 8 —
+ * with five greyed-out ranks above them, gated on ~37 bonus words they were
+ * never shown and never asked for.
+ *
+ * A scoring system that grades you against an unstated denominator is the
+ * shape of a manipulative one even when the intent is generous. The stated
+ * goal and the reward now measure the same thing; bonus words keep their own
+ * track, which already pays out in hints.
+ */
+export function gridMaxScore(puzzle: Puzzle, wheelSize = 6): number {
+  return puzzle.grid.reduce((sum, w) => sum + scoreWord(w, wheelSize), 0);
+}
 
 export type Rank = {
   name: string;

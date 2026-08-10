@@ -61,6 +61,7 @@ import {
   themeGroups,
   offsetForIndex,
   rankFor,
+  gridMaxScore,
   scoreWord,
   shareText,
   shuffle,
@@ -235,7 +236,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
   );
 
   const rowsDone = puzzle.grid.filter(rowDone).length;
-  const active = activeLetters(puzzle, rowsDone, progress.escalating);
+  /*
+   * The warm-up ladder runs WITHOUT the escalating wheel.
+   *
+   * Fun is learning, but not two things at once: a brand-new player is still
+   * working out that you drag or tap to spell. Locked letters on board one is
+   * a second unexplained rule on a screen that already has too many. They meet
+   * the mechanic on graduating to the daily, with a line explaining it.
+   */
+  const escalating = progress.escalating && warmup === null;
+  const active = activeLetters(puzzle, rowsDone, escalating);
+  const hasLocked = active.size < puzzle.letters.length;
   const clueWord = progress.clueMode
     ? clueTarget(puzzle.grid, rowDone, clueCursor, (w) =>
         isReachable(w, active)
@@ -244,7 +255,19 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
   const bonusFound = [...found].filter((w) => !puzzle.grid.includes(w));
   const score = [...found].reduce((s, w) => s + scoreWord(w, data.wheel), 0);
-  const rank = rankFor(score, puzzle.maxScore);
+  /*
+   * Rank measures the SIX ROWS — the thing the game actually asks for.
+   * `score` keeps counting everything, so extra words still feel like they
+   * count, and they still pay out in hints. See gridMaxScore for why.
+   */
+  const gridScore = puzzle.grid
+    .filter((w) => found.has(w))
+    .reduce((s, w) => s + scoreWord(w, data.wheel), 0);
+  const gridMax = useMemo(
+    () => gridMaxScore(puzzle, data.wheel),
+    [puzzle, data.wheel]
+  );
+  const rank = rankFor(gridScore, gridMax);
 
   const current = selected.map((i) => letters[i]).join('');
   /*
@@ -397,17 +420,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
         }
 
         // Promotion is the one recurring reward with no moment attached to it.
-        const before = rankFor(
-          [...banked].reduce((sum, w) => sum + scoreWord(w, data.wheel), 0),
-          puzzle.maxScore
-        );
-        const after = rankFor(
-          [...banked, result.word].reduce(
-            (sum, w) => sum + scoreWord(w, data.wheel),
-            0
-          ),
-          puzzle.maxScore
-        );
+        // Same basis as the displayed rank: grid rows only, or the banner
+        // would fire on a threshold the rank strip does not agree with.
+        const gridPoints = (words: Iterable<string>) => {
+          const set = new Set(words);
+          return puzzle.grid
+            .filter((w) => set.has(w))
+            .reduce((sum, w) => sum + scoreWord(w, data.wheel), 0);
+        };
+        const max = gridMaxScore(puzzle, data.wheel);
+        const before = rankFor(gridPoints(banked), max);
+        const after = rankFor(gridPoints([...banked, result.word]), max);
         if (after.index > before.index) {
           setTimeout(() => celebrateRank(after.name, after.next), 620);
         }
@@ -930,12 +953,20 @@ export default function Game({ data }: { data: PuzzleFile }) {
           // An empty hero slot read as a hole in the layout, and nothing on
           // screen said how to enter a word. One muted line fixes both.
           <span className="text-meta text-text-muted">
+            {hasLocked ? (
+              // Explain the rule at the moment it is visibly in force, rather
+              // than in a settings sheet the player has never opened.
+              <span>Dim letters unlock as you fill rows</span>
+            ) : (
+              <>
             {/* Rendered per modality in CSS rather than from a measured
                 pointer type, so it is correct before hydration. */}
             <span className="mouse:hidden">Drag across the letters</span>
             <span className="hidden mouse:inline">
               Click the letters, or just type
             </span>
+              </>
+            )}
           </span>
         )}
       </div>

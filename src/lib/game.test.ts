@@ -17,6 +17,7 @@ import {
   type Puzzle,
   dailyCycle,
   progressKey,
+  gridMaxScore,
 } from './game';
 import { EMPTY, migrateV1, touchStreak, type Progress } from './storage';
 import {
@@ -102,16 +103,41 @@ describe('submit', () => {
 });
 
 describe('rankFor', () => {
-  it('starts at Novice and tops out at Every Word', () => {
+  it('starts at Novice and tops out at Complete', () => {
     expect(rankFor(0, 100).name).toBe('Novice');
-    expect(rankFor(100, 100).name).toBe('Every Word');
+    expect(rankFor(100, 100).name).toBe('Complete');
+  });
+
+  it('makes clearing the grid the TOP rank, not rank 3 of 8', () => {
+    /*
+     * The regression this guards: ranks measured every word the letters can
+     * make, and the six rows are worth a mean 27.4% of that — so doing exactly
+     * what the UI asks ("fill every row") showed "Sharp", with five ranks
+     * greyed out above it, gated on bonus words the player was never shown.
+     */
+    const puzzle = {
+      grid: ['faucet', 'facet', 'cafe', 'fact', 'ace', 'cut'],
+    } as unknown as Parameters<typeof gridMaxScore>[0];
+    const max = gridMaxScore(puzzle, 6);
+    expect(rankFor(max, max).name).toBe('Complete');
+    // And a half-cleared grid lands mid-ladder, not near the bottom.
+    const half = rankFor(Math.round(max * 0.5), max);
+    expect(half.index).toBeGreaterThanOrEqual(4);
+  });
+
+  it('counts only the six rows toward rank', () => {
+    const puzzle = { grid: ['cafe', 'ace'] } as unknown as Parameters<
+      typeof gridMaxScore
+    >[0];
+    // 4 + 1 = 5. Bonus words are deliberately absent from this number.
+    expect(gridMaxScore(puzzle, 6)).toBe(5);
   });
 
   it('puts Genius within reach rather than at perfection', () => {
     // 75% is a good day; 100% is a different achievement with its own name.
     expect(rankFor(75, 100).name).toBe('Genius');
     expect(rankFor(99, 100).name).toBe('Genius');
-    expect(rankFor(100, 100).name).toBe('Every Word');
+    expect(rankFor(100, 100).name).toBe('Complete');
   });
 
   it('reports the points needed for the next rank', () => {
