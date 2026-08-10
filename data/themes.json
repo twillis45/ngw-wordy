@@ -5696,6 +5696,101 @@
         "bend",
         "bean"
       ]
+    },
+    {
+      "base": "oblige",
+      "theme": "kitchen",
+      "clues": {
+        "oblige": "Asked to take on the whole thing for Saturday. She said no, and did not soften it.",
+        "globe": "The milk-glass shade over her worktable. She changed the bulb herself, on a chair.",
+        "ogle": "What the neighbor's boy does at the cooling racks until she hands him a broken one.",
+        "beg": "What the mail carrier does out loud, every time there is something sweet by the door.",
+        "ego": "She has one about her crust, and she has earned every inch of it twice over.",
+        "log": "The order book by the phone: name, date, deposit paid, all of it in pencil."
+      },
+      "prefer": [
+        "globe",
+        "ogle",
+        "beg",
+        "ego",
+        "log"
+      ]
+    },
+    {
+      "base": "trails",
+      "theme": "kitchen",
+      "clues": {
+        "trails": "Flour from the back door to the range by nine, and she sweeps when she is finished.",
+        "stair": "The steps down to her shelves in the cellar, taken one hand on the rail, jars in the other.",
+        "list": "Every price on it went up the week the flour did, and not one customer argued.",
+        "star": "She puts one by the names who pay when they say they will. There are not many.",
+        "last": "Her iron skillet will outlive every person standing in this room, and she has said so.",
+        "liar": "One word for the cousin who swore he never touched the icing, wearing it on his sleeve."
+      },
+      "prefer": [
+        "stair",
+        "list",
+        "star",
+        "last",
+        "liar"
+      ]
+    },
+    {
+      "base": "bodily",
+      "theme": "kitchen",
+      "clues": {
+        "bodily": "She knows the oven is ready by what the heat does to her forearm at the open door.",
+        "doily": "Paper, under the cake, cut out with the scissors she keeps for nothing else.",
+        "body": "What the gravy has after an hour, and no shortcut on this earth gets it there sooner.",
+        "bold": "How she seasons. A full hand, tasted once, and never once corrected downward.",
+        "idly": "Nobody stands around that way in here. Empty hands get found something to do.",
+        "idol": "Her mother's photograph over the icebox, with a recipe card wedged behind the frame."
+      },
+      "prefer": [
+        "doily",
+        "body",
+        "bold",
+        "idly",
+        "idol"
+      ]
+    },
+    {
+      "base": "copier",
+      "theme": "sunday",
+      "clues": {
+        "copier": "Her son ran the seating chart at his office, forty sheets, and she still moved two names.",
+        "cope": "What the newest husband does with four hours at a table where he knows six names.",
+        "core": "She spoons the middle out of each pear before the halves ever go into the dish.",
+        "crop": "The greens came out of her brother's rows in July and have been frozen since.",
+        "rope": "Twine around the roast, tied by her, and it is the same knot every single week.",
+        "pie": "Sweet potato, two of them, and the second is not for anybody living in this house."
+      },
+      "prefer": [
+        "cope",
+        "core",
+        "crop",
+        "rope",
+        "pie"
+      ]
+    },
+    {
+      "base": "casket",
+      "theme": "sunday",
+      "clues": {
+        "casket": "Carried out of the church at eleven. By two the family was at her table, eating.",
+        "stake": "Everybody here has one in the house, and she is the one who says how it gets divided.",
+        "steak": "What she declines to serve on a Sunday, no matter which grandson asks for it by name.",
+        "cakes": "Two of them under the dome on the sideboard, and one is spoken for before grace.",
+        "case": "She makes one, from her chair, for why the house is not being sold. That ends it.",
+        "stack": "Plates arrive in one and land in front of her. Nobody at this table serves himself."
+      },
+      "prefer": [
+        "stake",
+        "steak",
+        "cakes",
+        "case",
+        "stack"
+      ]
     }
   ]
 }
