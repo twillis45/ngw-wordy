@@ -117,6 +117,11 @@
       "id": "chicago",
       "name": "Tips and a Link",
       "blurb": "Hickory burning in a glass box on Seventy-Fifth, and a paper sack already going dark at the bottom."
+    },
+    {
+      "id": "gogo",
+      "name": "Roll Call",
+      "blurb": "Congas from nine till one, and four hundred people waiting to hear their block."
     }
   ],
   "puzzles": [
@@ -7734,6 +7739,406 @@
         "short",
         "ton"
       ]
+    },
+    {
+      "base": "pocket",
+      "theme": "gogo",
+      "clues": {
+        "pocket": "Where the drums live all night. The band steps in at nine and does not step out until one.",
+        "poke": "One finger in the ribs from the aunt who wants you to slide over on the bench.",
+        "poet": "The talker on the mic is one, though nobody in that room would use the word.",
+        "kept": "The congas ran straight through the gap between numbers, and that is how the floor was held.",
+        "cop": "The cruiser idling outside at one in the morning with the window rolled down, listening.",
+        "top": "The last name on the flyer, who goes on when the walls are already wet."
+      },
+      "prefer": [
+        "poke",
+        "poet",
+        "kept",
+        "cop",
+        "top"
+      ],
+      "scene": "The groove that never lets go"
+    },
+    {
+      "base": "bounds",
+      "theme": "gogo",
+      "clues": {
+        "bounds": "The line a permit draws around a room, and the reason a night has to end at two.",
+        "sound": "What the shop at Seventh and Florida pushed onto the sidewalk until the city said stop.",
+        "bound": "Headed somewhere: the van, the trailer, the drums, and four people asleep in the back.",
+        "bonds": "What a hall wants posted before it will book anybody who draws a young crowd.",
+        "snub": "Being left off the flyer after playing the same room for six years running.",
+        "sun": "It is up by the time the last cable is coiled and the truck doors get pulled shut."
+      },
+      "prefer": [
+        "sound",
+        "bound",
+        "bonds",
+        "snub",
+        "sun"
+      ],
+      "scene": "Permits, corners and who gets to be loud"
+    },
+    {
+      "base": "busted",
+      "theme": "gogo",
+      "clues": {
+        "busted": "The kick head split at midnight, somebody taped it, and the groove never noticed.",
+        "debut": "First night on the mic. The roll call goes badly and you never forget a name again.",
+        "tubes": "Glowing glass in the back of the old amp, warm before the first note of the night.",
+        "dust": "What comes off a fifteen-year-old cassette the one more time somebody plays it.",
+        "stub": "Ten dollars at the door, torn in half by the woman who counts every head.",
+        "bets": "Who says the crank comes in the second hour, and who says it comes in the first."
+      },
+      "prefer": [
+        "debut",
+        "tubes",
+        "dust",
+        "stub",
+        "bets"
+      ],
+      "scene": "Gear, the door money and the tape"
+    },
+    {
+      "base": "deltas",
+      "theme": "gogo",
+      "clues": {
+        "deltas": "River mouths, and the country the grandparents came up from before this city had a beat.",
+        "lasted": "Four hours, one groove, no gap. That is the measure of a night that went right.",
+        "slate": "The order of numbers, written down and then ignored once the floor picks up the call.",
+        "steal": "What a fifteen-year-old does with his eyes from the side of the stage all night.",
+        "seat": "Nobody uses one. The chairs stay stacked against the wall until the lights come up.",
+        "salt": "Two shakes onto the half-smoke from the truck parked out front of the hall."
+      },
+      "prefer": [
+        "lasted",
+        "slate",
+        "steal",
+        "seat",
+        "salt"
+      ],
+      "scene": "Where the people came from"
+    },
+    {
+      "base": "abound",
+      "theme": "gogo",
+      "clues": {
+        "abound": "Congas, timbales, cowbell, rototoms. Percussion everywhere you look on that stage.",
+        "band": "Nine or twelve people up there, plus the crowd, which is doing half of the work.",
+        "undo": "You cannot take back a name you called out wrong in front of four hundred people.",
+        "ado": "Fuss and delay, the one thing a set never has, because the rhythm carries through it.",
+        "dab": "A small amount. What she puts behind each ear before the doors open at nine.",
+        "don": "To put on: the shirt with the group's name across the back, ironed for the show."
+      },
+      "prefer": [
+        "band",
+        "undo",
+        "ado",
+        "dab",
+        "don"
+      ],
+      "scene": "How many people it takes"
+    },
+    {
+      "base": "absurd",
+      "theme": "gogo",
+      "clues": {
+        "absurd": "A moving truck complaining in 2019 about a sound that had that corner thirty years first.",
+        "drab": "Grey glass where the record shop and the barber both used to be, side by side.",
+        "bars": "Four of them, then the man on the mic says a name and the room answers him.",
+        "rubs": "Chafing. What the strap does to your shoulder somewhere in the third hour.",
+        "bard": "A singer of one place. This one wears a bucket hat and holds a cordless mic.",
+        "bud": "A friend, or what the manager calls you when she is not using your name."
+      },
+      "prefer": [
+        "drab",
+        "bars",
+        "rubs",
+        "bard",
+        "bud"
+      ],
+      "scene": "New neighbours, old corner"
+    },
+    {
+      "base": "bluest",
+      "theme": "gogo",
+      "clues": {
+        "bluest": "Saddest of all. There is one slow number in four hours and it does not get to finish.",
+        "bustle": "The half hour before doors, when the door woman counts her float and the horns eat.",
+        "subtle": "Nothing on that stage is. The cowbell settles the question before you ask it.",
+        "blues": "The grandparent of this music, at a slower walk and with a lot fewer hands on drums.",
+        "belt": "What holds the shakers, the towel and the whistle around the percussionist's waist.",
+        "lets": "She runs the front door and decides who comes in without ever raising her voice."
+      },
+      "prefer": [
+        "bustle",
+        "subtle",
+        "blues",
+        "belt",
+        "lets"
+      ],
+      "scene": "The half hour before doors"
+    },
+    {
+      "base": "builds",
+      "theme": "gogo",
+      "clues": {
+        "builds": "The groove climbs for eleven minutes before the room agrees to lose its mind.",
+        "buds": "Two of them share one set of earphones on the bus, playing a tape of last Friday.",
+        "dibs": "Called on the good spot by the speaker stack before anybody else got through the door.",
+        "lids": "Cases come off and the drums stand there gleaming under the work lights.",
+        "slid": "The tape went hand to hand and somehow ended up two neighbourhoods over by Tuesday.",
+        "bid": "What a promoter offers for a Saturday, and what she counters with before she signs."
+      },
+      "prefer": [
+        "buds",
+        "dibs",
+        "lids",
+        "slid",
+        "bid"
+      ],
+      "scene": "The crank, and how long it takes"
+    },
+    {
+      "base": "buster",
+      "theme": "gogo",
+      "clues": {
+        "buster": "Somebody's nickname, said once into the mic and answered by four hundred voices.",
+        "burst": "The horns come in for eight bars and then they are gone again for ten minutes.",
+        "brute": "That bass line is not clever. It is heavy, and it does not apologise for that.",
+        "true": "Accurate. The block, the school and the ward, all three of them said right.",
+        "rust": "On the trailer hitch that has hauled the same drums since the middle eighties.",
+        "sure": "How she answers when asked whether the band gets paid, because she holds the contract."
+      },
+      "prefer": [
+        "burst",
+        "brute",
+        "true",
+        "rust",
+        "sure"
+      ],
+      "scene": "The lead talker and the answer"
+    },
+    {
+      "base": "deaths",
+      "theme": "gogo",
+      "clues": {
+        "deaths": "May 2012. The Godfather lay in a downtown hall, and the line ran out into the street.",
+        "shade": "Under the tent at the outdoor jam, where the elders sit and everybody else stands.",
+        "heads": "Skins on the drums, replaced more often than the shoes of the man playing them.",
+        "stead": "In place of. The fill-in who knows every count by the end of the second number.",
+        "haste": "No hurry up there. The climb takes as long as the room needs it to take.",
+        "shed": "Where a teenager beat on paint buckets until the pattern finally came out right."
+      },
+      "prefer": [
+        "shade",
+        "heads",
+        "stead",
+        "haste",
+        "shed"
+      ],
+      "scene": "Who is gone, and who is still counting"
+    },
+    {
+      "base": "dental",
+      "theme": "gogo",
+      "clues": {
+        "dental": "The plan the day job carries, which is exactly why the day job stays.",
+        "laden": "The van at two in the morning: two congas, a cowbell rack and everybody's bag.",
+        "lane": "The one on 295 he knows by feel, driving home with his ears still ringing.",
+        "tend": "She keeps the books, the calendar and the group's phone, and nothing slips past her.",
+        "dean": "The one at the high school whose name came off the stage, to his own surprise.",
+        "late": "Doors at nine, first note at eleven, and not one person in there finds that odd."
+      },
+      "prefer": [
+        "laden",
+        "lane",
+        "tend",
+        "dean",
+        "late"
+      ],
+      "scene": "The day job that pays for the drums"
+    },
+    {
+      "base": "detail",
+      "theme": "gogo",
+      "clues": {
+        "detail": "Whose birthday, which block, what school. The mic is expected to get all of it right.",
+        "tailed": "The recorder was left running, so the cassette runs on well past the last number.",
+        "ideal": "The perfect copy is the first dub. By the fourth, the hiss is louder than the horns.",
+        "tide": "The whole room moves as one thing, forward and back, for hours at a time.",
+        "tile": "The rec centre floor, sticky by midnight, mopped by the woman who holds the keys.",
+        "edit": "Nobody makes one. It runs from the first count straight through to the lights."
+      },
+      "prefer": [
+        "tailed",
+        "ideal",
+        "tide",
+        "tile",
+        "edit"
+      ],
+      "scene": "The PA tape and its fourth copy"
+    },
+    {
+      "base": "double",
+      "theme": "gogo",
+      "clues": {
+        "double": "Two drummers, two sets of hands on one pattern, locked so tight it sounds like one.",
+        "duel": "Two men trading names across the stage until the floor has to pick a side.",
+        "loud": "Sixteen speakers stacked in a room that was built to hold a hundred and twenty.",
+        "bold": "Wearing your own group's name across your chest to somebody else's show.",
+        "lobe": "The part of the ear the cowbell finds first from four feet in front of the stack.",
+        "blue": "The tarp thrown over the drums in the back of the truck when the rain starts."
+      },
+      "prefer": [
+        "duel",
+        "loud",
+        "bold",
+        "lobe",
+        "blue"
+      ],
+      "scene": "Two of everything on that stage"
+    },
+    {
+      "base": "doubts",
+      "theme": "gogo",
+      "clues": {
+        "doubts": "Whether the promoter has the second half of the money is the oldest question back there.",
+        "bout": "Four hours, no break, and the percussion section wins it on points.",
+        "outs": "The excuses a room finds when its licence suddenly becomes a problem on a Friday.",
+        "dots": "On the page for the horn line, which the rhythm section has never once read.",
+        "duo": "The two who dub cassettes at a kitchen table, one deck feeding the other all evening.",
+        "sob": "What the horn does on the last note before the count picks straight back up."
+      },
+      "prefer": [
+        "bout",
+        "outs",
+        "dots",
+        "duo",
+        "sob"
+      ],
+      "scene": "Getting paid, or not"
+    },
+    {
+      "base": "dumber",
+      "theme": "gogo",
+      "clues": {
+        "dumber": "Quieter, not more stupid. What a corner got in 2019 when the speakers were switched off.",
+        "demur": "To object politely. Nobody bothered at the rally; they brought their own speakers.",
+        "drum": "The talking one, struck with the heel of the hand while the other hand holds time.",
+        "bred": "Nowhere else. One city made this, and it never really left the county line.",
+        "rude": "Asking a group to turn it down in a room that came out to hear it turned up.",
+        "mud": "The lot behind the hall after rain, where six people push the trailer out."
+      },
+      "prefer": [
+        "demur",
+        "drum",
+        "bred",
+        "rude",
+        "mud"
+      ],
+      "scene": "The year they tried to turn it off"
+    },
+    {
+      "base": "menial",
+      "theme": "gogo",
+      "clues": {
+        "menial": "The job before the gig: mop, register, phone. The van still pulls off at six.",
+        "name": "Yours, said from the stage in front of everybody, which is the whole reason you came out.",
+        "line": "Down the block by eight, and she is at the front of it holding the list.",
+        "main": "The chief one. Southeast, Northeast, PG County: the mic works through all of them.",
+        "amen": "The answer the crowd gives back, though this is a rec hall and it is Friday.",
+        "mail": "The flyer came folded in an envelope, back before anybody had a phone that buzzed."
+      },
+      "prefer": [
+        "name",
+        "line",
+        "main",
+        "amen",
+        "mail"
+      ],
+      "scene": "The roll call, and the week around it"
+    },
+    {
+      "base": "obtuse",
+      "theme": "gogo",
+      "clues": {
+        "obtuse": "Wider than a right angle, which is the tilt she gives the cowbell before she hits it.",
+        "toes": "Yours get stepped on in the crush at the front, and you stay right where you are.",
+        "tube": "The inner one in the trailer tyre, patched twice, holding all the way to Baltimore.",
+        "bus": "The 90 down Florida Avenue, carrying half the crowd home somewhere around two.",
+        "sue": "What the new neighbours threaten and what the management company actually files.",
+        "set": "Nobody counts the numbers. It is one long thing with names buried inside it."
+      },
+      "prefer": [
+        "toes",
+        "tube",
+        "bus",
+        "sue",
+        "set"
+      ],
+      "scene": "One unbroken thing from nine till one"
+    },
+    {
+      "base": "sowing",
+      "theme": "gogo",
+      "clues": {
+        "sowing": "Handing a teenager the sticks at soundcheck, then coming back in five years to look.",
+        "swing": "What this pattern does not do. It sits flat and hard on the count, and that is the point.",
+        "song": "A word this stage barely needs. It is all one thing from nine until the lights.",
+        "sign": "The cardboard one taped to the door: ten dollars, no hats, nobody under sixteen.",
+        "snow": "Three inches down and they packed the hall anyway, because the group came anyway.",
+        "wins": "The battle ends when one side of the room shouts louder than the other side."
+      },
+      "prefer": [
+        "swing",
+        "song",
+        "sign",
+        "snow",
+        "wins"
+      ],
+      "scene": "Handing it down"
+    },
+    {
+      "base": "upbeat",
+      "theme": "gogo",
+      "clues": {
+        "upbeat": "The lift before the one, where everybody in the room already knows what lands next.",
+        "beat": "It never stops. Not between numbers, not between sets, not while the man is talking.",
+        "tape": "Pulled off the board, dubbed twice, sold out of a trunk on Georgia Avenue by Monday.",
+        "tuba": "The brass the sousaphone player carries, older than this music and still inside it.",
+        "abut": "The last note and the next count sit right up against each other with no air between.",
+        "tab": "What the horn section runs at the carry-out, settled by the manager on Friday."
+      },
+      "prefer": [
+        "beat",
+        "tape",
+        "tuba",
+        "abut",
+        "tab"
+      ],
+      "scene": "The beat that does not stop"
+    },
+    {
+      "base": "wasted",
+      "theme": "gogo",
+      "clues": {
+        "wasted": "Not one minute of it. Four hours, and the percussion carries every single gap.",
+        "sweat": "It runs down the walls of the hall and the ceiling starts dripping around midnight.",
+        "stew": "In the pot at the back for the group, because nobody eats before a four-hour night.",
+        "west": "Northern Virginia is that way, and the crowd out there answers the same calls.",
+        "awed": "The face of a first-timer when the second hour starts and nothing has stopped yet.",
+        "wade": "Into the crush at the front, sideways, holding your cup up above your head."
+      },
+      "prefer": [
+        "sweat",
+        "stew",
+        "west",
+        "awed",
+        "wade"
+      ],
+      "scene": "The room by midnight"
     }
   ]
 }
