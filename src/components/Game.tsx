@@ -1806,9 +1806,32 @@ function CompleteSheet({
   onNext: () => void;
   onClose: () => void;
 }) {
+  /*
+   * This is the only sheet in the app that was not a dialog.
+   *
+   * Every other one runs through `useDialog`, which gives it Escape, a focus
+   * trap and `inert` on the rest of the page. This one was a bare div, so
+   * Escape did nothing and the scrim was not clickable — and because the
+   * warm-up counter only advances when the sheet is DISMISSED, a player who
+   * reached for either of those was left on "Warm-up 1 of 4" forever with no
+   * idea why. That is what "the puzzle counter is not working" turned out to
+   * be: the counter was fine, the way out of the sheet was not.
+   */
+  const ref = useDialog(onClose);
   return (
-    <div className="fixed inset-0 z-50 grid place-items-end sm:place-items-center"
-      style={{ background: 'var(--scrim)' }}>
+    <div
+      ref={ref}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Puzzle cleared"
+      tabIndex={-1}
+      onClick={(e) => {
+        // Scrim only — a click inside the card must not dismiss it.
+        if (e.target === e.currentTarget) onClose();
+      }}
+      className="fixed inset-0 z-50 grid place-items-end outline-none sm:place-items-center"
+      style={{ background: 'var(--scrim)' }}
+    >
       <div className="anim-rise safe-bottom w-full max-w-[420px] relative rounded-t-3xl border-t-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-6 pt-7 sm:rounded-3xl sm:border">
         <p className="text-kicker uppercase tracking-[0.18em] text-text-secondary">
           {warmup !== null

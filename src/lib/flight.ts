@@ -144,29 +144,21 @@ export function celebrateBonus(opts: {
   const HOLD = reduce ? 900 : 620;
   const TRAVEL = reduce ? 260 : 460;
 
-  scrimBehind(host, cx, cy, 260, ARRIVE + HOLD + TRAVEL);
-
-  // Beat 2: the ring. Pure decoration, so this is the part reduced motion
-  // actually drops — the word and the count still arrive either way.
-  if (!reduce) {
-  const ring = document.createElement('span');
-  ring.className = 'anim-bonus-ring';
-  ring.style.cssText = [
-    'position:fixed',
-    `left:${cx}px`,
-    `top:${cy}px`,
-    'width:150px',
-    'height:150px',
-    'border-radius:999px',
-    'border:2px solid var(--color-success)',
-    'box-shadow:0 0 28px -2px var(--color-success), inset 0 0 18px -6px var(--color-success)',
-    'backdrop-filter:blur(2px) brightness(1.2)',
-    '-webkit-backdrop-filter:blur(2px) brightness(1.2)',
-    'animation-delay:180ms',
-  ].join(';');
-  host.appendChild(ring);
-  setTimeout(() => ring.remove(), 1000);
-  }
+  /*
+   * No scrim and no ring here any more.
+   *
+   * This fires on EVERY bonus word, and bonus words are the commonest event in
+   * the game — a player working a board well can trigger it a dozen times in a
+   * minute. A dimmed board and a glowing ring at the centre of the screen is a
+   * set-piece, and a set-piece that happens constantly stops reading as a
+   * reward and starts reading as an interruption: it covers the wheel you are
+   * still using and the tray you are reading.
+   *
+   * What survives is the part that carries information — the word itself,
+   * travelling to the bonus counter so you can see WHERE it went and watch the
+   * count change. The scrim and ring stay in celebratePrize, which fires once
+   * per board at most and has earned the screen.
+   */
 
   // Beat 1: the word, as glass.
   const card = document.createElement('div');
