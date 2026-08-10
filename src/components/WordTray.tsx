@@ -239,7 +239,14 @@ export default function WordTray({
               <div
                 role="menu"
                 aria-label={`Hints for the ${word.length}-letter word`}
-                className="absolute left-1/2 top-full z-20 mt-1 flex -translate-x-1/2 gap-1 rounded-xl border-2 border-edge-mid liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-1"
+                /*
+                 * Reads as a chooser, not a decoration. It replaced a tap that
+                 * used to reveal a letter outright, so if it is easy to miss
+                 * the player concludes the tap did nothing — which is exactly
+                 * what was reported. Full-strength edge and a contact shadow
+                 * so it separates from the grid behind it.
+                 */
+                className="absolute left-1/2 top-full z-20 mt-1.5 flex -translate-x-1/2 gap-1 rounded-xl border-2 border-edge liquid liquid-raised shadow-[0_8px_20px_-8px_rgba(0,0,0,0.75)] backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-1"
               >
                 {/*
                   Affordability is checked HERE, not just in the engine.

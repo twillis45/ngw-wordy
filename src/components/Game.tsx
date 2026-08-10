@@ -1050,7 +1050,11 @@ export default function Game({ data }: { data: PuzzleFile }) {
         className="inline-flex min-h-11 flex-wrap items-center justify-center gap-x-1 rounded-full px-3 text-center text-meta text-text-muted transition-colors hover:text-text-secondary md:min-h-0 md:pointer-events-none md:hover:text-text-muted"
       >
         {tokens > 0 ? (
-          <>Tap a row for a hint · {tokens} left</>
+          // Says what the row actually DOES now. Tapping used to reveal a
+          // letter outright; it now opens a priced chooser, and leaving the
+          // old wording in place meant the app told you to expect a letter and
+          // then handed you a menu — which reads as the tap not working.
+          <>Tap a row to choose a hint · {tokens} left</>
         ) : (
           <>
             {bonusToNextToken(progress.bonusTotal)} more bonus{' '}
