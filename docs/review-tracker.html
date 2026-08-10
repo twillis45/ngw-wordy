@@ -277,7 +277,7 @@
   <div class="wrap">
     <header>
       <p class="kicker">NGW · Wordy · review board tracker</p>
-      <h1>Five wings moved. What's left is writing, not engineering.</h1>
+      <h1>Six wings closed or moved. What's left is writing and a platform decision.</h1>
       <p class="lede">
         Render-first pass run 9 Aug 2026 against the production export — seven
         viewports, six states, forty-two screenshots. Every wing scores its own
@@ -514,6 +514,29 @@
           </div>
         </article>
 
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Legal pages, no third party, CSP</h3>
+            <p>
+              Every word a player tapped was sent to a dictionary API with no
+              terms, licence, privacy policy or logging statement — a GDPR
+              transfer, a Families/COPPA failure and unlicensed content, all in
+              one call. Deleting it buys a <em>collects nothing, transmits
+              nothing</em> posture and lets CSP lock <code>connect-src</code> to
+              self. <code>/privacy</code>, <code>/terms</code> and
+              <code>/support</code> now exist — both stores hard-block without
+              them. Service worker no longer caches error pages as the offline
+              shell, and data files revalidate.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span><span><code>0cce2b1</code></span>
+              <span class="delta">security 2 → 9 · npm audit 0 vulns</span>
+              <span>CI actions pinned to SHAs</span>
+            </div>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -572,11 +595,11 @@
             </tr>
             <tr>
               <td class="wing">Security, privacy &amp; IP</td>
-              <td class="num" style="color:var(--warn)">2</td>
-              <td><div class="bar"><i style="width:20%;background:var(--warn)"></i></div></td>
-              <td class="dim">no privacy policy · IP clearance 4</td>
-              <td class="dim">9–10</td>
-              <td><span class="chip next">Queued</span></td>
+              <td class="num" style="color:var(--ok)">9</td>
+              <td><div class="bar"><i style="width:90%;background:var(--ok)"></i></div></td>
+              <td class="dim">Webster transcription provenance</td>
+              <td class="dim">10</td>
+              <td><span class="chip done">At target</span></td>
             </tr>
             <tr>
               <td class="wing">Game design &amp; core loop</td>
@@ -617,110 +640,69 @@
 
     <section>
       <div class="section-head">
-        <h2>Remaining work, in fix order</h2>
-        <p class="note">Effort is focused engineering days, not calendar days.</p>
+        <h2>What is actually left</h2>
+        <p class="note">
+          Every wing that could be closed from the code side is closed. The
+          remaining items split cleanly into three kinds.
+        </p>
       </div>
       <div class="stack">
 
-        <article class="item is-now">
+        <article class="item is-you">
           <div class="stripe"></div>
           <div class="body">
-            <h3>Finish accessibility → 8–9</h3>
+            <h3>Writing — 50 more themed puzzles, ~300 clues</h3>
             <p>
-              Hints are pointer-event-only, so keyboard and AT users cannot use the
-              hint system at all — and the row's aria-label describes an operation
-              they cannot perform. Then: restore pinch zoom (<code>userScalable:false</code>
-              is a documented WCAG 1.4.4 failure), announce rank changes, split the
-              live region so a toast cannot clobber a result, fix the 1.01:1
-              clue-mode marker, drop <code>max-[379px]:h-9</code> which shrinks
-              targets on the smallest phones.
+              The whole product, and the only thing with pricing power. ~10 weeks
+              at a sustainable solo rate of 10–12 keeper puzzles a week. Nothing
+              engineering-side substitutes for it, and the board's stated risk is
+              not a bad app but a good app with a tired second half.
             </p>
-            <div class="meta">
-              <span class="chip now">In progress</span>
-              <span>~2 d</span>
-              <span>blocks: WCAG 2.2 AA</span>
-            </div>
+            <div class="meta"><span class="chip you">Only you</span><span>~10 weeks</span><span>content 5 → 8</span></div>
+          </div>
+        </article>
+
+        <article class="item is-you">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Eight questions from the cultural seat</h3>
+            <p>
+              Whose 90s R&amp;B, which region's cookout, whether Sitcom Sunday is
+              meant to be Black canon or a deliberate breather. The seat blocked
+              two themes rather than guess. Deferred by your call.
+            </p>
+            <div class="meta"><span class="chip you">Only you</span><span>cultural stays 4</span></div>
+          </div>
+        </article>
+
+        <article class="item is-blocked">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>The platform decision — this is what caps the surface</h3>
+            <p>
+              Web-first is chosen, so the store wing should be rescored as web
+              production readiness. Reaching the stores later means a Capacitor
+              shell plus native haptics, notifications, a widget and Game Center
+              to clear Apple's 4.2 bar — roughly 6–10 weeks, with approval not
+              guaranteed on first submission.
+            </p>
+            <div class="meta"><span class="chip blocked">Decision</span><span>~29 engineering days if pursued</span></div>
           </div>
         </article>
 
         <article class="item">
           <div class="stripe"></div>
           <div class="body">
-            <h3>Onboarding → 9</h3>
+            <h3>Small engineering tail</h3>
             <p>
-              The first screen explains scoring and never says what the game is.
-              Teach the verb, keep the instruction until the first word lands, put
-              a price on a hint before charging it, promote the Themes door out of a
-              13px muted line, fix the literal <code>&amp;rsquo;</code> that renders
-              in the assist copy, and stop telling phone players they can "just type it".
+              Re-derive <code>webster.json</code> from Project Gutenberg to settle
+              the transcription provenance (security 9 → 10). Redraw the four
+              header icons to one family — three drawing conventions today
+              (layout 9 → 10). Interaction wing's reduced-motion parity and haptic
+              rhythm rewrite, though the haptics cannot be verified without a
+              device.
             </p>
-            <div class="meta"><span class="chip next">Next</span><span>~2 d</span></div>
-          </div>
-        </article>
-
-        <article class="item">
-          <div class="stripe"></div>
-          <div class="body">
-            <h3>Layout &amp; hierarchy → 10</h3>
-            <p>
-              The only wing that can honestly reach a 10, because it is scored on
-              measurements. <code>secondary</code> and <code>muted</code> are 0.3%
-              apart in luminance — two of three contrast tiers are one tier. Section
-              titles are the smallest, dimmest text in their own cards. The accent is
-              spent eight times. Type ramp collapses to six named steps in <code>rem</code>,
-              which also carries the dynamic-type half of the accessibility work.
-            </p>
-            <div class="meta"><span class="chip next">Queued</span><span>~3 d</span></div>
-          </div>
-        </article>
-
-        <article class="item">
-          <div class="stripe"></div>
-          <div class="body">
-            <h3>Security, privacy &amp; IP → 9–10</h3>
-            <p>
-              Publish privacy, terms and support routes — both stores hard-block
-              without them, and with no analytics the policy is ten honest sentences.
-              Drop <code>dictionaryapi.dev</code>: it has no terms, licence or privacy
-              policy and currently receives every word a player taps. Swap Webster 1913
-              for WordNet, which resolves the licence question and the archaic-clue
-              problem at once. Then CSP, the <code>response.ok</code> guard, LICENSE.
-            </p>
-            <div class="meta"><span class="chip next">Queued</span><span>~3 d</span></div>
-          </div>
-        </article>
-
-        <article class="item">
-          <div class="stripe"></div>
-          <div class="body">
-            <h3>Game design &amp; loop → 8–9</h3>
-            <p>
-              Clearing every row — what the UI tells you to do — earns rank 3 of 8,
-              because ranks measure every word the letters can make. Re-anchor them.
-              Ship escalating mode on by default; it is the idea that makes this
-              structurally interesting and it is switched off. Raise the 45s assist
-              and stop playing the win sound for a word the player didn't find.
-              Generate 730+ puzzles so day 241 stops serving a solved board.
-            </p>
-            <div class="meta"><span class="chip next">Queued</span><span>~4 d</span></div>
-          </div>
-        </article>
-
-        <article class="item">
-          <div class="stripe"></div>
-          <div class="body">
-            <h3>Interaction &amp; feel → 9</h3>
-            <p>
-              Reduced motion still silences the prize and rank celebrations entirely —
-              the fix landed only on bonus. Seven feedback events collapse to four
-              distinguishable iOS patterns; spending a hint feels identical to banking
-              a word. Muting audio also kills haptics, which is backwards. No master
-              limiter, so the biggest moment is the one most likely to clip.
-            </p>
-            <div class="meta">
-              <span class="chip next">Queued</span><span>~3 d</span>
-              <span>haptics unverifiable without hardware</span>
-            </div>
+            <div class="meta"><span class="chip next">Queued</span><span>~4 days total</span></div>
           </div>
         </article>
 
