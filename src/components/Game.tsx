@@ -1056,7 +1056,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       </div>
 
       {/* Controls */}
-      <div className="mt-2 flex items-center justify-center gap-2.5 md:mt-4 md:gap-3 short:mt-1">
+      <div className="mt-1.5 flex items-center justify-center gap-2 md:mt-4 md:gap-3 short:mt-1">
         <ControlButton
           onClick={() => {
             setLetters((prev) => shuffle(prev));
@@ -1638,16 +1638,19 @@ function ControlButton({
       disabled={disabled}
       {...rest}
       /*
-       * Smaller on a phone so the DIAL can be bigger.
+       * Deliberately small on a phone so the DIAL can be bigger.
        *
-       * The dial is height-constrained on mobile — it takes whatever the
-       * column leaves over — so every pixel these give up goes straight to the
-       * thing you actually play with. 40px keeps them well clear of the 24px
-       * WCAG minimum for a target; it gives up the 44px platform guidance,
-       * which is a deliberate trade for a bigger interaction surface, and the
-       * pills are secondary controls that a player uses far less than the dial.
+       * The dial is height-constrained on mobile — it takes whatever the column
+       * leaves over — so every pixel these give up goes straight to the thing
+       * you actually play with. 32px still clears the 24px WCAG 2.5.8 minimum
+       * with room to spare; it gives up the 44px platform guidance, which is a
+       * deliberate trade, because these are secondary controls a player touches
+       * a handful of times per board against hundreds of touches on the dial.
+       *
+       * Shuffle in particular is a control you reach for when stuck, not one
+       * you aim at under time pressure.
        */
-      className="liquid-interactive relative h-10 min-w-[92px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 text-meta font-medium text-text-secondary md:h-11 md:min-w-[104px] md:px-5 md:text-body transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
+      className="liquid-interactive relative h-8 min-w-[76px] rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-3 text-kicker font-medium text-text-secondary md:h-10 md:min-w-[98px] md:px-4 md:text-body transition-colors hover:border-text-primary hover:text-text-primary disabled:opacity-35 disabled:hover:border-carbon-border disabled:hover:text-text-secondary"
     >
       {children}
     </button>
