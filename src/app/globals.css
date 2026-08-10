@@ -737,6 +737,45 @@ body {
 }
 
 /*
+ * A selected tile — lit glass, not painted card.
+ *
+ * The amber gave it presence; flat amber gave it presence and no craft. Every
+ * other tile on this board is a piece of material with a rim, a specular and a
+ * contact shadow, so a selected one rendered as a single opaque colour reads
+ * as a sticker placed on top of the game rather than the same object in a
+ * different state.
+ *
+ * Four layers, each doing one job:
+ *   1. a fill that GRADES from top-left to bottom-right, so the tile has a lit
+ *      side and a shaded side like the glass around it;
+ *   2. a bloom in its own hue, because a warm object on a cool dark board
+ *      should throw a little light onto it — this is what makes it look lit
+ *      rather than filled;
+ *   3. a hairline of the hue darkened, which keeps the edge crisp against the
+ *      bloom instead of letting the two dissolve into each other;
+ *   4. a top specular and a bottom shade, the same rim treatment the resting
+ *      tiles carry, so the material reads as continuous across the state
+ *      change.
+ *
+ * The bloom is deliberately tight (-6px spread) — a wide glow would haze the
+ * neighbouring letters and this dial is small on a phone.
+ */
+.tile-selected {
+  background: linear-gradient(
+    154deg,
+    color-mix(in srgb, var(--color-select) 82%, white) 0%,
+    var(--color-select) 46%,
+    color-mix(in srgb, var(--color-select) 88%, black) 100%
+  );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-select) 62%, black),
+    0 5px 16px -6px color-mix(in srgb, var(--color-select) 60%, transparent),
+    0 0 20px -6px color-mix(in srgb, var(--color-select) 42%, transparent),
+    inset 0 1.5px 0 color-mix(in srgb, white 52%, transparent),
+    inset 0 -2.5px 3px -1px color-mix(in srgb, black 34%, transparent);
+}
+
+/*
  * Interactive glass. A control should feel like it lifts under a cursor and
  * presses under a finger — the material reacting is most of what makes it read
  * as a physical object rather than a painted rectangle.

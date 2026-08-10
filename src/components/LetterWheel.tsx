@@ -705,7 +705,7 @@ export default function LetterWheel({
                    * No backdrop-blur on this branch any more: the fill is
                    * opaque, so blurring what is behind it is work nobody sees.
                    */
-                  ? 'anim-tick border-select ring-2 ring-select/40 bg-select text-select-ink'
+                  ? 'anim-tick tile-selected border-transparent text-select-ink'
                   : 'border-edge liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary active:scale-95',
             ].join(' ')}
             style={{
@@ -725,11 +725,14 @@ export default function LetterWheel({
               // carries `.liquid-raised`, whose rim/caustic/contact stack IS
               // the glass — and an inline shadow silently outranks it, which
               // is what flattened the wheel back to a plain drop shadow.
-              boxShadow: locked
-                ? 'none'
-                : picked
-                  ? 'var(--tile-shadow-active)'
-                  : undefined,
+              /*
+               * Nothing inline for the picked state. `.tile-selected` owns its
+               * whole shadow stack — bloom, hairline, specular and shade — and
+               * an inline box-shadow silently outranks a class, which is the
+               * exact trap that once flattened the resting tiles back to a
+               * plain drop shadow.
+               */
+              boxShadow: locked ? 'none' : undefined,
             }}
           >
             {letter.toUpperCase()}
