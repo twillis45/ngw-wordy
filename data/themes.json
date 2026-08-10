@@ -97,6 +97,16 @@
       "id": "westcoast",
       "name": "Gulf Coast, West Coast",
       "blurb": "Louisiana on the grill, the Pacific at your back, and somebody already down there holding the ring."
+    },
+    {
+      "id": "texas",
+      "name": "By the Pound",
+      "blurb": "Butcher paper going translucent under two pounds of brisket, and nobody has mentioned a plate."
+    },
+    {
+      "id": "caribbean",
+      "name": "Which Island",
+      "blurb": "Six flags off one fire escape, and every pot in the yard is somebody's mother's."
     }
   ],
   "puzzles": [
@@ -6232,6 +6242,462 @@
         "baton",
         "tan",
         "toy"
+      ]
+    },
+    {
+      "base": "barked",
+      "theme": "texas",
+      "clues": {
+        "barked": "Thirteen hours of smoke and coarse pepper made that crust. Black as a boot and not one bit burnt.",
+        "bread": "Two slices out of the sleeve, laid down first so they catch whatever runs off the meat.",
+        "break": "The only one he takes is at four in the morning, standing up, with coffee gone cold.",
+        "bark": "What the man behind you does when the line stops. She weighs at her own speed regardless.",
+        "dark": "It is still that when the fire gets built, and the doors do not open for another six hours.",
+        "baker": "Her name is on the pie case out front, and the crew in the pit room answers to her on Sundays."
+      },
+      "prefer": [
+        "bread",
+        "break",
+        "bark",
+        "dark",
+        "baker"
+      ]
+    },
+    {
+      "base": "pickle",
+      "theme": "texas",
+      "clues": {
+        "pickle": "Dill spears out of a gallon jar, tongs left in the brine, and they cost you nothing at all.",
+        "pick": "What you do with a finger against the glass — that piece, the fatty end, not the one she reached for.",
+        "pile": "White onion, cut thick with the knife she keeps just for it, and nobody is asked first.",
+        "lick": "What your thumb gets after the pepper crust, since no napkin in this building is worth anything.",
+        "pie": "Buttermilk, in a case by the register, sold by the slice and gone before one o'clock.",
+        "lip": "The rolled edge of the tray, greasy by noon, wiped down between customers whether it needs it or not."
+      },
+      "prefer": [
+        "pick",
+        "pile",
+        "lick",
+        "pie",
+        "lip"
+      ]
+    },
+    {
+      "base": "faults",
+      "theme": "texas",
+      "clues": {
+        "faults": "She names them before you can — this one ran dry, those sat too long — and then she takes something off.",
+        "fault": "The Balcones, running under I-35, which is why the country west of that highway turns to rock and cedar.",
+        "fat": "The cap left a quarter inch thick on top, because it renders down through the meat all night.",
+        "flat": "The half without the marbling. If she asks which half you want, answer quickly.",
+        "fast": "Nothing in this building cooks that way, and the hours posted on the door say so plainly.",
+        "salt": "Coarse black pepper and this, in equal handfuls. That is the entire rub, and there is no second one."
+      },
+      "prefer": [
+        "fault",
+        "fat",
+        "flat",
+        "fast",
+        "salt"
+      ]
+    },
+    {
+      "base": "backer",
+      "theme": "texas",
+      "clues": {
+        "backer": "She put up the money in 1979 and never once stood behind the counter. Everybody knew whose place it was.",
+        "back": "The room behind the meat case, where the smoke was, because the store out front sold groceries.",
+        "rack": "Links hang in rows on it above the coals, curved and dripping, in a cabinet the family welded themselves.",
+        "acre": "The fenced ground beside where customers park, and the split wood is stacked shoulder high on it.",
+        "brake": "What the eighteen-wheelers hit coming into Elgin, because the smoke crosses the highway at the light.",
+        "cake": "Nobody drives here for it, but somebody's mother sends one every Friday and it is gone within the hour."
+      },
+      "prefer": [
+        "back",
+        "rack",
+        "acre",
+        "brake",
+        "cake"
+      ]
+    },
+    {
+      "base": "thawed",
+      "theme": "texas",
+      "clues": {
+        "thawed": "The case of links is not that at five in the morning, which is exactly why she came in at four.",
+        "whet": "The steel he draws the blade down before every brisket, six strokes a side, without ever looking.",
+        "heat": "A wall of it at the door of the pit room in August. She works in there all day, gloves to the elbow.",
+        "head": "Cabeza. The old way was a hole in the ground, covered overnight, and it sells out before ten Sunday.",
+        "date": "Stamped on the paper tag beside the weight, because the market kept books long before it kept a pit.",
+        "what": "\"— do you mean, out of ribs?\" Said at eleven in the morning, every Saturday, by somebody new."
+      },
+      "prefer": [
+        "whet",
+        "heat",
+        "head",
+        "date",
+        "what"
+      ]
+    },
+    {
+      "base": "piston",
+      "theme": "texas",
+      "clues": {
+        "piston": "The one that let go in the wood truck on 290, so the whole delivery sat there until a cousin brought tools.",
+        "point": "The fatty half, marbled and loose, and the regulars ask for that end by name before it is gone.",
+        "pinto": "Beans in a pot off to the side, and half this county will tell you they do not belong on the tray.",
+        "pint": "How the sauce is sold here: in a jar, to take home. It is not going anywhere near the meat in this room.",
+        "tips": "The trimmings she scoops into a pan for the regulars, priced low and gone before the doors open.",
+        "snip": "What the scissors do to the chain of links, one twist at a time, straight down onto the paper."
+      },
+      "prefer": [
+        "point",
+        "pinto",
+        "pint",
+        "tips",
+        "snip"
+      ]
+    },
+    {
+      "base": "rusted",
+      "theme": "texas",
+      "clues": {
+        "rusted": "The hinges on the pit door, and the sound they make at four is how the neighbors tell the time.",
+        "rust": "What never gets sanded off the smoker, because what is built up inside it is worth more than paint.",
+        "rest": "An hour wrapped in the warmer before she cuts, and she will not shorten it for anybody living.",
+        "dust": "The caliche off the lot, settled on every windshield in the line by noon.",
+        "true": "What the story about the pit surviving the fire mostly is, minus the part about the mayor.",
+        "used": "The slicer, bought secondhand off a grocery closing in Taylor, and still the sharpest thing in here."
+      },
+      "prefer": [
+        "rust",
+        "rest",
+        "dust",
+        "true",
+        "used"
+      ]
+    },
+    {
+      "base": "soaked",
+      "theme": "texas",
+      "clues": {
+        "soaked": "What the butcher paper is by the time you reach a table, and that is the whole point of the paper.",
+        "oak": "Post — the short, gnarled one that grows out here, and the only wood that goes in that firebox.",
+        "asked": "Lean or moist. She poses it once, knife already up, and the line behind you can hear you stall.",
+        "sake": "\"For your grandmother's,\" she says, and pushes the extra half pound across without charging for it.",
+        "desk": "The rolltop in the office corner, where the ledgers from the grocery years are still stacked.",
+        "dose": "What an hour out back gives you: eyes running, clothes ruined, and you go again tomorrow."
+      },
+      "prefer": [
+        "oak",
+        "asked",
+        "sake",
+        "desk",
+        "dose"
+      ]
+    },
+    {
+      "base": "shadow",
+      "theme": "texas",
+      "clues": {
+        "shadow": "The line moves along with it, and by eleven the front is at the door with none of it left to stand in.",
+        "saw": "The band one in the back room is older than anybody working, and it still breaks down a whole beef.",
+        "wash": "What they do to the block with a brush and hot water every night, down to the bare maple.",
+        "show": "What she does not put on. No flourish, no bottle waved over anything. The knife and the scale.",
+        "dash": "Where the ticket ends up in the truck, folded once, because you are eating in the cab in the lot.",
+        "had": "\"They it at eleven.\" Meaning the brisket is gone and you should have left the house earlier."
+      },
+      "prefer": [
+        "saw",
+        "wash",
+        "show",
+        "dash",
+        "had"
+      ]
+    },
+    {
+      "base": "frayed",
+      "theme": "texas",
+      "clues": {
+        "frayed": "The hem of the apron she has tied on since the Carter administration, and a new one is refused.",
+        "ready": "What it is when it is, and no clock in this building has ever been given a vote on the matter.",
+        "yard": "Out back: the woodpile, two dogs, and a trailer pit nobody has moved since the day it was welded.",
+        "year": "How long the split oak sits before it burns. Green makes a sour smoke and she can taste it.",
+        "fade": "The hand-painted sign has done it to almost nothing, and repainting is out of the question.",
+        "dry": "What a brisket goes if you rush the wrap, and the whole crew hears about it for a week."
+      },
+      "prefer": [
+        "ready",
+        "yard",
+        "year",
+        "fade",
+        "dry"
+      ]
+    },
+    {
+      "base": "topics",
+      "theme": "texas",
+      "clues": {
+        "topics": "What an hour in that line covers: rain, the high school game, and whose mother is in the hospital.",
+        "pit": "Brick, indoors, fire at one end and the meat at the other. Nothing like the barrels you have seen.",
+        "cost": "By the pound, weighed in front of you, and the number on the scale is the entire conversation.",
+        "spot": "Yours, held by a cousin while you go move the truck, and the people behind you allow it.",
+        "stop": "What the whole town is on the highway, and half the traffic pulling off carries out-of-county plates.",
+        "cot": "In the corner by the office, for the two hours between the last fire and the first slice."
+      },
+      "prefer": [
+        "pit",
+        "cost",
+        "spot",
+        "stop",
+        "cot"
+      ]
+    },
+    {
+      "base": "fridge",
+      "theme": "texas",
+      "clues": {
+        "fridge": "The walk-in, packed with trimmed briskets on sheet pans, and she counts them before she goes home.",
+        "fire": "Built at two in the morning and never let out again until the last brisket comes off the iron.",
+        "grief": "What the cousin from Tyler gives them over the missing sauce, every visit, chopped-pork loyalty and all.",
+        "grid": "The iron the meat lies on, scraped with a brick between cooks and never washed with anything else.",
+        "ride": "Ninety minutes out from town for a table, and the people who make it call that nothing.",
+        "ridge": "The seam of fat she leaves standing along the edge, because trimming it flush would be a mistake."
+      },
+      "prefer": [
+        "fire",
+        "grief",
+        "grid",
+        "ride",
+        "ridge"
+      ]
+    },
+    {
+      "base": "island",
+      "theme": "caribbean",
+      "clues": {
+        "island": "The flag on the rearview is the answer to a question nobody at this cookout had to ask out loud.",
+        "sand": "Poured into a bucket to steady the pole holding the tarp over the food table.",
+        "sail": "Off the table and over two fences the moment the Parkway wind gets under a paper plate.",
+        "nails": "Done Thursday in Crown Heights, flag colours on the ring finger, and she still peels the green bananas herself.",
+        "laid": "How the tables go, end to end down the driveway, before anybody may put a pot on one.",
+        "land": "Grandpa's two plots in Manchester, still in his name, and the argument over them is now on WhatsApp."
+      },
+      "prefer": [
+        "sand",
+        "sail",
+        "nails",
+        "laid",
+        "land"
+      ]
+    },
+    {
+      "base": "market",
+      "theme": "caribbean",
+      "clues": {
+        "market": "Liberty Avenue on a Saturday morning, and she has her ochro and her chadon beni before the crowd gets in.",
+        "meat": "The oxtail sits behind the counter, and what it costs a pound is why she buys butter beans too.",
+        "mart": "The corner one that gets hard dough bread on Fridays and is out of it by four.",
+        "take": "To do this with the last of the good scotch bonnets, leaving the mild ones for whoever comes after.",
+        "term": "What 'green seasoning' is on the label here. At home it was just whatever was growing in the yard.",
+        "tram": "The Toronto cousins ride one to their own carnival in August, and they call it a streetcar."
+      },
+      "prefer": [
+        "meat",
+        "mart",
+        "take",
+        "term",
+        "tram"
+      ]
+    },
+    {
+      "base": "pecans",
+      "theme": "caribbean",
+      "clues": {
+        "pecans": "Miss Dorothy next door sends her pie over the fence, and the rice pot goes back the other way.",
+        "peas": "Red kidney, not pigeon, if the pot is Jamaican. Say it wrong in a Trini kitchen and get a lecture.",
+        "snap": "What the phone does over the whole table before one single person is allowed to eat.",
+        "cans": "Coconut milk, four of them, because the fresh nuts sold here are never worth what they cost.",
+        "case": "Ting by the twenty-four, bought at the warehouse on Saturday and hidden until Sunday.",
+        "pace": "How she works: seasoning on Thursday, stewing on Friday, and Saturday she only reheats."
+      },
+      "prefer": [
+        "peas",
+        "snap",
+        "cans",
+        "case",
+        "pace"
+      ]
+    },
+    {
+      "base": "bicker",
+      "theme": "caribbean",
+      "clues": {
+        "bicker": "Two aunties, one pot, forty years, and neither has moved an inch on how much thyme.",
+        "rice": "Guyanese cook-up has it, Trini pelau has it, and each side says the other one's comes out wet.",
+        "brick": "The yard is paved in them here, so the pan sits level where the grass used to be.",
+        "ice": "Two bags from the corner store, and by two o'clock somebody has to go for two more.",
+        "crib": "Where the baby sleeps four feet from the speaker box, and nobody thinks to move her.",
+        "bike": "How the food gets from Flatbush to Crown Heights once the Parkway is closed for the parade."
+      },
+      "prefer": [
+        "rice",
+        "brick",
+        "ice",
+        "crib",
+        "bike"
+      ]
+    },
+    {
+      "base": "canoes",
+      "theme": "caribbean",
+      "clues": {
+        "canoes": "By six the ice chest is half water and the drinks are bobbing in it like little boats.",
+        "ocean": "What lies between the two grandmothers, and the reason the recipe arrived by phone.",
+        "cone": "Orange, borrowed off the block, holding the parking spot for the pot lady until noon.",
+        "nose": "His runs after one bite. He says he is fine, and he is not.",
+        "once": "How many times you may ask if it is peppery. The second time is rudeness.",
+        "son": "The one sent to the store three times because he keeps forgetting the browning."
+      },
+      "prefer": [
+        "ocean",
+        "cone",
+        "nose",
+        "once",
+        "son"
+      ]
+    },
+    {
+      "base": "carmen",
+      "theme": "caribbean",
+      "clues": {
+        "carmen": "Everybody's aunt, nobody's actual aunt, and she holds the box hand money for eleven people.",
+        "cream": "The coconut comes in a can here, and this is what she skims off the top of it.",
+        "name": "Hers is taped to the pot, taped to the tray, and written in the book where the money is kept.",
+        "mean": "'Small piece' from her: half a pound of oxtail and no argument about it.",
+        "came": "The barrel did this in November, with shoes inside and the seasoning you cannot get here.",
+        "care": "Her work at the hospital runs nights, which is why Sunday cooking begins on Saturday."
+      },
+      "prefer": [
+        "cream",
+        "name",
+        "mean",
+        "came",
+        "care"
+      ]
+    },
+    {
+      "base": "change",
+      "theme": "caribbean",
+      "clues": {
+        "change": "What she counts out of the coffee tin for the susu, and her book is straighter than the bank's.",
+        "hang": "The flags do this off the fire escape all Labor Day weekend. Six of them, six different countries.",
+        "each": "How the plates go out: one to a person, and she says when you may come back.",
+        "ache": "The back does this after eight hours over a drum, and she is out there again on Sunday.",
+        "hen": "Not the young bird. She wants the old one for the pot and pays more to get it.",
+        "cage": "The box fan has one over the blades, and the grease on it is older than the youngest cousin."
+      },
+      "prefer": [
+        "hang",
+        "each",
+        "ache",
+        "hen",
+        "cage"
+      ]
+    },
+    {
+      "base": "cleans",
+      "theme": "caribbean",
+      "clues": {
+        "cleans": "What she does to the big pot herself, always, and it rides home in her own trunk after.",
+        "scale": "The one at the meat counter, and she watches the needle rather than the man.",
+        "seal": "The lid no longer does it, so a plate goes on top and a weight goes on the plate.",
+        "sale": "What the church calls it when the plates go out Sunday to cover somebody's airfare home.",
+        "lens": "The one on the phone that the whole parade gets watched through by a cousin standing right there.",
+        "lean": "How the pot sits on the milk crate, with somebody's hand on it the entire ride."
+      },
+      "prefer": [
+        "scale",
+        "seal",
+        "sale",
+        "lens",
+        "lean"
+      ]
+    },
+    {
+      "base": "cranes",
+      "theme": "caribbean",
+      "clues": {
+        "cranes": "Three of them over Nostrand now, and the bakery that had the hard dough is a coffee place.",
+        "scare": "What the landlord's letter did, and the whole block knew before she reached the corner.",
+        "cares": "The only thing she does more of than cook, and why six people hold her spare key.",
+        "ears": "The speaker box is aimed at everybody's, and the man across the street has called twice.",
+        "near": "How close the new balcony is to the yard, which is the whole trouble with the smoke.",
+        "cars": "Parked three deep down the block on Sunday, and everybody knows whose is whose."
+      },
+      "prefer": [
+        "scare",
+        "cares",
+        "ears",
+        "near",
+        "cars"
+      ]
+    },
+    {
+      "base": "fiance",
+      "theme": "caribbean",
+      "clues": {
+        "fiance": "He has met her mother once. He is being fed until he says something about the pepper.",
+        "cafe": "What his people call the place with the patties. The sign outside says bakery.",
+        "face": "Everybody in the room reads hers before the plate is even set down.",
+        "fine": "What he says, sweating, on the second forkful, and not one person at the table believes him.",
+        "nice": "What her mother says about him, and the tone decides whether the date moves.",
+        "fan": "Set in the doorway so the smoke goes out and not into everybody's church clothes."
+      },
+      "prefer": [
+        "cafe",
+        "face",
+        "fine",
+        "nice",
+        "fan"
+      ]
+    },
+    {
+      "base": "gelato",
+      "theme": "caribbean",
+      "clues": {
+        "gelato": "What the third-generation kids ask for on the Parkway, with the shaved ice cart right there.",
+        "goat": "Curried, bone in, and he goes to the halal butcher on Church Avenue because they cut it right.",
+        "gate": "The chain-link one propped open with a cinder block since Friday, because people are coming.",
+        "late": "What everybody is, and the time on the invitation already took that into account.",
+        "tale": "The one about the grandmother, the customs officer and the mangoes, told again every year.",
+        "goal": "The men in the corner are watching for one, on a phone propped against the rum bottle."
+      },
+      "prefer": [
+        "goat",
+        "gate",
+        "late",
+        "tale",
+        "goal"
+      ]
+    },
+    {
+      "base": "glance",
+      "theme": "caribbean",
+      "clues": {
+        "glance": "What she gives the pot on her way past, which is how she knows it wants ten more minutes.",
+        "clang": "The pan being tuned in the yard through August, and the neighbours have stopped calling about it.",
+        "angel": "The eulogy called her one and left out that she ran the family's money for fifty years.",
+        "lane": "Closed from Utica to Grand Army, with the barricades going up Sunday night.",
+        "leg": "The folding table is short one, and a paint can under that corner has fixed it for nine years.",
+        "lace": "On the good tablecloth, which only comes out when the pastor is expected."
+      },
+      "prefer": [
+        "clang",
+        "angel",
+        "lane",
+        "leg",
+        "lace"
       ]
     }
   ]
