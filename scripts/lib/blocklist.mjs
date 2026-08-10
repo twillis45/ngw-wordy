@@ -102,8 +102,38 @@ const RACIAL_HARM = [
   'bondage', 'bondages', 'overseer', 'overseers',
 ];
 
+/*
+ * Religious and ethnic identity terms.
+ *
+ * Not slurs, and mostly ordinary English — which is exactly why they were
+ * never caught. The objection is the same one that applies to `racist` and
+ * `slave`: this game SCORES the words a player spells, and a board that awards
+ * points for `jew`, `papist` or `infidel` has turned somebody's identity, or a
+ * word used against it, into a token worth four points.
+ *
+ * Prompted by a report of `shia` in the Gulf Coast pack. That word is not in
+ * ENABLE1 and never shipped — but `danish` is a base in that pack, its wheel
+ * spells it, and a player reasonably read the wheel as offering it. The wheel
+ * is the surface people judge, so the list is written to cover the class
+ * rather than the one report: several of these ARE in ENABLE1, none currently
+ * ship, and that is luck rather than design.
+ *
+ * Deliberately not here: `church`, `chapel`, `deacon`, `pastor`, `parish`,
+ * `hymn`, `choir`, `amen`. Those are places, roles and practices, they are all
+ * over the Sunday Service and Fish Fry packs, and removing them would gut the
+ * catalogue to no purpose. The line is naming a PEOPLE, not naming a practice.
+ */
+const IDENTITY = [
+  'jew', 'jews', 'jewess', 'jewesses',
+  'papist', 'papists', 'infidel', 'infidels',
+  'gentile', 'gentiles', 'pagan', 'pagans',
+  'shia', 'shias', 'sunni', 'sunnis', 'sikh', 'sikhs',
+  'hindu', 'hindus', 'muslim', 'muslims', 'mormon', 'mormons',
+  'zionist', 'zionists',
+];
+
 export const SLUR_LIST = SLURS;
-export const BLOCKLIST = new Set([...SLURS, ...CRUDE, ...HARM, ...RACIAL_HARM]);
+export const BLOCKLIST = new Set([...SLURS, ...CRUDE, ...HARM, ...RACIAL_HARM, ...IDENTITY]);
 
 /** True when a word must never be shown to a player. */
 export function isBlocked(word) {
