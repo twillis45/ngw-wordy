@@ -687,11 +687,23 @@ export default function LetterWheel({
                   /*
                    * A selected tile differed from an unselected one by a FILL
                    * and nothing else — same border, same text colour — so on a
-                   * glass surface the confirmation was nearly invisible. Now
-                   * it carries a ring (a second outline, a shape change rather
-                   * than a shade), a denser fill, and the order badge below.
+                   * glass surface the confirmation was nearly invisible. It
+                   * carries a ring (a second outline, a shape change rather
+                   * than a shade), a fill, and the order badge below.
+                   *
+                   * The fill is now SOLID steel rather than steel-dark at 85%.
+                   * Translucent over a dark glass panel resolved to #38515e —
+                   * only a few steps off the resting tile, so "this letter is
+                   * in your word" was carried mostly by the ring. Solid steel
+                   * is a plain step lighter than everything around it and
+                   * still measures 5.16:1 against the letter, comfortably past
+                   * AA. steel-muted would read stronger again and drops to
+                   * 3.30:1, which is why it is not used here.
+                   *
+                   * No backdrop-blur on this branch any more: the fill is
+                   * opaque, so blurring what is behind it is work nobody sees.
                    */
-                  ? 'anim-tick border-edge ring-2 ring-steel-muted bg-steel-dark/85 text-text-primary backdrop-blur-[var(--glass-blur)]'
+                  ? 'anim-tick border-edge ring-2 ring-edge/70 bg-steel text-text-primary'
                   : 'border-edge liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary active:scale-95',
             ].join(' ')}
             style={{
