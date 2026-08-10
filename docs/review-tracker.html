@@ -277,7 +277,7 @@
   <div class="wrap">
     <header>
       <p class="kicker">NGW · Wordy · review board tracker</p>
-      <h1>Six wings closed or moved. What's left is writing and a platform decision.</h1>
+      <h1>The catalogue is 5x deeper and the 1913 dictionary is gone.</h1>
       <p class="lede">
         Render-first pass run 9 Aug 2026 against the production export — seven
         viewports, six states, forty-two screenshots. Every wing scores its own
@@ -517,6 +517,67 @@
         <article class="item is-done">
           <div class="stripe"></div>
           <div class="body">
+            <h3>Webster 1913 replaced with WordNet</h3>
+            <p>
+              The 1913 dictionary was archaic, carried the racial language of its
+              era inside ordinary entries, and its transcription had unresolved
+              provenance — three problems, one source. WordNet is modern,
+              lexicographer-curated and permissively licensed. The obscure
+              entries that produced the worst boards (<code>obis</code>,
+              <code>longe</code>, <code>dures</code>) simply do not exist in it,
+              so the quality filter is structural now rather than a blocklist to
+              maintain.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span><span><code>8a46e6b</code></span>
+              <span class="delta">clue length ~95 → 65 chars · truncated 62 → 0 · circular 7 → 0</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>42 authored puzzles landed</h3>
+            <p>
+              Sunday Dinner is new and closes what the board called the largest
+              hole in the catalogue — nothing in it had a pew in it. Landing them
+              exposed four places where a generator heuristic was overruling a
+              human, including a duplicate-clue check that silently dropped every
+              singular/plural pair a theme wants: melon/melons, aunt/auntie,
+              uncle/uncles.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span><span><code>a380b87</code></span>
+              <span class="delta">themed 10 → 52 · clues 59 → 310 · play 80min → ~7h</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Input and feel fixes, all from live reports</h3>
+            <p>
+              Clicking a letter did nothing on desktop — pointer capture at
+              pointerdown retargeted the click to the container. The puck
+              vanished on click, because a mouse keeps its pointer after the
+              button comes up and a finger does not. The stall timer ran during
+              the first-run explainer, so an assist sheet was waiting the moment
+              you dismissed it. Selection was signalled by a fill alone; it now
+              carries a ring and an order badge.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span>
+              <span><code>0a17572</code> <code>b30043f</code> <code>fe44a6f</code> <code>35c680d</code></span>
+              <span class="delta">mobile dial 217 → 247px</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
             <h3>Legal pages, no third party, CSP</h3>
             <p>
               Every word a player tapped was sent to a dictionary API with no
@@ -595,9 +656,9 @@
             </tr>
             <tr>
               <td class="wing">Security, privacy &amp; IP</td>
-              <td class="num" style="color:var(--ok)">9</td>
-              <td><div class="bar"><i style="width:90%;background:var(--ok)"></i></div></td>
-              <td class="dim">Webster transcription provenance</td>
+              <td class="num" style="color:var(--ok)">10</td>
+              <td><div class="bar"><i style="width:100%;background:var(--ok)"></i></div></td>
+              <td class="dim">provenance closed by the WordNet swap</td>
               <td class="dim">10</td>
               <td><span class="chip done">At target</span></td>
             </tr>
@@ -731,12 +792,12 @@
           </thead>
           <tbody>
             <tr><td class="wing">Themed puzzles<div class="dim">the only sellable asset</div></td>
-              <td class="num" style="color:var(--bad)">10</td><td class="num">96</td><td class="num">240</td></tr>
-            <tr><td class="wing">Themes</td><td class="num" style="color:var(--warn)">6</td><td class="num">8</td><td class="num">12</td></tr>
+              <td class="num" style="color:var(--warn)">52</td><td class="num">96</td><td class="num">240</td></tr>
+            <tr><td class="wing">Themes</td><td class="num" style="color:var(--ok)">7</td><td class="num">8</td><td class="num">12</td></tr>
             <tr><td class="wing">Puzzles per theme<div class="dim">≤4 is a demo, 12 is a set</div></td>
-              <td class="num" style="color:var(--bad)">1.7</td><td class="num">12</td><td class="num">20</td></tr>
-            <tr><td class="wing">Hand-written clues</td><td class="num" style="color:var(--bad)">59</td><td class="num">576</td><td class="num">1,440</td></tr>
-            <tr><td class="wing">Themed play time</td><td class="num" style="color:var(--bad)">80 min</td><td class="num">~10 h</td><td class="num">~25 h</td></tr>
+              <td class="num" style="color:var(--warn)">7.4</td><td class="num">12</td><td class="num">20</td></tr>
+            <tr><td class="wing">Hand-written clues</td><td class="num" style="color:var(--warn)">310</td><td class="num">576</td><td class="num">1,440</td></tr>
+            <tr><td class="wing">Themed play time</td><td class="num" style="color:var(--warn)">~7 h</td><td class="num">~10 h</td><td class="num">~25 h</td></tr>
             <tr><td class="wing">Boards under 50% common words</td><td class="num" style="color:var(--ok)">0 / 240</td><td class="num">0</td><td class="num">0</td></tr>
           </tbody>
         </table>
