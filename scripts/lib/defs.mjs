@@ -173,10 +173,37 @@ export function redactAnswer(text, answer, lemma) {
  * a clue that says "——— of ———" is worse than no clue mode at all.
  */
 export function isUsableClue(clue) {
-  if (!clue || clue.length < 30) return false;
+  /*
+   * 24, not 30. The old floor was calibrated against Webster's 1913, whose
+   * definitions ramble — anything short there was a stub. WordNet glosses are
+   * deliberately terse (median 45 chars, a quarter of them under 30), so a 30
+   * floor throws away good short clues like "Money in the form of bills or
+   * coins." The stub filters below are what actually catch stubs.
+   */
+  if (!clue || clue.length < 24) return false;
 
+  /*
+   * A gloss that was cut off mid-sentence is not a clue, it is a sentence that
+   * stops. `condense` truncates long entries with an ellipsis, which was fine
+   * when the alternative was a paragraph of Webster; with WordNet the gloss is
+   * short by design, so anything still hitting the cap is genuinely too long
+   * and should be dropped rather than amputated.
+   */
+  if (/…/.test(clue)) return false;
+
+  /*
+   * WordNet marks usage examples with a backtick-quote pair. Those survive
+   * redaction as stray punctuation and read as a typo.
+   */
+  if (/[`]/.test(clue)) return false;
+
+  /*
+   * ONE redaction, not two. A clue with the answer blanked twice is either
+   * circular ("A ——— that measures a ——— interval") or a grammar note dressed
+   * as a definition — in both cases unanswerable.
+   */
   const redactions = (clue.match(/———/g) ?? []).length;
-  if (redactions > 2) return false;
+  if (redactions > 1) return false;
 
   /*
    * Cross-reference stubs are not definitions. Webster is full of entries like

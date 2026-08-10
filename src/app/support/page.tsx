@@ -50,10 +50,9 @@ export default function SupportPage() {
         Cooper. Filtered to remove slurs and crude terms.
       </p>
       <p>
-        <strong>Definitions:</strong> Webster&rsquo;s Unabridged Dictionary
-        (1913), which is in the public domain in the United States. Clues are
-        edited from it, and entries whose wording reflects the prejudices of
-        their era are excluded.
+        <strong>Definitions:</strong> WordNet 3.1, the lexical database from
+        Princeton University, used under its own licence. Clues are edited from
+        its definitions.
       </p>
       <p>
         <strong>Sound:</strong> synthesised in the browser with the Web Audio

@@ -34,7 +34,16 @@ const ROOT = path.join(__dirname, '..');
 
 const WORDLIST = path.join(ROOT, 'data', 'enable1.txt');
 const POPULAR = path.join(ROOT, 'data', 'popular.txt');
-const DICT = path.join(ROOT, 'data', 'webster.json');
+/*
+ * WordNet, not Webster's 1913.
+ *
+ * The 1913 dictionary was archaic (clues like "the issue in a writ of right"),
+ * carried the racial language of its era inside ordinary entries, and its JSON
+ * transcription had unresolved provenance. WordNet is modern, lexicographer-
+ * curated, permissively licensed for commercial use, and its glosses are short
+ * — which is exactly what a clue wants. Rebuild with `npm run wordnet`.
+ */
+const DICT = path.join(ROOT, 'data', 'wordnet.json');
 const THEMES = path.join(ROOT, 'data', 'themes.json');
 const OUT = path.join(ROOT, 'public', 'data', 'puzzles.json');
 

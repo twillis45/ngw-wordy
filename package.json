@@ -10,7 +10,8 @@
     "test": "vitest run",
     "puzzles": "node scripts/build-puzzles.mjs 240",
     "icons": "python3 scripts/build-icons.py",
-    "definitions": "node scripts/build-definitions.mjs"
+    "definitions": "node scripts/build-definitions.mjs",
+    "wordnet": "node scripts/build-wordnet.mjs"
   },
   "dependencies": {
     "next": "16.3.0",
@@ -26,6 +27,7 @@
     "eslint-config-next": "16.3.0",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "wordnet-db": "^3.1.14"
   }
 }

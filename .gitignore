@@ -46,3 +46,4 @@ data/webster.json
 
 # Review-board render artifacts — regenerate with scripts/capture-review.mjs
 review-artifacts/
+data/wordnet.json
