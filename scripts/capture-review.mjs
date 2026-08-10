@@ -66,6 +66,34 @@ async function playWords(page, words) {
   }
 }
 
+/**
+ * Close any open sheet and PROVE it closed.
+ *
+ * The first run shot the themes sheet twice: Escape did not dismiss it, so
+ * `04-progress` was a byte-identical duplicate of `03-puzzles-and-themes` at
+ * every one of the seven viewports. The board caught it before I did. A
+ * capture harness that silently shoots the wrong screen is worse than one that
+ * fails, so this asserts instead of assuming.
+ */
+async function closeSheet(page) {
+  for (let i = 0; i < 3; i += 1) {
+    const open = await page.evaluate(() => !!document.querySelector('[role="dialog"]'));
+    if (!open) return true;
+    const clicked = await page.evaluate(() => {
+      const b = [...document.querySelectorAll('button')].find((x) =>
+        /^\s*(close|done|i.?ve got it)\s*$/i.test(x.textContent || '')
+      );
+      if (b) { b.click(); return true; }
+      return false;
+    });
+    if (!clicked) await page.keyboard.press('Escape');
+    await settle(page, 500);
+  }
+  const still = await page.evaluate(() => !!document.querySelector('[role="dialog"]'));
+  if (still) process.stdout.write('    ! sheet would not close\n');
+  return !still;
+}
+
 async function clickText(page, re) {
   const handle = await page.evaluateHandle((src) => {
     const rx = new RegExp(src, 'i');
@@ -117,8 +145,7 @@ const run = async () => {
     // 3+. Sheets: the navigation and meta surfaces.
     if (await clickText(page, 'warm-?up|today|puzzle \\+?\\d|in the kitchen'))
       await shot(page, `${vp.name}__03-puzzles-and-themes`);
-    await page.keyboard.press('Escape');
-    await settle(page, 500);
+    await closeSheet(page);
 
     await page.evaluate(() => {
       const b = document.querySelector(
@@ -128,8 +155,7 @@ const run = async () => {
     });
     await settle(page, 700);
     await shot(page, `${vp.name}__04-progress`);
-    await page.keyboard.press('Escape');
-    await settle(page, 500);
+    await closeSheet(page);
 
     await page.evaluate(() => {
       const b = [...document.querySelectorAll('button')].find((x) =>
@@ -139,8 +165,7 @@ const run = async () => {
     });
     await settle(page, 700);
     await shot(page, `${vp.name}__05-rules`);
-    await page.keyboard.press('Escape');
-    await settle(page, 500);
+    await closeSheet(page);
 
     // 6. Light mode — the sunlight case the palette was tuned for.
     await page.evaluate(() =>

@@ -1,6 +1,6 @@
 {
   "_readme": [
-    "Themed puzzles. This file is the ONLY place a theme is authored \u2014 the",
+    "Themed puzzles. This file is the ONLY place a theme is authored — the",
     "generator merges it over the generated set, so an editor never touches code.",
     "",
     "A theme claims a base word. Claimed bases are generated FIRST and win their",
@@ -15,7 +15,7 @@
     "",
     "VOICE NOTE: these are a first draft written to prove the pipeline and give",
     "an editor something to react to. They should be revised by someone with",
-    "VOICE NOTE: specific over general. A clue should name a thing you can picture \u2014 a red cup, a thick envelope, the chair by the window \u2014 not gesture at a mood. Generic warmth reads as an outsider being careful."
+    "VOICE NOTE: specific over general. A clue should name a thing you can picture — a red cup, a thick envelope, the chair by the window — not gesture at a mood. Generic warmth reads as an outsider being careful."
   ],
   "themes": [
     {
@@ -132,15 +132,13 @@
       "clues": {
         "laughs": "Canned, and always about half a second early.",
         "hugs": "How every episode lands once the music goes soft.",
-        "shag": "Carpet deep enough the remote is gone until spring cleaning.",
         "gals": "What the announcer called them in 1994 and nobody blinked.",
-        "lash": "To tie down tight \u2014 or the strip somebody spent forty minutes on.",
+        "lash": "To tie down tight — or the strip somebody spent forty minutes on.",
         "gush": "To pour praise so thick the person has to look at the floor."
       },
       "prefer": [
         "laugh",
         "hugs",
-        "shag",
         "gals",
         "lash"
       ]
@@ -209,7 +207,7 @@
         "shaved": "Taken to the skin with a straight blade and zero hesitation.",
         "shave": "Hot towel first, then the neck, then the part you can't see.",
         "heads": "Every one turns when the door opens. Every single time.",
-        "shade": "Somewhere cool to stand \u2014 or what she just threw, smiling.",
+        "shade": "Somewhere cool to stand — or what she just threw, smiling.",
         "save": "What the line-up did for that photo you almost didn't take.",
         "hades": "The Greek underworld, and the god who runs it, same name."
       },
@@ -228,7 +226,7 @@
         "faucet": "Where the water comes out, and where the dishes stack up under it.",
         "cafe": "You ordered one coffee and stayed a solid two hours past that.",
         "feta": "White, salty, crumbles over everything in the summer.",
-        "tea": "Poured sweet by the pitcher \u2014 or what somebody is about to spill.",
+        "tea": "Poured sweet by the pitcher — or what somebody is about to spill.",
         "eat": "What she says four times before anybody actually sits down.",
         "cut": "Into the cake, and somebody films it."
       },

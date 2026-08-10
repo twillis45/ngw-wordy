@@ -27,6 +27,7 @@ import {
   isUsableClue,
   redactAnswer,
 } from './lib/defs.mjs';
+import { containsSlur, isBlocked } from './lib/blocklist.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -72,7 +73,18 @@ function clueFor(word) {
   const entry = defineWord(byWord, word);
   if (!entry) return null;
   const clue = redactAnswer(clueText(entry[0]), word, entry[1]);
-  return isUsableClue(clue) ? clue : null;
+  if (!isUsableClue(clue)) return null;
+  /*
+   * Filtering the ANSWER is not enough — the clue is 1913 prose.
+   *
+   * Webster's 1913 carries the racial language of its era: `obis` shipped with
+   * "sorcery... practiced among the negroes of the", attached to a perfectly
+   * innocuous four-letter word. So the word passes every filter and the app
+   * prints the slur anyway. Any clue containing a slur token disqualifies the
+   * clue, which usually drops the word from the grid rather than the puzzle.
+   */
+  if (containsSlur(clue)) return null;
+  return clue;
 }
 
 /*
@@ -112,10 +124,24 @@ const themeReport = { applied: 0, clues: 0, rejected: [] };
 
 const raw = fs.readFileSync(WORDLIST, 'utf8').split('\n');
 const words = [];
+let blockedCount = 0;
 for (const line of raw) {
   const w = line.trim().toLowerCase();
   if (w.length < MIN_LEN || w.length > WHEEL) continue;
   if (!/^[a-z]+$/.test(w)) continue;
+  /*
+   * Scrabble-legal is not publishable.
+   *
+   * The shipped set contained `spic`, `dago`, `chink` and `rape` as SCORING
+   * words, each with a dictionary definition attached. Filtering HERE rather
+   * than at grid/bonus selection is deliberate: every consumer downstream —
+   * grid, bonus, maxScore, unlockOrder, the definition bundle — reads this one
+   * array, so a blocked word cannot reach any of them by any path.
+   */
+  if (isBlocked(w)) {
+    blockedCount += 1;
+    continue;
+  }
   words.push(w);
 }
 

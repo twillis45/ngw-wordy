@@ -13,7 +13,18 @@
  *
  * Bump CACHE on any change to this file so old entries get swept.
  */
-const CACHE = 'wordy-v2';
+/*
+ * Bumped to v3 to force out the slur-bearing puzzles.json.
+ *
+ * This constant is part of the content fix, not bookkeeping. Assets are served
+ * cache-first, and puzzles.json is NOT fingerprinted — so a cache hit never
+ * revalidates, and every already-installed player would have kept serving the
+ * old data forever no matter what we deployed. The version bump is the only
+ * thing that actually sweeps it (see the activate handler below).
+ *
+ * Any future content correction must bump this too.
+ */
+const CACHE = 'wordy-v3';
 
 /**
  * Where the app is mounted, derived from this file's own URL — "/" on
