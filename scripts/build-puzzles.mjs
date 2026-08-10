@@ -525,6 +525,17 @@ for (const base of bases) {
         id: t.id,
         name: t.name,
         blurb: t.blurb ?? '',
+        /*
+         * The tradition the theme belongs to, when its NAME does not say so.
+         *
+         * "Roll Call" is a beautiful name for a pack and tells a player nothing
+         * about go-go. Same for "Pig Pickin'", "By the Pound", "Which Island",
+         * "The Nineteenth" — every one is an insider's name, which is the point
+         * of the writing and a wall at the front door. The category is the plain
+         * word next to it. Themes whose name already states the thing (Fish Fry,
+         * Barbershop, HBCU) carry none, because repeating it would be noise.
+         */
+        category: t.category ?? null,
         scene: authoredEntry.scene ?? null,
       };
       themeReport.applied += 1;

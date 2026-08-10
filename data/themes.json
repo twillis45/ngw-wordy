@@ -31,7 +31,8 @@
     {
       "id": "sitcom",
       "name": "Rerun Season",
-      "blurb": "Whatever was on after school, in whoever’s living room."
+      "blurb": "Whatever was on after school, in whoever’s living room.",
+      "category": "TV nostalgia"
     },
     {
       "id": "hbcu",
@@ -66,12 +67,14 @@
     {
       "id": "salon",
       "name": "The Beauty Shop",
-      "blurb": "Twenty-two bottles, a standing Saturday, and an appointment that takes all day."
+      "blurb": "Twenty-two bottles, a standing Saturday, and an appointment that takes all day.",
+      "category": "Black hair"
     },
     {
       "id": "spades",
       "name": "The Card Table",
-      "blurb": "Four chairs, a bid you have to make, and a score kept on the back of an envelope."
+      "blurb": "Four chairs, a bid you have to make, and a score kept on the back of an envelope.",
+      "category": "Spades"
     },
     {
       "id": "church",
@@ -86,42 +89,50 @@
     {
       "id": "steppers",
       "name": "The Line Forms",
-      "blurb": "Nobody announced it — by the second verse there are four rows and your aunt is in front."
+      "blurb": "Nobody announced it — by the second verse there are four rows and your aunt is in front.",
+      "category": "Steppin’ and line dance"
     },
     {
       "id": "juneteenth",
       "name": "The Nineteenth",
-      "blurb": "A paper read out loud in Galveston, two and a half years late."
+      "blurb": "A paper read out loud in Galveston, two and a half years late.",
+      "category": "Juneteenth"
     },
     {
       "id": "westcoast",
       "name": "Gulf Coast, West Coast",
-      "blurb": "Louisiana on the grill, the Pacific at your back, and somebody already down there holding the ring."
+      "blurb": "Louisiana on the grill, the Pacific at your back, and somebody already down there holding the ring.",
+      "category": "California cookout"
     },
     {
       "id": "texas",
       "name": "By the Pound",
-      "blurb": "Butcher paper going translucent under two pounds of brisket, and nobody has mentioned a plate."
+      "blurb": "Butcher paper going translucent under two pounds of brisket, and nobody has mentioned a plate.",
+      "category": "Central Texas barbecue"
     },
     {
       "id": "caribbean",
       "name": "Which Island",
-      "blurb": "Six flags off one fire escape, and every pot in the yard is somebody's mother's."
+      "blurb": "Six flags off one fire escape, and every pot in the yard is somebody's mother's.",
+      "category": "Caribbean-American"
     },
     {
       "id": "carolina",
       "name": "Pig Pickin'",
-      "blurb": "Oak burning down in a barrel at ten at night, one hog split flat, and a bucket of vinegar with no tomato in it."
+      "blurb": "Oak burning down in a barrel at ten at night, one hog split flat, and a bucket of vinegar with no tomato in it.",
+      "category": "Carolina barbecue"
     },
     {
       "id": "chicago",
       "name": "Tips and a Link",
-      "blurb": "Hickory burning in a glass box on Seventy-Fifth, and a paper sack already going dark at the bottom."
+      "blurb": "Hickory burning in a glass box on Seventy-Fifth, and a paper sack already going dark at the bottom.",
+      "category": "Chicago barbecue"
     },
     {
       "id": "gogo",
       "name": "Roll Call",
-      "blurb": "Congas from nine till one, and four hundred people waiting to hear their block."
+      "blurb": "Congas from nine till one, and four hundred people waiting to hear their block.",
+      "category": "Go-Go"
     }
   ],
   "puzzles": [
@@ -142,7 +153,8 @@
         "sun",
         "son",
         "cons"
-      ]
+      ],
+      "scene": "Kin nobody can chart, and nobody asks"
     },
     {
       "base": "vocals",
@@ -201,7 +213,8 @@
         "most",
         "cost",
         "mist"
-      ]
+      ],
+      "scene": "The family show at eight o'clock"
     },
     {
       "base": "laughs",
@@ -218,7 +231,8 @@
         "hugs",
         "gals",
         "lash"
-      ]
+      ],
+      "scene": "The sweetened track under every joke"
     },
     {
       "base": "campus",
@@ -237,7 +251,8 @@
         "maps",
         "scam",
         "cap"
-      ]
+      ],
+      "scene": "The Yard, and your first week on it"
     },
     {
       "base": "alumni",
@@ -256,7 +271,8 @@
         "aim",
         "nail",
         "man"
-      ]
+      ],
+      "scene": "Class of '04, back every homecoming"
     },
     {
       "base": "chairs",
@@ -275,7 +291,8 @@
         "cash",
         "arch",
         "scar"
-      ]
+      ],
+      "scene": "Four seats, and whose is whose"
     },
     {
       "base": "shaved",
@@ -293,7 +310,8 @@
         "shade",
         "head",
         "save"
-      ]
+      ],
+      "scene": "A straight razor and no hesitation"
     },
     {
       "base": "faucet",
@@ -312,7 +330,8 @@
         "tea",
         "eat",
         "cut"
-      ]
+      ],
+      "scene": "The sink, and getting folks to the table"
     },
     {
       "base": "deacon",
@@ -331,7 +350,8 @@
         "once",
         "done",
         "code"
-      ]
+      ],
+      "scene": "The men who run the front of the room"
     },
     {
       "base": "sermon",
@@ -350,7 +370,8 @@
         "more",
         "ones",
         "morn"
-      ]
+      ],
+      "scene": "Twenty minutes on paper, forty-five"
     },
     {
       "base": "gospel",
@@ -369,7 +390,8 @@
         "legs",
         "lose",
         "goes"
-      ]
+      ],
+      "scene": "The choir, and the second verse"
     },
     {
       "base": "anthem",
@@ -388,7 +410,8 @@
         "name",
         "meat",
         "math"
-      ]
+      ],
+      "scene": "Lift Every Voice, second verse"
     },
     {
       "base": "organs",
@@ -407,7 +430,8 @@
         "song",
         "rags",
         "soar"
-      ]
+      ],
+      "scene": "The Hammond, and the man at it since 1978"
     },
     {
       "base": "mother",
@@ -426,7 +450,8 @@
         "hero",
         "moth",
         "term"
-      ]
+      ],
+      "scene": "White dress, second pew, last word"
     },
     {
       "base": "mashed",
@@ -445,7 +470,8 @@
         "ham",
         "mesh",
         "shed"
-      ]
+      ],
+      "scene": "Real potatoes, and grace before a fork"
     },
     {
       "base": "prayed",
@@ -464,7 +490,8 @@
         "year",
         "read",
         "yard"
-      ]
+      ],
+      "scene": "Grace over the food and the drive home"
     },
     {
       "base": "player",
@@ -703,7 +730,8 @@
         "case",
         "used",
         "aces"
-      ]
+      ],
+      "scene": "Yellow mustard, and the state line"
     },
     {
       "base": "smoker",
@@ -722,7 +750,8 @@
         "more",
         "sore",
         "rose"
-      ]
+      ],
+      "scene": "A hand-welded drum pit, and its keeper"
     },
     {
       "base": "uncles",
@@ -741,7 +770,8 @@
         "lens",
         "sun",
         "use"
-      ]
+      ],
+      "scene": "The men in the carport, blood or not"
     },
     {
       "base": "auntie",
@@ -760,7 +790,8 @@
         "untie",
         "unit",
         "tune"
-      ]
+      ],
+      "scene": "Not blood, still say her whole title"
     },
     {
       "base": "hosted",
@@ -779,7 +810,8 @@
         "shoe",
         "shot",
         "shed"
-      ]
+      ],
+      "scene": "Ninety people, and the yard you promised"
     },
     {
       "base": "shrimp",
@@ -798,7 +830,8 @@
         "prim",
         "rips",
         "rim"
-      ]
+      ],
+      "scene": "Lowcountry boil, poured on newspaper"
     },
     {
       "base": "boiled",
@@ -817,7 +850,8 @@
         "idle",
         "lid",
         "deli"
-      ]
+      ],
+      "scene": "Peanuts in a wet bag, hot off the truck"
     },
     {
       "base": "melons",
@@ -836,7 +870,8 @@
         "solemn",
         "mole",
         "nose"
-      ]
+      ],
+      "scene": "The cold fruit cut over the sink at ten"
     },
     {
       "base": "spiced",
@@ -855,7 +890,8 @@
         "ice",
         "side",
         "pies"
-      ]
+      ],
+      "scene": "The rub that went on last night"
     },
     {
       "base": "basket",
@@ -874,7 +910,8 @@
         "steak",
         "seat",
         "task"
-      ]
+      ],
+      "scene": "Rolls under a dish towel, still warm"
     },
     {
       "base": "gravel",
@@ -893,7 +930,8 @@
         "glare",
         "gavel",
         "gear"
-      ]
+      ],
+      "scene": "The driveway, and who just turned in"
     },
     {
       "base": "phrase",
@@ -912,7 +950,8 @@
         "hears",
         "spare",
         "shape"
-      ]
+      ],
+      "scene": "The line the audience waits for"
     },
     {
       "base": "taping",
@@ -931,7 +970,8 @@
         "pain",
         "gain",
         "pint"
-      ]
+      ],
+      "scene": "Friday night in front of the risers"
     },
     {
       "base": "dozens",
@@ -950,7 +990,8 @@
         "ones",
         "send",
         "done"
-      ]
+      ],
+      "scene": "The living room after the plates"
     },
     {
       "base": "cameos",
@@ -969,7 +1010,8 @@
         "comes",
         "seam",
         "aces"
-      ]
+      ],
+      "scene": "The guest nobody expected"
     },
     {
       "base": "movers",
@@ -988,7 +1030,8 @@
         "rose",
         "some",
         "moves"
-      ]
+      ],
+      "scene": "The day the family changes address"
     },
     {
       "base": "mantel",
@@ -1007,7 +1050,8 @@
         "meant",
         "late",
         "team"
-      ]
+      ],
+      "scene": "The front room where the pictures live"
     },
     {
       "base": "pastor",
@@ -1026,7 +1070,8 @@
         "oats",
         "trap",
         "star"
-      ]
+      ],
+      "scene": "Sunday dinner, and company coming"
     },
     {
       "base": "cosign",
@@ -1045,7 +1090,8 @@
         "icon",
         "con",
         "coin"
-      ]
+      ],
+      "scene": "The house rules, and who vouches"
     },
     {
       "base": "single",
@@ -1064,7 +1110,8 @@
         "legs",
         "gels",
         "sing"
-      ]
+      ],
+      "scene": "Four roommates and one telephone"
     },
     {
       "base": "credit",
@@ -1083,7 +1130,8 @@
         "tried",
         "rice",
         "iced"
-      ]
+      ],
+      "scene": "A weeknight at the family table"
     },
     {
       "base": "grades",
@@ -1102,7 +1150,8 @@
         "gear",
         "dare",
         "drag"
-      ]
+      ],
+      "scene": "Report card night at the kitchen table"
     },
     {
       "base": "father",
@@ -1121,7 +1170,8 @@
         "heat",
         "fare",
         "tear"
-      ]
+      ],
+      "scene": "The man in the doorway"
     },
     {
       "base": "raised",
@@ -1300,7 +1350,8 @@
         "fly",
         "aim",
         "may"
-      ]
+      ],
+      "scene": "The shirt, the program, the committee"
     },
     {
       "base": "hotels",
@@ -1319,7 +1370,8 @@
         "shoe",
         "stole",
         "hotel"
-      ]
+      ],
+      "scene": "The room block, and who booked around it"
     },
     {
       "base": "budget",
@@ -1338,7 +1390,8 @@
         "duet",
         "tube",
         "bed"
-      ]
+      ],
+      "scene": "The back page where the money is listed"
     },
     {
       "base": "graves",
@@ -1357,7 +1410,8 @@
         "sage",
         "ears",
         "grave"
-      ]
+      ],
+      "scene": "The Saturday drive to the cemetery"
     },
     {
       "base": "matron",
@@ -1376,7 +1430,8 @@
         "morn",
         "rant",
         "arm"
-      ]
+      ],
+      "scene": "The oldest living, and the home place"
     },
     {
       "base": "vendor",
@@ -1395,7 +1450,8 @@
         "over",
         "done",
         "nerd"
-      ]
+      ],
+      "scene": "Contracts signed before Christmas"
     },
     {
       "base": "donate",
@@ -1414,7 +1470,8 @@
         "ante",
         "tone",
         "neat"
-      ]
+      ],
+      "scene": "Dues, and the treasurer's envelope"
     },
     {
       "base": "albums",
@@ -1433,7 +1490,8 @@
         "lamb",
         "bus",
         "sum"
-      ]
+      ],
+      "scene": "The photo table nobody may empty"
     },
     {
       "base": "plated",
@@ -1532,7 +1590,8 @@
         "done",
         "long",
         "lone"
-      ]
+      ],
+      "scene": "A fiftieth, walked in first"
     },
     {
       "base": "marked",
@@ -1551,7 +1610,8 @@
         "made",
         "dear",
         "read"
-      ]
+      ],
+      "scene": "The headstone the committee had cut"
     },
     {
       "base": "legacy",
@@ -1570,7 +1630,8 @@
         "clay",
         "gale",
         "lay"
-      ]
+      ],
+      "scene": "The historian's binder, laminated"
     },
     {
       "base": "counts",
@@ -1589,7 +1650,8 @@
         "cuts",
         "cot",
         "son"
-      ]
+      ],
+      "scene": "The treasurer's tally, taken three times"
     },
     {
       "base": "polish",
@@ -1608,7 +1670,8 @@
         "oil",
         "slip",
         "shop"
-      ]
+      ],
+      "scene": "Her name on the sign, her lease"
     },
     {
       "base": "places",
@@ -1627,7 +1690,8 @@
         "space",
         "cape",
         "place"
-      ]
+      ],
+      "scene": "Who gets Saturday morning"
     },
     {
       "base": "camper",
@@ -1646,7 +1710,8 @@
         "care",
         "pace",
         "cap"
-      ]
+      ],
+      "scene": "All day, one head at a time"
     },
     {
       "base": "preach",
@@ -1665,7 +1730,8 @@
         "cheap",
         "peach",
         "cape"
-      ]
+      ],
+      "scene": "The chair as pulpit, and her opinions"
     },
     {
       "base": "metals",
@@ -1684,7 +1750,8 @@
         "meals",
         "seal",
         "seat"
-      ]
+      ],
+      "scene": "Hot comb, iron, and the heat of the room"
     },
     {
       "base": "rental",
@@ -1703,7 +1770,8 @@
         "later",
         "alert",
         "tale"
-      ]
+      ],
+      "scene": "Two hundred a week for a station"
     },
     {
       "base": "entail",
@@ -1722,7 +1790,8 @@
         "line",
         "tile",
         "lint"
-      ]
+      ],
+      "scene": "What a trim actually costs you in time"
     },
     {
       "base": "parent",
@@ -1741,7 +1810,8 @@
         "tape",
         "rent",
         "tear"
-      ]
+      ],
+      "scene": "The mother waiting four hours"
     },
     {
       "base": "wonder",
@@ -1760,7 +1830,8 @@
         "word",
         "rod",
         "worn"
-      ]
+      ],
+      "scene": "She does the books after closing"
     },
     {
       "base": "insert",
@@ -1779,7 +1850,8 @@
         "stern",
         "set",
         "site"
-      ]
+      ],
+      "scene": "The shampoo bowl, and the quiet minute"
     },
     {
       "base": "latino",
@@ -1798,7 +1870,8 @@
         "nail",
         "alto",
         "ton"
-      ]
+      ],
+      "scene": "The Dominican shop two blocks over"
     },
     {
       "base": "placid",
@@ -1817,7 +1890,8 @@
         "cap",
         "dial",
         "plaid"
-      ]
+      ],
+      "scene": "A child's first time in the chair"
     },
     {
       "base": "spinal",
@@ -1836,7 +1910,8 @@
         "plain",
         "pain",
         "span"
-      ]
+      ],
+      "scene": "Length, and what it takes to get it"
     },
     {
       "base": "streak",
@@ -1855,7 +1930,8 @@
         "task",
         "star",
         "stare"
-      ]
+      ],
+      "scene": "Her own gray, and what she refuses"
     },
     {
       "base": "staked",
@@ -1874,7 +1950,8 @@
         "desk",
         "seat",
         "stake"
-      ]
+      ],
+      "scene": "1998, a tax refund, a storefront"
     },
     {
       "base": "steady",
@@ -1893,7 +1970,8 @@
         "days",
         "seat",
         "stead"
-      ]
+      ],
+      "scene": "The standing every-other-Saturday"
     },
     {
       "base": "strewn",
@@ -1912,7 +1990,8 @@
         "news",
         "nest",
         "went"
-      ]
+      ],
+      "scene": "What gets swept up, what gets said"
     },
     {
       "base": "sweaty",
@@ -1931,7 +2010,8 @@
         "sway",
         "ways",
         "seat"
-      ]
+      ],
+      "scene": "Edges, ends, and honest answers"
     },
     {
       "base": "tangle",
@@ -1950,7 +2030,8 @@
         "gate",
         "lean",
         "teal"
-      ]
+      ],
+      "scene": "Two weeks under a bonnet"
     },
     {
       "base": "trends",
@@ -1969,7 +2050,8 @@
         "tend",
         "reds",
         "tens"
-      ]
+      ],
+      "scene": "Styles that come back around"
     },
     {
       "base": "waters",
@@ -1988,7 +2070,8 @@
         "set",
         "sear",
         "wares"
-      ]
+      ],
+      "scene": "Wash day, ten until noon"
     },
     {
       "base": "talked",
@@ -2007,7 +2090,8 @@
         "take",
         "late",
         "talk"
-      ]
+      ],
+      "scene": "Running your mouth before a card falls"
     },
     {
       "base": "master",
@@ -2026,7 +2110,8 @@
         "stare",
         "teams",
         "set"
-      ]
+      ],
+      "scene": "Who runs the table, and where she sits"
     },
     {
       "base": "handle",
@@ -2045,7 +2130,8 @@
         "lead",
         "held",
         "lean"
-      ]
+      ],
+      "scene": "The name written on the score pad"
     },
     {
       "base": "played",
@@ -2064,7 +2150,8 @@
         "plea",
         "pad",
         "play"
-      ]
+      ],
+      "scene": "Once it is down, it is down"
     },
     {
       "base": "pleads",
@@ -2083,7 +2170,8 @@
         "leads",
         "pals",
         "sale"
-      ]
+      ],
+      "scene": "Bidding high on a weak hand"
     },
     {
       "base": "tackle",
@@ -2102,7 +2190,8 @@
         "lace",
         "let",
         "talk"
-      ]
+      ],
+      "scene": "Nerve, and the stories that outlive it"
     },
     {
       "base": "racked",
@@ -2121,7 +2210,8 @@
         "dark",
         "rake",
         "read"
-      ]
+      ],
+      "scene": "Running the score up early"
     },
     {
       "base": "sacred",
@@ -2140,7 +2230,8 @@
         "scar",
         "cased",
         "acre"
-      ]
+      ],
+      "scene": "The kitchen corner nobody moves"
     },
     {
       "base": "spread",
@@ -2159,7 +2250,8 @@
         "reap",
         "spade",
         "ears"
-      ]
+      ],
+      "scene": "The points between the two teams"
     },
     {
       "base": "placed",
@@ -2178,7 +2270,8 @@
         "pace",
         "deal",
         "leap"
-      ]
+      ],
+      "scene": "The rhythm of it, and the new guy"
     },
     {
       "base": "luster",
@@ -2197,7 +2290,8 @@
         "rest",
         "set",
         "sure"
-      ]
+      ],
+      "scene": "The unwritten law of this table"
     },
     {
       "base": "reacts",
@@ -2216,7 +2310,8 @@
         "cast",
         "aces",
         "seat"
-      ]
+      ],
+      "scene": "The tells, and who watches whom"
     },
     {
       "base": "facets",
@@ -2235,7 +2330,8 @@
         "fast",
         "ace",
         "seat"
-      ]
+      ],
+      "scene": "Keeping the record of who did what"
     },
     {
       "base": "calmed",
@@ -2254,7 +2350,8 @@
         "calm",
         "clam",
         "deal"
-      ]
+      ],
+      "scene": "After the renege argument"
     },
     {
       "base": "scaled",
@@ -2273,7 +2370,8 @@
         "seal",
         "laced",
         "ales"
-      ]
+      ],
+      "scene": "The bid climbing to five hundred"
     },
     {
       "base": "packed",
@@ -2292,7 +2390,8 @@
         "deck",
         "paced",
         "ape"
-      ]
+      ],
+      "scene": "Six chairs in a corner built for four"
     },
     {
       "base": "bailed",
@@ -2311,7 +2410,8 @@
         "lied",
         "bled",
         "idle"
-      ]
+      ],
+      "scene": "Quitting early, and never living it down"
     },
     {
       "base": "gasped",
@@ -2330,7 +2430,8 @@
         "spade",
         "ages",
         "pads"
-      ]
+      ],
+      "scene": "The joker falling on the first book"
     },
     {
       "base": "arched",
@@ -2349,7 +2450,8 @@
         "hard",
         "dare",
         "herd"
-      ]
+      ],
+      "scene": "What gets said without saying it"
     },
     {
       "base": "graced",
@@ -2368,7 +2470,8 @@
         "card",
         "drag",
         "ace"
-      ]
+      ],
+      "scene": "The player the table straightens up for"
     },
     {
       "base": "praise",
@@ -2387,7 +2490,8 @@
         "spare",
         "rise",
         "ears"
-      ]
+      ],
+      "scene": "The ten minutes before the choir"
     },
     {
       "base": "choirs",
@@ -2406,7 +2510,8 @@
         "sir",
         "his",
         "chi"
-      ]
+      ],
+      "scene": "Three of them, and one Sunday each"
     },
     {
       "base": "gloves",
@@ -2425,7 +2530,8 @@
         "egos",
         "lose",
         "ogle"
-      ]
+      ],
+      "scene": "The usher board's white cotton"
     },
     {
       "base": "rushed",
@@ -2444,7 +2550,8 @@
         "hers",
         "dues",
         "sure"
-      ]
+      ],
+      "scene": "The eleven o'clock, and how long it runs"
     },
     {
       "base": "maiden",
@@ -2463,7 +2570,8 @@
         "mind",
         "dime",
         "named"
-      ]
+      ],
+      "scene": "The names the mothers still use"
     },
     {
       "base": "remain",
@@ -2482,7 +2590,8 @@
         "near",
         "earn",
         "mine"
-      ]
+      ],
+      "scene": "The mothers who stay seated after"
     },
     {
       "base": "humane",
@@ -2501,7 +2610,8 @@
         "mean",
         "hum",
         "menu"
-      ]
+      ],
+      "scene": "The benevolence fund, no questions"
     },
     {
       "base": "easily",
@@ -2520,7 +2630,8 @@
         "easy",
         "yes",
         "lays"
-      ]
+      ],
+      "scene": "Women's Day, three hours, run to the minute"
     },
     {
       "base": "fasten",
@@ -2539,7 +2650,8 @@
         "sent",
         "fan",
         "east"
-      ]
+      ],
+      "scene": "Hats, hat pins, and the front row"
     },
     {
       "base": "mouths",
@@ -2558,7 +2670,8 @@
         "must",
         "thou",
         "most"
-      ]
+      ],
+      "scene": "The music that gets the room up"
     },
     {
       "base": "pianos",
@@ -2577,7 +2690,8 @@
         "naps",
         "span",
         "spin"
-      ]
+      ],
+      "scene": "Two instruments, one of them tuned"
     },
     {
       "base": "probes",
@@ -2596,7 +2710,8 @@
         "prose",
         "ropes",
         "reps"
-      ]
+      ],
+      "scene": "The trustees, the estimate, the vote"
     },
     {
       "base": "bolder",
@@ -2615,7 +2730,8 @@
         "role",
         "lore",
         "robe"
-      ]
+      ],
+      "scene": "The woman who is on no program"
     },
     {
       "base": "losing",
@@ -2634,7 +2750,8 @@
         "sign",
         "oils",
         "lions"
-      ]
+      ],
+      "scene": "Who stopped coming, and who calls them"
     },
     {
       "base": "broken",
@@ -2653,7 +2770,8 @@
         "born",
         "knob",
         "robe"
-      ]
+      ],
+      "scene": "What eleven women raised in 1994"
     },
     {
       "base": "bronze",
@@ -2672,7 +2790,8 @@
         "bore",
         "nor",
         "robe"
-      ]
+      ],
+      "scene": "The founders' plaque by the door"
     },
     {
       "base": "dragon",
@@ -2691,7 +2810,8 @@
         "organ",
         "nod",
         "darn"
-      ]
+      ],
+      "scene": "The anniversary march, two by two"
     },
     {
       "base": "lacked",
@@ -2710,7 +2830,8 @@
         "lack",
         "lead",
         "ace"
-      ]
+      ],
+      "scene": "Making a bid you had no business making"
     },
     {
       "base": "crowns",
@@ -2729,7 +2850,8 @@
         "worn",
         "rows",
         "won"
-      ]
+      ],
+      "scene": "Who the queen actually belongs to"
     },
     {
       "base": "floats",
@@ -2748,7 +2870,8 @@
         "last",
         "lost",
         "lot"
-      ]
+      ],
+      "scene": "The parade, built in the ag barn"
     },
     {
       "base": "stride",
@@ -2767,7 +2890,8 @@
         "tires",
         "ride",
         "tier"
-      ]
+      ],
+      "scene": "The band, the line, the formations"
     },
     {
       "base": "staged",
@@ -2786,7 +2910,8 @@
         "gates",
         "sage",
         "seat"
-      ]
+      ],
+      "scene": "The coronation, and the clipboard"
     },
     {
       "base": "gather",
@@ -2805,7 +2930,8 @@
         "hear",
         "tear",
         "gate"
-      ]
+      ],
+      "scene": "The lot behind the gym, unorganized"
     },
     {
       "base": "loathe",
@@ -2824,7 +2950,8 @@
         "lot",
         "oath",
         "tale"
-      ]
+      ],
+      "scene": "Rooms sold out since March"
     },
     {
       "base": "clothe",
@@ -2843,7 +2970,8 @@
         "hole",
         "lot",
         "toe"
-      ]
+      ],
+      "scene": "Four generations in the same colors"
     },
     {
       "base": "editor",
@@ -2862,7 +2990,8 @@
         "riot",
         "rode",
         "tore"
-      ]
+      ],
+      "scene": "The alumni magazine, nineteen years"
     },
     {
       "base": "garnet",
@@ -2881,7 +3010,8 @@
         "gear",
         "rent",
         "gate"
-      ]
+      ],
+      "scene": "School colors, down to the shade"
     },
     {
       "base": "argyle",
@@ -2900,7 +3030,8 @@
         "layer",
         "relay",
         "year"
-      ]
+      ],
+      "scene": "The scholarship golf tournament"
     },
     {
       "base": "course",
@@ -2919,7 +3050,8 @@
         "sore",
         "ours",
         "rouse"
-      ]
+      ],
+      "scene": "The professor, and what school was for"
     },
     {
       "base": "courts",
@@ -2938,7 +3070,8 @@
         "tours",
         "cuts",
         "rust"
-      ]
+      ],
+      "scene": "The elected royalty, and the price"
     },
     {
       "base": "priest",
@@ -2957,7 +3090,8 @@
         "step",
         "tie",
         "tires"
-      ]
+      ],
+      "scene": "Xavier, and the nuns who founded it"
     },
     {
       "base": "agents",
@@ -2976,7 +3110,8 @@
         "sang",
         "ages",
         "tag"
-      ]
+      ],
+      "scene": "Calling every classmate for the fund"
     },
     {
       "base": "gasket",
@@ -2995,7 +3130,8 @@
         "task",
         "tags",
         "gate"
-      ]
+      ],
+      "scene": "The drive down, and the canopy"
     },
     {
       "base": "outage",
@@ -3014,7 +3150,8 @@
         "tag",
         "gut",
         "out"
-      ]
+      ],
+      "scene": "Saturday night under the tents"
     },
     {
       "base": "listen",
@@ -3033,7 +3170,8 @@
         "list",
         "lens",
         "tie"
-      ]
+      ],
+      "scene": "The scholarship brunch and the panel"
     },
     {
       "base": "theirs",
@@ -3052,7 +3190,8 @@
         "hers",
         "tie",
         "rise"
-      ]
+      ],
+      "scene": "Whose weekend it is, students or alumni"
     },
     {
       "base": "comers",
@@ -3071,7 +3210,8 @@
         "score",
         "rose",
         "core"
-      ]
+      ],
+      "scene": "The eleven who never miss"
     },
     {
       "base": "barely",
@@ -3090,7 +3230,8 @@
         "real",
         "year",
         "bare"
-      ]
+      ],
+      "scene": "Everything but the actual football"
     },
     {
       "base": "alight",
@@ -3109,7 +3250,8 @@
         "halt",
         "tail",
         "hit"
-      ]
+      ],
+      "scene": "The charter bus, and the parade route"
     },
     {
       "base": "instep",
@@ -3128,7 +3270,8 @@
         "set",
         "pins",
         "tips"
-      ]
+      ],
+      "scene": "The shoes, and what they take"
     },
     {
       "base": "lowest",
@@ -3147,7 +3290,8 @@
         "west",
         "slow",
         "twos"
-      ]
+      ],
+      "scene": "The dip, and the drag at the end"
     },
     {
       "base": "elbows",
@@ -3166,7 +3310,8 @@
         "sole",
         "bows",
         "blew"
-      ]
+      ],
+      "scene": "Suede bottoms and floor manners"
     },
     {
       "base": "halter",
@@ -3185,7 +3330,8 @@
         "heart",
         "halt",
         "heat"
-      ]
+      ],
+      "scene": "The teacher, and a room too full"
     },
     {
       "base": "breath",
@@ -3204,7 +3350,8 @@
         "rate",
         "tear",
         "hater"
-      ]
+      ],
+      "scene": "Stamina, and who stays on the wall"
     },
     {
       "base": "others",
@@ -3223,7 +3370,8 @@
         "rest",
         "host",
         "set"
-      ]
+      ],
+      "scene": "The rows behind the front row"
     },
     {
       "base": "absent",
@@ -3242,7 +3390,8 @@
         "seat",
         "neat",
         "bent"
-      ]
+      ],
+      "scene": "Tuesday night, and who keeps showing up"
     },
     {
       "base": "cheats",
@@ -3261,7 +3410,8 @@
         "aches",
         "chest",
         "set"
-      ]
+      ],
+      "scene": "Shortcuts she catches across the room"
     },
     {
       "base": "duties",
@@ -3280,7 +3430,8 @@
         "tied",
         "dust",
         "side"
-      ]
+      ],
+      "scene": "The women who put the set together"
     },
     {
       "base": "listed",
@@ -3299,7 +3450,8 @@
         "tiles",
         "set",
         "lets"
-      ]
+      ],
+      "scene": "The flyer, and who has paid"
     },
     {
       "base": "misled",
@@ -3318,7 +3470,8 @@
         "dimes",
         "mild",
         "slide"
-      ]
+      ],
+      "scene": "Learning it wrong off a phone"
     },
     {
       "base": "posted",
@@ -3337,7 +3490,8 @@
         "stop",
         "opted",
         "step"
-      ]
+      ],
+      "scene": "Eight counts you work on for a year"
     },
     {
       "base": "poster",
@@ -3356,7 +3510,8 @@
         "sore",
         "rose",
         "pros"
-      ]
+      ],
+      "scene": "The dress code, and where he buys shoes"
     },
     {
       "base": "purest",
@@ -3375,7 +3530,8 @@
         "upset",
         "sure",
         "step"
-      ]
+      ],
+      "scene": "The plain walk, done perfectly"
     },
     {
       "base": "motels",
@@ -3394,7 +3550,8 @@
         "stole",
         "most",
         "lots"
-      ]
+      ],
+      "scene": "Driving to Detroit for the weekend"
     },
     {
       "base": "oldest",
@@ -3413,7 +3570,8 @@
         "toes",
         "lose",
         "sole"
-      ]
+      ],
+      "scene": "Eighty-one, and still the best out there"
     },
     {
       "base": "spring",
@@ -3432,7 +3590,8 @@
         "rings",
         "sign",
         "sing"
-      ]
+      ],
+      "scene": "The frame, the hold, and the turn"
     },
     {
       "base": "advise",
@@ -3451,7 +3610,8 @@
         "saved",
         "avid",
         "said"
-      ]
+      ],
+      "scene": "The old heads on the edge of the floor"
     },
     {
       "base": "wealth",
@@ -3470,7 +3630,8 @@
         "heat",
         "thaw",
         "hat"
-      ]
+      ],
+      "scene": "Sixty years of Chicago stepping, free"
     },
     {
       "base": "safety",
@@ -3489,7 +3650,8 @@
         "stay",
         "seat",
         "teas"
-      ]
+      ],
+      "scene": "The twenty-one days, and the dark suits"
     },
     {
       "base": "inmate",
@@ -3508,7 +3670,8 @@
         "time",
         "neat",
         "team"
-      ]
+      ],
+      "scene": "The jail ministry's van, upstate"
     },
     {
       "base": "salute",
@@ -3527,7 +3690,8 @@
         "sale",
         "slate",
         "seat"
-      ]
+      ],
+      "scene": "Men's Day, and the annual meeting"
     },
     {
       "base": "famine",
@@ -3546,7 +3710,8 @@
         "men",
         "main",
         "fine"
-      ]
+      ],
+      "scene": "The pantry shelf, filled before the need"
     },
     {
       "base": "herald",
@@ -3965,7 +4130,8 @@
         "plea",
         "cape",
         "ache"
-      ]
+      ],
+      "scene": "Tuesday morning, required, and counted"
     },
     {
       "base": "denial",
@@ -3984,7 +4150,8 @@
         "line",
         "idea",
         "lend"
-      ]
+      ],
+      "scene": "Financial aid, and the appeal you file"
     },
     {
       "base": "danger",
@@ -4003,7 +4170,8 @@
         "range",
         "dean",
         "read"
-      ]
+      ],
+      "scene": "The 1 a.m. alert everybody screenshots"
     },
     {
       "base": "pasted",
@@ -4022,7 +4190,8 @@
         "step",
         "seat",
         "date"
-      ]
+      ],
+      "scene": "Four layers of flyers on one pole"
     },
     {
       "base": "stance",
@@ -4041,7 +4210,8 @@
         "cast",
         "seat",
         "cent"
-      ]
+      ],
+      "scene": "The line, and how it carries itself"
     },
     {
       "base": "binder",
@@ -4060,7 +4230,8 @@
         "bred",
         "ride",
         "bid"
-      ]
+      ],
+      "scene": "The one who has kept every page"
     },
     {
       "base": "bridge",
@@ -4079,7 +4250,8 @@
         "ride",
         "dig",
         "rib"
-      ]
+      ],
+      "scene": "The 2 a.m. walk across campus"
     },
     {
       "base": "housed",
@@ -4098,7 +4270,8 @@
         "dues",
         "used",
         "shed"
-      ]
+      ],
+      "scene": "The April housing lottery, and your floor"
     },
     {
       "base": "sundae",
@@ -4117,7 +4290,8 @@
         "send",
         "sand",
         "sun"
-      ]
+      ],
+      "scene": "The end of the cafeteria line"
     },
     {
       "base": "amends",
@@ -4136,7 +4310,8 @@
         "mend",
         "dean",
         "send"
-      ]
+      ],
+      "scene": "Roommates, before the housing form"
     },
     {
       "base": "agency",
@@ -4155,7 +4330,8 @@
         "acne",
         "age",
         "cane"
-      ]
+      ],
+      "scene": "The office that answers on ring two"
     },
     {
       "base": "canter",
@@ -4174,7 +4350,8 @@
         "rent",
         "cane",
         "tear"
-      ]
+      ],
+      "scene": "The land-grant barn at six"
     },
     {
       "base": "ardent",
@@ -4193,7 +4370,8 @@
         "dean",
         "dent",
         "rate"
-      ]
+      ],
+      "scene": "Loyalty, worn stairs, and a Sunday letter"
     },
     {
       "base": "advent",
@@ -4212,7 +4390,8 @@
         "van",
         "tea",
         "den"
-      ]
+      ],
+      "scene": "The campus minister in December"
     },
     {
       "base": "byline",
@@ -4231,7 +4410,8 @@
         "lie",
         "nil",
         "bin"
-      ]
+      ],
+      "scene": "Four hundred words in the student paper"
     },
     {
       "base": "rained",
@@ -4250,7 +4430,8 @@
         "near",
         "dean",
         "rein"
-      ]
+      ],
+      "scene": "Convocation outdoors, weather regardless"
     },
     {
       "base": "dancer",
@@ -4269,7 +4450,8 @@
         "care",
         "cane",
         "earn"
-      ]
+      ],
+      "scene": "Modern technique at eight, barefoot"
     },
     {
       "base": "number",
@@ -4288,7 +4470,8 @@
         "menu",
         "men",
         "run"
-      ]
+      ],
+      "scene": "The guard you ask for, and live with"
     },
     {
       "base": "argued",
@@ -4307,7 +4490,8 @@
         "urge",
         "dare",
         "rage"
-      ]
+      ],
+      "scene": "Two hours on Jordan or LeBron"
     },
     {
       "base": "hairdo",
@@ -4326,7 +4510,8 @@
         "raid",
         "road",
         "aid"
-      ]
+      ],
+      "scene": "What Mama called it, and the drive"
     },
     {
       "base": "nickel",
@@ -4345,7 +4530,8 @@
         "lick",
         "like",
         "clink"
-      ]
+      ],
+      "scene": "The tip jar by the door"
     },
     {
       "base": "pencil",
@@ -4364,7 +4550,8 @@
         "pin",
         "line",
         "pen"
-      ]
+      ],
+      "scene": "White marker, razor, and the corkboard"
     },
     {
       "base": "client",
@@ -4383,7 +4570,8 @@
         "line",
         "tin",
         "tie"
-      ]
+      ],
+      "scene": "Same head, same chair, since 2003"
     },
     {
       "base": "permit",
@@ -4402,7 +4590,8 @@
         "timer",
         "term",
         "tip"
-      ]
+      ],
+      "scene": "Her name on the license over the mirror"
     },
     {
       "base": "import",
@@ -4421,7 +4610,8 @@
         "tip",
         "trim",
         "top"
-      ]
+      ],
+      "scene": "The week before a funeral"
     },
     {
       "base": "champs",
@@ -4440,7 +4630,8 @@
         "sham",
         "amp",
         "cap"
-      ]
+      ],
+      "scene": "The game on mute, and 1996"
     },
     {
       "base": "blades",
@@ -4459,7 +4650,8 @@
         "sale",
         "lads",
         "lead"
-      ]
+      ],
+      "scene": "Oiled steel nobody else may touch"
     },
     {
       "base": "conked",
@@ -4478,7 +4670,8 @@
         "done",
         "neck",
         "den"
-      ]
+      ],
+      "scene": "Lye and a hot comb, before the fade"
     },
     {
       "base": "combat",
@@ -4497,7 +4690,8 @@
         "cat",
         "mat",
         "tab"
-      ]
+      ],
+      "scene": "The Friday argument, heard from outside"
     },
     {
       "base": "chains",
@@ -4516,7 +4710,8 @@
         "scan",
         "cash",
         "can"
-      ]
+      ],
+      "scene": "Gold lifted before the cape snaps shut"
     },
     {
       "base": "bishop",
@@ -4535,7 +4730,8 @@
         "hip",
         "hop",
         "hips"
-      ]
+      ],
+      "scene": "The collar has to sit right Sunday"
     },
     {
       "base": "fabled",
@@ -4554,7 +4750,8 @@
         "fled",
         "able",
         "blade"
-      ]
+      ],
+      "scene": "Who really invented the cut"
     },
     {
       "base": "citrus",
@@ -4573,7 +4770,8 @@
         "rust",
         "curt",
         "stir"
-      ]
+      ],
+      "scene": "Half a lemon, and everything it fixes"
     },
     {
       "base": "merits",
@@ -4592,7 +4790,8 @@
         "stir",
         "mist",
         "rest"
-      ]
+      ],
+      "scene": "Her pound cake, and no timer at all"
     },
     {
       "base": "stupor",
@@ -4611,7 +4810,8 @@
         "spurt",
         "pots",
         "sour"
-      ]
+      ],
+      "scene": "Bones from Thursday, and the drippings jar"
     },
     {
       "base": "almost",
@@ -4630,7 +4830,8 @@
         "slam",
         "mats",
         "oats"
-      ]
+      ],
+      "scene": "No measuring spoons in this house"
     },
     {
       "base": "forked",
@@ -4649,7 +4850,8 @@
         "rode",
         "redo",
         "doer"
-      ]
+      ],
+      "scene": "Thirty years of feeding the block"
     },
     {
       "base": "bakery",
@@ -4668,7 +4870,8 @@
         "year",
         "key",
         "rye"
-      ]
+      ],
+      "scene": "The storefront she said no to, twice"
     },
     {
       "base": "backed",
@@ -4687,7 +4890,8 @@
         "bake",
         "back",
         "ace"
-      ]
+      ],
+      "scene": "The church put her recipe to a vote"
     },
     {
       "base": "foiled",
@@ -4706,7 +4910,8 @@
         "file",
         "oil",
         "lid"
-      ]
+      ],
+      "scene": "Every plate that leaves is covered"
     },
     {
       "base": "coiled",
@@ -4725,7 +4930,8 @@
         "lid",
         "dice",
         "ice"
-      ]
+      ],
+      "scene": "The 1979 mixer and the orange burner"
     },
     {
       "base": "cloven",
@@ -4744,7 +4950,8 @@
         "novel",
         "lone",
         "cone"
-      ]
+      ],
+      "scene": "The range that runs fifty degrees hot"
     },
     {
       "base": "blower",
@@ -4763,7 +4970,8 @@
         "brew",
         "lower",
         "elbow"
-      ]
+      ],
+      "scene": "The hood fan, and how close you may stand"
     },
     {
       "base": "fruits",
@@ -4782,7 +4990,8 @@
         "fits",
         "fist",
         "stir"
-      ]
+      ],
+      "scene": "Peaches on the sill until they give"
     },
     {
       "base": "detach",
@@ -4801,7 +5010,8 @@
         "date",
         "ache",
         "chat"
-      ]
+      ],
+      "scene": "Her method, taught by standing there"
     },
     {
       "base": "bathed",
@@ -4820,7 +5030,8 @@
         "beat",
         "head",
         "heat"
-      ]
+      ],
+      "scene": "Three washes until the water runs clear"
     },
     {
       "base": "mobile",
@@ -4839,7 +5050,8 @@
         "limb",
         "oil",
         "limbo"
-      ]
+      ],
+      "scene": "The rolling cart and the pecan tree"
     },
     {
       "base": "adults",
@@ -4858,7 +5070,8 @@
         "stud",
         "dual",
         "salt"
-      ]
+      ],
+      "scene": "Who is allowed to carry the pot"
     },
     {
       "base": "second",
@@ -4877,7 +5090,8 @@
         "send",
         "den",
         "nod"
-      ]
+      ],
+      "scene": "The helping you did not ask for"
     },
     {
       "base": "breast",
@@ -4896,7 +5110,8 @@
         "seat",
         "tea",
         "bare"
-      ]
+      ],
+      "scene": "The platter, and who has a claim on it"
     },
     {
       "base": "faster",
@@ -4915,7 +5130,8 @@
         "safe",
         "fare",
         "fret"
-      ]
+      ],
+      "scene": "The same six dishes, every week"
     },
     {
       "base": "steamy",
@@ -4934,7 +5150,8 @@
         "yams",
         "tea",
         "stem"
-      ]
+      ],
+      "scene": "Rolls rising under a towel since nine"
     },
     {
       "base": "extras",
@@ -4953,7 +5170,8 @@
         "seat",
         "teas",
         "east"
-      ]
+      ],
+      "scene": "Two card tables out in the hallway"
     },
     {
       "base": "cinder",
@@ -4972,7 +5190,8 @@
         "cried",
         "iced",
         "ice"
-      ]
+      ],
+      "scene": "The Sunday your uncle watched the oven"
     },
     {
       "base": "pricey",
@@ -4991,7 +5210,8 @@
         "pie",
         "rye",
         "ripe"
-      ]
+      ],
+      "scene": "The roast she buys and never mentions"
     },
     {
       "base": "castle",
@@ -5010,7 +5230,8 @@
         "salt",
         "tales",
         "seat"
-      ]
+      ],
+      "scene": "The dining room, and who says who enters"
     },
     {
       "base": "hasten",
@@ -5029,7 +5250,8 @@
         "neat",
         "tens",
         "heat"
-      ]
+      ],
+      "scene": "Four hours, and leaving early is noted"
     },
     {
       "base": "enrich",
@@ -5048,7 +5270,8 @@
         "chin",
         "inch",
         "rice"
-      ]
+      ],
+      "scene": "One covered plate, and a week of lunches"
     },
     {
       "base": "honest",
@@ -5367,7 +5590,8 @@
         "fries",
         "rib",
         "brie"
-      ]
+      ],
+      "scene": "Carolina whole hog, and the vinegar"
     },
     {
       "base": "candor",
@@ -5386,7 +5610,8 @@
         "cord",
         "road",
         "can"
-      ]
+      ],
+      "scene": "Grandmother's mouth, and the two-lane"
     },
     {
       "base": "ashore",
@@ -5405,7 +5630,8 @@
         "share",
         "sear",
         "ash"
-      ]
+      ],
+      "scene": "Fire rings on the beach by seven"
     },
     {
       "base": "peanut",
@@ -5424,7 +5650,8 @@
         "aunt",
         "pane",
         "ten"
-      ]
+      ],
+      "scene": "A Brooklyn yard, curry goat, rice and peas"
     },
     {
       "base": "avoids",
@@ -5443,7 +5670,8 @@
         "said",
         "avid",
         "aid"
-      ]
+      ],
+      "scene": "Texas brisket, post oak, no mesquite"
     },
     {
       "base": "alcove",
@@ -5462,7 +5690,8 @@
         "vocal",
         "oval",
         "love"
-      ]
+      ],
+      "scene": "Half-smokes on a rowhouse front step"
     },
     {
       "base": "amulet",
@@ -5481,7 +5710,8 @@
         "melt",
         "team",
         "tale"
-      ]
+      ],
+      "scene": "White sauce chicken, and Auburn-Alabama"
     },
     {
       "base": "drinks",
@@ -5500,7 +5730,8 @@
         "sink",
         "skin",
         "risk"
-      ]
+      ],
+      "scene": "Two chests, and a lake right there"
     },
     {
       "base": "branch",
@@ -5519,7 +5750,8 @@
         "cab",
         "car",
         "ran"
-      ]
+      ],
+      "scene": "The Chicago side's year to host"
     },
     {
       "base": "blocks",
@@ -5538,7 +5770,8 @@
         "sock",
         "lob",
         "cob"
-      ]
+      ],
+      "scene": "A city street permit, corner to corner"
     },
     {
       "base": "bodega",
@@ -5557,7 +5790,8 @@
         "ode",
         "dog",
         "badge"
-      ]
+      ],
+      "scene": "A reunion on the street that raised them"
     },
     {
       "base": "magnet",
@@ -5576,7 +5810,8 @@
         "team",
         "game",
         "tag"
-      ]
+      ],
+      "scene": "Souvenirs, and the registration line"
     },
     {
       "base": "badges",
@@ -5595,7 +5830,8 @@
         "ages",
         "bags",
         "gas"
-      ]
+      ],
+      "scene": "Two hundred lanyards in a shoebox"
     },
     {
       "base": "anemic",
@@ -5614,7 +5850,8 @@
         "cane",
         "main",
         "mince"
-      ]
+      ],
+      "scene": "The young cousins who did not come"
     },
     {
       "base": "barged",
@@ -5633,7 +5870,8 @@
         "gear",
         "drag",
         "badge"
-      ]
+      ],
+      "scene": "Everything the banquet hall charges for"
     },
     {
       "base": "claims",
@@ -5652,7 +5890,8 @@
         "sail",
         "scam",
         "slim"
-      ]
+      ],
+      "scene": "Two branches, one great-grandmother"
     },
     {
       "base": "carpet",
@@ -5671,7 +5910,8 @@
         "trace",
         "react",
         "rate"
-      ]
+      ],
+      "scene": "The mat at the door since 1988"
     },
     {
       "base": "policy",
@@ -5690,7 +5930,8 @@
         "icy",
         "cop",
         "clip"
-      ]
+      ],
+      "scene": "The rules on the wall, and who enforces them"
     },
     {
       "base": "pirate",
@@ -5709,7 +5950,8 @@
         "rite",
         "tire",
         "part"
-      ]
+      ],
+      "scene": "The man with the duffel of DVDs"
     },
     {
       "base": "soiled",
@@ -5728,7 +5970,8 @@
         "oiled",
         "slid",
         "lied"
-      ]
+      ],
+      "scene": "The floor itself, swept and waxed"
     },
     {
       "base": "fields",
@@ -5747,7 +5990,8 @@
         "self",
         "slide",
         "life"
-      ]
+      ],
+      "scene": "The line dance at the family reunion"
     },
     {
       "base": "depart",
@@ -5786,7 +6030,8 @@
         "pen",
         "band",
         "bean"
-      ]
+      ],
+      "scene": "First week of nursing clinicals"
     },
     {
       "base": "oblige",
@@ -5805,7 +6050,8 @@
         "boil",
         "ego",
         "log"
-      ]
+      ],
+      "scene": "The order book by the phone"
     },
     {
       "base": "trails",
@@ -5824,7 +6070,8 @@
         "star",
         "last",
         "salt"
-      ]
+      ],
+      "scene": "Flour, the cellar jars, and her prices"
     },
     {
       "base": "bodily",
@@ -5843,7 +6090,8 @@
         "bold",
         "boil",
         "idol"
-      ]
+      ],
+      "scene": "Judging heat by forearm, not a dial"
     },
     {
       "base": "copier",
@@ -5862,7 +6110,8 @@
         "crop",
         "rope",
         "pie"
-      ]
+      ],
+      "scene": "The seating chart, and who moved names"
     },
     {
       "base": "casket",
@@ -5881,7 +6130,8 @@
         "cakes",
         "case",
         "stack"
-      ]
+      ],
+      "scene": "The meal after the funeral, at her table"
     },
     {
       "base": "owners",
@@ -5900,7 +6150,8 @@
         "news",
         "worse",
         "rows"
-      ]
+      ],
+      "scene": "Her license, her building, her block"
     },
     {
       "base": "haired",
@@ -5919,7 +6170,8 @@
         "idea",
         "heir",
         "head"
-      ]
+      ],
+      "scene": "Bernice Robinson and the Citizenship School"
     },
     {
       "base": "onward",
@@ -5938,7 +6190,8 @@
         "dawn",
         "word",
         "worn"
-      ]
+      ],
+      "scene": "The Migration, west out of Louisiana"
     },
     {
       "base": "ordeal",
@@ -5957,7 +6210,8 @@
         "lead",
         "role",
         "road"
-      ]
+      ],
+      "scene": "Before 1870, where the records stop"
     },
     {
       "base": "nights",
@@ -5976,7 +6230,8 @@
         "sight",
         "sting",
         "thing"
-      ]
+      ],
+      "scene": "Probate week, and the last one"
     },
     {
       "base": "aspect",
@@ -5995,7 +6250,8 @@
         "cast",
         "act",
         "east"
-      ]
+      ],
+      "scene": "The television, and the hour it was on"
     },
     {
       "base": "actors",
@@ -6014,7 +6270,8 @@
         "roast",
         "carts",
         "star"
-      ]
+      ],
+      "scene": "Whose name goes above the title"
     },
     {
       "base": "swatch",
@@ -6033,7 +6290,8 @@
         "act",
         "wash",
         "hats"
-      ]
+      ],
+      "scene": "How the show got its look"
     },
     {
       "base": "unseat",
@@ -6052,7 +6310,8 @@
         "aunts",
         "set",
         "nest"
-      ]
+      ],
+      "scene": "Thursday at eight, and the ratings war"
     },
     {
       "base": "gayest",
@@ -6071,7 +6330,8 @@
         "seat",
         "set",
         "easy"
-      ]
+      ],
+      "scene": "The ticket line outside the studio"
     },
     {
       "base": "tracks",
@@ -6090,7 +6350,8 @@
         "racks",
         "cast",
         "star"
-      ]
+      ],
+      "scene": "Behind the camera on a sound stage"
     },
     {
       "base": "finger",
@@ -6109,7 +6370,8 @@
         "fringe",
         "fine",
         "grin"
-      ]
+      ],
+      "scene": "Dockweiler Beach at seven in the morning"
     },
     {
       "base": "breach",
@@ -6128,7 +6390,8 @@
         "crab",
         "herb",
         "car"
-      ]
+      ],
+      "scene": "Corona del Mar, forty minutes west"
     },
     {
       "base": "packer",
@@ -6147,7 +6410,8 @@
         "rack",
         "cake",
         "car"
-      ]
+      ],
+      "scene": "Leimert, and how the trunk gets loaded"
     },
     {
       "base": "danish",
@@ -6166,7 +6430,8 @@
         "dish",
         "dash",
         "shin"
-      ]
+      ],
+      "scene": "The covered pans, carried to the park"
     },
     {
       "base": "triple",
@@ -6185,7 +6450,8 @@
         "pier",
         "rite",
         "pile"
-      ]
+      ],
+      "scene": "Balboa, and how many the pan must feed"
     },
     {
       "base": "caring",
@@ -6204,7 +6470,8 @@
         "grain",
         "rain",
         "ring"
-      ]
+      ],
+      "scene": "The older men, and the tri-tip"
     },
     {
       "base": "arming",
@@ -6223,7 +6490,8 @@
         "arm",
         "rim",
         "grim"
-      ]
+      ],
+      "scene": "Richmond, 1943, and the train west"
     },
     {
       "base": "brandy",
@@ -6242,7 +6510,8 @@
         "band",
         "darn",
         "ray"
-      ]
+      ],
+      "scene": "Vallejo, chain link, and after dark"
     },
     {
       "base": "chores",
@@ -6261,7 +6530,8 @@
         "shore",
         "hose",
         "hero"
-      ]
+      ],
+      "scene": "Who does what, assigned in advance"
     },
     {
       "base": "cripes",
@@ -6280,7 +6550,8 @@
         "spice",
         "rice",
         "pier"
-      ]
+      ],
+      "scene": "Lake Charles seasoning, Berkeley water"
     },
     {
       "base": "boring",
@@ -6299,7 +6570,8 @@
         "born",
         "ring",
         "bingo"
-      ]
+      ],
+      "scene": "The hours nobody wants, then nobody leaves"
     },
     {
       "base": "botany",
@@ -6318,7 +6590,8 @@
         "baton",
         "tan",
         "toy"
-      ]
+      ],
+      "scene": "What she grows, and where she came from"
     },
     {
       "base": "barked",
@@ -6337,7 +6610,8 @@
         "bark",
         "dark",
         "baker"
-      ]
+      ],
+      "scene": "Central Texas, and the crust"
     },
     {
       "base": "pickle",
@@ -6356,7 +6630,8 @@
         "lick",
         "pie",
         "lip"
-      ]
+      ],
+      "scene": "The tray, and everything free on it"
     },
     {
       "base": "faults",
@@ -6375,7 +6650,8 @@
         "flat",
         "fast",
         "salt"
-      ]
+      ],
+      "scene": "West of I-35, where the rock starts"
     },
     {
       "base": "backer",
@@ -6394,7 +6670,8 @@
         "acre",
         "bark",
         "cake"
-      ]
+      ],
+      "scene": "Whose name the place is under"
     },
     {
       "base": "thawed",
@@ -6413,7 +6690,8 @@
         "head",
         "date",
         "what"
-      ]
+      ],
+      "scene": "Four in the morning at the market"
     },
     {
       "base": "piston",
@@ -6432,7 +6710,8 @@
         "pint",
         "tips",
         "pit"
-      ]
+      ],
+      "scene": "The cuts, the sides, and getting there"
     },
     {
       "base": "rusted",
@@ -6451,7 +6730,8 @@
         "dust",
         "red",
         "used"
-      ]
+      ],
+      "scene": "Everything old they refuse to replace"
     },
     {
       "base": "soaked",
@@ -6470,7 +6750,8 @@
         "soda",
         "desk",
         "dose"
-      ]
+      ],
+      "scene": "The butcher paper, and the wood"
     },
     {
       "base": "shadow",
@@ -6489,7 +6770,8 @@
         "show",
         "dash",
         "soda"
-      ]
+      ],
+      "scene": "The line outside at eleven"
     },
     {
       "base": "frayed",
@@ -6508,7 +6790,8 @@
         "year",
         "red",
         "dry"
-      ]
+      ],
+      "scene": "How long she has been doing this"
     },
     {
       "base": "topics",
@@ -6527,7 +6810,8 @@
         "spot",
         "post",
         "cot"
-      ]
+      ],
+      "scene": "An hour in line, and what it buys"
     },
     {
       "base": "fridge",
@@ -6546,7 +6830,8 @@
         "grid",
         "ride",
         "ridge"
-      ]
+      ],
+      "scene": "What she does before the doors open"
     },
     {
       "base": "island",
@@ -6565,7 +6850,8 @@
         "nails",
         "laid",
         "land"
-      ]
+      ],
+      "scene": "Jamaica, on the rearview and in the yard"
     },
     {
       "base": "market",
@@ -6584,7 +6870,8 @@
         "take",
         "term",
         "tram"
-      ]
+      ],
+      "scene": "Liberty Avenue, and what she can get"
     },
     {
       "base": "pecans",
@@ -6603,7 +6890,8 @@
         "cans",
         "case",
         "pace"
-      ]
+      ],
+      "scene": "Jamaican rice, and the neighbor's pie"
     },
     {
       "base": "bicker",
@@ -6622,7 +6910,8 @@
         "ice",
         "crib",
         "bike"
-      ]
+      ],
+      "scene": "Guyana and Trinidad, one pot"
     },
     {
       "base": "canoes",
@@ -6641,7 +6930,8 @@
         "nose",
         "cane",
         "son"
-      ]
+      ],
+      "scene": "The recipe that came by telephone"
     },
     {
       "base": "carmen",
@@ -6660,7 +6950,8 @@
         "cane",
         "came",
         "care"
-      ]
+      ],
+      "scene": "Everybody's auntie, and the box hand"
     },
     {
       "base": "change",
@@ -6679,7 +6970,8 @@
         "ache",
         "hen",
         "cage"
-      ]
+      ],
+      "scene": "The susu, and the woman who keeps it"
     },
     {
       "base": "cleans",
@@ -6698,7 +6990,8 @@
         "sale",
         "cane",
         "lean"
-      ]
+      ],
+      "scene": "Whose pot it is, and who watches it"
     },
     {
       "base": "cranes",
@@ -6717,7 +7010,8 @@
         "ears",
         "cane",
         "cars"
-      ]
+      ],
+      "scene": "Nostrand Avenue, and what is leaving"
     },
     {
       "base": "fiance",
@@ -6736,7 +7030,8 @@
         "fine",
         "nice",
         "fan"
-      ]
+      ],
+      "scene": "Meeting her mother, and the pepper"
     },
     {
       "base": "gelato",
@@ -6755,7 +7050,8 @@
         "late",
         "tale",
         "goal"
-      ]
+      ],
+      "scene": "Eastern Parkway on Labor Day"
     },
     {
       "base": "glance",
@@ -6774,7 +7070,8 @@
         "lane",
         "cane",
         "lace"
-      ]
+      ],
+      "scene": "Trinidad steelpan, Brooklyn backyard"
     },
     {
       "base": "shovel",
@@ -6793,7 +7090,8 @@
         "hose",
         "love",
         "hoes"
-      ]
+      ],
+      "scene": "Carrying coals across a dark yard"
     },
     {
       "base": "piglet",
@@ -6812,7 +7110,8 @@
         "leg",
         "lit",
         "pile"
-      ]
+      ],
+      "scene": "Eastern North Carolina, the whole hog"
     },
     {
       "base": "bylaws",
@@ -6831,7 +7130,8 @@
         "saw",
         "swab",
         "way"
-      ]
+      ],
+      "scene": "The fire department plate sale"
     },
     {
       "base": "clause",
@@ -6850,7 +7150,8 @@
         "sale",
         "cause",
         "clue"
-      ]
+      ],
+      "scene": "Vinegar, pepper, and no tomato"
     },
     {
       "base": "hating",
@@ -6869,7 +7170,8 @@
         "hat",
         "tin",
         "hang"
-      ]
+      ],
+      "scene": "Two men, a radio, and the argument"
     },
     {
       "base": "planet",
@@ -6888,7 +7190,8 @@
         "pan",
         "ten",
         "pale"
-      ]
+      ],
+      "scene": "Four in the morning, and the coals"
     },
     {
       "base": "pastry",
@@ -6907,7 +7210,8 @@
         "party",
         "pray",
         "spray"
-      ]
+      ],
+      "scene": "What they call it, and what is for after"
     },
     {
       "base": "oracle",
@@ -6926,7 +7230,8 @@
         "oral",
         "clear",
         "cola"
-      ]
+      ],
+      "scene": "Who gets asked whether it is ready"
     },
     {
       "base": "failed",
@@ -6945,7 +7250,8 @@
         "deal",
         "laid",
         "dial"
-      ]
+      ],
+      "scene": "Getting the animal, and getting it on"
     },
     {
       "base": "pantry",
@@ -6964,7 +7270,8 @@
         "nap",
         "tray",
         "yarn"
-      ]
+      ],
+      "scene": "The church hall, and what it holds"
     },
     {
       "base": "turban",
@@ -6983,7 +7290,8 @@
         "bun",
         "tub",
         "burnt"
-      ]
+      ],
+      "scene": "The women who run the kitchen"
     },
     {
       "base": "sought",
@@ -7002,7 +7310,8 @@
         "hogs",
         "host",
         "hot"
-      ]
+      ],
+      "scene": "The Great Migration, and the stockyards"
     },
     {
       "base": "upshot",
@@ -7021,7 +7330,8 @@
         "south",
         "pots",
         "tops"
-      ]
+      ],
+      "scene": "The wait, the sack, the ride home"
     },
     {
       "base": "polite",
@@ -7040,7 +7350,8 @@
         "pit",
         "tile",
         "lit"
-      ]
+      ],
+      "scene": "Seventy-Fifth Street, and the glass box"
     },
     {
       "base": "bruise",
@@ -7059,7 +7370,8 @@
         "sure",
         "bus",
         "rise"
-      ]
+      ],
+      "scene": "The end of the season, and the sauce"
     },
     {
       "base": "clouds",
@@ -7078,7 +7390,8 @@
         "sold",
         "cold",
         "duo"
-      ]
+      ],
+      "scene": "Saturday behind the garage"
     },
     {
       "base": "closed",
@@ -7097,7 +7410,8 @@
         "sled",
         "dose",
         "lose"
-      ]
+      ],
+      "scene": "The shop in January"
     },
     {
       "base": "locate",
@@ -7116,7 +7430,8 @@
         "late",
         "lot",
         "ale"
-      ]
+      ],
+      "scene": "A Park District table by the water"
     },
     {
       "base": "coward",
@@ -7135,7 +7450,8 @@
         "road",
         "word",
         "card"
-      ]
+      ],
+      "scene": "The block party, and the permit"
     },
     {
       "base": "baring",
@@ -7154,7 +7470,8 @@
         "rain",
         "rib",
         "grab"
-      ]
+      ],
+      "scene": "November, and the yard she planned"
     },
     {
       "base": "ankles",
@@ -7173,7 +7490,8 @@
         "sale",
         "lean",
         "sneak"
-      ]
+      ],
+      "scene": "Winter outside the shop window"
     },
     {
       "base": "carved",
@@ -7192,7 +7510,8 @@
         "acre",
         "read",
         "card"
-      ]
+      ],
+      "scene": "The blade, the block, eight strokes"
     },
     {
       "base": "crafts",
@@ -7211,7 +7530,8 @@
         "fast",
         "cars",
         "cast"
-      ]
+      ],
+      "scene": "Standing beside somebody for years"
     },
     {
       "base": "hoping",
@@ -7230,7 +7550,8 @@
         "hop",
         "pin",
         "ping"
-      ]
+      ],
+      "scene": "The man who stays with the barrel"
     },
     {
       "base": "filmed",
@@ -7249,7 +7570,8 @@
         "fled",
         "dime",
         "mild"
-      ]
+      ],
+      "scene": "Roots, 1977, and the reading rooms"
     },
     {
       "base": "charms",
@@ -7268,7 +7590,8 @@
         "march",
         "crash",
         "marsh"
-      ]
+      ],
+      "scene": "Victor Green's guide to the road"
     },
     {
       "base": "cradle",
@@ -7287,7 +7610,8 @@
         "dare",
         "card",
         "real"
-      ]
+      ],
+      "scene": "Dorothy Height's Black Family Reunion"
     },
     {
       "base": "arches",
@@ -7306,7 +7630,8 @@
         "aches",
         "share",
         "chase"
-      ]
+      ],
+      "scene": "A county courthouse, and the 1850 rolls"
     },
     {
       "base": "clears",
@@ -7325,7 +7650,8 @@
         "laser",
         "seal",
         "sale"
-      ]
+      ],
+      "scene": "The Pigford case, and the land lost"
     },
     {
       "base": "bakers",
@@ -7424,7 +7750,8 @@
         "ban",
         "car",
         "arc"
-      ]
+      ],
+      "scene": "Newport Beach, and what the ring allows"
     },
     {
       "base": "embark",
@@ -7443,7 +7770,8 @@
         "mark",
         "bake",
         "rake"
-      ]
+      ],
+      "scene": "Pensacola mullet, smoked over oak"
     },
     {
       "base": "boards",
@@ -7662,7 +7990,8 @@
         "badge",
         "bend",
         "dean"
-      ]
+      ],
+      "scene": "Showtime style, and what came before 1947"
     },
     {
       "base": "throws",
@@ -7681,7 +8010,8 @@
         "worth",
         "two",
         "row"
-      ]
+      ],
+      "scene": "The first homecoming: Howard, 1924"
     },
     {
       "base": "banter",
@@ -7700,7 +8030,8 @@
         "rate",
         "ante",
         "bar"
-      ]
+      ],
+      "scene": "The 1890 land-grants and the unmatched money"
     },
     {
       "base": "nearby",
@@ -7719,7 +8050,8 @@
         "bare",
         "ear",
         "ran"
-      ]
+      ],
+      "scene": "1989, and why it moved out of sight"
     },
     {
       "base": "thorns",
@@ -7738,7 +8070,8 @@
         "host",
         "short",
         "ton"
-      ]
+      ],
+      "scene": "Morehouse brass, Spelman dance line"
     },
     {
       "base": "pocket",

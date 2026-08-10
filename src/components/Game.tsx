@@ -1035,7 +1035,14 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
       {puzzle.theme && (
         <div className="mt-2 text-center short:mt-0.5">
+          {/* Category first, then the pack's own name. "Roll Call" is an
+              insider's name and tells a newcomer nothing; "GO-GO · ROLL CALL"
+              keeps the name and opens the door. Themes whose name already
+              states the tradition carry no category and render unchanged. */}
           <p className="text-kicker uppercase tracking-[0.18em] text-text-secondary">
+            {puzzle.theme.category && (
+              <span className="text-text-muted">{puzzle.theme.category} · </span>
+            )}
             {puzzle.theme.name}
           </p>
           {/* The board's own subject. Clue mode reveals one clue at a time, so

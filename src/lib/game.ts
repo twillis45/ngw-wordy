@@ -26,6 +26,8 @@ export type Puzzle = {
     id: string;
     name: string;
     blurb: string;
+    /** The tradition, when the theme's name does not say it. */
+    category?: string | null;
     /** What THIS board is about — see build-puzzles.mjs for why. */
     scene?: string | null;
   } | null;
