@@ -5260,6 +5260,310 @@
         "hide",
         "dies"
       ]
+    },
+    {
+      "base": "briefs",
+      "theme": "cookout",
+      "clues": {
+        "briefs": "She sets the folder down by the potato salad and does not open it again until Monday morning.",
+        "ribs": "She pulls a rack off early for the children, because the whole hog will not be ready until dark.",
+        "fire": "Oak, lit in a barrel at eleven at night, so the coals can be shoveled under the hog by two.",
+        "fries": "The teenagers walk up to the store and come back with a paper sack of them, salt in the bottom.",
+        "rise": "What the whole yard does at once when the pound cake comes out of somebody's back seat.",
+        "brie": "The cousin who moved to Charlotte brought a cheese board. It sat all day next to the deviled eggs."
+      },
+      "prefer": [
+        "ribs",
+        "fire",
+        "fries",
+        "rise",
+        "brie"
+      ]
+    },
+    {
+      "base": "candor",
+      "theme": "cookout",
+      "clues": {
+        "candor": "Grandmother's, aimed at your job, your car, and the girl you brought, in that order.",
+        "corn": "Off a truck on the two-lane that morning, shucked on the back steps into a paper sack.",
+        "acorn": "What the big oak drops on the hood all afternoon, and still nobody moves the car.",
+        "cord": "Orange, run out the kitchen window and taped down flat where the children come through.",
+        "road": "Two lanes and a grain elevator, and everybody who passes lifts one finger off the wheel.",
+        "can": "The green bug spray one, shaken hard and handed down the picnic bench at dusk."
+      },
+      "prefer": [
+        "corn",
+        "acorn",
+        "cord",
+        "road",
+        "can"
+      ]
+    },
+    {
+      "base": "ashore",
+      "theme": "cookout",
+      "clues": {
+        "ashore": "The whole load hauled up from the lot across the sand, sideways, because nobody makes two trips.",
+        "shore": "You get down there at seven to hold a fire ring, because by ten every one of them is taken.",
+        "hoarse": "How she sounds by four, having called the same four children out of the water since noon.",
+        "share": "What the next ring over does with their charcoal when yours runs low, and no discussion about it.",
+        "sear": "Grate down low and the fat catches. That black edge is the part of the tri-tip everybody wants.",
+        "arose": "What the four of them did at five in the morning to get over the bridge before the traffic."
+      },
+      "prefer": [
+        "shore",
+        "hoarse",
+        "share",
+        "sear",
+        "arose"
+      ]
+    },
+    {
+      "base": "peanut",
+      "theme": "cookout",
+      "clues": {
+        "peanut": "Punch blended with condensed milk and nutmeg, and the elders get poured for first.",
+        "pan": "Foil, half size, curry goat down into the corners, wrapped twice for the ride back to Flatbush.",
+        "tape": "Blue, wound around the pole so the string lights do not come down on anybody's head.",
+        "pant": "What the dog does flat under the bench, waiting on a bone that is definitely coming.",
+        "pane": "The kitchen window one, pushed all the way up so the pot can go straight out to the yard.",
+        "ten": "The number of pounds of rice and peas she cooks whether forty show up or eighty."
+      },
+      "prefer": [
+        "pan",
+        "tape",
+        "pant",
+        "pane",
+        "ten"
+      ]
+    },
+    {
+      "base": "avoids",
+      "theme": "cookout",
+      "clues": {
+        "avoids": "What he does with the question of when it will be ready. Looks at the sky, changes the subject.",
+        "divas": "Three of them back to back on the speaker, and every woman out there has every word.",
+        "soda": "Big Red, in the glass bottle, and there is exactly one apiece for the children.",
+        "said": "What she did about who was paying for the brisket. Once. Nobody asked her a second time.",
+        "avid": "How he is about post oak. He will not burn mesquite and he will tell you exactly why.",
+        "aid": "The kit in the truck's glove box, for the grease burn that happens every single year."
+      },
+      "prefer": [
+        "divas",
+        "soda",
+        "said",
+        "avid",
+        "aid"
+      ]
+    },
+    {
+      "base": "alcove",
+      "theme": "cookout",
+      "clues": {
+        "alcove": "The nook under the stairs, deep enough for the roasting trays and the good tablecloth.",
+        "coal": "Lit in a chimney of newspaper on the front steps at noon, ash blowing down the whole block.",
+        "cola": "The two-liter on the porch rail, warm by three, and she pours it over ice anyway.",
+        "vocal": "The woman on the third step is the loudest one out here about where you may park, and she is right.",
+        "oval": "The shape of the aluminum tray the half-smokes come out on, dented down one side.",
+        "love": "What she means when she calls you baby and hands you a plate you never asked for."
+      },
+      "prefer": [
+        "coal",
+        "cola",
+        "vocal",
+        "oval",
+        "love"
+      ]
+    },
+    {
+      "base": "amulet",
+      "theme": "cookout",
+      "clues": {
+        "amulet": "A saint's medal pinned inside the baby's shirt by her great-grandmother, and it stays there.",
+        "metal": "Folding chairs, the loud kind, that leave a waffle print on the back of your legs.",
+        "meat": "Chicken halves, and the white sauce goes on at the very end, never one minute before.",
+        "melt": "What the ice in the washtub has done by two, so the last bottles down there swim.",
+        "team": "Auburn or Alabama, and it starts before one person has finished a plate.",
+        "tale": "The one about the storm and the deep freezer. It gets a year longer every summer."
+      },
+      "prefer": [
+        "metal",
+        "meat",
+        "melt",
+        "team",
+        "tale"
+      ]
+    },
+    {
+      "base": "drinks",
+      "theme": "cookout",
+      "clues": {
+        "drinks": "Two chests: one anybody may open, and one behind her chair that the children may not.",
+        "kids": "Counted twice before the cars pull off, because the lake is right there and one always wanders.",
+        "kind": "There are two of hot link out here, mild and not, and she is the only one who can tell them apart.",
+        "sink": "What the table legs do into soft ground the moment the third full tray lands on it.",
+        "skin": "Cocoa butter, rubbed in before the walk down to the water and again on the way back.",
+        "risk": "Parking in that lot without the permit on the dash. The tickets come at noon like clockwork."
+      },
+      "prefer": [
+        "kids",
+        "kind",
+        "sink",
+        "skin",
+        "risk"
+      ]
+    },
+    {
+      "base": "branch",
+      "theme": "reunion",
+      "clues": {
+        "branch": "The Chicago side has it this year, and the program lists all six in the order they went north.",
+        "ranch": "The low brick house off Seven Mile, bought in 1971, and the deed is in his mother's name.",
+        "arch": "What the drive up stops under in St. Louis, halfway along the road their grandmother took.",
+        "cab": "Two great-aunts split one from the airport rather than wait forty minutes on the shuttle.",
+        "car": "Fourteen hours out of Philadelphia, two coolers on the back floor, and one stop the whole way.",
+        "ran": "What she did the whole hall from a clipboard, and nothing started late all weekend."
+      },
+      "prefer": [
+        "ranch",
+        "arch",
+        "cab",
+        "car",
+        "ran"
+      ]
+    },
+    {
+      "base": "blocks",
+      "theme": "reunion",
+      "clues": {
+        "blocks": "The city permit closes two of them off, corner to corner, noon until eight on Saturday.",
+        "block": "There is no home place to drive out to. There is this, and the number on the street sign.",
+        "locks": "The church basement has three on the kitchen door, and the trustee with the keys is eighty-one.",
+        "sock": "One of his came off in the bounce house and turned up Sunday in somebody's trunk.",
+        "lob": "What the teenagers do with the ball over the fence until it lands on the gym roof.",
+        "cob": "Foil trays of it from the caterer, cut in halves, because the hall would not do whole ones."
+      },
+      "prefer": [
+        "block",
+        "locks",
+        "sock",
+        "lob",
+        "cob"
+      ]
+    },
+    {
+      "base": "bodega",
+      "theme": "reunion",
+      "clues": {
+        "bodega": "The corner store has held forty sacks of ice since Thursday, and the owner is on the program.",
+        "abode": "What the program's poem calls the third-floor apartment where all nine of them were raised.",
+        "ago": "Fifty years since the first one, in a union hall on Ridge Avenue, and page one says so.",
+        "ode": "The cousin who teaches English wrote one for the banquet and read it in under four minutes.",
+        "dog": "The one the fish market keeps out front, and every child on the street knows it by name.",
+        "ego": "What the side that hosted last year brought along with the leftover banner."
+      },
+      "prefer": [
+        "abode",
+        "ago",
+        "ode",
+        "dog",
+        "ego"
+      ]
+    },
+    {
+      "base": "magnet",
+      "theme": "reunion",
+      "clues": {
+        "magnet": "Three dollars at the souvenir table, and it is on refrigerators in five states by Monday.",
+        "agent": "The cousin who sells insurance works the registration line like it is a list of leads.",
+        "name": "What the historian corrected in the county record, spelled the way it was before a clerk changed it.",
+        "team": "Blue against gold at the park Saturday morning, and the winning side is printed in the program.",
+        "game": "Dominoes in the corner of the ballroom until the hotel staff started stacking chairs around them.",
+        "gate": "B-24 at Newark, eleven of them in matching shirts, and the flight is already two hours late."
+      },
+      "prefer": [
+        "agent",
+        "name",
+        "team",
+        "game",
+        "gate"
+      ]
+    },
+    {
+      "base": "badges",
+      "theme": "reunion",
+      "clues": {
+        "badges": "Two hundred, alphabetized in a shoebox, and every side of the family has its own ribbon color.",
+        "based": "The committee is run out of one apartment in North Philadelphia, and has been for nine years.",
+        "beads": "Around her neck for the group photograph, and a toddler has both hands in them by dessert.",
+        "ages": "The column the historian added to the roster this year, and three people asked her to take it off.",
+        "bags": "Piled behind the front desk at eleven because nobody can check in until three.",
+        "gas": "Two hundred and forty dollars of it up I-75 and back, split four ways at the first stop."
+      },
+      "prefer": [
+        "based",
+        "beads",
+        "ages",
+        "bags",
+        "gas"
+      ]
+    },
+    {
+      "base": "anemic",
+      "theme": "reunion",
+      "clues": {
+        "anemic": "What the turnout from the youngest cousins was, and the committee said so out loud in September.",
+        "cinema": "The old one on Woodward, rented for two hours on Friday night for the slideshow.",
+        "manic": "How the ballroom looks at nine on Friday, three carloads arriving at once and no chairs left.",
+        "cane": "Hooked over the back of her chair at the head table, and she will not walk in with it.",
+        "main": "The street the old store stood on, and half of that side is a parking lot now.",
+        "mince": "What the chairwoman does not do with words when the shirt money comes up short."
+      },
+      "prefer": [
+        "cinema",
+        "manic",
+        "cane",
+        "main",
+        "mince"
+      ]
+    },
+    {
+      "base": "barged",
+      "theme": "reunion",
+      "clues": {
+        "barged": "What the wedding party from the next ballroom did through the middle of the family photograph.",
+        "bread": "Rolls in foil-lined baskets on every table, and the hall bills four dollars a head for them.",
+        "grade": "What the retired principal still asks the college cousins about, one at a time, by first name.",
+        "gear": "The DJ's, up the loading dock at four, and the hall wants all of it out by midnight.",
+        "drag": "What the banner does on the ballroom carpet because the ceiling hooks sit two feet too low.",
+        "brag": "What they have earned the right to do, having filled the hall two years running."
+      },
+      "prefer": [
+        "bread",
+        "grade",
+        "gear",
+        "drag",
+        "brag"
+      ]
+    },
+    {
+      "base": "claims",
+      "theme": "reunion",
+      "clues": {
+        "claims": "What two sides of the family both make on the same great-grandmother, and she has papers for one.",
+        "claim": "What she filed for the cracked windshield before the van was even out of Ohio.",
+        "calm": "How the woman on the phone with the hall stays while it tells her the room is double-booked.",
+        "sail": "Ninety of them on the river Friday evening, two hours out from the dock and back.",
+        "scam": "The email asking for dues at a new address, and the treasurer caught it inside an hour.",
+        "slim": "The margin the July date passed by at the spring meeting: two votes, both cast by phone."
+      },
+      "prefer": [
+        "claim",
+        "calm",
+        "sail",
+        "scam",
+        "slim"
+      ]
     }
   ]
 }

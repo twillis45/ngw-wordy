@@ -182,7 +182,19 @@ export function themeGroups(file: PuzzleFile): ThemeGroup[] {
     g.indices.push(i);
     byId.set(p.theme.id, g);
   });
-  return [...byId.values()].sort((a, b) => a.name.localeCompare(b.name));
+  /*
+   * Sort on the name WITHOUT its leading article, the way a shelf does.
+   *
+   * A plain localeCompare filed "The Cookout" under T — below "In the Kitchen"
+   * and near the bottom of the list — so the theme the game is built around
+   * read as an afterthought. The same bug now hits The Beauty Shop, The Card
+   * Table, The Line Forms and The Nineteenth, which is four of fifteen themes
+   * clustered under one letter that carries no information about any of them.
+   */
+  const sortKey = (name: string) => name.replace(/^(the|a|an)\s+/i, '');
+  return [...byId.values()].sort((a, b) =>
+    sortKey(a.name).localeCompare(sortKey(b.name))
+  );
 }
 
 /**
