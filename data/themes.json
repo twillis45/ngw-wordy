@@ -5564,6 +5564,139 @@
         "scam",
         "slim"
       ]
+    },
+    {
+      "base": "carpet",
+      "theme": "barbershop",
+      "clues": {
+        "carpet": "Indoor-outdoor, laid at the door in 1988 to catch the salt and whatever leaves on your collar.",
+        "cape": "Snapped at the neck, one flick to settle it, and everything you own vanishes underneath.",
+        "part": "The line he cuts in with the corner of the blade, straight as a road, left side always.",
+        "trace": "He follows the old edge with the liner first, no pressure, just finding where it used to sit.",
+        "react": "What the whole room does when a grown man admits he cut his own head last week.",
+        "rate": "Thirty for the fade. She set it four years ago and has not moved it since."
+      },
+      "prefer": [
+        "cape",
+        "part",
+        "trace",
+        "react",
+        "rate"
+      ]
+    },
+    {
+      "base": "policy",
+      "theme": "barbershop",
+      "clues": {
+        "policy": "No cussing while a child is in the chair. It is on the wall and she enforces it.",
+        "oil": "Three drops along the teeth, a quick run, and the blade stops pulling at your neck.",
+        "copy": "What the boy wants of the picture on his phone, and his head does not grow that way.",
+        "icy": "The window in February, and the chair nearest the door that nobody ever chooses.",
+        "cop": "Parks out front, walks in in uniform, and waits his turn behind three other men.",
+        "coy": "How the young barber gets the minute you ask him who actually taught him."
+      },
+      "prefer": [
+        "oil",
+        "copy",
+        "icy",
+        "cop",
+        "coy"
+      ]
+    },
+    {
+      "base": "pirate",
+      "theme": "barbershop",
+      "clues": {
+        "pirate": "The man with the duffel bag of DVDs, in and out before noon every other Saturday.",
+        "pair": "Her shears cost more than his first car, and she cleans them herself at close.",
+        "tape": "The paper strip tucked under your collar so nothing gets down the back of your shirt.",
+        "rite": "A boy's first one, and his mother goes home with the curls in a sandwich bag.",
+        "tire": "By the fifth head the standing catches up with him and he works one song off the stool.",
+        "trip": "What the cord across the floor is waiting to cause, and he steps over it without looking."
+      },
+      "prefer": [
+        "pair",
+        "tape",
+        "rite",
+        "tire",
+        "trip"
+      ]
+    },
+    {
+      "base": "soiled",
+      "theme": "steppers",
+      "clues": {
+        "soiled": "The excuse she will not hear about the floor at nine. Her class swept it at six.",
+        "solid": "How her count is. No rushing, no drifting, dead on the beat for the whole song.",
+        "sidle": "How you cross a crowded floor mid-song: sideways, small steps, apologizing to nobody.",
+        "oiled": "What the hinge on the hall door is not, so it announces every single late arrival.",
+        "slid": "What his heel did on somebody's spilled drink, and he worked it into the turn.",
+        "lied": "What the flyer did about the beginner hour, which has never once started at seven."
+      },
+      "prefer": [
+        "solid",
+        "sidle",
+        "oiled",
+        "slid",
+        "lied"
+      ]
+    },
+    {
+      "base": "fields",
+      "theme": "steppers",
+      "clues": {
+        "fields": "Two of them behind the church, and the reunion line forms up on the flat one.",
+        "filed": "How forty cousins get on: two rows, arm's length, and she claps them into place.",
+        "fled": "What the teenagers did when the old four-wall started, and came back for the next one.",
+        "self": "Who you are dancing for in this one. No partner, no frame, and that is the point.",
+        "idle": "Nobody gets to be it against the wall. The back row is for learning, not watching.",
+        "life": "Sixty-two years old, front and center, and everyone behind her is copying her feet."
+      },
+      "prefer": [
+        "filed",
+        "fled",
+        "self",
+        "idle",
+        "life"
+      ]
+    },
+    {
+      "base": "depart",
+      "theme": "juneteenth",
+      "clues": {
+        "depart": "What people did the same week the word finally reached them, two and a half years late, on foot.",
+        "parted": "What the crowd does for the horses coming up the avenue, and closes right back up behind them.",
+        "drape": "Black and gold over the podium where the order is read, ironed that morning on the church steps.",
+        "tarp": "Blue, over the sound board by nine, because June on the Gulf will open up without warning.",
+        "pad": "The one the treasurer writes gate receipts on, carbon torn off and handed to you.",
+        "pat": "What an usher gives the back of a man who goes quiet during the reading."
+      },
+      "prefer": [
+        "parted",
+        "drape",
+        "tarp",
+        "pad",
+        "pat"
+      ]
+    },
+    {
+      "base": "bedpan",
+      "theme": "hbcu",
+      "clues": {
+        "bedpan": "First week of clinicals at six in the morning, and the instructor watches you empty it.",
+        "pane": "Cracked in the third-floor stairwell since your mother went here. Taped. Still cracked.",
+        "nap": "Twenty minutes on the library's second floor, backpack for a pillow, alarm set for seminar.",
+        "pen": "Handed out at the front of the exam room, and she counts them out and counts them back.",
+        "bend": "What four hours over a microscope stage does to your back before the lab report is due.",
+        "bean": "Ground fresh at the shop in the union, and the line is longest at nine fifty."
+      },
+      "prefer": [
+        "pane",
+        "nap",
+        "pen",
+        "bend",
+        "bean"
+      ]
     }
   ]
 }
