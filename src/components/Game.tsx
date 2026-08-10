@@ -972,13 +972,25 @@ export default function Game({ data }: { data: PuzzleFile }) {
            * into the dial below — which reads as the board shifting to make
            * room, even though nothing moves.
            *
-           * `leading-none` on the word is the actual fix: the inherited 1.5
+           * `leading-none` on the word is half the fix: the inherited 1.5
            * line-height gave a 32px word a 48px line box in a 40px slot. It
            * only reproduces where the word renders at 32px — i.e. NOT on a
            * mouse, where it is 26px and fits — so a touchscreen laptop hits it
            * and a desktop with a mouse never does.
+           *
+           * `shrink-0` is the OTHER half, and without it the fixed height was
+           * a fiction. This slot is a flex item in a height-constrained column,
+           * so flexbox was free to shrink it past `h-11` to whatever it
+           * contained: 18px holding the instruction line, 32px holding a
+           * letter. Picking the first letter therefore grew the slot by 14px
+           * and pushed the dial — the thing under your thumb — 14px down the
+           * screen, mid-gesture. Measured at 320x568: wheel top 342 to 356.
+           *
+           * The height is now reserved whether or not anything is in it, so
+           * the board is still. `short:h-8` is 32px, exactly the word's line
+           * box, so the smallest screens give up the least to hold it.
            */
-          'mb-1.5 grid h-11 place-items-center short:mb-1 short:h-9',
+          'mb-1.5 grid h-11 shrink-0 place-items-center short:mb-1 short:h-8',
           shaking ? 'anim-shake' : '',
         ].join(' ')}
       >
