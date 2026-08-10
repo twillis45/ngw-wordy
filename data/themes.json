@@ -77,6 +77,16 @@
       "id": "church",
       "name": "Sunday Service",
       "blurb": "The organ, the usher's white glove, and the front row that decides everything."
+    },
+    {
+      "id": "homecoming",
+      "name": "Homecoming Weekend",
+      "blurb": "A hotel sold out since March, a lot full by Thursday, and a game nobody watches past the half."
+    },
+    {
+      "id": "steppers",
+      "name": "The Line Forms",
+      "blurb": "Nobody announced it — by the second verse there are four rows and your aunt is in front."
     }
   ],
   "puzzles": [
@@ -2641,6 +2651,766 @@
         "lack",
         "lead",
         "ace"
+      ]
+    },
+    {
+      "base": "crowns",
+      "theme": "homecoming",
+      "clues": {
+        "crowns": "Two of them in the case: this year's and the one the chapter had made back in 1969.",
+        "crown": "Rhinestones on loan from the same shop since 1988, and it has never once fit anybody.",
+        "owns": "The alumnae chapter does, not the school, and they bring it in a locked case.",
+        "worn": "Her mother's pearls, out on loan for the night and back in the box by Sunday.",
+        "rows": "The front three are held for the alumnae chapter, and nobody tests that.",
+        "won": "What her platform did in the campus vote. Turnout, not the gown."
+      },
+      "prefer": [
+        "crown",
+        "owns",
+        "worn",
+        "rows",
+        "won"
+      ]
+    },
+    {
+      "base": "floats",
+      "theme": "homecoming",
+      "clues": {
+        "floats": "The parade has four, and two of them are a flatbed with crepe paper and a good speaker.",
+        "float": "Chicken wire, tissue paper, and three nights in the ag barn before Saturday.",
+        "flats": "She changes into them at the corner of Third, heels in her hand, still marching.",
+        "last": "The engineering club's entry rolls at the end every year, and it has never broken down.",
+        "lost": "The little cousin, for four whole minutes, between the fire truck and the pep squad.",
+        "salt": "What the town spread in 2019, when the parade route iced over in October."
+      },
+      "prefer": [
+        "float",
+        "flats",
+        "last",
+        "lost",
+        "salt"
+      ]
+    },
+    {
+      "base": "stride",
+      "theme": "homecoming",
+      "clues": {
+        "stride": "Nine people hit the boards at once and the sound gets there before the movement does.",
+        "rites": "The parts of the show that never change, because the chapter of 1971 is watching.",
+        "tried": "Out for the line four times before they took her, and now she calls the cadence.",
+        "tires": "The bus rolled in on four bald ones from a chapter three states over.",
+        "rest": "Ninety seconds between sets, and not one person uses it to sit down.",
+        "tier": "The upper level fills first, because that is where you can actually see the formations."
+      },
+      "prefer": [
+        "rites",
+        "tried",
+        "tires",
+        "rest",
+        "tier"
+      ]
+    },
+    {
+      "base": "staged",
+      "theme": "homecoming",
+      "clues": {
+        "staged": "The coronation looked effortless. Three rehearsals, a lighting cue sheet, and her clipboard.",
+        "stage": "Built Thursday in the gym, struck Sunday, and the risers go back to the music department.",
+        "dates": "Two schools, one weekend in October, and the alumni office locked them in a year out.",
+        "gates": "Open at ten. The line for the field house started forming somewhere around six.",
+        "sage": "The retired dean of students, eighty-four, who still gets the first word at the luncheon.",
+        "seat": "Section F, row 12. The same four people have held it since the Clinton administration."
+      },
+      "prefer": [
+        "stage",
+        "dates",
+        "gates",
+        "sage",
+        "seat"
+      ]
+    },
+    {
+      "base": "gather",
+      "theme": "homecoming",
+      "clues": {
+        "gather": "Nobody organizes it. By nine Friday the parking lot behind the gym is simply full.",
+        "heart": "Where the weekend actually lives: forty folding chairs behind a church-school gym.",
+        "great": "The class of '74 says theirs was the last real one. The class of '89 says the same.",
+        "hear": "You can tell whose band it is from a mile off, and the small school's is thirty people.",
+        "tear": "In her eye when the roll of departed classmates is read at the Sunday service.",
+        "rage": "What the shuttle driver holds in for four hours of the same six blocks."
+      },
+      "prefer": [
+        "heart",
+        "great",
+        "hear",
+        "tear",
+        "rage"
+      ]
+    },
+    {
+      "base": "loathe",
+      "theme": "homecoming",
+      "clues": {
+        "loathe": "What she does to the third-floor ice machine, and she books the same room anyway.",
+        "hotel": "Sold out since March. The overflow is forty minutes up the interstate in Meridian.",
+        "late": "Check-in is three. The lobby is a full reunion by noon and the desk gave up arguing.",
+        "hate": "What the front desk clerk, a junior on work-study, will not admit to by Saturday.",
+        "oath": "The one the new chapter officers take at the alumnae breakfast, hands flat on the table.",
+        "tale": "The one about the '81 bus breaking down, and it grows a new detail every October."
+      },
+      "prefer": [
+        "hotel",
+        "late",
+        "hate",
+        "oath",
+        "tale"
+      ]
+    },
+    {
+      "base": "clothe",
+      "theme": "homecoming",
+      "clues": {
+        "clothe": "What four generations of one family do for Saturday, in the same two colors.",
+        "cloth": "Vinyl, school colors, clipped to the folding table because the wind comes off the field.",
+        "echo": "The chant from the far end of the pavement comes back at you two seconds later.",
+        "hole": "In the '94 shirt, under the arm, and she wears it every single October regardless.",
+        "lot": "Gate C. Space assignments by chapter, and the map went out in September.",
+        "toe": "Her heel sank in the grass, so she is walking the rest of the route on the front of one foot."
+      },
+      "prefer": [
+        "cloth",
+        "echo",
+        "hole",
+        "lot",
+        "toe"
+      ]
+    },
+    {
+      "base": "editor",
+      "theme": "homecoming",
+      "clues": {
+        "editor": "Nineteen years on the alumni magazine, and she knows which photographs start fights.",
+        "doer": "The chapter president who actually shows up Thursday to unload the truck herself.",
+        "redo": "The cover, twice, because the first one cropped the small school's band right out.",
+        "riot": "The comment section under the parade photographs, and she moderates it personally.",
+        "rode": "Twelve hours from Houston in a van with four classmates and one good playlist.",
+        "tore": "The '68 banner, on the fence, and the archivist has already asked for the pieces."
+      },
+      "prefer": [
+        "doer",
+        "redo",
+        "riot",
+        "rode",
+        "tore"
+      ]
+    },
+    {
+      "base": "garnet",
+      "theme": "homecoming",
+      "clues": {
+        "garnet": "One of the two colors. The other is gold, and the exact shade is named in a 1911 charter.",
+        "grant": "The city gave one for the parade barricades, and the alumnae chapter matched it.",
+        "anger": "What the bookstore caused by ordering the sweatshirts in the wrong shade of red.",
+        "gear": "Two duffels: one for the field on Saturday, one for the black-tie thing that night.",
+        "rent": "The homecoming committee pays it on a storage unit twelve months of the year.",
+        "near": "The hotel is not. The house she grew up in is four blocks from the stadium."
+      },
+      "prefer": [
+        "grant",
+        "anger",
+        "gear",
+        "rent",
+        "near"
+      ]
+    },
+    {
+      "base": "argyle",
+      "theme": "homecoming",
+      "clues": {
+        "argyle": "His sweater vest, on the first tee at seven a.m., unchanged since the Reagan years.",
+        "early": "Shotgun start at seven for the scholarship tournament, and the foursomes filled in June.",
+        "large": "The only size left on the table by Saturday, which is of course nobody's size.",
+        "layer": "Forty degrees at kickoff, eighty by the afternoon, and she dressed for both.",
+        "relay": "Alumni against students at halftime, and the fifty-year-olds keep winning the thing.",
+        "year": "The number under her name at the registration table, and it settles every argument."
+      },
+      "prefer": [
+        "early",
+        "large",
+        "layer",
+        "relay",
+        "year"
+      ]
+    },
+    {
+      "base": "course",
+      "theme": "homecoming",
+      "clues": {
+        "course": "The one class she still talks about, and the professor who taught it is at the luncheon.",
+        "source": "Who the campus paper calls when they need the real numbers on the endowment.",
+        "score": "Nobody in the parking lot can tell you it at halftime, and nobody is bothered.",
+        "sore": "The knee that says no to a second flight of stadium steps, and she takes them anyway.",
+        "ours": "How the alumnae say the yard, forty years after they last had a key to anything.",
+        "rouse": "What a drumline does to a crowd that was asleep in lawn chairs ten seconds ago."
+      },
+      "prefer": [
+        "source",
+        "score",
+        "sore",
+        "ours",
+        "rouse"
+      ]
+    },
+    {
+      "base": "courts",
+      "theme": "homecoming",
+      "clues": {
+        "courts": "Both schools bring one, and the photographers make them stand together at midfield.",
+        "court": "Queen, king, and the attendants, elected in September by the whole student body.",
+        "cost": "The gown, the shoes, the photographer: eleven hundred, and her line sisters split it.",
+        "tours": "The admissions office runs them all weekend, for visiting kids and their mothers.",
+        "cuts": "The registrar made them to the Friday schedule so classes end at noon.",
+        "rust": "On the folding chairs that come out of the same storage unit every October."
+      },
+      "prefer": [
+        "court",
+        "cost",
+        "tours",
+        "cuts",
+        "rust"
+      ]
+    },
+    {
+      "base": "jesuit",
+      "theme": "homecoming",
+      "clues": {
+        "jesuit": "Xavier in New Orleans. Fifteen hundred students, mass on Sunday, and a pharmacy school.",
+        "suite": "The one room the chapter books with a kitchenette, and everybody ends up in it.",
+        "suit": "Seersucker, and he has had it pressed for this specific Saturday since 1997.",
+        "ties": "Bow, clip-on, or borrowed from a roommate ten minutes before the brunch.",
+        "just": "How many the whole college enrolls: eight hundred, and the dean knows most of the names.",
+        "site": "The old campus, four buildings and a chapel, on the national register since 1974."
+      },
+      "prefer": [
+        "suite",
+        "suit",
+        "ties",
+        "just",
+        "site"
+      ]
+    },
+    {
+      "base": "agents",
+      "theme": "homecoming",
+      "clues": {
+        "agents": "One per class year, and they call every name on the list before the giving deadline.",
+        "agent": "The class of '99's is a dentist in Charlotte who has never once missed her number.",
+        "tens": "What the little cousins get handed at the entrance, folded, with instructions.",
+        "sang": "The alma mater, all four verses, and the ones who know two of them hum the rest.",
+        "ages": "The spread under one canopy: eighty-nine down to a baby in a school-colors onesie.",
+        "ants": "Whatever you set on the grass finds them in a minute. Everything goes on the table."
+      },
+      "prefer": [
+        "agent",
+        "tens",
+        "sang",
+        "ages",
+        "ants"
+      ]
+    },
+    {
+      "base": "gasket",
+      "theme": "homecoming",
+      "clues": {
+        "gasket": "Blew one outside Tuscaloosa in '08, and the story has improved every October since.",
+        "steak": "On the grill at the dentist's canopy, while everybody else is eating wings from a foil pan.",
+        "takes": "The drive, if you leave before the Thursday traffic. Fourteen hours if you do not.",
+        "task": "Hers is the shuttle schedule and the wristbands, and it has been hers for nine years.",
+        "tags": "The hanger on the mirror, plus a license plate from four states over.",
+        "gate": "Where the shuttle drops you, and where you will lose your whole group for an hour."
+      },
+      "prefer": [
+        "steak",
+        "takes",
+        "task",
+        "tags",
+        "gate"
+      ]
+    },
+    {
+      "base": "outage",
+      "theme": "homecoming",
+      "clues": {
+        "outage": "The power at the tents died at nine Saturday and three chapters shared one generator.",
+        "auto": "The one she drove up from Mobile, with a decal in the back window from 1993.",
+        "goat": "The argument under the canopy: best quarterback the school ever had, settled by nobody.",
+        "tug": "What the wind does to the canopy legs somebody forgot to weight down.",
+        "gut": "The feeling in her stomach walking into the chapel for the first time in a decade.",
+        "out": "The lights, the coolers, and the last three people, at two in the morning."
+      },
+      "prefer": [
+        "auto",
+        "goat",
+        "tug",
+        "gut",
+        "out"
+      ]
+    },
+    {
+      "base": "listen",
+      "theme": "homecoming",
+      "clues": {
+        "listen": "What the old heads tell the freshmen to do at the alumni panel. Some of them do.",
+        "silent": "The auction at the scholarship brunch: forty items, one clipboard, and a war over a jersey.",
+        "lines": "Four at the registration table, sorted by decade, and the one for the '70s moves slowest.",
+        "list": "Taped inside the canopy: who brings the ice, who brings the chairs, who brings nothing.",
+        "lens": "The photographer's, a foot long, and she has shot this weekend for twenty-two years.",
+        "lets": "The dean hears the step practice at one in the morning and, this weekend only, allows it."
+      },
+      "prefer": [
+        "silent",
+        "lines",
+        "list",
+        "lens",
+        "lets"
+      ]
+    },
+    {
+      "base": "theirs",
+      "theme": "homecoming",
+      "clues": {
+        "theirs": "Whose weekend it is depends who you ask: the students living it, or the class of '94.",
+        "shirt": "Class year across the back in three-inch numbers, and the dues paid for the whole order.",
+        "heirs": "The grandchildren at the tailgate, in school colors, before they can spell the school.",
+        "hers": "The canopy, the coolers, the folding tables. All of it, and everybody knows it.",
+        "hires": "The alumni office takes on three student workers for the weekend, and pays them on time.",
+        "rise": "The whole section stands when the 1975 queen is walked out at halftime."
+      },
+      "prefer": [
+        "shirt",
+        "heirs",
+        "hers",
+        "hires",
+        "rise"
+      ]
+    },
+    {
+      "base": "comers",
+      "theme": "homecoming",
+      "clues": {
+        "comers": "First-timers. Somebody's coworker who has never once seen anything like this.",
+        "comes": "What the class of '84 does every October, recession or not, funeral or not.",
+        "more": "What the DJ plays at midnight when the pavement was supposed to clear at eleven.",
+        "some": "Of that class, a good number pledged nothing at all and have not missed a weekend since.",
+        "rose": "Laid on the memorial bench for the classmate who did not make it to this one.",
+        "core": "Eleven people who never left the state, and they hold the entire thing together."
+      },
+      "prefer": [
+        "comes",
+        "more",
+        "some",
+        "rose",
+        "core"
+      ]
+    },
+    {
+      "base": "barely",
+      "theme": "homecoming",
+      "clues": {
+        "barely": "What anybody under the canopy could tell you about the third quarter.",
+        "able": "Ninety-one, uses a walker on the grass, and still does the whole parade route.",
+        "bear": "To carry it: the flag, the banner, the name of a class that is down to nine people.",
+        "real": "What the rivalry is, and the two athletic directors are godparents to each other's kids.",
+        "rely": "What the committee does on the same eleven volunteers, year after year after year.",
+        "bare": "The field at seven Sunday morning, except for one canopy nobody has claimed."
+      },
+      "prefer": [
+        "able",
+        "bear",
+        "real",
+        "rely",
+        "bare"
+      ]
+    },
+    {
+      "base": "alight",
+      "theme": "homecoming",
+      "clues": {
+        "alight": "What forty-two people do off the charter bus, in heels, at eleven at night.",
+        "light": "The first of the morning, and the tent stakes are already going into the ground.",
+        "hail": "What the alma mater does to the school by name, right there in the opening line.",
+        "halt": "What the parade does for nine minutes at Fifth while the band sets a formation.",
+        "tail": "The end of the whole procession: the fire truck, and then the street sweeper.",
+        "hit": "The one song that gets everybody up, and it is the same one it was in 1998."
+      },
+      "prefer": [
+        "light",
+        "hail",
+        "halt",
+        "tail",
+        "hit"
+      ]
+    },
+    {
+      "base": "instep",
+      "theme": "steppers",
+      "clues": {
+        "instep": "The high arch of the foot; a well-made loafer creases right across it by year two.",
+        "step": "One count. Left, and the weight moves with you.",
+        "spin": "He turns her out and catches her hand coming back, right on the four.",
+        "spent": "Two hours on a Tuesday, and the only thing she has to show is a better walk.",
+        "pins": "Her hair is laid, the wrap held with two of these, and it will not move all night.",
+        "tips": "The toe ends of a pair, worn pale from a thousand pivots on hardwood."
+      },
+      "prefer": [
+        "step",
+        "spin",
+        "spent",
+        "pins",
+        "tips"
+      ]
+    },
+    {
+      "base": "lowest",
+      "theme": "steppers",
+      "clues": {
+        "lowest": "The count where you dip. Knees soft, chin up, and back before the next bar.",
+        "towel": "Folded over his shoulder by the third song, because the hall runs hot in August.",
+        "welts": "What the new patent leather leaves across the top of her foot by midnight.",
+        "west": "The side of Chicago that gets named first whenever the argument starts.",
+        "slot": "The gap in the second row that opens when somebody sits a song out early.",
+        "twos": "The count everybody learns before anything else: one and one, over and over."
+      },
+      "prefer": [
+        "towel",
+        "welts",
+        "west",
+        "slot",
+        "twos"
+      ]
+    },
+    {
+      "base": "elbows",
+      "theme": "steppers",
+      "clues": {
+        "elbows": "Kept in, never out. Swing them wide in a crowded line and you will hear about it.",
+        "elbow": "The bend in the arm that a good frame keeps absolutely quiet.",
+        "below": "Under the hem is where you look if you actually want to learn the footwork.",
+        "sole": "Suede, brushed with a wire brush, so it slides on a gym floor and grips on wood.",
+        "bows": "At the end of the set he inclines his head and she nods back. That is the ceremony.",
+        "blew": "The DJ's speaker gave out mid-song and the line kept going without it."
+      },
+      "prefer": [
+        "elbow",
+        "below",
+        "sole",
+        "bows",
+        "blew"
+      ]
+    },
+    {
+      "base": "halter",
+      "theme": "steppers",
+      "clues": {
+        "halter": "Ties at the neck, backless, and she picked it because her arms have work to do.",
+        "alter": "What the teacher does to a pattern when the room is too full to travel.",
+        "later": "The advanced hour starts when the beginners clear out, and it runs past midnight.",
+        "heart": "What the tradition runs on, and what her doctor says is in better shape than his.",
+        "halt": "One raised palm from the front of the room and forty people stop mid-count.",
+        "real": "The difference between a class routine and what happens at a set on Saturday."
+      },
+      "prefer": [
+        "alter",
+        "later",
+        "heart",
+        "halt",
+        "real"
+      ]
+    },
+    {
+      "base": "breath",
+      "theme": "steppers",
+      "clues": {
+        "breath": "What you run out of on the fourth song, which is how you know you stopped coming.",
+        "bathe": "First thing when he gets home at two in the morning, before anything goes in the closet.",
+        "earth": "Where her weight stays. Nothing bounces, nothing hops, the floor gets all of it.",
+        "rate": "Ninety-something beats a minute is the pocket. Faster than that is a different dance.",
+        "tear": "What the seam of his slacks did on the drop, and he finished the song anyway.",
+        "hater": "The one leaning on the wall saying it looks easy, who will not come out on the floor."
+      },
+      "prefer": [
+        "bathe",
+        "earth",
+        "rate",
+        "tear",
+        "hater"
+      ]
+    },
+    {
+      "base": "others",
+      "theme": "steppers",
+      "clues": {
+        "others": "The three rows behind the front, watching her feet and landing half a count late.",
+        "shoe": "One pair lives in the trunk of the car and touches no sidewalk, ever.",
+        "short": "The version taught to beginners: sixteen counts, no turn, no styling.",
+        "rest": "Between songs: the fanning, the water, and somebody's aunt saying just one more.",
+        "host": "Whoever rented the hall collects at the door and remembers every single face.",
+        "those": "The ones who learned it in the seventies and never needed a class in their lives."
+      },
+      "prefer": [
+        "shoe",
+        "short",
+        "rest",
+        "host",
+        "those"
+      ]
+    },
+    {
+      "base": "absent",
+      "theme": "steppers",
+      "clues": {
+        "absent": "The cousin who swore he was coming to class and has now missed four Tuesdays.",
+        "beats": "Eight of them make the pattern, and she counts them out loud for the back row.",
+        "best": "What the room agrees she is. Nobody argues, and she never says it herself.",
+        "seat": "Nobody is using one after nine o'clock; the whole room is up on its feet.",
+        "neat": "How the footwork looks when it is right. Small, tidy, nothing wasted.",
+        "bent": "Knees stay soft the whole song. Lock them and you will feel it tomorrow."
+      },
+      "prefer": [
+        "beats",
+        "best",
+        "seat",
+        "neat",
+        "bent"
+      ]
+    },
+    {
+      "base": "cheats",
+      "theme": "steppers",
+      "clues": {
+        "cheats": "Skipping the turn and just walking the eight counts. She sees it from across the room.",
+        "teach": "What she does Tuesday nights for twenty dollars, and has since her knees were younger.",
+        "chase": "The pattern where she travels and he follows her line clear across the floor.",
+        "aches": "Sunday morning, both hips, and worth every minute of it.",
+        "chest": "Held up, shoulders down. The posture that tells the room you have had a class.",
+        "haste": "Rushing the count is the beginner's tell. The music is not going anywhere."
+      },
+      "prefer": [
+        "teach",
+        "chase",
+        "aches",
+        "chest",
+        "haste"
+      ]
+    },
+    {
+      "base": "duties",
+      "theme": "steppers",
+      "clues": {
+        "duties": "Who books the hall, who makes the flyer, who brings the aux cord. All assigned. All women.",
+        "duet": "Two people, one frame, and if it looks like one body moving, it worked.",
+        "suit": "Pressed, cream colored, and he will not sit down in it before the second set.",
+        "tied": "Double-knotted at the start of the night so nothing comes loose on a turn.",
+        "dust": "What she shakes onto a sticky gym floor, from a bottle she has had for years.",
+        "side": "The travel goes this way, not forward, and that is what beginners keep getting wrong."
+      },
+      "prefer": [
+        "duet",
+        "suit",
+        "tied",
+        "dust",
+        "side"
+      ]
+    },
+    {
+      "base": "listed",
+      "theme": "steppers",
+      "clues": {
+        "listed": "Every class on the flyer, Tuesday through Sunday, all of it in her handwriting.",
+        "slide": "The one everybody knows: four walls, a quarter turn, and the whole reception joins in.",
+        "list": "What she keeps of who has paid and who is still promising to.",
+        "tiles": "Waxed squares in the church basement, and you can hear the whole room on them.",
+        "tide": "How the line moves. One row forward, everybody at once, then back.",
+        "lets": "She never turns a beginner down. One song, and she counts it in his ear."
+      },
+      "prefer": [
+        "slide",
+        "list",
+        "tiles",
+        "tide",
+        "lets"
+      ]
+    },
+    {
+      "base": "misled",
+      "theme": "steppers",
+      "clues": {
+        "misled": "He learned it off a phone video and has been doing the turn backwards for a year.",
+        "smile": "What she gives him anyway when he finally lands on the right count.",
+        "miles": "Forty each way from the south suburbs, every Tuesday, for one hour of class.",
+        "dimes": "Turning on one is the whole point, and it takes about a year to get there.",
+        "mild": "How she corrects. Quiet, one word, and nobody else in the room hears it.",
+        "slim": "The margin between on the beat and just behind it, which the room can always see."
+      },
+      "prefer": [
+        "smile",
+        "miles",
+        "dimes",
+        "mild",
+        "slim"
+      ]
+    },
+    {
+      "base": "posted",
+      "theme": "steppers",
+      "clues": {
+        "posted": "Taped to the door of the hall back in September and not changed since.",
+        "posed": "He stopped moving to be admired mid-song and lost the count entirely.",
+        "spot": "Eyes on one mark on the back wall so the turn does not take you down with it.",
+        "stop": "When the record ends, forty people freeze on the last count and the room laughs.",
+        "opted": "She chose the partner dance over the line dance and has not looked back.",
+        "dote": "How the old heads treat a teenager who shows up alone and actually tries."
+      },
+      "prefer": [
+        "posed",
+        "spot",
+        "stop",
+        "opted",
+        "dote"
+      ]
+    },
+    {
+      "base": "poster",
+      "theme": "steppers",
+      "clues": {
+        "poster": "Photocopied, taped in the beauty shop window: Steppers Set, Saturday, dress code enforced.",
+        "sport": "What the men call it when their wives ask why they are gone every Tuesday night.",
+        "store": "The one place downtown that still carries suede bottoms in his size.",
+        "sore": "Where the new pair rubbed, one heel, and she danced on it the rest of the night.",
+        "rose": "What the noise in the room did when the couple in their eighties took the floor.",
+        "pros": "The ones who compete, drive to Detroit for it, and did not come here to socialize."
+      },
+      "prefer": [
+        "sport",
+        "store",
+        "sore",
+        "rose",
+        "pros"
+      ]
+    },
+    {
+      "base": "purest",
+      "theme": "steppers",
+      "clues": {
+        "purest": "The oldest form of it. No tricks, no dip, just the walk done perfectly.",
+        "purse": "Left under her chair with the keys in it, and nobody has ever once touched it.",
+        "setup": "Table at the door, speaker in the corner, floor swept, all of it done by seven.",
+        "upset": "What he was when the count got away from him in front of everybody.",
+        "sure": "She never looks down at her own feet, not once, the entire song.",
+        "true": "Beat-perfect, and the old heads will say so out loud, which they rarely do."
+      },
+      "prefer": [
+        "purse",
+        "setup",
+        "upset",
+        "sure",
+        "true"
+      ]
+    },
+    {
+      "base": "motels",
+      "theme": "steppers",
+      "clues": {
+        "motels": "Two nights outside Detroit for the weekend set, four ladies to a room.",
+        "motel": "Where the out-of-town crowd changes in the parking lot before walking in.",
+        "melts": "What the room does when the DJ finally puts on something slow.",
+        "stole": "Draped over her shoulders on the way in, off before the first song ends.",
+        "most": "Of the forty people in that room, more than half are women, and it is not close.",
+        "lots": "Gravel outside the hall where folks sit in the car until they hear the good song."
+      },
+      "prefer": [
+        "motel",
+        "melts",
+        "stole",
+        "most",
+        "lots"
+      ]
+    },
+    {
+      "base": "oldest",
+      "theme": "steppers",
+      "clues": {
+        "oldest": "Eighty-one, still leading, and the floor clears a little when he walks out on it.",
+        "told": "What she does when a man rushes her. Says it once, plain, and he slows down.",
+        "sold": "Tickets for the anniversary set went in two days, every one of them through her.",
+        "toes": "Never landed on if the lead is doing his job properly.",
+        "lose": "What you do to the count the second you start watching your own feet.",
+        "dole": "How she hands out a compliment. One at a time, and you remember getting it."
+      },
+      "prefer": [
+        "told",
+        "sold",
+        "toes",
+        "lose",
+        "dole"
+      ]
+    },
+    {
+      "base": "spring",
+      "theme": "steppers",
+      "clues": {
+        "spring": "What the good ones have in the knee, so the walk looks like it costs nothing.",
+        "grip": "Light. Two fingers and a palm. Anything harder and she will not dance with you twice.",
+        "grins": "Traded across the floor between two couples who have been rivals since 1994.",
+        "rings": "They come off before class, because they catch on fabric and on hands.",
+        "sign": "A small lift of her chin, and he knows the turn is coming.",
+        "sing": "The whole room does the second verse out loud and nobody drops the count."
+      },
+      "prefer": [
+        "grip",
+        "grins",
+        "rings",
+        "sign",
+        "sing"
+      ]
+    },
+    {
+      "base": "advise",
+      "theme": "steppers",
+      "clues": {
+        "advise": "What the old heads do from the edge of the floor, whether you asked them or not.",
+        "aside": "She pulls him off the floor for thirty seconds and fixes it in one sentence.",
+        "divas": "The two who arrive at eleven, fully dressed, and then dance every song after.",
+        "saved": "A song held back for her all night, and the man in the booth knows which one.",
+        "avid": "Three classes a week, two sets a month, and a notebook full of patterns.",
+        "said": "Spoken once at the door, and that settled the dress code argument for good."
+      },
+      "prefer": [
+        "aside",
+        "divas",
+        "saved",
+        "avid",
+        "said"
+      ]
+    },
+    {
+      "base": "wealth",
+      "theme": "steppers",
+      "clues": {
+        "wealth": "Not money. Sixty years of a dance handed down in one city and still taught for free.",
+        "hale": "Eighty-three, walks in without a cane, and stays until the lights come up.",
+        "tale": "How the hall got its name, retold by whoever is standing nearest the door.",
+        "heat": "Forty bodies, no air conditioning, and the windows painted shut since 1970.",
+        "thaw": "The first twenty minutes, when the room is stiff and nobody wants to go first.",
+        "whet": "What one good record does to a room that was ten minutes from going home."
+      },
+      "prefer": [
+        "hale",
+        "tale",
+        "heat",
+        "thaw",
+        "whet"
       ]
     }
   ]
