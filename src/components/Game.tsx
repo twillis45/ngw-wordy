@@ -966,7 +966,11 @@ export default function Game({ data }: { data: PuzzleFile }) {
       )}
 
       {/* Target grid */}
-      <section aria-label="Words to find" className="mt-3 short:mt-2 roomy:mt-6">
+      {/* 12 here, not 24. The rail next to this keeps a steady 12 between its
+          panels and the rest of this column runs on 12, so `roomy:mt-6` was the
+          one gap in the board that doubled — on a tall desktop it read as the
+          theme label drifting away from the row it labels. */}
+      <section aria-label="Words to find" className="mt-3 short:mt-2 roomy:mt-3">
         <WordTray
           grid={puzzle.grid}
           found={found}
@@ -1119,7 +1123,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       </div>
 
       {/* Controls */}
-      <div className="mt-1.5 flex items-center justify-center gap-2 md:mt-4 md:gap-3 short:mt-1">
+      <div className="mt-1.5 flex items-center justify-center gap-2 md:mt-3 md:gap-3 short:mt-1">
         <ControlButton
           onClick={() => {
             setLetters((prev) => shuffle(prev));
