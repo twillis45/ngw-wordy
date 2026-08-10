@@ -296,7 +296,19 @@ describe('the daily never serves a generated board', () => {
     const generic: string[] = [];
     for (let day = 0; day < 365; day += 1) {
       const d = new Date(Date.UTC(2026, 0, 1 + day));
-      const { index } = puzzleForPlayer(file, 99, d, 0, new Set());
+      /*
+       * This suite types `file` loosely — it only ever reads puzzles — so it
+       * is widened here rather than duplicating the engine's PuzzleFile shape.
+       * `starters: []` and a large warmupsDone both skip the warm-up ladder,
+       * which is what puts us on the daily path being tested.
+       */
+      const asFile = {
+        version: 2,
+        wheel: 6,
+        starters: [],
+        puzzles: file.puzzles,
+      } as unknown as Parameters<typeof puzzleForPlayer>[0];
+      const { index } = puzzleForPlayer(asFile, 99, d, 0, new Set());
       if (!file.puzzles[index].theme) generic.push(`${d.toISOString().slice(0, 10)}`);
     }
     expect(generic.slice(0, 5), `${generic.length} generated dailies in a year`).toEqual([]);
