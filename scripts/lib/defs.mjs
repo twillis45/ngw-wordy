@@ -237,8 +237,18 @@ export function isUsableClue(clue) {
    * `uveas`, `varus` and `druse` all shipped as scoring rows. A puzzle clue
    * has to be something a person could plausibly arrive at.
    */
+  /*
+   * Written for Webster, retuned for WordNet.
+   *
+   * The old list matched Webster's field abbreviations — `bot.`, `min.`,
+   * `her.`, `mus.` — which WordNet never uses, and which are catastrophic
+   * against ordinary prose: `her.` rejected the authored clue "...before she
+   * will let you hug her." Only the spelled-out taxonomic and clinical
+   * vocabulary is kept, because that is what actually makes a gloss
+   * unanswerable in a word game.
+   */
   if (
-    /\b(genus|subgenus|family of|order of|zool|bot\.|anat|pathol|chem\.|geol|min\.|her\.|mus\.|naut|a genus|the typical genus|crystall)/i.test(
+    /\b(genus|subgenus|phylum|taxonomic|zoology|botany|anatomy|pathology|mineralogy|crystalline aggregate)\b/i.test(
       clue
     )
   ) {

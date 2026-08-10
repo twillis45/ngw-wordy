@@ -70,9 +70,27 @@ describe('puzzle quality floors', () => {
     expect(bad).toEqual([]);
   });
 
-  it('never ships a board whose base word nobody has met', () => {
-    const bad = file.puzzles.filter((p) => !popular.has(p.base)).map((p) => p.base);
+  it('never ships a GENERATED board whose base word nobody has met', () => {
+    /*
+     * Themed boards are exempt on purpose. popular.txt is a frequency list,
+     * not a judgement — `sauced`, `spiced` and `cameos` are all plainly known
+     * words that simply are not on it, and an editor who chose a base knows
+     * more about the board than a word-frequency table does.
+     */
+    const bad = file.puzzles
+      .filter((p) => !p.theme && !popular.has(p.base))
+      .map((p) => p.base);
     expect(bad).toEqual([]);
+  });
+
+  it('keeps the themed catalogue deep enough to read as packs', () => {
+    // The board's floor: a theme under 4 puzzles is a demo, not a set.
+    const byTheme = new Map<string, number>();
+    for (const p of file.puzzles) {
+      if (p.theme) byTheme.set(p.theme.name, (byTheme.get(p.theme.name) ?? 0) + 1);
+    }
+    const themed = [...byTheme.values()].reduce((a, b) => a + b, 0);
+    expect(themed, 'themed puzzles shipped').toBeGreaterThanOrEqual(50);
   });
 
   it('keeps the grid mostly answerable — 4 of 6 rows, on average better', () => {

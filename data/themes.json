@@ -47,6 +47,11 @@
       "id": "kitchen",
       "name": "In the Kitchen",
       "blurb": "Six letters, one countertop."
+    },
+    {
+      "id": "sunday",
+      "name": "Sunday Dinner",
+      "blurb": "Second pew, white gloves, and the pot roast that went in before service."
     }
   ],
   "puzzles": [
@@ -236,6 +241,804 @@
         "tea",
         "eat",
         "cut"
+      ]
+    },
+    {
+      "base": "deacon",
+      "theme": "sunday",
+      "clues": {
+        "deacon": "Dark suit, first pew, and he starts the hymn before the organ finds the key.",
+        "ocean": "Where the baptizing happened before there was a pool built in up front.",
+        "cane": "Hooked over the back of the pew in front of her, where she can reach it.",
+        "once": "How many times the announcements were meant to be read out this morning.",
+        "done": "What he is not, no matter how many times he has said in closing.",
+        "code": "The dress kind. Unwritten, never posted, and enforced by everybody's mother."
+      },
+      "prefer": [
+        "ocean",
+        "cane",
+        "once",
+        "done",
+        "code"
+      ]
+    },
+    {
+      "base": "sermon",
+      "theme": "sunday",
+      "clues": {
+        "sermon": "Twenty minutes on paper. Forty-five once the organ starts up behind him.",
+        "snore": "The man three pews back, and his wife's elbow arriving right on schedule.",
+        "nose": "The usher's, wrinkled, at the child who walked in with a bag of chips.",
+        "more": "What the choir gives the last verse when nobody wants to sit back down.",
+        "ones": "Folded small inside a glove, counted twice before the plate comes around.",
+        "morn": "The six o'clock service, for people who like the building half empty."
+      },
+      "prefer": [
+        "snore",
+        "nose",
+        "more",
+        "ones",
+        "morn"
+      ]
+    },
+    {
+      "base": "gospel",
+      "theme": "sunday",
+      "clues": {
+        "gospel": "They come in on the second verse and the whole building gets to its feet.",
+        "pose": "How you sat for the picture in the fellowship hall: hands folded, hat on.",
+        "sole": "The bottom of the shoe she wore through walking that aisle every Sunday.",
+        "legs": "The folding table has four, and one of them has been short since 1998.",
+        "lose": "What you do with the count of how many times he has said in closing.",
+        "goes": "What the organ does underneath him, low, long before anybody says amen."
+      },
+      "prefer": [
+        "pose",
+        "sole",
+        "legs",
+        "lose",
+        "goes"
+      ]
+    },
+    {
+      "base": "anthem",
+      "theme": "sunday",
+      "clues": {
+        "anthem": "Lift Every Voice. The second verse, and your grandmother knows it cold.",
+        "amen": "Said early, by one man in the back, and it is not a question he is asking.",
+        "meant": "What the whole row decided that line was about, and it was about them.",
+        "name": "On the back of the funeral home fan, with a phone number underneath it.",
+        "meat": "Sunday's is a roast. Wednesday's is whatever is left of Sunday's.",
+        "math": "What the ushers do in the back with the count, twice, before it is read."
+      },
+      "prefer": [
+        "amen",
+        "meant",
+        "name",
+        "meat",
+        "math"
+      ]
+    },
+    {
+      "base": "organs",
+      "theme": "sunday",
+      "clues": {
+        "organs": "The Hammond up front, and the man who has been sitting at it since 1978.",
+        "organ": "Two speakers, one bench, and a sound the piano has never once matched.",
+        "sang": "What she did at one funeral, and got asked at every funeral after that.",
+        "song": "Started in the back of the room before the musicians had found the key.",
+        "rags": "The bag of them under the fellowship hall sink, cut from old choir robes.",
+        "soar": "What the last note does while the drummer holds everything else down."
+      },
+      "prefer": [
+        "organ",
+        "sang",
+        "song",
+        "rags",
+        "soar"
+      ]
+    },
+    {
+      "base": "mother",
+      "theme": "sunday",
+      "clues": {
+        "mother": "White dress, second pew from the front, and the last word on everything.",
+        "other": "The one nobody sits in. It is hers, and it has been hers since 1991.",
+        "home": "What she calls going, and it is not the house she means.",
+        "hero": "Not the word she would use. She would say he was raised right, and stop.",
+        "moth": "Comes out of the closet with the suit you only wear twice a year.",
+        "term": "How long she has served on the usher board, and nobody has ever counted."
+      },
+      "prefer": [
+        "other",
+        "home",
+        "hero",
+        "moth",
+        "term"
+      ]
+    },
+    {
+      "base": "mashed",
+      "theme": "sunday",
+      "clues": {
+        "mashed": "Real potatoes, the whole afternoon, and the mixer stays in the cabinet.",
+        "shade": "On the porch after the meal, or what your cousin just quietly threw.",
+        "heads": "Bowed, all of them, before one fork is allowed to touch one plate.",
+        "made": "From scratch, and she will say it that way while you are eating it.",
+        "mesh": "The screen door that slams no matter how gently you think you closed it.",
+        "shed": "Where the extra folding chairs get carried back to when plates are cleared."
+      },
+      "prefer": [
+        "shade",
+        "heads",
+        "made",
+        "mesh",
+        "shed"
+      ]
+    },
+    {
+      "base": "prayed",
+      "theme": "sunday",
+      "clues": {
+        "prayed": "Over the food, over the drive home, and over a name nobody said out loud.",
+        "pray": "What she told you to do about it, and it was not the answer you came for.",
+        "ready": "What the table is, twenty minutes before anybody will sit down at it.",
+        "year": "How long since the whole family was in this room at the same time.",
+        "read": "The scripture, by whichever grandchild can be made to stand up front.",
+        "yard": "Where the children are sent so the grown folks can talk about the will."
+      },
+      "prefer": [
+        "pray",
+        "ready",
+        "year",
+        "read",
+        "yard"
+      ]
+    },
+    {
+      "base": "player",
+      "theme": "rnb90s",
+      "clues": {
+        "player": "Six discs in the changer, and he tells you which one before he pulls off.",
+        "relay": "One car hands it to the next at the light: same station, same song.",
+        "pearl": "One on a chain, over the collarbone, in the portrait from '96.",
+        "layer": "The jacket he keeps on all night in August because of the shirt under it.",
+        "plea": "The bridge, on both knees, asking her to pick up the phone.",
+        "pale": "The light off the dashboard clock, the only thing on at two in the morning."
+      },
+      "prefer": [
+        "relay",
+        "pearl",
+        "layer",
+        "plea",
+        "pale"
+      ]
+    },
+    {
+      "base": "singer",
+      "theme": "rnb90s",
+      "clues": {
+        "singer": "One mic, one stool, and a sweater she is not taking off.",
+        "reign": "Four years where nothing else got played after midnight.",
+        "rinse": "What the dishes get during the slow one, so nobody has to talk.",
+        "resin": "What the tree leaves on the hood when you park under it all night.",
+        "grin": "What he did in the doorway when the man on air read his name out.",
+        "sign": "Two fingers out the window, one horn tap, and he's gone."
+      },
+      "prefer": [
+        "reign",
+        "rinse",
+        "resin",
+        "grin",
+        "sign"
+      ]
+    },
+    {
+      "base": "slower",
+      "theme": "rnb90s",
+      "clues": {
+        "slower": "What he asked for at the booth, and half the floor sat down.",
+        "lower": "What his hand did to the dial once it stopped being about anybody else.",
+        "swore": "On the porch at seventeen, that this one was going to be permanent.",
+        "worse": "The second tape she made him, and it still lives in the car door.",
+        "rose": "One, still in the gas station plastic, handed over at 11:40.",
+        "wore": "The velour set, in the mall portrait, with the laser background."
+      },
+      "prefer": [
+        "lower",
+        "swore",
+        "worse",
+        "rose",
+        "wore"
+      ]
+    },
+    {
+      "base": "chorus",
+      "theme": "rnb90s",
+      "clues": {
+        "chorus": "Everybody in the car comes in, and nobody was invited.",
+        "hours": "Ten to two. The format, and the reason the phone lines opened.",
+        "rush": "What the drive home stopped being once the slow set started.",
+        "sour": "Her face when he said the tape was for somebody at work.",
+        "such": "The word the man on air leaned on before reading the dedication.",
+        "ouch": "The high note he tried in the passenger seat and did not reach."
+      },
+      "prefer": [
+        "hours",
+        "rush",
+        "sour",
+        "such",
+        "ouch"
+      ]
+    },
+    {
+      "base": "dances",
+      "theme": "rnb90s",
+      "clues": {
+        "dances": "He knows two, and he does both at every single reception.",
+        "dance": "Arms on the shoulders, four inches of daylight, chaperone watching.",
+        "cased": "The whole rack, twice, before spending the eight dollars.",
+        "scan": "Down the spine of the shelf, hunting the one with the sticker.",
+        "sand": "Still in the floor mats in November, from one July weekend.",
+        "cane": "Hooked on the back of the folding chair, and he is still moving."
+      },
+      "prefer": [
+        "dance",
+        "cased",
+        "scan",
+        "sand",
+        "cane"
+      ]
+    },
+    {
+      "base": "minute",
+      "theme": "rnb90s",
+      "clues": {
+        "minute": "How long the intro ran before anybody sang a single word.",
+        "mute": "Hit the second his mother came into the room.",
+        "time": "What the ad libs were stealing, and nobody minded a bit.",
+        "tune": "What he did to the truck radio, two fingers, eyes still on the road.",
+        "untie": "The ribbon on the tape she wrapped like it was a real gift.",
+        "unite": "What the last chorus does to a room that spent all night apart."
+      },
+      "prefer": [
+        "mute",
+        "time",
+        "tune",
+        "untie",
+        "unite"
+      ]
+    },
+    {
+      "base": "candle",
+      "theme": "rnb90s",
+      "clues": {
+        "candle": "Two on the table and the overhead off. He tried, and it worked.",
+        "clean": "The car, Saturday morning, before anybody knew who was riding in it.",
+        "laced": "White ones, done twice, tucked in, before the doorbell went.",
+        "dance": "Arms on the shoulders and a chaperone counting the daylight.",
+        "land": "What the run does at the end, exactly where it was supposed to.",
+        "lace": "Down the front of the church dress, and it itched all service."
+      },
+      "prefer": [
+        "clean",
+        "laced",
+        "dance",
+        "land",
+        "lace"
+      ]
+    },
+    {
+      "base": "trunks",
+      "theme": "rnb90s",
+      "clues": {
+        "trunks": "On the shower rod since June and still not dry.",
+        "trunk": "Popped in the lot so the whole parking row could hear it.",
+        "turns": "Three extra ones around the block so the song could finish.",
+        "stunk": "The first mix, and he played it for you anyway.",
+        "rust": "Under the wheel well, so he parks with the good side facing you.",
+        "nuts": "Hot, in a paper cone, a dollar, outside before doors."
+      },
+      "prefer": [
+        "trunk",
+        "turns",
+        "stunk",
+        "rust",
+        "nuts"
+      ]
+    },
+    {
+      "base": "hearts",
+      "theme": "rnb90s",
+      "clues": {
+        "hearts": "Drawn in the margin of a tracklist somebody wrote out by hand.",
+        "heart": "What the ad lib says is broken, in a key nobody else can reach.",
+        "share": "One set of headphones, one bus seat, one side each.",
+        "earth": "What the bass in the back moves, two cars over at the light.",
+        "hates": "What she says about the song, and not what she does when it comes on.",
+        "stare": "Held across the room for the length of one whole verse."
+      },
+      "prefer": [
+        "heart",
+        "share",
+        "earth",
+        "hates",
+        "stare"
+      ]
+    },
+    {
+      "base": "pagers",
+      "theme": "rnb90s",
+      "clues": {
+        "pagers": "Clipped to the belt, and 07734 was the entire message.",
+        "pages": "The liner notes, unfolded all the way across the passenger seat.",
+        "gears": "Second, then third, right as the drums come in.",
+        "rages": "What the second verse does after the first one spent itself begging.",
+        "sage": "Burning in a shell on the sill before she would let anybody in.",
+        "ears": "Ringing after, because the back of the car did most of the work."
+      },
+      "prefer": [
+        "pages",
+        "gears",
+        "rages",
+        "sage",
+        "ears"
+      ]
+    },
+    {
+      "base": "cruise",
+      "theme": "rnb90s",
+      "clues": {
+        "cruise": "Speed limit exactly, windows down, nowhere in particular to be.",
+        "curse": "Bleeped out on the radio cut, and everybody says it anyway.",
+        "cures": "What the man at midnight promised the next record would do.",
+        "cries": "Twice on the bridge, once more on the way to work on Monday.",
+        "sure": "What she said, meaning the opposite, when he asked about the tape.",
+        "rise": "What the key does one step for the last chorus, and you feel it."
+      },
+      "prefer": [
+        "curse",
+        "cures",
+        "cries",
+        "sure",
+        "rise"
+      ]
+    },
+    {
+      "base": "sauced",
+      "theme": "cookout",
+      "clues": {
+        "sauced": "Yellow, not red. Anybody who tells you different is from another state.",
+        "sauce": "The gallon jug rode down in the floorboard because the store kind is wrong.",
+        "cause": "The reason given for driving four hours. The real one is nobody's seen anybody.",
+        "case": "A flat of red drink under the folding table, still in the cardboard.",
+        "used": "The foil pans everybody swore they would wash and bring back.",
+        "aces": "What your uncle claims he was holding, three hands after the deal."
+      },
+      "prefer": [
+        "sauce",
+        "cause",
+        "case",
+        "used",
+        "aces"
+      ]
+    },
+    {
+      "base": "smoker",
+      "theme": "cookout",
+      "clues": {
+        "smoker": "Welded out of a drum by a cousin. It has a name and its own trailer hitch.",
+        "smoke": "Thin and blue is right. Thick and white means somebody opened the lid.",
+        "some": "How much rice is left after the first pass. Enough to argue about.",
+        "more": "What the man with the tongs says after you already told him you were full.",
+        "sore": "Your back the next morning, from the folding chair with the busted strap.",
+        "rose": "What the canopy did at six in the morning: four men, one set of directions."
+      },
+      "prefer": [
+        "smoke",
+        "some",
+        "more",
+        "sore",
+        "rose"
+      ]
+    },
+    {
+      "base": "uncles",
+      "theme": "cookout",
+      "clues": {
+        "uncles": "Two by blood, three by proximity, and one nobody has ever been able to place.",
+        "uncle": "Owns the pit. Did not buy the meat, will not clean it, accepts the credit.",
+        "clues": "You get none. You just know which cooler in the carport is not for you.",
+        "lens": "He has had the camcorder up since noon and nobody has asked him to stop.",
+        "sun": "Behind the pines by nine, which is when the bug spray comes out of the truck.",
+        "use": "What the good pan is not for. That one goes to church and comes back."
+      },
+      "prefer": [
+        "uncle",
+        "clues",
+        "lens",
+        "sun",
+        "use"
+      ]
+    },
+    {
+      "base": "auntie",
+      "theme": "cookout",
+      "clues": {
+        "auntie": "Not blood. Still, do not let her hear you say her first name by itself.",
+        "aunt": "Came in with a covered dish and a list of who did not speak to her last year.",
+        "tuna": "Somebody always brings it, nobody claims it, and the bowl still comes back empty.",
+        "untie": "What you do to the apron string before she will let you hug her.",
+        "unit": "The window kind, dripping in the flower bed, cooling the one room everybody wants.",
+        "tune": "Came on and three generations stood up without anybody being asked."
+      },
+      "prefer": [
+        "aunt",
+        "tuna",
+        "untie",
+        "unit",
+        "tune"
+      ]
+    },
+    {
+      "base": "hosted",
+      "theme": "cookout",
+      "clues": {
+        "hosted": "You said yes to it back in February. It is July now and ninety people are coming.",
+        "host": "The only one holding a plate the whole afternoon and never once sitting down.",
+        "hose": "Green, coiled by the spigot, and the only air conditioning the kids get.",
+        "shoe": "Left by the back steps. Its match is somewhere out in the yard.",
+        "shot": "The group picture, taken twice, because Granddaddy blinked the first time.",
+        "shed": "Where the extra chairs live, behind the mower and the Christmas box."
+      },
+      "prefer": [
+        "host",
+        "hose",
+        "shoe",
+        "shot",
+        "shed"
+      ]
+    },
+    {
+      "base": "shrimp",
+      "theme": "cookout",
+      "clues": {
+        "shrimp": "Heads on, in the pot with corn and sausage, poured out onto newspaper.",
+        "ship": "What the box of pecans does every December, taped shut and addressed by hand.",
+        "hips": "What the electric slide is hard on once you are past about fifty.",
+        "prim": "How the church ladies sit down, and how they do not eat.",
+        "rips": "What the paper plate does the second the second helping lands on it.",
+        "rim": "Salt around the glass, and the part of the pot you grab with a towel."
+      },
+      "prefer": [
+        "ship",
+        "hips",
+        "prim",
+        "rips",
+        "rim"
+      ]
+    },
+    {
+      "base": "boiled",
+      "theme": "cookout",
+      "clues": {
+        "boiled": "Peanuts in a wet paper bag, bought off a truck at the county line, still hot.",
+        "boil": "The pot out on the propane burner, because it will never fit on the stove.",
+        "oiled": "The grates, with half an onion on a fork, before anything touches them.",
+        "idle": "Two men standing over the pit doing nothing at all, and doing it seriously.",
+        "lobe": "Where the good earrings go, and they go in only after the cooking is done.",
+        "deli": "The plastic tub the potato salad arrived in. It has never fooled anybody."
+      },
+      "prefer": [
+        "boil",
+        "oiled",
+        "idle",
+        "lobe",
+        "deli"
+      ]
+    },
+    {
+      "base": "melons",
+      "theme": "cookout",
+      "clues": {
+        "melons": "Cut over the sink at ten in the morning so they are cold by two.",
+        "melon": "One end sweeter than the other, and every child in the yard knows which end.",
+        "lemon": "Halved into the tea pitcher, then rubbed on your hands after you clean fish.",
+        "solemn": "How the blessing goes, right up until somebody's phone starts ringing.",
+        "mole": "The one on her cheek that half the women in this family got a version of.",
+        "nose": "Tells you the pit is ready from three houses down the street."
+      },
+      "prefer": [
+        "melon",
+        "lemon",
+        "solemn",
+        "mole",
+        "nose"
+      ]
+    },
+    {
+      "base": "spiced",
+      "theme": "cookout",
+      "clues": {
+        "spiced": "The rub went on last night, which is why nobody could get into the fridge.",
+        "spice": "The tin with no label on it that she will not let you take a picture of.",
+        "dice": "What he does to the onion, small, so the children cannot see it and refuse.",
+        "iced": "Sweet enough to stand a spoon in, in the yellow cooler with the spout.",
+        "side": "There are eleven of them and exactly one kind of meat left on the table.",
+        "pies": "Sweet potato, two of them, and one is already spoken for by name."
+      },
+      "prefer": [
+        "spice",
+        "dice",
+        "iced",
+        "side",
+        "pies"
+      ]
+    },
+    {
+      "base": "basket",
+      "theme": "cookout",
+      "clues": {
+        "basket": "Lined with a dish towel, and the rolls under it are still warm at four.",
+        "bakes": "She does it Saturday night so that Sunday is nothing but reheating.",
+        "beast": "On the pit since two in the morning, and two men slept in chairs beside it.",
+        "steak": "Not what is on this grill. Somebody brought it anyway and got looked at.",
+        "seat": "There are not enough. The children eat standing up and think that is normal.",
+        "task": "Yours is ice. It is always ice, and you will be sent back out for more."
+      },
+      "prefer": [
+        "bakes",
+        "beast",
+        "steak",
+        "seat",
+        "task"
+      ]
+    },
+    {
+      "base": "gravel",
+      "theme": "cookout",
+      "clues": {
+        "gravel": "The driveway. You hear every car that turns in before you ever see it.",
+        "grave": "He drives out there with flowers Sunday morning before he comes to eat.",
+        "large": "The size of the foil pan, and the number of folks who said they were coming.",
+        "glare": "What she sends across the yard, and it still works from forty feet away.",
+        "gavel": "Whoever brought one to the reunion meeting was serious, and got laughed at.",
+        "gear": "Tongs, thermometer, spray bottle. Nobody else is permitted to touch any of it."
+      },
+      "prefer": [
+        "grave",
+        "large",
+        "glare",
+        "gavel",
+        "gear"
+      ]
+    },
+    {
+      "base": "phrase",
+      "theme": "sitcom",
+      "clues": {
+        "phrase": "Two words, said the same way every week, and the studio room detonates.",
+        "share": "What the last piece of cake becomes when a fourth cousin walks in.",
+        "sharp": "Pressed, creased, and photographed on the stairs before the dance.",
+        "hears": "What the whole block does when the front door slams at midnight.",
+        "spare": "The key under the mat, and the room the cousin from Philadelphia gets.",
+        "shape": "What he swears he is still in, right before he takes the stairs too fast."
+      },
+      "prefer": [
+        "share",
+        "sharp",
+        "hears",
+        "spare",
+        "shape"
+      ]
+    },
+    {
+      "base": "taping",
+      "theme": "sitcom",
+      "clues": {
+        "taping": "Done in front of an audience that laughed for real before the machine did.",
+        "paint": "The wall behind the couch, done over one weekend and never mentioned again.",
+        "giant": "What the little brother is now, six inches over everybody, in one summer.",
+        "pain": "What he claims his back is in whenever there are groceries in the car.",
+        "gain": "What the bathroom scale reports after two weeks of her cooking.",
+        "pint": "What the ice cream comes in, and it is not going back in the freezer full."
+      },
+      "prefer": [
+        "paint",
+        "giant",
+        "pain",
+        "gain",
+        "pint"
+      ]
+    },
+    {
+      "base": "dozens",
+      "theme": "sitcom",
+      "clues": {
+        "dozens": "Your-mama jokes, escalating, a circle forming, and somebody keeping score.",
+        "nose": "How the pot finds you from the top of the stairs before anybody calls you.",
+        "zones": "What he does out in the recliner nine minutes into the evening news.",
+        "ones": "Counted out of a birthday card by the smallest cousin, twice, out loud.",
+        "send": "What she does to you upstairs, mid-sentence, the second company arrives.",
+        "done": "What the plate is when the fork gets set down at that particular angle."
+      },
+      "prefer": [
+        "nose",
+        "zones",
+        "ones",
+        "send",
+        "done"
+      ]
+    },
+    {
+      "base": "cameos",
+      "theme": "sitcom",
+      "clues": {
+        "cameos": "The singing group turns up at the school dance in full outfits, for no reason.",
+        "same": "What everybody's outfit is in the reunion picture, and it was not optional.",
+        "scam": "The uncle's business idea, explained on a napkin, at the kitchen table.",
+        "comes": "What the whole block does out onto the porch when the tour bus pulls up.",
+        "seam": "Where the church suit finally gave up, halfway through the second sermon.",
+        "aces": "What the card table claims somebody has, right before the argument."
+      },
+      "prefer": [
+        "same",
+        "scam",
+        "comes",
+        "seam",
+        "aces"
+      ]
+    },
+    {
+      "base": "movers",
+      "theme": "sitcom",
+      "clues": {
+        "movers": "Two men, a truck, and a couch that does not fit the new building's elevator.",
+        "more": "What the new apartment has of everything, including stairs nobody needed.",
+        "sore": "What the back is after eleven floors and a box marked FRAGILE that wasn't.",
+        "rose": "Cut from the old yard, riding up front in a coffee can with foil on top.",
+        "some": "How much of the old furniture makes the trip. The rest goes to the church.",
+        "moves": "What the reception floor calls for, and he has exactly two of them."
+      },
+      "prefer": [
+        "more",
+        "sore",
+        "rose",
+        "some",
+        "moves"
+      ]
+    },
+    {
+      "base": "mantel",
+      "theme": "sitcom",
+      "clues": {
+        "mantel": "Where the school portraits sit in order, and the bad one is still up there.",
+        "metal": "The folding chair out of the hall closet when the cousins come over.",
+        "name": "What she uses all three of when you are already in trouble.",
+        "meant": "What she says the tone did, and you both know exactly what it did.",
+        "late": "What you are, and the porch light was already on when you turned the corner.",
+        "team": "What the whole front room becomes at eight o'clock on a Sunday in January."
+      },
+      "prefer": [
+        "metal",
+        "name",
+        "meant",
+        "late",
+        "team"
+      ]
+    },
+    {
+      "base": "pastor",
+      "theme": "sitcom",
+      "clues": {
+        "pastor": "Coming for dinner, so the good plates came out of the cabinet yesterday.",
+        "roast": "In the oven since before service started, on a timer she does not trust.",
+        "sport": "What the coat is called, and it is the only one he owns with a lining.",
+        "oats": "Breakfast on a school morning, and there is no negotiating about it.",
+        "trap": "What the boy walked straight into, answering one question too many.",
+        "star": "What the first-Sunday soloist becomes for exactly four minutes."
+      },
+      "prefer": [
+        "roast",
+        "sport",
+        "oats",
+        "trap",
+        "star"
+      ]
+    },
+    {
+      "base": "cosign",
+      "theme": "sitcom",
+      "clues": {
+        "cosign": "To put your name behind his story, in front of his mother, and just hope.",
+        "sign": "Taped inside the front door, in her handwriting, listing what you will not do.",
+        "song": "Comes on, and the whole room changes key, including the man in the chair.",
+        "icon": "The photo over the doorway, up there since before you were born.",
+        "con": "What the smallest one runs on the babysitter, and it works every time.",
+        "coin": "Flipped for the last piece, and somebody always calls it in the air."
+      },
+      "prefer": [
+        "sign",
+        "song",
+        "icon",
+        "con",
+        "coin"
+      ]
+    },
+    {
+      "base": "single",
+      "theme": "sitcom",
+      "clues": {
+        "single": "One apartment, four women, and a phone cord stretched into the hallway.",
+        "lines": "What the phone has two of, and one belongs to the answering machine.",
+        "lens": "What the boyfriend brings, then takes forty pictures of the brunch table.",
+        "legs": "What the heels are for, and they come off the second the door shuts.",
+        "gels": "Lays the edges before you leave, and one jar serves the whole apartment.",
+        "sing": "What she does over the record, louder than the record, every Saturday."
+      },
+      "prefer": [
+        "lines",
+        "lens",
+        "legs",
+        "gels",
+        "sing"
+      ]
+    },
+    {
+      "base": "credit",
+      "theme": "sitcom",
+      "clues": {
+        "credit": "The couch was bought on it, and the payment book lives in the kitchen drawer.",
+        "diet": "Started on the first of the month, over by the time the fry pan comes out.",
+        "tired": "What he is, and he announces it before he gets the second boot off.",
+        "tried": "What he swears he did, and the folded paper from school says otherwise.",
+        "rice": "In the pot before anything else, and always more than six people need.",
+        "iced": "The tea, by the pitcher, sweet enough to hold a spoon upright."
+      },
+      "prefer": [
+        "diet",
+        "tired",
+        "tried",
+        "rice",
+        "iced"
+      ]
+    },
+    {
+      "base": "grades",
+      "theme": "sitcom",
+      "clues": {
+        "grades": "The school envelope, opened at the table, in front of every single person.",
+        "read": "What she does to the whole card, twice, before she says one word.",
+        "sage": "The green in the dressing, and only she is allowed to measure it.",
+        "gear": "The bag by the door, packed last night, because there is no second trip.",
+        "dare": "What the look across the table is, and nobody at that table takes it.",
+        "drag": "What the walk from the bus stop becomes with that envelope in your bag."
+      },
+      "prefer": [
+        "read",
+        "sage",
+        "gear",
+        "dare",
+        "drag"
+      ]
+    },
+    {
+      "base": "father",
+      "theme": "sitcom",
+      "clues": {
+        "father": "Loud, present, filling the doorway, asking who exactly told you that.",
+        "heart": "What she says he has, right after telling him to lower his voice.",
+        "after": "When the real talk happens: everybody upstairs, kitchen light only.",
+        "heat": "What the kitchen has in August, because the window unit is in the bedroom.",
+        "fare": "The exact change he counts into your hand before you get on the bus.",
+        "tear": "What she wipes off before she turns around, and nobody in the room saw it."
+      },
+      "prefer": [
+        "heart",
+        "after",
+        "heat",
+        "fare",
+        "tear"
       ]
     }
   ]

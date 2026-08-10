@@ -684,7 +684,14 @@ export default function LetterWheel({
               locked
                 ? 'border-edge/60 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted'
                 : picked
-                  ? 'anim-tick border-edge bg-steel-dark/70 text-text-primary backdrop-blur-[var(--glass-blur)]'
+                  /*
+                   * A selected tile differed from an unselected one by a FILL
+                   * and nothing else — same border, same text colour — so on a
+                   * glass surface the confirmation was nearly invisible. Now
+                   * it carries a ring (a second outline, a shape change rather
+                   * than a shade), a denser fill, and the order badge below.
+                   */
+                  ? 'anim-tick border-edge ring-2 ring-steel-muted bg-steel-dark/85 text-text-primary backdrop-blur-[var(--glass-blur)]'
                   : 'border-edge liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary active:scale-95',
             ].join(' ')}
             style={{
@@ -712,6 +719,28 @@ export default function LetterWheel({
             }}
           >
             {letter.toUpperCase()}
+            {/*
+              Which letter this was in the word.
+              A drag draws a connecting thread, so the order is visible. A TAP
+              draws nothing — the player had no way to see the sequence they
+              had built, only that some tiles looked different. Shown from the
+              second letter, because a single "1" is noise.
+            */}
+            {picked && selected.length > 1 && (
+              <span
+                aria-hidden
+                className="pointer-events-none absolute grid place-items-center rounded-full bg-steel-muted font-semibold text-carbon-body"
+                style={{
+                  top: '-6%',
+                  right: '-6%',
+                  width: '38%',
+                  height: '38%',
+                  fontSize: '5.2cqmin',
+                }}
+              >
+                {order + 1}
+              </span>
+            )}
           </button>
         );
       })}

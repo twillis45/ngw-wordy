@@ -412,8 +412,18 @@ for (const base of bases) {
      * word, one level down: if a human wrote it, the 1913 dictionary has no
      * vote.
      */
-    const c = clueFor(w) ?? (authoredClues[w] ? '' : null);
-    if (c === null) continue;
+    /*
+     * The AUTHORED clue wins, and it is what the duplicate check sees.
+     *
+     * This used to fetch the dictionary clue first and only fall back to the
+     * authored one. So on a board like `melons`, the base resolved through the
+     * lemma `melon` and the row `melon` came back with the identical gloss —
+     * the dedupe fired and dropped the row, even though the editor had written
+     * two completely different clues for them. Same for aunt/auntie,
+     * uncle/uncles, pray/prayed: every singular-plural pair a theme wants.
+     */
+    const c = authoredClues[w] ?? clueFor(w);
+    if (c == null) continue;
     if (c) {
       const k = clueKey(c);
       if (usedClues.has(k)) continue;
@@ -445,9 +455,14 @@ for (const base of bases) {
     drop(`${commonRows}/${grid.length} common rows — needs ${floor}`);
     continue;
   }
-  // The base word is the board's centrepiece and its prize; it may not be a
-  // word nobody has met.
-  if (!popular.has(base)) {
+  /*
+   * The base word is the board's centrepiece and its prize, so it may not be a
+   * word nobody has met — unless a human chose it. `sauced`, `spiced` and
+   * `cameos` are all obviously known words that simply are not in popular.txt,
+   * which is a frequency list, not a judgement. Same rule as the answer band
+   * and the stem guard: a heuristic does not outvote the editor.
+   */
+  if (!isClaimed && !popular.has(base)) {
     drop('base word is not in common use');
     continue;
   }
