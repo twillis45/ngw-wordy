@@ -43,6 +43,23 @@ export type Progress = {
   seenIntro: boolean;
   /** How many warm-up puzzles have been cleared. */
   warmupsDone: number;
+  /**
+   * Day the player last took a backup, or null if never.
+   *
+   * Deliberately NOT carried inside a backup code: it describes this device's
+   * relationship to its backup, not the progress itself. Restoring onto a new
+   * phone leaves it null, which is correct — that phone has never been backed
+   * up, and the nudge should eventually say so.
+   */
+  lastBackup: string | null;
+  /**
+   * The backup card has been offered once, at the 7-day streak.
+   *
+   * The board set this moment precisely: not day one, because two seats delete
+   * on early friction, but "the first time the player has something to lose."
+   * Once, on a completion screen, never mid-board.
+   */
+  offeredBackup: boolean;
 };
 
 /** Stable identity — required as the server snapshot. */
@@ -101,6 +118,8 @@ export const EMPTY: Progress = Object.freeze({
   escalating: true,
   seenIntro: false,
   warmupsDone: 0,
+  lastBackup: null,
+  offeredBackup: false,
 });
 
 let snapshot: Progress = EMPTY;
@@ -338,6 +357,63 @@ export function touchStreak(p: Progress, today: Date): Progress {
  * account and does not pretend to be one.
  */
 const BACKUP_PREFIX = 'wordy1:';
+
+/**
+ * Replace everything with a restored snapshot.
+ *
+ * Deliberately REPLACES rather than merges. Merging two histories raises
+ * questions with no right answer — whose streak wins, do cleared boards union —
+ * and a player restoring onto a fresh device expects to see what they had, not
+ * a blend. The caller warns first.
+ *
+ * `lastBackup` is reset: this device has never been backed up, whatever the
+ * device the code came from had done.
+ */
+export function applyProgress(restored: Progress): Progress {
+  const next: Progress = { ...EMPTY, ...restored, lastBackup: null };
+  // Go through the same path an update does — set the snapshot, persist, and
+  // notify — so every useSyncExternalStore subscriber re-renders on the
+  // restored data instead of the board it was showing a moment ago.
+  snapshot = next;
+  hydrated = true;
+  if (typeof window !== 'undefined') write(next);
+  listeners.forEach((l) => l());
+  return next;
+}
+
+/** Record that the player has taken a backup today. */
+export function markBackedUp(today: Date): Progress {
+  const p = (n: number) => String(n).padStart(2, '0');
+  const key = `${today.getFullYear()}-${p(today.getMonth() + 1)}-${p(today.getDate())}`;
+  return update((prev) => ({ ...prev, lastBackup: key }));
+}
+
+/** The backup card has been shown; never offer it unprompted again. */
+export function markBackupOffered(): Progress {
+  return update((prev) => (prev.offeredBackup ? prev : { ...prev, offeredBackup: true }));
+}
+
+/**
+ * Should the game offer a backup right now?
+ *
+ * Two moments, both named by the board, and nothing in between:
+ *   - the session that first reaches a 7-day streak — "the first time the
+ *     player has something to lose"
+ *   - a backup older than 30 days while the streak has kept growing, which is
+ *     how the stats seat survives a phone upgrade she did not plan
+ *
+ * There is deliberately NO standing "not backed up" badge. Four seats rejected
+ * one outright — a permanent warning chip is exactly the anxiety the bedtime
+ * and switch-off-my-brain seats came here to avoid — and Grandmother's veto
+ * was withheld on condition it never ships.
+ */
+export function shouldOfferBackup(p: Progress, today: Date): boolean {
+  if (p.streak < 7) return false;
+  if (!p.lastBackup) return !p.offeredBackup;
+  const last = Date.parse(p.lastBackup);
+  if (Number.isNaN(last)) return false;
+  return today.getTime() - last > 30 * 86_400_000;
+}
 
 /** Everything worth carrying to another device, as a pasteable code. */
 export function exportProgress(): string {

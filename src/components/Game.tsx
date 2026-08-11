@@ -23,6 +23,12 @@ import {
 } from './Icon';
 import { feedback, setHapticsMuted, setMuted } from '@/lib/feedback';
 import {
+  backupLink,
+  codeFromHash,
+  decodeProgress,
+  encodeProgress,
+} from '@/lib/backup';
+import {
   applyTheme,
   effectiveTheme,
   getThemeServerSnapshot,
@@ -79,8 +85,10 @@ import {
   type PuzzleFile,
 } from '@/lib/game';
 import {
-  exportProgress,
-  importProgress,
+  applyProgress,
+  markBackedUp,
+  markBackupOffered,
+  shouldOfferBackup,
   addWord,
   configureMigration,
   getServerSnapshot,
@@ -109,6 +117,16 @@ import {
 } from '@/lib/hints';
 
 type Toast = { text: string; tone: 'good' | 'bad' | 'neutral'; id: number };
+
+/** "today" / "3 days ago" — plain, and never a countdown to a warning. */
+function sinceBackup(key: string): string {
+  const then = Date.parse(key);
+  if (Number.isNaN(then)) return 'a while ago';
+  const days = Math.floor((Date.now() - then) / 86_400_000);
+  if (days <= 0) return 'today';
+  if (days === 1) return 'yesterday';
+  return `${days} days ago`;
+}
 
 
 export default function Game({ data }: { data: PuzzleFile }) {
@@ -354,6 +372,48 @@ export default function Game({ data }: { data: PuzzleFile }) {
     toastId.current += 1;
     setToast({ text, tone, id: toastId.current });
   }, []);
+
+  /*
+   * Restore, and SAY WHAT CAME BACK.
+   *
+   * The board's bar for 10+ was a restore that "states plainly what came back
+   * and what didn't" — a silent partial restore is how a player concludes the
+   * feature is broken. So a code made against an older catalogue reports that
+   * it kept the streak and dropped the board list, rather than quietly
+   * appearing to work.
+   */
+  const restoreFrom = useCallback(
+    (code: string) => {
+      const result = decodeProgress(code, data);
+      if (!result.ok) {
+        say(result.reason, 'bad');
+        return false;
+      }
+      applyProgress(result.progress);
+      say(
+        result.catalogueMatched
+          ? `Restored — streak ${result.progress.streak}, ${result.boardsRestored} boards`
+          : `Restored your streak and settings. That code is from an older catalogue, so the board list did not come across.`,
+        'good'
+      );
+      return true;
+    },
+    [data, say]
+  );
+
+  /*
+   * A `#restore=` link opened on the new phone. One tap, no typing, no camera —
+   * the only transfer the board endorsed without argument.
+   *
+   * Runs once on mount and clears the hash immediately, so a reload does not
+   * re-apply a stale code over progress made since.
+   */
+  useEffect(() => {
+    const code = codeFromHash(window.location.hash);
+    if (!code) return;
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+    restoreFrom(code);
+  }, [restoreFrom]);
 
   /*
    * Announcements with no toast behind them.
@@ -1602,24 +1662,52 @@ export default function Game({ data }: { data: PuzzleFile }) {
               Back up your progress
             </h2>
             <p className="mt-1.5 mb-3 text-meta leading-relaxed text-text-muted">
-              There are no accounts. Your streak and everything you have cleared
-              live in this browser, so copy this code somewhere safe — it
-              restores them on another device.
+              There are no accounts. Your streak, your settings and everything
+              you have cleared live in this browser. Send yourself the link and
+              open it on the other phone — that is the whole transfer.
             </p>
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={async () => {
                   try {
-                    await navigator.clipboard.writeText(exportProgress());
-                    say('Backup code copied', 'good');
+                    await navigator.clipboard.writeText(
+                      backupLink(progress, data, window.location.origin)
+                    );
+                    markBackedUp(new Date());
+                    say('Link copied — send it to yourself', 'good');
                   } catch {
                     say('Could not copy — check clipboard permission', 'bad');
                   }
                 }}
                 className="liquid-interactive h-10 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
               >
-                Copy my code
+                Copy my link
+              </button>
+              {/* The one-time-unlock seats want an artifact they hold, not a URL
+                  living in a message thread. Same code, different vessel. */}
+              <button
+                type="button"
+                onClick={() => {
+                  try {
+                    const blob = new Blob([encodeProgress(progress, data)], {
+                      type: 'text/plain',
+                    });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'wordy-backup.txt';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    markBackedUp(new Date());
+                    say('Backup file saved', 'good');
+                  } catch {
+                    say('Could not save the file', 'bad');
+                  }
+                }}
+                className="liquid-interactive h-10 rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-secondary"
+              >
+                Save a file
               </button>
               <button
                 type="button"
@@ -1631,11 +1719,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
                     say('Paste blocked — allow clipboard access', 'bad');
                     return;
                   }
-                  const result = importProgress(code);
-                  say(
-                    result.ok ? 'Progress restored' : result.reason,
-                    result.ok ? 'good' : 'bad'
-                  );
+                  restoreFrom(code);
                 }}
                 className="liquid-interactive h-10 rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-secondary"
               >
@@ -1646,6 +1730,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 what is here; merging two histories has no right answer. */}
             <p className="mt-2.5 text-kicker leading-snug text-text-muted">
               Restoring replaces the progress in this browser.
+              {progress.lastBackup ? ` Last backup ${sinceBackup(progress.lastBackup)}.` : ''}
             </p>
           </div>
         </Sheet>
@@ -1675,6 +1760,22 @@ export default function Game({ data }: { data: PuzzleFile }) {
             if (warmup !== null) advanceWarmup();
             setShowComplete(false);
           }}
+          offerBackup={shouldOfferBackup(progress, today)}
+          onBackup={async () => {
+            try {
+              await navigator.clipboard.writeText(
+                backupLink(progress, data, window.location.origin)
+              );
+              markBackedUp(new Date());
+              markBackupOffered();
+              say('Link copied — send it to yourself', 'good');
+            } catch {
+              say('Could not copy — check clipboard permission', 'bad');
+            }
+          }}
+          /* "Not now" is final for this streak, or the offer becomes the nag
+             four seats rejected. It can only return after 30 days. */
+          onDismissBackup={() => markBackupOffered()}
         />
       )}
     </main>
@@ -1958,6 +2059,9 @@ function CompleteSheet({
   onShare,
   onNext,
   onClose,
+  offerBackup,
+  onBackup,
+  onDismissBackup,
 }: {
   rank: string;
   score: number;
@@ -1971,6 +2075,9 @@ function CompleteSheet({
   onShare: () => void;
   onNext: () => void;
   onClose: () => void;
+  offerBackup: boolean;
+  onBackup: () => void;
+  onDismissBackup: () => void;
 }) {
   /*
    * This is the only sheet in the app that was not a dialog.
@@ -2030,6 +2137,40 @@ function CompleteSheet({
         <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words relative rounded-xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3 text-center text-meta leading-relaxed text-text-secondary">
           {preview}
         </pre>
+
+        {/*
+         * The backup offer, at the ONE moment the board named: the end of the
+         * session that first reaches a seven-day streak — "the first time the
+         * player has something to lose." Never on day one, because two seats
+         * delete on early friction, and never mid-board. It appears here, once,
+         * attached to the number it is protecting.
+         */}
+        {offerBackup && (
+          <div className="mt-4 relative rounded-xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3.5">
+            <p className="text-meta font-semibold leading-snug text-text-primary">
+              {streak} days. This lives only on this phone.
+            </p>
+            <p className="mt-1 text-kicker leading-snug text-text-muted">
+              Send yourself a link and it survives a new phone or a cleared browser.
+            </p>
+            <div className="mt-2.5 flex gap-2">
+              <button
+                type="button"
+                onClick={onBackup}
+                className="liquid-interactive h-10 flex-1 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
+              >
+                Copy my link
+              </button>
+              <button
+                type="button"
+                onClick={onDismissBackup}
+                className="liquid-interactive h-10 rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-secondary"
+              >
+                Not now
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Forward motion is the primary action — sharing is what you do
             once, playing on is what brings you back. */}
