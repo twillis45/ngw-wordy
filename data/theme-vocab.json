@@ -1,139 +1,110 @@
 {
   "_doc": "The language of each theme, in three tiers. `named` is what a person inside that world recognises on sight — dishes, dances, games, acts, records, roles, rites. `said` is what they actually say: jargon, verbs, terms of art. `voice` is supporting texture and MAY NEVER BE A BOARD'S REASON TO EXIST. Filtered at scoring time to ENABLE1 + popular + 3..6 letters AND NO REPEATED LETTER, because a six-distinct-letter dial cannot spell `cool`, `greens` or `grill`.",
-
   "_signoff": "Reviewed by the cultural bench 2026-08-11, which is the condition they set and which had not been met: 'sub-wing sign-off on the vocabulary BEFORE scoring. No base scoring against an unreviewed list.' Their additions are applied here. SIGNED OFF: rnb90s, texas. SIGNED OFF WITH ADDITIONS: cookout, fishfry, reunion, sunday, barbershop, salon, church, spades, steppers, juneteenth, caribbean, gogo (capped at 12). REFUSED and re-listed from their notes: hbcu, homecoming, carolina, kitchen, sitcom, chicago. DELETED: westcoast, which they blocked twice as having no vernacular of its own.",
-
   "_bar": "The bar is NOT a flat count. The bench rejected 3-of-5 as written: three `voice` hits makes a word-list, not a scene, and `voice` was defined as never being a board's reason to exist. A board must carry at least one `named` row AND at least one `said` row; `voice` is texture and counts toward nothing. Their clue-level test is one no machine can run: do the six rows describe ONE moment? Six correct nouns from six different afternoons fails at five-of-five.",
-
   "_housekeeping": "Entries the filter silently deletes have been stripped — `bonnet`, `dryer`, `twist`, `greens`, `cornrow`, `relaxer`, `probate`, `syndication` and others. They inflated the apparent size of lists that were actually starving, which is how `hbcu` looked stocked while scoring zero.",
-
   "rnb90s": {
     "acts": "silk case next jade guy mint intro brandy usher faith vogue brown price sweat jam swing soul theory faces subway ideal after bone spice method ghost face foxy jay rock tribe quest brand jungle salt rage kane rob base black",
     "titles": "juicy gin juice dear change cream neck brain jump around anthem ice sound police slam ready softly factor nice slow pony hot rain sock crush mack tour west east coast mix tape love weak freak angel candy lady stay down red light road end step thing cry count water runs dry hold mind real first night crazy sexy life sugar time number mine say name honey",
     "voice": "run belt croon note alto tenor sang sung sing duet trio lead echo hook verse bridge chorus vamp fade beat bars deck radio dial disc rink skate party floor cruise choir hymn organ praise quiet storm smooth satin lace demo wrote crew flow rhyme"
   },
-
   "hbcu": {
-    "_note": "REFUSED then re-listed. The bench was blunt: forty-plus filter-legal words from the yard, the band and Greek life were absent, so the zero was the list failing the institution, not the filter. Their caution stands — shako/plume/drumline must not become the whole pack, or the game has published 'HBCU = marching band'.",
-    "named": "frat delta sigma omega zeta iota stole sash mace grad dorm quad pond plot cane yard band step stroll dean chapel queen crown float alum tiger bison hornet shako plume tuba snare chops",
-    "said": "bid line made cross stomp strut chant march dues exam study prof major minor hall pledge greek clash funk tempo vamp neophyte crossed hazed",
-    "voice": "song king boot shoe cape stand seat bus ride game dance party class fee book night gate lawn tower green"
+    "_note": "REFUSED then re-listed. The bench was blunt: forty-plus filter-legal words from the yard, the band and Greek life were absent, so the zero was the list failing the institution, not the filter. Their caution stands — shako/plume/drumline must not become the whole pack, or the game has published 'HBCU = marching band'. MERGED WITH HOMECOMING on the game wing's recommendation that they are the same weekend, and because separately each was starving: hbcu offered 8 candidates at 2-of-5 with bases like MORBID and NIMROD, homecoming 7. Together the yard, the band, Greek life and the game are one vocabulary, which is also how a student describes the weekend.",
+    "named": "frat delta sigma omega zeta iota stole sash mace grad dorm quad pond plot cane yard band step stroll dean chapel queen crown float alum tiger bison hornet shako plume tuba snare chops float parade band step queen crown court tailgate alum alumni escort gown tux mum ball drum plume shako sash bench field rival",
+    "said": "bid line made cross stomp strut chant march dues exam study prof major minor hall pledge greek clash funk tempo vamp neophyte crossed hazed game class year badge gate seat stand score half time show song march won lost lined packed hosted crowned voted punt toss block hotel",
+    "voice": "song king boot shoe cape stand seat bus ride game dance party class fee book night gate lawn tower green tent lot grill shirt tie suit hat bus room yard dance party night music"
   },
-
   "church": {
     "_note": "The best `named` tier of any non-music list, and a hole the church-mothers seat called a dignity finding: NO HOMEGOING REGISTER. The Black church's most-attended service is a funeral, and the vocabulary did not know it existed.",
     "named": "choir robe organ hymn hymnal pew aisle usher deacon elder pastor sermon amen praise shout tithe altar psalm anthem mother board bishop saint angel lamb cross grace mercy glory faith repast wake eulogy casket nurse alms",
     "said": "offering plate fan glove program prayer verse solo basement dinner sang testified caught received saved shouted swayed clapped fanned hushed rose knelt tarry moan hum sway clap march preach teach sing pray kneel stand rise sow reap harvest seed blessed anointed ordained called sent",
     "voice": "piano song book page hat seat bell candle bus tea white door step water wine bread table feast host word"
   },
-
   "cookout": {
     "named": "spade bid renege boston ribs wings links slaw beans mac yams peach pound cake punch potato uncle aunt cousin auntie slide grill weber brisket tips drums flats thigh patty dogs brats corn husk melon chips dip tea jug cobbler wafer velvet lemon soda pop kool bones cupid folks elder",
     "said": "plate plates fixed heap seconds burnt done rare sauce rub mop baste sear char smoke pit tongs foil apron cooler ice chair tent yard shade heat coals ash spark grate rack flip turn rest slice pull chop taste season brine grease bone dry wet mild sweet tangy hot cold cup can bag tray bowl bake fried grown aux cord juice half dozen amen gnats",
     "voice": "music song dance kids pool hose card table drink napkin wipe bug bite dusk late fire wood chunk vent lid speaker line float sunset"
   },
-
   "kitchen": {
     "_note": "REFUSED as a Williams-Sonoma drawer — `simmer / braise / whisk / zest` is a culinary-school verb list and nothing in it said WHOSE kitchen. Re-listed around the register the Twitty seat asked for: pot liquor, the grease can, seasoning by eye.",
     "named": "skillet iron dutch crock roux gravy lard grits pone mush liquor drips apron pyrex",
     "said": "pinch dab eye sop taste season sift scald knead mash stir pour boil bake fry roast cure brine simmer sear cover warm rest save fold strain drain rinse thaw",
     "voice": "pot pan lid stove oven burner sink knife spoon fork bowl cup salt sugar flour grease heat timer towel drawer shelf jar can bag box dough batter oil"
   },
-
   "sitcom": {
     "_note": "REFUSED as production-crew jargon — `pilot / rerun / tape / cued / bombed` is a call sheet. The living-room seat watches the syndication marathon, not the crew, so the list is re-centred on what a viewer sees and says.",
     "named": "rerun laugh track theme song cast star guest studio couch dial knob antenna",
     "said": "show block night week watch tune seat set act open close title card joke gag plot line role scene aired taped host crew light stage film reel",
     "voice": "screen clock hour slot home house family dad mom kid uncle aunt"
   },
-
   "sunday": {
     "named": "grace blessing roast rice gravy yam ham macaroni cornbread roll cobbler cake tea platter napkin elder mother deacon okra collards candied peach banana",
     "said": "dinner second helping fixed plate leftover wrapped saved late nap served blessed passed bowed hushed waited seated carved sliced ladled",
     "voice": "table glass dish bowl fork spoon foil chair seat hat suit kitchen sink oven pot pan lid cup ice"
   },
-
   "barbershop": {
     "named": "fade taper lineup razor blade shears clippers guard cape talc crown nape beard goatee caesar afro waves durag",
     "said": "edge shave neck trim shape buzz bald part line cut next chair waiting turn boss tip talk debate argue bet swept lined faded low high skin bump itch grow booked walked sat paid tipped clipped shaped brushed oiled",
     "voice": "mirror sink comb oil towel hot shop radio game money cash dollar hair wait floor seat clock window door"
   },
-
   "salon": {
     "_note": "Six entries the filter deletes were stripped on the bench's instruction — bonnet, dryer, twist, roller, cornrow, relaxer were dead weight making a starving list look stocked.",
     "named": "braid coils curls knots bantu faux wig lace glue scarf satin silk locs weave track stylist scalp nape crown",
     "said": "perm sewin press curl wrap wash dry set part sew clip pin book rent standing touch grow lay edge slick blow flat trim thin dye tint tone rinse deep laid shed double tangle oils",
     "voice": "hair cap chair mirror sink bowl cape towel rod gel cream shop owner polish nail hand seat time"
   },
-
   "spades": {
     "_note": "Honestly small, and the bench said so rather than padding it. Four additions only.",
     "named": "spade renege boston nil blind partner trump trick deck ace king queen jack joker hoyle",
     "said": "bid deal cut shuffle book books bags bid set run point score talk trash cheat watch table under over duck void lead played tossed slammed counted misdeal",
     "voice": "card pad pen chair team joke laugh drink ice cup seat heart club board rules turn"
   },
-
   "steppers": {
     "_note": "The list had no clothes, and steppin' is a dress code.",
     "named": "step glide pivot sway turn spin lead follow chicago detroit bop hustle fedora gator brim",
     "said": "line dance floor slide count beat quick slow hold hand grip set teach class walk rock cross catch guide frame close open turned dip pocket grown",
     "voice": "song music heat party hall club shoe heel sole suit dress hat crowd chair mirror night lights"
   },
-
-  "homecoming": {
-    "_note": "REFUSED then re-listed from the bench's own word set.",
-    "named": "float parade band step queen crown court tailgate alum alumni escort gown tux mum ball drum plume shako sash bench field rival",
-    "said": "game class year badge gate seat stand score half time show song march won lost lined packed hosted crowned voted punt toss block hotel",
-    "voice": "tent lot grill shirt tie suit hat bus room yard dance party night music"
-  },
-
   "juneteenth": {
     "_note": "Scored ZERO after the bench's other additions landed, and the diagnosis is the one they gave in general: its `named` tier kept 5 of 18 because Juneteenth's identity IS proper nouns and events — Galveston, Granger, General Order No. 3, emancipation, jubilee, the parade — and every one of them dies to a 3-6-letter no-repeated-letter filter. Rebuilt from what survives, which is the food, the colour and the date. `red` moves to `named` because red food and drink is the day's recognised signifier, not background texture.",
     "named": "june sixth red flag star texas band march cake punch cream soda quilt elder hymn drum horn",
     "said": "drink read date year child park marked raised sang prayed gathered served poured wore told taught freed",
     "voice": "cup ice grill tent chair table news paper hat shirt bead dance heat sun shade plate meat side story"
   },
-
   "fishfry": {
     "named": "catfish whiting perch buffalo porgy cornmeal batter hush puppy slaw white bread deacon usher fellowship hall basement tithe croaker mullet snapper filet",
     "said": "fry fried grease skillet fryer flake crisp golden dredge season plate tray paper order line ticket dinner sauce mild lemon cash box fund roof sale plates fixed dozen scoop dip drain rack basket bone flip turn hot pepper vinegar salt sold served bagged wrapped stacked",
     "voice": "heat oil pan sink towel apron kitchen menu price side roll cup drink table chair hall church sign card door change"
   },
-
   "reunion": {
     "named": "family kin cousin elder branch tree roster quilt grave plot july park banquet raffle talent toast potluck lineage matriarch homestead",
     "said": "shirt color hotel block bus program dues badge tag name descend marry buried named after side born raised kinfolk gather host greet hug seat sing pray eat swap tale claim trace elder oldest young baby",
     "voice": "photo album chart page book letter mail invite prize vote hall date year shuttle games rules list"
   },
-
   "carolina": {
     "_note": "REFUSED as Lexington-vs-Eastern sauce discourse only — the Carolinas are also Gullah-Geechee rice country, and leaving that out was flattening.",
     "named": "hog shoat swine whole pit vinegar pepper mop crackling hickory oak barrel shovel slaw perlo grits pone rice okra shrimp liver mush lard cider",
     "said": "sauce ash coals chop pull skin salt heat cook smoke turn tent field church basted tended shoveled buried wrapped sliced weighed cure brine boil",
     "voice": "bun tray plate money ticket box pan lid table night wood logs fire tongs"
   },
-
   "texas": {
     "_note": "SIGNED OFF, with the bench's condition that the blurb name whose tradition it is, including the Black pitmasters Central Texas markets were built on.",
     "named": "brisket post oak beef sausage bark burnt ends butcher market pit fat lockhart hill flat point ring",
     "said": "rib link smoke salt pepper paper tray pickle onion bread scale pound trim rest cook weighed sliced wrapped smoked tended stoked fired hauled queued waited sold",
     "voice": "red soda cooler fence yard fire coal wood log ranch boot hat heat line dust sun table bench"
   },
-
   "chicago": {
     "_note": "REFUSED as thin, and for letting rib tips stand in for a city that also means steppers, house, and the Stroll.",
     "named": "tips rib mild sauce link hickory maxwell polish stroll juke house step wax crate",
     "said": "fry bag window glass south side permit cart corner block bus train lake wind cold sliced wrapped ordered slid paid mix set dance floor grown",
     "voice": "park lot meter grill coat porch alley cousin card music speaker hot night smoke"
   },
-
   "caribbean": {
     "_note": "Signed off with additions ONLY on the bench's condition that the blurb says this is a diaspora sampler, or the theme is renamed to one island. Eight-plus nations in one bucket is the flattening finding.",
     "named": "jerk scotch curry goat oxtail plantain ackee saltfish roti doubles callaloo festival soca calypso steel pan dutchie escovitch bammy",
     "said": "rice peas bread pot spoon lime rum ginger cane market island flag yard drum coal pepper season stewed jerked curried browned",
     "voice": "music bass tent flat food shop heat sun cup plate"
   },
-
   "gogo": {
     "_note": "The one theme where the bench said the GAME is partly at fault: go-go is a rhythm and a call, and its proper nouns — Chuck Brown, Rare Essence, Backyard, Junkyard, TCB — are exactly what the filter deletes. CAPPED AT 12 boards. Their standing answer: a thin accurate pack is not an insult, a padded one is, and a 20-board pack where 14 boards are about nothing tells a DC player their music had nothing to say.",
     "named": "crank pocket socket conga roto bell drums junk beat bounce pause chant call roll joint moe slim shorty",

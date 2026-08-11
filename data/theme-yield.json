@@ -373,7 +373,7 @@
     "owner": "cookout"
    },
    {
-    "base": "denial",
+    "base": "nailed",
     "ideas": 4,
     "known": 2,
     "weight": 7,
@@ -573,8 +573,7 @@
     "rows": [
      "rob:acts",
      "red:titles"
-    ],
-    "owner": "church"
+    ]
    },
    {
     "base": "boring",
@@ -757,8 +756,7 @@
     "rows": [
      "usher:acts",
      "red:titles"
-    ],
-    "owner": "church"
+    ]
    },
    {
     "base": "salute",
@@ -768,8 +766,7 @@
     "rows": [
      "salt:acts",
      "east:titles"
-    ],
-    "owner": "church"
+    ]
    },
    {
     "base": "scream",
@@ -1686,6 +1683,323 @@
   ]
  },
  {
+  "id": "hbcu",
+  "vocab": 86,
+  "shipped": 25,
+  "supported": 28,
+  "boards": [
+   {
+    "base": "hostel",
+    "ideas": 5,
+    "known": 3,
+    "weight": 9,
+    "rows": [
+     "stole:named",
+     "lost:said",
+     "hotel:said",
+     "shoe:voice",
+     "lot:voice"
+    ],
+    "owner": "reunion"
+   },
+   {
+    "base": "banged",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "band:named",
+     "dean:named",
+     "badge:said"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "dreamy",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "yard:named",
+     "made:said",
+     "year:said"
+    ]
+   },
+   {
+    "base": "nailed",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "dean:named",
+     "line:said",
+     "lined:said"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "sowing",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "gown:named",
+     "song:said",
+     "won:said"
+    ],
+    "owner": "gogo"
+   },
+   {
+    "base": "aspect",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "step:named",
+     "seat:said",
+     "cape:voice"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "camped",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "mace:named",
+     "made:said",
+     "cape:voice"
+    ]
+   },
+   {
+    "base": "closet",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "stole:named",
+     "lost:said",
+     "lot:voice"
+    ]
+   },
+   {
+    "base": "floats",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "float:named",
+     "lost:said",
+     "lot:voice"
+    ],
+    "owner": "homecoming"
+   },
+   {
+    "base": "pilots",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "plot:named",
+     "lost:said",
+     "lot:voice"
+    ]
+   },
+   {
+    "base": "amends",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "dean:named",
+     "made:said"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "barged",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "grad:named",
+     "badge:said"
+    ],
+    "owner": "reunion"
+   },
+   {
+    "base": "bowing",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "gown:named",
+     "won:said"
+    ]
+   },
+   {
+    "base": "calmed",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "mace:named",
+     "made:said"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "carney",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "cane:named",
+     "year:said"
+    ]
+   },
+   {
+    "base": "corset",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "escort:named",
+     "score:said"
+    ]
+   },
+   {
+    "base": "creamy",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "mace:named",
+     "year:said"
+    ]
+   },
+   {
+    "base": "crowns",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "crown:named",
+     "won:said"
+    ],
+    "owner": "homecoming"
+   },
+   {
+    "base": "dearly",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "yard:named",
+     "year:said"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "deltas",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "delta:named",
+     "seat:said"
+    ],
+    "owner": "gogo"
+   },
+   {
+    "base": "faster",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "frat:named",
+     "seat:said"
+    ],
+    "owner": "sunday"
+   },
+   {
+    "base": "gibson",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "bison:named",
+     "song:said"
+    ]
+   },
+   {
+    "base": "grated",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "grad:named",
+     "gate:said"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "homage",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "omega:named",
+     "game:said"
+    ]
+   },
+   {
+    "base": "images",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "sigma:named",
+     "game:said"
+    ]
+   },
+   {
+    "base": "pasted",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "step:named",
+     "seat:said"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "stance",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "cane:named",
+     "seat:said"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "sundae",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "dean:named",
+     "dues:said"
+    ],
+    "owner": "hbcu"
+   }
+  ]
+ },
+ {
   "id": "juneteenth",
   "vocab": 43,
   "shipped": 24,
@@ -1991,7 +2305,7 @@
     "owner": "spades"
    },
    {
-    "base": "denial",
+    "base": "nailed",
     "ideas": 3,
     "known": 3,
     "weight": 7,
@@ -2126,7 +2440,7 @@
  {
   "id": "church",
   "vocab": 69,
-  "shipped": 19,
+  "shipped": 9,
   "supported": 15,
   "boards": [
    {
@@ -2150,7 +2464,8 @@
      "robe:named",
      "rose:said",
      "sow:said"
-    ]
+    ],
+    "owner": "church"
    },
    {
     "base": "giants",
@@ -2161,7 +2476,8 @@
      "saint:named",
      "sang:said",
      "sing:said"
-    ]
+    ],
+    "owner": "church"
    },
    {
     "base": "powers",
@@ -2172,7 +2488,8 @@
      "pew:named",
      "rose:said",
      "sow:said"
-    ]
+    ],
+    "owner": "church"
    },
    {
     "base": "mouths",
@@ -2196,7 +2513,7 @@
      "sang:said",
      "song:voice"
     ],
-    "owner": "sunday"
+    "owner": "church"
    },
    {
     "base": "angels",
@@ -2206,7 +2523,8 @@
     "rows": [
      "angel:named",
      "sang:said"
-    ]
+    ],
+    "owner": "church"
    },
    {
     "base": "boxers",
@@ -2237,7 +2555,8 @@
     "rows": [
      "nurse:named",
      "rise:said"
-    ]
+    ],
+    "owner": "church"
    },
    {
     "base": "morgan",
@@ -2342,17 +2661,6 @@
     "owner": "gogo"
    },
    {
-    "base": "denial",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "lead:named",
-     "line:said"
-    ],
-    "owner": "hbcu"
-   },
-   {
     "base": "dingle",
     "ideas": 2,
     "known": 2,
@@ -2383,6 +2691,17 @@
      "slide:said"
     ],
     "owner": "fishfry"
+   },
+   {
+    "base": "nailed",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "lead:named",
+     "line:said"
+    ],
+    "owner": "hbcu"
    },
    {
     "base": "ponies",
@@ -2540,17 +2859,6 @@
     ]
    },
    {
-    "base": "denial",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "dial:named",
-     "line:said"
-    ],
-    "owner": "hbcu"
-   },
-   {
     "base": "hugest",
     "ideas": 2,
     "known": 2,
@@ -2559,6 +2867,17 @@
      "guest:named",
      "set:said"
     ]
+   },
+   {
+    "base": "nailed",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "dial:named",
+     "line:said"
+    ],
+    "owner": "hbcu"
    },
    {
     "base": "racket",
@@ -2595,7 +2914,7 @@
  {
   "id": "sunday",
   "vocab": 38,
-  "shipped": 19,
+  "shipped": 18,
   "supported": 11,
   "boards": [
    {
@@ -2981,109 +3300,6 @@
   ]
  },
  {
-  "id": "hbcu",
-  "vocab": 56,
-  "shipped": 25,
-  "supported": 9,
-  "boards": [
-   {
-    "base": "camped",
-    "ideas": 3,
-    "known": 2,
-    "weight": 6,
-    "rows": [
-     "mace:named",
-     "made:said",
-     "cape:voice"
-    ]
-   },
-   {
-    "base": "amends",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "dean:named",
-     "made:said"
-    ],
-    "owner": "hbcu"
-   },
-   {
-    "base": "bandit",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "band:named",
-     "bid:said"
-    ]
-   },
-   {
-    "base": "calmed",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "mace:named",
-     "made:said"
-    ],
-    "owner": "spades"
-   },
-   {
-    "base": "denial",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "dean:named",
-     "line:said"
-    ],
-    "owner": "hbcu"
-   },
-   {
-    "base": "dreamy",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "yard:named",
-     "made:said"
-    ]
-   },
-   {
-    "base": "morbid",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "dorm:named",
-     "bid:said"
-    ]
-   },
-   {
-    "base": "nimrod",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "dorm:named",
-     "minor:said"
-    ]
-   },
-   {
-    "base": "sundae",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "dean:named",
-     "dues:said"
-    ],
-    "owner": "hbcu"
-   }
-  ]
- },
- {
   "id": "salon",
   "vocab": 56,
   "shipped": 22,
@@ -3275,91 +3491,6 @@
      "iron:named",
      "rinse:said"
     ]
-   }
-  ]
- },
- {
-  "id": "homecoming",
-  "vocab": 45,
-  "shipped": 21,
-  "supported": 7,
-  "boards": [
-   {
-    "base": "sowing",
-    "ideas": 3,
-    "known": 3,
-    "weight": 7,
-    "rows": [
-     "gown:named",
-     "song:said",
-     "won:said"
-    ],
-    "owner": "gogo"
-   },
-   {
-    "base": "floats",
-    "ideas": 3,
-    "known": 2,
-    "weight": 6,
-    "rows": [
-     "float:named",
-     "lost:said",
-     "lot:voice"
-    ],
-    "owner": "homecoming"
-   },
-   {
-    "base": "aspect",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "step:named",
-     "seat:said"
-    ],
-    "owner": "rnb90s"
-   },
-   {
-    "base": "banged",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "band:named",
-     "badge:said"
-    ],
-    "owner": "hbcu"
-   },
-   {
-    "base": "bowing",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "gown:named",
-     "won:said"
-    ]
-   },
-   {
-    "base": "corset",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "escort:named",
-     "score:said"
-    ]
-   },
-   {
-    "base": "crowns",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "crown:named",
-     "won:said"
-    ],
-    "owner": "homecoming"
    }
   ]
  },

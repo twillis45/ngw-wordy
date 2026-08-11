@@ -85,3 +85,11 @@ famine
 starve
 hunger
 beggar
+
+# offered as HBCU prize words, which is the yard and the band — not this
+morbid
+nimrod
+bandit
+denial
+convict
+expel

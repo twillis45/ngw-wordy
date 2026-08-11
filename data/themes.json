@@ -38,8 +38,9 @@
   },
   {
    "id": "hbcu",
-   "name": "HBCU",
-   "blurb": "The yard, the band, the homecoming."
+   "name": "Homecoming Weekend",
+   "blurb": "The band, the yard, the stroll and the step show — and the graduates who drove six hours to stand in the same spot.",
+   "category": "THE YARD"
   },
   {
    "id": "barbershop",
@@ -83,11 +84,6 @@
    "name": "Sunday Service",
    "blurb": "The organ, the fan, the mothers in white, and the part of the service that is not on the program.",
    "category": "THE SANCTUARY"
-  },
-  {
-   "id": "homecoming",
-   "name": "Homecoming Weekend",
-   "blurb": "A hotel sold out since March, a lot full by Thursday, and a game nobody watches past the half."
   },
   {
    "id": "steppers",
@@ -170,46 +166,6 @@
     "lash"
    ],
    "scene": "The sweetened track under every joke"
-  },
-  {
-   "base": "campus",
-   "theme": "hbcu",
-   "clues": {
-    "campus": "The Yard. The band cuts through and everybody has somewhere to be.",
-    "camps": "August. A week before anybody else arrives, learning the drill.",
-    "caps": "Thrown straight up on the lawn, and not all of them come back down.",
-    "maps": "Useless by October. You cut the same diagonal as everyone else.",
-    "scam": "The table by the union with the free t-shirt and the credit form.",
-    "cap": "Worn backwards, or what somebody calls your story when it stretches."
-   },
-   "prefer": [
-    "camps",
-    "caps",
-    "maps",
-    "scam",
-    "cap"
-   ],
-   "scene": "The Yard, and your first week on it"
-  },
-  {
-   "base": "alumni",
-   "theme": "hbcu",
-   "clues": {
-    "alumni": "Graduated in '04, still knows every word of the fight song.",
-    "mail": "The thick envelope. You knew from the weight before you opened it.",
-    "main": "The one street everybody parks along the whole homecoming weekend.",
-    "aim": "What the guidance counselor asked about and you answered too small.",
-    "nail": "To land it exactly, the way the drumline hits the downbeat.",
-    "man": "What your father called you the first time he meant it."
-   },
-   "prefer": [
-    "mail",
-    "main",
-    "aim",
-    "nail",
-    "man"
-   ],
-   "scene": "Class of '04, back every homecoming"
   },
   {
    "base": "chairs",
@@ -829,26 +785,6 @@
     "may"
    ],
    "scene": "The shirt, the program, the committee"
-  },
-  {
-   "base": "hotels",
-   "theme": "reunion",
-   "clues": {
-    "hotels": "The block she negotiated in January, and the cousins who booked across the road anyway.",
-    "host": "The branch whose turn it is, and who has been reminding everybody since last summer.",
-    "lost": "The suitcase that went to Atlanta while its owner went on to Memphis.",
-    "shoe": "Kicked off under the banquet chair by ten, carried out to the car by eleven.",
-    "stole": "Across her shoulders for the program photograph, and over the chair by dessert.",
-    "hotel": "Two queens on the third floor, and the waffle iron in the lobby is running by six."
-   },
-   "prefer": [
-    "host",
-    "lost",
-    "shoe",
-    "stole",
-    "hotel"
-   ],
-   "scene": "The room block, and who booked around it"
   },
   {
    "base": "budget",
@@ -1951,426 +1887,6 @@
    "scene": "Making a bid you had no business making"
   },
   {
-   "base": "crowns",
-   "theme": "homecoming",
-   "clues": {
-    "crowns": "Two of them in the case: this year's and the one the chapter had made back in 1969.",
-    "crown": "Rhinestones on loan from the same shop since 1988, and it has never once fit anybody.",
-    "owns": "The alumnae chapter does, not the school, and they bring it in a locked case.",
-    "worn": "Her mother's pearls, out on loan for the night and back in the box by Sunday.",
-    "rows": "The front three are held for the alumnae chapter, and nobody tests that.",
-    "won": "What her platform did in the campus vote. Turnout, not the gown."
-   },
-   "prefer": [
-    "crown",
-    "owns",
-    "worn",
-    "rows",
-    "won"
-   ],
-   "scene": "Who the queen actually belongs to"
-  },
-  {
-   "base": "floats",
-   "theme": "homecoming",
-   "clues": {
-    "floats": "The parade has four, and two of them are a flatbed with crepe paper and a good speaker.",
-    "float": "Chicken wire, tissue paper, and three nights in the ag barn before Saturday.",
-    "flats": "She changes into them at the corner of Third, heels in her hand, still marching.",
-    "last": "The engineering club's entry rolls at the end every year, and it has never broken down.",
-    "lost": "The little cousin, for four whole minutes, between the fire truck and the pep squad.",
-    "lot": "Tailgate spaces sold by the space, and one family has held the corner since 1988."
-   },
-   "prefer": [
-    "float",
-    "flats",
-    "last",
-    "lost",
-    "lot"
-   ],
-   "scene": "The parade, built in the ag barn"
-  },
-  {
-   "base": "stride",
-   "theme": "homecoming",
-   "clues": {
-    "stride": "Nine people hit the boards at once and the sound gets there before the movement does.",
-    "rites": "The parts of the show that never change, because the chapter of 1971 is watching.",
-    "tried": "Out for the line four times before they took her, and now she calls the cadence.",
-    "tires": "The bus rolled in on four bald ones from a chapter three states over.",
-    "tier": "The upper level fills first, because that is where you can actually see the formations.",
-    "ride": "The cymbal the drumline leans on all the way down the parade route."
-   },
-   "prefer": [
-    "rites",
-    "tried",
-    "tires",
-    "ride",
-    "tier"
-   ],
-   "scene": "The band, the line, the formations"
-  },
-  {
-   "base": "staged",
-   "theme": "homecoming",
-   "clues": {
-    "staged": "The coronation looked effortless. Three rehearsals, a lighting cue sheet, and her clipboard.",
-    "stage": "Built Thursday in the gym, struck Sunday, and the risers go back to the music department.",
-    "gates": "Open at ten. The line for the field house started forming somewhere around six.",
-    "sage": "The retired dean of students, eighty-four, who still gets the first word at the luncheon.",
-    "seat": "Section F, row 12. The same four people have held it since the Clinton administration.",
-    "tag": "Every cooler in the lot has one on it with a chapter name and a phone number."
-   },
-   "prefer": [
-    "stage",
-    "tag",
-    "gates",
-    "sage",
-    "seat"
-   ],
-   "scene": "The coronation, and the clipboard"
-  },
-  {
-   "base": "gather",
-   "theme": "homecoming",
-   "clues": {
-    "gather": "Nobody organizes it. By nine Friday the parking lot behind the gym is simply full.",
-    "heart": "Where the weekend actually lives: forty folding chairs behind a church-school gym.",
-    "great": "The class of '74 says theirs was the last real one. The class of '89 says the same.",
-    "hear": "You can tell whose band it is from a mile off, and the small school's is thirty people.",
-    "tear": "In her eye when the roll of departed classmates is read at the Sunday service.",
-    "gate": "Twenty dollars at the field house, cash, and the line wraps past the bookstore."
-   },
-   "prefer": [
-    "heart",
-    "great",
-    "hear",
-    "tear",
-    "gate"
-   ],
-   "scene": "The lot behind the gym, unorganized"
-  },
-  {
-   "base": "loathe",
-   "theme": "homecoming",
-   "clues": {
-    "loathe": "What she does to the third-floor ice machine, and she books the same room anyway.",
-    "hotel": "Sold out since March. The overflow is forty minutes up the interstate in Meridian.",
-    "late": "Check-in is three. The lobby is a full reunion by noon and the desk gave up arguing.",
-    "oath": "The one the new chapter officers take at the alumnae breakfast, hands flat on the table.",
-    "tale": "The one about the '81 bus breaking down, and it grows a new detail every October.",
-    "lot": "Gravel behind the field house, and the same families park in the same corner every year."
-   },
-   "prefer": [
-    "hotel",
-    "late",
-    "lot",
-    "oath",
-    "tale"
-   ],
-   "scene": "Rooms sold out since March"
-  },
-  {
-   "base": "clothe",
-   "theme": "homecoming",
-   "clues": {
-    "clothe": "What four generations of one family do for Saturday, in the same two colors.",
-    "cloth": "Vinyl, school colors, clipped to the folding table because the wind comes off the field.",
-    "hole": "In the '94 shirt, under the arm, and she wears it every single October regardless.",
-    "lot": "Gate C. Space assignments by chapter, and the map went out in September.",
-    "toe": "Her heel sank in the grass, so she is walking the rest of the route on the front of one foot.",
-    "hotel": "Booked in January for October, and the block downtown was gone by the second week of February."
-   },
-   "prefer": [
-    "cloth",
-    "hotel",
-    "hole",
-    "lot",
-    "toe"
-   ],
-   "scene": "Four generations in the same colors"
-  },
-  {
-   "base": "editor",
-   "theme": "homecoming",
-   "clues": {
-    "editor": "Nineteen years on the alumni magazine, and she knows which photographs start fights.",
-    "redo": "The cover, twice, because the first one cropped the small school's band right out.",
-    "riot": "The comment section under the parade photographs, and she moderates it personally.",
-    "rode": "Twelve hours from Houston in a van with four classmates and one good playlist.",
-    "tore": "The '68 banner, on the fence, and the archivist has already asked for the pieces.",
-    "tie": "Black, clip-on for the ones who never learned, and the ball starts at nine."
-   },
-   "prefer": [
-    "tie",
-    "redo",
-    "riot",
-    "rode",
-    "tore"
-   ],
-   "scene": "The alumni magazine, nineteen years"
-  },
-  {
-   "base": "garnet",
-   "theme": "homecoming",
-   "clues": {
-    "garnet": "One of the two colors. The other is gold, and the exact shade is named in a 1911 charter.",
-    "grant": "The city gave one for the parade barricades, and the alumnae chapter matched it.",
-    "anger": "What the bookstore caused by ordering the sweatshirts in the wrong shade of red.",
-    "gear": "Two duffels: one for the field on Saturday, one for the black-tie thing that night.",
-    "rent": "The homecoming committee pays it on a storage unit twelve months of the year.",
-    "gate": "Wristband checked, cooler opened, and the woman working it went to school with your mother."
-   },
-   "prefer": [
-    "grant",
-    "anger",
-    "gear",
-    "rent",
-    "gate"
-   ],
-   "scene": "School colors, down to the shade"
-  },
-  {
-   "base": "argyle",
-   "theme": "homecoming",
-   "clues": {
-    "argyle": "His sweater vest, on the first tee at seven a.m., unchanged since the Reagan years.",
-    "early": "Shotgun start at seven for the scholarship tournament, and the foursomes filled in June.",
-    "large": "The only size left on the table by Saturday, which is of course nobody's size.",
-    "layer": "Forty degrees at kickoff, eighty by the afternoon, and she dressed for both.",
-    "relay": "Alumni against students at halftime, and the fifty-year-olds keep winning the thing.",
-    "year": "The number under her name at the registration table, and it settles every argument."
-   },
-   "prefer": [
-    "early",
-    "large",
-    "layer",
-    "relay",
-    "year"
-   ],
-   "scene": "The scholarship golf tournament"
-  },
-  {
-   "base": "course",
-   "theme": "homecoming",
-   "clues": {
-    "course": "The one class she still talks about, and the professor who taught it is at the luncheon.",
-    "source": "Who the campus paper calls when they need the real numbers on the endowment.",
-    "score": "Nobody in the parking lot can tell you it at halftime, and nobody is bothered.",
-    "sore": "The knee that says no to a second flight of stadium steps, and she takes them anyway.",
-    "ours": "How the alumnae say the yard, forty years after they last had a key to anything.",
-    "rouse": "What a drumline does to a crowd that was asleep in lawn chairs ten seconds ago."
-   },
-   "prefer": [
-    "source",
-    "score",
-    "sore",
-    "ours",
-    "rouse"
-   ],
-   "scene": "The professor, and what school was for"
-  },
-  {
-   "base": "courts",
-   "theme": "homecoming",
-   "clues": {
-    "courts": "Both schools bring one, and the photographers make them stand together at midfield.",
-    "court": "Queen, king, and the attendants, elected in September by the whole student body.",
-    "cost": "The gown, the shoes, the photographer: eleven hundred, and her line sisters split it.",
-    "tours": "The admissions office runs them all weekend, for visiting kids and their mothers.",
-    "cuts": "The registrar made them to the Friday schedule so classes end at noon.",
-    "rust": "On the folding chairs that come out of the same storage unit every October."
-   },
-   "prefer": [
-    "court",
-    "cost",
-    "tours",
-    "cuts",
-    "rust"
-   ],
-   "scene": "The elected royalty, and the price"
-  },
-  {
-   "base": "priest",
-   "theme": "homecoming",
-   "clues": {
-    "priest": "New Orleans has a college downtown run by these men. The Catholic HBCU nearby was founded by nuns.",
-    "site": "Where the Sisters of the Blessed Sacrament opened a secondary school in 1915.",
-    "rites": "Crowning, coronation, and the parade: the weekend holds more of them than the school year does.",
-    "step": "What the Divine Nine chapters put on Friday night, judged loudly by everybody watching.",
-    "tires": "Four bald ones on the drive down, and she made it anyway, same as every year since 1994.",
-    "tie": "Knotted in the car mirror at the gate, because the alumni brunch has a dress code."
-   },
-   "prefer": [
-    "site",
-    "rites",
-    "step",
-    "tie",
-    "tires"
-   ],
-   "scene": "Xavier, and the nuns who founded it"
-  },
-  {
-   "base": "agents",
-   "theme": "homecoming",
-   "clues": {
-    "agents": "One per class year, and they call every name on the list before the giving deadline.",
-    "agent": "The class of '99's is a dentist in Charlotte who has never once missed her number.",
-    "tens": "What the little cousins get handed at the entrance, folded, with instructions.",
-    "sang": "The alma mater, all four verses, and the ones who know two of them hum the rest.",
-    "ages": "The spread under one canopy: eighty-nine down to a baby in a school-colors onesie.",
-    "tag": "Stick-on, with the class year in marker under the name, because the year is the point."
-   },
-   "prefer": [
-    "agent",
-    "tens",
-    "sang",
-    "ages",
-    "tag"
-   ],
-   "scene": "Calling every classmate for the fund"
-  },
-  {
-   "base": "gasket",
-   "theme": "homecoming",
-   "clues": {
-    "gasket": "Blew one outside Tuscaloosa in '08, and the story has improved every October since.",
-    "steak": "On the grill at the dentist's canopy, while everybody else is eating wings from a foil pan.",
-    "task": "Hers is the shuttle schedule and the wristbands, and it has been hers for nine years.",
-    "tags": "The hanger on the mirror, plus a license plate from four states over.",
-    "gate": "Where the shuttle drops you, and where you will lose your whole group for an hour.",
-    "seat": "Nobody uses one before halftime, and nobody uses one after it either."
-   },
-   "prefer": [
-    "steak",
-    "seat",
-    "task",
-    "tags",
-    "gate"
-   ],
-   "scene": "The drive down, and the canopy"
-  },
-  {
-   "base": "outage",
-   "theme": "homecoming",
-   "clues": {
-    "outage": "The power at the tents died at nine Saturday and three chapters shared one generator.",
-    "auto": "The one she drove up from Mobile, with a decal in the back window from 1993.",
-    "goat": "The argument under the canopy: best quarterback the school ever had, settled by nobody.",
-    "gut": "The feeling in her stomach walking into the chapel for the first time in a decade.",
-    "out": "The lights, the coolers, and the last three people, at two in the morning.",
-    "tag": "Written in marker on masking tape, because registration ran out of printed ones."
-   },
-   "prefer": [
-    "auto",
-    "goat",
-    "tag",
-    "gut",
-    "out"
-   ],
-   "scene": "Saturday night under the tents"
-  },
-  {
-   "base": "listen",
-   "theme": "homecoming",
-   "clues": {
-    "listen": "What the old heads tell the freshmen to do at the alumni panel. Some of them do.",
-    "silent": "The auction at the scholarship brunch: forty items, one clipboard, and a war over a jersey.",
-    "lines": "Four at the registration table, sorted by decade, and the one for the '70s moves slowest.",
-    "list": "Taped inside the canopy: who brings the ice, who brings the chairs, who brings nothing.",
-    "lens": "The photographer's, a foot long, and she has shot this weekend for twenty-two years.",
-    "tie": "The game ended even in '77, and both schools still say they were robbed."
-   },
-   "prefer": [
-    "silent",
-    "lines",
-    "list",
-    "lens",
-    "tie"
-   ],
-   "scene": "The scholarship brunch and the panel"
-  },
-  {
-   "base": "theirs",
-   "theme": "homecoming",
-   "clues": {
-    "theirs": "Whose weekend it is depends who you ask: the students living it, or the class of '94.",
-    "shirt": "Class year across the back in three-inch numbers, and the dues paid for the whole order.",
-    "heirs": "The grandchildren at the tailgate, in school colors, before they can spell the school.",
-    "hers": "The canopy, the coolers, the folding tables. All of it, and everybody knows it.",
-    "rise": "The whole section stands when the 1975 queen is walked out at halftime.",
-    "tie": "Bow, and the ninety-year-old in the reviewing stand has worn one to every parade."
-   },
-   "prefer": [
-    "shirt",
-    "heirs",
-    "hers",
-    "tie",
-    "rise"
-   ],
-   "scene": "Whose weekend it is, students or alumni"
-  },
-  {
-   "base": "comers",
-   "theme": "homecoming",
-   "clues": {
-    "comers": "First-timers. Somebody's coworker who has never once seen anything like this.",
-    "comes": "What the class of '84 does every October, recession or not, funeral or not.",
-    "more": "What the DJ plays at midnight when the pavement was supposed to clear at eleven.",
-    "rose": "Laid on the memorial bench for the classmate who did not make it to this one.",
-    "core": "Eleven people who never left the state, and they hold the entire thing together.",
-    "score": "Seventeen to fourteen at the half, and the band is the reason nobody left the stands."
-   },
-   "prefer": [
-    "comes",
-    "more",
-    "score",
-    "rose",
-    "core"
-   ],
-   "scene": "The eleven who never miss"
-  },
-  {
-   "base": "barely",
-   "theme": "homecoming",
-   "clues": {
-    "barely": "What anybody under the canopy could tell you about the third quarter.",
-    "able": "Ninety-one, uses a walker on the grass, and still does the whole parade route.",
-    "bear": "To carry it: the flag, the banner, the name of a class that is down to nine people.",
-    "real": "What the rivalry is, and the two athletic directors are godparents to each other's kids.",
-    "bare": "The field at seven Sunday morning, except for one canopy nobody has claimed.",
-    "year": "Nineteen ninety-four across the back of the shirt, and forty were ordered in that size."
-   },
-   "prefer": [
-    "able",
-    "bear",
-    "real",
-    "year",
-    "bare"
-   ],
-   "scene": "Everything but the actual football"
-  },
-  {
-   "base": "alight",
-   "theme": "homecoming",
-   "clues": {
-    "alight": "What forty-two people do off the charter bus, in heels, at eleven at night.",
-    "light": "The first of the morning, and the tent stakes are already going into the ground.",
-    "hail": "What the alma mater does to the school by name, right there in the opening line.",
-    "halt": "What the parade does for nine minutes at Fifth while the band sets a formation.",
-    "tail": "The end of the whole procession: the fire truck, and then the street sweeper.",
-    "hit": "The one song that gets everybody up, and it is the same one it was in 1998."
-   },
-   "prefer": [
-    "light",
-    "hail",
-    "halt",
-    "tail",
-    "hit"
-   ],
-   "scene": "The charter bus, and the parade route"
-  },
-  {
    "base": "instep",
    "theme": "steppers",
    "clues": {
@@ -3109,346 +2625,6 @@
     "ave"
    ],
    "scene": "What the first observances cost"
-  },
-  {
-   "base": "chapel",
-   "theme": "hbcu",
-   "clues": {
-    "chapel": "Tuesday morning, required, and the registrar counts heads from the back row.",
-    "place": "Third row left. Nobody assigned it, and by October it is yours.",
-    "heal": "What the choir director says the ten quiet minutes before class are for.",
-    "plea": "The letter you write the dean of students. One page, no excuses.",
-    "ache": "What the folding seats leave in your back by the benediction.",
-    "cape": "The drum major's, gold on the underside, and it flips over his back on the high step."
-   },
-   "prefer": [
-    "place",
-    "heal",
-    "plea",
-    "cape",
-    "ache"
-   ],
-   "scene": "Tuesday morning, required, and counted"
-  },
-  {
-   "base": "denial",
-   "theme": "hbcu",
-   "clues": {
-    "denial": "The letter from financial aid in March, and the appeal you file by Friday.",
-    "nailed": "Her thesis defense. The committee had no follow-up questions.",
-    "dean": "She knows your mother's maiden name and your registration hold, both.",
-    "idea": "What the professor makes you defend out loud before she grants it.",
-    "lend": "The graphing calculator that moved through four rooms in one night.",
-    "line": "Outside the bursar's office the first week of the term, out the door and down the stairs."
-   },
-   "prefer": [
-    "nailed",
-    "dean",
-    "line",
-    "idea",
-    "lend"
-   ],
-   "scene": "Financial aid, and the appeal you file"
-  },
-  {
-   "base": "danger",
-   "theme": "hbcu",
-   "clues": {
-    "danger": "The 1 a.m. alert text everybody screenshots and nobody quite believes.",
-    "garden": "The plot behind the ag building she has kept going since 1998.",
-    "grade": "Posted by ID number on the office door, and you count down the list.",
-    "range": "How far the tuba carries across the practice field at seven.",
-    "read": "Forty pages before Thursday, and she opens with a pop quiz.",
-    "dean": "Her office door stays open, and the chair across from it is never empty for long."
-   },
-   "prefer": [
-    "garden",
-    "grade",
-    "range",
-    "dean",
-    "read"
-   ],
-   "scene": "The 1 a.m. alert everybody screenshots"
-  },
-  {
-   "base": "pasted",
-   "theme": "hbcu",
-   "clues": {
-    "pasted": "Four layers of flyers on the same pole, and the top one is from October.",
-    "taped": "The lecture she recorded on her phone because the woman talks fast.",
-    "past": "Everything before you got here, which the mural in the union insists on.",
-    "step": "Yard show footwork, learned in a basement at 2 a.m. with the lights low.",
-    "seat": "Saved with a backpack in the caf, and defended.",
-    "date": "The registrar set it, and nobody's excuse moves it."
-   },
-   "prefer": [
-    "taped",
-    "past",
-    "step",
-    "seat",
-    "date"
-   ],
-   "scene": "Four layers of flyers on one pole"
-  },
-  {
-   "base": "stance",
-   "theme": "hbcu",
-   "clues": {
-    "stance": "How she holds herself at the front of the line, still, before the first move.",
-    "scent": "Shea butter and press oil in the elevator of the women's dorm.",
-    "cane": "Painted, wrapped, and never set down where somebody could touch it.",
-    "cast": "The whole department showed for the fall play, professors in row two.",
-    "cent": "Counted twice at the campus store when the meal plan runs out.",
-    "seat": "Held with a backpack in the front row of a class that fills before the bell."
-   },
-   "prefer": [
-    "scent",
-    "cane",
-    "cast",
-    "seat",
-    "cent"
-   ],
-   "scene": "The line, and how it carries itself"
-  },
-  {
-   "base": "binder",
-   "theme": "hbcu",
-   "clues": {
-    "binder": "Three rings, tabbed by week, and she has not lost a page since freshman year.",
-    "diner": "The place off campus open at 3, where the argument finally finishes.",
-    "bird": "The mascot suit, and only two people on this whole campus know who is in it.",
-    "bred": "Third generation here, and the building still remembers her grandmother.",
-    "ride": "Text the group chat Thursday, split the gas, four hours home.",
-    "bid": "The card slid under the door at two in the morning, and she still keeps it in her wallet."
-   },
-   "prefer": [
-    "diner",
-    "bird",
-    "bred",
-    "ride",
-    "bid"
-   ],
-   "scene": "The one who has kept every page"
-  },
-  {
-   "base": "bridge",
-   "theme": "hbcu",
-   "clues": {
-    "bridge": "The walkway between the science hall and the library, crossed at 2 a.m.",
-    "ridge": "The long climb up from the first-year dorms. Nobody warns you about it.",
-    "grid": "The practice field chalked out, and the flag corps counting yardage.",
-    "dig": "What the archives assistant lets you do in the basement boxes.",
-    "rib": "The gentle kind, from the professor who taught your mother.",
-    "ride": "The senior with a car takes four of you to the store on Sunday, gas money optional."
-   },
-   "prefer": [
-    "ridge",
-    "grid",
-    "ride",
-    "dig",
-    "rib"
-   ],
-   "scene": "The 2 a.m. walk across campus"
-  },
-  {
-   "base": "housed",
-   "theme": "hbcu",
-   "clues": {
-    "housed": "Assigned by lottery in April, and the email lands at midnight.",
-    "house": "Not a building. The six of you on the third floor who cook together.",
-    "shoe": "Wiped at the door before the yard photo, every single time.",
-    "dues": "The chapter treasurer takes them by app now, and she posts who is behind.",
-    "used": "The ninety-dollar edition, four names already written inside the cover.",
-    "shed": "Where facilities keeps the folding chairs for every event on the yard."
-   },
-   "prefer": [
-    "house",
-    "shoe",
-    "dues",
-    "used",
-    "shed"
-   ],
-   "scene": "The April housing lottery, and your floor"
-  },
-  {
-   "base": "sundae",
-   "theme": "hbcu",
-   "clues": {
-    "sundae": "Soft serve at the end of the caf line, built in a paper cup.",
-    "sedan": "Parked crooked outside the library, hazards on, engine still running.",
-    "send": "What the professor says about your draft at 11:58 p.m.",
-    "sand": "The court behind the rec, where intramurals go when the gym is booked.",
-    "sun": "Already hot at eight, and the class is all the way across campus.",
-    "dean": "She knows your mother's name, your grades, and which excuse you used last semester."
-   },
-   "prefer": [
-    "sedan",
-    "dean",
-    "send",
-    "sand",
-    "sun"
-   ],
-   "scene": "The end of the cafeteria line"
-  },
-  {
-   "base": "amends",
-   "theme": "hbcu",
-   "clues": {
-    "amends": "What you make with your roommate before the housing form is due.",
-    "named": "The building carries her, and the plaque explains why in four sentences.",
-    "mean": "What the average has to be for the scholarship to renew in the fall.",
-    "mend": "What the tailor two blocks off campus does for eight dollars.",
-    "send": "What the registrar will not do with your transcript until the balance clears.",
-    "dean": "Fifteen minutes late to her own meeting because a first-year stopped her on the walkway."
-   },
-   "prefer": [
-    "named",
-    "mean",
-    "mend",
-    "dean",
-    "send"
-   ],
-   "scene": "Roommates, before the housing form"
-  },
-  {
-   "base": "agency",
-   "theme": "hbcu",
-   "clues": {
-    "agency": "Whose office you call about the grant, and she picks up on the second ring.",
-    "cagey": "How the roommate gets when you ask her who she was with.",
-    "cage": "The batting one behind the field house, free with a school ID.",
-    "acne": "What the health center hands you something for, without a lecture.",
-    "age": "Twenty-six in a first-year seminar, and the only one doing the reading.",
-    "cane": "Struck once on the pavement at the step show, and the whole yard answers it back."
-   },
-   "prefer": [
-    "cagey",
-    "cage",
-    "acne",
-    "age",
-    "cane"
-   ],
-   "scene": "The office that answers on ring two"
-  },
-  {
-   "base": "canter",
-   "theme": "hbcu",
-   "clues": {
-    "canter": "The riding program at the land-grant school, and the 6 a.m. barn shift.",
-    "cater": "What the alumnae chapter pays somebody to do for the scholarship luncheon.",
-    "crate": "Milk one, flipped over, holding up the speaker out on the yard.",
-    "rent": "Due the first, and the off-campus apartment does not wait on your refund.",
-    "tear": "The gown at the fitting, and the seamstress fixes it in ten minutes.",
-    "cane": "Twirled, never leaned on, and the man who taught him the wrist is sixty-two years old."
-   },
-   "prefer": [
-    "cater",
-    "crate",
-    "rent",
-    "cane",
-    "tear"
-   ],
-   "scene": "The land-grant barn at six"
-  },
-  {
-   "base": "ardent",
-   "theme": "hbcu",
-   "clues": {
-    "ardent": "How she talks about this school to anybody who will sit still for it.",
-    "trade": "Two shifts at the caf swapped over text, no manager involved.",
-    "tread": "Worn off the marble stairs by a hundred years of the same climb.",
-    "dent": "In the door of the car she drove all four years and still has.",
-    "rate": "What the credit union on the corner offers, in writing, no table required.",
-    "dean": "She wrote the recommendation on a Sunday, and that is why the fellowship came through."
-   },
-   "prefer": [
-    "trade",
-    "tread",
-    "dean",
-    "dent",
-    "rate"
-   ],
-   "scene": "Loyalty, worn stairs, and a Sunday letter"
-  },
-  {
-   "base": "advent",
-   "theme": "hbcu",
-   "clues": {
-    "advent": "The wreath up front, one candle a week, and the choir rehearsing at seven.",
-    "tend": "What the campus minister does, quietly, for the ones who stopped calling home.",
-    "van": "Fifteen seats, the choir tour, and the sign-out sheet in her office.",
-    "tea": "Poured in real cups when the honors society inducts, and you dress for it.",
-    "den": "The lounge with the TV nobody controls and the couch everybody claims.",
-    "dean": "Her name is on the letter that put you on probation and on the one that took you off."
-   },
-   "prefer": [
-    "dean",
-    "tend",
-    "van",
-    "tea",
-    "den"
-   ],
-   "scene": "The campus minister in December"
-  },
-  {
-   "base": "byline",
-   "theme": "hbcu",
-   "clues": {
-    "byline": "Your name in ten-point type over four hundred words on the parking policy.",
-    "line": "Out the door of the business office on the first of the month.",
-    "bye": "The week the schedule gives back, and the coach calls practice anyway.",
-    "lie": "What the attendance policy is, right up until the morning she checks.",
-    "nil": "The balance you are chasing, and the only number that clears the hold.",
-    "bin": "Blue, by the mailroom, where the extra copies of the paper end up."
-   },
-   "prefer": [
-    "line",
-    "bye",
-    "lie",
-    "nil",
-    "bin"
-   ],
-   "scene": "Four hundred words in the student paper"
-  },
-  {
-   "base": "rained",
-   "theme": "hbcu",
-   "clues": {
-    "rained": "Every year on outdoor convocation, and the tent goes up at six anyway.",
-    "drain": "What the walk from the far lot in August does to a fresh press.",
-    "rain": "Nobody moves. The drumline finishes the cadence in it.",
-    "near": "The dorm two minutes from your eight o'clock, which you did not get.",
-    "rein": "What the adviser hands over once she trusts you with the budget.",
-    "dean": "Her door stays open until six, and the probation letter comes with a plan stapled to it."
-   },
-   "prefer": [
-    "drain",
-    "rain",
-    "near",
-    "dean",
-    "rein"
-   ],
-   "scene": "Convocation outdoors, weather regardless"
-  },
-  {
-   "base": "dancer",
-   "theme": "hbcu",
-   "clues": {
-    "dancer": "Modern technique at eight, and she is the only one already warm.",
-    "dance": "Not the party. The class, barefoot, in the old gym with the good floor.",
-    "cedar": "The chest at the foot of the bed, sent from home with everything folded.",
-    "care": "What the housekeeper on your floor takes of forty people, by name.",
-    "earn": "Twelve hours a week in the library, applied straight to the bill.",
-    "cane": "Twirled on the yard at homecoming, painted in chapter colors, and it never touches grass."
-   },
-   "prefer": [
-    "dance",
-    "cedar",
-    "care",
-    "cane",
-    "earn"
-   ],
-   "scene": "Modern technique at eight, barefoot"
   },
   {
    "base": "number",
@@ -4511,26 +3687,6 @@
    "scene": "Two hundred lanyards in a shoebox"
   },
   {
-   "base": "barged",
-   "theme": "reunion",
-   "clues": {
-    "barged": "What the wedding party from the next ballroom did through the middle of the family photograph.",
-    "bread": "Rolls in foil-lined baskets on every table, and the hall bills four dollars a head for them.",
-    "grade": "What the retired principal still asks the college cousins about, one at a time, by first name.",
-    "gear": "The DJ's, up the loading dock at four, and the hall wants all of it out by midnight.",
-    "drag": "What the banner does on the ballroom carpet because the ceiling hooks sit two feet too low.",
-    "badge": "The safety pin on the back of it bends by Friday, and half the hall is using tape instead."
-   },
-   "prefer": [
-    "bread",
-    "grade",
-    "gear",
-    "drag",
-    "badge"
-   ],
-   "scene": "Everything the banquet hall charges for"
-  },
-  {
    "base": "claims",
    "theme": "reunion",
    "clues": {
@@ -4669,26 +3825,6 @@
     "red"
    ],
    "scene": "Leaving, the week the word arrived"
-  },
-  {
-   "base": "bedpan",
-   "theme": "hbcu",
-   "clues": {
-    "bedpan": "First week of clinicals at six in the morning, and the instructor watches you empty it.",
-    "pane": "Cracked in the third-floor stairwell since your mother went here. Taped. Still cracked.",
-    "nap": "Twenty minutes on the library's second floor, backpack for a pillow, alarm set for seminar.",
-    "pen": "Handed out at the front of the exam room, and she counts them out and counts them back.",
-    "bean": "Ground fresh at the shop in the union, and the line is longest at nine fifty.",
-    "band": "Six in the morning on the practice field, and three dorms hear every count of it."
-   },
-   "prefer": [
-    "pane",
-    "nap",
-    "pen",
-    "band",
-    "bean"
-   ],
-   "scene": "First week of nursing clinicals"
   },
   {
    "base": "oblige",
@@ -6151,106 +5287,6 @@
    "scene": "Opal Lee, who walked"
   },
   {
-   "base": "banged",
-   "theme": "hbcu",
-   "clues": {
-    "banged": "The bass drum, on the one, and two hundred people on the yard feel it in the chest.",
-    "band": "Before the change it marched like a military unit: straight lines, squared corners, no hips.",
-    "began": "What the showtime style did in 1947, rather than always having been the way it is done.",
-    "badge": "What the drum major carries on the chest of the uniform, and it is not decoration to him.",
-    "bend": "The knee does it on the eighth count now, which corps style would never have allowed.",
-    "dean": "She signs off on whether the drumline travels, and the director's budget crosses her desk first."
-   },
-   "prefer": [
-    "band",
-    "began",
-    "badge",
-    "bend",
-    "dean"
-   ],
-   "scene": "Showtime style, and what came before 1947"
-  },
-  {
-   "base": "throws",
-   "theme": "hbcu",
-   "clues": {
-    "throws": "The alumni association did it to the first one, on a model borrowed from the Ivy League.",
-    "host": "Howard, in 1924, for a game against Lincoln that the graduates built a whole weekend around.",
-    "show": "That 1924 weekend put one on besides football, because the point was the return, not the score.",
-    "worth": "The value of the thing, and a Thanksgiving Day game in 1893 already had it on both campuses.",
-    "two": "The number of schools in that 1893 game, and each of them still counts the rivalry from there.",
-    "row": "Where the oldest returning class sits, and nobody has to be told to leave it empty."
-   },
-   "prefer": [
-    "host",
-    "show",
-    "worth",
-    "two",
-    "row"
-   ],
-   "scene": "The first homecoming: Howard, 1924"
-  },
-  {
-   "base": "banter",
-   "theme": "hbcu",
-   "clues": {
-    "banter": "The hearing room is not this, when the president arrives with the state match figures in a folder.",
-    "bran": "The mill still turns it out at nineteen schools chartered under an act passed in 1890.",
-    "earn": "Those nineteen do it in federal dollars, and the state is supposed to match one for one.",
-    "rate": "Per student, the 1890 campuses run under their 1862 neighbors, and a foundation put the gap on paper.",
-    "ante": "The state's share of the land-grant money, short-paid by several legislatures for decades.",
-    "bar": "The 1862 campuses were funded above it while the 1890 campuses stayed under."
-   },
-   "prefer": [
-    "bran",
-    "earn",
-    "rate",
-    "ante",
-    "bar"
-   ],
-   "scene": "The 1890 land-grants and the unmatched money"
-  },
-  {
-   "base": "nearby",
-   "theme": "hbcu",
-   "clues": {
-    "nearby": "The house two blocks off campus where a line meets now, because none of it happens in the open.",
-    "year": "1989. The open process ended after a death at Morehouse, and the presentation became the reveal.",
-    "ban": "The organizations put one on the above-ground process themselves, rather than wait to be told.",
-    "bare": "The new format strips it to this: no weeks of marching in daylight, one night and the crossing.",
-    "ear": "The crowd guesses with it, since nothing is out on the yard to see any more.",
-    "ran": "A line did this openly across campus for weeks, until it stopped for good."
-   },
-   "prefer": [
-    "year",
-    "ban",
-    "bare",
-    "ear",
-    "ran"
-   ],
-   "scene": "1989, and why it moved out of sight"
-  },
-  {
-   "base": "thorns",
-   "theme": "hbcu",
-   "clues": {
-    "thorns": "What the hedge between the two campuses gives you if you cut across instead of walking around.",
-    "horns": "The brass belongs to the men's college; the dance line and the flags belong to the women's college.",
-    "horn": "One of them, carried to eight o'clock rehearsal by a first-year who has not eaten yet.",
-    "host": "Which campus the rehearsal field belongs to, though half the performers walk over from the other.",
-    "short": "What the women's college is by one measure only: no marching unit of its own, by arrangement.",
-    "ton": "The equipment truck hauls one to every away game, and the flags weigh almost nothing in it."
-   },
-   "prefer": [
-    "horns",
-    "horn",
-    "host",
-    "short",
-    "ton"
-   ],
-   "scene": "Morehouse brass, Spelman dance line"
-  },
-  {
    "base": "pocket",
    "theme": "gogo",
    "clues": {
@@ -6589,26 +5625,6 @@
     "set"
    ],
    "scene": "One unbroken thing from nine till one"
-  },
-  {
-   "base": "sowing",
-   "theme": "gogo",
-   "clues": {
-    "sowing": "Handing a teenager the sticks at soundcheck, then coming back in five years to look.",
-    "swing": "What this pattern does not do. It sits flat and hard on the count, and that is the point.",
-    "song": "A word this stage barely needs. It is all one thing from nine until the lights.",
-    "sign": "The cardboard one taped to the door: ten dollars, no hats, nobody under sixteen.",
-    "snow": "Three inches down and they packed the hall anyway, because the group came anyway.",
-    "wins": "The battle ends when one side of the room shouts louder than the other side."
-   },
-   "prefer": [
-    "swing",
-    "song",
-    "sign",
-    "snow",
-    "wins"
-   ],
-   "scene": "Handing it down"
   },
   {
    "base": "upbeat",
@@ -7249,6 +6265,166 @@
     "lens"
    ],
    "scene": "The window over the baptismal pool"
+  },
+  {
+   "base": "hostel",
+   "theme": "hbcu",
+   "clues": {
+    "hostel": "What the block ends up being, four to a room, booked in February",
+    "hotel": "Sold out by August, at a rate the alumni association pretends to be shocked by",
+    "stole": "Over the shoulder, letters showing, ironed on the bed at seven in the morning",
+    "lost": "The room key, twice, by the same cousin who drove",
+    "shoe": "The other one, under the bed, and the shuttle leaves in four minutes",
+    "hoe": "What the garden out front has not seen since the last reunion"
+   },
+   "prefer": [
+    "hotel",
+    "stole",
+    "lost",
+    "shoe",
+    "hoe"
+   ],
+   "scene": "Where everybody stays, and nobody sleeps"
+  },
+  {
+   "base": "sowing",
+   "theme": "hbcu",
+   "clues": {
+    "sowing": "What four years of it looks like, on a stage, in one dress",
+    "gown": "Kept in a garment bag on the back of a door since March",
+    "song": "The alma mater, and the whole room knows which verse is the one",
+    "won": "The vote was in October and the margin is still being discussed",
+    "sign": "Held up in the third row by people who have been up since five",
+    "owing": "How the court feels toward the women who did this before them"
+   },
+   "prefer": [
+    "gown",
+    "song",
+    "won",
+    "sign",
+    "owing"
+   ],
+   "scene": "Coronation night, and the gown nobody has seen yet"
+  },
+  {
+   "base": "nailed",
+   "theme": "hbcu",
+   "clues": {
+    "nailed": "What the last set was, in front of everyone, after eight weeks",
+    "dean": "Signs off on all of it, and knows more than the paperwork says",
+    "line": "Numbered, in order, and the order does not change for the rest of your life",
+    "lined": "Up the same way at every show, because that is how you learned it",
+    "aide": "The one from the chapter above who checked on you at two in the morning",
+    "idea": "What it was in September, before anybody understood the hours"
+   },
+   "prefer": [
+    "dean",
+    "line",
+    "lined",
+    "aide",
+    "idea"
+   ],
+   "scene": "Crossing, and the line that made it"
+  },
+  {
+   "base": "floats",
+   "theme": "hbcu",
+   "clues": {
+    "floats": "Chicken wire and tissue paper, built over three nights in a parking lot",
+    "float": "Yours, and the theme was decided by committee and nobody is happy",
+    "lost": "The route sheet, which is why the second half improvises",
+    "alto": "The horn line that carries the melody once the trumpets tire",
+    "flat": "What the sousaphone is by the fourth mile, and the crowd does not care",
+    "loft": "How high the drum major throws it, and the block goes quiet watching"
+   },
+   "prefer": [
+    "float",
+    "lost",
+    "alto",
+    "flat",
+    "loft"
+   ],
+   "scene": "The parade, from the staging lot"
+  },
+  {
+   "base": "camped",
+   "theme": "hbcu",
+   "clues": {
+    "camped": "What you did in the lounge for three days because the room was not ready",
+    "mace": "Carried at the front of the procession, and older than everyone holding it",
+    "made": "What people ask if you did, and the answer changes the conversation",
+    "cape": "Somebody's, from the show, hanging on the back of a chair",
+    "came": "The whole family, in two cars, and stayed longer than anyone wanted",
+    "acme": "The dining hall's finest hour, which is a fried chicken Wednesday"
+   },
+   "prefer": [
+    "mace",
+    "made",
+    "cape",
+    "came",
+    "acme"
+   ],
+   "scene": "The dorm, freshman year, the first week"
+  },
+  {
+   "base": "barged",
+   "theme": "hbcu",
+   "clues": {
+    "barged": "How your people get to the front, and no usher has ever stopped them",
+    "grad": "Four years, or six, and the cap says which in glitter",
+    "badge": "The parking pass on the dash that got three cars in on one",
+    "brag": "What the whole row has earned the right to do, loudly, during your name",
+    "gear": "In the trunk since Thursday, because nobody was driving back twice",
+    "bread": "Handed down the row at some point, because it is a long ceremony"
+   },
+   "prefer": [
+    "grad",
+    "badge",
+    "brag",
+    "gear",
+    "bread"
+   ],
+   "scene": "Graduation morning, and who is in the stands"
+  },
+  {
+   "base": "dreamy",
+   "theme": "hbcu",
+   "clues": {
+    "dreamy": "What the light is at four, on the grass, in the last week of term",
+    "yard": "The whole institution in one word, and it is a lawn",
+    "made": "The question again, asked across the quad, by somebody you barely know",
+    "year": "Counted in homecomings rather than semesters, by everyone who left",
+    "dear": "How the letters are addressed when the alumni office wants money",
+    "army": "What the band becomes at eight in the morning on the practice field"
+   },
+   "prefer": [
+    "yard",
+    "made",
+    "year",
+    "dear",
+    "army"
+   ],
+   "scene": "The yard between classes, in April"
+  },
+  {
+   "base": "closet",
+   "theme": "hbcu",
+   "clues": {
+    "closet": "Emptied into a bag on Wednesday for a weekend that needs four outfits",
+    "stole": "The one thing that had to come, and it travelled in its own bag",
+    "lost": "The good jacket, at the tailgate, and it is somebody's now",
+    "cost": "Of the weekend, tallied on the drive home, and worth it",
+    "sole": "Wiped off before the step show, because the yard is the yard",
+    "clot": "The traffic on the one road in, from eleven onward, every year"
+   },
+   "prefer": [
+    "stole",
+    "lost",
+    "cost",
+    "sole",
+    "clot"
+   ],
+   "scene": "What you packed, and what you actually wore"
   }
  ]
 }

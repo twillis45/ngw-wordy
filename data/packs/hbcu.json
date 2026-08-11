@@ -1,0 +1,107 @@
+{
+  "_doc": "STAGING. HBCU and Homecoming MERGED, on the game wing's recommendation that they are the same weekend and because separately each was starving — 8 candidates and 7, with bases like MORBID and NIMROD offered for the yard. Together: 22. The cultural bench's caution governs the selection: shako, plume and drumline must not become the whole pack, or the game has published 'HBCU = marching band'. Four of these nine boards are the band or the parade; the other five are Greek life, the dorm, graduation and the clothes.",
+  "theme": {
+    "id": "hbcu",
+    "name": "Homecoming Weekend",
+    "category": "THE YARD",
+    "blurb": "The band, the yard, the stroll and the step show — and the graduates who drove six hours to stand in the same spot."
+  },
+  "boards": [
+    {
+      "base": "hostel",
+      "scene": "Where everybody stays, and nobody sleeps",
+      "clues": {
+        "hostel": "What the block ends up being, four to a room, booked in February",
+        "hotel": "Sold out by August, at a rate the alumni association pretends to be shocked by",
+        "stole": "Over the shoulder, letters showing, ironed on the bed at seven in the morning",
+        "lost": "The room key, twice, by the same cousin who drove",
+        "shoe": "The other one, under the bed, and the shuttle leaves in four minutes",
+        "hoe": "What the garden out front has not seen since the last reunion"
+      }
+    },
+    {
+      "base": "sowing",
+      "scene": "Coronation night, and the gown nobody has seen yet",
+      "clues": {
+        "sowing": "What four years of it looks like, on a stage, in one dress",
+        "gown": "Kept in a garment bag on the back of a door since March",
+        "song": "The alma mater, and the whole room knows which verse is the one",
+        "won": "The vote was in October and the margin is still being discussed",
+        "sign": "Held up in the third row by people who have been up since five",
+        "owing": "How the court feels toward the women who did this before them"
+      }
+    },
+    {
+      "base": "nailed",
+      "scene": "Crossing, and the line that made it",
+      "clues": {
+        "nailed": "What the last set was, in front of everyone, after eight weeks",
+        "dean": "Signs off on all of it, and knows more than the paperwork says",
+        "line": "Numbered, in order, and the order does not change for the rest of your life",
+        "lined": "Up the same way at every show, because that is how you learned it",
+        "aide": "The one from the chapter above who checked on you at two in the morning",
+        "idea": "What it was in September, before anybody understood the hours"
+      }
+    },
+    {
+      "base": "floats",
+      "scene": "The parade, from the staging lot",
+      "clues": {
+        "floats": "Chicken wire and tissue paper, built over three nights in a parking lot",
+        "float": "Yours, and the theme was decided by committee and nobody is happy",
+        "lost": "The route sheet, which is why the second half improvises",
+        "alto": "The horn line that carries the melody once the trumpets tire",
+        "flat": "What the sousaphone is by the fourth mile, and the crowd does not care",
+        "loft": "How high the drum major throws it, and the block goes quiet watching"
+      }
+    },
+    {
+      "base": "camped",
+      "scene": "The dorm, freshman year, the first week",
+      "clues": {
+        "camped": "What you did in the lounge for three days because the room was not ready",
+        "mace": "Carried at the front of the procession, and older than everyone holding it",
+        "made": "What people ask if you did, and the answer changes the conversation",
+        "cape": "Somebody's, from the show, hanging on the back of a chair",
+        "came": "The whole family, in two cars, and stayed longer than anyone wanted",
+        "acme": "The dining hall's finest hour, which is a fried chicken Wednesday"
+      }
+    },
+    {
+      "base": "barged",
+      "scene": "Graduation morning, and who is in the stands",
+      "clues": {
+        "barged": "How your people get to the front, and no usher has ever stopped them",
+        "grad": "Four years, or six, and the cap says which in glitter",
+        "badge": "The parking pass on the dash that got three cars in on one",
+        "brag": "What the whole row has earned the right to do, loudly, during your name",
+        "gear": "In the trunk since Thursday, because nobody was driving back twice",
+        "bread": "Handed down the row at some point, because it is a long ceremony"
+      }
+    },
+    {
+      "base": "dreamy",
+      "scene": "The yard between classes, in April",
+      "clues": {
+        "dreamy": "What the light is at four, on the grass, in the last week of term",
+        "yard": "The whole institution in one word, and it is a lawn",
+        "made": "The question again, asked across the quad, by somebody you barely know",
+        "year": "Counted in homecomings rather than semesters, by everyone who left",
+        "dear": "How the letters are addressed when the alumni office wants money",
+        "army": "What the band becomes at eight in the morning on the practice field"
+      }
+    },
+    {
+      "base": "closet",
+      "scene": "What you packed, and what you actually wore",
+      "clues": {
+        "closet": "Emptied into a bag on Wednesday for a weekend that needs four outfits",
+        "stole": "The one thing that had to come, and it travelled in its own bag",
+        "lost": "The good jacket, at the tailgate, and it is somebody's now",
+        "cost": "Of the weekend, tallied on the drive home, and worth it",
+        "sole": "Wiped off before the step show, because the yard is the yard",
+        "clot": "The traffic on the one road in, from eleven onward, every year"
+      }
+    }
+  ]
+}
