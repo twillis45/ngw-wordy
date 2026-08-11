@@ -317,6 +317,81 @@
         <article class="item is-done">
           <div class="stripe"></div>
           <div class="body">
+            <h3>Themed rows now relate to their theme — authoring method rebuilt</h3>
+            <p>
+              The owner's finding: <em>"I don't like the answer words associated with each
+              theme… not clever, just obscure."</em> Measured, and correct — the 90s R&amp;B
+              pack averaged <strong>0.64 of 5</strong> rows that were music words at all.
+              <code>SLOWER → swore worse rose wore slow</code> shipped under an R&amp;B heading.
+            </p>
+            <p>
+              Root cause sat upstream of the clue writing: bases were selected for
+              <em>structural</em> legality — letter count, answer count, anagram safety — and
+              never scored for thematic yield, so the theme was applied afterwards as a label.
+              The new pipeline in <code>scripts/theme-yield.mjs</code> inverts it: vocabulary
+              first, boards fall out of it, pack size is an output rather than a target. Rows
+              are tiered by recognition (acts beat titles beat craft words), plurals fold onto
+              their stem, boards dedupe by idea-set rather than letter-set, and no row word may
+              appear in more than three boards in a pack.
+            </p>
+            <p>
+              <strong>Shipped:</strong> 90s R&amp;B replaced by <em>The Nineties</em> under a
+              <code>BLACK MUSIC</code> category — 12 boards averaging <strong>3.7 of 5</strong>
+              on-theme rows, up from 0.64. Catalogue 417 → 395: the 25 old boards and 9 donor
+              boards deleted, each donor measured at 0–2 on-theme rows for its own theme before
+              it was taken (<code>NIGHTS</code> scored 0/5 for HBCU). Five canon entries added,
+              two stale ones repaired.
+            </p>
+            <p>
+              <strong>Two defects found in this work, both corrected:</strong> the yield scorer
+              used a bitmask subset test, which ignores repeated letters — it counted
+              <code>cool</code>, <code>loot</code>, <code>free</code> and <code>total</code> as
+              spellable from six distinct letters, inflating supported boards from 45 to 118 and
+              producing a "best board" that was illegal. And three drafted clues carried wrong
+              dates, caught only because writing the canon entry forced the check: Monica's "The
+              First Night" is 1998 and not her debut, Wu-Tang's "Protect Ya Neck" is December
+              1992, and "Gin and Juice" is a January 1994 single off a 1993 album.
+            </p>
+            <div class="meta">
+              <span class="chip done">Done</span>
+              <span>395 puzzles · 2368 clues · 0 rejected</span>
+              <span>132 tests · canon 38 entries</span>
+              <span>11 Aug</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="stripe"></div>
+          <div class="body">
+            <h3>Twenty themes still carry set-dressing vocabularies</h3>
+            <p>
+              The audit reports 220 boards supported against 395 shipped — but that is a
+              <em>lower bound</em>, not a verdict. The Nineties went from 7 supported to 113
+              purely by rewriting its word list; the algorithm never changed. Every other theme
+              is still scored against lists of objects visible at the scene
+              (<code>grill coals foil pan cooler chair</code>), which the cultural bench named
+              as the same mistake this method exists to remove.
+            </p>
+            <p>
+              Bench conditions not yet met: vocabularies reviewed <em>before</em> scoring
+              (The Nineties was scored first), objects capped at 25% of a list, provenance per
+              entry, and pack floors of 12 / caps of 20 set by judgment rather than by yield —
+              because the raw metric rewards ordinary vocabulary and punishes specificity. Left
+              alone it recommended expanding Juneteenth to 39 boards while shrinking the entire
+              HBCU tradition to 2, which no seat would sign.
+            </p>
+            <div class="meta">
+              <span class="chip">Next</span>
+              <span>20 themes</span>
+              <span>West Coast BBQ blocked outright — no vernacular</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item is-done">
+          <div class="stripe"></div>
+          <div class="body">
             <h3>Slurs removed from shipped puzzle data</h3>
             <p>
               ENABLE1 is a Scrabble lexicon and nothing filtered it. <code>dago</code>

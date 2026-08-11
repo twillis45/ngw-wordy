@@ -1,0 +1,180 @@
+{
+  "_doc": "STAGING — not merged into data/themes.json yet. Twelve boards for the widened 90s pack, produced by scripts/theme-yield.mjs from the locked vocabulary in data/theme-vocab.json. Every board clears 3-of-5 recognisable rows and no row word is used more than three times across the pack. NOTHING HERE HAS A CANON ENTRY: every clue naming a record, an act or a year is an unverified draft until data/canon.json vouches for it, and npm test is supposed to fail on exactly that. Ten of the twelve bases are claimed by other packs — see `donor` — and each of those packs needs a replacement board authored before this can merge.",
+  "theme": {
+    "id": "rnb90s",
+    "name": "The Nineties",
+    "category": "BLACK MUSIC",
+    "blurb": "R&B, hip-hop, new jack and neo-soul — the decade as it came out of the speakers.",
+    "_rename": "Was '90s R&B'. Narrow R&B supported only 7 boards; widening to the decade took it to 19 at 4-of-5."
+  },
+  "boards": [
+    {
+      "base": "dearly",
+      "donor": "juneteenth",
+      "known": 5,
+      "scene": "Records that open by addressing somebody",
+      "clues": {
+        "dearly": "How half these songs begin — someone talking straight to someone",
+        "dear": "2Pac, 1995. A letter to his mother, and the one everybody agrees on",
+        "lady": "Jodeci's first album, 1991 — four men out of Charlotte on Uptown",
+        "red": "TLC's slow one, written by Babyface",
+        "dry": "Boyz II Men, and the harmony they sing standing perfectly still",
+        "real": "Mary J. Blige, 1992. Hip-hop drums under a soul voice, and the decade turns"
+      }
+    },
+    {
+      "base": "sweaty",
+      "donor": "salon",
+      "known": 5,
+      "scene": "Two coasts, and the men singing on both",
+      "clues": {
+        "sweaty": "What the club was, and what the video pretended it wasn't",
+        "sweat": "Keith Sweat — new jack's first and most patient voice",
+        "west": "One coast, and the argument that ran the whole decade",
+        "east": "The coast on the other side of the argument",
+        "stay": "Jodeci again, and the begging is the point",
+        "say": "Destiny's Child, 1999 — the decade's last big question"
+      }
+    },
+    {
+      "base": "derail",
+      "donor": "juneteenth",
+      "known": 4,
+      "scene": "The radio dial, somewhere around 1995",
+      "clues": {
+        "derail": "What one bad follow-up single did to a career",
+        "dial": "How you found the station before anybody named it a format",
+        "ideal": "The group, and the thing every A&R claimed to be looking for",
+        "dear": "2Pac wrote his mother a letter, then released it",
+        "real": "Mary J. Blige's, from What's the 411?",
+        "red": "TLC's light, and what it was signalling"
+      }
+    },
+    {
+      "base": "aspect",
+      "donor": "sitcom",
+      "known": 4,
+      "scene": "The mixtape, and who made the cut",
+      "clues": {
+        "aspect": "The angle a producer hears that nobody else does",
+        "tape": "Ninety minutes, hand-labelled, passed to one person",
+        "case": "One name, one word — Def Jam's smooth one",
+        "east": "The coast that claimed it started here",
+        "step": "Bobby Brown, and the dance that came with it",
+        "cast": "Who you put on the tape says everything about you"
+      }
+    },
+    {
+      "base": "inmate",
+      "donor": "church",
+      "known": 4,
+      "scene": "Group names, 1991 to 1999",
+      "clues": {
+        "inmate": "The contract everybody signed before they read it",
+        "mint": "Minneapolis, a full band, and no interest in being a boy band",
+        "mine": "Brandy and Monica, 1998, arguing over a boy for thirteen weeks",
+        "name": "Destiny's Child wanted you to say it",
+        "time": "SWV's first album said it was about it",
+        "team": "What a group is until the solo album gets announced"
+      }
+    },
+    {
+      "base": "nicked",
+      "donor": null,
+      "known": 4,
+      "scene": "Protect ya neck",
+      "clues": {
+        "nicked": "What sampling was called before the lawyers arrived",
+        "neck": "Wu-Tang debut single, 1992, and the whole thing starts",
+        "ice": "Cube, and later the cream — the decade's most reused syllable",
+        "nice": "Usher, and the tempo he built a career on",
+        "deck": "Where the tape went, and why the song had to be under four minutes",
+        "end": "Boyz II Men held the number one spot thirteen weeks with it"
+      }
+    },
+    {
+      "base": "maiden",
+      "donor": "church",
+      "known": 4,
+      "scene": "Free your mind",
+      "clues": {
+        "maiden": "The first single — the one the label bets the album on",
+        "mind": "En Vogue, 1992, and a rock guitar nobody expected",
+        "mine": "Brandy and Monica's boy, still under discussion",
+        "name": "Destiny's Child asked you to say it out loud",
+        "end": "Boyz II Men held number one thirteen weeks",
+        "dime": "What the single cost, roughly, once you'd taped it off the radio"
+      }
+    },
+    {
+      "base": "cripes",
+      "donor": "westcoast",
+      "known": 3,
+      "scene": "One-word names",
+      "clues": {
+        "cripes": "What you said when the beat dropped and you were at your grandmother's",
+        "price": "Kelly — the voice behind more hooks than her own records",
+        "spice": "A number after the name, which was very 1993",
+        "ice": "Cube or Cream, take your pick",
+        "epic": "A label, and what every debut called itself",
+        "pier": "Where the video got shot when the budget ran out"
+      }
+    },
+    {
+      "base": "nights",
+      "donor": "hbcu",
+      "known": 3,
+      "scene": "Gin and juice, and what came after",
+      "clues": {
+        "nights": "The format had a name: quiet storm, and it started at ten",
+        "gin": "Snoop, off Doggystyle, the most relaxed hit of the decade",
+        "night": "Monica held number one five weeks with it, 1998",
+        "thing": "Mary J. Blige's cover, sweet as advertised",
+        "sing": "What the hip-hop record started doing on the hook, around 1995",
+        "sign": "What you did before you understood what you were signing"
+      }
+    },
+    {
+      "base": "sugary",
+      "donor": null,
+      "known": 3,
+      "scene": "Brown sugar",
+      "clues": {
+        "sugary": "The thing critics called it when they meant they liked it",
+        "sugar": "D'Angelo, 1995, and neo-soul arrives without announcing itself",
+        "guy": "Teddy Riley's group, and new jack swing's actual starting point",
+        "say": "Destiny's Child built a whole hit on the demand",
+        "gray": "The area publishing rights lived in for most of the decade",
+        "rays": "The video look: one window, blinds half shut"
+      }
+    },
+    {
+      "base": "vastly",
+      "donor": null,
+      "known": 3,
+      "scene": "Salt-N-Pepa's decade",
+      "clues": {
+        "vastly": "How much bigger the audience got between 1990 and 1999",
+        "salt": "Half of the group that made rap radio stop treating women as a novelty",
+        "stay": "Jodeci asking, and not taking no for an answer",
+        "say": "Destiny's Child wanted the name out loud",
+        "last": "The last track — where the album put the one it believed in",
+        "slay": "What the dancers did, and what the word meant before it meant that"
+      }
+    },
+    {
+      "base": "baring",
+      "donor": "chicago",
+      "known": 3,
+      "scene": "Insane in the brain",
+      "clues": {
+        "baring": "What the confessional verse started doing around 1994",
+        "brain": "Cypress Hill, 1993, and a hook nobody could sing but everybody did",
+        "gin": "Snoop poured it with juice, single out January 1994",
+        "rain": "Missy's, and a video that looked like nothing before it",
+        "bring": "What the producer says he'll do and occasionally does",
+        "grab": "How a sample got cleared, retroactively, if you were lucky"
+      }
+    }
+  ]
+}

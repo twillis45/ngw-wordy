@@ -38,7 +38,10 @@ const VOCAB = {
   church: 'choir robe organ piano song hymn book page seat pew aisle usher fan hat glove offer plate mother board deacon elder pastor sermon amen praise shout tea dinner basement bus program prayer altar candle bell',
   spades: 'card cards deck deal hand book books bid trick trump cut shuffle table chair team score board pad pen point set run talk rule joke laugh drink ice cup seat partner spade heart club ace king',
   steppers: 'step steps line dance floor slide turn spin count beat song music heat party hall club shoe shoes heel sole grip lead follow hand hold quick slow smooth suit dress hat set crowd chair seat room mirror class teach',
-  rnb90s: 'song songs slow jam beat tape disc case car radio play track album group duo solo tour stage mic voice tone note key harmony love heart baby girl boy dance floor club light hair suit video screen chart hit remix sedan deck',
+  // The language of making and selling records — not objects that happen to be
+  // in the room. A row is only on-theme if a singer, an engineer or an A&R rep
+  // would actually say it.
+  rnb90s: 'hook hooks verse bridge chorus riff vamp vamps runs belt belts croon duet trio alto tenor bass tempo groove rhythm melody lyrics single demo label labels studio master mixer board booth tape tapes reel reels sample loop loops kick drums keys chord chords note notes scale sharp flat minor major gold charts chart radio video tour stage encore sing sang sung song songs anthem cover medley fade intro track tracks album cut cuts take takes mix mixed slow jam jams beat beats bars bar vocal vocals writer credit deal signed debut group duo solo tone pitch key hits hit',
   juneteenth: 'red drink soda cup ice grill park tent chair table flag star date year free news order paper read speech song march parade band hat shirt bead beat dance heat sun shade cooler plate meat side story elder child',
   sitcom: 'show shows tape set cast star role scene line host guest plot joke laugh seat couch screen dial knob clock week night rerun theme song ad break crew light stage act open close title card tune watch film reel',
   carolina: 'hog hogs pig pigs pit fire coal coals ash wood oak sauce slaw bun tray plate chop chops pull skin salt heat cook tent field church money ticket box pan lid barrel smoke night turn shovel',

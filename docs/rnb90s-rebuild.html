@@ -1,0 +1,230 @@
+<title>Wordy — theme method &amp; 90s R&amp;B rebuild</title>
+<style>
+  :root{
+    --bg:#070809; --panel:#121518; --surface:#171b1f; --hair:#232830;
+    --edge:#ccd6e4; --steel:#4e6877; --ink:#eef0f4; --ink2:#a9bccd; --ink3:#7d8894;
+    --amber:#e8934a; --good:#5fae7d; --bad:#c96f5a;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme=dark]){
+      --bg:#eef3f8; --panel:#fff; --surface:#e9eff5; --hair:#c2d3e2;
+      --edge:#24333f; --steel:#3f5b6a; --ink:#0d0f12; --ink2:#33485a; --ink3:#55636f;
+      --amber:#a85712; --good:#2f6d48; --bad:#9a3f2c;
+    }
+  }
+  :root[data-theme=light]{
+    --bg:#eef3f8; --panel:#fff; --surface:#e9eff5; --hair:#c2d3e2;
+    --edge:#24333f; --steel:#3f5b6a; --ink:#0d0f12; --ink2:#33485a; --ink3:#55636f;
+    --amber:#a85712; --good:#2f6d48; --bad:#9a3f2c;
+  }
+  :root[data-theme=dark]{
+    --bg:#070809; --panel:#121518; --surface:#171b1f; --hair:#232830;
+    --edge:#ccd6e4; --steel:#4e6877; --ink:#eef0f4; --ink2:#a9bccd; --ink3:#7d8894;
+    --amber:#e8934a; --good:#5fae7d; --bad:#c96f5a;
+  }
+  *{box-sizing:border-box}
+  .page{
+    --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+    background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;
+    margin:0;padding:clamp(20px,4vw,48px) clamp(14px,4vw,36px) 96px;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:0 0 8px}
+  h1{font-size:clamp(26px,4vw,40px);letter-spacing:-.025em;margin:0;font-weight:650;text-wrap:balance}
+  .lede{color:var(--ink2);margin:12px 0 0;max-width:66ch}
+  h2{font-size:20px;letter-spacing:-.012em;margin:46px 0 4px;font-weight:640;border-left:3px solid var(--steel);padding-left:12px}
+  .sub{color:var(--ink3);margin:6px 0 16px 15px;font-size:14px;max-width:72ch}
+  code{font-family:var(--mono);font-size:.92em}
+
+  .stats{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));margin-top:26px}
+  .stat{background:var(--panel);border:1px solid var(--hair);border-radius:12px;padding:13px 15px}
+  .stat b{display:block;font-size:25px;font-weight:640;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .stat span{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink3)}
+
+  .scroll{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;min-width:640px}
+  th,td{text-align:left;padding:9px 12px;vertical-align:top;border-bottom:1px solid var(--hair)}
+  thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+           color:var(--ink3);font-weight:600;border-bottom:1px solid var(--steel)}
+  td{font-size:13.5px;color:var(--ink2)}
+  .m{font-family:var(--mono);font-size:12.5px;color:var(--edge);white-space:nowrap;font-weight:600}
+  .rows{font-family:var(--mono);font-size:12px;color:var(--ink3)}
+  .rows em{color:var(--amber);font-style:normal;font-weight:600}
+  .num{font-variant-numeric:tabular-nums;text-align:right}
+
+  ol.steps{counter-reset:s;list-style:none;padding:0;margin:16px 0 0}
+  ol.steps li{counter-increment:s;position:relative;padding:0 0 0 44px;margin:0 0 16px}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:29px;height:29px;
+    display:grid;place-items:center;border-radius:50%;border:1px solid var(--steel);
+    font-family:var(--mono);font-size:12px;color:var(--edge)}
+  ol.steps b{display:block;color:var(--ink);font-size:15px}
+  ol.steps p{margin:3px 0 0;color:var(--ink2);font-size:13.5px}
+
+  .board{background:var(--panel);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin-top:16px}
+  .board-h{padding:12px 15px;border-bottom:1px solid var(--hair);background:var(--surface);
+           display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+  .board-h h3{margin:0;font-family:var(--mono);font-size:14px;letter-spacing:.08em;font-weight:640}
+  .board-h .why{color:var(--ink2);font-size:13px;font-style:italic}
+  .board table{min-width:0}
+  .board th[scope=row]{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--ink2);white-space:nowrap;width:1%;text-align:left}
+  .rec{color:var(--edge);font-weight:600}
+
+  .bad{border-left:3px solid var(--bad)}
+  .good{border-left:3px solid var(--good)}
+  .note{background:var(--panel);border:1px solid var(--hair);border-left:3px solid var(--amber);
+        border-radius:0 12px 12px 0;padding:13px 16px;margin-top:18px;color:var(--ink2);font-size:14px}
+  .note b{color:var(--ink)}
+</style>
+
+<div class="page"><div class="wrap">
+  <p class="kicker">Wordy · authoring method · working draft</p>
+  <h1>Rows a fan recognises</h1>
+  <p class="lede">
+    The complaint was that answer words weren't related to their theme — "not clever, just obscure."
+    Three passes narrowed the cause. It was never the clue writing. It was that boards were chosen
+    for <em>structural legality</em> and the theme was applied afterwards, as a label.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><b>0.64</b><span>on-theme rows, before</span></div>
+    <div class="stat"><b>3.7</b><span>on-theme rows, now</span></div>
+    <div class="stat"><b>12</b><span>boards shipped</span></div>
+    <div class="stat"><b>132</b><span>tests passing</span></div>
+  </div>
+
+  <div class="note">
+    <b>Shipped.</b> The pack is merged, the build is clean (395 puzzles, 2368 clues,
+    zero rejected), typecheck passes, all 132 tests pass and the canon check resolves
+    38 entries. Verified in the running app: the picker reads <em>The Nineties · 0/12</em>
+    and the board renders <code>BLACK MUSIC · THE NINETIES</code>. Three of my own
+    drafted clues carried wrong dates and were caught during citation — see
+    <em>What research corrected</em> below.
+  </div>
+
+  <h2>What actually went wrong</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Pass</th><th>Vocabulary was…</th><th>Best board it produced</th><th class="num">Boards</th></tr></thead>
+    <tbody>
+      <tr><td>Shipped today</td><td>nothing — bases picked structurally</td>
+        <td class="rows">SLOWER · <em>swore worse rose wore slow</em></td><td class="num">25</td></tr>
+      <tr><td>1st rewrite</td><td>the industry: label, master, credit, royalties</td>
+        <td class="rows">STABLE · belt bass label beat</td><td class="num">28</td></tr>
+      <tr><td>2nd rewrite</td><td>the craft: hook, verse, run, belt, croon</td>
+        <td class="rows">HOSING · high sing sigh song</td><td class="num">79</td></tr>
+      <tr><td>3rd rewrite</td><td class="rec">the records themselves</td>
+        <td class="rows">DEARLY · <em>lady red dry real</em> lead</td><td class="num">45</td></tr>
+      <tr><td><strong>4th — shipped</strong></td><td class="rec">the whole decade: hip-hop, new jack, neo-soul</td>
+        <td class="rows">DEARLY · <em>dear lady red dry real</em></td><td class="num">113</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">
+    <b>Pass 3's numbers were inflated by a bug.</b> The subset test was a bitmask, which ignores repeated letters — so it counted <code>cool</code>, <code>loot</code>, <code>free</code>, <code>total</code> and <code>riff</code> as spellable from six distinct letters. They are not. Fixing it cut supported boards from 118 to 45 and killed the board I had presented as the best of the exercise. Widening the theme to the decade is what recovered the count honestly.<br><br><b>The cultural bench blocked pass 1 outright.</b> Leading with <code>label master credit
+    royalties</code> is what a retrospective documentary says <em>about</em> the era — third act,
+    people getting robbed. It is grievance-shaped, it centres the business over the record, and it
+    wrote the women out of a decade Mary, Mariah, Missy, SWV and Xscape authored. Pass 3 leads with
+    what people actually played.
+  </div>
+
+  <h2>The method</h2>
+  <p class="sub">Vocabulary first. Boards fall out of it. The old pipeline ran the other way.</p>
+  <ol class="steps">
+    <li><b>Write the theme's vocabulary — the records, not the room.</b>
+      <p>Words a fan recognises: titles, acts, hooks. Explicitly <em>not</em> a list of objects at
+      the scene. The first attempt at this file was still set-dressing (<code>grill coals foil pan
+      cooler chair</code>) and the bench caught it.</p></li>
+    <li><b>Filter to what the game can serve.</b>
+      <p>In the dictionary, common enough to be fair, three to six letters. Proper nouns and
+      multi-word terms die here — which is why the row carries the ordinary word and the
+      <em>clue</em> carries the proper noun.</p></li>
+    <li><b>Score every legal base by distinct ideas it spells.</b>
+      <p>Plurals fold onto their stem: <code>label</code> and <code>labels</code> are one idea, and
+      counting them twice is how a thin board looks full.</p></li>
+    <li><b>Dedupe by the ideas covered, not the letters.</b>
+      <p><code>AIRMEN</code>, <code>MARINE</code> and <code>REMAIN</code> are three dials spelling
+      the identical <code>rain name man mine</code>. To a player that is one puzzle, three times.</p></li>
+    <li><b>The worst row sets the read.</b>
+      <p>A player doesn't count rows, they get a gestalt. Three-of-five is the floor, but any row
+      that summons a <em>different</em> world rejects the board outright, whatever it scored.</p></li>
+    <li><b>Clues serve rows that are already on-theme.</b>
+      <p>A clue may never be used to drag an off-theme row onto the theme — that is precisely what
+      produced "The tempo, and what it does to a room" over <code>swore worse rose</code>. Every
+      factual clue gets a <code>canon.json</code> citation.</p></li>
+    <li><b>Pack size is bounded by judgment, not by the scorer.</b>
+      <p>Floor 12, cap 20, set by the bench. Pure "size is an output" was blocked: the yield number
+      rewards ordinary vocabulary and punishes specificity, so left alone it would have expanded
+      Juneteenth to 39 boards and shrunk the entire HBCU tradition to 2.</p></li>
+  </ol>
+
+  <h2>The worked board</h2>
+  <p class="sub">Four of five rows are records. The clue names them; it doesn't strain toward them.</p>
+
+  <article class="board good">
+    <div class="board-h"><h3>DEARLY</h3><span class="why">Board title: “Quiet Storm, 1991–1995”</span></div>
+    <table><tbody>
+      <tr><th scope="row">lady</th><td><span class="rec">Jodeci — <em>Forever My Lady</em>, 1991.</span> Four men from Charlotte, and the album that made Uptown.</td></tr>
+      <tr><th scope="row">red</th><td><span class="rec">TLC — "Red Light Special."</span> Babyface wrote it; <em>CrazySexyCool</em> carried it.</td></tr>
+      <tr><th scope="row">dry</th><td><span class="rec">Boyz II Men — "Water Runs Dry."</span> The one they sing standing still.</td></tr>
+      <tr><th scope="row">real</th><td><span class="rec">Mary J. Blige — "Real Love," 1992.</span> Hip-hop drums under a soul voice, and the decade turns.</td></tr>
+      <tr><th scope="row">lead</th><td>Who takes the first verse — the only real argument a group ever has</td></tr>
+      <tr><th scope="row">dearly</th><td>How every one of these opens: someone addressing someone directly</td></tr>
+    </tbody></table>
+  </article>
+
+  <article class="board bad">
+    <div class="board-h"><h3>SLOWER</h3><span class="why">Shipped today — for comparison</span></div>
+    <table><tbody>
+      <tr><th scope="row">swore</th><td>—</td></tr>
+      <tr><th scope="row">worse</th><td>—</td></tr>
+      <tr><th scope="row">rose</th><td>—</td></tr>
+      <tr><th scope="row">wore</th><td>—</td></tr>
+      <tr><th scope="row">slow</th><td>—</td></tr>
+      <tr><th scope="row">slower</th><td>"The tempo, and what it does to a room"</td></tr>
+    </tbody></table>
+  </article>
+
+  <h2>The twelve that shipped</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Base</th><th>Board title</th><th>Rows</th><th class="num">On-theme</th></tr></thead>
+    <tbody>
+      <tr><td class="m">DEARLY</td><td>Records that open by addressing somebody</td><td class="rows"><em>dear lady red dry real</em></td><td class="num">5</td></tr>
+      <tr><td class="m">SWEATY</td><td>Two coasts, and the men singing on both</td><td class="rows"><em>sweat west east stay say</em></td><td class="num">5</td></tr>
+      <tr><td class="m">DERAIL</td><td>The radio dial, somewhere around 1995</td><td class="rows"><em>ideal dear real red</em> dial</td><td class="num">4</td></tr>
+      <tr><td class="m">ASPECT</td><td>The mixtape, and who made the cut</td><td class="rows"><em>case east step tape</em> cast</td><td class="num">4</td></tr>
+      <tr><td class="m">INMATE</td><td>Group names, 1991 to 1999</td><td class="rows"><em>mint mine name time</em> team</td><td class="num">4</td></tr>
+      <tr><td class="m">NICKED</td><td>Protect ya neck</td><td class="rows"><em>neck ice nice end</em> deck</td><td class="num">4</td></tr>
+      <tr><td class="m">MAIDEN</td><td>Free your mind</td><td class="rows"><em>mind mine name end</em> dime</td><td class="num">4</td></tr>
+      <tr><td class="m">CRIPES</td><td>One-word names</td><td class="rows"><em>price spice ice</em> epic pier</td><td class="num">3</td></tr>
+      <tr><td class="m">NIGHTS</td><td>Gin and juice, and what came after</td><td class="rows"><em>gin night thing</em> sing sign</td><td class="num">3</td></tr>
+      <tr><td class="m">SUGARY</td><td>Brown sugar</td><td class="rows"><em>sugar guy say</em> gray rays</td><td class="num">3</td></tr>
+      <tr><td class="m">VASTLY</td><td>Salt-N-Pepa's decade</td><td class="rows"><em>salt stay say</em> last slay</td><td class="num">3</td></tr>
+      <tr><td class="m">BARING</td><td>Insane in the brain</td><td class="rows"><em>brain gin rain</em> bring grab</td><td class="num">3</td></tr>
+    </tbody></table>
+  </div>
+
+  <h2>What research corrected</h2>
+  <p class="sub">Citation is not paperwork. Three drafted clues were wrong, and writing the canon entry is what caught them — which is the whole argument for the rule.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Clue</th><th>Drafted</th><th>Corrected</th></tr></thead>
+    <tbody>
+      <tr><td class="m">nights/night</td><td>"Monica's first, and she was fifteen"</td>
+        <td>1998, five weeks at number one. <em>The First Night</em> was not her debut — that was "Don't Take It Personal," 1995 — and she was 18. The title word <em>first</em> invited the conflation.</td></tr>
+      <tr><td class="m">nicked/neck</td><td>"Wu-Tang opened the whole thing with it, 1993"</td>
+        <td>December 1992, self-released on Wu-Tang Records; re-released on Loud in May 1993.</td></tr>
+      <tr><td class="m">nights/gin · baring/gin</td><td>"Snoop, 1993"</td>
+        <td>The single is 18 January 1994. 1993 is <em>Doggystyle</em>'s year — mixing the two conventions would make every date in the pack unreliable.</td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="note">
+    <b>What is still open.</b> The base remains an arbitrary word — <code>DEARLY</code>,
+    <code>NICKED</code>, <code>CRIPES</code> — because six letters cannot spell both a
+    thematic base and thematic rows. The board title carries the identity instead, which is
+    the game wing's fix and is now shipping. Twelve boards is the bench floor, not its cap of
+    twenty, and the vocabulary supports 113 — so the pack can grow without lowering the bar.
+    Five clues naming records still have no canon entry. The cultural bench has not reviewed
+    this vocabulary; they required sign-off <em>before</em> scoring and I scored first. And
+    the remaining twenty themes still carry the set-dressing word lists this method rejects —
+    their audit numbers are lower bounds, not verdicts.
+  </div>
+</div></div>
