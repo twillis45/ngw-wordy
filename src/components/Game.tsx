@@ -40,6 +40,13 @@ import {
   subscribeA11y,
 } from '@/lib/a11y';
 import {
+  deriveKeys,
+  isSyncConfigured,
+  passphraseProblem,
+  pull as syncPull,
+  push as syncPush,
+} from '@/lib/sync';
+import {
   applyTheme,
   effectiveTheme,
   getThemeServerSnapshot,
@@ -429,6 +436,49 @@ export default function Game({ data }: { data: PuzzleFile }) {
       return true;
     },
     [data, say]
+  );
+
+  /*
+   * Sync state lives in the component and NOT in storage: the passphrase is
+   * never written anywhere, so closing the tab forgets it. That is the point —
+   * a phrase we persisted would be a phrase we could be compelled to hand over.
+   */
+  const [phrase, setPhrase] = useState('');
+  const [syncBusy, setSyncBusy] = useState(false);
+  const syncOn = isSyncConfigured();
+
+  const doSync = useCallback(
+    async (dir: 'push' | 'pull') => {
+      const problem = passphraseProblem(phrase);
+      if (problem) {
+        say(problem, 'bad');
+        return;
+      }
+      setSyncBusy(true);
+      try {
+        const keys = await deriveKeys(phrase);
+        if (dir === 'push') {
+          const res = await syncPush(
+            encodeProgress(progress, data, { text: textScale, reading }),
+            keys
+          );
+          if (res.ok) {
+            markBackedUp(new Date());
+            say('Saved to sync', 'good');
+          } else say(res.reason, 'bad');
+          return;
+        }
+        const res = await syncPull(keys);
+        if (!res.ok) {
+          say(res.reason, 'bad');
+          return;
+        }
+        restoreFrom(res.code);
+      } finally {
+        setSyncBusy(false);
+      }
+    },
+    [phrase, progress, data, textScale, reading, say, restoreFrom]
   );
 
   /*
@@ -1807,6 +1857,62 @@ export default function Game({ data }: { data: PuzzleFile }) {
               Restoring replaces the progress in this browser.
               {progress.lastBackup ? ` Last backup ${sinceBackup(progress.lastBackup)}.` : ''}
             </p>
+
+            {/*
+              Optional sync.
+
+              The board split hard on accounts: every paying seat would take a
+              login, and six seats refuse one outright — one because a signup
+              screen is a delete, another because a mandatory account is an
+              accessibility barrier. They voted for OPTIONAL, NO WALL, and this
+              is that: the game is complete without ever opening this.
+
+              It also beats the leader rather than matching it. There is no
+              email and no reset, because the passphrase never leaves the device
+              — it derives an opaque id, which is all the server learns, and a
+              key, which it never sees. The server holds a box it cannot open.
+            */}
+            {syncOn && (
+              <div className="mt-4 border-t border-edge-mid pt-4">
+                <h3 className="text-meta font-semibold text-text-primary">
+                  Sync across devices — optional
+                </h3>
+                <p className="mt-1 text-kicker leading-snug text-text-muted">
+                  No email, no account. Pick a phrase and your progress is locked
+                  with it before it leaves this device — we store a box we cannot
+                  open. <strong className="text-text-secondary">Forget the phrase and it is gone for good;
+                  there is no reset.</strong>
+                </p>
+                <input
+                  type="password"
+                  value={phrase}
+                  onChange={(e) => setPhrase(e.target.value)}
+                  placeholder="A phrase of a few words"
+                  aria-label="Sync phrase"
+                  autoComplete="off"
+                  spellCheck={false}
+                  className="mt-2.5 h-11 w-full rounded-xl border border-edge-mid bg-transparent px-3 text-meta text-text-primary placeholder:text-text-muted"
+                />
+                <div className="mt-2 flex gap-2">
+                  <button
+                    type="button"
+                    disabled={syncBusy}
+                    onClick={() => doSync('push')}
+                    className="liquid-interactive h-10 flex-1 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary disabled:opacity-50"
+                  >
+                    {syncBusy ? 'Working…' : 'Save to sync'}
+                  </button>
+                  <button
+                    type="button"
+                    disabled={syncBusy}
+                    onClick={() => doSync('pull')}
+                    className="liquid-interactive h-10 flex-1 rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-secondary disabled:opacity-50"
+                  >
+                    {syncBusy ? 'Working…' : 'Load from sync'}
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </Sheet>
       )}

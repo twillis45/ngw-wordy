@@ -157,7 +157,16 @@ export default function RootLayout({
             "style-src 'self' 'unsafe-inline'",
             "img-src 'self' data:",
             "font-src 'self'",
-            "connect-src 'self'",
+            /*
+             * Sync is the ONLY thing that may widen this, and only when a build
+             * explicitly opts in. An unconfigured build keeps `'self'` exactly
+             * as it was, so the privacy posture is not spent by shipping the
+             * feature — only by turning it on. The origin is a compile-time
+             * constant, never anything a page or a player can influence.
+             */
+            process.env.NEXT_PUBLIC_SYNC_URL
+              ? `connect-src 'self' ${new URL(process.env.NEXT_PUBLIC_SYNC_URL).origin}`
+              : "connect-src 'self'",
             "object-src 'none'",
             "base-uri 'self'",
             "form-action 'none'",
