@@ -534,6 +534,8 @@ export function shareText(opts: {
    * which is honest — those genuinely are not a shared thing.
    */
   dayNumber?: number | null;
+  /** Was the escalating wheel on for this board? */
+  escalating?: boolean;
   /** Where to play. Omitted entirely rather than guessed. */
   url?: string;
 }): string {
@@ -548,6 +550,17 @@ export function shareText(opts: {
     opts.bonusFound > 0 ? `${opts.bonusFound} bonus` : null,
     `${opts.score} pts`,
     opts.streak > 1 ? `${opts.streak}-day streak` : null,
+    /*
+     * The escalating wheel is the one structurally novel thing in this game —
+     * the search space GROWS as you clear rows, so row six is a different
+     * problem from row one — and nothing outside the app has ever named it.
+     * A mechanic nobody can describe is a mechanic nobody talks about.
+     *
+     * Named here rather than explained, because the share card is where a game
+     * gets described to someone who has not played it, and three words that
+     * raise a question do more than a sentence that answers one.
+     */
+    opts.escalating ? 'escalating wheel' : null,
   ]
     .filter(Boolean)
     .join(' · ');

@@ -1025,6 +1025,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
        * board nobody else could see.
        */
       dayNumber: isDaily ? dailyIndex(today, dailyPoolSize(data)) + 1 : null,
+      // Only when it was actually in force — the warm-up ladder runs without it.
+      escalating: progress.escalating && warmup === null,
       // Configured per deploy; falls back to wherever the game is actually
       // being played rather than a guessed domain.
       url:

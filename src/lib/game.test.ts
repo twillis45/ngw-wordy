@@ -955,3 +955,22 @@ describe('share card day number', () => {
     expect(lines[1]).toBe('"Jodeci, 1991 — four men out of Charlotte on Uptown"');
   });
 });
+
+describe('share card names the escalating wheel', () => {
+  const base = {
+    rank: 'Complete',
+    score: 120,
+    tiles: [{ solved: true, isBase: true }],
+    bonusFound: 0,
+    streak: 1,
+  };
+
+  it('names it when it was in force, because nothing outside the app ever has', () => {
+    expect(shareText({ ...base, escalating: true })).toContain('escalating wheel');
+  });
+
+  it('says nothing when it was off, or on a warm-up that runs without it', () => {
+    expect(shareText({ ...base, escalating: false })).not.toContain('escalating');
+    expect(shareText({ ...base })).not.toContain('escalating');
+  });
+});
