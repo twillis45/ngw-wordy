@@ -248,6 +248,7 @@ const SHELF_OF: Record<string, ShelfId> = {
   juneteenth: 'sunday', // The Nineteenth
   barbershop: 'block', // The Shop
   spades: 'block', // The Card Table
+  beautysupply: 'block',
   rnb90s: 'soundtrack', // The Nineties
   steppers: 'soundtrack', // The Floor
   sitcom: 'soundtrack', // Rerun Season

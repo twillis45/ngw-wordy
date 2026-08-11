@@ -89,6 +89,12 @@
    "name": "Which Island",
    "blurb": "A sampler, not a country — Jamaica, Trinidad, Barbados, Haiti and more, and the first question anybody asks is which one.",
    "category": "THE DIASPORA"
+  },
+  {
+   "id": "beautysupply",
+   "name": "The Beauty Supply",
+   "category": "THE BLOCK",
+   "blurb": "Aisle four, forty shades of the same thing, and a decision that takes twenty minutes."
   }
  ],
  "puzzles": [
@@ -1851,6 +1857,246 @@
     "skin"
    ],
    "scene": "Working out how you are related"
+  },
+  {
+   "base": "pointe",
+   "theme": "beautysupply",
+   "clues": {
+    "pointe": "The precision this takes, and nobody who has not done it believes you",
+    "point": "At the one on the top shelf, because it is always on the top shelf",
+    "tone": "Held against the back of your hand under a light that lies to you",
+    "open": "One pack, carefully, to check — and put back exactly as it was",
+    "pin": "In the bag of six, and you will need every one of them tonight",
+    "note": "In your phone from last time, with the number, so this goes faster"
+   },
+   "prefer": [
+    "point",
+    "tone",
+    "open",
+    "pin",
+    "note"
+   ],
+   "scene": "Aisle four, and the twenty minutes it takes"
+  },
+  {
+   "base": "calmer",
+   "theme": "beautysupply",
+   "clues": {
+    "calmer": "How you feel once the right jar is in your hand and the search is over",
+    "cream": "In the tub with the wide lid, and the smell decides it before the label does",
+    "lace": "The front, sold by the inch, and the good ones are behind the counter",
+    "real": "The word doing the most work on that entire wall of packaging",
+    "care": "What the aisle is actually for, and the word is right there on half the tubs",
+    "clam": "How tight the lid is, and why she asks somebody to start it for her"
+   },
+   "prefer": [
+    "cream",
+    "lace",
+    "real",
+    "care",
+    "clam"
+   ],
+   "scene": "The shelf where everything is a cream"
+  },
+  {
+   "base": "legacy",
+   "theme": "beautysupply",
+   "clues": {
+    "legacy": "What your edges are: your mother's, and hers, and the same brush",
+    "gel": "The little tub, and everybody has a position on which one is correct",
+    "lace": "Laid with the brush, then wrapped, then left alone for ten minutes",
+    "lay": "The whole verb. It carries the edges, the wig and the entire afternoon",
+    "clay": "What the cheap one turns into by hour four, and why it is the cheap one",
+    "gale": "What the wrap protects against, on the walk to the car in November"
+   },
+   "prefer": [
+    "gel",
+    "lace",
+    "lay",
+    "clay",
+    "gale"
+   ],
+   "scene": "Edge control, and the small brush"
+  },
+  {
+   "base": "chapel",
+   "theme": "beautysupply",
+   "clues": {
+    "chapel": "Where the finished result is going on Sunday, which sets the whole budget",
+    "cap": "The base everything else is built on, and the wrong size ruins all of it",
+    "lace": "Cut to the hairline with the small scissors, and there is no second try",
+    "cheap": "The trap on the bottom shelf, bought once by everyone, exactly once",
+    "pale": "The shade the photo on the packet is, and the shade it is not",
+    "peach": "The clip colour, and there are nine of them in the bag for a reason"
+   },
+   "prefer": [
+    "cap",
+    "lace",
+    "cheap",
+    "pale",
+    "peach"
+   ],
+   "scene": "The cap, and what goes over it"
+  },
+  {
+   "base": "preach",
+   "theme": "beautysupply",
+   "clues": {
+    "preach": "What the woman in the next aisle does when you ask, and she is right",
+    "cheap": "The word she uses about the one you are holding, with real feeling",
+    "reach": "Past you, without asking, to hand you the one you should have",
+    "cap": "What she takes off the shelf instead, one size up from the one you had",
+    "care": "What the whole exchange is, from a stranger, in under a minute",
+    "pace": "Hers, through the aisle, of somebody who has done this a hundred times"
+   },
+   "prefer": [
+    "cheap",
+    "reach",
+    "cap",
+    "care",
+    "pace"
+   ],
+   "scene": "What she says when you ask her opinion"
+  },
+  {
+   "base": "argyle",
+   "theme": "beautysupply",
+   "clues": {
+    "argyle": "The pattern on the only chair in the shop, and it has been there for years",
+    "gel": "Beside it, because the two purchases go together whether you planned it",
+    "real": "What you are checking for, holding a strand up, in the doorway light",
+    "gray": "The reason for the box, said out loud by nobody, ever",
+    "year": "How long since the last big change, and this is how it starts",
+    "rely": "On the one brand that has never once let you down, at any price"
+   },
+   "prefer": [
+    "gel",
+    "real",
+    "gray",
+    "year",
+    "rely"
+   ],
+   "scene": "Colour, and the decision under bad light"
+  },
+  {
+   "base": "chairs",
+   "theme": "beautysupply",
+   "clues": {
+    "chairs": "Two, by the door, for the people who came with somebody",
+    "cash": "Counted out, because the card machine has an opinion about small totals",
+    "hair": "Four packs of it, and the fourth was bought because three is never enough",
+    "rich": "How the good bundle feels between two fingers, and you know instantly",
+    "arch": "Of the brow in the mirror by the till, checking one last time",
+    "airs": "What nobody in this shop puts on, and the reason people come here"
+   },
+   "prefer": [
+    "cash",
+    "hair",
+    "rich",
+    "arch",
+    "airs"
+   ],
+   "scene": "Paying, and what is in the bag"
+  },
+  {
+   "base": "picker",
+   "theme": "beautysupply",
+   "clues": {
+    "picker": "Nobody's word for it. Everybody's word for the person who is fussy",
+    "pick": "Metal or plastic, and the fist on the handle is not decorative",
+    "price": "In marker on the shelf edge, and it has been the same for six years",
+    "epic": "The wall itself: nine feet of combs, and you need exactly one",
+    "ripe": "What the timing has to be, on a wash day planned around a Saturday",
+    "ice": "In the cup by the till, mostly melted, since about eleven"
+   },
+   "prefer": [
+    "pick",
+    "price",
+    "epic",
+    "ripe",
+    "ice"
+   ],
+   "scene": "The comb wall"
+  },
+  {
+   "base": "carpet",
+   "theme": "beautysupply",
+   "clues": {
+    "carpet": "The strip by the door, worn through in one place by one direction of traffic",
+    "cap": "First thing in the basket, because you already know that part",
+    "part": "What the whole plan starts from, decided in the mirror at home",
+    "trace": "Of last night's gel still at the hairline, and it is coming out today",
+    "crate": "By the register, holding the ones that came in on Thursday",
+    "pace": "Yours at nine in the morning, which is why you came at nine"
+   },
+   "prefer": [
+    "cap",
+    "part",
+    "trace",
+    "crate",
+    "pace"
+   ],
+   "scene": "Saturday morning, before the shop fills"
+  },
+  {
+   "base": "bagels",
+   "theme": "beautysupply",
+   "clues": {
+    "bagels": "From two doors down, because the aisle took longer than anybody planned",
+    "bag": "Thin, doubled at the till, and it will not survive the parking lot",
+    "gel": "In it, on its side, and this is how the lid ends up loose",
+    "sale": "The sign in that window since before you moved onto this block",
+    "able": "What you are, to do all of this yourself, which was never in doubt",
+    "gale": "What the wind does on that corner to a thin doubled bag, every time"
+   },
+   "prefer": [
+    "bag",
+    "gel",
+    "sale",
+    "able",
+    "gale"
+   ],
+   "scene": "The walk back to the car"
+  },
+  {
+   "base": "tamper",
+   "theme": "beautysupply",
+   "clues": {
+    "tamper": "What you do not do with the timing, not by one minute, ever",
+    "perm": "In the box with the two bottles, and the instructions are not a suggestion",
+    "part": "Into four, greased at the scalp, before a single thing is opened",
+    "team": "Two people, because doing your own back is how it goes wrong",
+    "tape": "On the mirror, with the timing written on it in marker",
+    "mart": "The one on the corner, open until nine, which is why tonight is possible"
+   },
+   "prefer": [
+    "perm",
+    "part",
+    "team",
+    "tape",
+    "mart"
+   ],
+   "scene": "The relaxer box, and the timer"
+  },
+  {
+   "base": "wraith",
+   "theme": "beautysupply",
+   "clues": {
+    "wraith": "How you feel by minute forty, still holding two packs",
+    "hair": "Everybody in here is holding some, and no two are buying the same thing",
+    "wait": "Not for a till. For the woman at the counter to finish her opinion",
+    "hart": "On the calendar behind the register, from a garage, from 2011",
+    "wrath": "Of the person behind you, entirely silent, entirely legible",
+    "with": "Who you came, and whether they are helping or are on their phone"
+   },
+   "prefer": [
+    "hair",
+    "wait",
+    "hart",
+    "wrath",
+    "with"
+   ],
+   "scene": "The wait, and who is ahead of you"
   }
  ]
 }

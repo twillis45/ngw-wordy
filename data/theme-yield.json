@@ -3557,6 +3557,327 @@
   ]
  },
  {
+  "id": "beautysupply",
+  "vocab": 54,
+  "shipped": 0,
+  "supported": 30,
+  "boards": [
+   {
+    "base": "pointe",
+    "ideas": 4,
+    "known": 4,
+    "weight": 9,
+    "rows": [
+     "pin:named",
+     "point:said",
+     "open:said",
+     "tone:said"
+    ]
+   },
+   {
+    "base": "calmer",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "lace:named",
+     "cream:named",
+     "real:said"
+    ]
+   },
+   {
+    "base": "chapel",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "lace:named",
+     "cap:named",
+     "cheap:said"
+    ]
+   },
+   {
+    "base": "legacy",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "lace:named",
+     "gel:named",
+     "lay:said"
+    ]
+   },
+   {
+    "base": "argyle",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "gel:named",
+     "real:said",
+     "lay:said"
+    ]
+   },
+   {
+    "base": "cradle",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "lace:named",
+     "card:said",
+     "real:said"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "dearly",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "dye:named",
+     "real:said",
+     "lay:said"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "preach",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "cap:named",
+     "reach:said",
+     "cheap:said"
+    ]
+   },
+   {
+    "base": "bagels",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "gel:named",
+     "bag:said"
+    ]
+   },
+   {
+    "base": "candor",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "rod:named",
+     "card:said"
+    ],
+    "owner": "cookout"
+   },
+   {
+    "base": "carpet",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "cap:named",
+     "part:said"
+    ]
+   },
+   {
+    "base": "cartel",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "lace:named",
+     "real:said"
+    ]
+   },
+   {
+    "base": "chairs",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "hair:named",
+     "cash:said"
+    ]
+   },
+   {
+    "base": "champs",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "cap:named",
+     "cash:said"
+    ]
+   },
+   {
+    "base": "delays",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "dye:named",
+     "lay:said"
+    ]
+   },
+   {
+    "base": "galore",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "gel:named",
+     "real:said"
+    ]
+   },
+   {
+    "base": "ordeal",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "rod:named",
+     "real:said"
+    ]
+   },
+   {
+    "base": "packed",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "cap:named",
+     "pack:said"
+    ]
+   },
+   {
+    "base": "palmer",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "perm:named",
+     "real:said"
+    ]
+   },
+   {
+    "base": "peachy",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "cap:named",
+     "cheap:said"
+    ]
+   },
+   {
+    "base": "picker",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "pick:named",
+     "price:said"
+    ]
+   },
+   {
+    "base": "pigeon",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "pin:named",
+     "open:said"
+    ]
+   },
+   {
+    "base": "piston",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "pin:named",
+     "point:said"
+    ]
+   },
+   {
+    "base": "ponder",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "rod:named",
+     "open:said"
+    ]
+   },
+   {
+    "base": "prince",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "pin:named",
+     "price:said"
+    ]
+   },
+   {
+    "base": "rodent",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "rod:named",
+     "tone:said"
+    ]
+   },
+   {
+    "base": "solace",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "lace:named",
+     "close:said"
+    ]
+   },
+   {
+    "base": "tamper",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "perm:named",
+     "part:said"
+    ]
+   },
+   {
+    "base": "tracks",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "track:named",
+     "ask:said"
+    ],
+    "owner": "sitcom"
+   },
+   {
+    "base": "wraith",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "hair:named",
+     "wait:said"
+    ]
+   }
+  ]
+ },
+ {
   "id": "church",
   "vocab": 113,
   "shipped": 12,
