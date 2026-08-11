@@ -1,0 +1,119 @@
+{
+  "_doc": "STAGING. Cookout rebuilt vocabulary-first against the vocabulary the cultural bench signed off on 2026-08-11, at their bar (one `named` row plus one `said` row, texture counting toward neither) and their clue-level test: do the six rows describe ONE MOMENT? Six correct nouns from six different afternoons is a failure at five-of-five, so boards were cut for incoherence even when they scored well. NO CANON ENTRIES YET — no clue here names a dated fact, which is deliberate for this pack: a cookout is remembered, not documented, and inventing a citation for it would be worse than carrying none.",
+  "theme": {
+    "id": "cookout",
+    "name": "The Cookout",
+    "category": "THE TABLE",
+    "blurb": "Somebody's cousin on the grill, somebody's aunt on the cards, and a plate made for you before you asked."
+  },
+  "boards": [
+    {
+      "base": "hearts",
+      "scene": "The grill, from lighting it to letting it die",
+      "clues": {
+        "hearts": "What the whole thing runs on, and the reason nobody counts the hours",
+        "heat": "Got right before a single thing goes on the grate, which is the part people skip",
+        "sear": "The first ninety seconds, and the only ninety seconds anyone watches",
+        "rest": "What the meat does on the board while somebody insists it is ready",
+        "ash": "What is left at the bottom on Sunday morning, still faintly warm",
+        "tea": "Sweet, in the jug with the lid that never seals right"
+      }
+    },
+    {
+      "base": "breast",
+      "scene": "What goes on the grate, and in what order",
+      "clues": {
+        "breast": "Goes on last because it dries out first, whatever your uncle says",
+        "brats": "The ones that get eaten standing up before the plates come out",
+        "baste": "Every turn, with the sauce that has been on the side burner since noon",
+        "sear": "Hot side first, then moved — the whole method in four words",
+        "rest": "Off the heat, under foil, and hands off",
+        "tea": "The jug again, and somebody has already gone for more ice"
+      }
+    },
+    {
+      "base": "phased",
+      "scene": "The card table under the tree",
+      "clues": {
+        "phased": "What nobody at this table gets, no matter what you lead with",
+        "spade": "The suit that decides it, and the reason two grown people are standing up",
+        "shade": "Both the tree and the conversation, and the tree is the lesser one",
+        "heap": "How a plate is built when your auntie builds it for you",
+        "head": "What the argument is about by round three, and it is not the cards",
+        "ash": "Flicked off the end of a cigarette nobody admits to having"
+      }
+    },
+    {
+      "base": "turban",
+      "scene": "Who runs the grill, and what happens if you touch it",
+      "clues": {
+        "turban": "The wrap on her head that says she has been up since six",
+        "aunt": "Holds the tongs. Has held the tongs since 1994. Will hold the tongs",
+        "rub": "Went on last night, which is the part that makes it hers",
+        "turn": "Once. Anyone who does it twice is asked to sit down",
+        "burnt": "The edge some people ask for on purpose, and they are correct",
+        "bran": "In the muffins nobody came for, brought by the cousin who tries"
+      }
+    },
+    {
+      "base": "cinema",
+      "scene": "The table, not the grill",
+      "clues": {
+        "cinema": "What the yard becomes once the sun drops and the speaker gets louder",
+        "mac": "Baked, with the crust, and there is exactly one person allowed to bring it",
+        "ice": "Ran out at four. Somebody is already in the car",
+        "can": "Buried to the elbow in the cooler, and the cold water is the good part",
+        "amen": "Said fast by whoever is nearest, because the food is going cold",
+        "acme": "The peak of the afternoon, roughly twenty minutes after the plates"
+      }
+    },
+    {
+      "base": "candor",
+      "scene": "The extension cord and everything running off it",
+      "clues": {
+        "candor": "What the aux cord produces within one hour, from someone's nephew",
+        "corn": "In the husk, straight on the grate, and the silk burns off",
+        "cord": "Orange, running from the kitchen window to the speaker, taped down badly",
+        "can": "Handed to you without being asked for, which is how you know you are family",
+        "card": "The table by the fence, and the reason nobody helps carry anything",
+        "arc": "The one the horseshoe makes before it misses"
+      }
+    },
+    {
+      "base": "sliced",
+      "scene": "After the plates, before the dark",
+      "clues": {
+        "sliced": "How the melon arrives, on the good tray, from the trunk of a car",
+        "slide": "Starts when the right song comes on, and the aunties know it first",
+        "ice": "Second run of the day, and this time somebody went with them",
+        "dice": "Come out once the kids are inside and the grown folks are grown",
+        "lid": "Back on the cooler, which is the first sign it is winding down",
+        "deli": "Where the potato salad came from, a fact being actively denied"
+      }
+    },
+    {
+      "base": "backer",
+      "scene": "The dessert table, which is a folding table",
+      "clues": {
+        "backer": "Every dish here has one, and they are standing near it watching you",
+        "cake": "Pound. Under a dome. Not to be touched until it is announced",
+        "bake": "What she did at eleven at night so it would sit right by two",
+        "rack": "Cooling on it by the window since this morning",
+        "beak": "What the one bold bird has been eyeing since the foil came off",
+        "acre": "How far the smell has carried, roughly, by four in the afternoon"
+      }
+    },
+    {
+      "base": "depict",
+      "scene": "The cooler, the dip, and the folding chairs",
+      "clues": {
+        "depict": "What the group photo fails to do, every single year",
+        "dip": "In the bowl with the lid that does not match, and it goes first",
+        "pit": "Dug once, years ago, and still where the whole thing happens",
+        "ice": "The third bag. Nobody planned for the third bag",
+        "tide": "How the chairs drift toward the shade over the course of an afternoon",
+        "diet": "Announced on Monday by at least two people here"
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+# Bases that are legal but wrong as a PRIZE WORD.
+#
+# The base is the word the player lands on at the moment of winning — it gets
+# the ring, the celebration and the share card. So it is not merely a letter
+# supply; it is the note the board ends on.
+#
+# The vocabulary-first method scores a base purely on the rows its letters can
+# spell, which is why it happily offered `DEATHS` and `STUPID` as boards for a
+# family cookout. Both are legal English, both spell good on-theme rows, and
+# both are the wrong thing to celebrate at a table full of relatives.
+#
+# This is NOT a profanity list — `lib/blocklist.mjs` already handles slurs and
+# obscenity, and nothing here is unsayable. These are words that would land
+# badly as a triumph, on themes that are warm by construction: a cookout, a
+# repast, a homecoming, a church service.
+#
+# Kept deliberately small and reviewable. A base only belongs here if landing
+# on it would make a player wince, not merely shrug.
+
+# death and injury
+deaths
+morgue
+coffins
+bruise
+bruised
+wounds
+wounded
+maimed
+choked
+choking
+buried
+corpse
+
+# insult and diminishment
+stupid
+stupids
+idiots
+morons
+dumber
+dimwit
+losers
+failed
+unfit
+lousy
+wretch
+
+# illness and decline
+anemic
+sickly
+ailing
+feeble
+frailer
+tumors
+plague
+
+# violence
+strike
+stabs
+shoots
+beaten
+attack
+assault
+
+# theft, ruin and shame
+stolen
+robbed
+frauds
+cheats
+ashamed
+disgrace
+ruined
+broke
+
+# things nobody wants at a table
+roaches
+maggots
+rotting
+spoiled
+rancid
+mildew

@@ -107,8 +107,28 @@ function usable(list) {
   return seen;
 }
 
+/**
+ * Bases that are legal but wrong as a PRIZE WORD.
+ *
+ * The base is what a player lands on at the moment of winning — it takes the
+ * ring, the celebration and the share card. Scoring it purely on the rows its
+ * letters spell is how the method offered `DEATHS` and `STUPID` as boards for
+ * a family cookout: both legal, both spelling good on-theme rows, both the
+ * wrong note to end a warm board on.
+ *
+ * Separate from `lib/blocklist.mjs`, which handles slurs and obscenity. Nothing
+ * in this file is unsayable; it is a list of things you would not want to
+ * celebrate at a table full of relatives.
+ */
+const toneDeny = new Set(
+  read('data/base-tone-deny.txt')
+    .split('\n')
+    .map((l) => l.replace(/#.*$/, '').trim().toLowerCase())
+    .filter(Boolean)
+);
+
 const bases = [...enable].filter(
-  (w) => w.length === 6 && distinct(w) && popular.has(w) && !isBlocked(w)
+  (w) => w.length === 6 && distinct(w) && popular.has(w) && !isBlocked(w) && !toneDeny.has(w)
 );
 
 const report = [];

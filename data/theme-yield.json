@@ -3,7 +3,7 @@
   "id": "rnb90s",
   "vocab": 143,
   "shipped": 12,
-  "supported": 76,
+  "supported": 75,
   "boards": [
    {
     "base": "sweaty",
@@ -348,20 +348,6 @@
     "owner": "gogo"
    },
    {
-    "base": "failed",
-    "ideas": 5,
-    "known": 2,
-    "weight": 8,
-    "rows": [
-     "ideal:acts",
-     "life:titles",
-     "lead:voice",
-     "fade:voice",
-     "dial:voice"
-    ],
-    "owner": "carolina"
-   },
-   {
     "base": "basket",
     "ideas": 4,
     "known": 2,
@@ -599,8 +585,7 @@
     "rows": [
      "rob:acts",
      "gin:titles"
-    ],
-    "owner": "westcoast"
+    ]
    },
    {
     "base": "bother",
@@ -620,8 +605,7 @@
     "rows": [
      "brand:acts",
      "dry:titles"
-    ],
-    "owner": "westcoast"
+    ]
    },
    {
     "base": "buying",
@@ -875,7 +859,7 @@
   "id": "cookout",
   "vocab": 103,
   "shipped": 21,
-  "supported": 76,
+  "supported": 73,
   "boards": [
    {
     "base": "breast",
@@ -905,7 +889,7 @@
     ]
    },
    {
-    "base": "anemic",
+    "base": "cinema",
     "ideas": 4,
     "known": 4,
     "weight": 9,
@@ -916,19 +900,6 @@
      "amen:said"
     ],
     "owner": "reunion"
-   },
-   {
-    "base": "deaths",
-    "ideas": 4,
-    "known": 4,
-    "weight": 9,
-    "rows": [
-     "tea:named",
-     "shade:said",
-     "heat:said",
-     "ash:said"
-    ],
-    "owner": "gogo"
    },
    {
     "base": "phased",
@@ -1053,17 +1024,6 @@
     ]
    },
    {
-    "base": "stupid",
-    "ideas": 3,
-    "known": 3,
-    "weight": 8,
-    "rows": [
-     "tips:named",
-     "dip:named",
-     "pit:said"
-    ]
-   },
-   {
     "base": "wealth",
     "ideas": 4,
     "known": 3,
@@ -1137,18 +1097,6 @@
     "owner": "spades"
    },
    {
-    "base": "cheats",
-    "ideas": 3,
-    "known": 3,
-    "weight": 7,
-    "rows": [
-     "tea:named",
-     "heat:said",
-     "ash:said"
-    ],
-    "owner": "steppers"
-   },
-   {
     "base": "corned",
     "ideas": 3,
     "known": 3,
@@ -1193,6 +1141,18 @@
      "grate:said"
     ],
     "owner": "homecoming"
+   },
+   {
+    "base": "hasten",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tea:named",
+     "heat:said",
+     "ash:said"
+    ],
+    "owner": "sunday"
    },
    {
     "base": "priest",
@@ -1408,7 +1368,7 @@
     ]
    },
    {
-    "base": "bruise",
+    "base": "buries",
     "ideas": 2,
     "known": 2,
     "weight": 5,
@@ -1417,16 +1377,6 @@
      "rub:said"
     ],
     "owner": "chicago"
-   },
-   {
-    "base": "buried",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "bid:named",
-     "rub:said"
-    ]
    },
    {
     "base": "campos",
@@ -1734,233 +1684,6 @@
   ]
  },
  {
-  "id": "spades",
-  "vocab": 45,
-  "shipped": 21,
-  "supported": 19,
-  "boards": [
-   {
-    "base": "lacked",
-    "ideas": 4,
-    "known": 4,
-    "weight": 10,
-    "rows": [
-     "deck:named",
-     "ace:named",
-     "deal:said",
-     "lead:said"
-    ],
-    "owner": "spades"
-   },
-   {
-    "base": "blinds",
-    "ideas": 3,
-    "known": 3,
-    "weight": 8,
-    "rows": [
-     "nil:named",
-     "blind:named",
-     "bid:said"
-    ]
-   },
-   {
-    "base": "cheats",
-    "ideas": 4,
-    "known": 3,
-    "weight": 8,
-    "rows": [
-     "ace:named",
-     "set:said",
-     "cheat:said",
-     "seat:voice"
-    ],
-    "owner": "steppers"
-   },
-   {
-    "base": "cradle",
-    "ideas": 4,
-    "known": 3,
-    "weight": 8,
-    "rows": [
-     "ace:named",
-     "deal:said",
-     "lead:said",
-     "card:voice"
-    ],
-    "owner": "reunion"
-   },
-   {
-    "base": "lapsed",
-    "ideas": 4,
-    "known": 3,
-    "weight": 8,
-    "rows": [
-     "spade:named",
-     "deal:said",
-     "lead:said",
-     "pad:voice"
-    ],
-    "owner": "spades"
-   },
-   {
-    "base": "placed",
-    "ideas": 4,
-    "known": 3,
-    "weight": 8,
-    "rows": [
-     "ace:named",
-     "deal:said",
-     "lead:said",
-     "pad:voice"
-    ],
-    "owner": "spades"
-   },
-   {
-    "base": "calmed",
-    "ideas": 3,
-    "known": 3,
-    "weight": 7,
-    "rows": [
-     "ace:named",
-     "deal:said",
-     "lead:said"
-    ],
-    "owner": "spades"
-   },
-   {
-    "base": "denial",
-    "ideas": 3,
-    "known": 3,
-    "weight": 7,
-    "rows": [
-     "nil:named",
-     "deal:said",
-     "lead:said"
-    ],
-    "owner": "hbcu"
-   },
-   {
-    "base": "tucked",
-    "ideas": 3,
-    "known": 3,
-    "weight": 7,
-    "rows": [
-     "deck:named",
-     "cut:said",
-     "duck:said"
-    ]
-   },
-   {
-    "base": "pasted",
-    "ideas": 4,
-    "known": 2,
-    "weight": 7,
-    "rows": [
-     "spade:named",
-     "set:said",
-     "pad:voice",
-     "seat:voice"
-    ],
-    "owner": "hbcu"
-   },
-   {
-    "base": "aspect",
-    "ideas": 3,
-    "known": 2,
-    "weight": 6,
-    "rows": [
-     "ace:named",
-     "set:said",
-     "seat:voice"
-    ],
-    "owner": "rnb90s"
-   },
-   {
-    "base": "teacup",
-    "ideas": 3,
-    "known": 2,
-    "weight": 6,
-    "rows": [
-     "ace:named",
-     "cut:said",
-     "cup:voice"
-    ]
-   },
-   {
-    "base": "chalet",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "ace:named",
-     "cheat:said"
-    ]
-   },
-   {
-    "base": "coarse",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "ace:named",
-     "score:said"
-    ]
-   },
-   {
-    "base": "curate",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "ace:named",
-     "cut:said"
-    ]
-   },
-   {
-    "base": "enlist",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "nil:named",
-     "set:said"
-    ],
-    "owner": "homecoming"
-   },
-   {
-    "base": "lucked",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "deck:named",
-     "duck:said"
-    ]
-   },
-   {
-    "base": "luring",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "nil:named",
-     "run:said"
-    ]
-   },
-   {
-    "base": "tackle",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "ace:named",
-     "talk:said"
-    ],
-    "owner": "spades"
-   }
-  ]
- },
- {
   "id": "juneteenth",
   "vocab": 43,
   "shipped": 24,
@@ -2170,8 +1893,7 @@
     "rows": [
      "cake:named",
      "park:said"
-    ],
-    "owner": "westcoast"
+    ]
    },
    {
     "base": "tacked",
@@ -2182,6 +1904,220 @@
      "cake:named",
      "date:said"
     ]
+   }
+  ]
+ },
+ {
+  "id": "spades",
+  "vocab": 45,
+  "shipped": 21,
+  "supported": 18,
+  "boards": [
+   {
+    "base": "lacked",
+    "ideas": 4,
+    "known": 4,
+    "weight": 10,
+    "rows": [
+     "deck:named",
+     "ace:named",
+     "deal:said",
+     "lead:said"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "blinds",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "nil:named",
+     "blind:named",
+     "bid:said"
+    ]
+   },
+   {
+    "base": "cradle",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "ace:named",
+     "deal:said",
+     "lead:said",
+     "card:voice"
+    ],
+    "owner": "reunion"
+   },
+   {
+    "base": "lapsed",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "spade:named",
+     "deal:said",
+     "lead:said",
+     "pad:voice"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "placed",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "ace:named",
+     "deal:said",
+     "lead:said",
+     "pad:voice"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "calmed",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "ace:named",
+     "deal:said",
+     "lead:said"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "denial",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "nil:named",
+     "deal:said",
+     "lead:said"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "tucked",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "deck:named",
+     "cut:said",
+     "duck:said"
+    ]
+   },
+   {
+    "base": "pasted",
+    "ideas": 4,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "spade:named",
+     "set:said",
+     "pad:voice",
+     "seat:voice"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "aspect",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "ace:named",
+     "set:said",
+     "seat:voice"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "teacup",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "ace:named",
+     "cut:said",
+     "cup:voice"
+    ]
+   },
+   {
+    "base": "chalet",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "ace:named",
+     "cheat:said"
+    ]
+   },
+   {
+    "base": "coarse",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "ace:named",
+     "score:said"
+    ]
+   },
+   {
+    "base": "curate",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "ace:named",
+     "cut:said"
+    ]
+   },
+   {
+    "base": "enlist",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "nil:named",
+     "set:said"
+    ],
+    "owner": "homecoming"
+   },
+   {
+    "base": "lucked",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "deck:named",
+     "duck:said"
+    ]
+   },
+   {
+    "base": "luring",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "nil:named",
+     "run:said"
+    ]
+   },
+   {
+    "base": "tackle",
+    "ideas": 2,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "ace:named",
+     "talk:said"
+    ],
+    "owner": "spades"
    }
   ]
  },
@@ -3021,7 +2957,7 @@
     ]
    },
    {
-    "base": "bruise",
+    "base": "buries",
     "ideas": 2,
     "known": 2,
     "weight": 5,

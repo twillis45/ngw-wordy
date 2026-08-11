@@ -645,7 +645,7 @@
    "cluster": "foodways",
    "claim": "Chicago lakefront parking is metered and plate-read, not a permit on the dash; grilling is banned on the beaches and in Grant Park.",
    "verdict": "corrected",
-   "detail": "The shipped clue had a permit on the dash and a noon ticket sweep. Reality is ParkChicago meters and licence-plate-reading gates. Useful for authors: the Park District picnic permit threshold is 50 people and $45, and this board is a lakefront PARK scene, which is legal, rather than a beach one, which would not be.",
+   "detail": "The shipped clue had a permit on the dash and a noon ticket sweep. Reality is ParkChicago meters and licence-plate-reading gates. Useful for authors: the Park District picnic permit threshold is 50 people and $45, and this board is a lakefront PARK scene, which is legal, rather than a beach one, which would not be. [2026-08-11: the board carrying this clue was removed when The Cookout was rebuilt vocabulary-first against the bench-signed vocabulary. Finding retained, citation cleared — it vouches for no live text, and a future cookout board about the lakefront should pick it back up.]",
    "sources": [
     {
      "title": "Chicago Park District — picnic permits and lakefront rules",
@@ -653,13 +653,7 @@
      "kind": "primary"
     }
    ],
-   "clues": [
-    {
-     "theme": "cookout",
-     "base": "drinks",
-     "word": "risk"
-    }
-   ],
+   "clues": [],
    "replacement": {
     "word": "risk",
     "clue": "What you take at the lakefront lot, where a camera reads your plate and bills you by the hour."

@@ -21,7 +21,8 @@
   {
    "id": "cookout",
    "name": "The Cookout",
-   "blurb": "Paper plates, folding chairs, somebody's uncle on the grill."
+   "blurb": "Somebody's cousin on the grill, somebody's aunt on the cards, and a plate made for you before you asked.",
+   "category": "THE TABLE"
   },
   {
    "id": "rnb90s",
@@ -131,26 +132,6 @@
   }
  ],
  "puzzles": [
-  {
-   "base": "cousin",
-   "theme": "cookout",
-   "clues": {
-    "cousin": "Not your mother's sister's kid. Nobody can chart it and nobody asks.",
-    "icons": "Three framed in the hallway: Martin, Kennedy, and your grandmother.",
-    "coins": "Dug out the couch when you heard the truck turn onto the next street.",
-    "sun": "Still all the way up at eight o'clock and nobody's going inside.",
-    "son": "He fixed a plate, ate standing up, and got told to sit down twice.",
-    "cons": "Listed out by whoever is angling not to host it next year."
-   },
-   "prefer": [
-    "icons",
-    "coins",
-    "sun",
-    "son",
-    "cons"
-   ],
-   "scene": "Kin nobody can chart, and nobody asks"
-  },
   {
    "base": "sitcom",
    "theme": "sitcom",
@@ -447,226 +428,6 @@
     "yard"
    ],
    "scene": "Grace over the food and the drive home"
-  },
-  {
-   "base": "sauced",
-   "theme": "cookout",
-   "clues": {
-    "sauced": "Yellow, not red. Anybody who tells you different is from another state.",
-    "sauce": "The gallon jug rode down in the floorboard because the store kind is wrong.",
-    "cause": "The reason given for driving four hours. The real one is nobody's seen anybody.",
-    "case": "A flat of red drink under the folding table, still in the cardboard.",
-    "used": "The foil pans everybody swore they would wash and bring back.",
-    "aces": "What your uncle claims he was holding, three hands after the deal."
-   },
-   "prefer": [
-    "sauce",
-    "cause",
-    "case",
-    "used",
-    "aces"
-   ],
-   "scene": "Yellow mustard, and the state line"
-  },
-  {
-   "base": "smoker",
-   "theme": "cookout",
-   "clues": {
-    "smoker": "Welded out of a drum by a cousin. It has a name and its own trailer hitch.",
-    "smoke": "Thin and blue is right. Thick and white means somebody opened the lid.",
-    "some": "How much rice is left after the first pass. Enough to argue about.",
-    "more": "What the man with the tongs says after you already told him you were full.",
-    "sore": "Your back the next morning, from the folding chair with the busted strap.",
-    "rose": "What the canopy did at six in the morning: four men, one set of directions."
-   },
-   "prefer": [
-    "smoke",
-    "some",
-    "more",
-    "sore",
-    "rose"
-   ],
-   "scene": "A hand-welded drum pit, and its keeper"
-  },
-  {
-   "base": "uncles",
-   "theme": "cookout",
-   "clues": {
-    "uncles": "Two by blood, three by proximity, and one nobody has ever been able to place.",
-    "uncle": "Owns the pit. Did not buy the meat, will not clean it, accepts the credit.",
-    "clues": "You get none. You just know which cooler in the carport is not for you.",
-    "lens": "He has had the camcorder up since noon and nobody has asked him to stop.",
-    "sun": "Behind the pines by nine, which is when the bug spray comes out of the truck.",
-    "use": "What the good pan is not for. That one goes to church and comes back."
-   },
-   "prefer": [
-    "uncle",
-    "clues",
-    "lens",
-    "sun",
-    "use"
-   ],
-   "scene": "The men in the carport, blood or not"
-  },
-  {
-   "base": "auntie",
-   "theme": "cookout",
-   "clues": {
-    "auntie": "Not blood. Still, do not let her hear you say her first name by itself.",
-    "aunt": "Came in with a covered dish and a list of who did not speak to her last year.",
-    "tuna": "Somebody always brings it, nobody claims it, and the bowl still comes back empty.",
-    "untie": "What you do to the apron string before she will let you hug her.",
-    "unit": "The window kind, dripping in the flower bed, cooling the one room everybody wants.",
-    "tune": "Came on and three generations stood up without anybody being asked."
-   },
-   "prefer": [
-    "aunt",
-    "tuna",
-    "untie",
-    "unit",
-    "tune"
-   ],
-   "scene": "Not blood, still say her whole title"
-  },
-  {
-   "base": "hosted",
-   "theme": "cookout",
-   "clues": {
-    "hosted": "You said yes to it back in February. It is July now and ninety people are coming.",
-    "host": "The only one holding a plate the whole afternoon and never once sitting down.",
-    "hose": "Green, coiled by the spigot, and the only air conditioning the kids get.",
-    "shoe": "Left by the back steps. Its match is somewhere out in the yard.",
-    "shot": "The group picture, taken twice, because Granddaddy blinked the first time.",
-    "shed": "Where the extra chairs live, behind the mower and the Christmas box."
-   },
-   "prefer": [
-    "host",
-    "hose",
-    "shoe",
-    "shot",
-    "shed"
-   ],
-   "scene": "Ninety people, and the yard you promised"
-  },
-  {
-   "base": "shrimp",
-   "theme": "cookout",
-   "clues": {
-    "shrimp": "Heads on, in the pot with corn and sausage, poured out onto newspaper.",
-    "ship": "What the box of pecans does every December, taped shut and addressed by hand.",
-    "hips": "What the electric slide is hard on once you are past about fifty.",
-    "prim": "How the church ladies sit down, and how they do not eat.",
-    "rips": "What the paper plate does the second the second helping lands on it.",
-    "rim": "Salt around the glass, and the part of the pot you grab with a towel."
-   },
-   "prefer": [
-    "ship",
-    "hips",
-    "prim",
-    "rips",
-    "rim"
-   ],
-   "scene": "Lowcountry boil, poured on newspaper"
-  },
-  {
-   "base": "boiled",
-   "theme": "cookout",
-   "clues": {
-    "boiled": "Peanuts in a wet paper bag, bought off a truck at the county line, still hot.",
-    "boil": "The pot out on the propane burner, because it will never fit on the stove.",
-    "oiled": "The grates, with half an onion on a fork, before anything touches them.",
-    "idle": "Two men standing over the pit doing nothing at all, and doing it seriously.",
-    "deli": "The plastic tub the potato salad arrived in. It has never fooled anybody.",
-    "lid": "Lifted an inch, water sloshing, and she tells you to shut it before the cold gets out."
-   },
-   "prefer": [
-    "boil",
-    "oiled",
-    "idle",
-    "lid",
-    "deli"
-   ],
-   "scene": "Peanuts in a wet bag, hot off the truck"
-  },
-  {
-   "base": "melons",
-   "theme": "cookout",
-   "clues": {
-    "melons": "Cut over the sink at ten in the morning so they are cold by two.",
-    "melon": "One end sweeter than the other, and every child in the yard knows which end.",
-    "lemon": "Halved into the tea pitcher, then rubbed on your hands after you clean fish.",
-    "solemn": "How the blessing goes, right up until somebody's phone starts ringing.",
-    "mole": "The one on her cheek that half the women in this family got a version of.",
-    "nose": "Tells you the pit is ready from three houses down the street."
-   },
-   "prefer": [
-    "melon",
-    "lemon",
-    "solemn",
-    "mole",
-    "nose"
-   ],
-   "scene": "The cold fruit cut over the sink at ten"
-  },
-  {
-   "base": "spiced",
-   "theme": "cookout",
-   "clues": {
-    "spiced": "The rub went on last night, which is why nobody could get into the fridge.",
-    "spice": "The tin with no label on it that she will not let you take a picture of.",
-    "dice": "What he does to the onion, small, so the children cannot see it and refuse.",
-    "side": "There are eleven of them and exactly one kind of meat left on the table.",
-    "pies": "Sweet potato, two of them, and one is already spoken for by name.",
-    "ice": "Twenty pounds from the gas station, and somebody has to go back for more by two o'clock."
-   },
-   "prefer": [
-    "spice",
-    "dice",
-    "ice",
-    "side",
-    "pies"
-   ],
-   "scene": "The rub that went on last night"
-  },
-  {
-   "base": "basket",
-   "theme": "cookout",
-   "clues": {
-    "basket": "Lined with a dish towel, and the rolls under it are still warm at four.",
-    "bakes": "She does it Saturday night so that Sunday is nothing but reheating.",
-    "beast": "On the pit since two in the morning, and two men slept in chairs beside it.",
-    "steak": "Not what is on this grill. Somebody brought it anyway and got looked at.",
-    "seat": "There are not enough. The children eat standing up and think that is normal.",
-    "task": "Yours is ice. It is always ice, and you will be sent back out for more."
-   },
-   "prefer": [
-    "bakes",
-    "beast",
-    "steak",
-    "seat",
-    "task"
-   ],
-   "scene": "Rolls under a dish towel, still warm"
-  },
-  {
-   "base": "gravel",
-   "theme": "cookout",
-   "clues": {
-    "gravel": "The driveway. You hear every car that turns in before you ever see it.",
-    "grave": "He drives out there with flowers Sunday morning before he comes to eat.",
-    "large": "The size of the foil pan, and the number of folks who said they were coming.",
-    "glare": "What she sends across the yard, and it still works from forty feet away.",
-    "gavel": "Whoever brought one to the reunion meeting was serious, and got laughed at.",
-    "gear": "Tongs, thermometer, spray bottle. Nobody else is permitted to touch any of it."
-   },
-   "prefer": [
-    "grave",
-    "large",
-    "glare",
-    "gavel",
-    "gear"
-   ],
-   "scene": "The driveway, and who just turned in"
   },
   {
    "base": "phrase",
@@ -4729,26 +4490,6 @@
    "scene": "The helping you did not ask for"
   },
   {
-   "base": "breast",
-   "theme": "sunday",
-   "clues": {
-    "breast": "Two on the platter, and everybody knows which grandchild has a claim on one.",
-    "best": "The dishes that live behind glass all week and come out for this one meal.",
-    "rest": "What she takes only after the last plate is dried and the last pan put up.",
-    "seat": "The one at the head is not yours, and nobody has ever had to say so twice.",
-    "bare": "The table never is. Something goes down over the wood first, even for family.",
-    "tea": "Sweet, in the good pitcher, brewed before church so it is cold by the time grace is done."
-   },
-   "prefer": [
-    "best",
-    "rest",
-    "seat",
-    "tea",
-    "bare"
-   ],
-   "scene": "The platter, and who has a claim on it"
-  },
-  {
    "base": "faster",
    "theme": "sunday",
    "clues": {
@@ -5069,166 +4810,6 @@
    "scene": "A Knights of Columbus hall in Lent"
   },
   {
-   "base": "briefs",
-   "theme": "cookout",
-   "clues": {
-    "briefs": "She sets the folder down by the potato salad and does not open it again until Monday morning.",
-    "ribs": "She pulls a rack off early for the children, because the whole hog will not be ready until dark.",
-    "fire": "Oak, lit in a barrel at eleven at night, so the coals can be shoveled under the hog by two.",
-    "fries": "The teenagers walk up to the store and come back with a paper sack of them, salt in the bottom.",
-    "brie": "The cousin who moved to Charlotte brought a cheese board. It sat all day next to the deviled eggs.",
-    "rib": "One bone, handed to you off the block before the platter goes out, and you eat it standing."
-   },
-   "prefer": [
-    "ribs",
-    "fire",
-    "fries",
-    "rib",
-    "brie"
-   ],
-   "scene": "Carolina whole hog, and the vinegar"
-  },
-  {
-   "base": "candor",
-   "theme": "cookout",
-   "clues": {
-    "candor": "Grandmother's, aimed at your job, your car, and the girl you brought, in that order.",
-    "corn": "Off a truck on the two-lane that morning, shucked on the back steps into a paper sack.",
-    "cord": "Orange, run out the kitchen window and taped down flat where the children come through.",
-    "road": "Two lanes and a grain elevator, and everybody who passes lifts one finger off the wheel.",
-    "can": "The green bug spray one, shaken hard and handed down the picnic bench at dusk.",
-    "card": "Spades, and the table has been the same four women since before you could see over it."
-   },
-   "prefer": [
-    "corn",
-    "card",
-    "cord",
-    "road",
-    "can"
-   ],
-   "scene": "Grandmother's mouth, and the two-lane"
-  },
-  {
-   "base": "ashore",
-   "theme": "cookout",
-   "clues": {
-    "ashore": "The whole load hauled up from the lot across the sand, sideways, because nobody makes two trips.",
-    "shore": "You get down there at seven to hold a fire ring, because by ten every one of them is taken.",
-    "hoarse": "How she sounds by four, having called the same four children out of the water since noon.",
-    "share": "What the next ring over does with their charcoal when yours runs low, and no discussion about it.",
-    "sear": "Grate down low and the fat catches. That black edge is the part of the tri-tip everybody wants.",
-    "ash": "Carried to the metal can by the path in a coffee tin, still warm, because the sand is not for that."
-   },
-   "prefer": [
-    "shore",
-    "hoarse",
-    "share",
-    "sear",
-    "ash"
-   ],
-   "scene": "Fire rings on the beach by seven"
-  },
-  {
-   "base": "peanut",
-   "theme": "cookout",
-   "clues": {
-    "peanut": "Punch blended with condensed milk and nutmeg, and the elders get poured for first.",
-    "pan": "Foil, half size, curry goat down into the corners, wrapped twice for the ride back to Flatbush.",
-    "tape": "Blue, wound around the pole so the string lights do not come down on anybody's head.",
-    "pane": "The kitchen window one, pushed all the way up so the pot can go straight out to the yard.",
-    "ten": "The number of pounds of rice and peas she cooks whether forty show up or eighty.",
-    "aunt": "No blood relation, but she has cooked for this yard every summer since before you were born."
-   },
-   "prefer": [
-    "pan",
-    "tape",
-    "aunt",
-    "pane",
-    "ten"
-   ],
-   "scene": "A Brooklyn yard, curry goat, rice and peas"
-  },
-  {
-   "base": "avoids",
-   "theme": "cookout",
-   "clues": {
-    "avoids": "What he does with the question of when it will be ready. Looks at the sky, changes the subject.",
-    "divas": "Three of them back to back on the speaker, and every woman out there has every word.",
-    "soda": "Big Red, in the glass bottle, and there is exactly one apiece for the children.",
-    "said": "What she did about who was paying for the brisket. Once. Nobody asked her a second time.",
-    "avid": "How he is about post oak. He will not burn mesquite and he will tell you exactly why.",
-    "aid": "The kit in the truck's glove box, for the grease burn that happens every single year."
-   },
-   "prefer": [
-    "divas",
-    "soda",
-    "said",
-    "avid",
-    "aid"
-   ],
-   "scene": "Texas brisket, post oak, no mesquite"
-  },
-  {
-   "base": "alcove",
-   "theme": "cookout",
-   "clues": {
-    "alcove": "The nook under the stairs, deep enough for the roasting trays and the good tablecloth.",
-    "coal": "Lit in a chimney of newspaper on the front steps at noon, ash blowing down the whole block.",
-    "cola": "The two-liter on the porch rail, warm by three, and she pours it over ice anyway.",
-    "vocal": "The woman on the third step is the loudest one out here about where you may park, and she is right.",
-    "oval": "The shape of the aluminum tray the half-smokes come out on, dented down one side.",
-    "love": "What she means when she calls you baby and hands you a plate you never asked for."
-   },
-   "prefer": [
-    "coal",
-    "cola",
-    "vocal",
-    "oval",
-    "love"
-   ],
-   "scene": "Half-smokes on a rowhouse front step"
-  },
-  {
-   "base": "amulet",
-   "theme": "cookout",
-   "clues": {
-    "amulet": "A saint's medal pinned inside the baby's shirt by her great-grandmother, and it stays there.",
-    "metal": "Folding chairs, the loud kind, that leave a waffle print on the back of your legs.",
-    "meat": "Chicken halves, and the white sauce goes on at the very end, never one minute before.",
-    "melt": "What the ice in the washtub has done by two, so the last bottles down there swim.",
-    "team": "Auburn or Alabama, and it starts before one person has finished a plate.",
-    "tale": "The one about the storm and the deep freezer. It gets a year longer every summer."
-   },
-   "prefer": [
-    "metal",
-    "meat",
-    "melt",
-    "team",
-    "tale"
-   ],
-   "scene": "White sauce chicken, and Auburn-Alabama"
-  },
-  {
-   "base": "drinks",
-   "theme": "cookout",
-   "clues": {
-    "drinks": "Two chests: one anybody may open, and one behind her chair that the children may not.",
-    "kids": "Counted twice before the cars pull off, because the lake is right there and one always wanders.",
-    "kind": "There are two of hot link out here, mild and not, and she is the only one who can tell them apart.",
-    "sink": "What the table legs do into soft ground the moment the third full tray lands on it.",
-    "skin": "Cocoa butter, rubbed in before the walk down to the water and again on the way back.",
-    "risk": "What you take at the lakefront lot, where a camera reads your plate and bills you by the hour."
-   },
-   "prefer": [
-    "kids",
-    "kind",
-    "sink",
-    "skin",
-    "risk"
-   ],
-   "scene": "Two chests, and a lake right there"
-  },
-  {
    "base": "branch",
    "theme": "reunion",
    "clues": {
@@ -5327,26 +4908,6 @@
     "gas"
    ],
    "scene": "Two hundred lanyards in a shoebox"
-  },
-  {
-   "base": "anemic",
-   "theme": "reunion",
-   "clues": {
-    "anemic": "What the turnout from the youngest cousins was, and the committee said so out loud in September.",
-    "cinema": "The old one on Woodward, rented for two hours on Friday night for the slideshow.",
-    "cane": "Hooked over the back of her chair at the head table, and she will not walk in with it.",
-    "main": "The street the old store stood on, and half of that side is a parking lot now.",
-    "mince": "What the chairwoman does not do with words when the shirt money comes up short.",
-    "name": "Called out at the microphone one branch at a time, oldest living first, and everybody stands."
-   },
-   "prefer": [
-    "cinema",
-    "name",
-    "cane",
-    "main",
-    "mince"
-   ],
-   "scene": "The young cousins who did not come"
   },
   {
    "base": "barged",
@@ -5867,26 +5428,6 @@
     "salt"
    ],
    "scene": "West of I-35, where the rock starts"
-  },
-  {
-   "base": "backer",
-   "theme": "texas",
-   "clues": {
-    "backer": "She put up the money in 1979 and never once stood behind the counter. Everybody knew whose place it was.",
-    "back": "The room behind the meat case, where the smoke was, because the store out front sold groceries.",
-    "rack": "Links hang in rows on it above the coals, curved and dripping, in a cabinet the family welded themselves.",
-    "acre": "The fenced ground beside where customers park, and the split wood is stacked shoulder high on it.",
-    "cake": "Nobody drives here for it, but somebody's mother sends one every Friday and it is gone within the hour.",
-    "bark": "The crust splits under the knife, and the sound it makes is how she knows the wrap held."
-   },
-   "prefer": [
-    "back",
-    "rack",
-    "acre",
-    "bark",
-    "cake"
-   ],
-   "scene": "Whose name the place is under"
   },
   {
    "base": "thawed",
@@ -6489,26 +6030,6 @@
    "scene": "The church hall, and what it holds"
   },
   {
-   "base": "turban",
-   "theme": "carolina",
-   "clues": {
-    "turban": "Not the word she uses for it. Hers is tied before daylight and comes off when the last pan is dried.",
-    "barn": "The tobacco kind out back, empty since bulk curing came in, and the folding tables live in it now.",
-    "turn": "Done once, near the end, with two boards and four people, and it is the only nervous minute of the night.",
-    "bun": "Soft, white, cheap, and the chopped meat goes on it with slaw and not one thing else.",
-    "tub": "Where the sauce gets mixed by the gallon, with a wooden paddle kept for nothing else.",
-    "burnt": "What the middle would get if the coals went under it, so they are banked at the shoulders and hams instead."
-   },
-   "prefer": [
-    "barn",
-    "turn",
-    "bun",
-    "tub",
-    "burnt"
-   ],
-   "scene": "The women who run the kitchen"
-  },
-  {
    "base": "sought",
    "theme": "chicago",
    "clues": {
@@ -6927,26 +6448,6 @@
     "scare"
    ],
    "scene": "A Baltimore carryout at two in the morning"
-  },
-  {
-   "base": "embark",
-   "theme": "cookout",
-   "clues": {
-    "embark": "What the skiffs do off Pensacola before light, cast nets folded, hunting the dark patch under the water.",
-    "amber": "The color a mullet turns after four hours over smoldering oak, and nothing in a bottle fakes it.",
-    "beam": "The width of the boat, which settles how many people are eating off one morning's haul.",
-    "mark": "What she reads on the water first: a ripple, a flash, a shadow moving wrong. Then somebody throws.",
-    "bake": "Not how the coast does it. Biloxi bacon goes in grease or over oak, and the oven stays cold all day.",
-    "rake": "Pulled through the oak coals to level them out before the split fish ever touches the grate."
-   },
-   "prefer": [
-    "amber",
-    "beam",
-    "mark",
-    "bake",
-    "rake"
-   ],
-   "scene": "Pensacola mullet, smoked over oak"
   },
   {
    "base": "boards",
@@ -7787,6 +7288,186 @@
     "grab"
    ],
    "scene": "Insane in the brain"
+  },
+  {
+   "base": "hearts",
+   "theme": "cookout",
+   "clues": {
+    "hearts": "What the whole thing runs on, and the reason nobody counts the hours",
+    "heat": "Got right before a single thing goes on the grate, which is the part people skip",
+    "sear": "The first ninety seconds, and the only ninety seconds anyone watches",
+    "rest": "What the meat does on the board while somebody insists it is ready",
+    "ash": "What is left at the bottom on Sunday morning, still faintly warm",
+    "tea": "Sweet, in the jug with the lid that never seals right"
+   },
+   "prefer": [
+    "heat",
+    "sear",
+    "rest",
+    "ash",
+    "tea"
+   ],
+   "scene": "The grill, from lighting it to letting it die"
+  },
+  {
+   "base": "breast",
+   "theme": "cookout",
+   "clues": {
+    "breast": "Goes on last because it dries out first, whatever your uncle says",
+    "brats": "The ones that get eaten standing up before the plates come out",
+    "baste": "Every turn, with the sauce that has been on the side burner since noon",
+    "sear": "Hot side first, then moved — the whole method in four words",
+    "rest": "Off the heat, under foil, and hands off",
+    "tea": "The jug again, and somebody has already gone for more ice"
+   },
+   "prefer": [
+    "brats",
+    "baste",
+    "sear",
+    "rest",
+    "tea"
+   ],
+   "scene": "What goes on the grate, and in what order"
+  },
+  {
+   "base": "phased",
+   "theme": "cookout",
+   "clues": {
+    "phased": "What nobody at this table gets, no matter what you lead with",
+    "spade": "The suit that decides it, and the reason two grown people are standing up",
+    "shade": "Both the tree and the conversation, and the tree is the lesser one",
+    "heap": "How a plate is built when your auntie builds it for you",
+    "head": "What the argument is about by round three, and it is not the cards",
+    "ash": "Flicked off the end of a cigarette nobody admits to having"
+   },
+   "prefer": [
+    "spade",
+    "shade",
+    "heap",
+    "head",
+    "ash"
+   ],
+   "scene": "The card table under the tree"
+  },
+  {
+   "base": "turban",
+   "theme": "cookout",
+   "clues": {
+    "turban": "The wrap on her head that says she has been up since six",
+    "aunt": "Holds the tongs. Has held the tongs since 1994. Will hold the tongs",
+    "rub": "Went on last night, which is the part that makes it hers",
+    "turn": "Once. Anyone who does it twice is asked to sit down",
+    "burnt": "The edge some people ask for on purpose, and they are correct",
+    "bran": "In the muffins nobody came for, brought by the cousin who tries"
+   },
+   "prefer": [
+    "aunt",
+    "rub",
+    "turn",
+    "burnt",
+    "bran"
+   ],
+   "scene": "Who runs the grill, and what happens if you touch it"
+  },
+  {
+   "base": "cinema",
+   "theme": "cookout",
+   "clues": {
+    "cinema": "What the yard becomes once the sun drops and the speaker gets louder",
+    "mac": "Baked, with the crust, and there is exactly one person allowed to bring it",
+    "ice": "Ran out at four. Somebody is already in the car",
+    "can": "Buried to the elbow in the cooler, and the cold water is the good part",
+    "amen": "Said fast by whoever is nearest, because the food is going cold",
+    "acme": "The peak of the afternoon, roughly twenty minutes after the plates"
+   },
+   "prefer": [
+    "mac",
+    "ice",
+    "can",
+    "amen",
+    "acme"
+   ],
+   "scene": "The table, not the grill"
+  },
+  {
+   "base": "candor",
+   "theme": "cookout",
+   "clues": {
+    "candor": "What the aux cord produces within one hour, from someone's nephew",
+    "corn": "In the husk, straight on the grate, and the silk burns off",
+    "cord": "Orange, running from the kitchen window to the speaker, taped down badly",
+    "can": "Handed to you without being asked for, which is how you know you are family",
+    "card": "The table by the fence, and the reason nobody helps carry anything",
+    "arc": "The one the horseshoe makes before it misses"
+   },
+   "prefer": [
+    "corn",
+    "cord",
+    "can",
+    "card",
+    "arc"
+   ],
+   "scene": "The extension cord and everything running off it"
+  },
+  {
+   "base": "sliced",
+   "theme": "cookout",
+   "clues": {
+    "sliced": "How the melon arrives, on the good tray, from the trunk of a car",
+    "slide": "Starts when the right song comes on, and the aunties know it first",
+    "ice": "Second run of the day, and this time somebody went with them",
+    "dice": "Come out once the kids are inside and the grown folks are grown",
+    "lid": "Back on the cooler, which is the first sign it is winding down",
+    "deli": "Where the potato salad came from, a fact being actively denied"
+   },
+   "prefer": [
+    "slide",
+    "ice",
+    "dice",
+    "lid",
+    "deli"
+   ],
+   "scene": "After the plates, before the dark"
+  },
+  {
+   "base": "backer",
+   "theme": "cookout",
+   "clues": {
+    "backer": "Every dish here has one, and they are standing near it watching you",
+    "cake": "Pound. Under a dome. Not to be touched until it is announced",
+    "bake": "What she did at eleven at night so it would sit right by two",
+    "rack": "Cooling on it by the window since this morning",
+    "beak": "What the one bold bird has been eyeing since the foil came off",
+    "acre": "How far the smell has carried, roughly, by four in the afternoon"
+   },
+   "prefer": [
+    "cake",
+    "bake",
+    "rack",
+    "beak",
+    "acre"
+   ],
+   "scene": "The dessert table, which is a folding table"
+  },
+  {
+   "base": "depict",
+   "theme": "cookout",
+   "clues": {
+    "depict": "What the group photo fails to do, every single year",
+    "dip": "In the bowl with the lid that does not match, and it goes first",
+    "pit": "Dug once, years ago, and still where the whole thing happens",
+    "ice": "The third bag. Nobody planned for the third bag",
+    "tide": "How the chairs drift toward the shade over the course of an afternoon",
+    "diet": "Announced on Monday by at least two people here"
+   },
+   "prefer": [
+    "dip",
+    "pit",
+    "ice",
+    "tide",
+    "diet"
+   ],
+   "scene": "The cooler, the dip, and the folding chairs"
   }
  ]
 }
