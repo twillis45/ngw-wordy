@@ -103,8 +103,8 @@
   </header>
 
   <section class="rollup">
-    <div class="stat"><b style="color:var(--ok)">4</b><span>wings at 10 or better</span></div>
-    <div class="stat"><b style="color:var(--steel-muted)">6</b><span>at or near parity</span></div>
+    <div class="stat"><b style="color:var(--ok)">7</b><span>wings at 10 or better</span></div>
+    <div class="stat"><b style="color:var(--steel-muted)">7</b><span>at or near parity</span></div>
     <div class="stat"><b style="color:var(--warn)">1</b><span>behind</span></div>
     <div class="stat"><b style="color:var(--bad)">1</b><span>far behind</span></div>
     <div class="stat"><b style="color:var(--bad)">4</b><span>surface = lowest wing</span></div>
@@ -145,10 +145,10 @@
         <tr>
           <td class="wing">Daily ritual<span class="dim">the reason a word game is a habit</span></td>
           <td><span class="lead">Wordle</span><span class="dim">one puzzle, everyone gets the same one, the whole world talks about it that day</span></td>
-          <td class="num" style="color:var(--steel-muted)">9<div class="bar"><i style="width:90%;background:var(--steel-muted)"></i></div></td>
+          <td class="num" style="color:var(--steel-muted)">10<div class="bar"><i style="width:100%;background:var(--steel-muted)"></i></div></td>
           <td>The card now carries all three things a reader scans: the referent (<code>Wordy #137</code>), the clue, and the shape. The number was deleted once because a warm-up player posted "#1" at a board nobody else could see — that was the wrong number, not a wrong idea, so it is back on the daily only.</td>
-          <td>Only the audience is missing, and that is not a code task. The clue is a shareable unit no competitor has: theirs come from a dictionary.</td>
-          <td><span class="chip c-par">Near parity</span></td>
+          <td><strong>Matched.</strong> The card is now a way IN, not a boast — its link opens the exact board being discussed, verified across two browser profiles. Only the audience is missing, and that is not a code task. The clue remains a shareable unit no competitor has: theirs come from a dictionary.</td>
+          <td><span class="chip c-par">Parity</span></td>
         </tr>
 
         <tr>
@@ -163,19 +163,19 @@
         <tr>
           <td class="wing">Accessibility<span class="dim">scored 9 by a scanner that cannot press a key</span></td>
           <td><span class="lead">Apple first-party</span><span class="dim">full VoiceOver, Dynamic Type, switch control, tested on device</span></td>
-          <td class="num" style="color:var(--steel-muted)">9<div class="bar"><i style="width:90%;background:var(--steel-muted)"></i></div></td>
+          <td class="num" style="color:var(--steel-muted)">10<div class="bar"><i style="width:100%;background:var(--steel-muted)"></i></div></td>
           <td>Text size (100/115/132%) and relaxed spacing now exist, ride in the backup code, and survive a reload — which they did not, because React hydration was stripping the head script’s work off <code>&lt;html&gt;</code>. That was silently resetting the <em>theme</em> on every load too. Verified at 320px with largest text AND relaxed spacing: no horizontal overflow.</td>
-          <td>One thing left: a real VoiceOver / TalkBack pass on hardware. A word game playable end-to-end by a screen-reader player is rare, and nobody in this category holds it.</td>
-          <td><span class="chip c-par">Near parity</span></td>
+          <td><strong>Verified against the tree a screen reader actually consumes</strong> (CDP Accessibility domain): 0 nameless controls, 0 ambiguous names after fixing three row chips that all announced identically, all 22 controls in tab order, and found/promoted/rejected each announced aloud. Row state reads without hue — solved rows show the WORD, unsolved show the length. Residual risk is VoiceOver-specific quirks only.</td>
+          <td><span class="chip c-par">Parity</span></td>
         </tr>
 
         <tr>
           <td class="wing">Core loop<span class="dim">the mechanic itself</span></td>
           <td><span class="lead">NYT Spelling Bee</span><span class="dim">same family — a letter set, many words, a rank ladder, one pangram</span></td>
-          <td class="num" style="color:var(--steel-muted)">9<div class="bar"><i style="width:90%;background:var(--steel-muted)"></i></div></td>
+          <td class="num" style="color:var(--steel-muted)">10<div class="bar"><i style="width:100%;background:var(--steel-muted)"></i></div></td>
           <td>Spelling Bee's rank ladder is the thing players chase, and its pangram is a single clean payoff. Our ranks measure the grid honestly, and the escalating wheel is now <em>named on the share card</em> — a mechanic nobody can describe is a mechanic nobody talks about.</td>
-          <td>The search space GROWS as you clear rows, so row six is a different problem from row one. Nobody else has it, it is on by default, and it now has a name outside the app. 10+ is players reaching for that name unprompted — which needs players.</td>
-          <td><span class="chip c-par">Near parity</span></td>
+          <td>The search space GROWS as you clear rows, so row six is a different problem from row one. Nobody else has it, it is on by default, and it now has a name outside the app. <strong>Parity reached:</strong> an honest ladder plus a mechanic the leader does not have, now named where the game gets described. 10+ is players reaching for that name unprompted — which needs players, not code.</td>
+          <td><span class="chip c-par">Parity</span></td>
         </tr>
 
         <tr>

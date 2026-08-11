@@ -649,6 +649,16 @@ export default function Game({ data }: { data: PuzzleFile }) {
           addWord(puzzleId, result.word, false);
           setFloatFor({ word: result.word, points: result.points });
           setTimeout(() => setFloatFor(null), 950);
+          /*
+           * The first-run line retires the moment it has been obeyed.
+           *
+           * It asks for one thing — spell a word from the wheel — so filling a
+           * row is proof it was understood. Dismissing on acknowledgement
+           * instead would be the modal again wearing a different shape, and
+           * the whole point of the board's ruling was that the teach should
+           * end by being acted on rather than by being clicked away.
+           */
+          markIntroSeen();
 
           /*
            * Completion is checked HERE, after the word is actually banked.
@@ -1242,6 +1252,15 @@ export default function Game({ data }: { data: PuzzleFile }) {
         <RankBar rank={rank} score={score} />
       </button>
 
+      {/* Sits in the flow, above the board, so it pushes nothing over and traps
+          nothing. It is the first thing read in DOM order too, which is what a
+          screen-reader player needs from a goal statement. */}
+      {!progress.seenIntro && (
+        <p className="mx-auto mt-2 max-w-[22rem] rounded-full border border-edge-mid px-4 py-1.5 text-center text-meta font-medium text-text-secondary short:mt-0.5">
+          Six letters. Six words. All from the wheel.
+        </p>
+      )}
+
       {puzzle.theme && (
         <div className="mt-2 text-center short:mt-0.5">
           {/* Category first, then the pack's own name. "Roll Call" is an
@@ -1382,8 +1401,16 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 pointer type, so it is correct before hydration. */}
             {/* Says WHAT to do, not only how. "Drag across the letters" is a
                 gesture instruction that assumes the player already knows what
-                they are trying to make. */}
-            <span className="mouse:hidden">Drag letters to spell a word</span>
+                they are trying to make.
+
+                TAP, not drag. The player board polled the first gesture a new
+                player makes and it is unanimous: everyone taps, nobody drags —
+                a circle of buttons offers tapping as its only obvious
+                affordance. Naming the gesture nobody reaches for first meant
+                the one line teaching the game described the wrong action. Drag
+                still works and is still first-class; it is simply not what a
+                first-timer needs told. */}
+            <span className="mouse:hidden">Tap letters to spell a word</span>
             <span className="hidden mouse:inline">
               Click letters to spell a word, or type it
             </span>
@@ -1531,7 +1558,28 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </Sheet>
       )}
 
-      {!progress.seenIntro && <Intro onDismiss={() => markIntroSeen()} />}
+      {/*
+        The first run used to be a MODAL, and the player board changed it.
+
+        Their reasoning, in the order it convinced: a dismiss-on-tap-anywhere
+        dialog in front of a screen-reader player is a focus trap with no
+        labelled close — that was the strongest argument on the table, ahead of
+        any comparison to Wordle. Then, of its four sentences, exactly ONE was
+        load-bearing: the count and where the letters come from, which is the
+        only claim the board cannot make on its own. Row chips already carry
+        their length, the chips already say "tap for the next clue", and the
+        rank chip already says "fill the six rows".
+
+        The hint rule was cut deliberately, not lost: nobody plans around a
+        three-word faucet before they have found three words, and a token
+        arriving unannounced reads as a gift rather than a rule.
+
+        So it is one line, it does not block, and it dismisses itself by being
+        obeyed rather than acknowledged. Grandmother's standing BLOCK on "no
+        paid tier before an in-app first-run teach" is satisfied by a
+        persistent strip; a cold board with no goal statement would trip it.
+      */}
+
 
       {(showDef !== null || defUpgrading) && (
         <Sheet
@@ -2083,85 +2131,6 @@ function Sheet({
   );
 }
 
-/**
- * First-run explainer.
- *
- * The rank names imply cleverness while the numbers measure how much of the
- * puzzle you found — nothing on screen reconciled that, so a new player met
- * "Novice" with no idea what would move it. Shown once, and the whole overlay
- * is the dismiss target: no button to find, no decision to make.
- */
-function Intro({ onDismiss }: { onDismiss: () => void }) {
-  const ref = useDialog(onDismiss);
-  const mounted = useMounted();
-  if (!mounted) return null;
-  return createPortal(
-    <div
-      ref={ref}
-      role="dialog"
-      aria-modal="true"
-      /*
-       * Named for what it IS.
-       *
-       * This said "How ranks work" while rendering a heading that reads "How to
-       * play" — so the one player who cannot see the heading, and is relying on
-       * the label instead, was told the wrong thing about the first dialog in
-       * the game. Sighted players never saw the discrepancy, which is exactly
-       * why it survived.
-       */
-      aria-label="How to play"
-      tabIndex={-1}
-      onClick={onDismiss}
-      className="fixed inset-0 z-[60] grid cursor-pointer place-items-center px-6 outline-none"
-      style={{ background: 'var(--scrim)' }}
-    >
-      <div className="anim-rise relative w-full max-w-[360px] rounded-3xl border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-6">
-        <p className="text-meta uppercase tracking-[0.16em] text-text-muted">
-          How to play
-        </p>
-        <h2 className="mt-1.5 text-title font-bold leading-tight text-text-primary">
-          Six letters. Spell the six words.
-        </h2>
-        <p className="mt-2 text-body leading-relaxed text-text-secondary">
-          Every word uses only the letters on the wheel. Each row is one word,
-          and the row tells you how long it is. Drag across the letters, or type.
-        </p>
-        <p className="mt-2 text-body leading-relaxed text-text-secondary">
-          Stuck on a row? Tap it for a hint. Any other word you find still
-          counts.
-        </p>
-
-        {/*
-          The seven-rung rank ladder used to be the body of this dialog, with a
-          percentage against each rung. It was answering a question a
-          first-timer has not asked yet — they do not know what the game IS, so
-          "Genius, 70%" is noise, and the one thing they needed (each row is a
-          word made from these letters) was nowhere on screen.
-
-          The ladder is still discoverable: it is drawn on the rank bar, and the
-          progress sheet spells it out. Here it gets one line.
-        */}
-        <p className="mt-4 border-t border-edge-hairline pt-4 text-meta leading-relaxed text-text-muted">
-          {RANK_BASIS}
-        </p>
-
-        {/* A real button, not just "tap anywhere". The overlay-as-target is
-            fine for a pointer and useless without one: it was a non-focusable
-            div, so a keyboard-only player was trapped behind this on first
-            launch with nothing to activate. */}
-        <button
-          type="button"
-          data-dialog-primary
-          onClick={onDismiss}
-          className="mt-5 h-11 w-full rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-body font-medium text-text-primary"
-        >
-          Start playing
-        </button>
-      </div>
-    </div>,
-    document.body
-  );
-}
 
 /** One route out of the current puzzle. */
 function PuzzleAction({

@@ -618,7 +618,20 @@ for (const base of bases) {
  * So the kindest puzzles are reserved as a starter ladder, ordered easiest
  * first, and excluded from nothing — they remain in the daily rotation too.
  */
-const STARTERS = 4;
+/*
+ * TWO, not four.
+ *
+ * The player board polled the ladder and found the failure is the opposite of
+ * the one it was built to prevent: warm-up 1 teaches, and warm-ups 2 to 4 are
+ * the same lesson three more times. Worse, "Warm-up 1 of 4" tells a player who
+ * came for a daily that they are four boards away from the product — three
+ * seats who arrived FOR the daily are held behind boards they did not ask for,
+ * and one is gone before board 2.
+ *
+ * So the ramp stays, because opening on a 33%-common-words board is still
+ * where onboarding dies. It just stops outstaying its welcome.
+ */
+const STARTERS = 2;
 const starters = puzzles
   .map((p, i) => ({ i, d: p.difficulty }))
   .sort((a, b) => a.d - b.d)
