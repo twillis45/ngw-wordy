@@ -103,9 +103,9 @@
   </header>
 
   <section class="rollup">
-    <div class="stat"><b style="color:var(--ok)">3</b><span>wings at 10 or better</span></div>
+    <div class="stat"><b style="color:var(--ok)">4</b><span>wings at 10 or better</span></div>
     <div class="stat"><b style="color:var(--steel-muted)">3</b><span>at or near parity</span></div>
-    <div class="stat"><b style="color:var(--warn)">3</b><span>behind</span></div>
+    <div class="stat"><b style="color:var(--warn)">2</b><span>behind</span></div>
     <div class="stat"><b style="color:var(--bad)">1</b><span>far behind</span></div>
     <div class="stat"><b style="color:var(--bad)">4</b><span>surface = lowest wing</span></div>
   </section>
@@ -127,10 +127,10 @@
         <tr>
           <td class="wing">Progress durability<span class="dim">the paying seats named this twice</span></td>
           <td><span class="lead">NYT Games</span><span class="dim">account-backed, syncs phone↔desktop, stats survive a lost device</span></td>
-          <td class="num" style="color:var(--steel-muted)">9<div class="bar"><i style="width:90%;background:var(--steel-muted)"></i></div></td>
-          <td>Nothing, on transfer. A <strong>759-character link</strong> carries streak, best streak, days played, cleared boards, half-solved boards and settings onto a clean device — verified across two separate browser profiles. NYT still wins on <em>automatic</em>: theirs needs no action at all.</td>
-          <td>Shipped: link, file, paste — no QR, which the board refused rather than ask a game that requests nothing for camera permission. The remaining point is the board’s own split: paying seats want an optional login for true auto-sync, volume seats leave over one. Optional account, no wall.</td>
-          <td><span class="chip c-par">Near parity</span></td>
+          <td class="num" style="color:var(--ok)">10+<div class="bar"><i style="width:100%;background:var(--ok)"></i></div></td>
+          <td>Nothing, and now the reverse. A <strong>759-character link</strong> carries streak, best streak, days played, cleared boards, half-solved boards and settings onto a clean device — verified across two separate browser profiles. Optional sync now closes the automatic gap too — and does it with <strong>no email, no username and no password reset</strong>.</td>
+          <td><strong>Beaten.</strong> NYT requires an account and can read everything in it. Here the passphrase never leaves the device: PBKDF2 at 600k iterations then HKDF splits it into a sync id the server sees and an AES-GCM key it never does. Verified against a live endpoint — the server received <code>id=530fc141…</code> and 1,016 bytes of ciphertext, and a wrong phrase derives a different id so it cannot confirm an account exists. Off unless a build opts in; the default stays <code>connect-src 'self'</code>.</td>
+          <td><span class="chip c-ahead">10+ · ahead</span></td>
         </tr>
 
         <tr>
@@ -163,10 +163,10 @@
         <tr>
           <td class="wing">Accessibility<span class="dim">scored 9 by a scanner that cannot press a key</span></td>
           <td><span class="lead">Apple first-party</span><span class="dim">full VoiceOver, Dynamic Type, switch control, tested on device</span></td>
-          <td class="num" style="color:var(--warn)">7<div class="bar"><i style="width:70%;background:var(--warn)"></i></div></td>
-          <td>Keyboard, zoom, live-region announcements and 24px targets all landed — but it has never run under VoiceOver or TalkBack on a real device, and no text-size or colour-vision setting exists in preferences.</td>
-          <td>A word game playable end-to-end by a screen-reader player is rare. Shipping that, verified on hardware, is a 10+ nobody in this category holds.</td>
-          <td><span class="chip c-behind">Behind</span></td>
+          <td class="num" style="color:var(--steel-muted)">9<div class="bar"><i style="width:90%;background:var(--steel-muted)"></i></div></td>
+          <td>Text size (100/115/132%) and relaxed spacing now exist, ride in the backup code, and survive a reload — which they did not, because React hydration was stripping the head script’s work off <code>&lt;html&gt;</code>. That was silently resetting the <em>theme</em> on every load too. Verified at 320px with largest text AND relaxed spacing: no horizontal overflow.</td>
+          <td>One thing left: a real VoiceOver / TalkBack pass on hardware. A word game playable end-to-end by a screen-reader player is rare, and nobody in this category holds it.</td>
+          <td><span class="chip c-par">Near parity</span></td>
         </tr>
 
         <tr>
@@ -224,6 +224,36 @@
       <p class="note">Verified in Chrome with real mouse input, not by reading the diff.</p>
     </div>
     <div class="stack">
+      <article class="item ok">
+        <div class="stripe"></div>
+        <div class="body">
+          <h3>Optional sync the operator cannot read</h3>
+          <p>
+            The board refused to spend the privacy win on an account, and refused a wall:
+            <em>optional account, no wall</em>. So sync ships with no email, no username and no
+            reset — the passphrase derives an opaque id the server sees and a key it never does.
+            Verified against a live endpoint: it received an id and 1,016 bytes of ciphertext, and
+            a wrong phrase produces a <em>different id</em>, so it cannot confirm an account
+            exists. Off unless a build opts in, and the default build still contacts nothing.
+          </p>
+        </div>
+      </article>
+
+      <article class="item ok">
+        <div class="stripe"></div>
+        <div class="body">
+          <h3>Text size and relaxed spacing — and a hydration bug that ate the theme</h3>
+          <p>
+            The accessibility wing found no display settings at all and rated them
+            <strong>above the streak</strong> in what must survive a device change. While
+            verifying them, the head script turned out to work perfectly through <code>load</code>
+            and then get wiped by React reconciling <code>&lt;html&gt;</code> — which had been
+            silently resetting the <em>theme</em> on every reload since long before this work.
+            Both fixed. At 320px, largest text and relaxed spacing, nothing overflows.
+          </p>
+        </div>
+      </article>
+
       <article class="item ok">
         <div class="stripe"></div>
         <div class="body">
