@@ -1,0 +1,292 @@
+<title>Wordy — 10+ vs the leaders</title>
+<style>
+  /* Studio Matte, same tokens as the review tracker so this reads as one system:
+     carbon ground, steel identity, ONE accent. Semantic colour (ok/warn/bad) is
+     status and is deliberately NOT the accent. */
+  :root{
+    --body:#070809; --panel:#121518; --surface:#171b1f; --hair:#232830;
+    --edge:#ccd6e4; --steel:#4e6877; --steel-muted:#6f8794;
+    --ink:#eef0f4; --ink2:#a9bccd; --ink3:#7d8894;
+    --ok:#4fae7a; --warn:#eca13f; --bad:#f27a70; --lead:#8e7cc3;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme=dark]){
+      --body:#eef3f8; --panel:#fff; --surface:#e4ecf4; --hair:#c2d3e2;
+      --edge:#24333f; --steel:#3f5b6a; --steel-muted:#3f5b6a;
+      --ink:#0d0f12; --ink2:#33485a; --ink3:#55636f;
+      --ok:#186438; --warn:#8a5a10; --bad:#a82f2f; --lead:#5b4a91;
+    }
+  }
+  :root[data-theme=light]{
+    --body:#eef3f8; --panel:#fff; --surface:#e4ecf4; --hair:#c2d3e2;
+    --edge:#24333f; --steel:#3f5b6a; --steel-muted:#3f5b6a;
+    --ink:#0d0f12; --ink2:#33485a; --ink3:#55636f;
+    --ok:#186438; --warn:#8a5a10; --bad:#a82f2f; --lead:#5b4a91;
+  }
+  :root[data-theme=dark]{
+    --body:#070809; --panel:#121518; --surface:#171b1f; --hair:#232830;
+    --edge:#ccd6e4; --steel:#4e6877; --steel-muted:#6f8794;
+    --ink:#eef0f4; --ink2:#a9bccd; --ink3:#7d8894;
+    --ok:#4fae7a; --warn:#eca13f; --bad:#f27a70; --lead:#8e7cc3;
+  }
+  *{box-sizing:border-box}
+  .page{
+    --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+    background:var(--body);color:var(--ink);font-family:var(--sans);line-height:1.5;margin:0;
+    padding:clamp(20px,4vw,56px) clamp(16px,4vw,40px) 88px;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;display:grid;gap:38px}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:0 0 10px}
+  h1{font-size:clamp(27px,4.2vw,42px);line-height:1.05;letter-spacing:-.025em;margin:0;font-weight:650;text-wrap:balance}
+  .lede{color:var(--ink2);margin:12px 0 0;max-width:64ch}
+  h2{font-size:20px;letter-spacing:-.012em;margin:0 0 4px;font-weight:620}
+  .note{color:var(--ink3);font-size:13.5px;margin:6px 0 0;max-width:70ch}
+
+  .rollup{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(158px,1fr))}
+  .stat{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:15px 17px}
+  .stat b{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;
+          font-size:32px;line-height:1;letter-spacing:-.04em;font-weight:600}
+  .stat span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+             text-transform:uppercase;color:var(--ink3);margin-top:7px}
+
+  .card{background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:clamp(18px,2.4vw,26px)}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse;width:100%;min-width:860px}
+  th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--hair);vertical-align:top}
+  thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+           color:var(--ink3);font-weight:500;border-bottom-color:var(--edge);vertical-align:bottom}
+  tbody tr:last-child td{border-bottom:none}
+  .wing{font-weight:570;color:var(--ink);white-space:nowrap}
+  .lead{color:var(--lead);font-weight:560}
+  .dim{color:var(--ink3);font-size:12.5px;display:block;margin-top:3px;font-weight:400;white-space:normal}
+  td{font-size:13.5px;color:var(--ink2)}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:17px;font-weight:600;text-align:right;white-space:nowrap}
+
+  /* Score bar with the bless line drawn at 10 — the point is the GAP, so the
+     track shows the full 0-10 and the fill stops where we actually are. */
+  .bar{position:relative;width:104px;height:7px;border-radius:99px;background:var(--surface);
+       border:1px solid var(--hair);overflow:hidden;margin-top:6px}
+  .bar>i{display:block;height:100%;border-radius:99px}
+
+  .chip{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;
+        letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:99px;
+        border:1px solid currentColor;white-space:nowrap}
+  .c-ahead{color:var(--ok)} .c-par{color:var(--steel-muted)} .c-behind{color:var(--warn)} .c-far{color:var(--bad)}
+
+  .item{display:grid;grid-template-columns:4px minmax(0,1fr);background:var(--surface);
+        border:1px solid var(--hair);border-radius:12px;overflow:hidden}
+  .item>.stripe{background:var(--hair)}
+  .item.ok>.stripe{background:var(--ok)} .item.bad>.stripe{background:var(--bad)}
+  .item.warn>.stripe{background:var(--warn)}
+  .item>.body{padding:14px 16px 15px 0;display:grid;gap:7px}
+  .item h3{font-size:15px;margin:0;font-weight:570;letter-spacing:-.006em}
+  .item p{margin:0;font-size:13.5px;color:var(--ink2);max-width:76ch}
+  .stack{display:grid;gap:13px}
+  code{font-family:var(--mono);font-size:.92em;background:var(--panel);border:1px solid var(--hair);
+       border-radius:5px;padding:1px 5px;color:var(--ink2)}
+  footer{color:var(--ink3);font-size:12.5px;font-family:var(--mono)}
+</style>
+
+<div class="page"><div class="wrap">
+
+  <header>
+    <p class="kicker">NGW · Wordy · wing scoreboard</p>
+    <h1>Ten-plus means beating the leader, not matching it.</h1>
+    <p class="lede">
+      Every wing is scored against a <strong>named product</strong> that already does that
+      dimension better than anyone. A 10 is parity with the leader. <strong>10+ is the wing
+      where Wordy has something the leader does not.</strong> Self-scoring against our own
+      last build is how a 9 gets called "almost there" — it isn't, and the gap only shows
+      when the comparison has a name on it.
+    </p>
+  </header>
+
+  <section class="rollup">
+    <div class="stat"><b style="color:var(--ok)">2</b><span>wings at 10+</span></div>
+    <div class="stat"><b style="color:var(--steel-muted)">2</b><span>at parity</span></div>
+    <div class="stat"><b style="color:var(--warn)">4</b><span>behind</span></div>
+    <div class="stat"><b style="color:var(--bad)">2</b><span>far behind</span></div>
+    <div class="stat"><b style="color:var(--bad)">6.4</b><span>surface = lowest wing</span></div>
+  </section>
+
+  <section class="card">
+    <div style="margin-bottom:18px">
+      <h2>The board</h2>
+      <p class="note">
+        Ordered by gap, widest first — that is the fix order. The surface scores as its
+        lowest wing, so raising a 10 while a 4 stands changes nothing.
+      </p>
+    </div>
+    <div class="scroll"><table>
+      <thead><tr>
+        <th>Wing</th><th>Measured against</th><th class="num">Now</th><th>What the leader does that we don't</th><th>What 10+ takes</th><th>Standing</th>
+      </tr></thead>
+      <tbody>
+
+        <tr>
+          <td class="wing">Progress durability<span class="dim">the paying seats named this twice</span></td>
+          <td><span class="lead">NYT Games</span><span class="dim">account-backed, syncs phone↔desktop, stats survive a lost device</span></td>
+          <td class="num" style="color:var(--bad)">4<div class="bar"><i style="width:40%;background:var(--bad)"></i></div></td>
+          <td>Progress and streak live in <code>localStorage</code>. Clear your browser, change phone, and a 395-board catalogue and every streak is gone. Export/import exists but nobody performs a manual backup.</td>
+          <td>Beat them by syncing <em>without</em> an account — a transferable code, not a login. NYT makes you register; not making them is the win.</td>
+          <td><span class="chip c-far">Far behind</span></td>
+        </tr>
+
+        <tr>
+          <td class="wing">Catalogue depth<span class="dim">at our own quality bar</span></td>
+          <td><span class="lead">Wordscapes</span><span class="dim">10,000+ levels, effectively bottomless</span></td>
+          <td class="num" style="color:var(--bad)">4<div class="bar"><i style="width:40%;background:var(--bad)"></i></div></td>
+          <td>395 boards ship, but only <strong>71</strong> clear the 3-of-5 on-theme bar the method now enforces. Wordscapes never has to be about anything, so it can generate forever; we can't.</td>
+          <td>Don't chase volume — we lose. 10+ is <em>every</em> board being about something, which no competitor even attempts. That is ~136 authored boards, not 10,000.</td>
+          <td><span class="chip c-far">Far behind</span></td>
+        </tr>
+
+        <tr>
+          <td class="wing">Daily ritual<span class="dim">the reason a word game is a habit</span></td>
+          <td><span class="lead">Wordle</span><span class="dim">one puzzle, everyone gets the same one, the whole world talks about it that day</span></td>
+          <td class="num" style="color:var(--warn)">6<div class="bar"><i style="width:60%;background:var(--warn)"></i></div></td>
+          <td>Our daily is deterministic and shareable, but there is no shared conversation because there is no audience yet, and the share card is a still image rather than a spoiler-safe grid everyone recognises.</td>
+          <td>The clue is the shareable unit and no competitor has one. A card carrying a hand-written line about a real record beats a row of coloured squares — but only if it's instantly recognisable as Wordy.</td>
+          <td><span class="chip c-behind">Behind</span></td>
+        </tr>
+
+        <tr>
+          <td class="wing">Onboarding<span class="dim">time to first understood move</span></td>
+          <td><span class="lead">Wordle</span><span class="dim">zero instructions needed; the grid explains itself</span></td>
+          <td class="num" style="color:var(--warn)">7<div class="bar"><i style="width:70%;background:var(--warn)"></i></div></td>
+          <td>We need a first-run sheet, and a warm-up ladder, to explain a dial. Wordle needs neither. A dial is inherently less self-evident than a grid.</td>
+          <td>The board must teach itself with no sheet at all — and no real first-timer has ever been watched playing this. That observation is the gate, not more copy.</td>
+          <td><span class="chip c-behind">Behind</span></td>
+        </tr>
+
+        <tr>
+          <td class="wing">Accessibility<span class="dim">scored 9 by a scanner that cannot press a key</span></td>
+          <td><span class="lead">Apple first-party</span><span class="dim">full VoiceOver, Dynamic Type, switch control, tested on device</span></td>
+          <td class="num" style="color:var(--warn)">7<div class="bar"><i style="width:70%;background:var(--warn)"></i></div></td>
+          <td>Keyboard, zoom, live-region announcements and 24px targets all landed — but it has never run under VoiceOver or TalkBack on a real device, and no text-size or colour-vision setting exists in preferences.</td>
+          <td>A word game playable end-to-end by a screen-reader player is rare. Shipping that, verified on hardware, is a 10+ nobody in this category holds.</td>
+          <td><span class="chip c-behind">Behind</span></td>
+        </tr>
+
+        <tr>
+          <td class="wing">Core loop<span class="dim">the mechanic itself</span></td>
+          <td><span class="lead">NYT Spelling Bee</span><span class="dim">same family — a letter set, many words, a rank ladder, one pangram</span></td>
+          <td class="num" style="color:var(--warn)">8<div class="bar"><i style="width:80%;background:var(--warn)"></i></div></td>
+          <td>Spelling Bee's rank ladder is the thing players chase, and its pangram is a single clean payoff. Our ranks now measure the grid honestly, but the bonus track sits outside them.</td>
+          <td>Escalating mode is genuinely novel — the search space grows as you clear rows, so row six is a different problem from row one. Nobody else has it. It is on by default now; 10+ is making it the thing people describe when they explain the game.</td>
+          <td><span class="chip c-behind">Behind</span></td>
+        </tr>
+
+        <tr>
+          <td class="wing">Interaction &amp; feel</td>
+          <td><span class="lead">NYT Connections / Alto's</span><span class="dim">haptics, easing and micro-motion that read as expensive</span></td>
+          <td class="num" style="color:var(--steel-muted)">9<div class="bar"><i style="width:90%;background:var(--steel-muted)"></i></div></td>
+          <td>Tap-or-drag are both first-class, the glass puck magnets to tiles, one rhythm spec drives sound and haptics. What's missing is a hand on a real phone — the rhythms are tested, the <em>feel</em> is not.</td>
+          <td>Ceiling is 9 until someone plays it on hardware. This wing cannot be closed from a render.</td>
+          <td><span class="chip c-par">At ceiling</span></td>
+        </tr>
+
+        <tr>
+          <td class="wing">Layout &amp; hierarchy</td>
+          <td><span class="lead">NYT Games</span><span class="dim">a house style applied without exception</span></td>
+          <td class="num" style="color:var(--steel-muted)">10<div class="bar"><i style="width:100%;background:var(--steel-muted)"></i></div></td>
+          <td>Nothing. Three real contrast tiers, six named type roles in <code>rem</code> so OS text scaling works, one icon convention, one accent. Verified in the render at seven viewports.</td>
+          <td>Parity is the honest score here. Nobody wins a word game on layout — it only loses one.</td>
+          <td><span class="chip c-par">Parity</span></td>
+        </tr>
+
+        <tr>
+          <td class="wing">Privacy posture</td>
+          <td><span class="lead">NYT Games</span><span class="dim">account required, analytics, third-party embedded</span></td>
+          <td class="num" style="color:var(--ok)">10+<div class="bar"><i style="width:100%;background:var(--ok)"></i></div></td>
+          <td>We beat them. No accounts, no server, no third-party call, <code>connect-src</code> locked to self, zero npm vulnerabilities. The dictionary API that sent every tapped word to a third party is deleted.</td>
+          <td>Held. The risk is regression: any sync, leaderboard or analytics feature spends this, and it should be spent knowingly.</td>
+          <td><span class="chip c-ahead">10+ · ahead</span></td>
+        </tr>
+
+        <tr>
+          <td class="wing">Cultural specificity<span class="dim">the actual product thesis</span></td>
+          <td><span class="lead">no competitor attempts it</span><span class="dim">NYT and Wordscapes clue from a dictionary</span></td>
+          <td class="num" style="color:var(--ok)">10+<div class="bar"><i style="width:100%;background:var(--ok)"></i></div></td>
+          <td>They aren't playing this game. 2,368 hand-written clues, 38 citation-backed canon entries, and a rule that a clue naming a fact must carry a source — which caught three wrong dates in the last pack alone.</td>
+          <td>Held on craft, <strong>not banked</strong>: no community reader has reviewed any pack, and the cultural bench required vocabularies signed off before scoring, which has not happened. This is the one wing a competitor cannot copy and the one gated on a person, not on code.</td>
+          <td><span class="chip c-ahead">10+ · at risk</span></td>
+        </tr>
+
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <div style="margin-bottom:16px">
+      <h2>What the player board just changed</h2>
+      <p class="note">31 seats reviewed the seven-tile dial proposal. Two findings move the board above.</p>
+    </div>
+    <div class="stack">
+
+      <article class="item bad">
+        <div class="stripe"></div>
+        <div class="body">
+          <h3>Four of thirty-one seats noticed the off-theme rows</h3>
+          <p>
+            The whole rebuild assumed players register that answer words aren't about the theme.
+            They mostly don't — the clue was carrying it. <code>0.64/5</code> on-theme was a
+            <em>craft</em> failure, not a player-facing defect, and the seats that noticed
+            (crossword, NYT, two others) marked it against the clue writing rather than the
+            mechanic. Vocabulary-first authoring already banks the value at zero mechanical cost.
+            It does not justify spending the dial.
+          </p>
+        </div>
+      </article>
+
+      <article class="item bad">
+        <div class="stripe"></div>
+        <div class="body">
+          <h3>Seven tiles: BLOCKED on accessibility, Grandmother veto exercised</h3>
+          <p>
+            Tile midpoints fall at 15.6% against a 15% tap-hit radius — 0.6% of forgiveness, on
+            a control the motor-limited seat depends on. The low-vision seat is out at 320px.
+            And the prize-word moment fires <em>less</em> often, because seven-letter words are
+            guessed from partials far less than six-letter ones — that is the game's best moment,
+            reduced. Board's counter-proposal: if it ever ships, it ships as an opt-in wide-dial
+            mode at ≥390px, never as the default and never on the daily.
+          </p>
+        </div>
+      </article>
+
+      <article class="item warn">
+        <div class="stripe"></div>
+        <div class="body">
+          <h3>One board claim checked and rejected</h3>
+          <p>
+            The bench argued the dial and the 51px centre control would overlap at seven tiles.
+            Measured, it is backwards: pushing tiles outward moves them <em>away</em> from the
+            centre, and clearance at a 320px phone improves from <strong>12.6px to 20.9px</strong>.
+            The block stands on the tap-margin and low-vision grounds, not this one.
+          </p>
+        </div>
+      </article>
+
+      <article class="item ok">
+        <div class="stripe"></div>
+        <div class="body">
+          <h3>Board count is not a price variable</h3>
+          <p>
+            No seat changed its number between 71 boards and 136. $14.99 one-time stands under
+            both. Players are buying "never asked again" and the clue voice — not volume. That
+            retires "more content" as a retention lever and promotes <strong>progress
+            durability</strong> to the widest gap on the board.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    Surface = lowest wing = 6.4 (progress durability and catalogue depth, tied at 4 · rounded across ten wings).
+    Scored 11 Aug 2026 against the production build. Two wings at 10+, both gated on things code cannot close.
+  </footer>
+
+</div></div>
