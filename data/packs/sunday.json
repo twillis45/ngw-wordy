@@ -1,0 +1,83 @@
+{
+  "_doc": "STAGING. Sunday Dinner is sunday and kitchen merged — the kitchen list was refused by the cultural bench as a culinary-school verb drawer that never said WHOSE kitchen, and joined to the table it exists for, it stops being a technique list. Apart: 8 and 6 boards. Together: 32. Their re-listing is what carries it — pot liquor, the grease can, seasoning by eye.",
+  "theme": {
+    "id": "sunday",
+    "name": "Sunday Dinner",
+    "category": "THE TABLE",
+    "blurb": "The pot that went on before church, the plate fixed for somebody who could not come, and the seat nobody else sits in."
+  },
+  "boards": [
+    {
+      "base": "planet",
+      "scene": "The plate, and who it is being made for",
+      "clues": {
+        "planet": "The size of the plate, which is why nobody eats again until Tuesday",
+        "plate": "Fixed and covered in foil for somebody who could not come, before anyone sits",
+        "late": "You are, and something is already covered in foil on the stove for you",
+        "nap": "What happens at four, in the chair, mid-sentence, and nobody comments",
+        "tea": "Poured over ice into the glass that is only used today",
+        "pane": "The kitchen window, steamed over since noon, and the sound behind it"
+      }
+    },
+    {
+      "base": "satire",
+      "scene": "The pot that needs watching, and the spoon that gets handed over",
+      "clues": {
+        "satire": "The tone taken about anything instant, by a woman who has never bought it",
+        "stir": "Constantly, and handing the spoon over is a small ceremony",
+        "rest": "Off the heat with the lid on, which is where they actually finish",
+        "sear": "The salmon croquettes in the same pan, and the fond is the point",
+        "tears": "From the onion, and from being handed the spoon, and both get denied",
+        "tea": "In the jug by eleven, because it needs those three hours to get properly cold"
+      }
+    },
+    {
+      "base": "warmth",
+      "scene": "The oven door, and the things kept behind it",
+      "clues": {
+        "warmth": "What the lowest setting is for, and it holds four dishes at once",
+        "ham": "In there since one, foil tented, waiting for everything slower than it",
+        "warm": "Not hot. The distinction is the entire skill and it is never explained",
+        "thaw": "Started Friday night, in the fridge, because Sunday was always the plan",
+        "hat": "Still on, because she came straight from church and has not sat down",
+        "wham": "The oven door, closed with a hip, both hands full"
+      }
+    },
+    {
+      "base": "aprons",
+      "scene": "Who is allowed in the kitchen",
+      "clues": {
+        "aprons": "There are two, and only one of them has ever been offered to a guest",
+        "apron": "Over the good dress, tied at the back by somebody else, still buttoned",
+        "nap": "What the man on the couch is taking during all of this, unbothered",
+        "sop": "What the bread is for, and doing it is the compliment",
+        "span": "Of the counter she works in, about four feet, and stepping into it is a mistake",
+        "soar": "What the smoke alarm does at some point, and it is ignored"
+      }
+    },
+    {
+      "base": "backed",
+      "scene": "The cake, made the night before",
+      "clues": {
+        "backed": "What the whole afternoon is, by something that happened at eleven last night",
+        "cake": "Pound, from a recipe on a card in handwriting nobody living can read",
+        "bake": "Started at nine at night, because the oven was busy until then",
+        "dab": "Of the batter on a finger, which is the whole reason to be in there",
+        "deck": "The counter, cleared entirely, which happens exactly once a week",
+        "back": "Of the recipe card, where the instructions that matter were added later"
+      }
+    },
+    {
+      "base": "tigers",
+      "scene": "The greens, and the pot liquor",
+      "clues": {
+        "tigers": "What the pot is guarded like, from about noon onward",
+        "grits": "Not today. Today the pot is doing something else entirely",
+        "stir": "Once an hour, and the smell is the thing that fills the house",
+        "rest": "What the greens do best of all, and Monday's are better than today's",
+        "tries": "How many times someone lifts the lid, and each one is noticed",
+        "tires": "What she insists she never does, while refusing every offer of a chair"
+      }
+    }
+  ]
+}

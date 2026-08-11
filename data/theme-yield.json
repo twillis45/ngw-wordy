@@ -106,8 +106,7 @@
      "west:titles",
      "east:titles",
      "water:titles"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "stable",
@@ -133,7 +132,7 @@
      "east:titles",
      "lace:voice"
     ],
-    "owner": "sunday"
+    "owner": "barbershop"
    },
    {
     "base": "beards",
@@ -192,8 +191,7 @@
      "rage:acts",
      "dear:titles",
      "red:titles"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "cedars",
@@ -239,8 +237,7 @@
      "salt:acts",
      "slam:titles",
      "east:titles"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "minute",
@@ -931,8 +928,7 @@
      "sear:said",
      "rest:said",
      "wet:said"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "absent",
@@ -1407,8 +1403,7 @@
     "rows": [
      "mac:named",
      "ash:said"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "chapel",
@@ -1552,8 +1547,7 @@
     "rows": [
      "tea:named",
      "pit:said"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "podium",
@@ -1813,8 +1807,7 @@
      "pit:named",
      "mop:named",
      "trim:said"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "misled",
@@ -1863,8 +1856,7 @@
      "rest:said",
      "set:said",
      "red:voice"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "ambush",
@@ -2095,7 +2087,8 @@
      "link:named",
      "skin:said",
      "line:voice"
-    ]
+    ],
+    "owner": "barbershop"
    },
    {
     "base": "sought",
@@ -2348,7 +2341,7 @@
  {
   "id": "sunday",
   "vocab": 83,
-  "shipped": 38,
+  "shipped": 37,
   "supported": 39,
   "boards": [
    {
@@ -2581,7 +2574,7 @@
      "seat:voice",
      "salt:voice"
     ],
-    "owner": "sunday"
+    "owner": "barbershop"
    },
    {
     "base": "chalet",
@@ -2639,7 +2632,8 @@
      "lard:named",
      "dab:said",
      "lid:voice"
-    ]
+    ],
+    "owner": "barbershop"
    },
    {
     "base": "cruise",
@@ -2695,8 +2689,7 @@
      "tea:named",
      "nap:said",
      "pan:voice"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "pastor",
@@ -2749,8 +2742,7 @@
     "rows": [
      "ham:named",
      "mash:said"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "curate",
@@ -3132,7 +3124,7 @@
  {
   "id": "barbershop",
   "vocab": 92,
-  "shipped": 42,
+  "shipped": 8,
   "supported": 25,
   "boards": [
    {
@@ -3145,7 +3137,8 @@
      "tip:said",
      "sat:said",
      "pin:said"
-    ]
+    ],
+    "owner": "barbershop"
    },
    {
     "base": "aspect",
@@ -3172,7 +3165,7 @@
      "set:said",
      "seat:voice"
     ],
-    "owner": "sunday"
+    "owner": "barbershop"
    },
    {
     "base": "fabled",
@@ -3196,7 +3189,8 @@
      "line:said",
      "skin:said",
      "sink:voice"
-    ]
+    ],
+    "owner": "barbershop"
    },
    {
     "base": "bailed",
@@ -3208,7 +3202,7 @@
      "bald:said",
      "laid:said"
     ],
-    "owner": "spades"
+    "owner": "barbershop"
    },
    {
     "base": "bridal",
@@ -3219,7 +3213,8 @@
      "braid:named",
      "bald:said",
      "laid:said"
-    ]
+    ],
+    "owner": "barbershop"
    },
    {
     "base": "flayed",
@@ -3241,7 +3236,8 @@
      "fade:named",
      "dry:said",
      "dye:said"
-    ]
+    ],
+    "owner": "barbershop"
    },
    {
     "base": "tokens",
@@ -3252,7 +3248,8 @@
      "knots:named",
      "set:said",
      "tone:said"
-    ]
+    ],
+    "owner": "barbershop"
    },
    {
     "base": "camper",
@@ -3264,8 +3261,7 @@
      "perm:said",
      "cap:voice",
      "cream:voice"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "blinks",
@@ -3287,8 +3283,7 @@
      "cape:named",
      "part:said",
      "cap:voice"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "legacy",
@@ -3331,8 +3326,7 @@
     "rows": [
      "guard:named",
      "argue:said"
-    ],
-    "owner": "barbershop"
+    ]
    },
    {
     "base": "bedlam",
@@ -3856,7 +3850,7 @@
  {
   "id": "spades",
   "vocab": 45,
-  "shipped": 21,
+  "shipped": 20,
   "supported": 18,
   "boards": [
    {

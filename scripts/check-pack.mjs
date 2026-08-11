@@ -40,6 +40,29 @@ const named = new Set([...tierWords('named'), ...tierWords('acts')]);
 const said = new Set([...tierWords('said'), ...tierWords('titles')]);
 
 const distinct = (w) => new Set(w).size === w.length;
+
+/**
+ * The answer band the build enforces, mirrored from vet-bases.mjs. `ALERTS`
+ * reached a merge with five on-theme rows and six written clues before the
+ * build rejected it at 122 answers, which is a whole board authored for
+ * nothing.
+ */
+const byLetterKey = new Map();
+for (const w of read('data/enable1.txt').split('\n').map((x) => x.trim())) {
+  if (w.length < 3 || w.length > 6) continue;
+  const k = [...w].sort().join('');
+  byLetterKey.set(k, (byLetterKey.get(k) ?? 0) + 1);
+}
+function answerCount(base) {
+  const letters = [...base].sort();
+  let n = 0;
+  for (let m = 0; m < 1 << 6; m += 1) {
+    const sub = [];
+    for (let i = 0; i < 6; i += 1) if (m & (1 << i)) sub.push(letters[i]);
+    if (sub.length >= 3) n += byLetterKey.get(sub.join('')) ?? 0;
+  }
+  return n;
+}
 const letterKey = (w) => [...w].sort().join('');
 /** Boards elsewhere in the catalogue, so a taken base is reported, not silent. */
 const claimed = new Map(
@@ -61,6 +84,9 @@ for (const b of pack.boards) {
   if (!popular.has(b.base)) errs.push('base is not a common word');
   if (isBlocked(b.base)) errs.push('base is blocked');
   if (toneDeny.has(b.base)) errs.push('base is tone-denied as a prize word');
+  const answers = answerCount(b.base);
+  if (answers < 24 || answers > 110)
+    errs.push(`base has ${answers} answers, the build accepts 24-110`);
   if (!b.scene) errs.push('no scene — the board has no title');
   if (rows.length !== 5) errs.push(`${rows.length} rows, must be 5`);
   if (!b.clues[b.base]) errs.push('the base itself has no clue');

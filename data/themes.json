@@ -141,166 +141,6 @@
    "scene": "The sweetened track under every joke"
   },
   {
-   "base": "faucet",
-   "theme": "sunday",
-   "clues": {
-    "faucet": "Where the water comes out, and where the dishes stack up under it.",
-    "cafe": "You ordered one coffee and stayed a solid two hours past that.",
-    "feta": "White, salty, crumbles over everything in the summer.",
-    "tea": "Poured sweet by the pitcher — or what somebody is about to spill.",
-    "eat": "What she says four times before anybody actually sits down.",
-    "cut": "Into the cake, and somebody films it."
-   },
-   "prefer": [
-    "cafe",
-    "feta",
-    "tea",
-    "eat",
-    "cut"
-   ],
-   "scene": "The sink, and getting folks to the table"
-  },
-  {
-   "base": "deacon",
-   "theme": "sunday",
-   "clues": {
-    "deacon": "Dark suit, first pew, and he starts the hymn before the organ finds the key.",
-    "ocean": "Where the baptizing happened before there was a pool built in up front.",
-    "cane": "Hooked over the back of the pew in front of her, where she can reach it.",
-    "once": "How many times the announcements were meant to be read out this morning.",
-    "done": "What he is not, no matter how many times he has said in closing.",
-    "code": "The dress kind. Unwritten, never posted, and enforced by everybody's mother."
-   },
-   "prefer": [
-    "ocean",
-    "cane",
-    "once",
-    "done",
-    "code"
-   ],
-   "scene": "The men who run the front of the room"
-  },
-  {
-   "base": "sermon",
-   "theme": "sunday",
-   "clues": {
-    "sermon": "Twenty minutes on paper. Forty-five once the organ starts up behind him.",
-    "snore": "The man three pews back, and his wife's elbow arriving right on schedule.",
-    "nose": "The usher's, wrinkled, at the child who walked in with a bag of chips.",
-    "more": "What the choir gives the last verse when nobody wants to sit back down.",
-    "ones": "Folded small inside a glove, counted twice before the plate comes around.",
-    "morn": "The six o'clock service, for people who like the building half empty."
-   },
-   "prefer": [
-    "snore",
-    "nose",
-    "more",
-    "ones",
-    "morn"
-   ],
-   "scene": "Twenty minutes on paper, forty-five"
-  },
-  {
-   "base": "gospel",
-   "theme": "sunday",
-   "clues": {
-    "gospel": "They come in on the second verse and the whole building gets to its feet.",
-    "pose": "How you sat for the picture in the fellowship hall: hands folded, hat on.",
-    "sole": "The bottom of the shoe she wore through walking that aisle every Sunday.",
-    "legs": "The folding table has four, and one of them has been short since 1998.",
-    "lose": "What you do with the count of how many times he has said in closing.",
-    "goes": "What the organ does underneath him, low, long before anybody says amen."
-   },
-   "prefer": [
-    "pose",
-    "sole",
-    "legs",
-    "lose",
-    "goes"
-   ],
-   "scene": "The choir, and the second verse"
-  },
-  {
-   "base": "anthem",
-   "theme": "sunday",
-   "clues": {
-    "anthem": "Lift Every Voice. The second verse, and your grandmother knows it cold.",
-    "amen": "Said early, by one man in the back, and it is not a question he is asking.",
-    "name": "On the back of the funeral home fan, with a phone number underneath it.",
-    "meat": "Sunday's is a roast. Wednesday's is whatever is left of Sunday's.",
-    "math": "What the ushers do in the back with the count, twice, before it is read.",
-    "ham": "Scored in diamonds, studded with cloves, and the pineapple rings go on last."
-   },
-   "prefer": [
-    "amen",
-    "ham",
-    "name",
-    "meat",
-    "math"
-   ],
-   "scene": "Lift Every Voice, second verse"
-  },
-  {
-   "base": "mother",
-   "theme": "sunday",
-   "clues": {
-    "mother": "White dress, second pew from the front, and the last word on everything.",
-    "other": "The one nobody sits in. It is hers, and it has been hers since 1991.",
-    "home": "What she calls going, and it is not the house she means.",
-    "hero": "Not the word she would use. She would say he was raised right, and stop.",
-    "moth": "Comes out of the closet with the suit you only wear twice a year.",
-    "term": "How long she has served on the usher board, and nobody has ever counted."
-   },
-   "prefer": [
-    "other",
-    "home",
-    "hero",
-    "moth",
-    "term"
-   ],
-   "scene": "White dress, second pew, last word"
-  },
-  {
-   "base": "mashed",
-   "theme": "sunday",
-   "clues": {
-    "mashed": "Real potatoes, the whole afternoon, and the mixer stays in the cabinet.",
-    "shade": "On the porch after the meal, or what your cousin just quietly threw.",
-    "heads": "Bowed, all of them, before one fork is allowed to touch one plate.",
-    "mesh": "The screen door that slams no matter how gently you think you closed it.",
-    "shed": "Where the extra folding chairs get carried back to when plates are cleared.",
-    "ham": "Scored in diamonds, cloves at the corners, and the pineapple rings are not up for discussion."
-   },
-   "prefer": [
-    "shade",
-    "heads",
-    "ham",
-    "mesh",
-    "shed"
-   ],
-   "scene": "Real potatoes, and grace before a fork"
-  },
-  {
-   "base": "prayed",
-   "theme": "sunday",
-   "clues": {
-    "prayed": "Over the food, over the drive home, and over a name nobody said out loud.",
-    "pray": "What she told you to do about it, and it was not the answer you came for.",
-    "ready": "What the table is, twenty minutes before anybody will sit down at it.",
-    "year": "How long since the whole family was in this room at the same time.",
-    "read": "The scripture, by whichever grandchild can be made to stand up front.",
-    "yard": "Where the children are sent so the grown folks can talk about the will."
-   },
-   "prefer": [
-    "pray",
-    "ready",
-    "year",
-    "read",
-    "yard"
-   ],
-   "scene": "Grace over the food and the drive home"
-  },
-  {
    "base": "phrase",
    "theme": "sitcom",
    "clues": {
@@ -899,26 +739,6 @@
     "ride"
    ],
    "scene": "Twelve dollars, and the sign that has not changed"
-  },
-  {
-   "base": "aprons",
-   "theme": "fishfry",
-   "clues": {
-    "aprons": "Hers has the church name stitched on it. Everybody else gets what is on the hook.",
-    "apron": "She ties it in the back at five and does not take it off until the last box goes out.",
-    "snap": "The sound of the cash box closing when a man asks her to make an exception.",
-    "soap": "The sink she assigns to whoever showed up late, and it is not a punishment, she says.",
-    "pans": "Foil, half-size, taped shut, and counted twice before they go to the job site.",
-    "pan": "Cast iron, half a lifetime seasoned, and only two people are allowed to wash it."
-   },
-   "prefer": [
-    "apron",
-    "snap",
-    "soap",
-    "pan",
-    "pans"
-   ],
-   "scene": "Whose name is stitched on it"
   },
   {
    "base": "golden",
@@ -2121,486 +1941,6 @@
    "scene": "What the first observances cost"
   },
   {
-   "base": "citrus",
-   "theme": "sunday",
-   "clues": {
-    "citrus": "Half a lemon, rubbed on the board after fish and again on her own hands.",
-    "crust": "Rolled out with a jelly glass because the pin went missing sometime in 1994.",
-    "cuts": "She knows six by name at the meat counter and asks for the one not in the case.",
-    "rust": "What the iron gets if you leave it wet, and why she dries it over the flame.",
-    "curt": "How she answers when a guest asks whether that stove really runs hot. Five words.",
-    "stir": "Anticlockwise, wooden spoon, and she does it without ever once looking down into the gravy."
-   },
-   "prefer": [
-    "crust",
-    "cuts",
-    "rust",
-    "curt",
-    "stir"
-   ],
-   "scene": "Half a lemon, and everything it fixes"
-  },
-  {
-   "base": "merits",
-   "theme": "sunday",
-   "clues": {
-    "merits": "Her pound cake has them. You may say so once, then she hands you a plate.",
-    "timers": "The stove has two. She has not touched either one since the Ford administration.",
-    "items": "Four of them on the back of an envelope, in her hand, and she will not read it out.",
-    "mist": "What the window over the sink does the minute the greens hit the water.",
-    "rest": "What the meat does on the board for ten minutes while you keep your hands off.",
-    "stir": "Figure eights with the wooden spoon, and she counts to sixty before she lets you quit."
-   },
-   "prefer": [
-    "timers",
-    "items",
-    "stir",
-    "mist",
-    "rest"
-   ],
-   "scene": "Her pound cake, and no timer at all"
-  },
-  {
-   "base": "stupor",
-   "theme": "sunday",
-   "clues": {
-    "stupor": "The state of the whole house at two o'clock, once the pot has been emptied.",
-    "soup": "Bones in a freezer bag since Thursday, and today they are the entire point.",
-    "pour": "Never from the bottle. Into her palm first, then in, and she calls that measuring.",
-    "spurt": "How the drippings jar comes alive the second a wet spoon goes into it.",
-    "pots": "Six of them, each with exactly one job. The tall one is only ever for greens.",
-    "sour": "The look she gives a man who reaches past her for the knife she keeps sharp."
-   },
-   "prefer": [
-    "soup",
-    "pour",
-    "spurt",
-    "pots",
-    "sour"
-   ],
-   "scene": "Bones from Thursday, and the drippings jar"
-  },
-  {
-   "base": "almost",
-   "theme": "sunday",
-   "clues": {
-    "almost": "How full she takes the pot. Any higher than that and you wear it to the sink.",
-    "salt": "By hand, out of a bowl, and there has not been a measuring spoon here in years.",
-    "most": "The share of the whole day's work that is finished before anybody else is up.",
-    "slam": "That drawer has never closed on its own. You give it a hip and it answers.",
-    "mats": "Cut from an old towel, under the hot pan, because the table was her mother's.",
-    "oats": "In the meatloaf, not breadcrumbs, and nobody has ever talked her out of it."
-   },
-   "prefer": [
-    "salt",
-    "most",
-    "slam",
-    "mats",
-    "oats"
-   ],
-   "scene": "No measuring spoons in this house"
-  },
-  {
-   "base": "forked",
-   "theme": "sunday",
-   "clues": {
-    "forked": "Straight down into the cake. Clean and it comes out; otherwise it goes back in.",
-    "fork": "The bent one in the drawer that she uses for everything and will not let you toss.",
-    "fed": "What she did for the whole block for thirty years without calling it work once.",
-    "rode": "The cake came up here in the floorboard of the car, boxed and wrapped in a towel.",
-    "redo": "What she makes you do to a broken sauce, from the start, while she stands there.",
-    "doer": "Not a talker. She is in the room at five with the apron already tied behind her."
-   },
-   "prefer": [
-    "fork",
-    "fed",
-    "rode",
-    "redo",
-    "doer"
-   ],
-   "scene": "Thirty years of feeding the block"
-  },
-  {
-   "base": "bakery",
-   "theme": "sunday",
-   "clues": {
-    "bakery": "She was offered a storefront twice and said no twice. This kitchen is enough.",
-    "baker": "The title beside her name on the program, and she corrects anybody who says cook.",
-    "bake": "What she will not do in August, no matter who is asking or what it is for.",
-    "year": "How long the fruitcake sits wrapped in the pantry before it is fit to cut.",
-    "key": "The pantry has one. It lives on her ring and there has never been a second.",
-    "rye": "The dark loaf nobody else here likes, so she makes it small and eats it all week."
-   },
-   "prefer": [
-    "baker",
-    "bake",
-    "year",
-    "key",
-    "rye"
-   ],
-   "scene": "The storefront she said no to, twice"
-  },
-  {
-   "base": "backed",
-   "theme": "sunday",
-   "clues": {
-    "backed": "Two women, one recipe, and she stood by hers when the church put it to a vote.",
-    "baked": "Since four in the morning, and the whole house knew it before anybody got up.",
-    "cake": "Three layers, no box, and the method is not written down anywhere on this earth.",
-    "back": "Where the good pan lives: far shelf, behind everything, out of reach on purpose.",
-    "ace": "What she is with a paring blade, and she is not handing it to you to find out.",
-    "bake": "What the sweet potato pies do while the greens hold the entire top of the stove hostage."
-   },
-   "prefer": [
-    "baked",
-    "cake",
-    "bake",
-    "back",
-    "ace"
-   ],
-   "scene": "The church put her recipe to a vote"
-  },
-  {
-   "base": "foiled",
-   "theme": "sunday",
-   "clues": {
-    "foiled": "Every plate that leaves this house is covered and pressed down around the edges.",
-    "foil": "Two layers over the pan, tight, and you do not lift it in the car on the way.",
-    "fold": "Not stir. Under and over, twelve passes, and she counts them out loud for you.",
-    "file": "Three strokes on the steel before she cuts anything, standing right at the sink.",
-    "lid": "It has not matched its pot since 1988. It still sits down flush and that is that.",
-    "oil": "Poured into the skillet until it shimmers, and she judges it by the sound, never by a clock."
-   },
-   "prefer": [
-    "foil",
-    "fold",
-    "file",
-    "oil",
-    "lid"
-   ],
-   "scene": "Every plate that leaves is covered"
-  },
-  {
-   "base": "coiled",
-   "theme": "sunday",
-   "clues": {
-    "coiled": "The burner, orange in a dark kitchen, and she reads it without touching the dial.",
-    "coil": "Wrapped and clipped, the cord on a mixer she bought in 1979 that still runs.",
-    "cold": "How the plate has to be before the icing goes anywhere near it. She will wait.",
-    "dice": "Even squares off the flat of the blade, done before you have found a bowl.",
-    "ice": "The tray she still cracks by hand, because the machine kind tastes like the freezer.",
-    "lid": "Cracked half an inch so the pot has somewhere to breathe and her range stays clean."
-   },
-   "prefer": [
-    "coil",
-    "cold",
-    "lid",
-    "dice",
-    "ice"
-   ],
-   "scene": "The 1979 mixer and the orange burner"
-  },
-  {
-   "base": "cloven",
-   "theme": "sunday",
-   "clues": {
-    "cloven": "Split clean down the middle, the way the hoof is on what is in her deep freeze.",
-    "oven": "Runs fifty degrees hot. Everybody knows by exactly how much and nobody has called.",
-    "once": "How many times she tells you. There is no second telling in this room.",
-    "novel": "The paperback face-down on the counter while the pot gets on with its own business.",
-    "lone": "One stool pulled up to the counter at six in the morning, and it is hers.",
-    "cone": "Rolled out of wax paper on the spot when the piping bag cannot be found."
-   },
-   "prefer": [
-    "oven",
-    "once",
-    "novel",
-    "lone",
-    "cone"
-   ],
-   "scene": "The range that runs fifty degrees hot"
-  },
-  {
-   "base": "blower",
-   "theme": "sunday",
-   "clues": {
-    "blower": "The fan in the hood, loud as a truck, and she runs it before anything hits the pan.",
-    "bowl": "The yellow one with the chip out of the rim. Sixty years of batter have been in it.",
-    "blow": "What she tells you not to do on it. Wait, or you taste nothing else all day.",
-    "brew": "The coffee goes on before the light does, and the first cup is not yours.",
-    "lower": "She will not take that flame down for anybody standing there looking impatient.",
-    "elbow": "Hers, out sideways, is how you learn you have stepped too close to the range."
-   },
-   "prefer": [
-    "bowl",
-    "blow",
-    "brew",
-    "lower",
-    "elbow"
-   ],
-   "scene": "The hood fan, and how close you may stand"
-  },
-  {
-   "base": "fruits",
-   "theme": "sunday",
-   "clues": {
-    "fruits": "Peaches left on the sill until they give under a thumb, and not one hour sooner.",
-    "sift": "Twice, always, even though the bag swears up and down it has been done already.",
-    "first": "The pan on the front eye is hers, and it goes on before anything else does.",
-    "fits": "How the apron does after forty years. The ties go around her twice now.",
-    "fist": "The dough gets one, straight down, and then it gets left alone for a whole hour.",
-    "stir": "Constantly, one direction, and you do not walk away from that pot to answer a phone."
-   },
-   "prefer": [
-    "sift",
-    "first",
-    "fits",
-    "fist",
-    "stir"
-   ],
-   "scene": "Peaches on the sill until they give"
-  },
-  {
-   "base": "detach",
-   "theme": "sunday",
-   "clues": {
-    "detach": "The head comes off the good mixer, and she is the only one who takes it apart.",
-    "teach": "She will not do it by measurement. Stand there and watch, or do not learn it.",
-    "heat": "Medium means her medium, which is about half of what you would have called it.",
-    "date": "On masking tape on every container in the freezer, in marker, without exception.",
-    "ache": "What her hands do in the cold, and she still cracks the eggs one at a time, one-handed.",
-    "chat": "The phone on her shoulder a full hour while her hands never once stop moving."
-   },
-   "prefer": [
-    "teach",
-    "heat",
-    "date",
-    "ache",
-    "chat"
-   ],
-   "scene": "Her method, taught by standing there"
-  },
-  {
-   "base": "bathed",
-   "theme": "sunday",
-   "clues": {
-    "bathed": "The greens, three separate times, until the water in the sink finally runs clear.",
-    "bathe": "What the roast does in its own drippings every twenty minutes, door barely open.",
-    "bath": "The double boiler, which here is a bowl set over water, because she never bought one.",
-    "beat": "Three hundred strokes by hand. She counts them and she has never once been wrong.",
-    "head": "Of the garlic, smashed flat under the pan and peeled out in a single motion.",
-    "heat": "She holds a palm flat over the closed door and knows the number without ever opening it."
-   },
-   "prefer": [
-    "bathe",
-    "bath",
-    "beat",
-    "head",
-    "heat"
-   ],
-   "scene": "Three washes until the water runs clear"
-  },
-  {
-   "base": "mobile",
-   "theme": "sunday",
-   "clues": {
-    "mobile": "The little cart she rolls out, because there is no room to sit down in here.",
-    "lime": "Rolled hard under her palm on the counter first. That is where the juice comes from.",
-    "limb": "The pecan tree out back, and the reason there is a bag of them in the freezer.",
-    "oil": "A film wiped onto the iron with a paper towel while the pan is still warm.",
-    "limbo": "Where the last slice sits: nobody will claim it and nobody will throw it out.",
-    "boil": "Never a hard one for greens: barely a tremble at the edge of the water, held three hours."
-   },
-   "prefer": [
-    "lime",
-    "boil",
-    "limb",
-    "oil",
-    "limbo"
-   ],
-   "scene": "The rolling cart and the pecan tree"
-  },
-  {
-   "base": "adults",
-   "theme": "sunday",
-   "clues": {
-    "adults": "Only they carry the pot from the stove to the sink. That rule has never moved.",
-    "adult": "What you become here the day she hands you the knife and walks out of the room.",
-    "dust": "Flour over everything by seven, including the radio and the top of the icebox.",
-    "stud": "She found it herself and drove the nail in to hang the heavy pot. It has held.",
-    "dual": "Two ovens was the one thing she asked for, and the only remodel she ever wanted.",
-    "salt": "Out of her palm, never a spoon, and she has never once had to taste and fix it afterward."
-   },
-   "prefer": [
-    "adult",
-    "dust",
-    "stud",
-    "dual",
-    "salt"
-   ],
-   "scene": "Who is allowed to carry the pot"
-  },
-  {
-   "base": "second",
-   "theme": "sunday",
-   "clues": {
-    "second": "The one she puts on your plate while you are still saying no to it.",
-    "once": "You said no. That was the whole of your objection, and it did not survive.",
-    "done": "She decides when the meal is. Pushing your chair back early decides nothing.",
-    "send": "What she does with the leftover pans at the door, and refusing is not an option.",
-    "den": "Where the men drift at halftime while the table is still being cleared.",
-    "nod": "How permission to start eating gets given, and everybody is watching for it."
-   },
-   "prefer": [
-    "once",
-    "done",
-    "send",
-    "den",
-    "nod"
-   ],
-   "scene": "The helping you did not ask for"
-  },
-  {
-   "base": "faster",
-   "theme": "sunday",
-   "clues": {
-    "faster": "How the children eat, hoping to get excused before the grown talk starts.",
-    "feast": "It is not one. It is a weekday menu on a Sunday schedule, every single week.",
-    "safe": "Where the silver sits Monday through Saturday, and she knows the combination.",
-    "fare": "Nothing new, ever. The same six dishes, in the same order, in the same bowls.",
-    "fret": "What the new girlfriend does over which fork, until an aunt waves it off.",
-    "tea": "Sweet, in the good pitcher, and the first glass poured goes to whoever did the cooking."
-   },
-   "prefer": [
-    "feast",
-    "tea",
-    "safe",
-    "fare",
-    "fret"
-   ],
-   "scene": "The same six dishes, every week"
-  },
-  {
-   "base": "steamy",
-   "theme": "sunday",
-   "clues": {
-    "steamy": "The lid comes off the pot and the kitchen window goes white all at once.",
-    "yeast": "The rolls have been rising under a dish towel on top of the stove since nine.",
-    "stay": "Nobody leaves right when eating is over. You do it another hour, minimum.",
-    "yams": "Candied, in the orange dish, and that dish has never held anything else.",
-    "stem": "Glasses with one come down off the top shelf twice a year, and this is once.",
-    "tea": "Brewed in a jar on the back step Saturday, sweetened while it is still hot."
-   },
-   "prefer": [
-    "yeast",
-    "stay",
-    "yams",
-    "tea",
-    "stem"
-   ],
-   "scene": "Rolls rising under a towel since nine"
-  },
-  {
-   "base": "extras",
-   "theme": "sunday",
-   "clues": {
-    "extras": "Two card tables in the hallway, because the good one only holds eight.",
-    "extra": "The place setting she lays anyway, in case somebody's friend turns up hungry.",
-    "ears": "The children keep theirs open while pretending to be busy with the dog.",
-    "teas": "Two pitchers on the counter: the sweet one, and the one for your uncle's sugar.",
-    "east": "The window the table faces, so two o'clock light lands right on the cake dome.",
-    "seat": "The one by the kitchen door goes to whoever gets up the most, which is how she planned it."
-   },
-   "prefer": [
-    "extra",
-    "ears",
-    "seat",
-    "teas",
-    "east"
-   ],
-   "scene": "Two card tables out in the hallway"
-  },
-  {
-   "base": "cinder",
-   "theme": "sunday",
-   "clues": {
-    "cinder": "The bottom of the rolls, the one Sunday she let your uncle watch the oven.",
-    "dine": "The word she uses on the phone, and she means two o'clock, not two-fifteen.",
-    "rice": "Under the gravy, and there is one correct ratio, decided long before you.",
-    "cried": "The baby, straight through grace, and not one eye opened early to look.",
-    "iced": "The cake got its coat on Friday and has been sitting untouched under glass.",
-    "ice": "Chipped off the block into the good glasses last, so nothing goes weak before the blessing."
-   },
-   "prefer": [
-    "dine",
-    "rice",
-    "cried",
-    "iced",
-    "ice"
-   ],
-   "scene": "The Sunday your uncle watched the oven"
-  },
-  {
-   "base": "pricey",
-   "theme": "sunday",
-   "clues": {
-    "pricey": "The roast she buys anyway, every single week, and never says what it ran.",
-    "price": "What the ham cost. Announced by nobody, guessed at by everybody at the table.",
-    "pry": "The aunts start in on your love life before the plates are even cleared.",
-    "rye": "Granddaddy's bottle, over the refrigerator, poured once the children go outside.",
-    "ripe": "She thumbed every peach in the bin Saturday for the cobbler, and put four back.",
-    "pie": "Sweet potato, not pumpkin, and no version of this table treats that as a question."
-   },
-   "prefer": [
-    "price",
-    "pry",
-    "pie",
-    "rye",
-    "ripe"
-   ],
-   "scene": "The roast she buys and never mentions"
-  },
-  {
-   "base": "hasten",
-   "theme": "sunday",
-   "clues": {
-    "hasten": "Nobody does. Four hours at that table, and leaving early is a thing people note.",
-    "nest": "The napkins folded into the water glasses like something is meant to hatch.",
-    "neat": "How the table gets set the night before: forks squared, chairs pushed in.",
-    "tens": "Two of them, folded, pressed into each grandchild's hand on the way out.",
-    "heat": "The rolls go back in for five minutes because your uncle finally turned up.",
-    "seat": "The chair at the head is hers, and the youngest gets the piano bench pulled up."
-   },
-   "prefer": [
-    "nest",
-    "seat",
-    "neat",
-    "tens",
-    "heat"
-   ],
-   "scene": "Four hours, and leaving early is noted"
-  },
-  {
-   "base": "enrich",
-   "theme": "sunday",
-   "clues": {
-    "enrich": "What one covered plate from her kitchen does to a whole week of your lunches.",
-    "rich": "The macaroni is. Nobody asks how much cheese, and nobody wants the number.",
-    "heir": "Who gets the china is settled: she wrote it on a card taped inside the cabinet.",
-    "chin": "The youngest wears his dessert on his, and an aunt has the napkin out already.",
-    "inch": "What she has never given on the seating, no matter who asks to switch.",
-    "rice": "Baked with sugar and raisins, out of the same white dish, and the crust on top is the point."
-   },
-   "prefer": [
-    "rich",
-    "heir",
-    "chin",
-    "inch",
-    "rice"
-   ],
-   "scene": "One covered plate, and a week of lunches"
-  },
-  {
    "base": "asking",
    "theme": "fishfry",
    "clues": {
@@ -2939,106 +2279,6 @@
     "red"
    ],
    "scene": "Leaving, the week the word arrived"
-  },
-  {
-   "base": "oblige",
-   "theme": "sunday",
-   "clues": {
-    "oblige": "Asked to take on the whole thing for Saturday. She said no, and did not soften it.",
-    "globe": "The milk-glass shade over her worktable. She changed the bulb herself, on a chair.",
-    "ogle": "What the neighbor's boy does at the cooling racks until she hands him a broken one.",
-    "ego": "She has one about her crust, and she has earned every inch of it twice over.",
-    "log": "The order book by the phone: name, date, deposit paid, all of it in pencil.",
-    "boil": "Sugar taken to hard crack, and she watches the pot instead of the clock, every single time."
-   },
-   "prefer": [
-    "globe",
-    "ogle",
-    "boil",
-    "ego",
-    "log"
-   ],
-   "scene": "The order book by the phone"
-  },
-  {
-   "base": "trails",
-   "theme": "sunday",
-   "clues": {
-    "trails": "Flour from the back door to the range by nine, and she sweeps when she is finished.",
-    "stair": "The steps down to her shelves in the cellar, taken one hand on the rail, jars in the other.",
-    "list": "Every price on it went up the week the flour did, and not one customer argued.",
-    "star": "She puts one by the names who pay when they say they will. There are not many.",
-    "last": "Her iron skillet will outlive every person standing in this room, and she has said so.",
-    "salt": "A pinch goes into the caramel and a pinch goes over her shoulder, and she explains neither."
-   },
-   "prefer": [
-    "stair",
-    "list",
-    "star",
-    "last",
-    "salt"
-   ],
-   "scene": "Flour, the cellar jars, and her prices"
-  },
-  {
-   "base": "bodily",
-   "theme": "sunday",
-   "clues": {
-    "bodily": "She knows the oven is ready by what the heat does to her forearm at the open door.",
-    "doily": "Paper, under the cake, cut out with the scissors she keeps for nothing else.",
-    "body": "What the gravy has after an hour, and no shortcut on this earth gets it there sooner.",
-    "bold": "How she seasons. A full hand, tasted once, and never once corrected downward.",
-    "idol": "Her mother's photograph over the icebox, with a recipe card wedged behind the frame.",
-    "boil": "The greens go in when the pot is rolling and not one minute before that."
-   },
-   "prefer": [
-    "doily",
-    "body",
-    "bold",
-    "boil",
-    "idol"
-   ],
-   "scene": "Judging heat by forearm, not a dial"
-  },
-  {
-   "base": "copier",
-   "theme": "sunday",
-   "clues": {
-    "copier": "Her son ran the seating chart at his office, forty sheets, and she still moved two names.",
-    "cope": "What the newest husband does with four hours at a table where he knows six names.",
-    "core": "She spoons the middle out of each pear before the halves ever go into the dish.",
-    "crop": "The greens came out of her brother's rows in July and have been frozen since.",
-    "rope": "Twine around the roast, tied by her, and it is the same knot every single week.",
-    "pie": "Sweet potato, two of them, and the second is not for anybody living in this house."
-   },
-   "prefer": [
-    "cope",
-    "core",
-    "crop",
-    "rope",
-    "pie"
-   ],
-   "scene": "The seating chart, and who moved names"
-  },
-  {
-   "base": "casket",
-   "theme": "sunday",
-   "clues": {
-    "casket": "Carried out of the church at eleven. By two the family was at her table, eating.",
-    "steak": "What she declines to serve on a Sunday, no matter which grandson asks for it by name.",
-    "cakes": "Two of them under the dome on the sideboard, and one is spoken for before grace.",
-    "case": "She makes one, from her chair, for why the house is not being sold. That ends it.",
-    "stack": "Plates arrive in one and land in front of her. Nobody at this table serves himself.",
-    "tea": "Poured from the glass pitcher that only comes out when the leaf is in the table."
-   },
-   "prefer": [
-    "tea",
-    "steak",
-    "cakes",
-    "case",
-    "stack"
-   ],
-   "scene": "The meal after the funeral, at her table"
   },
   {
    "base": "onward",
@@ -4841,6 +4081,166 @@
    "scene": "What you packed, and what you actually wore"
   },
   {
+   "base": "paints",
+   "theme": "barbershop",
+   "clues": {
+    "paints": "What the shelf looks like from across the room, in eleven colours",
+    "satin": "The scarf that goes on the second she is out of the chair, before the door",
+    "pin": "Holding the section she is not working on, and there are nine more in her mouth",
+    "tip": "Cash, folded, into the hand not holding the shears, and never on the card",
+    "sat": "Ninety minutes so far, and the appointment was for ten",
+    "spin": "Of the chair to face the mirror, which is the verdict being delivered"
+   },
+   "prefer": [
+    "satin",
+    "pin",
+    "tip",
+    "sat",
+    "spin"
+   ],
+   "scene": "The station, and what is on it"
+  },
+  {
+   "base": "fabled",
+   "theme": "barbershop",
+   "clues": {
+    "fabled": "His line-up is, across three neighbourhoods, and the wait proves it",
+    "fade": "Low, mid or high, and getting that wrong is the one unforgivable thing",
+    "blade": "Off the guard entirely for the last pass, freehand, near the ear",
+    "bald": "Where it ends at the bottom, and skin means skin",
+    "deal": "What the man in the next chair is describing, and it involves a truck",
+    "lead": "Who has the floor in the argument, which changes about every four minutes"
+   },
+   "prefer": [
+    "fade",
+    "blade",
+    "bald",
+    "deal",
+    "lead"
+   ],
+   "scene": "The fade, and the man who will not rush it"
+  },
+  {
+   "base": "bridal",
+   "theme": "barbershop",
+   "clues": {
+    "bridal": "Half the appointments in June, and the deposit is non-refundable",
+    "braid": "Knotless, waist length, and the quote was for four hours",
+    "laid": "The edges, with the little brush, and this is the part that gets photographed",
+    "bald": "What she warns you about if you ask for them any tighter",
+    "rail": "The back of the chair, where your neck has been for two hours",
+    "raid": "On the snack bag at hour three, conducted by the stylist, unapologetically"
+   },
+   "prefer": [
+    "braid",
+    "laid",
+    "bald",
+    "rail",
+    "raid"
+   ],
+   "scene": "Braids, and the six hours nobody warned you about"
+  },
+  {
+   "base": "silken",
+   "theme": "barbershop",
+   "clues": {
+    "silken": "What the press is for, and the argument about whether it is worth it",
+    "silk": "The press, and the flat iron, and about a week if it does not rain",
+    "skin": "Of your scalp, which she will tell you about honestly and unprompted",
+    "line": "Where the new growth starts, and she can see it from the door",
+    "sink": "The bowl, the cold rim on your neck, and the water finally going warm",
+    "kiln": "What the dryer feels like at hour two, said by everyone, every time"
+   },
+   "prefer": [
+    "silk",
+    "skin",
+    "line",
+    "sink",
+    "kiln"
+   ],
+   "scene": "Wash day, at the bowl"
+  },
+  {
+   "base": "frayed",
+   "theme": "barbershop",
+   "clues": {
+    "frayed": "The ends, which is why she is talking about a trim you did not book",
+    "fade": "What the colour does by week five, which is the part nobody budgets for",
+    "dye": "Mixed in the back, in a bowl, to a shade that has no name on any box",
+    "dry": "Air, hood or blow, and the answer determines the next ninety minutes",
+    "year": "How long since the last big change, and she remembers exactly",
+    "read": "What she does to your face in the mirror before she picks up anything"
+   },
+   "prefer": [
+    "fade",
+    "dye",
+    "dry",
+    "year",
+    "read"
+   ],
+   "scene": "Colour, and what it costs"
+  },
+  {
+   "base": "tokens",
+   "theme": "barbershop",
+   "clues": {
+    "tokens": "What the seats become on a Saturday: held, traded, and fiercely defended",
+    "knots": "Bantu, put in wet on Friday, taken out Sunday morning for the curl",
+    "tone": "Of the room, set by whoever has been coming longest, not by the owner",
+    "set": "Standing, same time every three weeks, and it survives house moves",
+    "note": "On the mirror about the price going up, ignored by everyone including her",
+    "stone": "What the floor is by four, according to everybody standing on it"
+   },
+   "prefer": [
+    "knots",
+    "tone",
+    "set",
+    "note",
+    "stone"
+   ],
+   "scene": "The regulars, and their standing times"
+  },
+  {
+   "base": "castle",
+   "theme": "barbershop",
+   "clues": {
+    "castle": "What the chair is, and the person in it is not to be disturbed",
+    "lace": "The front, laid and cut, and the scissors near your forehead are fine",
+    "seat": "Yours when he says it is yours, and not one minute before",
+    "set": "The chair height, pumped up with a foot, without asking",
+    "sale": "The products by the door, mentioned once, never pushed twice",
+    "slate": "Wiped between heads, and the next name goes up in marker"
+   },
+   "prefer": [
+    "lace",
+    "seat",
+    "set",
+    "sale",
+    "slate"
+   ],
+   "scene": "The cape, and the rules of the chair"
+  },
+  {
+   "base": "bailed",
+   "theme": "barbershop",
+   "clues": {
+    "bailed": "The eleven o'clock, again, and there is a policy about this now",
+    "blade": "Cleaned and oiled between heads, and the sound of it is the shop",
+    "bald": "The joke made at the man in the door, by everyone, immediately",
+    "laid": "Edges, again, on the woman who took the cancelled slot and cannot believe her luck",
+    "idea": "Somebody's, about a business, explained at length to a captive room",
+    "able": "What she says you are, about doing your own edges, and she is being kind"
+   },
+   "prefer": [
+    "blade",
+    "bald",
+    "laid",
+    "idea",
+    "able"
+   ],
+   "scene": "Who did not show, and who took the slot"
+  },
+  {
    "base": "potsie",
    "theme": "texas",
    "clues": {
@@ -5001,164 +4401,124 @@
    "scene": "Sunday afternoon, and what is left"
   },
   {
-   "base": "paints",
-   "theme": "barbershop",
+   "base": "planet",
+   "theme": "sunday",
    "clues": {
-    "paints": "What the shelf looks like from across the room, in eleven colours",
-    "satin": "The scarf that goes on the second she is out of the chair, before the door",
-    "pin": "Holding the section she is not working on, and there are nine more in her mouth",
-    "tip": "Cash, folded, into the hand not holding the shears, and never on the card",
-    "sat": "Ninety minutes so far, and the appointment was for ten",
-    "spin": "Of the chair to face the mirror, which is the verdict being delivered"
+    "planet": "The size of the plate, which is why nobody eats again until Tuesday",
+    "plate": "Fixed and covered in foil for somebody who could not come, before anyone sits",
+    "late": "You are, and something is already covered in foil on the stove for you",
+    "nap": "What happens at four, in the chair, mid-sentence, and nobody comments",
+    "tea": "Poured over ice into the glass that is only used today",
+    "pane": "The kitchen window, steamed over since noon, and the sound behind it"
    },
    "prefer": [
-    "satin",
-    "pin",
-    "tip",
-    "sat",
-    "spin"
+    "plate",
+    "late",
+    "nap",
+    "tea",
+    "pane"
    ],
-   "scene": "The station, and what is on it"
+   "scene": "The plate, and who it is being made for"
   },
   {
-   "base": "fabled",
-   "theme": "barbershop",
+   "base": "satire",
+   "theme": "sunday",
    "clues": {
-    "fabled": "His line-up is, across three neighbourhoods, and the wait proves it",
-    "fade": "Low, mid or high, and getting that wrong is the one unforgivable thing",
-    "blade": "Off the guard entirely for the last pass, freehand, near the ear",
-    "bald": "Where it ends at the bottom, and skin means skin",
-    "deal": "What the man in the next chair is describing, and it involves a truck",
-    "lead": "Who has the floor in the argument, which changes about every four minutes"
+    "satire": "The tone taken about anything instant, by a woman who has never bought it",
+    "stir": "Constantly, and handing the spoon over is a small ceremony",
+    "rest": "Off the heat with the lid on, which is where they actually finish",
+    "sear": "The salmon croquettes in the same pan, and the fond is the point",
+    "tears": "From the onion, and from being handed the spoon, and both get denied",
+    "tea": "In the jug by eleven, because it needs those three hours to get properly cold"
    },
    "prefer": [
-    "fade",
-    "blade",
-    "bald",
-    "deal",
-    "lead"
+    "stir",
+    "rest",
+    "sear",
+    "tears",
+    "tea"
    ],
-   "scene": "The fade, and the man who will not rush it"
+   "scene": "The pot that needs watching, and the spoon that gets handed over"
   },
   {
-   "base": "bridal",
-   "theme": "barbershop",
+   "base": "warmth",
+   "theme": "sunday",
    "clues": {
-    "bridal": "Half the appointments in June, and the deposit is non-refundable",
-    "braid": "Knotless, waist length, and the quote was for four hours",
-    "laid": "The edges, with the little brush, and this is the part that gets photographed",
-    "bald": "What she warns you about if you ask for them any tighter",
-    "rail": "The back of the chair, where your neck has been for two hours",
-    "raid": "On the snack bag at hour three, conducted by the stylist, unapologetically"
+    "warmth": "What the lowest setting is for, and it holds four dishes at once",
+    "ham": "In there since one, foil tented, waiting for everything slower than it",
+    "warm": "Not hot. The distinction is the entire skill and it is never explained",
+    "thaw": "Started Friday night, in the fridge, because Sunday was always the plan",
+    "hat": "Still on, because she came straight from church and has not sat down",
+    "wham": "The oven door, closed with a hip, both hands full"
    },
    "prefer": [
-    "braid",
-    "laid",
-    "bald",
-    "rail",
-    "raid"
+    "ham",
+    "warm",
+    "thaw",
+    "hat",
+    "wham"
    ],
-   "scene": "Braids, and the six hours nobody warned you about"
+   "scene": "The oven door, and the things kept behind it"
   },
   {
-   "base": "silken",
-   "theme": "barbershop",
+   "base": "aprons",
+   "theme": "sunday",
    "clues": {
-    "silken": "What the press is for, and the argument about whether it is worth it",
-    "silk": "The press, and the flat iron, and about a week if it does not rain",
-    "skin": "Of your scalp, which she will tell you about honestly and unprompted",
-    "line": "Where the new growth starts, and she can see it from the door",
-    "sink": "The bowl, the cold rim on your neck, and the water finally going warm",
-    "kiln": "What the dryer feels like at hour two, said by everyone, every time"
+    "aprons": "There are two, and only one of them has ever been offered to a guest",
+    "apron": "Over the good dress, tied at the back by somebody else, still buttoned",
+    "nap": "What the man on the couch is taking during all of this, unbothered",
+    "sop": "What the bread is for, and doing it is the compliment",
+    "span": "Of the counter she works in, about four feet, and stepping into it is a mistake",
+    "soar": "What the smoke alarm does at some point, and it is ignored"
    },
    "prefer": [
-    "silk",
-    "skin",
-    "line",
-    "sink",
-    "kiln"
+    "apron",
+    "nap",
+    "sop",
+    "span",
+    "soar"
    ],
-   "scene": "Wash day, at the bowl"
+   "scene": "Who is allowed in the kitchen"
   },
   {
-   "base": "frayed",
-   "theme": "barbershop",
+   "base": "backed",
+   "theme": "sunday",
    "clues": {
-    "frayed": "The ends, which is why she is talking about a trim you did not book",
-    "fade": "What the colour does by week five, which is the part nobody budgets for",
-    "dye": "Mixed in the back, in a bowl, to a shade that has no name on any box",
-    "dry": "Air, hood or blow, and the answer determines the next ninety minutes",
-    "year": "How long since the last big change, and she remembers exactly",
-    "read": "What she does to your face in the mirror before she picks up anything"
+    "backed": "What the whole afternoon is, by something that happened at eleven last night",
+    "cake": "Pound, from a recipe on a card in handwriting nobody living can read",
+    "bake": "Started at nine at night, because the oven was busy until then",
+    "dab": "Of the batter on a finger, which is the whole reason to be in there",
+    "deck": "The counter, cleared entirely, which happens exactly once a week",
+    "back": "Of the recipe card, where the instructions that matter were added later"
    },
    "prefer": [
-    "fade",
-    "dye",
-    "dry",
-    "year",
-    "read"
+    "cake",
+    "bake",
+    "dab",
+    "deck",
+    "back"
    ],
-   "scene": "Colour, and what it costs"
+   "scene": "The cake, made the night before"
   },
   {
-   "base": "tokens",
-   "theme": "barbershop",
+   "base": "tigers",
+   "theme": "sunday",
    "clues": {
-    "tokens": "What the seats become on a Saturday: held, traded, and fiercely defended",
-    "knots": "Bantu, put in wet on Friday, taken out Sunday morning for the curl",
-    "tone": "Of the room, set by whoever has been coming longest, not by the owner",
-    "set": "Standing, same time every three weeks, and it survives house moves",
-    "note": "On the mirror about the price going up, ignored by everyone including her",
-    "stone": "What the floor is by four, according to everybody standing on it"
+    "tigers": "What the pot is guarded like, from about noon onward",
+    "grits": "Not today. Today the pot is doing something else entirely",
+    "stir": "Once an hour, and the smell is the thing that fills the house",
+    "rest": "What the greens do best of all, and Monday's are better than today's",
+    "tries": "How many times someone lifts the lid, and each one is noticed",
+    "tires": "What she insists she never does, while refusing every offer of a chair"
    },
    "prefer": [
-    "knots",
-    "tone",
-    "set",
-    "note",
-    "stone"
+    "grits",
+    "stir",
+    "rest",
+    "tries",
+    "tires"
    ],
-   "scene": "The regulars, and their standing times"
-  },
-  {
-   "base": "castle",
-   "theme": "barbershop",
-   "clues": {
-    "castle": "What the chair is, and the person in it is not to be disturbed",
-    "lace": "The front, laid and cut, and the scissors near your forehead are fine",
-    "seat": "Yours when he says it is yours, and not one minute before",
-    "set": "The chair height, pumped up with a foot, without asking",
-    "sale": "The products by the door, mentioned once, never pushed twice",
-    "slate": "Wiped between heads, and the next name goes up in marker"
-   },
-   "prefer": [
-    "lace",
-    "seat",
-    "set",
-    "sale",
-    "slate"
-   ],
-   "scene": "The cape, and the rules of the chair"
-  },
-  {
-   "base": "bailed",
-   "theme": "barbershop",
-   "clues": {
-    "bailed": "The eleven o'clock, again, and there is a policy about this now",
-    "blade": "Cleaned and oiled between heads, and the sound of it is the shop",
-    "bald": "The joke made at the man in the door, by everyone, immediately",
-    "laid": "Edges, again, on the woman who took the cancelled slot and cannot believe her luck",
-    "idea": "Somebody's, about a business, explained at length to a captive room",
-    "able": "What she says you are, about doing your own edges, and she is being kind"
-   },
-   "prefer": [
-    "blade",
-    "bald",
-    "laid",
-    "idea",
-    "able"
-   ],
-   "scene": "Who did not show, and who took the slot"
+   "scene": "The greens, and the pot liquor"
   }
  ]
 }

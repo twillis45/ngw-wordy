@@ -127,9 +127,43 @@ const toneDeny = new Set(
     .filter(Boolean)
 );
 
-const bases = [...enable].filter(
-  (w) => w.length === 6 && distinct(w) && popular.has(w) && !isBlocked(w) && !toneDeny.has(w)
-);
+/**
+ * The band the BUILD accepts, mirrored from vet-bases.mjs.
+ *
+ * A base whose answer set is outside 24-110 is rejected at build time however
+ * good its rows are. This tool did not know that, so it proposed `ALERTS` for
+ * Sunday Dinner — five on-theme rows, a scene, six written clues — and the
+ * build threw it out at 122 answers, after the pack had been authored and
+ * merged. Checking here costs nothing and saves authoring a board that cannot
+ * exist.
+ */
+const MIN_ANSWERS = 24;
+const MAX_ANSWERS = 110;
+const byLetterKey = new Map();
+for (const w of enable) {
+  if (w.length < 3 || w.length > 6) continue;
+  const k = [...w].sort().join('');
+  if (!byLetterKey.has(k)) byLetterKey.set(k, 0);
+  byLetterKey.set(k, byLetterKey.get(k) + 1);
+}
+function answerCount(base) {
+  const letters = [...base].sort();
+  let n = 0;
+  for (let m = 0; m < 1 << 6; m += 1) {
+    const sub = [];
+    for (let i = 0; i < 6; i += 1) if (m & (1 << i)) sub.push(letters[i]);
+    if (sub.length < 3) continue;
+    n += byLetterKey.get(sub.join('')) ?? 0;
+  }
+  return n;
+}
+
+const bases = [...enable].filter((w) => {
+  if (w.length !== 6 || !distinct(w) || !popular.has(w)) return false;
+  if (isBlocked(w) || toneDeny.has(w)) return false;
+  const n = answerCount(w);
+  return n >= MIN_ANSWERS && n <= MAX_ANSWERS;
+});
 
 const report = [];
 for (const [id, list] of Object.entries(vocabFile)) {
