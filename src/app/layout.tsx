@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import ServiceWorker from '@/components/ServiceWorker';
+import Preferences from '@/components/Preferences';
 import { withBase } from '@/lib/basePath';
 import { NO_FLASH_SCRIPT } from '@/lib/theme';
+import { NO_FLASH_SCRIPT as A11Y_NO_FLASH } from '@/lib/a11y';
 import { SITE_URL, absoluteUrl } from '@/lib/site';
 import themes from '../../data/themes.json';
 import './globals.css';
@@ -164,10 +166,16 @@ export default function RootLayout({
         {/* Applies an explicit theme before first paint. Without it, a
             light-mode player gets a dark flash on every load. */}
         <script dangerouslySetInnerHTML={{ __html: NO_FLASH_SCRIPT }} />
+        {/* Text size before first paint too: a late theme is a flash, a late
+            text size is a full reflow of the board. */}
+        <script dangerouslySetInnerHTML={{ __html: A11Y_NO_FLASH }} />
       </head>
       <body>
         {children}
         <ServiceWorker />
+        {/* Re-applies theme and text settings after hydration, because React
+            strips the head scripts work off <html>. See Preferences.tsx. */}
+        <Preferences />
       </body>
     </html>
   );

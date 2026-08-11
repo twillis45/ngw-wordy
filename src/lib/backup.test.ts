@@ -146,6 +146,41 @@ describe('backup codes', () => {
     expect(codeFromHash('#settings')).toBeNull();
   });
 
+  it('carries display settings, which rank above the streak', () => {
+    // The accessibility seats rated a display config ABOVE the streak in what
+    // must survive: a board that arrives unreadable on the new phone is not a
+    // degraded experience, it is an unusable one.
+    const code = encodeProgress(heavyPlayer(), file, { text: 'larger', reading: 'relaxed' });
+    const out = decodeProgress(code, file);
+    expect(out.ok).toBe(true);
+    if (!out.ok) return;
+    expect(out.display).toEqual({ text: 'larger', reading: 'relaxed' });
+    // ...and the flags they share a byte with are undamaged.
+    expect(out.progress.escalating).toBe(true);
+    expect(out.progress.muted).toBe(false);
+    expect(out.progress.clueMode).toBe(true);
+    expect(out.progress.seenIntro).toBe(true);
+  });
+
+  it('defaults display settings when the code carries none', () => {
+    const out = decodeProgress(encodeProgress(heavyPlayer(), file), file);
+    expect(out.ok).toBe(true);
+    if (out.ok) expect(out.display).toEqual({ text: 'default', reading: 'default' });
+  });
+
+  it('survives a stale catalogue with settings intact', () => {
+    // The whole point of the fingerprint fallback: the board list is dropped,
+    // but the things ranked 1, 2 and 4 all still arrive.
+    const code = encodeProgress(heavyPlayer(), file, { text: 'large', reading: 'relaxed' });
+    const shifted: PuzzleFile = { ...file, puzzles: file.puzzles.slice(1) };
+    const out = decodeProgress(code, shifted);
+    expect(out.ok).toBe(true);
+    if (!out.ok) return;
+    expect(out.catalogueMatched).toBe(false);
+    expect(out.display).toEqual({ text: 'large', reading: 'relaxed' });
+    expect(out.progress.streak).toBe(180);
+  });
+
   it('fingerprints two different catalogues differently', () => {
     const shifted: PuzzleFile = { ...file, puzzles: file.puzzles.slice(1) };
     expect(fingerprint(file)).not.toBe(fingerprint(shifted));

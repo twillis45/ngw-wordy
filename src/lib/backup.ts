@@ -33,6 +33,22 @@
 import type { Progress } from './storage';
 import { EMPTY } from './storage';
 import type { PuzzleFile } from './game';
+import type { Reading, TextScale } from './a11y';
+
+/**
+ * Display preferences ride along in the spare bits of the flags byte.
+ *
+ * The accessibility seats rated these ABOVE the streak in what has to survive:
+ * a board that arrives unreadable on the new phone is not a degraded
+ * experience, it is an unusable one. Two bits of text scale and one of reading
+ * mode is a cheap price for that.
+ *
+ * The THEME is deliberately not carried. It defaults to `auto`, which follows
+ * the OS — and the new device has an OS preference of its own that is more
+ * likely to be right than the old device's override.
+ */
+export type Display = { text: TextScale; reading: Reading };
+const TEXT_BITS: TextScale[] = ['default', 'large', 'larger'];
 
 export const CODE_PREFIX = 'wordy2:';
 /** Day 0 for the played-days bitmap. Before the game existed, so nothing is lost. */
@@ -94,7 +110,7 @@ const unb64url = (s: string): Uint8Array => {
 };
 
 /** Everything the board ranked as worth carrying, as a pasteable code. */
-export function encodeProgress(p: Progress, file: PuzzleFile): string {
+export function encodeProgress(p: Progress, file: PuzzleFile, display?: Display): string {
   const n = file.puzzles.length;
   const dayIdx = Object.keys(p.days)
     .map(dayIndex)
@@ -114,8 +130,14 @@ export function encodeProgress(p: Progress, file: PuzzleFile): string {
   view.setUint32(7, Math.min(p.bonusTotal, 0xffffffff), true);
   view.setUint32(11, Math.min(p.spent, 0xffffffff), true);
   buf[15] = Math.min(p.warmupsDone, 255);
+  const textBit = Math.max(0, TEXT_BITS.indexOf(display?.text ?? 'default'));
   buf[16] =
-    (p.muted ? 1 : 0) | (p.clueMode ? 2 : 0) | (p.escalating ? 4 : 0) | (p.seenIntro ? 8 : 0);
+    (p.muted ? 1 : 0) |
+    (p.clueMode ? 2 : 0) |
+    (p.escalating ? 4 : 0) |
+    (p.seenIntro ? 8 : 0) |
+    (textBit << 4) |
+    (display?.reading === 'relaxed' ? 64 : 0);
   const last = p.lastPlayed ? dayIndex(p.lastPlayed) : -1;
   view.setUint16(17, last < 0 ? 0xffff : last, true);
   view.setUint16(19, n, true);
@@ -151,7 +173,13 @@ export function encodeProgress(p: Progress, file: PuzzleFile): string {
 }
 
 export type DecodeResult =
-  | { ok: true; progress: Progress; boardsRestored: number; catalogueMatched: boolean }
+  | {
+      ok: true;
+      progress: Progress;
+      display: Display;
+      boardsRestored: number;
+      catalogueMatched: boolean;
+    }
   | { ok: false; reason: string };
 
 /**
@@ -226,12 +254,24 @@ export function decodeProgress(code: string, file: PuzzleFile): DecodeResult {
     warmupsDone: buf[15],
   };
 
-  return { ok: true, progress, boardsRestored, catalogueMatched };
+  const display: Display = {
+    text: TEXT_BITS[(flags >> 4) & 3] ?? 'default',
+    reading: flags & 64 ? 'relaxed' : 'default',
+  };
+
+  return { ok: true, progress, display, boardsRestored, catalogueMatched };
 }
 
 /** A link the player can send themselves — the transfer the board endorsed. */
-export function backupLink(p: Progress, file: PuzzleFile, origin: string): string {
-  return `${origin.replace(/\/$/, '')}/#restore=${encodeProgress(p, file).slice(CODE_PREFIX.length)}`;
+export function backupLink(
+  p: Progress,
+  file: PuzzleFile,
+  origin: string,
+  display?: Display
+): string {
+  return `${origin.replace(/\/$/, '')}/#restore=${encodeProgress(p, file, display).slice(
+    CODE_PREFIX.length
+  )}`;
 }
 
 /** Pull a code out of a `#restore=` link, if this load came from one. */

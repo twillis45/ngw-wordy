@@ -29,6 +29,17 @@ import {
   encodeProgress,
 } from '@/lib/backup';
 import {
+  TEXT_LABEL,
+  applyReading,
+  applyTextScale,
+  getReading,
+  getReadingServerSnapshot,
+  getTextScale,
+  getTextServerSnapshot,
+  nextTextScale,
+  subscribeA11y,
+} from '@/lib/a11y';
+import {
   applyTheme,
   effectiveTheme,
   getThemeServerSnapshot,
@@ -262,6 +273,21 @@ export default function Game({ data }: { data: PuzzleFile }) {
     getThemeSnapshot,
     getThemeServerSnapshot
   );
+  /*
+   * Display preferences live outside the progress store for the same reason
+   * the theme does: the head script applies them before first paint, and a
+   * text size applied late reflows the whole board rather than flashing it.
+   */
+  const textScale = useSyncExternalStore(
+    subscribeA11y,
+    getTextScale,
+    getTextServerSnapshot
+  );
+  const reading = useSyncExternalStore(
+    subscribeA11y,
+    getReading,
+    getReadingServerSnapshot
+  );
   /** Words solved in THIS session — only these animate. */
   const [justSolved, setJustSolved] = useState<Set<string>>(new Set());
   const [floatFor, setFloatFor] = useState<{
@@ -390,6 +416,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
         return false;
       }
       applyProgress(result.progress);
+      // Settings rank above the streak for the accessibility seats, so they are
+      // applied too — arriving readable is the point of carrying them.
+      applyTextScale(result.display.text);
+      applyReading(result.display.reading);
       say(
         result.catalogueMatched
           ? `Restored — streak ${result.progress.streak}, ${result.boardsRestored} boards`
@@ -1646,6 +1676,51 @@ export default function Game({ data }: { data: PuzzleFile }) {
           </div>
 
           {/*
+            Reading and text size.
+
+            The accessibility wing found NO text-size, dyslexia-facing or
+            colour-vision setting in the preference shape at all, and rated a
+            display config ABOVE the streak in what has to survive a device
+            change: a board that arrives unreadable on a new phone is not a
+            degraded experience, it is an unusable one. Both settings ride in
+            the backup code for exactly that reason.
+          */}
+          <div className="mt-4 rounded-2xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-5">
+            <h2 className="text-title font-bold leading-tight text-text-primary">Reading</h2>
+            <p className="mt-1.5 mb-3 text-meta leading-relaxed text-text-muted">
+              These travel with your backup link, so a new phone arrives set up
+              the way you left it.
+            </p>
+
+            <div className="flex items-center justify-between gap-4">
+              <div className="min-w-0">
+                <p className="text-meta font-medium text-text-primary">Text size</p>
+                <p className="mt-0.5 text-kicker leading-snug text-text-muted">
+                  Scales every label and clue. The dial keeps its own size so it
+                  still fits a small phone.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => applyTextScale(nextTextScale(textScale))}
+                aria-label={`Text size: ${TEXT_LABEL[textScale]}. Tap to change.`}
+                className="liquid-interactive h-10 shrink-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
+              >
+                {TEXT_LABEL[textScale]}
+              </button>
+            </div>
+
+            <div className="mt-4 border-t border-edge-mid pt-4">
+              <ModeRow
+                label="Relaxed spacing"
+                detail="Opens up letter, word and line spacing, and stops italics being italic."
+                on={reading === 'relaxed'}
+                onToggle={(v) => applyReading(v ? 'relaxed' : 'default')}
+              />
+            </div>
+          </div>
+
+          {/*
             Backup lives here because this sheet is the only place a player
             already goes to change how the game works.
 
@@ -1672,7 +1747,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 onClick={async () => {
                   try {
                     await navigator.clipboard.writeText(
-                      backupLink(progress, data, window.location.origin)
+                      backupLink(progress, data, window.location.origin, { text: textScale, reading })
                     );
                     markBackedUp(new Date());
                     say('Link copied — send it to yourself', 'good');
@@ -1690,7 +1765,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 type="button"
                 onClick={() => {
                   try {
-                    const blob = new Blob([encodeProgress(progress, data)], {
+                    const blob = new Blob([encodeProgress(progress, data, { text: textScale, reading })], {
                       type: 'text/plain',
                     });
                     const url = URL.createObjectURL(blob);
@@ -1764,7 +1839,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onBackup={async () => {
             try {
               await navigator.clipboard.writeText(
-                backupLink(progress, data, window.location.origin)
+                backupLink(progress, data, window.location.origin, { text: textScale, reading })
               );
               markBackedUp(new Date());
               markBackupOffered();

@@ -1124,3 +1124,51 @@ body {
     justify-content: center;
   }
 }
+
+/*
+ * Relaxed reading.
+ *
+ * The accessibility wing found no dyslexia-facing setting at all, and the seat
+ * that needs one rates re-configuring type and spacing as WORSE than losing a
+ * streak — it is the thing that decides whether the app is usable on arrival.
+ *
+ * Not a font swap. Shipping a bundled dyslexia face would be a large download
+ * for a contested benefit; the evidence for those faces is much weaker than the
+ * evidence for SPACING, which is what this changes. Letter, word and line
+ * spacing all open up, and italics — which the research is consistent about —
+ * stop being italic.
+ *
+ * Scoped to reading surfaces on purpose. Applying tracking to the dial would
+ * move the tiles, and their geometry is calibrated in percentages against a
+ * 15% tap radius.
+ */
+:root[data-reading='relaxed'] p,
+:root[data-reading='relaxed'] h1,
+:root[data-reading='relaxed'] h2,
+:root[data-reading='relaxed'] h3,
+:root[data-reading='relaxed'] li,
+:root[data-reading='relaxed'] dt,
+:root[data-reading='relaxed'] dd,
+:root[data-reading='relaxed'] button,
+:root[data-reading='relaxed'] label {
+  letter-spacing: 0.035em;
+  word-spacing: 0.09em;
+  line-height: 1.7;
+}
+
+:root[data-reading='relaxed'] em,
+:root[data-reading='relaxed'] i,
+:root[data-reading='relaxed'] .scene {
+  font-style: normal;
+  font-weight: 600;
+}
+
+/*
+ * Text scaling sets font-size on <html> in percent, so every `rem` in the type
+ * ladder moves with it. The dial is sized in cqmin against its own container
+ * and deliberately does NOT scale — a 132% dial would not fit a 320px phone,
+ * and the tiles already clear the 24px target at every step.
+ */
+:root[data-text] .type-fixed {
+  font-size: 1rem;
+}
