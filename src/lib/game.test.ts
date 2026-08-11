@@ -914,3 +914,44 @@ describe('progress keys are scoped to the lap', () => {
     expect(dailyCycle(new Date(2026, 7, 9), 1_000_000)).toBe(0);
   });
 });
+
+describe('share card day number', () => {
+  const base = {
+    rank: 'Complete',
+    score: 120,
+    tiles: [
+      { solved: true, isBase: true },
+      { solved: true, isBase: false },
+      { solved: false, isBase: false },
+    ],
+    bonusFound: 3,
+    streak: 5,
+  };
+
+  it('names the puzzle when it is the daily, so two people know they mean the same board', () => {
+    const out = shareText({ ...base, theme: 'The Nineties', dayNumber: 205 });
+    expect(out.split('\n')[0]).toBe('Wordy #205 — The Nineties · Complete');
+  });
+
+  it('prints NO number for practice and warm-up', () => {
+    // The last time every board carried a number, a warm-up player posted "#1"
+    // at a board nobody else could see. Those genuinely are not a shared thing.
+    for (const n of [null, undefined]) {
+      const out = shareText({ ...base, theme: 'The Nineties', dayNumber: n });
+      expect(out.split('\n')[0]).toBe('Wordy — The Nineties · Complete');
+      expect(out).not.toContain('#');
+    }
+  });
+
+  it('still leads with the clue under the heading, and never spoils an unsolved row', () => {
+    const out = shareText({
+      ...base,
+      theme: 'The Nineties',
+      dayNumber: 12,
+      clue: 'Jodeci, 1991 — four men out of Charlotte on Uptown',
+    });
+    const lines = out.split('\n');
+    expect(lines[0]).toContain('#12');
+    expect(lines[1]).toBe('"Jodeci, 1991 — four men out of Charlotte on Uptown"');
+  });
+});

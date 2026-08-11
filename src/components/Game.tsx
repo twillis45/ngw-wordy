@@ -1018,6 +1018,13 @@ export default function Game({ data }: { data: PuzzleFile }) {
       })),
       bonusFound: bonusFound.length,
       streak: progress.streak,
+      /*
+       * Only the daily carries a number, because only the daily is the same
+       * board for everyone. Warm-up and practice deliberately print none — the
+       * last time every board carried one, a warm-up player posted "#1" at a
+       * board nobody else could see.
+       */
+      dayNumber: isDaily ? dailyIndex(today, dailyPoolSize(data)) + 1 : null,
       // Configured per deploy; falls back to wherever the game is actually
       // being played rather than a guessed domain.
       url:

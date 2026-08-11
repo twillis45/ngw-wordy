@@ -520,6 +520,20 @@ export function shareText(opts: {
   tiles: ShareTile[];
   bonusFound: number;
   streak: number;
+  /**
+   * The shared referent, and ONLY for the daily board.
+   *
+   * A day number was shipped once and deleted, because a warm-up player was
+   * posting "#1" the day everyone else posted "#205" — it named a board nobody
+   * else could see. That was the wrong number, not a wrong idea: Wordle's
+   * "#1234" is the entire reason two strangers know they solved the same
+   * puzzle, and a daily ritual without a shared referent is just a scoreboard.
+   *
+   * So it comes back, restricted to the one board that IS the same for
+   * everybody. Practice and warm-up pass null and print no number at all,
+   * which is honest — those genuinely are not a shared thing.
+   */
+  dayNumber?: number | null;
   /** Where to play. Omitted entirely rather than guessed. */
   url?: string;
 }): string {
@@ -538,9 +552,10 @@ export function shareText(opts: {
     .filter(Boolean)
     .join(' · ');
 
+  const name = opts.dayNumber != null ? `Wordy #${opts.dayNumber}` : 'Wordy';
   const heading = opts.theme
-    ? `Wordy — ${opts.theme} · ${opts.rank}`
-    : `Wordy — ${opts.rank}`;
+    ? `${name} — ${opts.theme} · ${opts.rank}`
+    : `${name} — ${opts.rank}`;
 
   return [
     heading,
