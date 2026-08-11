@@ -8,6 +8,7 @@ import {
   decodeProgress,
   encodeProgress,
   fingerprint,
+  puzzleFromHash,
 } from './backup';
 import { EMPTY, type Progress } from './storage';
 import type { PuzzleFile } from './game';
@@ -184,5 +185,19 @@ describe('backup codes', () => {
   it('fingerprints two different catalogues differently', () => {
     const shifted: PuzzleFile = { ...file, puzzles: file.puzzles.slice(1) };
     expect(fingerprint(file)).not.toBe(fingerprint(shifted));
+  });
+});
+
+describe('play links', () => {
+  it('reads the board number a shared card points at', () => {
+    expect(puzzleFromHash('#play=137')).toBe(137);
+    expect(puzzleFromHash('#restore=abc&play=42')).toBe(42);
+  });
+
+  it('ignores anything that is not a plain positive number', () => {
+    // The number came off a link somebody may have retyped. Coercing junk
+    // would land the reader on a board nobody was talking about.
+    for (const h of ['', '#play=', '#play=0', '#play=-3', '#play=abc', '#restore=xyz', '#play=1e9'])
+      expect(puzzleFromHash(h)).toBeNull();
   });
 });

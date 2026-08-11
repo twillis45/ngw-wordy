@@ -279,3 +279,22 @@ export function codeFromHash(hash: string): string | null {
   const m = /[#&]restore=([A-Za-z0-9\-_]+)/.exec(hash);
   return m ? CODE_PREFIX + m[1] : null;
 }
+
+/**
+ * The board number in a `#play=` link, if this load came from a shared card.
+ *
+ * A share card without this is a boast — it tells you someone did well and
+ * gives you no way in. With it, the card becomes an invitation: tap the link
+ * and you are on the exact board being discussed, which is the whole mechanism
+ * behind a daily anyone talks about.
+ *
+ * Returns the 1-based number as printed on the card, or null. Deliberately
+ * strict: anything that is not a plain positive integer is ignored rather than
+ * coerced, so a mangled link lands on today's board instead of somewhere odd.
+ */
+export function puzzleFromHash(hash: string): number | null {
+  const m = /[#&]play=(\d{1,6})(?:\b|$)/.exec(hash);
+  if (!m) return null;
+  const n = Number(m[1]);
+  return Number.isInteger(n) && n > 0 ? n : null;
+}

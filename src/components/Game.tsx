@@ -25,6 +25,7 @@ import { feedback, setHapticsMuted, setMuted } from '@/lib/feedback';
 import {
   backupLink,
   codeFromHash,
+  puzzleFromHash,
   decodeProgress,
   encodeProgress,
 } from '@/lib/backup';
@@ -156,6 +157,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * waiting for tomorrow; only offset 0 touches the streak.
    */
   const [offset, setOffset] = useState(0);
+  /* A board arrived at from someone else's share card. Cleared the moment the
+     player navigates anywhere themselves, so it never becomes sticky. */
+  const [landedOn, setLandedOn] = useState<number | null>(null);
 
   // Lets the v1 -> v2 migration re-key old day-based words onto puzzles.
   configureMigration((dk) => {
@@ -182,13 +186,27 @@ export default function Game({ data }: { data: PuzzleFile }) {
     () => new Set(progress.clearedIds),
     [progress.clearedIds]
   );
-  const { index, warmup } = puzzleForPlayer(
+  const chosen = puzzleForPlayer(
     data,
     progress.warmupsDone,
     today,
     offset,
     clearedSet
   );
+  /*
+   * A `#play=` link outranks the warm-up ladder.
+   *
+   * `puzzleForPlayer` treats offset 0 as "no opinion" and hands a new player a
+   * warm-up — correct for a cold start, wrong for someone who arrived on a
+   * link to a specific board. And the daily's own offset IS 0, so a card
+   * shared today landed every new reader on the warm-up instead of the board
+   * being discussed. Measured: shared Sunday Service, opened Family Reunion.
+   *
+   * An arrival is a stronger signal than a default, so it is held separately
+   * rather than encoded as an offset that cannot say what it means.
+   */
+  const { index, warmup } =
+    landedOn !== null ? { index: landedOn, warmup: null } : chosen;
   const puzzle: Puzzle = data.puzzles[index];
   /*
    * Found words are keyed by puzzle AND lap. Without the lap, finishing the
@@ -392,6 +410,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const goToPuzzle = useCallback(
     (nextOffset: number) => {
       setOffset(nextOffset);
+      // The player is steering now, so the board they arrived on from someone
+      // else's link stops overriding. Otherwise Next puzzle would bounce them
+      // straight back to it forever.
+      setLandedOn(null);
       setSel([]);
       setJustSolved(new Set());
       setShowComplete(false);
@@ -494,6 +516,27 @@ export default function Game({ data }: { data: PuzzleFile }) {
     history.replaceState(null, '', window.location.pathname + window.location.search);
     restoreFrom(code);
   }, [restoreFrom]);
+
+  /*
+   * A `#play=` link from someone else's share card.
+   *
+   * The number on a card is 1-based over the authored catalogue, which
+   * `build-puzzles.mjs` places at the head of the array — so the board is at
+   * index n-1, and `offsetForIndex` turns that into the offset the picker
+   * speaks. Clamped, because the number came off a link somebody may have
+   * retyped, and a bad one should land on today rather than nowhere.
+   *
+   * The hash is cleared immediately so a reload does not keep dragging the
+   * player back to a board they have moved on from.
+   */
+  useEffect(() => {
+    const n = puzzleFromHash(window.location.hash);
+    if (n === null) return;
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+    const index = Math.min(n - 1, dailyPoolSize(data) - 1);
+    setLandedOn(index);
+    setOffset(offsetForIndex(data, today, index));
+  }, [data, today]);
 
   /*
    * Announcements with no toast behind them.
@@ -1029,9 +1072,26 @@ export default function Game({ data }: { data: PuzzleFile }) {
       escalating: progress.escalating && warmup === null,
       // Configured per deploy; falls back to wherever the game is actually
       // being played rather than a guessed domain.
-      url:
-        process.env.NEXT_PUBLIC_SHARE_URL ||
-        (typeof window !== 'undefined' ? window.location.origin : undefined),
+      /*
+       * The URL points at THIS board, not the front door.
+       *
+       * A card that links to the homepage is a boast: it says someone did well
+       * and gives the reader no way in. `#play=137` makes it an invitation —
+       * tap it and you are on the exact board being discussed. That is the
+       * mechanism behind a daily people actually talk about, and it costs
+       * nine characters.
+       *
+       * Only for the daily, for the same reason it is the only board with a
+       * number: it is the only one that is the same for everybody.
+       */
+      url: (() => {
+        const origin =
+          process.env.NEXT_PUBLIC_SHARE_URL ||
+          (typeof window !== 'undefined' ? window.location.origin : undefined);
+        if (!origin) return undefined;
+        const n = isDaily ? dailyIndex(today, dailyPoolSize(data)) + 1 : null;
+        return n ? `${origin.replace(/\/$/, '')}/#play=${n}` : origin;
+      })(),
     });
 
   const share = async () => {
