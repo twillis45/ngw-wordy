@@ -25,8 +25,26 @@ type Props = {
  * (it normalizes against the live bounding rect). A pixel-sized wheel was the
  * reason tablet and desktop got a phone-sized board in a large screen.
  */
-const RADIUS = 36; // % of container, center to a tile's center
-const TILE = 21.2; // % of container
+/*
+ * With six tiles the adjacent CHORD equals RADIUS exactly (2·R·sin30° = R),
+ * which is why every comment below talks about tiles being "R% apart" — the
+ * two numbers are the same number. Tightened 36 -> 33 to pull the ring in off
+ * the dial's edge and give the pointer more room to live in.
+ *
+ * Everything downstream is expressed as a fraction of that spacing, so all of
+ * it was scaled by the same 33/36 — the FEEL is unchanged, only the geometry
+ * is tighter. Leaving HIT at 15 against a 33% chord would have quietly WIDENED
+ * forgiveness to 45% of the gap, undoing the magnetism reduction.
+ */
+const RADIUS = 33; // % of container, center to a tile's center
+/*
+ * Grown into the room the tighter ring freed up. Pulling RADIUS to 33 left the
+ * tiles' outer edge 12px clear of the dial rim where it used to be 6 — that is
+ * reclaimed space sitting at the edge doing nothing, so it goes to the tiles.
+ * At a 33% chord a 23% tile still leaves a 10% gap between neighbours, so the
+ * ring reads as six separate keys rather than a fused band.
+ */
+const TILE = 23; // % of container
 /*
  * Selection radius — deliberately matched to where the pointer LOOKS committed.
  *
@@ -42,7 +60,7 @@ const TILE = 21.2; // % of container
  * committed. Tiles sit 36% apart at six letters, so anything up to 18 is still
  * unambiguous — there is forgiveness available here and it was not being spent.
  */
-const HIT = 15; // % from a tile center that counts as "on" it
+const HIT = 13.8; // % from a tile center that counts as "on" it
 
 /**
  * iPadOS pointer geometry.
@@ -63,7 +81,7 @@ const HIT = 15; // % from a tile center that counts as "on" it
  * genuinely visible between letters — the property the original 16 was
  * protecting.
  */
-const MAGNET = 19; // % — where the SHAPE starts to morph
+const MAGNET = 17.4; // % — where the SHAPE starts to morph
 /**
  * Attraction reaches further than the morph does.
  *
@@ -78,10 +96,25 @@ const MAGNET = 19; // % — where the SHAPE starts to morph
  * a real untargeted zone, and a wide band where you can feel the tug before
  * anything changes shape.
  */
-const PULL = 21; // % — where positional attraction begins
-const PULL_BITE = 1.7;
-/** Ceiling on attraction OUTSIDE the selection radius — see `pull` below. */
-const PULL_CAP = 0.66; // >1 = weak at the edge, sharply stronger near the tile
+const PULL = 19.3; // % — where positional attraction begins
+/*
+ * Exponent on the eased distance, so >1 means weak far out and sharply
+ * stronger near the tile. Raised from 1.7 to soften the mid-band: at the
+ * 18% midpoint between two tiles the pull drops from 0.31 to 0.23.
+ *
+ * Tuned here rather than at PULL because PULL sets the GEOMETRY — moving it
+ * re-cuts the measured 15% free / 26% drawn-in / 59% morphing split that the
+ * comment above exists to protect. Strength and geometry are separable and
+ * should stay that way; this is the strength knob.
+ */
+const PULL_BITE = 2.1;
+/**
+ * Ceiling on attraction OUTSIDE the selection radius — see `pull` below.
+ * Lowered with PULL_BITE for a roughly uniform ~20-25% reduction across the
+ * band. Inside HIT the pull is still a hard 1, so nothing about selection
+ * accuracy changes — only how much the dial steers your thumb on the way in.
+ */
+const PULL_CAP = 0.52;
 /*
  * The untargeted pointer reads as a lens over the board, so it has to be big
  * enough to feel like it could hold a letter. At 11 it was half a tile — a dot,
