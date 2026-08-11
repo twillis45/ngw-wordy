@@ -241,7 +241,7 @@
    "cluster": "juneteenth",
    "claim": "General Order No. 3 is four sentences.",
    "verdict": "corrected",
-   "detail": "Two shipped clues said five — the most-repeated factual error in the pack, and it sat in its most quotable clue. The National Archives text runs four: all slaves are free; absolute equality of personal rights; freedmen advised to remain and work for wages; not to collect at military posts. Some renderings collapse it to three. Nobody counts five.",
+   "detail": "Two shipped clues said five — the most-repeated factual error in the pack, and it sat in its most quotable clue. The National Archives text runs four: all slaves are free; absolute equality of personal rights; freedmen advised to remain and work for wages; not to collect at military posts. Some renderings collapse it to three. Nobody counts five. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
    "sources": [
     {
      "title": "National Archives — General Order No. 3, the original document",
@@ -249,18 +249,7 @@
      "kind": "primary"
     }
    ],
-   "clues": [
-    {
-     "theme": "juneteenth",
-     "base": "shared",
-     "word": "reads"
-    },
-    {
-     "theme": "juneteenth",
-     "base": "beards",
-     "word": "bared"
-    }
-   ],
+   "clues": [],
    "replacement": {
     "word": "reads",
     "clue": "How the order goes: four sentences, the plainest language the government ever managed."
@@ -271,7 +260,7 @@
    "cluster": "juneteenth",
    "claim": "Emancipation Park, Houston: ten acres bought in 1872 for $800 by nine trustees; the city took title in 1916.",
    "verdict": "corrected",
-   "detail": "The shipped clue said \"four men\". The four-name short form (Allen, Brock, Yates, Dibble) describes the leadership, not the purchasers; the marker names nine trustees of the Colored People of Harris County Festival Association buying for a subscribing community. The pack’s own `parked` clue already said \"freedmen\", so the two clues contradicted each other.",
+   "detail": "The shipped clue said \"four men\". The four-name short form (Allen, Brock, Yates, Dibble) describes the leadership, not the purchasers; the marker names nine trustees of the Colored People of Harris County Festival Association buying for a subscribing community. The pack’s own `parked` clue already said \"freedmen\", so the two clues contradicted each other. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
    "sources": [
     {
      "title": "Historical Marker Database — The Legacy of Emancipation Park",
@@ -279,13 +268,7 @@
      "kind": "primary"
     }
    ],
-   "clues": [
-    {
-     "theme": "juneteenth",
-     "base": "thread",
-     "word": "earth"
-    }
-   ],
+   "clues": [],
    "replacement": {
     "word": "earth",
     "clue": "Ten acres of it in Houston, 1872, bought by nine trustees for eight hundred dollars."
@@ -296,7 +279,7 @@
    "cluster": "juneteenth",
    "claim": "The first public observance of the anniversary was in 1866, in Houston.",
    "verdict": "corrected",
-   "detail": "The shipped clue called 1866 \"the second one\". 19 June 1865 was the day of the order, not a celebration of it. The 1866 observance was a parade led by Elias Dibble as president and Sandy Parker as marshal. Off by one, in a way a Texas reader catches immediately.",
+   "detail": "The shipped clue called 1866 \"the second one\". 19 June 1865 was the day of the order, not a celebration of it. The 1866 observance was a parade led by Elias Dibble as president and Sandy Parker as marshal. Off by one, in a way a Texas reader catches immediately. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
    "sources": [
     {
      "title": "Britannica — Juneteenth",
@@ -309,13 +292,7 @@
      "kind": "scholarship"
     }
    ],
-   "clues": [
-    {
-     "theme": "juneteenth",
-     "base": "parked",
-     "word": "dare"
-    }
-   ],
+   "clues": [],
    "replacement": {
     "word": "dare",
     "clue": "What it took to hold the very first one in 1866, in a state that had lost and was not sorry."
@@ -326,7 +303,7 @@
    "cluster": "juneteenth",
    "claim": "Houston renamed Dowling Street to Emancipation Avenue in January 2017.",
    "verdict": "corrected",
-   "detail": "The shipped clue said the neighbourhood fought to \"restore\" the name. The street never carried it — it was named for Confederate commander Richard \"Dick\" Dowling, and the change, led by Rep. Garnet Coleman, was won rather than restored. Timed to Juneteenth 2017 and the park’s $33m reopening.",
+   "detail": "The shipped clue said the neighbourhood fought to \"restore\" the name. The street never carried it — it was named for Confederate commander Richard \"Dick\" Dowling, and the change, led by Rep. Garnet Coleman, was won rather than restored. Timed to Juneteenth 2017 and the park’s $33m reopening. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
    "sources": [
     {
      "title": "City of Houston — Dowling Street renamed to Emancipation Avenue",
@@ -339,13 +316,7 @@
      "kind": "scholarship"
     }
    ],
-   "clues": [
-    {
-     "theme": "juneteenth",
-     "base": "braved",
-     "word": "ave"
-    }
-   ],
+   "clues": [],
    "replacement": {
     "word": "ave",
     "clue": "Emancipation, in Houston: the street the parade uses, and a Confederate's name taken off it in 2017."
@@ -356,7 +327,7 @@
    "cluster": "juneteenth",
    "claim": "Granger read the order from the balcony of Ashton Villa.",
    "verdict": "corrected",
-   "detail": "FOLKLORE, not evidence. No contemporaneous source places the reading there. Documented sites are the Union headquarters at the Osterman Building, the 1861 Custom House, the courthouse, and the \"Negro Church\" — today’s Reedy Chapel-AME. The belief is sustained by an annual Sons of Union Veterans reenactment performed AT Ashton Villa, a commemoration widely mistaken for the event it commemorates. The `era` clue asserted it as fact and the THEME BLURB asserted it flatly; both were rewritten.",
+   "detail": "FOLKLORE, not evidence. No contemporaneous source places the reading there. Documented sites are the Union headquarters at the Osterman Building, the 1861 Custom House, the courthouse, and the \"Negro Church\" — today’s Reedy Chapel-AME. The belief is sustained by an annual Sons of Union Veterans reenactment performed AT Ashton Villa, a commemoration widely mistaken for the event it commemorates. The `era` clue asserted it as fact and the THEME BLURB asserted it flatly; both were rewritten. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
    "sources": [
     {
      "title": "National Archives — General Order No. 3, the original document",
@@ -364,13 +335,7 @@
      "kind": "primary"
     }
    ],
-   "clues": [
-    {
-     "theme": "juneteenth",
-     "base": "fedora",
-     "word": "era"
-    }
-   ],
+   "clues": [],
    "replacement": {
     "word": "era",
     "clue": "What ended in Galveston that June, and what began the next morning, which was harder."
@@ -381,7 +346,7 @@
    "cluster": "juneteenth",
    "claim": "The red drink descends from West African hibiscus and kola traditions.",
    "verdict": "unverifiable",
-   "detail": "WEAKLY SOURCED and widely repeated as fact. Opie, Miller and Twitty all hedge — \"may come from\", \"some historians believe\". There is plant provenance and colour symbolism, and no documentary chain. The shipped clue is already the safe version and claims no unbroken line. Keep it, and refuse any edit that hardens it.",
+   "detail": "WEAKLY SOURCED and widely repeated as fact. Opie, Miller and Twitty all hedge — \"may come from\", \"some historians believe\". There is plant provenance and colour symbolism, and no documentary chain. The shipped clue is already the safe version and claims no unbroken line. Keep it, and refuse any edit that hardens it. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
    "sources": [
     {
      "title": "Britannica — Juneteenth",
@@ -389,13 +354,7 @@
      "kind": "scholarship"
     }
    ],
-   "clues": [
-    {
-     "theme": "juneteenth",
-     "base": "framed",
-     "word": "red"
-    }
-   ],
+   "clues": [],
    "replacement": null
   },
   {
@@ -403,7 +362,7 @@
    "cluster": "juneteenth",
    "claim": "Texas made Juneteenth a state holiday in 1980, the first state to do so.",
    "verdict": "corrected",
-   "detail": "The shipped clue had Texas schools letting out for the day, which is unsourceable and probably false — Emancipation Day is a partial-staffing state-employee holiday and school years end before 19 June. The real fact is stronger anyway.",
+   "detail": "The shipped clue had Texas schools letting out for the day, which is unsourceable and probably false — Emancipation Day is a partial-staffing state-employee holiday and school years end before 19 June. The real fact is stronger anyway. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
    "sources": [
     {
      "title": "Britannica — Juneteenth",
@@ -411,13 +370,7 @@
      "kind": "scholarship"
     }
    ],
-   "clues": [
-    {
-     "theme": "juneteenth",
-     "base": "grated",
-     "word": "grade"
-    }
-   ],
+   "clues": [],
    "replacement": {
     "word": "grade",
     "clue": "What Texas gave the day in 1980, first in the nation, when no calendar up north carried it."
@@ -584,7 +537,7 @@
    "cluster": "foodways",
    "claim": "Baltimore \"lake trout\" is silver hake sold as whiting, and it is carryout culture, not a lodge basement.",
    "verdict": "corrected",
-   "detail": "The fish identification is confirmed by scientific name — it is neither lake nor trout. But the shipped clue put the phrase in a fraternal-lodge fish fry, and the word is the tell: lake trout belongs to a carryout counter. The replacement uses \"whiting\", accurate and right for the room, and keeps the joke.",
+   "detail": "The fish identification is confirmed by scientific name — it is neither lake nor trout. But the shipped clue put the phrase in a fraternal-lodge fish fry, and the word is the tell: lake trout belongs to a carryout counter. The replacement uses \"whiting\", accurate and right for the room, and keeps the joke. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
    "sources": [
     {
      "title": "Baltimore Sun — what Baltimore \"lake trout\" actually is",
@@ -592,13 +545,7 @@
      "kind": "scholarship"
     }
    ],
-   "clues": [
-    {
-     "theme": "fishfry",
-     "base": "whales",
-     "word": "wash"
-    }
-   ],
+   "clues": [],
    "replacement": {
     "word": "wash",
     "clue": "What the paper towels never quite do to your hands after breading forty pounds of whiting."

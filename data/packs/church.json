@@ -1,10 +1,10 @@
 {
-  "_doc": "STAGING. Church rebuilt vocabulary-first against the bench-signed vocabulary, at their bar (one `named` row plus one `said`) and their one-moment test. The vocabulary they reviewed had the best `named` tier of any non-music list and one hole they called a dignity finding: NO HOMEGOING REGISTER. No repast, wake, eulogy, casket, nurse — the Black church's most-attended service is a funeral and the word list did not know it existed. Two boards here are that service, written plainly and without spectacle.",
+  "_doc": "STAGING. Church rebuilt vocabulary-first against the bench-signed vocabulary, at their bar (one `named` row plus one `said`) and their one-moment test. The vocabulary they reviewed had the best `named` tier of any non-music list and one hole they called a dignity finding: NO HOMEGOING REGISTER. No repast, wake, eulogy, casket, nurse — the Black church's most-attended service is a funeral and the word list did not know it existed. Two boards here are that service, written plainly and without spectacle. EXTENDED with the fish fry, which yielded ONE board on its own and is a church fundraiser run by the same deacons in the same basement.",
   "theme": {
     "id": "church",
     "name": "Sunday Service",
     "category": "THE SANCTUARY",
-    "blurb": "The organ, the fan, the mothers in white, and the part of the service that is not on the program."
+    "blurb": "The organ, the fan, the mothers in white, and the Friday fish fry that pays for the roof."
   },
   "boards": [
     {
@@ -113,6 +113,42 @@
         "angle": "The sun's, in October, which is the one Sunday it reaches the back wall",
         "gale": "What the fan does in July, and it is not enough, and nobody complains",
         "lens": "What the child in the third row has, and the photograph is terrible and kept"
+      }
+    },
+    {
+      "base": "aliens",
+      "scene": "The plate sale, Friday, in the fellowship hall",
+      "clues": {
+        "aliens": "What the line out front looks like to the new pastor, and he learns fast",
+        "sale": "Plate. Ten dollars, cash, and the flyer went up on Tuesday",
+        "aisle": "Cleared of chairs by four so the tables can go where the pews are not",
+        "line": "Out the door by five, and it is mostly people from the block, not the church",
+        "lane": "Behind the building, where the cars idle with their hazards on",
+        "seal": "On the foil, pressed down hard, because these are going in car boots"
+      }
+    },
+    {
+      "base": "boxers",
+      "scene": "Who cooks, and who is not allowed near the fryer",
+      "clues": {
+        "boxers": "What the two deacons on the fryer have been, about this, since 1998",
+        "box": "Styrofoam, hinged, and the count of them is the count of the evening",
+        "robe": "Hanging in the back, untouched, because tonight is not that kind of night",
+        "rose": "The price did, by a dollar, and it was announced from the pulpit",
+        "bore": "What the wait never is, because the line is where the news gets exchanged",
+        "rob": "What the price increase was called, loudly, by one man, every year"
+      }
+    },
+    {
+      "base": "bylaws",
+      "scene": "The slaw, and the recipe nobody will hand over",
+      "clues": {
+        "bylaws": "What the kitchen runs on, unwritten, and violating them is noticed",
+        "slaw": "Made Thursday night so it is right by Friday, and never bought",
+        "sway": "What the room does when somebody puts the radio on in the kitchen",
+        "bays": "The three sinks, and which one is for what is not negotiable",
+        "slay": "What the fish does to the fryer oil by the third batch",
+        "lays": "How the fish goes in: away from you, one at a time, never dropped"
       }
     }
   ]

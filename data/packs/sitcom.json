@@ -1,0 +1,59 @@
+{
+  "_doc": "STAGING. Rerun Season rebuilt vocabulary-first. The bench REFUSED the old list as production-crew jargon — pilot, rerun, tape, cued, bombed is a call sheet — and pointed out that the living-room seat watches the syndication marathon, not the crew. Re-listed around what a viewer sees and says, and the boards are written from the couch.",
+  "theme": {
+    "id": "sitcom",
+    "name": "Rerun Season",
+    "category": "THE LIVING ROOM",
+    "blurb": "Four episodes back to back on a Saturday, and you know every line before it lands."
+  },
+  "boards": [
+    {
+      "base": "caters",
+      "scene": "The cast, and the one everybody quotes",
+      "clues": {
+        "caters": "What the whole show does to one character by season four, and it works",
+        "cast": "Six of them, and the credits order was a negotiation nobody talks about",
+        "star": "Billed first, and not the reason anybody is actually watching",
+        "act": "Three of them, and you can feel the break coming before it does",
+        "seat": "The same one on the couch, and nobody else takes it during a marathon",
+        "trace": "Of the laugh track under the biggest line, which you only hear once told"
+      }
+    },
+    {
+      "base": "tracks",
+      "scene": "The laugh, and where it came from",
+      "clues": {
+        "tracks": "Recorded decades before the show, from audiences long since gone",
+        "track": "The laugh. Sweetened, they call it, which is a generous word",
+        "cast": "Plays to it, waits for it, and times the next line against it",
+        "star": "Knows exactly how long it runs and never once steps on it",
+        "carts": "Rolled off between takes, and the audience is told to stay seated",
+        "act": "What the pause after the biggest laugh belongs to, structurally"
+      }
+    },
+    {
+      "base": "sponge",
+      "scene": "The theme song, and the twelve seconds of it",
+      "clues": {
+        "sponge": "What your memory is for the words, thirty years on, unprompted",
+        "song": "Under a minute, and it explains the entire premise so nobody has to",
+        "open": "Freeze frame on each name, and everyone has a favourite one",
+        "pens": "In the credits, of the two people who wrote it in an afternoon",
+        "peon": "What the network treated them as, on a flat fee, before syndication",
+        "gone": "What the long version is, once the show hits its fourth season"
+      }
+    },
+    {
+      "base": "thongs",
+      "scene": "The guest star, and the episode people remember",
+      "clues": {
+        "thongs": "What the beach episode was an excuse for, and everyone knew it then",
+        "host": "Of the variety show the lead came from, never mentioned again after the pilot",
+        "song": "Performed in full, mid-episode, for no reason the plot ever supplies",
+        "shot": "Held three seconds too long on the guest, because of who they were",
+        "ghost": "The one-episode cousin, never referred to again by anybody, ever",
+        "hogs": "What the guest does to the scene, and the regulars let them have it"
+      }
+    }
+  ]
+}

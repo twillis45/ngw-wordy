@@ -1,10 +1,10 @@
 {
-  "_doc": "STAGING. Cookout rebuilt vocabulary-first against the vocabulary the cultural bench signed off on 2026-08-11, at their bar (one `named` row plus one `said` row, texture counting toward neither) and their clue-level test: do the six rows describe ONE MOMENT? Six correct nouns from six different afternoons is a failure at five-of-five, so boards were cut for incoherence even when they scored well. NO CANON ENTRIES YET — no clue here names a dated fact, which is deliberate for this pack: a cookout is remembered, not documented, and inventing a citation for it would be worse than carrying none.",
+  "_doc": "STAGING. Cookout rebuilt vocabulary-first against the vocabulary the cultural bench signed off on 2026-08-11, at their bar (one `named` row plus one `said` row, texture counting toward neither) and their clue-level test: do the six rows describe ONE MOMENT? Six correct nouns from six different afternoons is a failure at five-of-five, so boards were cut for incoherence even when they scored well. NO CANON ENTRIES YET — no clue here names a dated fact, which is deliberate for this pack: a cookout is remembered, not documented, and inventing a citation for it would be worse than carrying none. EXTENDED with the family reunion, which yielded 4 boards alone and is a cookout with a roster and a T-shirt order.",
   "theme": {
     "id": "cookout",
     "name": "The Cookout",
     "category": "THE TABLE",
-    "blurb": "Somebody's cousin on the grill, somebody's aunt on the cards, and a plate made for you before you asked."
+    "blurb": "Somebody's cousin on the grill, matching shirts nobody agreed to, and a plate made for you before you asked."
   },
   "boards": [
     {
@@ -113,6 +113,18 @@
         "ice": "The third bag. Nobody planned for the third bag",
         "tide": "How the chairs drift toward the shade over the course of an afternoon",
         "diet": "Announced on Monday by at least two people here"
+      }
+    },
+    {
+      "base": "asking",
+      "scene": "Working out how you are related",
+      "clues": {
+        "asking": "What the first ten minutes are, in both directions, at every table",
+        "kin": "The word on the banner, and the definition is deliberately generous",
+        "sing": "What the elders do after the food, unaccompanied, and everyone stands",
+        "king": "What the oldest man present is treated as for one afternoon a year",
+        "gain": "Two this year, in the babies, announced before anybody eats",
+        "skin": "Whose you have, decided loudly by an aunt within a minute of meeting you"
       }
     }
   ]

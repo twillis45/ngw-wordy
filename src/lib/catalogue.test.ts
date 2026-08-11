@@ -85,15 +85,15 @@ describe('themed catalogue quality', () => {
       }
     }
     const rate = onTheme / rows;
-    // A catalogue exists at all. This was 1000 when the catalogue was 395 padded
-    // boards; the rebuild is deliberately SHRINKING it toward boards that are
-    // about something, so a row-count floor written against the old size fires
-    // on the work succeeding.
-    expect(rows).toBeGreaterThan(500);
-    // Measured 0.365 across 173 boards, up from 0.216 across 395 before the
-    // rebuild began. The floor moves UP with each pack: a ratchet that never
-    // tightens is a ratchet that stops meaning anything.
-    expect(rate).toBeGreaterThanOrEqual(0.34);
+    // A catalogue exists at all. This started at 1000+ when it was 395 padded
+    // boards; the rebuild deliberately shrank it toward boards that are about
+    // something, so a row-count floor written against the old size fires on the
+    // work succeeding.
+    expect(rows).toBeGreaterThan(400);
+    // Measured 0.641 across 88 boards, against 0.216 across 395 before the
+    // rebuild. The floor moves up with each pack: a ratchet that never tightens
+    // stops meaning anything.
+    expect(rate).toBeGreaterThanOrEqual(0.60);
   });
 
   it('no themed board is left with fewer than two on-theme rows', () => {
@@ -113,10 +113,17 @@ describe('themed catalogue quality', () => {
       }))
       .filter((x) => x.n < 2);
     const sample = bad.slice(0, 5).map((x) => `${x.theme}/${x.base}(${x.n})`).join(', ');
-    // 85 of 173, down from 291 of 395 when the rebuild started, and 43 of those
-    // still score zero. That is the remaining authoring debt, stated rather
-    // than rounded off. Six themes are still un-rebuilt and they hold almost
-    // all of it.
-    expect(bad.length, `boards under 2 on-theme rows: ${bad.length}. e.g. ${sample}`).toBeLessThanOrEqual(90);
+    /*
+     * ZERO. Not a budget — the finish line.
+     *
+     * This began at 291 of 395 boards carrying fewer than two on-theme rows,
+     * and 113 of those carried NONE. Every theme has now been rebuilt
+     * vocabulary-first against a bench-signed word list, and the count is out.
+     *
+     * It is asserted at zero rather than at a tolerance because the owner's
+     * original complaint was about exactly these boards, and leaving headroom
+     * here would be leaving room to reintroduce them.
+     */
+    expect(bad.length, `boards under 2 on-theme rows: ${bad.length}. e.g. ${sample}`).toBe(0);
   });
 });

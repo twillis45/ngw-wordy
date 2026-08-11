@@ -1,0 +1,71 @@
+{
+  "_doc": "STAGING. The Nineteenth rebuilt vocabulary-first. This theme scored ZERO after the bench's other additions landed, and the diagnosis was theirs in general form: Juneteenth's identity IS proper nouns — Galveston, Granger, General Order No. 3, emancipation, jubilee, the parade — and every one dies to a 3-6 letter no-repeated-letter filter. The vocabulary was rebuilt from what survives: the food, the colour and the date. `red` sits in `named` because red food and drink is the day's recognised signifier, not background.",
+  "theme": {
+    "id": "juneteenth",
+    "name": "The Nineteenth",
+    "category": "THE DAY",
+    "blurb": "Two and a half years late to Galveston, and observed ever since in red — the drink, the cake, the whole table."
+  },
+  "boards": [
+    {
+      "base": "stared",
+      "scene": "The reading, before anybody eats",
+      "clues": {
+        "stared": "What the crowd does at the person holding the paper, every year, in silence",
+        "read": "Out loud, the same order, by whoever the elders have decided gets to",
+        "date": "The nineteenth, and the two and a half years it came late by",
+        "red": "The drink, the cake, the whole table, and the colour is the point",
+        "star": "On the flag, with the arc around it, and both mean something specific",
+        "dares": "What nobody does: talk through it, however long it runs"
+      }
+    },
+    {
+      "base": "hatred",
+      "scene": "The park at ten in the morning",
+      "clues": {
+        "hatred": "Not the subject. The subject is what came after it, and who is still here",
+        "date": "Marked on a calendar in a kitchen, in pen, before it was a federal thing",
+        "read": "The proclamation, again, and the children are told to listen this time",
+        "red": "In the cooler, in the cake, on the shirts, and nobody had to be told",
+        "heat": "By ten it is already the main topic, and the tents went up at seven",
+        "hat": "Straw, wide, and lent to whoever forgot theirs within the first hour"
+      }
+    },
+    {
+      "base": "adores",
+      "scene": "The red drink, and what it used to be",
+      "clues": {
+        "adores": "What the whole table does to the one who brings it, without saying so",
+        "soda": "Big Red, strawberry, or whatever the store had, and the brand is not the point",
+        "red": "Hibiscus once, and the colour carried across an ocean before the flavour did",
+        "read": "The label, by a child, who is checking whether this is the real one",
+        "does": "What the grandmother insists the homemade one still has over the bottle",
+        "roads": "How far people drive for it, and the answer is further than it sounds"
+      }
+    },
+    {
+      "base": "creamy",
+      "scene": "The cake, and who is allowed to cut it",
+      "clues": {
+        "creamy": "The icing, red, made from a recipe with no measurements written down",
+        "cream": "Red velvet, and the argument about cheese icing versus the older way",
+        "year": "Counted since 1865, out loud, by somebody doing the arithmetic wrong",
+        "care": "Taken over the first slice, which goes to the oldest person present",
+        "acre": "The park, and the corner of it this family has used since the sixties",
+        "mace": "In the spice tin, and it is in there for a reason nobody can explain"
+      }
+    },
+    {
+      "base": "packer",
+      "scene": "Getting there, and holding the spot",
+      "clues": {
+        "packer": "Whoever loaded the car, and they are not to be questioned about the order",
+        "park": "Claimed at seven with two tables and a cousin left behind to hold them",
+        "cake": "Travelled flat on the floor of the back seat, and it survived",
+        "care": "Taken with the cooler, which goes in last and comes out first",
+        "rake": "In the trunk, for the fire pit, from the uncle who plans for everything",
+        "pace": "Set by the drive, and everyone arrives already tired and already happy"
+      }
+    }
+  ]
+}
