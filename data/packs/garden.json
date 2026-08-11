@@ -1,0 +1,157 @@
+{
+  "_doc": "STAGING. General pack. Clue gate is binding: every clue names a position, a time, or a habit — never a category. Base selection avoids letter-sets held by packs without headroom to lend them.",
+
+  "theme": {
+    "id": "garden",
+    "name": "The Garden",
+    "category": "THE LONG WAY",
+    "blurb": "Four square feet, one season, and something that was not there in April."
+  },
+
+  "boards": [
+    {
+      "base": "showed",
+      "scene": "April, and the bed is still an idea",
+      "clues": {
+        "showed": "The neighbour, over the fence, exactly how deep and you did it anyway",
+        "hoe": "Leaned against the fence on day one and not picked up again until June",
+        "hose": "Dragged out for the first time and kinked in the same place as last year",
+        "shed": "Opened after five months, and the smell tells you what overwintered in there",
+        "sow": "Too early, because the one warm week in April lies to everybody",
+        "dose": "Of feed measured by eye, which is why the label is still full"
+      }
+    },
+    {
+      "base": "shower",
+      "scene": "The week it rains and you do nothing",
+      "clues": {
+        "shower": "Arrives the afternoon you finally hand-watered everything",
+        "hoe": "Left out in it, which is how the handle got that grey furred look",
+        "hose": "Coiled properly for once, and now it will not be needed for nine days",
+        "row": "Straight in the plan, and visibly not straight once things come up",
+        "sow": "Postponed all week, which turns out to have been the right call",
+        "horse": "On the bag of manure, and the joke about it has been made twice"
+      }
+    },
+    {
+      "base": "hosted",
+      "scene": "The first person you show it to",
+      "clues": {
+        "hosted": "Two people at the fence for forty minutes, over four square feet",
+        "hoe": "Handed over so they can try it, and taken back within a minute",
+        "hose": "Turned on to demonstrate something, and it soaks a shoe",
+        "shed": "Not opened, because it is not at the stage where it can be opened",
+        "set": "The tomatoes finally did, and this is the whole reason anyone was invited",
+        "dot": "Of green on the bare soil that you have to point at twice"
+      }
+    },
+    {
+      "base": "bashed",
+      "scene": "The frost that comes after you were sure",
+      "clues": {
+        "bashed": "What one night at minus two does to everything you put out on Sunday",
+        "bed": "Covered with a sheet at eleven at night, in slippers, in the dark",
+        "shade": "The thing you spent April engineering and now desperately do not want",
+        "shed": "Raided at midnight for anything flat enough to lay over a row",
+        "dash": "From the back door to the far end and back, twice, before the temperature drops",
+        "head": "Of the lettuce, checked first thing, and it has come through fine"
+      }
+    },
+    {
+      "base": "wrongs",
+      "scene": "June, and everything is winning",
+      "clues": {
+        "wrongs": "Committed against the bed in April, all of them now visible at once",
+        "grow": "What the things you did not plant are doing best of all",
+        "row": "Identifiable only by memory at this point, and the memory is not reliable",
+        "sow": "What you swore you would not do this thickly, and did",
+        "gowns": "What the whole bed needs and what you have run out of cloches for",
+        "song": "From the phone on the step, the same one, all summer"
+      }
+    },
+    {
+      "base": "growth",
+      "scene": "The week you stop being able to keep up",
+      "clues": {
+        "growth": "Six inches in nine days, measured against the same fence post",
+        "grow": "Faster than you can tie in, which is a good problem and still a problem",
+        "row": "Closed over entirely, so you now walk the long way round",
+        "worth": "The argument you have with yourself about the cost of the compost",
+        "throw": "The old sheet over the whole thing, done fast, done badly, and it works",
+        "tow": "What the whole thing needs, and what a stake and twine is standing in for"
+      }
+    },
+    {
+      "base": "gather",
+      "scene": "The evening you take something inside",
+      "clues": {
+        "gather": "Enough for one meal, in a shirt held out like a bag, at eight at night",
+        "earth": "Under every fingernail, and it stays there through two washes",
+        "gate": "Left open, and the argument about it is a whole separate thing",
+        "heat": "Still coming off the wall at nine, which is why anything ripened at all",
+        "hare": "The thing you blame, having never actually seen one",
+        "great": "Said out loud, to nobody, holding four tomatoes"
+      }
+    },
+    {
+      "base": "martin",
+      "scene": "The herbs by the door, which get all the attention",
+      "clues": {
+        "martin": "Nesting under the eave, and now the chair has been moved",
+        "mint": "Planted in the ground once, by somebody who was warned",
+        "rain": "Enough that the pot by the door has not been watered since May",
+        "trim": "Done constantly to one plant and never once to any of the others",
+        "train": "What the beans are supposed to be doing and are refusing to do",
+        "aim": "For the base of the plant, and miss, and soak the leaves anyway"
+      }
+    },
+    {
+      "base": "merits",
+      "scene": "Staking, and the argument with a plant",
+      "clues": {
+        "merits": "A proper cage, and gets a bamboo cane and some string instead",
+        "stem": "Snapped at the exact moment you were being careful about it",
+        "tie": "Loose enough to allow for thickening, which nobody does the first year",
+        "trim": "The lower leaves, on advice you half remember from a video",
+        "mist": "On the leaves at six in the morning, gone by seven",
+        "timer": "On the tap, set once, and never adjusted for the rest of the season"
+      }
+    },
+    {
+      "base": "pilots",
+      "scene": "Containers, for the things that will not behave",
+      "clues": {
+        "pilots": "The potatoes in a bag, as an experiment, and tells nobody in case",
+        "pot": "Moved four times in one afternoon chasing a patch of sun",
+        "soil": "Bought in a bag, because the stuff in the ground is clay and you have accepted it",
+        "split": "The pot, over one winter, from water that got in and froze",
+        "slop": "Out the bottom the first time you overwater a container",
+        "list": "On the back of an envelope, of what went where, already inaccurate"
+      }
+    },
+    {
+      "base": "gifted",
+      "scene": "What somebody gives you that you did not ask for",
+      "clues": {
+        "gifted": "Courgette. Nine of them. By somebody who will do it again next week",
+        "dig": "A hole for something that arrived in a carrier bag with no warning",
+        "fig": "In a pot by the wall, kept small on purpose, and it is the pride of the place",
+        "tie": "In the new thing loosely, next to the label written in someone else's hand",
+        "deft": "What the person who handed it over is, and you are not",
+        "edit": "The plan, again, to make room for something you did not choose"
+      }
+    },
+    {
+      "base": "bolted",
+      "scene": "August, and the lettuce has made its decision",
+      "clues": {
+        "bolted": "Overnight, in the heat, and now it is bitter and four feet tall",
+        "bed": "Half of it pulled in one afternoon, which feels worse than it is",
+        "bolt": "On the shed door that has to be lifted and pushed at the same time",
+        "bled": "The tap, at the end of the season, so the pipe does not split",
+        "debt": "To the person who told you to sow it in succession",
+        "toe": "The line about pulling it up now, and lose the argument to yourself"
+      }
+    }
+  ]
+}

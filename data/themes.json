@@ -1677,26 +1677,6 @@
    "scene": "The slaw, and the recipe nobody will hand over"
   },
   {
-   "base": "hearts",
-   "theme": "cookout",
-   "clues": {
-    "hearts": "What the whole thing runs on, and the reason nobody counts the hours",
-    "heat": "Got right before a single thing goes on the grate, which is the part people skip",
-    "sear": "The first ninety seconds, and the only ninety seconds anyone watches",
-    "rest": "What the meat does on the board while somebody insists it is ready",
-    "ash": "What is left at the bottom on Sunday morning, still faintly warm",
-    "tea": "Sweet, in the jug with the lid that never seals right"
-   },
-   "prefer": [
-    "heat",
-    "sear",
-    "rest",
-    "ash",
-    "tea"
-   ],
-   "scene": "The grill, from lighting it to letting it die"
-  },
-  {
    "base": "breast",
    "theme": "cookout",
    "clues": {
@@ -2115,6 +2095,486 @@
     "with"
    ],
    "scene": "The wait, and who is ahead of you"
+  },
+  {
+   "base": "roadie",
+   "theme": "roadtrip",
+   "clues": {
+    "roadie": "Whoever loaded the trunk, and they are not to be questioned about the order",
+    "radio": "Scanned until the third station, which is the one everybody agrees on",
+    "read": "The exit numbers out loud, by the one person who does not need to",
+    "ride": "Shotgun, claimed at the door of the house before anybody was outside",
+    "road": "Still four lanes at this point, which will not be true by dark",
+    "aide": "What the person with the phone becomes about forty minutes in"
+   },
+   "prefer": [
+    "radio",
+    "read",
+    "ride",
+    "road",
+    "aide"
+   ],
+   "scene": "Hour two, before anyone is tired of anyone"
+  },
+  {
+   "base": "rained",
+   "theme": "roadtrip",
+   "clues": {
+    "rained": "Started somewhere around the state line and has not let up since",
+    "diner": "Chosen off a sign, not a review, and the pie is the correct order",
+    "read": "The laminated menu twice, front and back, while nobody decides",
+    "ride": "Half an hour shorter if this stop had not happened, and worth it",
+    "dine": "What you came in claiming you would not do, sixty seconds ago",
+    "rein": "Handed over at the counter: whoever is driving next gets the coffee"
+   },
+   "prefer": [
+    "diner",
+    "read",
+    "ride",
+    "dine",
+    "rein"
+   ],
+   "scene": "The stop nobody needed"
+  },
+  {
+   "base": "driven",
+   "theme": "roadtrip",
+   "clues": {
+    "driven": "Four hours by the same person, and the argument about it is starting",
+    "drive": "Handed over reluctantly, with commentary, at a gas pump at dusk",
+    "diner": "Two exits back, and the person who wanted it is still saying so",
+    "ride": "Different from the passenger seat, and everyone forgets that",
+    "vein": "On the back of the hand at ten and two, hour five",
+    "dive": "Into the cooler in the footwell, blind, for whatever is left"
+   },
+   "prefer": [
+    "drive",
+    "diner",
+    "ride",
+    "vein",
+    "dive"
+   ],
+   "scene": "The swap, in a lot with the engine running"
+  },
+  {
+   "base": "trunks",
+   "theme": "roadtrip",
+   "clues": {
+    "trunks": "Two of them, and the second one is why nothing can be reached",
+    "trunk": "Packed at eleven last night by somebody who had a system",
+    "turn": "Missed at the exact moment the bag on top slides forward",
+    "sun": "Straight through the back window from about four, and no shade in it",
+    "runt": "The smallest bag, containing the only things anybody needs",
+    "stun": "What the heat off the tarmac does when the hatch finally opens"
+   },
+   "prefer": [
+    "trunk",
+    "turn",
+    "sun",
+    "runt",
+    "stun"
+   ],
+   "scene": "What is in the back, and what is on top of it"
+  },
+  {
+   "base": "argues",
+   "theme": "roadtrip",
+   "clues": {
+    "argues": "About the vent, and it has been the same argument since 2009",
+    "argue": "What the back seat does about the window, at a volume the front can hear",
+    "gas": "Three quarters full, and the person driving wants to stop anyway",
+    "sugar": "In the coffee at the last stop, six of them, and it is being mentioned",
+    "urges": "The one at hour seven that has nothing to do with the bladder",
+    "sage": "What nobody in this car is being, and they know it"
+   },
+   "prefer": [
+    "argue",
+    "gas",
+    "sugar",
+    "urges",
+    "sage"
+   ],
+   "scene": "Hour seven, and the temperature question"
+  },
+  {
+   "base": "piston",
+   "theme": "roadtrip",
+   "clues": {
+    "piston": "The noise it started making outside Chattanooga, still unexplained",
+    "stop": "Refused now, on principle, with under an hour to go",
+    "point": "At the sign, silently, because everybody is past talking",
+    "spin": "Of the tyre in gravel at the last turn, and nobody comments",
+    "pints": "What is waiting, and it is the only thing keeping the car quiet",
+    "snip": "Of the bag corner, for the last of the crisps, at eleven at night"
+   },
+   "prefer": [
+    "stop",
+    "point",
+    "spin",
+    "pints",
+    "snip"
+   ],
+   "scene": "The last hour, in the dark"
+  },
+  {
+   "base": "loaned",
+   "theme": "roadtrip",
+   "clues": {
+    "loaned": "The aux, once, briefly, and never again after that",
+    "lane": "Changed for no reason during the chorus, and everybody noticed",
+    "load": "Queued at the house so nothing has to be chosen at seventy",
+    "alone": "How the person in the third row feels about the song selection",
+    "dean": "The name of the road the sat-nav keeps saying, and it is not a road",
+    "lend": "What nobody does with the charger, at any point in eleven hours"
+   },
+   "prefer": [
+    "lane",
+    "load",
+    "alone",
+    "dean",
+    "lend"
+   ],
+   "scene": "The playlist, and who is in charge of it"
+  },
+  {
+   "base": "alpine",
+   "theme": "roadtrip",
+   "clues": {
+    "alpine": "The air setting nobody chose, blowing at the one person asleep",
+    "nap": "Taken by whoever drove first, immediately, and it looks like betrayal",
+    "lane": "Drifted toward twice before the passenger says anything about it",
+    "pain": "In the neck of the person who slept against the window",
+    "pale": "What the driver goes when the fuel light finally comes on",
+    "plane": "What somebody points out would have taken ninety minutes"
+   },
+   "prefer": [
+    "nap",
+    "lane",
+    "pain",
+    "pale",
+    "plane"
+   ],
+   "scene": "The nap, and who is allowed one"
+  },
+  {
+   "base": "genius",
+   "theme": "roadtrip",
+   "clues": {
+    "genius": "What the person who packed the snacks is called, at hour six",
+    "sign": "Read aloud in a voice, for the fourth time, and it is still funny",
+    "sing": "Only the chorus, only in the tunnel, and only all together",
+    "sun": "Down finally, which is when the car gets quiet and stays quiet",
+    "guns": "On the billboard, and there is a conversation about it and then there is not",
+    "using": "The good speaker in the back, discovered at hour nine"
+   },
+   "prefer": [
+    "sign",
+    "sing",
+    "sun",
+    "guns",
+    "using"
+   ],
+   "scene": "The sign, and the sing-along"
+  },
+  {
+   "base": "parent",
+   "theme": "roadtrip",
+   "clues": {
+    "parent": "Says five more minutes at the stop and means twenty, every time",
+    "nap": "Announced as a plan and then defended for the next two hours",
+    "tape": "In the glovebox, from a car that has not existed since 2004",
+    "rent": "The car, and the conversation about the insurance at the counter",
+    "pane": "The window somebody keeps touching, and the mark is permanent now",
+    "trap": "The middle seat, given to whoever got in last, without discussion"
+   },
+   "prefer": [
+    "nap",
+    "tape",
+    "rent",
+    "pane",
+    "trap"
+   ],
+   "scene": "Who is actually running this"
+  },
+  {
+   "base": "laughs",
+   "theme": "roadtrip",
+   "clues": {
+    "laughs": "At the pump price, out loud, and then pays it anyway",
+    "gas": "Cheaper one exit further and everybody finds that out afterwards",
+    "haul": "What is still ahead, said in a tone, by the person not driving",
+    "slug": "Of the drink left in the cup from three hours ago, taken anyway",
+    "gals": "In the car behind, doing exactly the same trip, going the other way",
+    "hags": "What the group photo at the pump makes everybody claim they look like"
+   },
+   "prefer": [
+    "gas",
+    "haul",
+    "slug",
+    "gals",
+    "hags"
+   ],
+   "scene": "The last fill-up before the interstate"
+  },
+  {
+   "base": "hearts",
+   "theme": "roadtrip",
+   "clues": {
+    "hearts": "What the sign at the welcome centre claims the state is full of",
+    "rest": "Taken for eleven minutes, of which nine are spent finding the door",
+    "seat": "Warm from four hours and somehow still claimed when you get back",
+    "share": "The last of the crisps, unwillingly, at a picnic table nobody wiped",
+    "heat": "Off the tarmac through the soles of your shoes, at three in the afternoon",
+    "hear": "The interstate from the picnic table, and it never actually stops"
+   },
+   "prefer": [
+    "rest",
+    "seat",
+    "share",
+    "heat",
+    "hear"
+   ],
+   "scene": "The rest stop at the state line"
+  },
+  {
+   "base": "showed",
+   "theme": "garden",
+   "clues": {
+    "showed": "The neighbour, over the fence, exactly how deep and you did it anyway",
+    "hoe": "Leaned against the fence on day one and not picked up again until June",
+    "hose": "Dragged out for the first time and kinked in the same place as last year",
+    "shed": "Opened after five months, and the smell tells you what overwintered in there",
+    "sow": "Too early, because the one warm week in April lies to everybody",
+    "dose": "Of feed measured by eye, which is why the label is still full"
+   },
+   "prefer": [
+    "hoe",
+    "hose",
+    "shed",
+    "sow",
+    "dose"
+   ],
+   "scene": "April, and the bed is still an idea"
+  },
+  {
+   "base": "shower",
+   "theme": "garden",
+   "clues": {
+    "shower": "Arrives the afternoon you finally hand-watered everything",
+    "hoe": "Left out in it, which is how the handle got that grey furred look",
+    "hose": "Coiled properly for once, and now it will not be needed for nine days",
+    "row": "Straight in the plan, and visibly not straight once things come up",
+    "sow": "Postponed all week, which turns out to have been the right call",
+    "horse": "On the bag of manure, and the joke about it has been made twice"
+   },
+   "prefer": [
+    "hoe",
+    "hose",
+    "row",
+    "sow",
+    "horse"
+   ],
+   "scene": "The week it rains and you do nothing"
+  },
+  {
+   "base": "hosted",
+   "theme": "garden",
+   "clues": {
+    "hosted": "Two people at the fence for forty minutes, over four square feet",
+    "hoe": "Handed over so they can try it, and taken back within a minute",
+    "hose": "Turned on to demonstrate something, and it soaks a shoe",
+    "shed": "Not opened, because it is not at the stage where it can be opened",
+    "set": "The tomatoes finally did, and this is the whole reason anyone was invited",
+    "dot": "Of green on the bare soil that you have to point at twice"
+   },
+   "prefer": [
+    "hoe",
+    "hose",
+    "shed",
+    "set",
+    "dot"
+   ],
+   "scene": "The first person you show it to"
+  },
+  {
+   "base": "bashed",
+   "theme": "garden",
+   "clues": {
+    "bashed": "What one night at minus two does to everything you put out on Sunday",
+    "bed": "Covered with a sheet at eleven at night, in slippers, in the dark",
+    "shade": "The thing you spent April engineering and now desperately do not want",
+    "shed": "Raided at midnight for anything flat enough to lay over a row",
+    "dash": "From the back door to the far end and back, twice, before the temperature drops",
+    "head": "Of the lettuce, checked first thing, and it has come through fine"
+   },
+   "prefer": [
+    "bed",
+    "shade",
+    "shed",
+    "dash",
+    "head"
+   ],
+   "scene": "The frost that comes after you were sure"
+  },
+  {
+   "base": "wrongs",
+   "theme": "garden",
+   "clues": {
+    "wrongs": "Committed against the bed in April, all of them now visible at once",
+    "grow": "What the things you did not plant are doing best of all",
+    "row": "Identifiable only by memory at this point, and the memory is not reliable",
+    "sow": "What you swore you would not do this thickly, and did",
+    "gowns": "What the whole bed needs and what you have run out of cloches for",
+    "song": "From the phone on the step, the same one, all summer"
+   },
+   "prefer": [
+    "grow",
+    "row",
+    "sow",
+    "gowns",
+    "song"
+   ],
+   "scene": "June, and everything is winning"
+  },
+  {
+   "base": "growth",
+   "theme": "garden",
+   "clues": {
+    "growth": "Six inches in nine days, measured against the same fence post",
+    "grow": "Faster than you can tie in, which is a good problem and still a problem",
+    "row": "Closed over entirely, so you now walk the long way round",
+    "worth": "The argument you have with yourself about the cost of the compost",
+    "throw": "The old sheet over the whole thing, done fast, done badly, and it works",
+    "tow": "What the whole thing needs, and what a stake and twine is standing in for"
+   },
+   "prefer": [
+    "grow",
+    "row",
+    "worth",
+    "throw",
+    "tow"
+   ],
+   "scene": "The week you stop being able to keep up"
+  },
+  {
+   "base": "gather",
+   "theme": "garden",
+   "clues": {
+    "gather": "Enough for one meal, in a shirt held out like a bag, at eight at night",
+    "earth": "Under every fingernail, and it stays there through two washes",
+    "gate": "Left open, and the argument about it is a whole separate thing",
+    "heat": "Still coming off the wall at nine, which is why anything ripened at all",
+    "hare": "The thing you blame, having never actually seen one",
+    "great": "Said out loud, to nobody, holding four tomatoes"
+   },
+   "prefer": [
+    "earth",
+    "gate",
+    "heat",
+    "hare",
+    "great"
+   ],
+   "scene": "The evening you take something inside"
+  },
+  {
+   "base": "martin",
+   "theme": "garden",
+   "clues": {
+    "martin": "Nesting under the eave, and now the chair has been moved",
+    "mint": "Planted in the ground once, by somebody who was warned",
+    "rain": "Enough that the pot by the door has not been watered since May",
+    "trim": "Done constantly to one plant and never once to any of the others",
+    "train": "What the beans are supposed to be doing and are refusing to do",
+    "aim": "For the base of the plant, and miss, and soak the leaves anyway"
+   },
+   "prefer": [
+    "mint",
+    "rain",
+    "trim",
+    "train",
+    "aim"
+   ],
+   "scene": "The herbs by the door, which get all the attention"
+  },
+  {
+   "base": "merits",
+   "theme": "garden",
+   "clues": {
+    "merits": "A proper cage, and gets a bamboo cane and some string instead",
+    "stem": "Snapped at the exact moment you were being careful about it",
+    "tie": "Loose enough to allow for thickening, which nobody does the first year",
+    "trim": "The lower leaves, on advice you half remember from a video",
+    "mist": "On the leaves at six in the morning, gone by seven",
+    "timer": "On the tap, set once, and never adjusted for the rest of the season"
+   },
+   "prefer": [
+    "stem",
+    "tie",
+    "trim",
+    "mist",
+    "timer"
+   ],
+   "scene": "Staking, and the argument with a plant"
+  },
+  {
+   "base": "pilots",
+   "theme": "garden",
+   "clues": {
+    "pilots": "The potatoes in a bag, as an experiment, and tells nobody in case",
+    "pot": "Moved four times in one afternoon chasing a patch of sun",
+    "soil": "Bought in a bag, because the stuff in the ground is clay and you have accepted it",
+    "split": "The pot, over one winter, from water that got in and froze",
+    "slop": "Out the bottom the first time you overwater a container",
+    "list": "On the back of an envelope, of what went where, already inaccurate"
+   },
+   "prefer": [
+    "pot",
+    "soil",
+    "split",
+    "slop",
+    "list"
+   ],
+   "scene": "Containers, for the things that will not behave"
+  },
+  {
+   "base": "gifted",
+   "theme": "garden",
+   "clues": {
+    "gifted": "Courgette. Nine of them. By somebody who will do it again next week",
+    "dig": "A hole for something that arrived in a carrier bag with no warning",
+    "fig": "In a pot by the wall, kept small on purpose, and it is the pride of the place",
+    "tie": "In the new thing loosely, next to the label written in someone else's hand",
+    "deft": "What the person who handed it over is, and you are not",
+    "edit": "The plan, again, to make room for something you did not choose"
+   },
+   "prefer": [
+    "dig",
+    "fig",
+    "tie",
+    "deft",
+    "edit"
+   ],
+   "scene": "What somebody gives you that you did not ask for"
+  },
+  {
+   "base": "bolted",
+   "theme": "garden",
+   "clues": {
+    "bolted": "Overnight, in the heat, and now it is bitter and four feet tall",
+    "bed": "Half of it pulled in one afternoon, which feels worse than it is",
+    "bolt": "On the shed door that has to be lifted and pushed at the same time",
+    "bled": "The tap, at the end of the season, so the pipe does not split",
+    "debt": "To the person who told you to sow it in succession",
+    "toe": "The line about pulling it up now, and lose the argument to yourself"
+   },
+   "prefer": [
+    "bed",
+    "bolt",
+    "bled",
+    "debt",
+    "toe"
+   ],
+   "scene": "August, and the lettuce has made its decision"
   }
  ]
 }

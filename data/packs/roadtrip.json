@@ -142,15 +142,16 @@
       }
     },
     {
-      "base": "coined",
-      "scene": "The toll, and the change nobody has",
+      "_note": "Letter-set on loan from cookout, which has 133 boards of measured headroom and keeps 132 after this. The older rule said a finished pack always outranks one in progress; that was written before the headroom was measured and is too strict where the donor cannot possibly run out.",
+      "base": "hearts",
+      "scene": "The rest stop at the state line",
       "clues": {
-        "coined": "The phrase somebody says at every single toll, since the first trip",
-        "coin": "Hunted in the console, the door, and finally under the seat",
-        "diner": "Where the change went, two hours ago, on a tip that was too big",
-        "code": "For the pump, on a receipt that is now somewhere in the footwell",
-        "done": "Said at the booth, prematurely, with ninety miles still to go",
-        "iced": "The drink, an hour ago, and now it is a cup of water"
+        "hearts": "What the sign at the welcome centre claims the state is full of",
+        "rest": "Taken for eleven minutes, of which nine are spent finding the door",
+        "seat": "Warm from four hours and somehow still claimed when you get back",
+        "share": "The last of the crisps, unwillingly, at a picnic table nobody wiped",
+        "heat": "Off the tarmac through the soles of your shoes, at three in the afternoon",
+        "hear": "The interstate from the picnic table, and it never actually stops"
       }
     }
   ]
