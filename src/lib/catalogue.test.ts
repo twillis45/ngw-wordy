@@ -85,11 +85,15 @@ describe('themed catalogue quality', () => {
       }
     }
     const rate = onTheme / rows;
-    expect(rows).toBeGreaterThan(1000);
-    // Measured 0.220 across 383 boards after the cultural bench signed off the
-    // vocabularies — 421 on-theme rows of 1,913. The floor sits just under so
-    // ordinary authoring has room, and a slide is still caught.
-    expect(rate).toBeGreaterThanOrEqual(0.21);
+    // A catalogue exists at all. This was 1000 when the catalogue was 395 padded
+    // boards; the rebuild is deliberately SHRINKING it toward boards that are
+    // about something, so a row-count floor written against the old size fires
+    // on the work succeeding.
+    expect(rows).toBeGreaterThan(500);
+    // Measured 0.365 across 173 boards, up from 0.216 across 395 before the
+    // rebuild began. The floor moves UP with each pack: a ratchet that never
+    // tightens is a ratchet that stops meaning anything.
+    expect(rate).toBeGreaterThanOrEqual(0.34);
   });
 
   it('no themed board is left with fewer than two on-theme rows', () => {
@@ -109,15 +113,10 @@ describe('themed catalogue quality', () => {
       }))
       .filter((x) => x.n < 2);
     const sample = bad.slice(0, 5).map((x) => `${x.theme}/${x.base}(${x.n})`).join(', ');
-    // 283 of 383, measured against the vocabularies the cultural bench SIGNED
-    // OFF, and 102 of those score zero. That is the real size of the authoring
-    // debt, stated rather than rounded off, and the assertion exists so it
-    // cannot drift up while nobody is looking.
-    //
-    // The gap is authoring, not possibility: scripts/theme-yield.mjs reports
-    // 183 boards the signed-off vocabularies can support at the bench's bar,
-    // against 100 that currently clear it. Every board taken off this count is
-    // the work.
-    expect(bad.length, `boards under 2 on-theme rows: ${bad.length}. e.g. ${sample}`).toBeLessThanOrEqual(290);
+    // 85 of 173, down from 291 of 395 when the rebuild started, and 43 of those
+    // still score zero. That is the remaining authoring debt, stated rather
+    // than rounded off. Six themes are still un-rebuilt and they hold almost
+    // all of it.
+    expect(bad.length, `boards under 2 on-theme rows: ${bad.length}. e.g. ${sample}`).toBeLessThanOrEqual(90);
   });
 });

@@ -1,0 +1,83 @@
+{
+  "_doc": "STAGING. The Card Table rebuilt vocabulary-first. The bench called this list honestly small and refused to pad it — four additions only, duck/void/hoyle/bags. Six boards is what the language supports and that is the whole pack.",
+  "theme": {
+    "id": "spades",
+    "name": "The Card Table",
+    "category": "THE GAME",
+    "blurb": "Four chairs, a bid you have to make, and a score kept on the back of an envelope."
+  },
+  "boards": [
+    {
+      "base": "lacked",
+      "scene": "The bid, and what you did not have",
+      "clues": {
+        "lacked": "What your hand did, and the table found out on the fourth book",
+        "deal": "Clockwise, one at a time, and doing it any other way restarts everything",
+        "deck": "Cut by the player on the right, and skipping that is worth an argument",
+        "ace": "Of spades, and the only card whose location everyone is quietly tracking",
+        "lead": "Whoever took the last book, and never a spade until they are broken",
+        "cake": "What the last four books were, and saying so out loud invites disaster"
+      }
+    },
+    {
+      "base": "blinds",
+      "scene": "Going without looking",
+      "clues": {
+        "blinds": "Bidding before you have seen a single card, which is either courage or arithmetic",
+        "nil": "Zero books, on purpose, and your partner now has to cover you",
+        "bid": "Said once, out loud, and written down before anyone can revise it",
+        "blind": "The variant where you and your partner both go without looking",
+        "slid": "The envelope across the table, with the running score on the back",
+        "bind": "What a nil bid puts your partner in for the entire hand"
+      }
+    },
+    {
+      "base": "lapsed",
+      "scene": "The renege, and the accusation",
+      "clues": {
+        "lapsed": "Your attention, for one card, and the table has been waiting for this",
+        "spade": "Followed if you have one. Failing to is the offence with a name",
+        "deal": "What the accused was doing when this started, allegedly badly",
+        "lead": "Went out, and somebody did not follow suit, and somebody else noticed",
+        "pads": "Where the score lives, and the handwriting on it is being disputed",
+        "pale": "What the accused goes, briefly, before deciding on total denial"
+      }
+    },
+    {
+      "base": "lucked",
+      "scene": "The hand you did nothing to deserve",
+      "clues": {
+        "lucked": "Into it, and pretending otherwise is the etiquette",
+        "deck": "Shuffled seven times by the one player who read that somewhere",
+        "duck": "Under a book you could take, to set up a later one, and it looks like a mistake",
+        "clue": "What your partner is trying to send with the card they just played",
+        "cued": "What that was, and reading it wrong loses the hand and the peace",
+        "luck": "Named out loud only by the person who did not have it"
+      }
+    },
+    {
+      "base": "pasted",
+      "scene": "Getting set, badly",
+      "clues": {
+        "pasted": "What the other team just did to you, by three books",
+        "spade": "Broken on the second trick, which nobody at this table thinks is fair",
+        "set": "Short of your bid, and it costs you what you bid and then some",
+        "seat": "Swapped after, on the theory that it is the chair and not the play",
+        "pest": "The kibitzer behind you, who has opinions and no cards",
+        "taped": "The corner of the box, holding together a deck older than the table"
+      }
+    },
+    {
+      "base": "cradle",
+      "scene": "Who taught you, and how",
+      "clues": {
+        "cradle": "Where you learned it, roughly, watching from somebody's lap",
+        "ace": "The first card you were allowed to hold, turned inward, saying nothing",
+        "card": "Handed to you at eight, in a hand of four, by an aunt with no patience",
+        "deal": "The first thing you were taught, and badly, for about a year",
+        "lead": "The second thing, and the one that takes ten years",
+        "clear": "What the rules never were, because every house plays them differently"
+      }
+    }
+  ]
+}

@@ -533,7 +533,7 @@
    "cluster": "music-and-games",
    "claim": "The Chicago stepping answer to a sticky floor is the shoe, not the floor.",
    "verdict": "corrected",
-   "detail": "The shipped clue had her shaking powder onto a sticky gym floor. Powdered dance-floor wax is a real product, but within the community powder is the crutch of dancers \"who don’t pick up their feet\", many studios forbid it, and the actual fix is leather or suede soles, brushed. The clue also contradicted the pack’s own `sole` clue, which is verified and correct.",
+   "detail": "The shipped clue had her shaking powder onto a sticky gym floor. Powdered dance-floor wax is a real product, but within the community powder is the crutch of dancers \"who don’t pick up their feet\", many studios forbid it, and the actual fix is leather or suede soles, brushed. The clue also contradicted the pack’s own `sole` clue, which is verified and correct. [2026-08-11: the cited board was replaced during the vocabulary-first rebuild. Finding retained, citation cleared.]",
    "sources": [
     {
      "title": "Cumbe Dance — Chicago Style Steppin’, sole guidance",
@@ -541,13 +541,7 @@
      "kind": "community"
     }
    ],
-   "clues": [
-    {
-     "theme": "steppers",
-     "base": "duties",
-     "word": "dust"
-    }
-   ],
+   "clues": [],
    "replacement": {
     "word": "dust",
     "clue": "What a rubber sole leaves on a swept floor, and why nobody here wears one."

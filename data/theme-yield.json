@@ -3,7 +3,7 @@
   "id": "rnb90s",
   "vocab": 143,
   "shipped": 12,
-  "supported": 75,
+  "supported": 71,
   "boards": [
    {
     "base": "sweaty",
@@ -85,18 +85,6 @@
     "owner": "rnb90s"
    },
    {
-    "base": "petals",
-    "ideas": 4,
-    "known": 4,
-    "weight": 9,
-    "rows": [
-     "salt:acts",
-     "east:titles",
-     "tape:titles",
-     "step:titles"
-    ]
-   },
-   {
     "base": "waters",
     "ideas": 4,
     "known": 4,
@@ -106,19 +94,6 @@
      "west:titles",
      "east:titles",
      "water:titles"
-    ]
-   },
-   {
-    "base": "stable",
-    "ideas": 5,
-    "known": 3,
-    "weight": 10,
-    "rows": [
-     "salt:acts",
-     "base:acts",
-     "east:titles",
-     "belt:voice",
-     "beat:voice"
     ]
    },
    {
@@ -170,17 +145,6 @@
      "east:titles"
     ],
     "owner": "spades"
-   },
-   {
-    "base": "alerts",
-    "ideas": 3,
-    "known": 3,
-    "weight": 7,
-    "rows": [
-     "salt:acts",
-     "east:titles",
-     "real:titles"
-    ]
    },
    {
     "base": "argued",
@@ -271,8 +235,7 @@
      "price:acts",
      "ice:titles",
      "cry:titles"
-    ],
-    "owner": "sunday"
+    ]
    },
    {
     "base": "prince",
@@ -414,8 +377,7 @@
      "salt:acts",
      "slam:titles",
      "alto:voice"
-    ],
-    "owner": "sunday"
+    ]
    },
    {
     "base": "boards",
@@ -460,8 +422,7 @@
      "case:acts",
      "east:titles",
      "skate:voice"
-    ],
-    "owner": "sunday"
+    ]
    },
    {
     "base": "clears",
@@ -601,16 +562,6 @@
     ]
    },
    {
-    "base": "buying",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "guy:acts",
-     "gin:titles"
-    ]
-   },
-   {
     "base": "caters",
     "ideas": 2,
     "known": 2,
@@ -669,8 +620,7 @@
     "rows": [
      "after:acts",
      "east:titles"
-    ],
-    "owner": "sunday"
+    ]
    },
    {
     "base": "german",
@@ -849,7 +799,7 @@
   "id": "cookout",
   "vocab": 103,
   "shipped": 9,
-  "supported": 73,
+  "supported": 69,
   "boards": [
    {
     "base": "breast",
@@ -943,18 +893,6 @@
     "owner": "steppers"
    },
    {
-    "base": "alerts",
-    "ideas": 4,
-    "known": 3,
-    "weight": 8,
-    "rows": [
-     "tea:named",
-     "sear:said",
-     "rest:said",
-     "late:voice"
-    ]
-   },
-   {
     "base": "candor",
     "ideas": 4,
     "known": 3,
@@ -1036,8 +974,7 @@
      "tea:named",
      "heat:said",
      "amen:said"
-    ],
-    "owner": "sunday"
+    ]
    },
    {
     "base": "backer",
@@ -1141,8 +1078,7 @@
      "tea:named",
      "heat:said",
      "ash:said"
-    ],
-    "owner": "sunday"
+    ]
    },
    {
     "base": "priest",
@@ -1187,18 +1123,6 @@
      "tea:named",
      "wet:said",
      "tray:said"
-    ]
-   },
-   {
-    "base": "stable",
-    "ideas": 4,
-    "known": 2,
-    "weight": 7,
-    "rows": [
-     "tea:named",
-     "baste:said",
-     "table:voice",
-     "late:voice"
     ]
    },
    {
@@ -1248,7 +1172,7 @@
     "owner": "texas"
    },
    {
-    "base": "petals",
+    "base": "planet",
     "ideas": 3,
     "known": 2,
     "weight": 6,
@@ -1256,7 +1180,8 @@
      "tea:named",
      "plate:said",
      "late:voice"
-    ]
+    ],
+    "owner": "sunday"
    },
    {
     "base": "racked",
@@ -1342,8 +1267,7 @@
     "rows": [
      "tea:named",
      "heat:said"
-    ],
-    "owner": "sunday"
+    ]
    },
    {
     "base": "betray",
@@ -1478,16 +1402,6 @@
     ]
    },
    {
-    "base": "hybrid",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "bid:named",
-     "dry:said"
-    ]
-   },
-   {
     "base": "impact",
     "ideas": 2,
     "known": 2,
@@ -1557,16 +1471,6 @@
     "rows": [
      "dip:named",
      "mop:said"
-    ]
-   },
-   {
-    "base": "punchy",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "punch:named",
-     "cup:said"
     ]
    },
    {
@@ -1667,7 +1571,7 @@
   "id": "texas",
   "vocab": 108,
   "shipped": 8,
-  "supported": 59,
+  "supported": 57,
   "boards": [
    {
     "base": "potsie",
@@ -1823,18 +1727,6 @@
     "owner": "texas"
    },
    {
-    "base": "petals",
-    "ideas": 4,
-    "known": 3,
-    "weight": 8,
-    "rows": [
-     "step:named",
-     "salt:said",
-     "set:said",
-     "plate:voice"
-    ]
-   },
-   {
     "base": "posted",
     "ideas": 3,
     "known": 3,
@@ -1891,8 +1783,7 @@
      "fat:named",
      "rest:said",
      "set:said"
-    ],
-    "owner": "sunday"
+    ]
    },
    {
     "base": "purest",
@@ -1915,7 +1806,8 @@
      "grits:named",
      "rest:said",
      "set:said"
-    ]
+    ],
+    "owner": "sunday"
    },
    {
     "base": "carted",
@@ -2236,16 +2128,6 @@
     "owner": "spades"
    },
    {
-    "base": "frying",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "ring:named",
-     "fry:said"
-    ]
-   },
-   {
     "base": "impart",
     "ideas": 2,
     "known": 2,
@@ -2341,23 +2223,9 @@
  {
   "id": "sunday",
   "vocab": 83,
-  "shipped": 37,
-  "supported": 39,
+  "shipped": 6,
+  "supported": 36,
   "boards": [
-   {
-    "base": "alerts",
-    "ideas": 6,
-    "known": 4,
-    "weight": 11,
-    "rows": [
-     "tea:named",
-     "late:said",
-     "sear:said",
-     "rest:said",
-     "seat:voice",
-     "salt:voice"
-    ]
-   },
    {
     "base": "planet",
     "ideas": 5,
@@ -2369,7 +2237,8 @@
      "late:said",
      "nap:said",
      "pan:voice"
-    ]
+    ],
+    "owner": "sunday"
    },
    {
     "base": "satire",
@@ -2382,7 +2251,8 @@
      "sear:said",
      "rest:said",
      "seat:voice"
-    ]
+    ],
+    "owner": "sunday"
    },
    {
     "base": "hamlet",
@@ -2412,19 +2282,6 @@
      "heat:voice"
     ],
     "owner": "cookout"
-   },
-   {
-    "base": "petals",
-    "ideas": 5,
-    "known": 3,
-    "weight": 9,
-    "rows": [
-     "tea:named",
-     "plate:said",
-     "late:said",
-     "seat:voice",
-     "salt:voice"
-    ]
    },
    {
     "base": "wealth",
@@ -2463,7 +2320,7 @@
      "sop:said",
      "pan:voice"
     ],
-    "owner": "fishfry"
+    "owner": "sunday"
    },
    {
     "base": "breast",
@@ -2500,7 +2357,8 @@
      "warm:said",
      "thaw:said",
      "hat:voice"
-    ]
+    ],
+    "owner": "sunday"
    },
    {
     "base": "backed",
@@ -2535,20 +2393,8 @@
      "grits:named",
      "stir:said",
      "rest:said"
-    ]
-   },
-   {
-    "base": "stable",
-    "ideas": 5,
-    "known": 2,
-    "weight": 8,
-    "rows": [
-     "tea:named",
-     "late:said",
-     "table:voice",
-     "seat:voice",
-     "salt:voice"
-    ]
+    ],
+    "owner": "sunday"
    },
    {
     "base": "bathed",
@@ -2560,8 +2406,7 @@
      "dab:said",
      "hat:voice",
      "heat:voice"
-    ],
-    "owner": "sunday"
+    ]
    },
    {
     "base": "castle",
@@ -3045,8 +2890,7 @@
     "rows": [
      "frat:named",
      "seat:said"
-    ],
-    "owner": "sunday"
+    ]
    },
    {
     "base": "gibson",
@@ -3125,7 +2969,7 @@
   "id": "barbershop",
   "vocab": 92,
   "shipped": 8,
-  "supported": 25,
+  "supported": 24,
   "boards": [
    {
     "base": "paints",
@@ -3346,16 +3190,6 @@
     "rows": [
      "scarf:named",
      "sat:said"
-    ]
-   },
-   {
-    "base": "flicks",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "silk:named",
-     "slick:said"
     ]
    },
    {
@@ -3851,7 +3685,7 @@
   "id": "spades",
   "vocab": 45,
   "shipped": 20,
-  "supported": 18,
+  "supported": 17,
   "boards": [
    {
     "base": "lacked",
@@ -3939,17 +3773,6 @@
      "lead:said"
     ],
     "owner": "hbcu"
-   },
-   {
-    "base": "tucked",
-    "ideas": 3,
-    "known": 3,
-    "weight": 7,
-    "rows": [
-     "deck:named",
-     "cut:said",
-     "duck:said"
-    ]
    },
    {
     "base": "pasted",
@@ -4292,7 +4115,7 @@
     "owner": "sitcom"
    },
    {
-    "base": "alerts",
+    "base": "breast",
     "ideas": 3,
     "known": 3,
     "weight": 7,
@@ -4300,7 +4123,8 @@
      "star:named",
      "seat:said",
      "set:said"
-    ]
+    ],
+    "owner": "cookout"
    },
    {
     "base": "swatch",
@@ -4479,7 +4303,7 @@
  {
   "id": "fishfry",
   "vocab": 50,
-  "shipped": 24,
+  "shipped": 23,
   "supported": 1,
   "boards": [
    {

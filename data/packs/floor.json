@@ -1,0 +1,83 @@
+{
+  "_doc": "STAGING. The Floor is steppers and gogo merged. Go-go alone yielded two boards, because its proper nouns — Chuck Brown, Rare Essence, Backyard, Junkyard — are exactly what a 3-6 letter no-repeated-letter filter deletes, and the bench had already capped it at 12 rather than let it be padded. Folded into Chicago steppin' it keeps its language without having to carry a pack. Two cities, live drums, and nobody sitting down.",
+  "theme": {
+    "id": "steppers",
+    "name": "The Floor",
+    "category": "THE POCKET",
+    "blurb": "Chicago steppin' and DC go-go — two cities that never stopped dancing to a live band."
+  },
+  "boards": [
+    {
+      "base": "instep",
+      "scene": "The turn, and the eight count under it",
+      "clues": {
+        "instep": "Where the weight sits through the whole turn, and getting it wrong shows",
+        "step": "The unit. Everything else is decoration on top of it",
+        "spin": "Led with the hand, not the shoulder, and never more than the count allows",
+        "set": "The pattern you both already know, so nothing has to be said",
+        "pine": "What the floor is, and a sprung one is worth driving across town for",
+        "snipe": "What the couple by the wall are doing about everybody else's footwork"
+      }
+    },
+    {
+      "base": "candle",
+      "scene": "Who leads, and how little it takes",
+      "clues": {
+        "candle": "What she is not holding for anyone, which is the point of the whole dance",
+        "lead": "Two fingers and a change of weight. Anything more is manhandling",
+        "dance": "The word does not cover it, and everyone here knows a better one",
+        "clean": "What the footwork has to be before anyone will call it anything",
+        "laced": "The shoes, tight, because a loose heel ruins a turn",
+        "lance": "How the good ones cut across a crowded floor without touching anybody"
+      }
+    },
+    {
+      "base": "ponies",
+      "scene": "The band, not the DJ",
+      "clues": {
+        "ponies": "What the horn section calls the young ones on their first paying set",
+        "spin": "What a DJ does, and this is not that, and the distinction is defended",
+        "open": "The set does, with something everybody knows, to fill the floor early",
+        "pines": "The stage boards, and you can feel the kick drum through them",
+        "noise": "What the neighbours call it, and the permit conversation follows",
+        "peon": "Who carries the congas in, and it is always the newest member"
+      }
+    },
+    {
+      "base": "handle",
+      "scene": "The frame, and what it is for",
+      "clues": {
+        "handle": "How you hold it, and holding it wrong is the difference between two dancers",
+        "hand": "Open, at her shoulder height, and it waits rather than pulls",
+        "lead": "Given, not taken, and any teacher will say that in the first ten minutes",
+        "land": "Where the count puts you, and being early is worse than being late",
+        "held": "The frame, through the whole eight, even when the feet are doing everything",
+        "heal": "What the floor does to shoes, and what an evening on it does to knees"
+      }
+    },
+    {
+      "base": "dingle",
+      "scene": "The glide, and why it looks like nothing",
+      "clues": {
+        "dingle": "The dip at the end, small enough that half the room misses it",
+        "glide": "The whole aesthetic: no bounce, no visible effort, feet barely leaving",
+        "line": "What the couple travels along, and crossing someone else's is bad manners",
+        "idle": "What the hands look like, and are not, for the entire dance",
+        "deli": "Where the crowd ends up at one in the morning, still in the shoes",
+        "dine": "What nobody does beforehand, because the floor fills at ten"
+      }
+    },
+    {
+      "base": "absent",
+      "scene": "The pocket, and the crank",
+      "clues": {
+        "absent": "What the space between the beats is not, and hearing that is the whole thing",
+        "beat": "The pocket. Congas, roto toms and cowbell, and it does not stop between songs",
+        "set": "Runs an hour without a gap, because stopping lets the crowd cool",
+        "bent": "What the note is, on the horn, right before the crowd answers it",
+        "beans": "What the band eats after, at three, from the one place still open",
+        "bean": "What the drummer calls the newest conga player, and it sticks for years"
+      }
+    }
+  ]
+}
