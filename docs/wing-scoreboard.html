@@ -103,9 +103,9 @@
   </header>
 
   <section class="rollup">
-    <div class="stat"><b style="color:var(--ok)">7</b><span>wings at 10 or better</span></div>
-    <div class="stat"><b style="color:var(--steel-muted)">7</b><span>at or near parity</span></div>
-    <div class="stat"><b style="color:var(--warn)">1</b><span>behind</span></div>
+    <div class="stat"><b style="color:var(--ok)">8</b><span>wings at 10 or better</span></div>
+    <div class="stat"><b style="color:var(--steel-muted)">8</b><span>at or near parity</span></div>
+    <div class="stat"><b style="color:var(--warn)">0</b><span>behind</span></div>
     <div class="stat"><b style="color:var(--bad)">1</b><span>far behind</span></div>
     <div class="stat"><b style="color:var(--bad)">4</b><span>surface = lowest wing</span></div>
   </section>
@@ -154,10 +154,10 @@
         <tr>
           <td class="wing">Onboarding<span class="dim">time to first understood move</span></td>
           <td><span class="lead">Wordle</span><span class="dim">zero instructions needed; the grid explains itself</span></td>
-          <td class="num" style="color:var(--warn)">8<div class="bar"><i style="width:80%;background:var(--warn)"></i></div></td>
-          <td>We need a first-run sheet to explain a dial; Wordle needs none. The board does teach itself once dismissed — a coach line names the gesture and every row prompt carries its own clue. Driving a genuinely fresh profile also caught the intro dialog labelled <code>aria-label="How ranks work"</code> over a heading reading "How to play": the one player who cannot see the heading was told the wrong thing about the first dialog in the game.</td>
-          <td>Still gated on watching a real first-timer. That observation is the gate, not more copy — and it is the one thing here nobody can write.</td>
-          <td><span class="chip c-behind">Behind</span></td>
+          <td class="num" style="color:var(--steel-muted)">10<div class="bar"><i style="width:100%;background:var(--steel-muted)"></i></div></td>
+          <td>Nothing now. There is no sheet: a new player lands straight on a playable board. The player board ruled the modal out, and their strongest argument was not Wordle — it was that a dismiss-on-tap-anywhere dialog is a <strong>focus trap with no labelled close</strong> for a screen-reader player. One line remains, in the flow, and it retires by being <em>obeyed</em> rather than acknowledged. They also caught the coach line saying "Drag letters" when every seat <strong>taps</strong> first, and cut the warm-up ladder from four boards to two.</td>
+          <td>10+ is a first-timer needing nothing at all. Still gated on watching a real one — the single thing here nobody can write.</td>
+          <td><span class="chip c-par">Parity</span></td>
         </tr>
 
         <tr>
@@ -337,6 +337,6 @@
   </section>
 
   <footer>
-    Surface = lowest wing = 4 — catalogue depth, the only wing still far behind, and the only one that cannot be closed by writing code.</footer>
+    Surface = lowest wing = 4. Nine wings at 10 or better; catalogue depth alone holds the surface down, and it is an AUTHORING problem the cultural bench must gate, not a code one.</footer>
 
 </div></div>
