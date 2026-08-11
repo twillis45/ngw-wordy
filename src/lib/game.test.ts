@@ -11,6 +11,7 @@ import {
   themeGroups,
   offsetForIndex,
   scoreWord,
+  shareParts,
   shareText,
   shuffle,
   submit,
@@ -972,5 +973,42 @@ describe('share card names the escalating wheel', () => {
   it('says nothing when it was off, or on a warm-up that runs without it', () => {
     expect(shareText({ ...base, escalating: false })).not.toContain('escalating');
     expect(shareText({ ...base })).not.toContain('escalating');
+  });
+});
+
+describe('share splits the link into its own field', () => {
+  const base = {
+    rank: 'Complete',
+    score: 40,
+    tiles: [{ solved: true, isBase: true }],
+    bonusFound: 0,
+    streak: 1,
+    theme: 'Sunday Service',
+    clue: 'What the mothers do after the benediction',
+    dayNumber: 137,
+    url: 'https://wordy.example/#play=137',
+  };
+
+  it('keeps the URL out of the text, so a share sheet can unfurl it', () => {
+    // A link buried in a text blob is just characters — iMessage, Slack and
+    // WhatsApp only unfurl one passed as the `url` FIELD. With the link inline
+    // every Open Graph tag the app ships was being thrown away.
+    const p = shareParts(base);
+    expect(p.text).not.toContain('http');
+    expect(p.url).toBe('https://wordy.example/#play=137');
+    expect(p.text).toContain('#137');
+    expect(p.text).toContain('mothers');
+  });
+
+  it('keeps the URL inline for the clipboard, which has no fields', () => {
+    const p = shareParts(base);
+    expect(p.full).toContain('https://wordy.example/#play=137');
+    expect(p.full.split('\n').at(-1)).toBe('https://wordy.example/#play=137');
+  });
+
+  it('omits the url field entirely when there is no url to give', () => {
+    const p = shareParts({ ...base, url: undefined });
+    expect(p.url).toBeUndefined();
+    expect(p.text).not.toContain('http');
   });
 });

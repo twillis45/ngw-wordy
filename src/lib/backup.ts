@@ -293,8 +293,48 @@ export function codeFromHash(hash: string): string | null {
  * coerced, so a mangled link lands on today's board instead of somewhere odd.
  */
 export function puzzleFromHash(hash: string): number | null {
-  const m = /[#&]play=(\d{1,6})(?:\b|$)/.exec(hash);
+  // Anchored to a separator or the end: a PARTIAL match is worse than none,
+  // because it silently sends the player somewhere plausible-looking.
+  const m = /[#&]play=(\d{1,6})(?=[&#]|$)/.exec(hash);
   if (!m) return null;
   const n = Number(m[1]);
   return Number.isInteger(n) && n > 0 ? n : null;
+}
+
+/**
+ * A theme id from a `#theme=` link.
+ *
+ * The player board asked for this INSTEAD of a challenge, and the count is why:
+ * six seats want to play a theme through, against two who would challenge
+ * anybody. Their argument is that it is the better viral object — the person
+ * receiving it gets a session rather than a duel, and it spreads the catalogue,
+ * which is the asset, rather than a score, which is not.
+ */
+export function themeFromHash(hash: string): string | null {
+  const m = /[#&]theme=([a-z0-9_-]{1,32})(?=[&#]|$)/i.exec(hash);
+  return m ? m[1].toLowerCase() : null;
+}
+
+/**
+ * A score to beat, from a `#play=N&beat=S` challenge link.
+ *
+ * The board BLOCKED the challenge as originally sketched and allowed a narrower
+ * one. What travels is the board and a number, and nothing else:
+ *
+ *   - the score stays HIDDEN until the receiver submits, because two seats quit
+ *     against a visible target
+ *   - the sender's CLUE does not ride along; it is a hint, and a board somebody
+ *     else pre-softened is a tainted result
+ *   - a challenged board must NEVER touch the streak, which is the one point
+ *     Grandmother's veto is held in reserve for — the shared daily is the
+ *     ritual, and spending it to serve two seats is not a trade
+ *
+ * Forging the number is trivial and does not matter: with no ladder and no
+ * return path, cheating here is cheating at solitaire.
+ */
+export function beatFromHash(hash: string): number | null {
+  const m = /[#&]beat=(\d{1,6})(?=[&#]|$)/.exec(hash);
+  if (!m) return null;
+  const n = Number(m[1]);
+  return Number.isInteger(n) && n >= 0 ? n : null;
 }

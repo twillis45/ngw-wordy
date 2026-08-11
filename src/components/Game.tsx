@@ -24,8 +24,10 @@ import {
 import { feedback, setHapticsMuted, setMuted } from '@/lib/feedback';
 import {
   backupLink,
+  beatFromHash,
   codeFromHash,
   puzzleFromHash,
+  themeFromHash,
   decodeProgress,
   encodeProgress,
 } from '@/lib/backup';
@@ -97,6 +99,7 @@ import {
   rankFor,
   gridMaxScore,
   scoreWord,
+  shareParts,
   shareText,
   shuffle,
   submit,
@@ -160,6 +163,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
   /* A board arrived at from someone else's share card. Cleared the moment the
      player navigates anywhere themselves, so it never becomes sticky. */
   const [landedOn, setLandedOn] = useState<number | null>(null);
+  /* A score from a challenge link. Held back until the receiver has submitted
+     their own, because two seats quit against a visible target. */
+  const [beatTarget, setBeatTarget] = useState<number | null>(null);
 
   // Lets the v1 -> v2 migration re-key old day-based words onto puzzles.
   configureMigration((dk) => {
@@ -220,7 +226,20 @@ export default function Game({ data }: { data: PuzzleFile }) {
    */
   const cycle = dailyCycle(today, dailyPoolSize(data));
   const puzzleId = progressKey(puzzle.id, cycle);
-  const isDaily = offset === 0 && warmup === null;
+  /*
+   * A CHALLENGED board is never the daily, whatever offset it resolves to.
+   *
+   * `offset === 0` is today's board, and a challenge link to today's board
+   * resolves to exactly that — so without this, accepting a challenge would
+   * move the streak. The player board made this the one non-negotiable
+   * condition on the whole feature, and the only point Grandmother's veto is
+   * being held in reserve for: the shared daily IS the ritual, and spending it
+   * to serve the two seats who would challenge anybody is not a trade.
+   *
+   * Challenge boards route through the same path as practice, which is what
+   * they asked for in those words.
+   */
+  const isDaily = offset === 0 && warmup === null && beatTarget === null;
 
   /*
    * The wheel's letters are DERIVED from the puzzle being rendered, never
@@ -530,12 +549,34 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * player back to a board they have moved on from.
    */
   useEffect(() => {
-    const n = puzzleFromHash(window.location.hash);
-    if (n === null) return;
+    const hash = window.location.hash;
+    const n = puzzleFromHash(hash);
+    const themeId = themeFromHash(hash);
+    const beat = beatFromHash(hash);
+    if (n === null && themeId === null) return;
     history.replaceState(null, '', window.location.pathname + window.location.search);
+
+    /*
+     * A `#theme=` link opens that pack at its first board.
+     *
+     * The board asked for this instead of a challenge, six seats to two: the
+     * person receiving it gets a session rather than a duel, and it spreads the
+     * catalogue rather than a score.
+     */
+    if (themeId !== null) {
+      const i = data.puzzles.findIndex((p) => p.theme?.id === themeId);
+      if (i >= 0) {
+        setLandedOn(i);
+        setOffset(offsetForIndex(data, today, i));
+        return;
+      }
+    }
+    if (n === null) return;
     const index = Math.min(n - 1, dailyPoolSize(data) - 1);
     setLandedOn(index);
     setOffset(offsetForIndex(data, today, index));
+    // Held, not shown. It is revealed only once they have submitted their own.
+    if (beat !== null) setBeatTarget(beat);
   }, [data, today]);
 
   /*
@@ -1048,8 +1089,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
     [reveal, tokens, puzzleId, say, rowDone, finishIfDone]
   );
 
-  const shareCard = () =>
-    shareText({
+  const shareArgs = () => ({
       theme: puzzle.theme?.name ?? null,
       /*
        * Quote a clue from a row the player actually SOLVED — never an unsolved
@@ -1102,16 +1142,105 @@ export default function Game({ data }: { data: PuzzleFile }) {
         const n = isDaily ? dailyIndex(today, dailyPoolSize(data)) + 1 : null;
         return n ? `${origin.replace(/\/$/, '')}/#play=${n}` : origin;
       })(),
-    });
+  });
+
+  const shareCard = () => shareText(shareArgs());
+  const shareCardParts = () => shareParts(shareArgs());
+
+  /** The origin to build links against, configured per deploy. */
+  const origin = () =>
+    process.env.NEXT_PUBLIC_SHARE_URL ||
+    (typeof window !== 'undefined' ? window.location.origin : '');
+
+  /*
+   * Challenge someone to THIS board.
+   *
+   * The board blocked the original sketch and allowed this: the link carries
+   * the board and a score, and nothing else. No clue rides along — it is a
+   * hint, and a board somebody pre-softened is a tainted result — and the
+   * number stays hidden on the far end until they have submitted their own.
+   */
+  const challenge = async () => {
+    const n = isDaily ? dailyIndex(today, dailyPoolSize(data)) + 1 : index + 1;
+    const url = `${origin().replace(/\/$/, '')}/#play=${n}&beat=${score}`;
+    const text = `I scored ${score} on ${puzzle.theme?.name ?? 'Wordy'}. Your turn.`;
+    try {
+      if (navigator.share) return void (await navigator.share({ text, url }));
+      await navigator.clipboard.writeText(`${text}\n${url}`);
+      say('Challenge copied — send it to them', 'good');
+    } catch {
+      /* dismissed */
+    }
+  };
+
+  /*
+   * The return trip.
+   *
+   * There is no server, so a result cannot travel back on its own — and the
+   * board called a one-way challenge a broken promise rather than a feature.
+   * This pre-fills the reply so it goes back down the same channel the
+   * invitation arrived on, which is the only honest round trip available.
+   */
+  const replyToChallenge = async () => {
+    if (beatTarget === null) return;
+    const verdict =
+      score > beatTarget
+        ? `Beat you — ${score} to ${beatTarget}.`
+        : score === beatTarget
+          ? `Dead tie. ${score} each.`
+          : `You win: ${beatTarget} to ${score}.`;
+    const text = `${verdict} ${puzzle.theme?.name ?? 'Wordy'}.`;
+    try {
+      if (navigator.share) return void (await navigator.share({ text }));
+      await navigator.clipboard.writeText(text);
+      say('Reply copied — send it back', 'good');
+    } catch {
+      /* dismissed */
+    }
+  };
+
+  /*
+   * Share a whole THEME rather than one board.
+   *
+   * The board asked for this instead of a challenge, six seats to two: the
+   * person opening it gets a session, not a duel, and it spreads the catalogue
+   * — which is the asset — rather than a score, which is not.
+   */
+  const shareTheme = async () => {
+    const t = puzzle.theme;
+    if (!t) return;
+    const count = data.puzzles.filter((p) => p.theme?.id === t.id).length;
+    const url = `${origin().replace(/\/$/, '')}/#theme=${t.id}`;
+    const text = `${t.name} on Wordy — ${count} boards. ${t.blurb}`;
+    try {
+      if (navigator.share) return void (await navigator.share({ text, url }));
+      await navigator.clipboard.writeText(`${text}\n${url}`);
+      say('Link copied — send them the pack', 'good');
+    } catch {
+      /* dismissed */
+    }
+  };
 
   const share = async () => {
-    const text = shareCard();
+    /*
+     * The URL goes in its OWN field, not inside the text.
+     *
+     * iMessage, Slack and WhatsApp unfurl a link passed as `url` and none of
+     * them reliably unfurl one found inside a text blob. The card used to end
+     * with the link on its last line, which meant every Open Graph tag this
+     * app ships — the preview card, the image, the theme name — was being
+     * thrown away, and the share arrived as a grey string.
+     *
+     * The clipboard fallback still gets the link inline, because a clipboard
+     * has no fields and a pasted card with no link is a dead end.
+     */
+    const parts = shareCardParts();
     try {
       if (navigator.share) {
-        await navigator.share({ text });
+        await navigator.share({ text: parts.text, url: parts.url });
         return;
       }
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(parts.full);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
@@ -2074,6 +2203,11 @@ export default function Game({ data }: { data: PuzzleFile }) {
           /* "Not now" is final for this streak, or the offer becomes the nag
              four seats rejected. It can only return after 30 days. */
           onDismissBackup={() => markBackupOffered()}
+          beatTarget={beatTarget}
+          onReply={replyToChallenge}
+          onChallenge={challenge}
+          onShareTheme={shareTheme}
+          themeName={puzzle.theme?.name ?? null}
         />
       )}
     </main>
@@ -2290,6 +2424,11 @@ function CompleteSheet({
   offerBackup,
   onBackup,
   onDismissBackup,
+  beatTarget,
+  onReply,
+  onChallenge,
+  onShareTheme,
+  themeName,
 }: {
   rank: string;
   score: number;
@@ -2306,6 +2445,11 @@ function CompleteSheet({
   offerBackup: boolean;
   onBackup: () => void;
   onDismissBackup: () => void;
+  beatTarget: number | null;
+  onReply: () => void;
+  onChallenge: () => void;
+  onShareTheme: () => void;
+  themeName: string | null;
 }) {
   /*
    * This is the only sheet in the app that was not a dialog.
@@ -2360,6 +2504,38 @@ function CompleteSheet({
           <Stat label="Bonus" value={bonus} />
           <Stat label="Streak" value={streak} />
         </dl>
+
+        {/*
+          The challenge result, revealed only NOW.
+          The score travelled in the link and was deliberately withheld until
+          this moment: two seats quit against a visible target, so the number
+          is a result rather than a hurdle. The reply is pre-filled because
+          there is no server to carry a result back — the return trip has to
+          go by the same channel the invitation came down.
+        */}
+        {beatTarget !== null && (
+          <div
+            className={[
+              'mt-4 relative rounded-xl border px-4 py-3 text-center',
+              score > beatTarget ? 'border-success' : 'border-edge-mid',
+            ].join(' ')}
+          >
+            <p className="text-body font-semibold text-text-primary">
+              {score > beatTarget
+                ? `You beat them — ${score} to ${beatTarget}`
+                : score === beatTarget
+                  ? `Dead tie — ${score} each`
+                  : `They got ${beatTarget}. You got ${score}.`}
+            </p>
+            <button
+              type="button"
+              onClick={onReply}
+              className="liquid-interactive mt-2.5 h-10 w-full rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
+            >
+              Send them the result
+            </button>
+          </div>
+        )}
 
         {/* Show exactly what gets sent. Nobody shares a card they can't see. */}
         <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words relative rounded-xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3 text-center text-meta leading-relaxed text-text-secondary">
@@ -2432,6 +2608,36 @@ function CompleteSheet({
             Keep looking
           </button>
         </div>
+
+        {/*
+          Two ways to pass it on, and the pack link is deliberately the wider
+          one. Six seats said they want to play a THEME through; two would
+          challenge anybody. So the pack is offered to everyone and the
+          challenge sits beside it rather than in front of it.
+
+          Neither appears on a warm-up: sending someone a tutorial board is not
+          a thing anybody wants to do.
+        */}
+        {warmup === null && (
+          <div className="mt-2 flex gap-2">
+            {themeName && (
+              <button
+                type="button"
+                onClick={onShareTheme}
+                className="liquid-interactive h-10 flex-1 rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] px-3 text-meta font-medium text-text-secondary"
+              >
+                Send the pack
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={onChallenge}
+              className="liquid-interactive h-10 flex-1 rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] px-3 text-meta font-medium text-text-secondary"
+            >
+              Challenge
+            </button>
+          </div>
+        )}
       </div>
     </div>,
     document.body

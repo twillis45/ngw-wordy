@@ -9,6 +9,8 @@ import {
   encodeProgress,
   fingerprint,
   puzzleFromHash,
+  themeFromHash,
+  beatFromHash,
 } from './backup';
 import { EMPTY, type Progress } from './storage';
 import type { PuzzleFile } from './game';
@@ -199,5 +201,34 @@ describe('play links', () => {
     // would land the reader on a board nobody was talking about.
     for (const h of ['', '#play=', '#play=0', '#play=-3', '#play=abc', '#restore=xyz', '#play=1e9'])
       expect(puzzleFromHash(h)).toBeNull();
+  });
+});
+
+describe('share and challenge links', () => {
+  it('reads a theme id from a pack link', () => {
+    expect(themeFromHash('#theme=hbcu')).toBe('hbcu');
+    expect(themeFromHash('#theme=RNB90S')).toBe('rnb90s');
+  });
+
+  it('reads a score to beat, alongside the board', () => {
+    expect(puzzleFromHash('#play=85&beat=33')).toBe(85);
+    expect(beatFromHash('#play=85&beat=33')).toBe(33);
+    // Zero is a real score somebody can be challenged to beat.
+    expect(beatFromHash('#play=1&beat=0')).toBe(0);
+  });
+
+  it('ignores junk in either, rather than coercing it', () => {
+    for (const h of ['', '#theme=', '#theme=has spaces', '#restore=abc'])
+      expect(themeFromHash(h)).toBeNull();
+    for (const h of ['', '#beat=', '#beat=-4', '#beat=abc', '#play=3'])
+      expect(beatFromHash(h)).toBeNull();
+  });
+
+  it('does not mistake a restore code for a theme', () => {
+    // Both live in the fragment and a greedy pattern would match inside a
+    // base64url payload, silently sending a restoring player to a pack.
+    const code = 'x'.repeat(40);
+    expect(themeFromHash(`#restore=${code}`)).toBeNull();
+    expect(beatFromHash(`#restore=${code}`)).toBeNull();
   });
 });

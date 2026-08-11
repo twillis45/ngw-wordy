@@ -538,6 +538,8 @@ export function shareText(opts: {
   escalating?: boolean;
   /** Where to play. Omitted entirely rather than guessed. */
   url?: string;
+  /** Leave the URL out of the text, because the caller is passing it separately. */
+  omitUrl?: boolean;
 }): string {
   const shape = opts.tiles
     .map((t) =>
@@ -577,8 +579,34 @@ export function shareText(opts: {
     opts.clue ? `"${opts.clue}"` : null,
     shape,
     evidence,
-    opts.url,
+    // Omitted when the caller is going to hand the URL to the share sheet as
+    // its own field — see shareParts.
+    opts.omitUrl ? null : opts.url,
   ]
     .filter(Boolean)
     .join('\n');
+}
+
+/**
+ * The share card split the way `navigator.share` wants it.
+ *
+ * A URL buried inside `text` is just characters: iMessage, Slack and WhatsApp
+ * all unfurl a link passed as the `url` FIELD and none of them reliably unfurl
+ * one found inside a text blob. So the card that had a link on its last line
+ * was quietly throwing away every Open Graph tag the app ships — the preview
+ * card, the image, the theme name — and arriving as a grey string.
+ *
+ * Clipboard fallback still gets the URL inline, because a clipboard has no
+ * fields and a pasted card with no link is a dead end.
+ */
+export function shareParts(opts: Parameters<typeof shareText>[0]): {
+  text: string;
+  url?: string;
+  full: string;
+} {
+  return {
+    text: shareText({ ...opts, omitUrl: true }),
+    url: opts.url,
+    full: shareText(opts),
+  };
 }
