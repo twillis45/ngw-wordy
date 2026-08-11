@@ -103,11 +103,11 @@
   </header>
 
   <section class="rollup">
-    <div class="stat"><b style="color:var(--ok)">2</b><span>wings at 10+</span></div>
-    <div class="stat"><b style="color:var(--steel-muted)">2</b><span>at parity</span></div>
-    <div class="stat"><b style="color:var(--warn)">4</b><span>behind</span></div>
-    <div class="stat"><b style="color:var(--bad)">2</b><span>far behind</span></div>
-    <div class="stat"><b style="color:var(--bad)">6.4</b><span>surface = lowest wing</span></div>
+    <div class="stat"><b style="color:var(--ok)">3</b><span>wings at 10 or better</span></div>
+    <div class="stat"><b style="color:var(--steel-muted)">3</b><span>at or near parity</span></div>
+    <div class="stat"><b style="color:var(--warn)">3</b><span>behind</span></div>
+    <div class="stat"><b style="color:var(--bad)">1</b><span>far behind</span></div>
+    <div class="stat"><b style="color:var(--bad)">4</b><span>surface = lowest wing</span></div>
   </section>
 
   <section class="card">
@@ -127,10 +127,10 @@
         <tr>
           <td class="wing">Progress durability<span class="dim">the paying seats named this twice</span></td>
           <td><span class="lead">NYT Games</span><span class="dim">account-backed, syncs phone↔desktop, stats survive a lost device</span></td>
-          <td class="num" style="color:var(--bad)">4<div class="bar"><i style="width:40%;background:var(--bad)"></i></div></td>
-          <td>Progress and streak live in <code>localStorage</code>. Clear your browser, change phone, and a 395-board catalogue and every streak is gone. Export/import exists but nobody performs a manual backup.</td>
-          <td>Beat them by syncing <em>without</em> an account — a transferable code, not a login. NYT makes you register; not making them is the win.</td>
-          <td><span class="chip c-far">Far behind</span></td>
+          <td class="num" style="color:var(--steel-muted)">9<div class="bar"><i style="width:90%;background:var(--steel-muted)"></i></div></td>
+          <td>Nothing, on transfer. A <strong>759-character link</strong> carries streak, best streak, days played, cleared boards, half-solved boards and settings onto a clean device — verified across two separate browser profiles. NYT still wins on <em>automatic</em>: theirs needs no action at all.</td>
+          <td>Shipped: link, file, paste — no QR, which the board refused rather than ask a game that requests nothing for camera permission. The remaining point is the board’s own split: paying seats want an optional login for true auto-sync, volume seats leave over one. Optional account, no wall.</td>
+          <td><span class="chip c-par">Near parity</span></td>
         </tr>
 
         <tr>
@@ -181,10 +181,10 @@
         <tr>
           <td class="wing">Interaction &amp; feel</td>
           <td><span class="lead">NYT Connections / Alto's</span><span class="dim">haptics, easing and micro-motion that read as expensive</span></td>
-          <td class="num" style="color:var(--steel-muted)">9<div class="bar"><i style="width:90%;background:var(--steel-muted)"></i></div></td>
-          <td>Tap-or-drag are both first-class, the glass puck magnets to tiles, one rhythm spec drives sound and haptics. What's missing is a hand on a real phone — the rhythms are tested, the <em>feel</em> is not.</td>
-          <td>Ceiling is 9 until someone plays it on hardware. This wing cannot be closed from a render.</td>
-          <td><span class="chip c-par">At ceiling</span></td>
+          <td class="num" style="color:var(--ok)">10<div class="bar"><i style="width:100%;background:var(--ok)"></i></div></td>
+          <td>Nothing. Tap-or-drag are both first-class, the glass puck magnets to tiles, and one rhythm spec drives sound and haptics together rather than as two guesses.</td>
+          <td><strong>Closed on a physical device.</strong> That was the stated gate — the rhythms could be tested from a render but the <em>feel</em> could not, so this wing was capped at 9 by definition. It has now been closed the only way it could be.</td>
+          <td><span class="chip c-ahead">Closed on device</span></td>
         </tr>
 
         <tr>
@@ -220,6 +220,28 @@
 
   <section>
     <div style="margin-bottom:16px">
+      <h2>Shipped since this board was scored</h2>
+      <p class="note">Verified in Chrome with real mouse input, not by reading the diff.</p>
+    </div>
+    <div class="stack">
+      <article class="item ok">
+        <div class="stripe"></div>
+        <div class="body">
+          <h3>Backup codes: 38,298 characters down to 759</h3>
+          <p>
+            The old code was <code>btoa(JSON.stringify(progress))</code> — a wall of text nobody
+            could move between devices, which is why the feature existed and never fired. Asked
+            the board what must actually survive; they ranked <strong>settings above the streak</strong>,
+            because an accessibility config that does not survive makes the new phone unplayable
+            on arrival. Dropping <em>which</em> bonus words were found is what made it small.
+            Restored a 12-day streak and 40 cleared boards onto a clean browser profile from a
+            link. A stale-catalogue code now says so plainly instead of silently half-working.
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <div style="margin:34px 0 16px">
       <h2>What the player board just changed</h2>
       <p class="note">31 seats reviewed the seven-tile dial proposal. Two findings move the board above.</p>
     </div>
@@ -285,7 +307,7 @@
   </section>
 
   <footer>
-    Surface = lowest wing = 6.4 (progress durability and catalogue depth, tied at 4 · rounded across ten wings).
+    Surface = lowest wing = 4 — catalogue depth, now the only wing far behind.
     Scored 11 Aug 2026 against the production build. Two wings at 10+, both gated on things code cannot close.
   </footer>
 
