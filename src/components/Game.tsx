@@ -1371,7 +1371,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             surface — the biggest thing on screen — was the one thing that
             wasn't the material. Phone padding is deliberately tighter than the
             tablet's; the wheel gives up the ~16px, which it can afford. */}
-        <div className="mx-auto flex w-full min-h-0 max-w-[420px] flex-1 flex-col rounded-3xl border border-edge-hairline px-3 py-3 cramped:px-2 cramped:py-2 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] md:max-w-[520px] lg:max-w-[600px] xl:max-w-[680px] board-center relative md:border-edge md:px-5 md:py-4">
+        <div className="mx-auto flex w-full min-h-0 max-w-[420px] flex-1 flex-col rounded-3xl border border-edge-hairline px-3 pt-3 pb-1.5 cramped:px-2 cramped:pt-2 cramped:pb-1 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] md:max-w-[520px] lg:max-w-[600px] xl:max-w-[680px] board-center relative md:border-edge md:px-5 md:py-4">
       {/* On a phone this strip is the ONLY place progress lives, so it is also
           the way into the detail. Inert from tablet up, where the rail shows
           the same ladder permanently. */}
@@ -1380,7 +1380,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         onClick={() => setShowWords(true)}
         aria-haspopup="dialog"
         aria-label="Rank and progress details"
-        className="block w-full text-left md:pointer-events-none"
+        className="block w-full text-left md:pointer-events-none md:mb-2"
       >
         <RankBar rank={rank} score={score} />
       </button>
@@ -1601,8 +1601,15 @@ export default function Game({ data }: { data: PuzzleFile }) {
         />
       </div>
 
-      {/* Controls */}
-      <div className="mt-1.5 flex items-center justify-center gap-2 md:mt-3 md:gap-3 short:mt-1">
+      {/* Controls.
+          The top margin is separation, not spacing. Shuffle and bonus sat close
+          enough to the wheel's rim that on a phone they read as part of the
+          dial — a thumb travelling back from a tile lands near them, and a pill
+          inside the puck's visual envelope invites a mis-tap on the one control
+          that throws away an in-progress selection. Pushed clear so the puck
+          owns its own space. The panel's floor was cut by more than this costs
+          (see .safe-bottom), so the wheel still nets larger. */}
+      <div className="mt-4 flex items-center justify-center gap-2 md:mt-5 md:gap-3 short:mt-2">
         <ControlButton
           onClick={() => {
             setLetters((prev) => shuffle(prev));

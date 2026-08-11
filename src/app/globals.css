@@ -561,8 +561,15 @@ body {
 .safe-top {
   padding-top: calc(1rem + env(safe-area-inset-top));
 }
+/* The fixed part of this is deliberately SMALL. The board card is the last
+   child of a h-svh column, so every pixel reserved here is a pixel taken off
+   the wheel — and the wheel is the game. The env() inset is what actually
+   clears the home indicator; the 1.5rem that used to sit on top of it was
+   belt-and-braces, and on a notched phone it was double-counting the same
+   gap. Reduced rather than removed so the card still has a floor on a device
+   reporting no inset at all. */
 .safe-bottom {
-  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  padding-bottom: calc(0.375rem + env(safe-area-inset-bottom));
 }
 
 /*

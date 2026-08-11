@@ -95,6 +95,24 @@
    "name": "The Beauty Supply",
    "category": "THE BLOCK",
    "blurb": "Aisle four, forty shades of the same thing, and a decision that takes twenty minutes."
+  },
+  {
+   "id": "roadtrip",
+   "name": "The Road Trip",
+   "category": "THE LONG WAY",
+   "blurb": "Eleven hours, one playlist, and a gas station nobody needed."
+  },
+  {
+   "id": "garden",
+   "name": "The Garden",
+   "category": "THE LONG WAY",
+   "blurb": "Four square feet, one season, and something that was not there in April."
+  },
+  {
+   "id": "laundry",
+   "name": "Laundry Day",
+   "category": "THE LONG WAY",
+   "blurb": "The quiet hour nobody watches, repeated every week for a lifetime."
   }
  ],
  "puzzles": [

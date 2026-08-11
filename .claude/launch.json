@@ -4,8 +4,8 @@
     {
       "name": "wordy",
       "runtimeExecutable": "/usr/local/opt/node@20/bin/npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 3000
+      "runtimeArgs": ["run", "dev", "--", "-p", "3007"],
+      "port": 3007
     }
   ]
 }

@@ -1,0 +1,157 @@
+{
+  "_doc": "STAGING. General pack. The clue gate is binding: every clue names a position, a time, or a habit — never a category. \"The gas station you stop at not because you need gas\" passes; \"a long drive with your family\" fails and is re-authored. Bases are drawn only from letter-sets no cultural pack holds, so a general theme never takes a board from the material the product is built on.",
+
+  "theme": {
+    "id": "roadtrip",
+    "name": "The Road Trip",
+    "category": "THE LONG WAY",
+    "blurb": "Eleven hours, one playlist, and a gas station nobody needed."
+  },
+
+  "boards": [
+    {
+      "base": "roadie",
+      "scene": "Hour two, before anyone is tired of anyone",
+      "clues": {
+        "roadie": "Whoever loaded the trunk, and they are not to be questioned about the order",
+        "radio": "Scanned until the third station, which is the one everybody agrees on",
+        "read": "The exit numbers out loud, by the one person who does not need to",
+        "ride": "Shotgun, claimed at the door of the house before anybody was outside",
+        "road": "Still four lanes at this point, which will not be true by dark",
+        "aide": "What the person with the phone becomes about forty minutes in"
+      }
+    },
+    {
+      "base": "rained",
+      "scene": "The stop nobody needed",
+      "clues": {
+        "rained": "Started somewhere around the state line and has not let up since",
+        "diner": "Chosen off a sign, not a review, and the pie is the correct order",
+        "read": "The laminated menu twice, front and back, while nobody decides",
+        "ride": "Half an hour shorter if this stop had not happened, and worth it",
+        "dine": "What you came in claiming you would not do, sixty seconds ago",
+        "rein": "Handed over at the counter: whoever is driving next gets the coffee"
+      }
+    },
+    {
+      "base": "driven",
+      "scene": "The swap, in a lot with the engine running",
+      "clues": {
+        "driven": "Four hours by the same person, and the argument about it is starting",
+        "drive": "Handed over reluctantly, with commentary, at a gas pump at dusk",
+        "diner": "Two exits back, and the person who wanted it is still saying so",
+        "ride": "Different from the passenger seat, and everyone forgets that",
+        "vein": "On the back of the hand at ten and two, hour five",
+        "dive": "Into the cooler in the footwell, blind, for whatever is left"
+      }
+    },
+    {
+      "base": "trunks",
+      "scene": "What is in the back, and what is on top of it",
+      "clues": {
+        "trunks": "Two of them, and the second one is why nothing can be reached",
+        "trunk": "Packed at eleven last night by somebody who had a system",
+        "turn": "Missed at the exact moment the bag on top slides forward",
+        "sun": "Straight through the back window from about four, and no shade in it",
+        "runt": "The smallest bag, containing the only things anybody needs",
+        "stun": "What the heat off the tarmac does when the hatch finally opens"
+      }
+    },
+    {
+      "base": "argues",
+      "scene": "Hour seven, and the temperature question",
+      "clues": {
+        "argues": "About the vent, and it has been the same argument since 2009",
+        "argue": "What the back seat does about the window, at a volume the front can hear",
+        "gas": "Three quarters full, and the person driving wants to stop anyway",
+        "sugar": "In the coffee at the last stop, six of them, and it is being mentioned",
+        "urges": "The one at hour seven that has nothing to do with the bladder",
+        "sage": "What nobody in this car is being, and they know it"
+      }
+    },
+    {
+      "base": "piston",
+      "scene": "The last hour, in the dark",
+      "clues": {
+        "piston": "The noise it started making outside Chattanooga, still unexplained",
+        "stop": "Refused now, on principle, with under an hour to go",
+        "point": "At the sign, silently, because everybody is past talking",
+        "spin": "Of the tyre in gravel at the last turn, and nobody comments",
+        "pints": "What is waiting, and it is the only thing keeping the car quiet",
+        "snip": "Of the bag corner, for the last of the crisps, at eleven at night"
+      }
+    },
+    {
+      "base": "loaned",
+      "scene": "The playlist, and who is in charge of it",
+      "clues": {
+        "loaned": "The aux, once, briefly, and never again after that",
+        "lane": "Changed for no reason during the chorus, and everybody noticed",
+        "load": "Queued at the house so nothing has to be chosen at seventy",
+        "alone": "How the person in the third row feels about the song selection",
+        "dean": "The name of the road the sat-nav keeps saying, and it is not a road",
+        "lend": "What nobody does with the charger, at any point in eleven hours"
+      }
+    },
+    {
+      "base": "alpine",
+      "scene": "The nap, and who is allowed one",
+      "clues": {
+        "alpine": "The air setting nobody chose, blowing at the one person asleep",
+        "nap": "Taken by whoever drove first, immediately, and it looks like betrayal",
+        "lane": "Drifted toward twice before the passenger says anything about it",
+        "pain": "In the neck of the person who slept against the window",
+        "pale": "What the driver goes when the fuel light finally comes on",
+        "plane": "What somebody points out would have taken ninety minutes"
+      }
+    },
+    {
+      "base": "genius",
+      "scene": "The sign, and the sing-along",
+      "clues": {
+        "genius": "What the person who packed the snacks is called, at hour six",
+        "sign": "Read aloud in a voice, for the fourth time, and it is still funny",
+        "sing": "Only the chorus, only in the tunnel, and only all together",
+        "sun": "Down finally, which is when the car gets quiet and stays quiet",
+        "guns": "On the billboard, and there is a conversation about it and then there is not",
+        "using": "The good speaker in the back, discovered at hour nine"
+      }
+    },
+    {
+      "base": "parent",
+      "scene": "Who is actually running this",
+      "clues": {
+        "parent": "Says five more minutes at the stop and means twenty, every time",
+        "nap": "Announced as a plan and then defended for the next two hours",
+        "tape": "In the glovebox, from a car that has not existed since 2004",
+        "rent": "The car, and the conversation about the insurance at the counter",
+        "pane": "The window somebody keeps touching, and the mark is permanent now",
+        "trap": "The middle seat, given to whoever got in last, without discussion"
+      }
+    },
+    {
+      "base": "laughs",
+      "scene": "The last fill-up before the interstate",
+      "clues": {
+        "laughs": "At the pump price, out loud, and then pays it anyway",
+        "gas": "Cheaper one exit further and everybody finds that out afterwards",
+        "haul": "What is still ahead, said in a tone, by the person not driving",
+        "slug": "Of the drink left in the cup from three hours ago, taken anyway",
+        "gals": "In the car behind, doing exactly the same trip, going the other way",
+        "hags": "What the group photo at the pump makes everybody claim they look like"
+      }
+    },
+    {
+      "base": "coined",
+      "scene": "The toll, and the change nobody has",
+      "clues": {
+        "coined": "The phrase somebody says at every single toll, since the first trip",
+        "coin": "Hunted in the console, the door, and finally under the seat",
+        "diner": "Where the change went, two hours ago, on a tip that was too big",
+        "code": "For the pump, on a receipt that is now somewhere in the footwell",
+        "done": "Said at the booth, prematurely, with ninety miles still to go",
+        "iced": "The drink, an hour ago, and now it is a cup of water"
+      }
+    }
+  ]
+}
