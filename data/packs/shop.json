@@ -1,0 +1,107 @@
+{
+  "_doc": "STAGING. The Shop is barbershop and salon merged — apart they yielded 6 and 9 boards, together 26. They were never two languages. The wait, the chair, the mirror, the standing appointment and the argument are shared; the split filed one vocabulary under two headings. Boards are drawn from both rooms and neither is treated as the default.",
+  "theme": {
+    "id": "barbershop",
+    "name": "The Shop",
+    "category": "THE CHAIR",
+    "blurb": "Two rooms with the same rules: you wait your turn, you tip, and you do not touch the chair."
+  },
+  "boards": [
+    {
+      "base": "paints",
+      "scene": "The station, and what is on it",
+      "clues": {
+        "paints": "What the shelf looks like from across the room, in eleven colours",
+        "satin": "The scarf that goes on the second she is out of the chair, before the door",
+        "pin": "Holding the section she is not working on, and there are nine more in her mouth",
+        "tip": "Cash, folded, into the hand not holding the shears, and never on the card",
+        "sat": "Ninety minutes so far, and the appointment was for ten",
+        "spin": "Of the chair to face the mirror, which is the verdict being delivered"
+      }
+    },
+    {
+      "base": "fabled",
+      "scene": "The fade, and the man who will not rush it",
+      "clues": {
+        "fabled": "His line-up is, across three neighbourhoods, and the wait proves it",
+        "fade": "Low, mid or high, and getting that wrong is the one unforgivable thing",
+        "blade": "Off the guard entirely for the last pass, freehand, near the ear",
+        "bald": "Where it ends at the bottom, and skin means skin",
+        "deal": "What the man in the next chair is describing, and it involves a truck",
+        "lead": "Who has the floor in the argument, which changes about every four minutes"
+      }
+    },
+    {
+      "base": "bridal",
+      "scene": "Braids, and the six hours nobody warned you about",
+      "clues": {
+        "bridal": "Half the appointments in June, and the deposit is non-refundable",
+        "braid": "Knotless, waist length, and the quote was for four hours",
+        "laid": "The edges, with the little brush, and this is the part that gets photographed",
+        "bald": "What she warns you about if you ask for them any tighter",
+        "rail": "The back of the chair, where your neck has been for two hours",
+        "raid": "On the snack bag at hour three, conducted by the stylist, unapologetically"
+      }
+    },
+    {
+      "base": "silken",
+      "scene": "Wash day, at the bowl",
+      "clues": {
+        "silken": "What the press is for, and the argument about whether it is worth it",
+        "silk": "The press, and the flat iron, and about a week if it does not rain",
+        "skin": "Of your scalp, which she will tell you about honestly and unprompted",
+        "line": "Where the new growth starts, and she can see it from the door",
+        "sink": "The bowl, the cold rim on your neck, and the water finally going warm",
+        "kiln": "What the dryer feels like at hour two, said by everyone, every time"
+      }
+    },
+    {
+      "base": "frayed",
+      "scene": "Colour, and what it costs",
+      "clues": {
+        "frayed": "The ends, which is why she is talking about a trim you did not book",
+        "fade": "What the colour does by week five, which is the part nobody budgets for",
+        "dye": "Mixed in the back, in a bowl, to a shade that has no name on any box",
+        "dry": "Air, hood or blow, and the answer determines the next ninety minutes",
+        "year": "How long since the last big change, and she remembers exactly",
+        "read": "What she does to your face in the mirror before she picks up anything"
+      }
+    },
+    {
+      "base": "tokens",
+      "scene": "The regulars, and their standing times",
+      "clues": {
+        "tokens": "What the seats become on a Saturday: held, traded, and fiercely defended",
+        "knots": "Bantu, put in wet on Friday, taken out Sunday morning for the curl",
+        "tone": "Of the room, set by whoever has been coming longest, not by the owner",
+        "set": "Standing, same time every three weeks, and it survives house moves",
+        "note": "On the mirror about the price going up, ignored by everyone including her",
+        "stone": "What the floor is by four, according to everybody standing on it"
+      }
+    },
+    {
+      "base": "castle",
+      "scene": "The cape, and the rules of the chair",
+      "clues": {
+        "castle": "What the chair is, and the person in it is not to be disturbed",
+        "lace": "The front, laid and cut, and the scissors near your forehead are fine",
+        "seat": "Yours when he says it is yours, and not one minute before",
+        "set": "The chair height, pumped up with a foot, without asking",
+        "sale": "The products by the door, mentioned once, never pushed twice",
+        "slate": "Wiped between heads, and the next name goes up in marker"
+      }
+    },
+    {
+      "base": "bailed",
+      "scene": "Who did not show, and who took the slot",
+      "clues": {
+        "bailed": "The eleven o'clock, again, and there is a policy about this now",
+        "blade": "Cleaned and oiled between heads, and the sound of it is the shop",
+        "bald": "The joke made at the man in the door, by everyone, immediately",
+        "laid": "Edges, again, on the woman who took the cancelled slot and cannot believe her luck",
+        "idea": "Somebody's, about a business, explained at length to a captive room",
+        "able": "What she says you are, about doing your own edges, and she is being kind"
+      }
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "_doc": "STAGING. Barbecue is carolina, texas and chicago merged — the cultural bench's own suggestion, 'fold into a single Barbecue Regions pack'. Their condition governs the blurb and the boards: name whose tradition each region is, including the Black pitmasters Central Texas markets were built on. Three regions, and no board pretends one of them is the default.",
+  "theme": {
+    "id": "texas",
+    "name": "Barbecue",
+    "category": "THE PIT",
+    "blurb": "Whole hog in the Carolinas, brisket in Central Texas, rib tips and hot links on the South Side — three traditions, one fire, and Black pitmasters in all three."
+  },
+  "boards": [
+    {
+      "base": "potsie",
+      "scene": "The South Side, and the aquarium smoker in the window",
+      "clues": {
+        "potsie": "Nobody's name for it. Everyone's name for the man who runs it",
+        "tips": "Rib. Chopped, on white bread, in a styrofoam box, and that IS the dish",
+        "pit": "Behind glass, so you watch your own dinner for twenty minutes",
+        "post": "Where the line forms, out the door, from about nine on a Friday",
+        "step": "Up to the plexiglass, order through the slot, and do not dawdle",
+        "set": "The order the man builds it in, and correcting him is not done"
+      }
+    },
+    {
+      "base": "priest",
+      "scene": "Central Texas, at the counter, by the pound",
+      "clues": {
+        "priest": "What the man with the knife is treated as, and he does not discourage it",
+        "tips": "Not the dish here. Here they are the burnt ends of a brisket, sold quietly",
+        "pit": "Brick, indirect, post oak, and it has not gone fully out since the seventies",
+        "step": "Along the counter as it is cut, one cut at a time, in front of you",
+        "rest": "An hour minimum, wrapped, and the whole day is arranged around it",
+        "ripe": "What the smoke smell is on your coat by the time you reach the car"
+      }
+    },
+    {
+      "base": "crafty",
+      "scene": "Eastern Carolina, and the whole hog",
+      "clues": {
+        "crafty": "What twelve hours over coals with no thermometer actually requires",
+        "fry": "What the skin does at the end, and it is handed round before the meat",
+        "fat": "Rendered down and back into the chop, which is the whole argument for whole hog",
+        "tray": "Paper-lined, from the window, with slaw and hush puppies and no plate",
+        "cart": "Ash from the burn barrel to the pit, all night, by somebody's nephew",
+        "cry": "What the vinegar does to a cut on your hand, and the reason for gloves"
+      }
+    },
+    {
+      "base": "ambush",
+      "scene": "The burn barrel, three in the morning",
+      "clues": {
+        "ambush": "What the wind does at about four, and the whole night turns on it",
+        "ash": "Shovelled, not swept, and its depth is how you read the fire",
+        "mush": "What the meat becomes if the shoveller sleeps, and it cannot be undone",
+        "bus": "The one that goes past at five and tells you how long you have been here",
+        "hams": "Two of them, over the coals, and they are the last thing to come off",
+        "hub": "The barrel itself, and everything that happens tonight happens around it"
+      }
+    },
+    {
+      "base": "misled",
+      "scene": "Sauce, and who is wrong about it",
+      "clues": {
+        "misled": "What everyone outside your county has been, on this subject, their whole life",
+        "mild": "On the South Side, in a squeeze bottle, and it is a specific thing not a spice level",
+        "side": "Which one of the Carolinas you are in, and it changes the whole recipe",
+        "slid": "Under the door of the argument, every family gathering, by an uncle",
+        "lids": "Off the bottles at the table, because it goes on after, not before",
+        "dime": "What the whole disagreement is worth, and it will outlive everyone present"
+      }
+    },
+    {
+      "base": "curate",
+      "scene": "Buying the wood, in August",
+      "clues": {
+        "curate": "What you do with a wood pile if you want it burning right in November",
+        "cure": "Before the smoke, in salt, and the day before matters as much as the day",
+        "crate": "Post oak, split, stacked by the fence, and seasoned since spring",
+        "cart": "Loaded twice because the first load was optimistic",
+        "race": "Against the rain, which is why the tarp is already in the truck",
+        "acre": "How far you can smell a Saturday from, out there, with the wind right"
+      }
+    },
+    {
+      "base": "drafty",
+      "scene": "The trailer pit at the side of the road",
+      "clues": {
+        "drafty": "What the firebox door is, deliberately, and closing it fully kills the whole thing",
+        "fry": "The catfish on the flat top, for people who did not come for the ribs",
+        "fat": "Trimmed to a quarter inch, and the trimmings go in the beans",
+        "tray": "Handed through the window with a slice of bread doing the work of a plate",
+        "yard": "Somebody's, and the permit situation is best described as ongoing",
+        "raft": "Of smoke across the road at eleven, which is the only advertising there is"
+      }
+    },
+    {
+      "base": "pathos",
+      "scene": "Sunday afternoon, and what is left",
+      "clues": {
+        "pathos": "The mood at four when the trays are down to bread and sauce",
+        "ash": "Grey, banked at the side, and still hot enough to matter tomorrow",
+        "post": "Oak, one log left, saved deliberately for the last hour",
+        "hats": "Off, finally, and the sunburn line is exactly where it was last year",
+        "hot": "The links, and the word is doing double duty on that sign",
+        "oath": "Sworn every year about starting earlier, and broken every year by noon"
+      }
+    }
+  ]
+}

@@ -7,7 +7,7 @@
    "cluster": "the-shop",
    "claim": "The conk was a lye-based hair straightening process (congolene: lye, egg, potato) dominant from roughly the 1920s to the 1960s, and it burned.",
    "verdict": "verified",
-   "detail": "Malcolm X describes his first conk in Roxbury around 1941 at age sixteen, and concludes it was \"my first really big step toward self-degradation\". The process was displaced by the Afro during the 1960s. The chemistry and the chronology are settled; the TONE question the bench asked is not — see shop-conk-tone.",
+   "detail": "Malcolm X describes his first conk in Roxbury around 1941 at age sixteen, and concludes it was \"my first really big step toward self-degradation\". The process was displaced by the Afro during the 1960s. The chemistry and the chronology are settled; the TONE question the bench asked is not — see shop-conk-tone. [2026-08-11: the cited board was replaced during the vocabulary-first rebuild. Finding retained, citation cleared — it vouches for no live text, and a future board on this should pick it back up.]",
    "sources": [
     {
      "title": "Byrd & Tharps, Hair Story: Untangling the Roots of Black Hair in America",
@@ -20,13 +20,7 @@
      "kind": "scholarship"
     }
    ],
-   "clues": [
-    {
-     "theme": "barbershop",
-     "base": "conked",
-     "word": "conked"
-    }
-   ],
+   "clues": [],
    "replacement": null
   },
   {
@@ -34,15 +28,9 @@
    "cluster": "the-shop",
    "claim": "Whether the conk clue reads as respect for the old heads or as novelty at their expense.",
    "verdict": "tone",
-   "detail": "Not answerable from sources, and research does not settle it. Malcolm X’s own conclusion was that the conk was self-degradation, so a clue treating it as period colour is standing on top of that judgement whether it means to or not. Needs a reader old enough to have had one.",
+   "detail": "Not answerable from sources, and research does not settle it. Malcolm X’s own conclusion was that the conk was self-degradation, so a clue treating it as period colour is standing on top of that judgement whether it means to or not. Needs a reader old enough to have had one. [2026-08-11: the cited board was replaced during the vocabulary-first rebuild. Finding retained, citation cleared — it vouches for no live text, and a future board on this should pick it back up.]",
    "sources": [],
-   "clues": [
-    {
-     "theme": "barbershop",
-     "base": "conked",
-     "word": "conked"
-    }
-   ],
+   "clues": [],
    "replacement": null
   },
   {
@@ -103,7 +91,7 @@
    "cluster": "the-shop",
    "claim": "A Dominican blowout takes about ninety minutes and costs around twenty-five dollars.",
    "verdict": "corrected",
-   "detail": "The shipped clue read \"where a blowout runs an hour and costs less\" — an hour understates the sourced figure of roughly ninety minutes, and \"costs less\" was doing the work a number does better.",
+   "detail": "The shipped clue read \"where a blowout runs an hour and costs less\" — an hour understates the sourced figure of roughly ninety minutes, and \"costs less\" was doing the work a number does better. [2026-08-11: the cited board was replaced during the vocabulary-first rebuild. Finding retained, citation cleared — it vouches for no live text, and a future board on this should pick it back up.]",
    "sources": [
     {
      "title": "The Dominican blowout, explained",
@@ -111,13 +99,7 @@
      "kind": "community"
     }
    ],
-   "clues": [
-    {
-     "theme": "barbershop",
-     "base": "latino",
-     "word": "latino"
-    }
-   ],
+   "clues": [],
    "replacement": {
     "word": "latino",
     "clue": "The Dominican shop two blocks over: walk in, ninety minutes, out for twenty-five dollars."
@@ -128,7 +110,7 @@
    "cluster": "the-shop",
    "claim": "Wash day is a multi-hour ritual, not a wash.",
    "verdict": "verified",
-   "detail": "Sourced wash range is 30-90 minutes for the washing itself; the pack’s \"ten until noon\" describes the full wash-and-style, which is how the sources use the term. Imprecise rather than wrong.",
+   "detail": "Sourced wash range is 30-90 minutes for the washing itself; the pack’s \"ten until noon\" describes the full wash-and-style, which is how the sources use the term. Imprecise rather than wrong. [2026-08-11: the cited board was replaced during the vocabulary-first rebuild. Finding retained, citation cleared — it vouches for no live text, and a future board on this should pick it back up.]",
    "sources": [
     {
      "title": "CNN — wash day, photographed",
@@ -141,13 +123,7 @@
      "kind": "scholarship"
     }
    ],
-   "clues": [
-    {
-     "theme": "barbershop",
-     "base": "waters",
-     "word": "waters"
-    }
-   ],
+   "clues": [],
    "replacement": null
   },
   {
@@ -249,7 +225,7 @@
    "cluster": "the-shop",
    "claim": "The barbershop clue \"The old word for the cut, still used here\" names no actual word.",
    "verdict": "unverifiable",
-   "detail": "Barber trade glossaries and regional vocabulary searched; nothing anchors it, because there is nothing to anchor — the clue asserts a term exists without naming it. Either name the word or accept it as pure atmosphere resting on nothing.",
+   "detail": "Barber trade glossaries and regional vocabulary searched; nothing anchors it, because there is nothing to anchor — the clue asserts a term exists without naming it. Either name the word or accept it as pure atmosphere resting on nothing. [2026-08-11: the cited board was replaced during the vocabulary-first rebuild. Finding retained, citation cleared — it vouches for no live text, and a future board on this should pick it back up.]",
    "sources": [
     {
      "title": "Clipper guard sizes chart",
@@ -257,13 +233,7 @@
      "kind": "community"
     }
    ],
-   "clues": [
-    {
-     "theme": "barbershop",
-     "base": "permit",
-     "word": "term"
-    }
-   ],
+   "clues": [],
    "replacement": null
   },
   {

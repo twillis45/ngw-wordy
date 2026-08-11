@@ -804,8 +804,7 @@
     "rows": [
      "ghost:acts",
      "hot:titles"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "spacey",
@@ -1158,7 +1157,8 @@
      "tips:named",
      "pit:said",
      "rest:said"
-    ]
+    ],
+    "owner": "texas"
    },
    {
     "base": "septic",
@@ -1180,8 +1180,7 @@
      "tea:named",
      "heat:said",
      "wet:said"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "watery",
@@ -1250,7 +1249,7 @@
      "mild:said",
      "lid:voice"
     ],
-    "owner": "steppers"
+    "owner": "texas"
    },
    {
     "base": "petals",
@@ -1368,8 +1367,7 @@
     "rows": [
      "ribs:named",
      "rub:said"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "campos",
@@ -1615,8 +1613,7 @@
     "rows": [
      "soda:named",
      "ash:said"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "smarty",
@@ -1675,7 +1672,7 @@
  {
   "id": "texas",
   "vocab": 108,
-  "shipped": 33,
+  "shipped": 8,
   "supported": 59,
   "boards": [
    {
@@ -1689,7 +1686,8 @@
      "tips:named",
      "step:named",
      "set:said"
-    ]
+    ],
+    "owner": "texas"
    },
    {
     "base": "priest",
@@ -1702,7 +1700,8 @@
      "step:named",
      "rest:said",
      "set:said"
-    ]
+    ],
+    "owner": "texas"
    },
    {
     "base": "instep",
@@ -1753,7 +1752,8 @@
      "tray:said",
      "fry:said",
      "cart:said"
-    ]
+    ],
+    "owner": "texas"
    },
    {
     "base": "floats",
@@ -1790,7 +1790,8 @@
      "tray:said",
      "fry:said",
      "yard:voice"
-    ]
+    ],
+    "owner": "texas"
    },
    {
     "base": "faults",
@@ -1801,8 +1802,7 @@
      "fat:named",
      "flat:named",
      "salt:said"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "import",
@@ -1827,7 +1827,7 @@
      "slid:said",
      "lid:voice"
     ],
-    "owner": "steppers"
+    "owner": "texas"
    },
    {
     "base": "petals",
@@ -1875,7 +1875,8 @@
      "mush:named",
      "ash:said",
      "bus:said"
-    ]
+    ],
+    "owner": "texas"
    },
    {
     "base": "curate",
@@ -1886,7 +1887,8 @@
      "crate:named",
      "cure:said",
      "cart:said"
-    ]
+    ],
+    "owner": "texas"
    },
    {
     "base": "faster",
@@ -1946,7 +1948,8 @@
      "ash:said",
      "hat:voice",
      "hot:voice"
-    ]
+    ],
+    "owner": "texas"
    },
    {
     "base": "barked",
@@ -1957,8 +1960,7 @@
      "bark:named",
      "bread:said",
      "red:voice"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "brides",
@@ -2104,8 +2106,7 @@
      "hog:named",
      "south:said",
      "hot:voice"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "undies",
@@ -2127,8 +2128,7 @@
      "post:named",
      "south:said",
      "hot:voice"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "aspect",
@@ -2169,8 +2169,7 @@
     "rows": [
      "rib:named",
      "bus:said"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "canter",
@@ -2190,8 +2189,7 @@
     "rows": [
      "sauce:named",
      "scale:said"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "crafts",
@@ -2201,8 +2199,7 @@
     "rows": [
      "fat:named",
      "cart:said"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "cruise",
@@ -2379,8 +2376,7 @@
      "late:said",
      "nap:said",
      "pan:voice"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "satire",
@@ -2460,7 +2456,8 @@
      "ham:named",
      "mush:named",
      "mash:said"
-    ]
+    ],
+    "owner": "texas"
    },
    {
     "base": "aprons",
@@ -2620,8 +2617,7 @@
      "thaw:said",
      "hat:voice",
      "heat:voice"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "basket",
@@ -2764,7 +2760,8 @@
     "rows": [
      "tea:named",
      "cure:said"
-    ]
+    ],
+    "owner": "texas"
    },
    {
     "base": "graces",
@@ -3244,8 +3241,7 @@
      "fade:named",
      "dry:said",
      "dye:said"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "tokens",
@@ -3356,8 +3352,7 @@
     "rows": [
      "scarf:named",
      "sat:said"
-    ],
-    "owner": "texas"
+    ]
    },
    {
     "base": "flicks",
@@ -3426,7 +3421,7 @@
  {
   "id": "steppers",
   "vocab": 68,
-  "shipped": 40,
+  "shipped": 39,
   "supported": 19,
   "boards": [
    {
@@ -3536,7 +3531,7 @@
      "slim:named",
      "slide:said"
     ],
-    "owner": "steppers"
+    "owner": "texas"
    },
    {
     "base": "nailed",
@@ -4025,7 +4020,8 @@
     "rows": [
      "ace:named",
      "cut:said"
-    ]
+    ],
+    "owner": "texas"
    },
    {
     "base": "enlist",

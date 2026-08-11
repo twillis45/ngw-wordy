@@ -91,7 +91,7 @@
   {
    "id": "texas",
    "name": "Barbecue",
-   "blurb": "Whole hog in the Carolinas, brisket in Central Texas, rib tips and hot links on the South Side — three traditions, one fire.",
+   "blurb": "Whole hog in the Carolinas, brisket in Central Texas, rib tips and hot links on the South Side — three traditions, one fire, and Black pitmasters in all three.",
    "category": "THE PIT"
   },
   {
@@ -139,45 +139,6 @@
     "lash"
    ],
    "scene": "The sweetened track under every joke"
-  },
-  {
-   "base": "chairs",
-   "theme": "barbershop",
-   "clues": {
-    "chairs": "Four of them, and you know whose is whose before anybody sits.",
-    "hair": "What the cape catches, and what you find on your collar at dinner.",
-    "cash": "The sign on the mirror has said this since 1997. No, not that app.",
-    "arch": "The curve he checks twice before the razor goes near your eyebrow.",
-    "scar": "The small one from the time you moved. He still brings it up.",
-    "crash": "To come in with no appointment and hope somebody cancels."
-   },
-   "prefer": [
-    "chair",
-    "hair",
-    "cash",
-    "arch",
-    "scar"
-   ],
-   "scene": "Four seats, and whose is whose"
-  },
-  {
-   "base": "shaved",
-   "theme": "barbershop",
-   "clues": {
-    "shaved": "Taken to the skin with a straight blade and zero hesitation.",
-    "shave": "Hot towel first, then the neck, then the part you can't see.",
-    "heads": "Every one turns when the door opens. Every single time.",
-    "shade": "Somewhere cool to stand — or what she just threw, smiling.",
-    "save": "What the line-up did for that photo you almost didn't take."
-   },
-   "prefer": [
-    "shave",
-    "heads",
-    "shade",
-    "head",
-    "save"
-   ],
-   "scene": "A straight razor and no hesitation"
   },
   {
    "base": "faucet",
@@ -1040,406 +1001,6 @@
    "scene": "The treasurer's tally, taken three times"
   },
   {
-   "base": "polish",
-   "theme": "barbershop",
-   "clues": {
-    "polish": "Twenty-two bottles on the rack, and she still knows which one you wore last June.",
-    "spoil": "What she does to a client of thirty years: hot towel, foot soak, no upcharge.",
-    "lips": "She lines her own in the mirror between clients without once looking at her hands.",
-    "slip": "The little paper she writes your next date on and tucks into your purse.",
-    "shop": "Her name is on the sign out front, and the lease is in her name too.",
-    "oil": "A few drops worked into the scalp with one fingertip, parted row by row across her head."
-   },
-   "prefer": [
-    "spoil",
-    "lips",
-    "oil",
-    "slip",
-    "shop"
-   ],
-   "scene": "Her name on the sign, her lease"
-  },
-  {
-   "base": "places",
-   "theme": "barbershop",
-   "clues": {
-    "places": "She holds two on Saturday morning for the women who raised her.",
-    "laces": "What her granddaughter finally managed on her own sneakers under the dryer.",
-    "scalp": "She parts it with the comb tip and says speak up the second it stings.",
-    "space": "She gave the back room to a young braider for a year and took nothing.",
-    "place": "You do not take somebody else's slot in the book. Everybody knows this.",
-    "cape": "Snapped shut at the back of your neck, and it still lets clippings down your collar."
-   },
-   "prefer": [
-    "laces",
-    "scalp",
-    "space",
-    "cape",
-    "place"
-   ],
-   "scene": "Who gets Saturday morning"
-  },
-  {
-   "base": "camper",
-   "theme": "barbershop",
-   "clues": {
-    "camper": "Books at nine, still here at four, and nobody minds her one bit.",
-    "perm": "1984, a rod on every section, and a smell that got into the curtains.",
-    "cream": "Comes in a tub with a plastic stick, and she times it to the minute, never past.",
-    "care": "What thirty years of the same two hands actually is, whatever the receipt says.",
-    "pace": "She works one head at a time and will not be hurried by anybody's carpool.",
-    "cap": "Satin, and she asks whether you actually wore yours to bed every night this week."
-   },
-   "prefer": [
-    "perm",
-    "cream",
-    "care",
-    "pace",
-    "cap"
-   ],
-   "scene": "All day, one head at a time"
-  },
-  {
-   "base": "preach",
-   "theme": "barbershop",
-   "clues": {
-    "preach": "She is going to tell you about that man again, and she is not wrong.",
-    "perch": "How the little one sits on a phone book so her head clears the mirror.",
-    "reach": "The top shelf where the good conditioner lives, behind retail she never pushes.",
-    "cheap": "What her prices are not, and she will explain why to your face.",
-    "peach": "The wall color since the day she opened, and no, she is not changing it.",
-    "cape": "Black nylon, tied twice, and she flicks it out like a bullfighter before it settles."
-   },
-   "prefer": [
-    "perch",
-    "reach",
-    "cheap",
-    "peach",
-    "cape"
-   ],
-   "scene": "The chair as pulpit, and her opinions"
-  },
-  {
-   "base": "metals",
-   "theme": "barbershop",
-   "clues": {
-    "metals": "Comb, shears, flat iron: everything that matters here is heavy and hot.",
-    "steam": "It comes off the towel and off the neck and fogs the mirror by noon.",
-    "melts": "What the grease does the second the hot comb touches it.",
-    "meals": "Nobody leaves the building at noon; a girl runs to the corner for everybody.",
-    "seal": "What the last pass of the iron is meant to do to the cuticle.",
-    "seat": "Yours is under the middle mirror, and the woman ahead of you is still under the dryer."
-   },
-   "prefer": [
-    "steam",
-    "melts",
-    "meals",
-    "seal",
-    "seat"
-   ],
-   "scene": "Hot comb, iron, and the heat of the room"
-  },
-  {
-   "base": "rental",
-   "theme": "barbershop",
-   "clues": {
-    "rental": "Two hundred a week for the station by the window, paid to the woman up front.",
-    "rent": "What she quit paying somebody else the year she signed her own lease.",
-    "learn": "She started sweeping at fourteen and had a license in her hand at nineteen.",
-    "later": "Come at four, she said. You came at four. You were seen at six.",
-    "alert": "The bell over the door, so she knows who walked in without turning around.",
-    "tale": "The one about the bridal party that arrived nine deep and unbooked."
-   },
-   "prefer": [
-    "rent",
-    "learn",
-    "later",
-    "alert",
-    "tale"
-   ],
-   "scene": "Two hundred a week for a station"
-  },
-  {
-   "base": "entail",
-   "theme": "barbershop",
-   "clues": {
-    "entail": "What just a trim actually means: two hours, a wash, and a whole conversation.",
-    "nail": "The tech in the back corner works Thursdays only and has her own clientele.",
-    "tail": "The bit left long at the back that her mother will not let anybody cut.",
-    "line": "She draws it with the comb tip, straight enough to check against a ruler.",
-    "tile": "Black and white squares underfoot, mopped after every single head.",
-    "lint": "What the towels leave on a dark sweater, so a brush lives by the mirror."
-   },
-   "prefer": [
-    "nail",
-    "tail",
-    "line",
-    "tile",
-    "lint"
-   ],
-   "scene": "What a trim actually costs you in time"
-  },
-  {
-   "base": "parent",
-   "theme": "barbershop",
-   "clues": {
-    "parent": "Holds her purse in her lap four hours and never once says hurry up.",
-    "part": "Where she starts on your head, and where your daughter squirms the most.",
-    "pane": "The window she keeps her station beside, for the light and for who walks by.",
-    "tape": "Holds the appointment card to the mirror, curled and yellow at the corners.",
-    "tear": "What the comb will not do, so long as she works the ends first.",
-    "rent": "Her chair costs her a flat fee every Friday, in an envelope, and she has never been late."
-   },
-   "prefer": [
-    "part",
-    "pane",
-    "tape",
-    "rent",
-    "tear"
-   ],
-   "scene": "The mother waiting four hours"
-  },
-  {
-   "base": "wonder",
-   "theme": "barbershop",
-   "clues": {
-    "wonder": "What you do under the hood: whether she will ever actually retire.",
-    "owner": "She does heads all day and does the books after everybody has gone home.",
-    "done": "She spins you around and says nothing, because she does not have to.",
-    "word": "Hers is the whole contract. No deposit, no card kept on file.",
-    "worn": "How the third step behind the counter looks after twenty-two years.",
-    "rod": "Perm ones, gray and pink by diameter, sorted in the drawer she keeps to herself."
-   },
-   "prefer": [
-    "owner",
-    "done",
-    "word",
-    "rod",
-    "worn"
-   ],
-   "scene": "She does the books after closing"
-  },
-  {
-   "base": "insert",
-   "theme": "barbershop",
-   "clues": {
-    "insert": "The extra piece she sews in, matched so close nobody thinks to count.",
-    "rinse": "Head back, warm water, and the one minute in six hours when nobody talks.",
-    "rest": "What the edge of the bowl gives your neck, with a folded towel underneath.",
-    "stern": "How she gets exactly once, when a child will not put her head down.",
-    "site": "The corner unit she picked, after two years of looking, for the parking.",
-    "set": "Wound on rods Friday, dried under the hood, and combed out into something that lasts."
-   },
-   "prefer": [
-    "rinse",
-    "rest",
-    "stern",
-    "set",
-    "site"
-   ],
-   "scene": "The shampoo bowl, and the quiet minute"
-  },
-  {
-   "base": "latino",
-   "theme": "barbershop",
-   "clues": {
-    "latino": "The Dominican shop two blocks over: walk in, ninety minutes, out for twenty-five dollars.",
-    "lion": "What a fresh set of curls makes a four-year-old, roaring at her own reflection.",
-    "loan": "How the second dryer got bought, and she paid it back a year early.",
-    "alto": "Where she sings on Sunday, and where half her Saturday book sings too.",
-    "ton": "How much hair comes off that floor by closing, or near enough.",
-    "nail": "The tech at the window table works on your hands while your color is processing."
-   },
-   "prefer": [
-    "lion",
-    "loan",
-    "nail",
-    "alto",
-    "ton"
-   ],
-   "scene": "The Dominican shop two blocks over"
-  },
-  {
-   "base": "placid",
-   "theme": "barbershop",
-   "clues": {
-    "placid": "How a screaming toddler goes the second warm water hits her head.",
-    "clip": "Six of them holding your sections while she works on the seventh.",
-    "paid": "Cash in the apron pocket, and she writes it in the book either way.",
-    "dial": "On the hood, and it has been stuck on medium since about 2011.",
-    "plaid": "The school skirt she has to wear, so the braids have to match it.",
-    "cap": "Clear plastic over the conditioner, and you sit under the hood twenty minutes wearing it."
-   },
-   "prefer": [
-    "clip",
-    "paid",
-    "cap",
-    "dial",
-    "plaid"
-   ],
-   "scene": "A child's first time in the chair"
-  },
-  {
-   "base": "spinal",
-   "theme": "barbershop",
-   "clues": {
-    "spinal": "Down to here, she says, touching the small of the girl's back.",
-    "snip": "The small sound near your ear that makes every mother in the room flinch.",
-    "pins": "A mouthful of them, because both her hands are already busy.",
-    "plain": "How she wears her own most days, because she is at work.",
-    "pain": "Beauty is not supposed to hurt, she says. Speak up if it does.",
-    "span": "Thirty-one years between the first appointment and this one."
-   },
-   "prefer": [
-    "snip",
-    "pins",
-    "plain",
-    "pain",
-    "span"
-   ],
-   "scene": "Length, and what it takes to get it"
-  },
-  {
-   "base": "streak",
-   "theme": "barbershop",
-   "clues": {
-    "streak": "The silver one at her temple she has refused to color since 2009.",
-    "rake": "What her fingers do through your roots, checking how dry it got.",
-    "task": "Sweeping between heads, and the youngest does it without being asked.",
-    "star": "The photo by the register: a client who made it, signed to her by name.",
-    "stare": "What the whole room does when somebody walks in with a new color.",
-    "set": "Rods go in wet, gray ones at the crown, and she picks the size without asking."
-   },
-   "prefer": [
-    "rake",
-    "set",
-    "task",
-    "star",
-    "stare"
-   ],
-   "scene": "Her own gray, and what she refuses"
-  },
-  {
-   "base": "staked",
-   "theme": "barbershop",
-   "clues": {
-    "staked": "What she did on a corner storefront in 1998 with a tax refund.",
-    "asked": "What she never did for permission, from anybody, before she signed.",
-    "dates": "Written in pencil in a spiral book, because people move things.",
-    "desk": "Up front, with the phone, the book, and a dish of butterscotch.",
-    "stake": "What she has in your wedding, your job interview, and your mother's funeral.",
-    "seat": "Four at the mirrors, two at the dryers, one by the door for whoever is waiting."
-   },
-   "prefer": [
-    "asked",
-    "dates",
-    "desk",
-    "seat",
-    "stake"
-   ],
-   "scene": "1998, a tax refund, a storefront"
-  },
-  {
-   "base": "steady",
-   "theme": "barbershop",
-   "clues": {
-    "steady": "Nine in the morning, every other Saturday, same seat, since the first Bush.",
-    "stay": "You did not plan on being here this long, and you are not leaving.",
-    "days": "The two she takes off, and everybody knows better than to call.",
-    "seat": "Under the hood, with a magazine from four years ago on your lap.",
-    "stead": "When she had surgery, her niece worked in her place and lost nobody.",
-    "set": "Rollers on Friday, a scarf over it, and the whole thing has to hold through Sunday."
-   },
-   "prefer": [
-    "stay",
-    "set",
-    "days",
-    "seat",
-    "stead"
-   ],
-   "scene": "The standing every-other-Saturday"
-  },
-  {
-   "base": "strewn",
-   "theme": "barbershop",
-   "clues": {
-    "strewn": "The floor by two o'clock: black, brown, honey, and somebody's silver.",
-    "sewn": "Track by track with a curved needle, and she checks the tension each row.",
-    "news": "Who is sick, who is moving, who is expecting. Ahead of any group chat.",
-    "nest": "What she calls the matted patch at the crown after two weeks in a bonnet.",
-    "went": "Where the young stylist did when she opened her own place, with a blessing.",
-    "rent": "Due on the first, paid before anything else in the shop, and never once late."
-   },
-   "prefer": [
-    "sewn",
-    "rent",
-    "news",
-    "nest",
-    "went"
-   ],
-   "scene": "What gets swept up, what gets said"
-  },
-  {
-   "base": "tangle",
-   "theme": "barbershop",
-   "clues": {
-    "tangle": "Two weeks of ignoring it, and now it is a forty-minute problem.",
-    "agent": "She is her own: no booking app, no manager, her number on the card.",
-    "gate": "The little one at the top of the steps, so no toddler reaches the iron.",
-    "lean": "How she stands all day, one hip on the counter, and her feet know it.",
-    "teal": "The smock color she has bought in bulk since the nineties.",
-    "gel": "A dab from the blue jar at the edges, smoothed down with a soft brush and tied."
-   },
-   "prefer": [
-    "gel",
-    "agent",
-    "gate",
-    "lean",
-    "teal"
-   ],
-   "scene": "Two weeks under a bonnet"
-  },
-  {
-   "base": "trends",
-   "theme": "barbershop",
-   "clues": {
-    "trends": "She has watched them come back around twice now and chases none of them.",
-    "trend": "Whatever the girls bring in on their phones, she has already done once.",
-    "sent": "That photo from the internet at eleven at night: can you do this?",
-    "tend": "What she does to a scalp that has been under braids a month too long.",
-    "reds": "Copper, auburn, cherry. She mixes two of the three and writes nothing down.",
-    "tens": "What she gets paid in, folded, and she still writes out the receipt."
-   },
-   "prefer": [
-    "trend",
-    "sent",
-    "tend",
-    "reds",
-    "tens"
-   ],
-   "scene": "Styles that come back around"
-  },
-  {
-   "base": "waters",
-   "theme": "barbershop",
-   "clues": {
-    "waters": "What wash day runs through, gallon after gallon, from ten until noon.",
-    "water": "Warm at the neck, cooler on the last pass, and she asks how it feels.",
-    "straw": "How your ends feel in February, and she says protein, not more grease.",
-    "sear": "What the iron would do if she rushed, and she does not rush.",
-    "wares": "The oils and satin caps she keeps by the register, priced fair.",
-    "set": "Rollers straight from the bowl, and she picks the size by how tight you want it."
-   },
-   "prefer": [
-    "water",
-    "straw",
-    "set",
-    "sear",
-    "wares"
-   ],
-   "scene": "Wash day, ten until noon"
-  },
-  {
    "base": "talked",
    "theme": "spades",
    "clues": {
@@ -1760,26 +1321,6 @@
    "scene": "Six chairs in a corner built for four"
   },
   {
-   "base": "bailed",
-   "theme": "spades",
-   "clues": {
-    "bailed": "He got up at ten-thirty down two hundred. They still bring it up.",
-    "abide": "Live with it. The call was made, the call stands, on to the next.",
-    "idea": "Bidding nil with the ace of spades still sitting in your hand.",
-    "lied": "About the count, once, in 2004, and it is still the first thing anybody says.",
-    "bled": "Points, three at a time, all night, with nobody noticing until the end.",
-    "idle": "Sitting this round out, watching, and not permitted to say one word."
-   },
-   "prefer": [
-    "abide",
-    "idea",
-    "lied",
-    "bled",
-    "idle"
-   ],
-   "scene": "Quitting early, and never living it down"
-  },
-  {
    "base": "gasped",
    "theme": "spades",
    "clues": {
@@ -2058,26 +1599,6 @@
     "lets"
    ],
    "scene": "The flyer, and who has paid"
-  },
-  {
-   "base": "misled",
-   "theme": "steppers",
-   "clues": {
-    "misled": "He learned it off a phone video and has been doing the turn backwards for a year.",
-    "smile": "What she gives him anyway when he finally lands on the right count.",
-    "miles": "Forty each way from the south suburbs, every Tuesday, for one hour of class.",
-    "dimes": "Turning on one is the whole point, and it takes about a year to get there.",
-    "mild": "How she corrects. Quiet, one word, and nobody else in the room hears it.",
-    "slide": "The four-wall line dance the reception does, which the steppers wait out at the bar."
-   },
-   "prefer": [
-    "smile",
-    "miles",
-    "dimes",
-    "mild",
-    "slide"
-   ],
-   "scene": "Learning it wrong off a phone"
   },
   {
    "base": "posted",
@@ -2600,306 +2121,6 @@
    "scene": "What the first observances cost"
   },
   {
-   "base": "number",
-   "theme": "barbershop",
-   "clues": {
-    "number": "Three on the sides, one on top. Say it wrong and you live with it six weeks.",
-    "numb": "How your scalp feels the first cold minute under the guard.",
-    "burn": "What the clipper gets after the fourth head, and why he switches to the other set.",
-    "menu": "Taped by the mirror: fade 25, beard 10, kids under ten 15.",
-    "men": "Six grown ones waiting, and not one has glanced at the television since noon.",
-    "run": "What she does with the place: her name on the license, her rules on the wall."
-   },
-   "prefer": [
-    "numb",
-    "burn",
-    "menu",
-    "men",
-    "run"
-   ],
-   "scene": "The guard you ask for, and live with"
-  },
-  {
-   "base": "argued",
-   "theme": "barbershop",
-   "clues": {
-    "argued": "Two hours on Jordan or LeBron, and nobody in it wanted to win, just to keep going.",
-    "guard": "Number two on the clippers, and the reason your mother said bring the picture.",
-    "grade": "What the middle-school report card said, read aloud by the man holding scissors.",
-    "urge": "The itch at week five that walks you in on a Tuesday with nothing scheduled.",
-    "dare": "Somebody bet the young barber he could not do a design freehand. He is sketching.",
-    "rage": "The one topic, his ex-wife's lawyer, that turns his voice all the way up."
-   },
-   "prefer": [
-    "guard",
-    "grade",
-    "urge",
-    "dare",
-    "rage"
-   ],
-   "scene": "Two hours on Jordan or LeBron"
-  },
-  {
-   "base": "hairdo",
-   "theme": "barbershop",
-   "clues": {
-    "hairdo": "What Mama called it, and she was not asking your opinion on the length.",
-    "radio": "The oldies station out of the back speaker, louder than the TV nobody watches.",
-    "hard": "How he presses at the nape, and you can feel every year he has been doing it.",
-    "raid": "What the middle school lets out and does to the waiting bench at 3:15.",
-    "road": "Forty minutes each way because you will not let anybody else near your head.",
-    "aid": "The styptic pencil and a torn strip of tissue, for the cut nobody will admit to."
-   },
-   "prefer": [
-    "radio",
-    "hard",
-    "raid",
-    "road",
-    "aid"
-   ],
-   "scene": "What Mama called it, and the drive"
-  },
-  {
-   "base": "nickel",
-   "theme": "barbershop",
-   "clues": {
-    "nickel": "Five cents in the tip jar as a joke, and he keeps it taped to the mirror.",
-    "neck": "The part you cannot see, checked in the hand mirror while you nod like you can.",
-    "line": "Straight across the forehead, and if it is off by a hair the whole cut is off.",
-    "lick": "The one piece at the crown that stands up no matter what she puts on it.",
-    "like": "What you say when he spins you around, whether or not you do.",
-    "clink": "Coins into the jar by the door, which is how the whole room knows you tipped."
-   },
-   "prefer": [
-    "neck",
-    "line",
-    "lick",
-    "like",
-    "clink"
-   ],
-   "scene": "The tip jar by the door"
-  },
-  {
-   "base": "pencil",
-   "theme": "barbershop",
-   "clues": {
-    "pencil": "White, sharpened flat, used to mark the edge before the razor commits.",
-    "clip": "What he does around the ears while telling you to put your chin down.",
-    "pile": "Under the chair by four o'clock: everybody's Saturday, swept into one.",
-    "pin": "Holds forty years of Polaroids to the corkboard by the door.",
-    "pen": "Chained to the counter, for the check nobody under thirty writes anymore.",
-    "line": "Straight across the forehead with the razor, and you could check it against a ruler."
-   },
-   "prefer": [
-    "clip",
-    "pile",
-    "pin",
-    "line",
-    "pen"
-   ],
-   "scene": "White marker, razor, and the corkboard"
-  },
-  {
-   "base": "client",
-   "theme": "barbershop",
-   "clues": {
-    "client": "Same head, same chair, every other Thursday since 2003.",
-    "cent": "He has not raised the price one of these since the shop moved across the street.",
-    "lint": "The brush and the powder, then the flick at your shoulder before you stand.",
-    "tin": "The old coffee can where the combs soak blue all day.",
-    "tie": "What the deacon loosens before he sits, and knots again at the mirror.",
-    "line": "Four deep on a Saturday, and he calls you up with a nod at the chair, never by name."
-   },
-   "prefer": [
-    "cent",
-    "lint",
-    "line",
-    "tin",
-    "tie"
-   ],
-   "scene": "Same head, same chair, since 2003"
-  },
-  {
-   "base": "permit",
-   "theme": "barbershop",
-   "clues": {
-    "permit": "Framed crooked over the mirror, her name on it, renewed every two years.",
-    "trim": "Not a cut. Just take the weight off and leave the length alone.",
-    "prime": "Saturday morning, ten to two, the hours nobody here gives up.",
-    "timer": "Nobody sets one, but everybody knows a good fade takes forty minutes.",
-    "term": "The old word for the cut, still used here, whatever the kid in chair four says.",
-    "tip": "Ten on a thirty-five dollar cut, and she has never once had to bring it up herself."
-   },
-   "prefer": [
-    "trim",
-    "prime",
-    "timer",
-    "term",
-    "tip"
-   ],
-   "scene": "Her name on the license over the mirror"
-  },
-  {
-   "base": "import",
-   "theme": "barbershop",
-   "clues": {
-    "import": "The weight a haircut carries the week before a funeral.",
-    "prom": "Third Saturday in May, six kids deep, all wanting the same edge.",
-    "trio": "The three chairs still working, out of the five bolted to the floor.",
-    "tip": "Folded into his palm at the handshake, never left on the counter.",
-    "top": "Where the length stays when the sides go down to nothing.",
-    "trim": "The beard, not the head: he tilts your chin up and works out from the jaw."
-   },
-   "prefer": [
-    "prom",
-    "trio",
-    "tip",
-    "trim",
-    "top"
-   ],
-   "scene": "The week before a funeral"
-  },
-  {
-   "base": "champs",
-   "theme": "barbershop",
-   "clues": {
-    "champs": "Whoever is on the muted screen, and whoever is still defending the 1996 team.",
-    "camp": "Where the boy is headed Sunday, which is why he is getting it low today.",
-    "sham": "What the old head calls the twenty-dollar designer fade down the block.",
-    "amp": "The little one behind the counter feeding the speaker through a taped cord.",
-    "cap": "What the boy puts back on the second he steps outside, ruining it.",
-    "cash": "The card reader arrived in 2019 and he still counts the drawer by hand at seven."
-   },
-   "prefer": [
-    "cash",
-    "camp",
-    "sham",
-    "amp",
-    "cap"
-   ],
-   "scene": "The game on mute, and 1996"
-  },
-  {
-   "base": "blades",
-   "theme": "barbershop",
-   "clues": {
-    "blades": "Oiled, tapped clean, laid out in a row, and nobody else touches them.",
-    "bald": "The spot he never mentions and always cuts around.",
-    "deal": "Two heads for thirty on a slow Tuesday, and do not tell the whole block.",
-    "sale": "The clippers he got half off at the supply store and swears are better.",
-    "lads": "Three of them on the bench, phones out, waiting on the same barber.",
-    "lead": "Who is next. She keeps it in her head and she has never once been wrong."
-   },
-   "prefer": [
-    "bald",
-    "deal",
-    "sale",
-    "lads",
-    "lead"
-   ],
-   "scene": "Oiled steel nobody else may touch"
-  },
-  {
-   "base": "conked",
-   "theme": "barbershop",
-   "clues": {
-    "conked": "How the old heads wore it before the fade, lye and all, and it burned.",
-    "code": "Nobody wrote it down: you do not take a man's regular slot, ever.",
-    "coke": "Glass bottle from the machine in the corner, still cold, still a dollar.",
-    "done": "He spins the chair, holds up the mirror, and that is the whole announcement.",
-    "den": "What the back room becomes after six, with the space heater and the good chairs.",
-    "neck": "Hot towel there first, then the straight razor, and you do not move your head at all."
-   },
-   "prefer": [
-    "code",
-    "coke",
-    "done",
-    "neck",
-    "den"
-   ],
-   "scene": "Lye and a hot comb, before the fade"
-  },
-  {
-   "base": "combat",
-   "theme": "barbershop",
-   "clues": {
-    "combat": "What the Friday argument sounds like from the sidewalk and never actually is.",
-    "comb": "Snapped in half about once a month, and there is a new one in the blue jar.",
-    "coat": "Hung on the hook, because the cape goes over everything else.",
-    "cat": "The shop one, asleep in the window since before anybody here started working.",
-    "mat": "The rubber one he stands on all day, worn thin where he pivots.",
-    "tab": "What she lets the man from the corner store keep until the first."
-   },
-   "prefer": [
-    "comb",
-    "coat",
-    "cat",
-    "mat",
-    "tab"
-   ],
-   "scene": "The Friday argument, heard from outside"
-  },
-  {
-   "base": "chains",
-   "theme": "barbershop",
-   "clues": {
-    "chains": "Gold, doubled, lifted out of the way before the cape snaps shut.",
-    "chin": "Down. He says it once and taps it, and after that you just know.",
-    "inch": "How much his wife said to take. He takes half and calls it even.",
-    "scan": "What you do to the room from the door: who is here, whose turn, how long.",
-    "can": "Sprayed cold on the back of your neck at the end, asked for or not.",
-    "cash": "Twenty on the counter, no card reader in here, and she makes your change out of a cigar box."
-   },
-   "prefer": [
-    "chin",
-    "inch",
-    "scan",
-    "cash",
-    "can"
-   ],
-   "scene": "Gold lifted before the cape snaps shut"
-  },
-  {
-   "base": "bishop",
-   "theme": "barbershop",
-   "clues": {
-    "bishop": "He comes in Saturday at four so the collar sits right Sunday morning.",
-    "shop": "Two chairs, a window sign, and forty years on the same corner.",
-    "ship": "How the boxes of clipper oil arrive, and always about a week late.",
-    "hip": "The old barber's replacement, which is why he works off a stool now.",
-    "hop": "Two doors down for a sandwich while he finishes the head ahead of you.",
-    "hips": "What the young barber leans into all day, and what he will pay for at fifty."
-   },
-   "prefer": [
-    "shop",
-    "ship",
-    "hip",
-    "hop",
-    "hips"
-   ],
-   "scene": "The collar has to sit right Sunday"
-  },
-  {
-   "base": "fabled",
-   "theme": "barbershop",
-   "clues": {
-    "fabled": "The cut everybody in here claims he invented, and only one of them did.",
-    "fade": "Skin at the bottom, full at the top, and the whole art is the part between.",
-    "deaf": "The old head in the corner is nearly it, which is why he talks the loudest.",
-    "fled": "What the four-year-old did when the clippers came on. Under the sink.",
-    "able": "She can cut anybody's head in here better, and every one of them knows it.",
-    "blade": "The one he keeps wrapped in a towel in his own drawer, and no other hand in here touches it."
-   },
-   "prefer": [
-    "fade",
-    "deaf",
-    "fled",
-    "able",
-    "blade"
-   ],
-   "scene": "Who really invented the cut"
-  },
-  {
    "base": "citrus",
    "theme": "sunday",
    "clues": {
@@ -3340,26 +2561,6 @@
    "scene": "The roast she buys and never mentions"
   },
   {
-   "base": "castle",
-   "theme": "sunday",
-   "clues": {
-    "castle": "The dining room is hers the way one belongs to somebody: she says who enters.",
-    "lace": "The tablecloth edge, gone the color of weak tea, pressed every Saturday anyway.",
-    "late": "Arriving that way gets remembered, discussed, and brought up again next week.",
-    "salt": "On the table already. Reaching for it before you taste is the unforgivable one.",
-    "tales": "Told once the plates are pushed back, and the third version is always the best.",
-    "seat": "Yours is the one you had at nine years old, and nobody has been promoted since."
-   },
-   "prefer": [
-    "lace",
-    "late",
-    "salt",
-    "tales",
-    "seat"
-   ],
-   "scene": "The dining room, and who says who enters"
-  },
-  {
    "base": "hasten",
    "theme": "sunday",
    "clues": {
@@ -3680,66 +2881,6 @@
    "scene": "Two branches, one great-grandmother"
   },
   {
-   "base": "carpet",
-   "theme": "barbershop",
-   "clues": {
-    "carpet": "Indoor-outdoor, laid at the door in 1988 to catch the salt and whatever leaves on your collar.",
-    "cape": "Snapped at the neck, one flick to settle it, and everything you own vanishes underneath.",
-    "part": "The line he cuts in with the corner of the blade, straight as a road, left side always.",
-    "trace": "He follows the old edge with the liner first, no pressure, just finding where it used to sit.",
-    "react": "What the whole room does when a grown man admits he cut his own head last week.",
-    "rate": "Thirty for the fade. She set it four years ago and has not moved it since."
-   },
-   "prefer": [
-    "cape",
-    "part",
-    "trace",
-    "react",
-    "rate"
-   ],
-   "scene": "The mat at the door since 1988"
-  },
-  {
-   "base": "policy",
-   "theme": "barbershop",
-   "clues": {
-    "policy": "No cussing while a child is in the chair. It is on the wall and she enforces it.",
-    "oil": "Three drops along the teeth, a quick run, and the blade stops pulling at your neck.",
-    "copy": "What the boy wants of the picture on his phone, and his head does not grow that way.",
-    "icy": "The window in February, and the chair nearest the door that nobody ever chooses.",
-    "cop": "Parks out front, walks in in uniform, and waits his turn behind three other men.",
-    "clip": "The guard number he calls out loud before the machine ever touches the back of your neck."
-   },
-   "prefer": [
-    "oil",
-    "copy",
-    "icy",
-    "cop",
-    "clip"
-   ],
-   "scene": "The rules on the wall, and who enforces them"
-  },
-  {
-   "base": "pirate",
-   "theme": "barbershop",
-   "clues": {
-    "pirate": "The man with the duffel bag of DVDs, in and out before noon every other Saturday.",
-    "pair": "Her shears cost more than his first car, and she cleans them herself at close.",
-    "tape": "The paper strip tucked under your collar so nothing gets down the back of your shirt.",
-    "rite": "A boy's first one, and his mother goes home with the curls in a sandwich bag.",
-    "tire": "By the fifth head the standing catches up with him and he works one song off the stool.",
-    "part": "Cut in with the corner of the blade, ruler-straight, and he checks it in the hand mirror twice."
-   },
-   "prefer": [
-    "pair",
-    "tape",
-    "rite",
-    "tire",
-    "part"
-   ],
-   "scene": "The man with the duffel of DVDs"
-  },
-  {
    "base": "soiled",
    "theme": "steppers",
    "clues": {
@@ -3900,46 +3041,6 @@
    "scene": "The meal after the funeral, at her table"
   },
   {
-   "base": "owners",
-   "theme": "barbershop",
-   "clues": {
-    "owners": "Two chairs and her name on the license, which is the whole difference.",
-    "owner": "What she is, not what she does — and why nobody can fire her for her politics.",
-    "owns": "The building too, since 1974, which the bank had not expected.",
-    "news": "What travels this block faster from this room than from anywhere else on it.",
-    "worse": "What the appointment book looked like the month she started registering voters.",
-    "rows": "Of dryer chairs, all facing one way, so everybody hears everything."
-   },
-   "prefer": [
-    "owner",
-    "owns",
-    "news",
-    "worse",
-    "rows"
-   ],
-   "scene": "Her license, her building, her block"
-  },
-  {
-   "base": "haired",
-   "theme": "barbershop",
-   "clues": {
-    "haired": "What she is doing to you for the next four hours. The talking is the other half.",
-    "heard": "What got said in this room in 1957 and did not leave it.",
-    "hired": "What Highlander did with a Charleston beautician who had never taught school.",
-    "idea": "Teaching the literacy test at night, in the back, to people who could lose a job for it.",
-    "heir": "What she left the shop to, along with the chair and the client list.",
-    "head": "Hers, back in the bowl, while the county registrar came up in conversation."
-   },
-   "prefer": [
-    "heard",
-    "hired",
-    "idea",
-    "heir",
-    "head"
-   ],
-   "scene": "Bernice Robinson and the Citizenship School"
-  },
-  {
    "base": "onward",
    "theme": "reunion",
    "clues": {
@@ -4078,226 +3179,6 @@
     "star"
    ],
    "scene": "Behind the camera on a sound stage"
-  },
-  {
-   "base": "barked",
-   "theme": "texas",
-   "clues": {
-    "barked": "Thirteen hours of smoke and coarse pepper made that crust. Black as a boot and not one bit burnt.",
-    "bread": "Two slices out of the sleeve, laid down first so they catch whatever runs off the meat.",
-    "bark": "What the man behind you does when the line stops. She weighs at her own speed regardless.",
-    "dark": "It is still that when the fire gets built, and the doors do not open for another six hours.",
-    "baker": "Her name is on the pie case out front, and the crew in the pit room answers to her on Sundays.",
-    "red": "The smoke line sitting a quarter inch under the crust, and she will not sell a slice without it."
-   },
-   "prefer": [
-    "bread",
-    "red",
-    "bark",
-    "dark",
-    "baker"
-   ],
-   "scene": "Central Texas, and the crust"
-  },
-  {
-   "base": "pickle",
-   "theme": "texas",
-   "clues": {
-    "pickle": "Dill spears out of a gallon jar, tongs left in the brine, and they cost you nothing at all.",
-    "pick": "What you do with a finger against the glass — that piece, the fatty end, not the one she reached for.",
-    "pile": "White onion, cut thick with the knife she keeps just for it, and nobody is asked first.",
-    "lick": "What your thumb gets after the pepper crust, since no napkin in this building is worth anything.",
-    "pie": "Buttermilk, in a case by the register, sold by the slice and gone before one o'clock.",
-    "lip": "The rolled edge of the tray, greasy by noon, wiped down between customers whether it needs it or not."
-   },
-   "prefer": [
-    "pick",
-    "pile",
-    "lick",
-    "pie",
-    "lip"
-   ],
-   "scene": "The tray, and everything free on it"
-  },
-  {
-   "base": "faults",
-   "theme": "texas",
-   "clues": {
-    "faults": "She names them before you can — this one ran dry, those sat too long — and then she takes something off.",
-    "fault": "The Balcones, running under I-35, which is why the country west of that highway turns to rock and cedar.",
-    "fat": "The cap left a quarter inch thick on top, because it renders down through the meat all night.",
-    "flat": "The half without the marbling. If she asks which half you want, answer quickly.",
-    "fast": "Nothing in this building cooks that way, and the hours posted on the door say so plainly.",
-    "salt": "Coarse black pepper and this, in equal handfuls. That is the entire rub, and there is no second one."
-   },
-   "prefer": [
-    "fault",
-    "fat",
-    "flat",
-    "fast",
-    "salt"
-   ],
-   "scene": "West of I-35, where the rock starts"
-  },
-  {
-   "base": "thawed",
-   "theme": "texas",
-   "clues": {
-    "thawed": "The case of links is not that at five in the morning, which is exactly why she came in at four.",
-    "whet": "The steel he draws the blade down before every brisket, six strokes a side, without ever looking.",
-    "heat": "A wall of it at the door of the pit room in August. She works in there all day, gloves to the elbow.",
-    "head": "Cabeza. The old way was a hole in the ground, covered overnight, and it sells out before ten Sunday.",
-    "date": "Stamped on the paper tag beside the weight, because the market kept books long before it kept a pit.",
-    "what": "\"— do you mean, out of ribs?\" Said at eleven in the morning, every Saturday, by somebody new."
-   },
-   "prefer": [
-    "whet",
-    "heat",
-    "head",
-    "date",
-    "what"
-   ],
-   "scene": "Four in the morning at the market"
-  },
-  {
-   "base": "piston",
-   "theme": "texas",
-   "clues": {
-    "piston": "The one that let go in the wood truck on 290, so the whole delivery sat there until a cousin brought tools.",
-    "point": "The fatty half, marbled and loose, and the regulars ask for that end by name before it is gone.",
-    "pinto": "Beans in a pot off to the side, and half this county will tell you they do not belong on the tray.",
-    "pint": "How the sauce is sold here: in a jar, to take home. It is not going anywhere near the meat in this room.",
-    "tips": "The trimmings she scoops into a pan for the regulars, priced low and gone before the doors open.",
-    "pit": "Brick, forty feet of it, and the woman running the fire has not let it go out since Thursday."
-   },
-   "prefer": [
-    "point",
-    "pinto",
-    "pint",
-    "tips",
-    "pit"
-   ],
-   "scene": "The cuts, the sides, and getting there"
-  },
-  {
-   "base": "rusted",
-   "theme": "texas",
-   "clues": {
-    "rusted": "The hinges on the pit door, and the sound they make at four is how the neighbors tell the time.",
-    "rust": "What never gets sanded off the smoker, because what is built up inside it is worth more than paint.",
-    "rest": "An hour wrapped in the warmer before she cuts, and she will not shorten it for anybody living.",
-    "dust": "The caliche off the lot, settled on every windshield in the line by noon.",
-    "used": "The slicer, bought secondhand off a grocery closing in Taylor, and still the sharpest thing in here.",
-    "red": "The cooler case of strawberry soda by the door, the only thing in here nobody had to cook."
-   },
-   "prefer": [
-    "rust",
-    "rest",
-    "dust",
-    "red",
-    "used"
-   ],
-   "scene": "Everything old they refuse to replace"
-  },
-  {
-   "base": "soaked",
-   "theme": "texas",
-   "clues": {
-    "soaked": "What the butcher paper is by the time you reach a table, and that is the whole point of the paper.",
-    "oak": "Post — the short, gnarled one that grows out here, and the only wood that goes in that firebox.",
-    "asked": "Lean or moist. She poses it once, knife already up, and the line behind you can hear you stall.",
-    "desk": "The rolltop in the office corner, where the ledgers from the grocery years are still stacked.",
-    "dose": "What an hour out back gives you: eyes running, clothes ruined, and you go again tomorrow.",
-    "soda": "Glass bottles standing in a cooler of ice by the register, opener screwed to the side."
-   },
-   "prefer": [
-    "oak",
-    "asked",
-    "soda",
-    "desk",
-    "dose"
-   ],
-   "scene": "The butcher paper, and the wood"
-  },
-  {
-   "base": "shadow",
-   "theme": "texas",
-   "clues": {
-    "shadow": "The line moves along with it, and by eleven the front is at the door with none of it left to stand in.",
-    "saw": "The band one in the back room is older than anybody working, and it still breaks down a whole beef.",
-    "wash": "What they do to the block with a brush and hot water every night, down to the bare maple.",
-    "show": "What she does not put on. No flourish, no bottle waved over anything. The knife and the scale.",
-    "dash": "Where the ticket ends up in the truck, folded once, because you are eating in the cab in the lot.",
-    "soda": "Big Red and grape in the case, and the church crowd clears both out before one o'clock."
-   },
-   "prefer": [
-    "saw",
-    "wash",
-    "show",
-    "dash",
-    "soda"
-   ],
-   "scene": "The line outside at eleven"
-  },
-  {
-   "base": "frayed",
-   "theme": "texas",
-   "clues": {
-    "frayed": "The hem of the apron she has tied on since the Carter administration, and a new one is refused.",
-    "ready": "What it is when it is, and no clock in this building has ever been given a vote on the matter.",
-    "yard": "Out back: the woodpile, two dogs, and a trailer pit nobody has moved since the day it was welded.",
-    "year": "How long the split oak sits before it burns. Green makes a sour smoke and she can taste it.",
-    "dry": "What a brisket goes if you rush the wrap, and the whole crew hears about it for a week.",
-    "red": "The needle on the pit gauge sits in it all afternoon and she cooks by feel regardless."
-   },
-   "prefer": [
-    "ready",
-    "yard",
-    "year",
-    "red",
-    "dry"
-   ],
-   "scene": "How long she has been doing this"
-  },
-  {
-   "base": "topics",
-   "theme": "texas",
-   "clues": {
-    "topics": "What an hour in that line covers: rain, the high school game, and whose mother is in the hospital.",
-    "pit": "Brick, indoors, fire at one end and the meat at the other. Nothing like the barrels you have seen.",
-    "cost": "By the pound, weighed in front of you, and the number on the scale is the entire conversation.",
-    "spot": "Yours, held by a cousin while you go move the truck, and the people behind you allow it.",
-    "cot": "In the corner by the office, for the two hours between the last fire and the first slice.",
-    "post": "Cedar, sunk in the fence line, holding the split oak stack up on the windward side."
-   },
-   "prefer": [
-    "pit",
-    "cost",
-    "spot",
-    "post",
-    "cot"
-   ],
-   "scene": "An hour in line, and what it buys"
-  },
-  {
-   "base": "fridge",
-   "theme": "texas",
-   "clues": {
-    "fridge": "The walk-in, packed with trimmed briskets on sheet pans, and she counts them before she goes home.",
-    "fire": "Built at two in the morning and never let out again until the last brisket comes off the iron.",
-    "grid": "The iron the meat lies on, scraped with a brick between cooks and never washed with anything else.",
-    "ride": "Ninety minutes out from town for a table, and the people who make it call that nothing.",
-    "ridge": "The seam of fat she leaves standing along the edge, because trimming it flush would be a mistake.",
-    "red": "The coals under the grate glow it all night, and they never go fully over to grey."
-   },
-   "prefer": [
-    "fire",
-    "red",
-    "grid",
-    "ride",
-    "ridge"
-   ],
-   "scene": "What she does before the doors open"
   },
   {
    "base": "island",
@@ -4538,446 +3419,6 @@
     "lace"
    ],
    "scene": "Trinidad steelpan, Brooklyn backyard"
-  },
-  {
-   "base": "shovel",
-   "theme": "texas",
-   "clues": {
-    "shovel": "Flat-bladed, kept leaning on the barrel, and it never digs a thing all night. Coals ride on it, nothing else.",
-    "shove": "What nobody does to a man crossing a dark yard with a load of live coals. You step back and let him by.",
-    "holes": "Cut in the tin lid so the smoke has somewhere to go, and you read the fire by what comes out of them.",
-    "hose": "Dragged the length of the yard, because the spigot is at the house and the fire is down by the fence.",
-    "love": "What he means, having said nothing for six hours, when he hands you the first piece of crackling.",
-    "hoes": "Two of them still standing in the shed corner, from the garden that grew the collards for tomorrow."
-   },
-   "prefer": [
-    "shove",
-    "holes",
-    "hose",
-    "love",
-    "hoes"
-   ],
-   "scene": "Carrying coals across a dark yard"
-  },
-  {
-   "base": "piglet",
-   "theme": "texas",
-   "clues": {
-    "piglet": "Not what goes on. The one you want dresses out near a hundred and forty pounds, split down the back and flat.",
-    "pit": "Cinder block, waist high, sheet tin for a lid, and it lives under a shelter behind the fellowship hall.",
-    "pig": "What a picking means: the whole animal, and people walk up and take the meat off it themselves.",
-    "leg": "Four of them, splayed flat across the block, and nobody eats until the back pair goes soft.",
-    "lit": "What the barrel is by eight in the evening, hours before anything goes near the fire.",
-    "pile": "Oak split in June and stacked by the fence so it is dry and quiet by October."
-   },
-   "prefer": [
-    "pit",
-    "pig",
-    "leg",
-    "lit",
-    "pile"
-   ],
-   "scene": "Eastern North Carolina, the whole hog"
-  },
-  {
-   "base": "bylaws",
-   "theme": "texas",
-   "clues": {
-    "bylaws": "The fire department keeps them in a binder, and the plate-sale money can go to equipment and to nothing else.",
-    "slaw": "White and chopped fine, and it goes on the sandwich, not beside it. Red means you drove a hundred miles west.",
-    "laws": "The unwritten ones. First: nobody who slept through the night gets to say when the meat is done.",
-    "saw": "Runs on the tailgate, cuts oak to stove length, and exactly one man is allowed to touch it.",
-    "swab": "A rag knotted onto a broom handle, dunked in the bucket, run over the meat every hour till daylight.",
-    "way": "There is one, it is her mother's, and no man has ever argued her off it."
-   },
-   "prefer": [
-    "slaw",
-    "laws",
-    "saw",
-    "swab",
-    "way"
-   ],
-   "scene": "The fire department plate sale"
-  },
-  {
-   "base": "clause",
-   "theme": "texas",
-   "clues": {
-    "clause": "The one in the rental agreement for the towable cooker: back by noon, ashes out, or she keeps the deposit.",
-    "sauce": "Cider vinegar, crushed red pepper, black pepper, salt. Add tomato and you are cooking another state's food.",
-    "scale": "At the packing house, where dressed weight settles the argument about whether one animal will feed everybody.",
-    "sale": "Tickets went out three Sundays ahead. By Thursday she was writing names on the back of the list.",
-    "cause": "The rescue squad needs a truck, and every dollar off these plates goes on that one line of the ledger.",
-    "clue": "The color of the smoke gives you one, and the man who has done this forty years does not need it."
-   },
-   "prefer": [
-    "sauce",
-    "scale",
-    "sale",
-    "cause",
-    "clue"
-   ],
-   "scene": "Vinegar, pepper, and no tomato"
-  },
-  {
-   "base": "hating",
-   "theme": "texas",
-   "clues": {
-    "hating": "Not what it is, whatever it sounds like, when he gets going about Lexington and the ketchup in their dip.",
-    "night": "The animal goes on before dark and comes off after breakfast, and the hours between belong to two men and a radio.",
-    "gnat": "Comes up off the ditch bank at dusk in a cloud and goes straight for the eyes of whoever is minding the fire.",
-    "hat": "Mesh back, feed store on the front, and it comes off one time all day, in the kitchen, for the blessing.",
-    "tin": "The sheet laid over the block, weighted down with two bricks, and you lift a corner to look.",
-    "hang": "What the smoke does in your clothes so plainly people at work on Monday ask you who cooked."
-   },
-   "prefer": [
-    "night",
-    "gnat",
-    "hat",
-    "tin",
-    "hang"
-   ],
-   "scene": "Two men, a radio, and the argument"
-  },
-  {
-   "base": "planet",
-   "theme": "texas",
-   "clues": {
-    "planet": "What the yard feels like at four in the morning: one lantern, one man, and the coals breathing.",
-    "plate": "Chopped meat, slaw, boiled potatoes, two hush puppies, in a foam box, and the line is out the door by eleven.",
-    "plan": "Written on the back of a bulletin: who buys, who cooks, who chops, who counts the money. Her handwriting.",
-    "pan": "Set under the drip so the fat can be caught and carried to the cornbread, which is the whole point of it.",
-    "ten": "How many trays of banana pudding she signed up for. She brought eleven.",
-    "pale": "How the coals look before they are worth carrying: dusted white, no flame left on them at all."
-   },
-   "prefer": [
-    "plate",
-    "plan",
-    "pan",
-    "ten",
-    "pale"
-   ],
-   "scene": "Four in the morning, and the coals"
-  },
-  {
-   "base": "pastry",
-   "theme": "texas",
-   "clues": {
-    "pastry": "Nobody in the hall uses the word. It is pies, pudding, and a pound cake under a glass dome.",
-    "tarp": "Blue, thrown over the woodpile in September and held down with two blocks and an old wheel rim.",
-    "tray": "Steam kind, riding to the hall in a trunk on a bed of towels so the meat is still hot when it lands.",
-    "party": "What they call it out of state. Here it is a picking, and the difference matters to the people saying it.",
-    "pray": "What the cook does alone at four in the morning, before he lifts the lid and looks at what he has.",
-    "spray": "A bottle of vinegar and water kept within arm's reach for the second the fat catches and flares."
-   },
-   "prefer": [
-    "tarp",
-    "tray",
-    "party",
-    "pray",
-    "spray"
-   ],
-   "scene": "What they call it, and what is for after"
-  },
-  {
-   "base": "oracle",
-   "theme": "texas",
-   "clues": {
-    "oracle": "The eighty-year-old in the folding chair, asked twice an hour whether it is ready, answering in one word.",
-    "coal": "Carried on a flat blade from the barrel to the fire, one load every fifteen minutes, all night.",
-    "acre": "The one behind the house, cut Friday so nobody's chair sinks and no child disappears in the grass.",
-    "oral": "How the recipe exists. There is no card, and the woman holding it has never once written it down.",
-    "clear": "The sauce is so thin and see-through that the first time you are handed it you think somebody poured you water.",
-    "cola": "A New Bern druggist mixed the first one in 1893, which is why the cooler out here is not neutral ground."
-   },
-   "prefer": [
-    "coal",
-    "acre",
-    "oral",
-    "clear",
-    "cola"
-   ],
-   "scene": "Who gets asked whether it is ready"
-  },
-  {
-   "base": "failed",
-   "theme": "texas",
-   "clues": {
-    "failed": "What his first hog did, at nineteen, in front of everybody, and he still tells it on himself.",
-    "field": "Tobacco, and the picking waits until the last barn comes out and there is finally a free Saturday.",
-    "deal": "Made with the packing house in August: two hogs, dressed, held on ice until Friday morning.",
-    "laid": "How the animal goes on: split down the backbone, opened flat, four people lifting it together.",
-    "dial": "The one on the thermometer nobody trusts. He goes by the sound the fat makes.",
-    "lid": "Sheet of tin weighted with a cinder block, lowered over the pit when the wind gets up."
-   },
-   "prefer": [
-    "field",
-    "lid",
-    "deal",
-    "laid",
-    "dial"
-   ],
-   "scene": "Getting the animal, and getting it on"
-  },
-  {
-   "base": "pantry",
-   "theme": "texas",
-   "clues": {
-    "pantry": "Church kitchen shelves: number ten cans, paper boats by the hundred, and the good aluminum she counts twice.",
-    "rant": "Fifteen minutes on what they do to it in Lexington, delivered to a man who already agrees with every word.",
-    "pay": "Nobody at the fire takes any, and the man who once asked about gas money has not lived it down.",
-    "nap": "Taken in the cab of the truck at three in the morning, forty minutes, boots still on.",
-    "yarn": "She works it in a lawn chair beside the fire through her whole shift, and nobody suggests she go inside.",
-    "tray": "Chopped, slaw, hush puppies, a slice of white bread, handed across the counter in that order."
-   },
-   "prefer": [
-    "rant",
-    "pay",
-    "nap",
-    "tray",
-    "yarn"
-   ],
-   "scene": "The church hall, and what it holds"
-  },
-  {
-   "base": "sought",
-   "theme": "texas",
-   "clues": {
-    "sought": "Wages, a school, a room of your own: what she boarded the Illinois Central to find.",
-    "south": "The Side that has Lem's on Seventy-Fifth, and half the argument about who does tips best.",
-    "tough": "The cartilage running through a rib end. You chew around it, and that is the point of the cut.",
-    "hogs": "What the Union Stock Yards took in by the million until 1971, the industry this food grew up beside.",
-    "host": "Whoever's turn it is this year, decided in April by the woman who runs the group text.",
-    "hot": "Mild or the other one, asked through the glass, and there is no third answer available."
-   },
-   "prefer": [
-    "south",
-    "tough",
-    "hogs",
-    "host",
-    "hot"
-   ],
-   "scene": "The Great Migration, and the stockyards"
-  },
-  {
-   "base": "upshot",
-   "theme": "texas",
-   "clues": {
-    "upshot": "After the wait, the bag, the ride home: two pounds of ends and a link, and nobody speaks.",
-    "shop": "Not a restaurant. Four feet of standing room and a menu board with the prices taped over twice.",
-    "push": "What you do with the bill into the little turntable, and what she does with the sack coming back.",
-    "pots": "Two behind the window, kept warm: the mild one, and the one they will warn you about.",
-    "tops": "Where the fries go once the meat is in: over it, never beside it, so the sauce runs down.",
-    "south": "Stony Island, Cottage Grove, Seventy-Ninth: everywhere worth arguing about is on one half of the map."
-   },
-   "prefer": [
-    "shop",
-    "push",
-    "south",
-    "pots",
-    "tops"
-   ],
-   "scene": "The wait, the sack, the ride home"
-  },
-  {
-   "base": "polite",
-   "theme": "texas",
-   "clues": {
-    "polite": "Say good evening before you say your order. The woman who owns the place notices who does.",
-    "tip": "The trimmed end of a spare rib, cartilage and all, cheap because the packer had no use for it.",
-    "pit": "Glass-fronted, brick-lined, hickory burning down at one end. The box this city built its barbecue in.",
-    "tile": "Floor, walls, ceiling to shoulder height, so the whole front room hoses down at eleven at night.",
-    "lit": "The hickory has been this since five in the morning, hours before the first order is taken.",
-    "lot": "Six spaces of cracked asphalt beside the shop, and the smoker takes up two of them."
-   },
-   "prefer": [
-    "tip",
-    "lot",
-    "pit",
-    "tile",
-    "lit"
-   ],
-   "scene": "Seventy-Fifth Street, and the glass box"
-  },
-  {
-   "base": "bruise",
-   "theme": "texas",
-   "clues": {
-    "bruise": "The color the sky over the water goes the week everybody admits the season is finished.",
-    "ribs": "The whole rack, which is not what this city is known for. The ends are.",
-    "rub": "Salt, pepper, paprika and whatever else she will not name, worked in the night before.",
-    "sure": "She is, about the sauce, having made it the same way since her mother had the shop.",
-    "rise": "White bread out of a plastic sleeve never had to do it before going under the meat.",
-    "bus": "Forty minutes home with the warm box on your lap, and every rider knows what you are carrying."
-   },
-   "prefer": [
-    "ribs",
-    "rub",
-    "sure",
-    "bus",
-    "rise"
-   ],
-   "scene": "The end of the season, and the sauce"
-  },
-  {
-   "base": "clouds",
-   "theme": "texas",
-   "clues": {
-    "clouds": "What comes over the fence from the garage all Saturday, so the neighbor two doors down knows the menu.",
-    "soul": "The word this city put on the food once it came up from the Delta and needed a name on a sign.",
-    "loud": "The radio in the alley, the fan on the smoker, and two card games going at once behind the garage.",
-    "sold": "By the pound at the window, and by two on a Saturday afternoon there is nothing left to buy.",
-    "duo": "Ends and a link in the same sack. Ordering only one of them marks you as new to the block.",
-    "cold": "The pop in the chest by the garage door, buried so deep in ice your hand aches getting one."
-   },
-   "prefer": [
-    "soul",
-    "loud",
-    "sold",
-    "cold",
-    "duo"
-   ],
-   "scene": "Saturday behind the garage"
-  },
-  {
-   "base": "closed",
-   "theme": "texas",
-   "clues": {
-    "closed": "What the good shop is on Christmas and New Year's, and the sign has said so since her father ran it.",
-    "cold": "What the brick room never is, even in January. It holds heat for hours after the fire is out.",
-    "old": "The smoker is this, and nobody will let anybody weld a new door onto it.",
-    "sled": "A child drags one past the shop window in January while her mother waits for a number.",
-    "dose": "How much sauce goes on when you say extra: enough that the fries at the bottom turn orange.",
-    "lose": "Four months of the year go out here, and that is exactly why nobody wastes a warm Saturday."
-   },
-   "prefer": [
-    "cold",
-    "old",
-    "sled",
-    "dose",
-    "lose"
-   ],
-   "scene": "The shop in January"
-  },
-  {
-   "base": "locate",
-   "theme": "texas",
-   "clues": {
-    "locate": "You do it at seven in the morning to a free table with no permit on it, and then you hope.",
-    "coal": "Dumped in the red can when you are done, never on the grass, and never in a park that forbids it.",
-    "coat": "On the back of the folding chair by nine at night in June, because the wind comes off the water.",
-    "late": "What the application cannot be: fifty people or more and the Park District wants it well ahead.",
-    "ale": "Not allowed at any size without the permit, along with amplified sound and anything with a tent.",
-    "lot": "Where the trucks back in on Seventy-Fifth, and the line to the window starts at the curb."
-   },
-   "prefer": [
-    "coal",
-    "coat",
-    "late",
-    "lot",
-    "ale"
-   ],
-   "scene": "A Park District table by the water"
-  },
-  {
-   "base": "coward",
-   "theme": "texas",
-   "clues": {
-    "coward": "They call the cousin this for asking sauce on the side, and he answers to it all afternoon.",
-    "ward": "Yours is the office that signs the street-closure request, and the woman at that desk knows your block.",
-    "crowd": "Forty on the pavement by two, and the folding tables came out of three different basements.",
-    "road": "The barricades come off at eight and it goes back to being one, with grease marks by the curb.",
-    "word": "She gave the neighbor one about the noise, and the whole block held her to it.",
-    "card": "The sign in the window says they do not take one, which is why the machine by the door stays busy."
-   },
-   "prefer": [
-    "ward",
-    "crowd",
-    "road",
-    "word",
-    "card"
-   ],
-   "scene": "The block party, and the permit"
-  },
-  {
-   "base": "ankles",
-   "theme": "texas",
-   "clues": {
-    "ankles": "What the wind finds first, in the gap over your socks, standing outside a shop in February.",
-    "lake": "Right there, and you still cannot set a grill on the sand. The shore is where it is banned outright.",
-    "kale": "The greens are not this. Collards, smoked turkey, and she will hear no discussion about it.",
-    "sale": "What the block club runs off a card table on the corner, plates going to whoever paid ahead.",
-    "lean": "The woman ahead of you is doing it on the counter, ordering for a whole house off a list.",
-    "sneak": "The children do it with the fries on the ride home, and she pretends not to notice."
-   },
-   "prefer": [
-    "lake",
-    "kale",
-    "sale",
-    "lean",
-    "sneak"
-   ],
-   "scene": "Winter outside the shop window"
-  },
-  {
-   "base": "carved",
-   "theme": "texas",
-   "clues": {
-    "carved": "Not the word for it. A cleaver, a wooden block, and eight strokes straight through the order.",
-    "crave": "The smell out of the roof vent does it to people two blocks away who were not even hungry.",
-    "ave": "Halsted, Ashland, Western: the long ones that run the length of the city, and the shops sit on them.",
-    "acre": "The yard behind a two-flat is not one. Twenty feet of concrete, a fence, and the smoker.",
-    "read": "She does it to the line, counting heads and putting more on before anybody has ordered.",
-    "card": "Taped inside the glass: no checks, and the machine for anything else has been broken since June."
-   },
-   "prefer": [
-    "crave",
-    "ave",
-    "acre",
-    "read",
-    "card"
-   ],
-   "scene": "The blade, the block, eight strokes"
-  },
-  {
-   "base": "crafts",
-   "theme": "texas",
-   "clues": {
-    "crafts": "Nobody in the shop would use the word. It is a trade, learned standing beside somebody for years.",
-    "scarf": "Hers holds the smell of the smoke room for a week, and she stopped apologizing for that long ago.",
-    "fat": "It renders down through the cartilage and into the fries underneath. Take it out and there is no dish.",
-    "fast": "How the line moves once the shift lets out: name, order, money, sack, next.",
-    "cars": "Double-parked on both sides of Madison with the hazards on, because there is nowhere to leave one.",
-    "cast": "The coals do it across the ceiling of the back room every time the door swings open."
-   },
-   "prefer": [
-    "scarf",
-    "fat",
-    "fast",
-    "cars",
-    "cast"
-   ],
-   "scene": "Standing beside somebody for years"
-  },
-  {
-   "base": "hoping",
-   "theme": "texas",
-   "clues": {
-    "hoping": "What the man at the barrel does about the weather, from four until the meat is ready.",
-    "hog": "Split flat, skin down, a hundred and forty pounds, and it takes the whole night.",
-    "pig": "What the church sign says they are picking on Saturday, plates from eleven.",
-    "hop": "What the ash does when the shovel drops it under the cooker, which is why you stand back.",
-    "pin": "What holds the wire down over the cooker, bent out of shape from six years of this.",
-    "ping": "The sound the tin lid makes as it cools, and how she knows the fire has dropped."
-   },
-   "prefer": [
-    "hog",
-    "pig",
-    "hop",
-    "pin",
-    "ping"
-   ],
-   "scene": "The man who stays with the barrel"
   },
   {
    "base": "filmed",
@@ -6398,6 +4839,326 @@
     "clot"
    ],
    "scene": "What you packed, and what you actually wore"
+  },
+  {
+   "base": "potsie",
+   "theme": "texas",
+   "clues": {
+    "potsie": "Nobody's name for it. Everyone's name for the man who runs it",
+    "tips": "Rib. Chopped, on white bread, in a styrofoam box, and that IS the dish",
+    "pit": "Behind glass, so you watch your own dinner for twenty minutes",
+    "post": "Where the line forms, out the door, from about nine on a Friday",
+    "step": "Up to the plexiglass, order through the slot, and do not dawdle",
+    "set": "The order the man builds it in, and correcting him is not done"
+   },
+   "prefer": [
+    "tips",
+    "pit",
+    "post",
+    "step",
+    "set"
+   ],
+   "scene": "The South Side, and the aquarium smoker in the window"
+  },
+  {
+   "base": "priest",
+   "theme": "texas",
+   "clues": {
+    "priest": "What the man with the knife is treated as, and he does not discourage it",
+    "tips": "Not the dish here. Here they are the burnt ends of a brisket, sold quietly",
+    "pit": "Brick, indirect, post oak, and it has not gone fully out since the seventies",
+    "step": "Along the counter as it is cut, one cut at a time, in front of you",
+    "rest": "An hour minimum, wrapped, and the whole day is arranged around it",
+    "ripe": "What the smoke smell is on your coat by the time you reach the car"
+   },
+   "prefer": [
+    "tips",
+    "pit",
+    "step",
+    "rest",
+    "ripe"
+   ],
+   "scene": "Central Texas, at the counter, by the pound"
+  },
+  {
+   "base": "crafty",
+   "theme": "texas",
+   "clues": {
+    "crafty": "What twelve hours over coals with no thermometer actually requires",
+    "fry": "What the skin does at the end, and it is handed round before the meat",
+    "fat": "Rendered down and back into the chop, which is the whole argument for whole hog",
+    "tray": "Paper-lined, from the window, with slaw and hush puppies and no plate",
+    "cart": "Ash from the burn barrel to the pit, all night, by somebody's nephew",
+    "cry": "What the vinegar does to a cut on your hand, and the reason for gloves"
+   },
+   "prefer": [
+    "fry",
+    "fat",
+    "tray",
+    "cart",
+    "cry"
+   ],
+   "scene": "Eastern Carolina, and the whole hog"
+  },
+  {
+   "base": "ambush",
+   "theme": "texas",
+   "clues": {
+    "ambush": "What the wind does at about four, and the whole night turns on it",
+    "ash": "Shovelled, not swept, and its depth is how you read the fire",
+    "mush": "What the meat becomes if the shoveller sleeps, and it cannot be undone",
+    "bus": "The one that goes past at five and tells you how long you have been here",
+    "hams": "Two of them, over the coals, and they are the last thing to come off",
+    "hub": "The barrel itself, and everything that happens tonight happens around it"
+   },
+   "prefer": [
+    "ash",
+    "mush",
+    "bus",
+    "hams",
+    "hub"
+   ],
+   "scene": "The burn barrel, three in the morning"
+  },
+  {
+   "base": "misled",
+   "theme": "texas",
+   "clues": {
+    "misled": "What everyone outside your county has been, on this subject, their whole life",
+    "mild": "On the South Side, in a squeeze bottle, and it is a specific thing not a spice level",
+    "side": "Which one of the Carolinas you are in, and it changes the whole recipe",
+    "slid": "Under the door of the argument, every family gathering, by an uncle",
+    "lids": "Off the bottles at the table, because it goes on after, not before",
+    "dime": "What the whole disagreement is worth, and it will outlive everyone present"
+   },
+   "prefer": [
+    "mild",
+    "side",
+    "slid",
+    "lids",
+    "dime"
+   ],
+   "scene": "Sauce, and who is wrong about it"
+  },
+  {
+   "base": "curate",
+   "theme": "texas",
+   "clues": {
+    "curate": "What you do with a wood pile if you want it burning right in November",
+    "cure": "Before the smoke, in salt, and the day before matters as much as the day",
+    "crate": "Post oak, split, stacked by the fence, and seasoned since spring",
+    "cart": "Loaded twice because the first load was optimistic",
+    "race": "Against the rain, which is why the tarp is already in the truck",
+    "acre": "How far you can smell a Saturday from, out there, with the wind right"
+   },
+   "prefer": [
+    "cure",
+    "crate",
+    "cart",
+    "race",
+    "acre"
+   ],
+   "scene": "Buying the wood, in August"
+  },
+  {
+   "base": "drafty",
+   "theme": "texas",
+   "clues": {
+    "drafty": "What the firebox door is, deliberately, and closing it fully kills the whole thing",
+    "fry": "The catfish on the flat top, for people who did not come for the ribs",
+    "fat": "Trimmed to a quarter inch, and the trimmings go in the beans",
+    "tray": "Handed through the window with a slice of bread doing the work of a plate",
+    "yard": "Somebody's, and the permit situation is best described as ongoing",
+    "raft": "Of smoke across the road at eleven, which is the only advertising there is"
+   },
+   "prefer": [
+    "fry",
+    "fat",
+    "tray",
+    "yard",
+    "raft"
+   ],
+   "scene": "The trailer pit at the side of the road"
+  },
+  {
+   "base": "pathos",
+   "theme": "texas",
+   "clues": {
+    "pathos": "The mood at four when the trays are down to bread and sauce",
+    "ash": "Grey, banked at the side, and still hot enough to matter tomorrow",
+    "post": "Oak, one log left, saved deliberately for the last hour",
+    "hats": "Off, finally, and the sunburn line is exactly where it was last year",
+    "hot": "The links, and the word is doing double duty on that sign",
+    "oath": "Sworn every year about starting earlier, and broken every year by noon"
+   },
+   "prefer": [
+    "ash",
+    "post",
+    "hats",
+    "hot",
+    "oath"
+   ],
+   "scene": "Sunday afternoon, and what is left"
+  },
+  {
+   "base": "paints",
+   "theme": "barbershop",
+   "clues": {
+    "paints": "What the shelf looks like from across the room, in eleven colours",
+    "satin": "The scarf that goes on the second she is out of the chair, before the door",
+    "pin": "Holding the section she is not working on, and there are nine more in her mouth",
+    "tip": "Cash, folded, into the hand not holding the shears, and never on the card",
+    "sat": "Ninety minutes so far, and the appointment was for ten",
+    "spin": "Of the chair to face the mirror, which is the verdict being delivered"
+   },
+   "prefer": [
+    "satin",
+    "pin",
+    "tip",
+    "sat",
+    "spin"
+   ],
+   "scene": "The station, and what is on it"
+  },
+  {
+   "base": "fabled",
+   "theme": "barbershop",
+   "clues": {
+    "fabled": "His line-up is, across three neighbourhoods, and the wait proves it",
+    "fade": "Low, mid or high, and getting that wrong is the one unforgivable thing",
+    "blade": "Off the guard entirely for the last pass, freehand, near the ear",
+    "bald": "Where it ends at the bottom, and skin means skin",
+    "deal": "What the man in the next chair is describing, and it involves a truck",
+    "lead": "Who has the floor in the argument, which changes about every four minutes"
+   },
+   "prefer": [
+    "fade",
+    "blade",
+    "bald",
+    "deal",
+    "lead"
+   ],
+   "scene": "The fade, and the man who will not rush it"
+  },
+  {
+   "base": "bridal",
+   "theme": "barbershop",
+   "clues": {
+    "bridal": "Half the appointments in June, and the deposit is non-refundable",
+    "braid": "Knotless, waist length, and the quote was for four hours",
+    "laid": "The edges, with the little brush, and this is the part that gets photographed",
+    "bald": "What she warns you about if you ask for them any tighter",
+    "rail": "The back of the chair, where your neck has been for two hours",
+    "raid": "On the snack bag at hour three, conducted by the stylist, unapologetically"
+   },
+   "prefer": [
+    "braid",
+    "laid",
+    "bald",
+    "rail",
+    "raid"
+   ],
+   "scene": "Braids, and the six hours nobody warned you about"
+  },
+  {
+   "base": "silken",
+   "theme": "barbershop",
+   "clues": {
+    "silken": "What the press is for, and the argument about whether it is worth it",
+    "silk": "The press, and the flat iron, and about a week if it does not rain",
+    "skin": "Of your scalp, which she will tell you about honestly and unprompted",
+    "line": "Where the new growth starts, and she can see it from the door",
+    "sink": "The bowl, the cold rim on your neck, and the water finally going warm",
+    "kiln": "What the dryer feels like at hour two, said by everyone, every time"
+   },
+   "prefer": [
+    "silk",
+    "skin",
+    "line",
+    "sink",
+    "kiln"
+   ],
+   "scene": "Wash day, at the bowl"
+  },
+  {
+   "base": "frayed",
+   "theme": "barbershop",
+   "clues": {
+    "frayed": "The ends, which is why she is talking about a trim you did not book",
+    "fade": "What the colour does by week five, which is the part nobody budgets for",
+    "dye": "Mixed in the back, in a bowl, to a shade that has no name on any box",
+    "dry": "Air, hood or blow, and the answer determines the next ninety minutes",
+    "year": "How long since the last big change, and she remembers exactly",
+    "read": "What she does to your face in the mirror before she picks up anything"
+   },
+   "prefer": [
+    "fade",
+    "dye",
+    "dry",
+    "year",
+    "read"
+   ],
+   "scene": "Colour, and what it costs"
+  },
+  {
+   "base": "tokens",
+   "theme": "barbershop",
+   "clues": {
+    "tokens": "What the seats become on a Saturday: held, traded, and fiercely defended",
+    "knots": "Bantu, put in wet on Friday, taken out Sunday morning for the curl",
+    "tone": "Of the room, set by whoever has been coming longest, not by the owner",
+    "set": "Standing, same time every three weeks, and it survives house moves",
+    "note": "On the mirror about the price going up, ignored by everyone including her",
+    "stone": "What the floor is by four, according to everybody standing on it"
+   },
+   "prefer": [
+    "knots",
+    "tone",
+    "set",
+    "note",
+    "stone"
+   ],
+   "scene": "The regulars, and their standing times"
+  },
+  {
+   "base": "castle",
+   "theme": "barbershop",
+   "clues": {
+    "castle": "What the chair is, and the person in it is not to be disturbed",
+    "lace": "The front, laid and cut, and the scissors near your forehead are fine",
+    "seat": "Yours when he says it is yours, and not one minute before",
+    "set": "The chair height, pumped up with a foot, without asking",
+    "sale": "The products by the door, mentioned once, never pushed twice",
+    "slate": "Wiped between heads, and the next name goes up in marker"
+   },
+   "prefer": [
+    "lace",
+    "seat",
+    "set",
+    "sale",
+    "slate"
+   ],
+   "scene": "The cape, and the rules of the chair"
+  },
+  {
+   "base": "bailed",
+   "theme": "barbershop",
+   "clues": {
+    "bailed": "The eleven o'clock, again, and there is a policy about this now",
+    "blade": "Cleaned and oiled between heads, and the sound of it is the shop",
+    "bald": "The joke made at the man in the door, by everyone, immediately",
+    "laid": "Edges, again, on the woman who took the cancelled slot and cannot believe her luck",
+    "idea": "Somebody's, about a business, explained at length to a captive room",
+    "able": "What she says you are, about doing your own edges, and she is being kind"
+   },
+   "prefer": [
+    "blade",
+    "bald",
+    "laid",
+    "idea",
+    "able"
+   ],
+   "scene": "Who did not show, and who took the slot"
   }
  ]
 }
