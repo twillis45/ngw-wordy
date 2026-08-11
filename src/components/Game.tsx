@@ -2038,7 +2038,16 @@ function Intro({ onDismiss }: { onDismiss: () => void }) {
       ref={ref}
       role="dialog"
       aria-modal="true"
-      aria-label="How ranks work"
+      /*
+       * Named for what it IS.
+       *
+       * This said "How ranks work" while rendering a heading that reads "How to
+       * play" — so the one player who cannot see the heading, and is relying on
+       * the label instead, was told the wrong thing about the first dialog in
+       * the game. Sighted players never saw the discrepancy, which is exactly
+       * why it survived.
+       */
+      aria-label="How to play"
       tabIndex={-1}
       onClick={onDismiss}
       className="fixed inset-0 z-[60] grid cursor-pointer place-items-center px-6 outline-none"
