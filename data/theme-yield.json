@@ -357,8 +357,7 @@
      "east:titles",
      "beat:voice",
      "skate:voice"
-    ],
-    "owner": "cookout"
+    ]
    },
    {
     "base": "breast",
@@ -371,7 +370,7 @@
      "beat:voice",
      "bars:voice"
     ],
-    "owner": "sunday"
+    "owner": "cookout"
    },
    {
     "base": "denial",
@@ -858,7 +857,7 @@
  {
   "id": "cookout",
   "vocab": 103,
-  "shipped": 21,
+  "shipped": 9,
   "supported": 73,
   "boards": [
    {
@@ -873,7 +872,7 @@
      "sear:said",
      "rest:said"
     ],
-    "owner": "sunday"
+    "owner": "cookout"
    },
    {
     "base": "hearts",
@@ -886,7 +885,8 @@
      "heat:said",
      "ash:said",
      "rest:said"
-    ]
+    ],
+    "owner": "cookout"
    },
    {
     "base": "cinema",
@@ -899,7 +899,7 @@
      "can:said",
      "amen:said"
     ],
-    "owner": "reunion"
+    "owner": "cookout"
    },
    {
     "base": "phased",
@@ -911,7 +911,8 @@
      "heap:said",
      "shade:said",
      "ash:said"
-    ]
+    ],
+    "owner": "cookout"
    },
    {
     "base": "turban",
@@ -924,7 +925,7 @@
      "rub:said",
      "turn:said"
     ],
-    "owner": "carolina"
+    "owner": "cookout"
    },
    {
     "base": "waters",
@@ -1021,7 +1022,8 @@
      "ice:said",
      "slice:said",
      "lid:voice"
-    ]
+    ],
+    "owner": "cookout"
    },
    {
     "base": "wealth",
@@ -1058,7 +1060,7 @@
      "rack:said",
      "bake:said"
     ],
-    "owner": "texas"
+    "owner": "cookout"
    },
    {
     "base": "basket",
@@ -1069,8 +1071,7 @@
      "tea:named",
      "baste:said",
      "bake:said"
-    ],
-    "owner": "cookout"
+    ]
    },
    {
     "base": "carmen",
@@ -1116,7 +1117,8 @@
      "dip:named",
      "pit:said",
      "ice:said"
-    ]
+    ],
+    "owner": "cookout"
    },
    {
     "base": "earthy",
@@ -2125,7 +2127,7 @@
   "id": "church",
   "vocab": 69,
   "shipped": 19,
-  "supported": 16,
+  "supported": 15,
   "boards": [
    {
     "base": "aspire",
@@ -2215,17 +2217,6 @@
      "robe:named",
      "rose:said"
     ]
-   },
-   {
-    "base": "famine",
-    "ideas": 2,
-    "known": 2,
-    "weight": 5,
-    "rows": [
-     "amen:named",
-     "fan:said"
-    ],
-    "owner": "church"
    },
    {
     "base": "humane",
@@ -2604,7 +2595,7 @@
  {
   "id": "sunday",
   "vocab": 38,
-  "shipped": 20,
+  "shipped": 19,
   "supported": 11,
   "boards": [
    {
@@ -2736,15 +2727,14 @@
     "rows": [
      "tea:named",
      "late:said"
-    ],
-    "owner": "cookout"
+    ]
    }
   ]
  },
  {
   "id": "texas",
   "vocab": 43,
-  "shipped": 12,
+  "shipped": 11,
   "supported": 11,
   "boards": [
    {
@@ -3451,7 +3441,7 @@
  {
   "id": "reunion",
   "vocab": 46,
-  "shipped": 27,
+  "shipped": 26,
   "supported": 4,
   "boards": [
    {
@@ -3550,7 +3540,7 @@
  {
   "id": "carolina",
   "vocab": 42,
-  "shipped": 12,
+  "shipped": 11,
   "supported": 3,
   "boards": [
    {

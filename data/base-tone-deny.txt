@@ -78,3 +78,10 @@ rotting
 spoiled
 rancid
 mildew
+
+# hunger and want — surfaced drafting the church pack, where `FAMINE` was
+# offered as a prize word alongside `amen` and `fan`
+famine
+starve
+hunger
+beggar

@@ -81,7 +81,8 @@
   {
    "id": "church",
    "name": "Sunday Service",
-   "blurb": "The organ, the usher's white glove, and the front row that decides everything."
+   "blurb": "The organ, the fan, the mothers in white, and the part of the service that is not on the program.",
+   "category": "THE SANCTUARY"
   },
   {
    "id": "homecoming",
@@ -348,26 +349,6 @@
     "math"
    ],
    "scene": "Lift Every Voice, second verse"
-  },
-  {
-   "base": "organs",
-   "theme": "sunday",
-   "clues": {
-    "organs": "The Hammond up front, and the man who has been sitting at it since 1978.",
-    "organ": "Two speakers, one bench, and a sound the piano has never once matched.",
-    "sang": "What she did at one funeral, and got asked at every funeral after that.",
-    "song": "Started in the back of the room before the musicians had found the key.",
-    "rags": "The bag of them under the fellowship hall sink, cut from old choir robes.",
-    "soar": "What the last note does while the drummer holds everything else down."
-   },
-   "prefer": [
-    "organ",
-    "sang",
-    "song",
-    "rags",
-    "soar"
-   ],
-   "scene": "The Hammond, and the man at it since 1978"
   },
   {
    "base": "mother",
@@ -1950,326 +1931,6 @@
    "scene": "The player the table straightens up for"
   },
   {
-   "base": "praise",
-   "theme": "church",
-   "clues": {
-    "praise": "The team goes up ten minutes before the choir does, and the room is standing by the second song.",
-    "raise": "What the hands do without being told, all down the row, on the run into the chorus.",
-    "pairs": "White gloves come out of her purse in twos, one set for her and one for whoever forgot.",
-    "spare": "The extra offering envelope she keeps in her Bible for the visitor sitting beside her.",
-    "rise": "What the whole building does on the last verse, and the ushers step back off the doors.",
-    "ears": "The sound man's, and the exact second he pulls the guest preacher's mic back down."
-   },
-   "prefer": [
-    "raise",
-    "pairs",
-    "spare",
-    "rise",
-    "ears"
-   ],
-   "scene": "The ten minutes before the choir"
-  },
-  {
-   "base": "choirs",
-   "theme": "church",
-   "clues": {
-    "choirs": "Three of them here: the mass, the youth, and the men's, and only one gets second Sunday.",
-    "choir": "The A selection is theirs. The B selection is why Thursday rehearsal ran until ten.",
-    "rich": "Not a word for this congregation. A word for what eleven voices do in a room built for sixty.",
-    "sir": "What the junior usher calls a man twice his age, because the board taught him to.",
-    "his": "Whose robe went missing before the anniversary, and who alone carries the closet key.",
-    "chi": "The Greek letter standing in for Christ in the shorthand painted on the fellowship hall banner."
-   },
-   "prefer": [
-    "choir",
-    "rich",
-    "sir",
-    "his",
-    "chi"
-   ],
-   "scene": "Three of them, and one Sunday each"
-  },
-  {
-   "base": "gloves",
-   "theme": "church",
-   "clues": {
-    "gloves": "Cotton, white, and a fresh set in her vestibule drawer for the girl on the junior board.",
-    "glove": "One hand up, one hand folded, and the cotton on both means she is working, not visiting.",
-    "solve": "What the board does with a full room and four empty seats, in under a minute, without speaking.",
-    "egos": "What the minister of music and the drummer have been managing between them since March.",
-    "lose": "What she will not do: the count, the keys, or her place at the back of the sanctuary.",
-    "ogle": "What you do not do to a visitor's crown, no matter how wide the brim gets."
-   },
-   "prefer": [
-    "glove",
-    "solve",
-    "egos",
-    "lose",
-    "ogle"
-   ],
-   "scene": "The usher board's white cotton"
-  },
-  {
-   "base": "rushed",
-   "theme": "church",
-   "clues": {
-    "rushed": "Nothing about the eleven o'clock is, and the parking lot at one-thirty settles the argument.",
-    "usher": "She stands the whole hour at the door and seats you when the song allows, not when you arrive.",
-    "herds": "What the megachurch parking team does with two hundred cars and one working exit.",
-    "hers": "The chair by the vestibule window. It has a cushion on it and nobody has to be told.",
-    "dues": "What the auxiliary collects in January, in cash, into a ledger she takes home with her.",
-    "sure": "How the woman in the front row says a thing once, and it becomes the plan."
-   },
-   "prefer": [
-    "usher",
-    "herds",
-    "hers",
-    "dues",
-    "sure"
-   ],
-   "scene": "The eleven o'clock, and how long it runs"
-  },
-  {
-   "base": "remain",
-   "theme": "church",
-   "clues": {
-    "remain": "What the mothers do after the benediction, seated, while the building empties around them.",
-    "rain": "Why the church van makes two trips, and why the ushers keep towels stacked by the door.",
-    "near": "Where the nurses' unit sits: aisle end, two rows back, in white, watching everything.",
-    "earn": "Nobody does the front pew. You are seated in it by somebody, or you are not.",
-    "mine": "What the sopranos call the alto line the week the director reassigns it.",
-    "amen": "Two syllables from the mother in the third pew, and he takes it as permission to keep going."
-   },
-   "prefer": [
-    "amen",
-    "rain",
-    "near",
-    "earn",
-    "mine"
-   ],
-   "scene": "The mothers who stay seated after"
-  },
-  {
-   "base": "humane",
-   "theme": "church",
-   "clues": {
-    "humane": "What the benevolence fund is for: a light bill, a bus ticket, and no questions in the meeting.",
-    "human": "What the pastor admits to being, once, from the pulpit, and the room goes very quiet.",
-    "mean": "What she does not have to be. She simply looks, and the whole back row sits down.",
-    "hum": "What the keyboard holds under the altar call, low, until somebody finally comes down.",
-    "menu": "Typed for the repast and taped inside the hall door, and the family never sees a bill.",
-    "amen": "Printed nowhere in the program, and still the last word of every prayer in the building."
-   },
-   "prefer": [
-    "human",
-    "amen",
-    "mean",
-    "hum",
-    "menu"
-   ],
-   "scene": "The benevolence fund, no questions"
-  },
-  {
-   "base": "easily",
-   "theme": "church",
-   "clues": {
-    "easily": "Nothing about a three-hour Women's Day program happens this way, and no one expected it to.",
-    "aisle": "Hers to run, and the child who bolts up it during prayer gets caught by the elbow.",
-    "seal": "What the clerk presses into the certificate before the baptism goes into the book.",
-    "easy": "How the drummer starts the shout music, and it is not, and the whole room knows better.",
-    "yes": "What the mothers' board says, and only then does the trustee board pretend it decided.",
-    "lays": "What the nurse in white does over the woman who caught the spirit, quick, without a word."
-   },
-   "prefer": [
-    "aisle",
-    "seal",
-    "easy",
-    "yes",
-    "lays"
-   ],
-   "scene": "Women's Day, three hours, run to the minute"
-  },
-  {
-   "base": "fasten",
-   "theme": "church",
-   "clues": {
-    "fasten": "What she does to the hat pin at the door, so the crown will not move for three hours.",
-    "safe": "Bolted into the pastor's office, and the two women with the combination are not the pastor.",
-    "seat": "There are seven in the front row and every one of them belongs to a woman by name.",
-    "sent": "The sick-and-shut-in card, in her hand, every Monday, with stamps she buys herself.",
-    "east": "Which way the old sanctuary was built to face, and why the sun hits the third pew at eleven.",
-    "fan": "Cardboard on a wooden stick, worked steady through the sermon by three women in one pew."
-   },
-   "prefer": [
-    "safe",
-    "seat",
-    "sent",
-    "fan",
-    "east"
-   ],
-   "scene": "Hats, hat pins, and the front row"
-  },
-  {
-   "base": "mouths",
-   "theme": "church",
-   "clues": {
-    "mouths": "Forty of them open on the same word, and the third row can hear which one came in early.",
-    "shout": "The music behind it: two chords, the drummer, and not one person sitting down.",
-    "south": "Where the pastor's people came up from, which is why devotional service still opens the morning.",
-    "must": "What the basement smells like in August, and the trustees have been told about it twice.",
-    "thou": "The pronoun the old deacon still prays in, and nobody has ever asked him to stop.",
-    "most": "What the eleven o'clock has of everything: cars, children, and folks who came for one song."
-   },
-   "prefer": [
-    "shout",
-    "south",
-    "must",
-    "thou",
-    "most"
-   ],
-   "scene": "The music that gets the room up"
-  },
-  {
-   "base": "pianos",
-   "theme": "church",
-   "clues": {
-    "pianos": "The upright in the annex and the one up front, and only one has been tuned this year.",
-    "pins": "In the hat, in the corsage, and in the little cushion she keeps in the vestibule drawer.",
-    "naps": "The child laid across two laps in the fourth pew, out cold before the offering is lifted.",
-    "span": "Sixty-one years between the oldest usher on duty and the youngest, and both are on the door.",
-    "spin": "What the young minister of music put on the anniversary hymn, and the mothers had thoughts.",
-    "piano": "Middle C sticks, and she has played around it for two years without telling the trustees."
-   },
-   "prefer": [
-    "piano",
-    "pins",
-    "naps",
-    "span",
-    "spin"
-   ],
-   "scene": "Two instruments, one of them tuned"
-  },
-  {
-   "base": "probes",
-   "theme": "church",
-   "clues": {
-    "probes": "What the finance committee does to the roof estimate: line by line, twice, before any vote.",
-    "robes": "Burgundy with gold, forty-two of them, and one woman holds the key to that closet.",
-    "sober": "How the second service runs at the campus church: lights low, no tambourine, out in seventy minutes.",
-    "prose": "What the announcements turn into, when they were only ever supposed to be a list.",
-    "ropes": "The stanchion kind across the last four pews, until the board opens them at the second song.",
-    "reps": "The three run-throughs of the anniversary selection, Thursday night, after everybody worked all day."
-   },
-   "prefer": [
-    "robes",
-    "sober",
-    "prose",
-    "ropes",
-    "reps"
-   ],
-   "scene": "The trustees, the estimate, the vote"
-  },
-  {
-   "base": "bolder",
-   "theme": "church",
-   "clues": {
-    "bolder": "What the youth choir got by the third verse, once the church mothers stood up behind them.",
-    "lord": "The word the whole room says back to her, uncued, the moment she opens the devotional.",
-    "older": "The two women walked in on an arm, and the service does not begin until they are down.",
-    "role": "Hers is nowhere on the printed program, and the building would stall by ten past eleven without it.",
-    "lore": "Which pew flooded in '96, which pastor left in '04. She has all of it and no one wrote it down.",
-    "robe": "Zipped over her Sunday dress in the choir room, and the hem has to clear her shoes."
-   },
-   "prefer": [
-    "lord",
-    "older",
-    "role",
-    "lore",
-    "robe"
-   ],
-   "scene": "The woman who is on no program"
-  },
-  {
-   "base": "losing",
-   "theme": "church",
-   "clues": {
-    "losing": "What the roll book says about the fourth pew, and why she is on the phone Monday morning.",
-    "sing": "What six hundred people do when the power cuts out: no keyboard, no mic, still on pitch.",
-    "sign": "Out front, plastic letters, and the title she changes Tuesday with a suction cup pole.",
-    "oils": "Anointing, in a little bottle in her purse, and she reaches the hospital before the pastor does.",
-    "lions": "Daniel's, drawn on butcher paper down the basement wall for children's church.",
-    "song": "The A selection: four minutes on the printed page, and the organist knows it will run eleven."
-   },
-   "prefer": [
-    "song",
-    "sing",
-    "sign",
-    "oils",
-    "lions"
-   ],
-   "scene": "Who stopped coming, and who calls them"
-  },
-  {
-   "base": "broken",
-   "theme": "church",
-   "clues": {
-    "broken": "The third step up to the loft, since spring, and the trustees have priced the repair twice.",
-    "broke": "What the church was in 1994, and the eleven women who took up a Friday collection until it wasn't.",
-    "bone": "What the old song says the Lord can do with the dry ones, and the balcony stands for that verse.",
-    "born": "What the testimony always circles back to, and she gives the date and the street address.",
-    "knob": "Missing off the basement door since Easter, and everybody knows to push it with a hip.",
-    "robe": "Handed back at the door with the cuffs turned in, and she checks each for the cleaner."
-   },
-   "prefer": [
-    "broke",
-    "bone",
-    "born",
-    "knob",
-    "robe"
-   ],
-   "scene": "What eleven women raised in 1994"
-  },
-  {
-   "base": "bronze",
-   "theme": "church",
-   "clues": {
-    "bronze": "The plaque by the door with the founding members on it, and two of them are still in the building.",
-    "zone": "What the ushers cut the sanctuary into, four of them, one woman answering for each.",
-    "zero": "Where the building fund started in January, and the thermometer on the wall is filled in by hand.",
-    "bore": "Not what ninety minutes of preaching is, if the man behind you is keeping time on the pew back.",
-    "nor": "The word in the old benediction, neither this ___ that, and half the room says it right along.",
-    "robe": "White for the anniversary, pressed Saturday night, hung on the rolling rack by height."
-   },
-   "prefer": [
-    "zone",
-    "zero",
-    "bore",
-    "nor",
-    "robe"
-   ],
-   "scene": "The founders' plaque by the door"
-  },
-  {
-   "base": "dragon",
-   "theme": "church",
-   "clues": {
-    "dragon": "The red one out of Revelation, and the guest evangelist drew it on the easel pad in marker.",
-    "grand": "The march at the anniversary: two by two down the center, oldest board first, nobody hurrying.",
-    "road": "Eleven miles of it for the pastor who serves two charges, and the second service starts at three.",
-    "nod": "Hers, from the rear of the sanctuary, and only then do the doors come open.",
-    "darn": "What the seamstress does to a hem in the vestibule, ten minutes before the processional.",
-    "organ": "Pipes in the loft, a Hammond down front, and she works the pedals in stocking feet."
-   },
-   "prefer": [
-    "grand",
-    "road",
-    "organ",
-    "nod",
-    "darn"
-   ],
-   "scene": "The anniversary march, two by two"
-  },
-  {
    "base": "lacked",
    "theme": "spades",
    "clues": {
@@ -3088,66 +2749,6 @@
     "hat"
    ],
    "scene": "Sixty years of Chicago stepping, free"
-  },
-  {
-   "base": "safety",
-   "theme": "church",
-   "clues": {
-    "safety": "Dark suits, earpieces, and the retired deputy who trains that ministry is somebody's grandmother.",
-    "fast": "Twenty-one days every January, no meat, and the daily scripture goes out on the church group text.",
-    "yeast": "None of it in the Communion bread, because that first meal was eaten by people in a hurry to leave.",
-    "stay": "What the deacons do at the altar rail after dismissal, until the last person kneeling gets up.",
-    "teas": "The urn in the fellowship hall after second service, hot water and honey, singers pouring first.",
-    "seat": "Third pew, left side, hers since 1978, and a visitor gets moved out of it kindly."
-   },
-   "prefer": [
-    "fast",
-    "yeast",
-    "stay",
-    "seat",
-    "teas"
-   ],
-   "scene": "The twenty-one days, and the dark suits"
-  },
-  {
-   "base": "salute",
-   "theme": "church",
-   "clues": {
-    "salute": "What the Men's Day program calls the part where the founders are named and the room stands.",
-    "least": "The Matthew 25 line the pastor preaches every November, about who you did it unto.",
-    "salt": "The bag the trustees set by the front steps in January, so nobody goes down on the ice.",
-    "sale": "Rummage in the fellowship hall, Saturday eight to two, and the ledger goes home with the treasurer.",
-    "slate": "The officers read out at the annual meeting, typed since October by the nominating chair.",
-    "seat": "Folding, in the overflow room, and the ushers open that section only when the balcony fills."
-   },
-   "prefer": [
-    "least",
-    "salt",
-    "sale",
-    "slate",
-    "seat"
-   ],
-   "scene": "Men's Day, and the annual meeting"
-  },
-  {
-   "base": "famine",
-   "theme": "church",
-   "clues": {
-    "famine": "Joseph stored grain against it, and the basement pantry runs the same way: shelf full before the need.",
-    "fan": "Cardboard, wooden handle, the funeral home's name on the back, working harder than the window unit.",
-    "amen": "The corner where the deacons sit, and the one word back from it that keeps a preacher moving.",
-    "men": "A dozen of them cook and serve the annual breakfast, badly and proudly, one Saturday in October.",
-    "main": "The water line under the lot let go in February, and the treasurer cut the check that same day.",
-    "fine": "How everybody answers the greeter at the door, whether it is true that morning or not."
-   },
-   "prefer": [
-    "fan",
-    "amen",
-    "men",
-    "main",
-    "fine"
-   ],
-   "scene": "The pantry shelf, filled before the need"
   },
   {
    "base": "herald",
@@ -7468,6 +7069,186 @@
     "diet"
    ],
    "scene": "The cooler, the dip, and the folding chairs"
+  },
+  {
+   "base": "aspire",
+   "theme": "church",
+   "clues": {
+    "aspire": "What the whole hour is pointed at, and it is not the sermon",
+    "praise": "Breaks out where the program says the offering should be, and the program loses",
+    "rise": "Nobody announces it. The Hammond drops a step and the room is already up",
+    "reap": "The half of the verse everyone can finish, and the reason it gets quoted",
+    "ears": "What the drummer is playing by, because the key changed without warning",
+    "pair": "Of white gloves, folded on a lap, belonging to a woman who has not moved"
+   },
+   "prefer": [
+    "praise",
+    "rise",
+    "reap",
+    "ears",
+    "pair"
+   ],
+   "scene": "When the organ modulates and the room stands"
+  },
+  {
+   "base": "giants",
+   "theme": "church",
+   "clues": {
+    "giants": "The verse is about facing them, and this choir sings it like they have",
+    "saint": "What the program calls the ones who go first, and the front pew is theirs",
+    "sing": "The instruction and the whole job, and the director mouths every word",
+    "sang": "Past tense, and the way it is said afterwards makes it a verdict",
+    "gain": "What the offering is not for, said twice, by a man who means it",
+    "gnat": "Circling the flowers at the front all through the second verse"
+   },
+   "prefer": [
+    "saint",
+    "sing",
+    "sang",
+    "gain",
+    "gnat"
+   ],
+   "scene": "The choir stand, second service"
+  },
+  {
+   "base": "insure",
+   "theme": "church",
+   "clues": {
+    "insure": "Not what they do. What they do has no policy behind it and no invoice",
+    "nurse": "White dress, white shoes, standing before anyone else notices anything",
+    "rise": "What she helps someone do afterwards, with a hand under the elbow",
+    "rein": "What she puts on the moment, so it stays the person's own",
+    "ruin": "What a fall on that floor would be, which is why she is standing there",
+    "runs": "For the fan, the water, the tissue, the whole hour, and sits down last"
+   },
+   "prefer": [
+    "nurse",
+    "rise",
+    "rein",
+    "ruin",
+    "runs"
+   ],
+   "scene": "The nurses' board, in white, along the wall"
+  },
+  {
+   "base": "humane",
+   "theme": "church",
+   "clues": {
+    "humane": "The word for feeding people on the worst day of their lives",
+    "amen": "Said quietly here, by fewer people, and it lands heavier than upstairs",
+    "hum": "What the room does instead of talking, for the first twenty minutes",
+    "ham": "On the long table with the foil pans, because somebody cooked all night",
+    "hen": "In the other pan, and the two of them are the whole menu, every time",
+    "human": "What the day makes everyone here, more plainly than any other day"
+   },
+   "prefer": [
+    "amen",
+    "hum",
+    "ham",
+    "hen",
+    "human"
+   ],
+   "scene": "The repast, downstairs, after"
+  },
+  {
+   "base": "bowers",
+   "theme": "church",
+   "clues": {
+    "bowers": "What the room does when he finally comes through the door",
+    "robe": "Zipped by somebody else, because he is already somewhere in the third point",
+    "rose": "In the lapel, from the box the flower committee brings without being asked",
+    "sow": "What the text is about, and the reaping is not until the fourth point",
+    "brow": "Wiped once before he goes out, and about forty times after",
+    "bore": "What he is privately afraid of being, which is why the notes are that long"
+   },
+   "prefer": [
+    "robe",
+    "rose",
+    "sow",
+    "brow",
+    "bore"
+   ],
+   "scene": "The vestry, ten minutes before"
+  },
+  {
+   "base": "powers",
+   "theme": "church",
+   "clues": {
+    "powers": "The verse says they are made perfect in weakness, which helps at this moment",
+    "pew": "Third from the back, and everyone in it slides without being asked",
+    "rose": "The one on the end, which means somebody is being remembered today",
+    "sow": "What the sermon is already ten minutes into, and you have missed the setup",
+    "pose": "What you strike coming down the aisle, and it fools absolutely nobody",
+    "owe": "The feeling walking in at half past, and it is entirely self-issued"
+   },
+   "prefer": [
+    "pew",
+    "rose",
+    "sow",
+    "pose",
+    "owe"
+   ],
+   "scene": "Finding a seat when you have come in late"
+  },
+  {
+   "base": "mouths",
+   "theme": "church",
+   "clues": {
+    "mouths": "Some open, some moving without sound, and both count",
+    "shout": "Not a volume. A step, and the ushers know it before it starts",
+    "hum": "Under everything, from women who have known this hymn sixty years",
+    "host": "What the small table at the front holds, on the first Sunday",
+    "moth": "Circling the light above the choir stand, all through the invitation",
+    "must": "What she says about coming next week, to a visitor, holding both her hands"
+   },
+   "prefer": [
+    "shout",
+    "hum",
+    "host",
+    "moth",
+    "must"
+   ],
+   "scene": "The sound the building makes"
+  },
+  {
+   "base": "organs",
+   "theme": "church",
+   "clues": {
+    "organs": "Plural because the building has two, and only one of them gets played",
+    "organ": "The Hammond, the Leslie spinning behind it, and the drawbars set his way",
+    "song": "He can carry it from a single hummed note, in any key, without asking",
+    "sang": "What the soloist did, and he was already under her before the second line",
+    "gran": "In the second row, who has been requesting the same hymn since 1981",
+    "oars": "What the whole room is pulling on by the last verse, together and slightly late"
+   },
+   "prefer": [
+    "organ",
+    "song",
+    "sang",
+    "gran",
+    "oars"
+   ],
+   "scene": "The man on the Hammond, who never once looks up"
+  },
+  {
+   "base": "angels",
+   "theme": "church",
+   "clues": {
+    "angels": "In the glass, and the light through them lands on the water at eleven",
+    "angel": "Singular, in the pane nearest the door, with a hand raised",
+    "sang": "What the congregation did while somebody came up out of that water",
+    "angle": "The sun's, in October, which is the one Sunday it reaches the back wall",
+    "gale": "What the fan does in July, and it is not enough, and nobody complains",
+    "lens": "What the child in the third row has, and the photograph is terrible and kept"
+   },
+   "prefer": [
+    "angel",
+    "sang",
+    "angle",
+    "gale",
+    "lens"
+   ],
+   "scene": "The window over the baptismal pool"
   }
  ]
 }
