@@ -44,18 +44,15 @@
   },
   {
    "id": "barbershop",
-   "name": "Barbershop",
-   "blurb": "The chair, the clippers, and the argument already in progress."
-  },
-  {
-   "id": "kitchen",
-   "name": "In the Kitchen",
-   "blurb": "The pan that is only hers, an oven that runs fifty hot, and a recipe that lives nowhere but her hands."
+   "name": "The Shop",
+   "blurb": "Two rooms with the same rules: you wait your turn, you tip, and you do not touch the chair.",
+   "category": "THE CHAIR"
   },
   {
    "id": "sunday",
    "name": "Sunday Dinner",
-   "blurb": "Second pew, white gloves, and the pot roast that went in before service."
+   "blurb": "The pot that went on before church, the plate fixed for somebody who could not come, and the seat nobody else sits in.",
+   "category": "THE TABLE"
   },
   {
    "id": "fishfry",
@@ -66,12 +63,6 @@
    "id": "reunion",
    "name": "Family Reunion",
    "blurb": "Matching shirts, a hotel block, a printed program, and the committee that made it happen."
-  },
-  {
-   "id": "salon",
-   "name": "The Beauty Shop",
-   "blurb": "Twenty-two bottles, a standing Saturday, and an appointment that takes all day.",
-   "category": "Black hair"
   },
   {
    "id": "spades",
@@ -87,9 +78,9 @@
   },
   {
    "id": "steppers",
-   "name": "The Line Forms",
-   "blurb": "Nobody announced it — by the second verse there are four rows and your aunt is in front.",
-   "category": "Steppin’ and line dance"
+   "name": "The Floor",
+   "blurb": "Chicago steppin’ and DC go-go — two cities that never stopped dancing to live drums.",
+   "category": "THE POCKET"
   },
   {
    "id": "juneteenth",
@@ -99,33 +90,15 @@
   },
   {
    "id": "texas",
-   "name": "By the Pound",
-   "blurb": "Butcher paper going translucent under two pounds of brisket, and nobody has mentioned a plate.",
-   "category": "Central Texas barbecue"
+   "name": "Barbecue",
+   "blurb": "Whole hog in the Carolinas, brisket in Central Texas, rib tips and hot links on the South Side — three traditions, one fire.",
+   "category": "THE PIT"
   },
   {
    "id": "caribbean",
    "name": "Which Island",
    "blurb": "Six flags off one fire escape, and every pot in the yard is somebody's mother's.",
    "category": "Caribbean-American"
-  },
-  {
-   "id": "carolina",
-   "name": "Pig Pickin'",
-   "blurb": "Oak burning down in a barrel at ten at night, one hog split flat, and a bucket of vinegar with no tomato in it.",
-   "category": "Carolina barbecue"
-  },
-  {
-   "id": "chicago",
-   "name": "Tips and a Link",
-   "blurb": "Hickory burning in a glass box on Seventy-Fifth, and a paper sack already going dark at the bottom.",
-   "category": "Chicago barbecue"
-  },
-  {
-   "id": "gogo",
-   "name": "Roll Call",
-   "blurb": "Congas from nine till one, and four hundred people waiting to hear their block.",
-   "category": "Go-Go"
   }
  ],
  "puzzles": [
@@ -208,7 +181,7 @@
   },
   {
    "base": "faucet",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "faucet": "Where the water comes out, and where the dishes stack up under it.",
     "cafe": "You ordered one coffee and stayed a solid two hours past that.",
@@ -1068,7 +1041,7 @@
   },
   {
    "base": "polish",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "polish": "Twenty-two bottles on the rack, and she still knows which one you wore last June.",
     "spoil": "What she does to a client of thirty years: hot towel, foot soak, no upcharge.",
@@ -1088,7 +1061,7 @@
   },
   {
    "base": "places",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "places": "She holds two on Saturday morning for the women who raised her.",
     "laces": "What her granddaughter finally managed on her own sneakers under the dryer.",
@@ -1108,7 +1081,7 @@
   },
   {
    "base": "camper",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "camper": "Books at nine, still here at four, and nobody minds her one bit.",
     "perm": "1984, a rod on every section, and a smell that got into the curtains.",
@@ -1128,7 +1101,7 @@
   },
   {
    "base": "preach",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "preach": "She is going to tell you about that man again, and she is not wrong.",
     "perch": "How the little one sits on a phone book so her head clears the mirror.",
@@ -1148,7 +1121,7 @@
   },
   {
    "base": "metals",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "metals": "Comb, shears, flat iron: everything that matters here is heavy and hot.",
     "steam": "It comes off the towel and off the neck and fogs the mirror by noon.",
@@ -1168,7 +1141,7 @@
   },
   {
    "base": "rental",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "rental": "Two hundred a week for the station by the window, paid to the woman up front.",
     "rent": "What she quit paying somebody else the year she signed her own lease.",
@@ -1188,7 +1161,7 @@
   },
   {
    "base": "entail",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "entail": "What just a trim actually means: two hours, a wash, and a whole conversation.",
     "nail": "The tech in the back corner works Thursdays only and has her own clientele.",
@@ -1208,7 +1181,7 @@
   },
   {
    "base": "parent",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "parent": "Holds her purse in her lap four hours and never once says hurry up.",
     "part": "Where she starts on your head, and where your daughter squirms the most.",
@@ -1228,7 +1201,7 @@
   },
   {
    "base": "wonder",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "wonder": "What you do under the hood: whether she will ever actually retire.",
     "owner": "She does heads all day and does the books after everybody has gone home.",
@@ -1248,7 +1221,7 @@
   },
   {
    "base": "insert",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "insert": "The extra piece she sews in, matched so close nobody thinks to count.",
     "rinse": "Head back, warm water, and the one minute in six hours when nobody talks.",
@@ -1268,7 +1241,7 @@
   },
   {
    "base": "latino",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "latino": "The Dominican shop two blocks over: walk in, ninety minutes, out for twenty-five dollars.",
     "lion": "What a fresh set of curls makes a four-year-old, roaring at her own reflection.",
@@ -1288,7 +1261,7 @@
   },
   {
    "base": "placid",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "placid": "How a screaming toddler goes the second warm water hits her head.",
     "clip": "Six of them holding your sections while she works on the seventh.",
@@ -1308,7 +1281,7 @@
   },
   {
    "base": "spinal",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "spinal": "Down to here, she says, touching the small of the girl's back.",
     "snip": "The small sound near your ear that makes every mother in the room flinch.",
@@ -1328,7 +1301,7 @@
   },
   {
    "base": "streak",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "streak": "The silver one at her temple she has refused to color since 2009.",
     "rake": "What her fingers do through your roots, checking how dry it got.",
@@ -1348,7 +1321,7 @@
   },
   {
    "base": "staked",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "staked": "What she did on a corner storefront in 1998 with a tax refund.",
     "asked": "What she never did for permission, from anybody, before she signed.",
@@ -1368,7 +1341,7 @@
   },
   {
    "base": "steady",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "steady": "Nine in the morning, every other Saturday, same seat, since the first Bush.",
     "stay": "You did not plan on being here this long, and you are not leaving.",
@@ -1388,7 +1361,7 @@
   },
   {
    "base": "strewn",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "strewn": "The floor by two o'clock: black, brown, honey, and somebody's silver.",
     "sewn": "Track by track with a curved needle, and she checks the tension each row.",
@@ -1408,7 +1381,7 @@
   },
   {
    "base": "tangle",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "tangle": "Two weeks of ignoring it, and now it is a forty-minute problem.",
     "agent": "She is her own: no booking app, no manager, her number on the card.",
@@ -1428,7 +1401,7 @@
   },
   {
    "base": "trends",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "trends": "She has watched them come back around twice now and chases none of them.",
     "trend": "Whatever the girls bring in on their phones, she has already done once.",
@@ -1448,7 +1421,7 @@
   },
   {
    "base": "waters",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "waters": "What wash day runs through, gallon after gallon, from ten until noon.",
     "water": "Warm at the neck, cooler on the last pass, and she asks how it feels.",
@@ -2928,7 +2901,7 @@
   },
   {
    "base": "citrus",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "citrus": "Half a lemon, rubbed on the board after fish and again on her own hands.",
     "crust": "Rolled out with a jelly glass because the pin went missing sometime in 1994.",
@@ -2948,7 +2921,7 @@
   },
   {
    "base": "merits",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "merits": "Her pound cake has them. You may say so once, then she hands you a plate.",
     "timers": "The stove has two. She has not touched either one since the Ford administration.",
@@ -2968,7 +2941,7 @@
   },
   {
    "base": "stupor",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "stupor": "The state of the whole house at two o'clock, once the pot has been emptied.",
     "soup": "Bones in a freezer bag since Thursday, and today they are the entire point.",
@@ -2988,7 +2961,7 @@
   },
   {
    "base": "almost",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "almost": "How full she takes the pot. Any higher than that and you wear it to the sink.",
     "salt": "By hand, out of a bowl, and there has not been a measuring spoon here in years.",
@@ -3008,7 +2981,7 @@
   },
   {
    "base": "forked",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "forked": "Straight down into the cake. Clean and it comes out; otherwise it goes back in.",
     "fork": "The bent one in the drawer that she uses for everything and will not let you toss.",
@@ -3028,7 +3001,7 @@
   },
   {
    "base": "bakery",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "bakery": "She was offered a storefront twice and said no twice. This kitchen is enough.",
     "baker": "The title beside her name on the program, and she corrects anybody who says cook.",
@@ -3048,7 +3021,7 @@
   },
   {
    "base": "backed",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "backed": "Two women, one recipe, and she stood by hers when the church put it to a vote.",
     "baked": "Since four in the morning, and the whole house knew it before anybody got up.",
@@ -3068,7 +3041,7 @@
   },
   {
    "base": "foiled",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "foiled": "Every plate that leaves this house is covered and pressed down around the edges.",
     "foil": "Two layers over the pan, tight, and you do not lift it in the car on the way.",
@@ -3088,7 +3061,7 @@
   },
   {
    "base": "coiled",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "coiled": "The burner, orange in a dark kitchen, and she reads it without touching the dial.",
     "coil": "Wrapped and clipped, the cord on a mixer she bought in 1979 that still runs.",
@@ -3108,7 +3081,7 @@
   },
   {
    "base": "cloven",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "cloven": "Split clean down the middle, the way the hoof is on what is in her deep freeze.",
     "oven": "Runs fifty degrees hot. Everybody knows by exactly how much and nobody has called.",
@@ -3128,7 +3101,7 @@
   },
   {
    "base": "blower",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "blower": "The fan in the hood, loud as a truck, and she runs it before anything hits the pan.",
     "bowl": "The yellow one with the chip out of the rim. Sixty years of batter have been in it.",
@@ -3148,7 +3121,7 @@
   },
   {
    "base": "fruits",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "fruits": "Peaches left on the sill until they give under a thumb, and not one hour sooner.",
     "sift": "Twice, always, even though the bag swears up and down it has been done already.",
@@ -3168,7 +3141,7 @@
   },
   {
    "base": "detach",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "detach": "The head comes off the good mixer, and she is the only one who takes it apart.",
     "teach": "She will not do it by measurement. Stand there and watch, or do not learn it.",
@@ -3188,7 +3161,7 @@
   },
   {
    "base": "bathed",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "bathed": "The greens, three separate times, until the water in the sink finally runs clear.",
     "bathe": "What the roast does in its own drippings every twenty minutes, door barely open.",
@@ -3208,7 +3181,7 @@
   },
   {
    "base": "mobile",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "mobile": "The little cart she rolls out, because there is no room to sit down in here.",
     "lime": "Rolled hard under her palm on the counter first. That is where the juice comes from.",
@@ -3228,7 +3201,7 @@
   },
   {
    "base": "adults",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "adults": "Only they carry the pot from the stove to the sink. That rule has never moved.",
     "adult": "What you become here the day she hands you the knife and walks out of the room.",
@@ -3828,7 +3801,7 @@
   },
   {
    "base": "oblige",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "oblige": "Asked to take on the whole thing for Saturday. She said no, and did not soften it.",
     "globe": "The milk-glass shade over her worktable. She changed the bulb herself, on a chair.",
@@ -3848,7 +3821,7 @@
   },
   {
    "base": "trails",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "trails": "Flour from the back door to the range by nine, and she sweeps when she is finished.",
     "stair": "The steps down to her shelves in the cellar, taken one hand on the rail, jars in the other.",
@@ -3868,7 +3841,7 @@
   },
   {
    "base": "bodily",
-   "theme": "kitchen",
+   "theme": "sunday",
    "clues": {
     "bodily": "She knows the oven is ready by what the heat does to her forearm at the open door.",
     "doily": "Paper, under the cake, cut out with the scissors she keeps for nothing else.",
@@ -3928,7 +3901,7 @@
   },
   {
    "base": "owners",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "owners": "Two chairs and her name on the license, which is the whole difference.",
     "owner": "What she is, not what she does — and why nobody can fire her for her politics.",
@@ -3948,7 +3921,7 @@
   },
   {
    "base": "haired",
-   "theme": "salon",
+   "theme": "barbershop",
    "clues": {
     "haired": "What she is doing to you for the next four hours. The talking is the other half.",
     "heard": "What got said in this room in 1957 and did not leave it.",
@@ -4568,7 +4541,7 @@
   },
   {
    "base": "shovel",
-   "theme": "carolina",
+   "theme": "texas",
    "clues": {
     "shovel": "Flat-bladed, kept leaning on the barrel, and it never digs a thing all night. Coals ride on it, nothing else.",
     "shove": "What nobody does to a man crossing a dark yard with a load of live coals. You step back and let him by.",
@@ -4588,7 +4561,7 @@
   },
   {
    "base": "piglet",
-   "theme": "carolina",
+   "theme": "texas",
    "clues": {
     "piglet": "Not what goes on. The one you want dresses out near a hundred and forty pounds, split down the back and flat.",
     "pit": "Cinder block, waist high, sheet tin for a lid, and it lives under a shelter behind the fellowship hall.",
@@ -4608,7 +4581,7 @@
   },
   {
    "base": "bylaws",
-   "theme": "carolina",
+   "theme": "texas",
    "clues": {
     "bylaws": "The fire department keeps them in a binder, and the plate-sale money can go to equipment and to nothing else.",
     "slaw": "White and chopped fine, and it goes on the sandwich, not beside it. Red means you drove a hundred miles west.",
@@ -4628,7 +4601,7 @@
   },
   {
    "base": "clause",
-   "theme": "carolina",
+   "theme": "texas",
    "clues": {
     "clause": "The one in the rental agreement for the towable cooker: back by noon, ashes out, or she keeps the deposit.",
     "sauce": "Cider vinegar, crushed red pepper, black pepper, salt. Add tomato and you are cooking another state's food.",
@@ -4648,7 +4621,7 @@
   },
   {
    "base": "hating",
-   "theme": "carolina",
+   "theme": "texas",
    "clues": {
     "hating": "Not what it is, whatever it sounds like, when he gets going about Lexington and the ketchup in their dip.",
     "night": "The animal goes on before dark and comes off after breakfast, and the hours between belong to two men and a radio.",
@@ -4668,7 +4641,7 @@
   },
   {
    "base": "planet",
-   "theme": "carolina",
+   "theme": "texas",
    "clues": {
     "planet": "What the yard feels like at four in the morning: one lantern, one man, and the coals breathing.",
     "plate": "Chopped meat, slaw, boiled potatoes, two hush puppies, in a foam box, and the line is out the door by eleven.",
@@ -4688,7 +4661,7 @@
   },
   {
    "base": "pastry",
-   "theme": "carolina",
+   "theme": "texas",
    "clues": {
     "pastry": "Nobody in the hall uses the word. It is pies, pudding, and a pound cake under a glass dome.",
     "tarp": "Blue, thrown over the woodpile in September and held down with two blocks and an old wheel rim.",
@@ -4708,7 +4681,7 @@
   },
   {
    "base": "oracle",
-   "theme": "carolina",
+   "theme": "texas",
    "clues": {
     "oracle": "The eighty-year-old in the folding chair, asked twice an hour whether it is ready, answering in one word.",
     "coal": "Carried on a flat blade from the barrel to the fire, one load every fifteen minutes, all night.",
@@ -4728,7 +4701,7 @@
   },
   {
    "base": "failed",
-   "theme": "carolina",
+   "theme": "texas",
    "clues": {
     "failed": "What his first hog did, at nineteen, in front of everybody, and he still tells it on himself.",
     "field": "Tobacco, and the picking waits until the last barn comes out and there is finally a free Saturday.",
@@ -4748,7 +4721,7 @@
   },
   {
    "base": "pantry",
-   "theme": "carolina",
+   "theme": "texas",
    "clues": {
     "pantry": "Church kitchen shelves: number ten cans, paper boats by the hundred, and the good aluminum she counts twice.",
     "rant": "Fifteen minutes on what they do to it in Lexington, delivered to a man who already agrees with every word.",
@@ -4768,7 +4741,7 @@
   },
   {
    "base": "sought",
-   "theme": "chicago",
+   "theme": "texas",
    "clues": {
     "sought": "Wages, a school, a room of your own: what she boarded the Illinois Central to find.",
     "south": "The Side that has Lem's on Seventy-Fifth, and half the argument about who does tips best.",
@@ -4788,7 +4761,7 @@
   },
   {
    "base": "upshot",
-   "theme": "chicago",
+   "theme": "texas",
    "clues": {
     "upshot": "After the wait, the bag, the ride home: two pounds of ends and a link, and nobody speaks.",
     "shop": "Not a restaurant. Four feet of standing room and a menu board with the prices taped over twice.",
@@ -4808,7 +4781,7 @@
   },
   {
    "base": "polite",
-   "theme": "chicago",
+   "theme": "texas",
    "clues": {
     "polite": "Say good evening before you say your order. The woman who owns the place notices who does.",
     "tip": "The trimmed end of a spare rib, cartilage and all, cheap because the packer had no use for it.",
@@ -4828,7 +4801,7 @@
   },
   {
    "base": "bruise",
-   "theme": "chicago",
+   "theme": "texas",
    "clues": {
     "bruise": "The color the sky over the water goes the week everybody admits the season is finished.",
     "ribs": "The whole rack, which is not what this city is known for. The ends are.",
@@ -4848,7 +4821,7 @@
   },
   {
    "base": "clouds",
-   "theme": "chicago",
+   "theme": "texas",
    "clues": {
     "clouds": "What comes over the fence from the garage all Saturday, so the neighbor two doors down knows the menu.",
     "soul": "The word this city put on the food once it came up from the Delta and needed a name on a sign.",
@@ -4868,7 +4841,7 @@
   },
   {
    "base": "closed",
-   "theme": "chicago",
+   "theme": "texas",
    "clues": {
     "closed": "What the good shop is on Christmas and New Year's, and the sign has said so since her father ran it.",
     "cold": "What the brick room never is, even in January. It holds heat for hours after the fire is out.",
@@ -4888,7 +4861,7 @@
   },
   {
    "base": "locate",
-   "theme": "chicago",
+   "theme": "texas",
    "clues": {
     "locate": "You do it at seven in the morning to a free table with no permit on it, and then you hope.",
     "coal": "Dumped in the red can when you are done, never on the grass, and never in a park that forbids it.",
@@ -4908,7 +4881,7 @@
   },
   {
    "base": "coward",
-   "theme": "chicago",
+   "theme": "texas",
    "clues": {
     "coward": "They call the cousin this for asking sauce on the side, and he answers to it all afternoon.",
     "ward": "Yours is the office that signs the street-closure request, and the woman at that desk knows your block.",
@@ -4928,7 +4901,7 @@
   },
   {
    "base": "ankles",
-   "theme": "chicago",
+   "theme": "texas",
    "clues": {
     "ankles": "What the wind finds first, in the gap over your socks, standing outside a shop in February.",
     "lake": "Right there, and you still cannot set a grill on the sand. The shore is where it is banned outright.",
@@ -4948,7 +4921,7 @@
   },
   {
    "base": "carved",
-   "theme": "chicago",
+   "theme": "texas",
    "clues": {
     "carved": "Not the word for it. A cleaver, a wooden block, and eight strokes straight through the order.",
     "crave": "The smell out of the roof vent does it to people two blocks away who were not even hungry.",
@@ -4968,7 +4941,7 @@
   },
   {
    "base": "crafts",
-   "theme": "chicago",
+   "theme": "texas",
    "clues": {
     "crafts": "Nobody in the shop would use the word. It is a trade, learned standing beside somebody for years.",
     "scarf": "Hers holds the smell of the smoke room for a week, and she stopped apologizing for that long ago.",
@@ -4988,7 +4961,7 @@
   },
   {
    "base": "hoping",
-   "theme": "carolina",
+   "theme": "texas",
    "clues": {
     "hoping": "What the man at the barrel does about the weather, from four until the meat is ready.",
     "hog": "Split flat, skin down, a hundred and forty pounds, and it takes the whole night.",
@@ -5288,7 +5261,7 @@
   },
   {
    "base": "pocket",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "pocket": "Where the drums live all night. The band steps in at nine and does not step out until one.",
     "poke": "One finger in the ribs from the aunt who wants you to slide over on the bench.",
@@ -5308,7 +5281,7 @@
   },
   {
    "base": "bounds",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "bounds": "The line a permit draws around a room, and the reason a night has to end at two.",
     "sound": "What the shop at Seventh and Florida pushed onto the sidewalk until the city said stop.",
@@ -5328,7 +5301,7 @@
   },
   {
    "base": "busted",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "busted": "The kick head split at midnight, somebody taped it, and the groove never noticed.",
     "debut": "First night on the mic. The roll call goes badly and you never forget a name again.",
@@ -5348,7 +5321,7 @@
   },
   {
    "base": "deltas",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "deltas": "River mouths, and the country the grandparents came up from before this city had a beat.",
     "lasted": "Four hours, one groove, no gap. That is the measure of a night that went right.",
@@ -5368,7 +5341,7 @@
   },
   {
    "base": "abound",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "abound": "Congas, timbales, cowbell, rototoms. Percussion everywhere you look on that stage.",
     "band": "Nine or twelve people up there, plus the crowd, which is doing half of the work.",
@@ -5388,7 +5361,7 @@
   },
   {
    "base": "absurd",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "absurd": "A moving truck complaining in 2019 about a sound that had that corner thirty years first.",
     "drab": "Grey glass where the record shop and the barber both used to be, side by side.",
@@ -5408,7 +5381,7 @@
   },
   {
    "base": "bluest",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "bluest": "Saddest of all. There is one slow number in four hours and it does not get to finish.",
     "bustle": "The half hour before doors, when the door woman counts her float and the horns eat.",
@@ -5428,7 +5401,7 @@
   },
   {
    "base": "builds",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "builds": "The groove climbs for eleven minutes before the room agrees to lose its mind.",
     "buds": "Two of them share one set of earphones on the bus, playing a tape of last Friday.",
@@ -5448,7 +5421,7 @@
   },
   {
    "base": "buster",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "buster": "Somebody's nickname, said once into the mic and answered by four hundred voices.",
     "burst": "The horns come in for eight bars and then they are gone again for ten minutes.",
@@ -5468,7 +5441,7 @@
   },
   {
    "base": "deaths",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "deaths": "May 2012. The Godfather lay in a downtown hall, and the line ran out into the street.",
     "shade": "Under the tent at the outdoor jam, where the elders sit and everybody else stands.",
@@ -5488,7 +5461,7 @@
   },
   {
    "base": "dental",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "dental": "The plan the day job carries, which is exactly why the day job stays.",
     "laden": "The van at two in the morning: two congas, a cowbell rack and everybody's bag.",
@@ -5508,7 +5481,7 @@
   },
   {
    "base": "detail",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "detail": "Whose birthday, which block, what school. The mic is expected to get all of it right.",
     "tailed": "The recorder was left running, so the cassette runs on well past the last number.",
@@ -5528,7 +5501,7 @@
   },
   {
    "base": "double",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "double": "Two drummers, two sets of hands on one pattern, locked so tight it sounds like one.",
     "duel": "Two men trading names across the stage until the floor has to pick a side.",
@@ -5548,7 +5521,7 @@
   },
   {
    "base": "doubts",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "doubts": "Whether the promoter has the second half of the money is the oldest question back there.",
     "bout": "Four hours, no break, and the percussion section wins it on points.",
@@ -5568,7 +5541,7 @@
   },
   {
    "base": "dumber",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "dumber": "Quieter, not more stupid. What a corner got in 2019 when the speakers were switched off.",
     "demur": "To object politely. Nobody bothered at the rally; they brought their own speakers.",
@@ -5588,7 +5561,7 @@
   },
   {
    "base": "menial",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "menial": "The job before the gig: mop, register, phone. The van still pulls off at six.",
     "name": "Yours, said from the stage in front of everybody, which is the whole reason you came out.",
@@ -5608,7 +5581,7 @@
   },
   {
    "base": "obtuse",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "obtuse": "Wider than a right angle, which is the tilt she gives the cowbell before she hits it.",
     "toes": "Yours get stepped on in the crush at the front, and you stay right where you are.",
@@ -5628,7 +5601,7 @@
   },
   {
    "base": "upbeat",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "upbeat": "The lift before the one, where everybody in the room already knows what lands next.",
     "beat": "It never stops. Not between numbers, not between sets, not while the man is talking.",
@@ -5648,7 +5621,7 @@
   },
   {
    "base": "wasted",
-   "theme": "gogo",
+   "theme": "steppers",
    "clues": {
     "wasted": "Not one minute of it. Four hours, and the percussion carries every single gap.",
     "sweat": "It runs down the walls of the hall and the ceiling starts dripping around midnight.",
