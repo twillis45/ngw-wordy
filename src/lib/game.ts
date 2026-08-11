@@ -215,6 +215,62 @@ export type ThemeGroup = {
   indices: number[];
 };
 
+/**
+ * Four places, not fifteen tiles.
+ *
+ * Twelve themes was already dense and the catalogue is heading past fifteen.
+ * The combined board ruled BROWSABLE GROUPS rather than labels on a flat list,
+ * because a labelled flat list still puts fifteen tiles on one screen, which is
+ * the actual complaint. Grandmother's test for the structure was that it be
+ * four things she can each picture as a place — and she holds a BLOCK on any
+ * thirteenth theme shipping before this exists.
+ *
+ * A theme with no home here still appears, under `elsewhere`, rather than
+ * vanishing from the picker — a missing entry in this table must never be able
+ * to hide content from a player.
+ */
+export type ShelfId = 'table' | 'sunday' | 'block' | 'soundtrack' | 'elsewhere';
+
+export type Shelf = {
+  id: ShelfId;
+  name: string;
+  /** What the group is, in the player's words rather than a taxonomy. */
+  blurb: string;
+  themes: ThemeGroup[];
+};
+
+const SHELF_OF: Record<string, ShelfId> = {
+  cookout: 'table',
+  texas: 'table', // Barbecue
+  sunday: 'table', // Sunday Dinner
+  church: 'sunday', // Sunday Service
+  hbcu: 'sunday', // Homecoming Weekend
+  juneteenth: 'sunday', // The Nineteenth
+  barbershop: 'block', // The Shop
+  spades: 'block', // The Card Table
+  rnb90s: 'soundtrack', // The Nineties
+  steppers: 'soundtrack', // The Floor
+  sitcom: 'soundtrack', // Rerun Season
+  caribbean: 'soundtrack', // Which Island
+};
+
+const SHELVES: { id: ShelfId; name: string; blurb: string }[] = [
+  { id: 'table', name: 'The Table', blurb: 'Everything that comes off a fire and everything eaten around it.' },
+  { id: 'sunday', name: 'Sunday', blurb: 'The service, the weekend, and the days that get their own clothes.' },
+  { id: 'block', name: 'The Block', blurb: 'The chair, the card table, and the stretch of pavement outside.' },
+  { id: 'soundtrack', name: 'The Soundtrack', blurb: 'What was playing while all of the above was happening.' },
+  { id: 'elsewhere', name: 'Elsewhere', blurb: 'Everything that has not found its shelf yet.' },
+];
+
+/** Themes arranged on shelves, in the order the shelves are declared. */
+export function themeShelves(file: PuzzleFile): Shelf[] {
+  const groups = themeGroups(file);
+  return SHELVES.map((s) => ({
+    ...s,
+    themes: groups.filter((g) => (SHELF_OF[g.id] ?? 'elsewhere') === s.id),
+  })).filter((s) => s.themes.length > 0);
+}
+
 export function themeGroups(file: PuzzleFile): ThemeGroup[] {
   const byId = new Map<string, ThemeGroup>();
   file.puzzles.forEach((p, i) => {

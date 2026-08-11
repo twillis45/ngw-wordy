@@ -2,7 +2,7 @@
  {
   "id": "cookout",
   "vocab": 148,
-  "shipped": 32,
+  "shipped": 10,
   "supported": 143,
   "boards": [
    {
@@ -282,8 +282,7 @@
      "tag:said",
      "name:said",
      "eat:said"
-    ],
-    "owner": "cookout"
+    ]
    },
    {
     "base": "deltas",
@@ -856,8 +855,7 @@
      "done:said",
      "eat:said",
      "date:voice"
-    ],
-    "owner": "cookout"
+    ]
    },
    {
     "base": "intake",
@@ -1210,8 +1208,7 @@
      "mac:named",
      "claim:said",
      "mail:voice"
-    ],
-    "owner": "cookout"
+    ]
    },
    {
     "base": "creaky",
@@ -1353,7 +1350,8 @@
     "rows": [
      "kin:named",
      "sing:said"
-    ]
+    ],
+    "owner": "cookout"
    },
    {
     "base": "backed",
@@ -1484,8 +1482,7 @@
     "rows": [
      "grave:named",
      "sear:said"
-    ],
-    "owner": "cookout"
+    ]
    },
    {
     "base": "hacker",
@@ -2128,8 +2125,7 @@
      "case:acts",
      "real:titles",
      "lace:voice"
-    ],
-    "owner": "cookout"
+    ]
    },
    {
     "base": "deltas",
@@ -2849,8 +2845,7 @@
      "mild:named",
      "field:said",
      "lid:voice"
-    ],
-    "owner": "cookout"
+    ]
    },
    {
     "base": "humans",
@@ -4373,8 +4368,7 @@
      "lace:named",
      "lay:said",
      "gel:voice"
-    ],
-    "owner": "cookout"
+    ]
    },
    {
     "base": "teacup",

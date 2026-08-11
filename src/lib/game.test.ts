@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import {
   activeLetters,
   clueTarget,
@@ -9,6 +11,7 @@ import {
   rankLadder,
   puzzleForPlayer,
   themeGroups,
+  themeShelves,
   offsetForIndex,
   scoreWord,
   shareParts,
@@ -16,6 +19,7 @@ import {
   shuffle,
   submit,
   type Puzzle,
+  type PuzzleFile,
   dailyCycle,
   progressKey,
   gridMaxScore,
@@ -1010,5 +1014,33 @@ describe('share splits the link into its own field', () => {
     const p = shareParts({ ...base, url: undefined });
     expect(p.url).toBeUndefined();
     expect(p.text).not.toContain('http');
+  });
+});
+
+describe('theme shelves', () => {
+  const file = JSON.parse(
+    readFileSync(join(process.cwd(), 'public/data/puzzles.json'), 'utf8')
+  ) as PuzzleFile;
+
+  it('puts every theme on a shelf, so none can hide from the picker', () => {
+    // A theme missing from the lookup table must fall to Elsewhere rather than
+    // disappear. Content vanishing because a map was not updated is the worst
+    // possible failure mode for a browse screen.
+    const shelved = themeShelves(file).flatMap((s) => s.themes.map((t) => t.id));
+    const all = themeGroups(file).map((t) => t.id);
+    expect(shelved.slice().sort()).toEqual(all.slice().sort());
+  });
+
+  it('is four shelves, which is the number Grandmother agreed to scan', () => {
+    const shelves = themeShelves(file);
+    expect(shelves.length).toBeLessThanOrEqual(5);
+    expect(shelves.every((s) => s.themes.length > 0)).toBe(true);
+    expect(shelves.map((s) => s.name)).toContain('The Table');
+    expect(shelves.map((s) => s.name)).toContain('The Soundtrack');
+  });
+
+  it('never shows an empty shelf', () => {
+    // An empty group is a promise of content that is not there.
+    for (const s of themeShelves(file)) expect(s.themes.length).toBeGreaterThan(0);
   });
 });

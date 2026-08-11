@@ -94,7 +94,8 @@ import {
   dailyPoolSize,
   progressKey,
   puzzleForPlayer,
-  themeGroups,
+  themeShelves,
+  type ShelfId,
   offsetForIndex,
   rankFor,
   gridMaxScore,
@@ -424,7 +425,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
     : '';
   const days = useMemo(() => last7(progress, today), [progress, today]);
 
-  const themes = useMemo(() => themeGroups(data), [data]);
+  const shelves = useMemo(() => themeShelves(data), [data]);
+  /* Which shelf is open; null is the four-shelf overview. Reset whenever the
+     sheet closes, so it never reopens two levels deep. */
+  const [openShelf, setOpenShelf] = useState<ShelfId | null>(null);
 
   const goToPuzzle = useCallback(
     (nextOffset: number) => {
@@ -1825,7 +1829,13 @@ export default function Game({ data }: { data: PuzzleFile }) {
         })()}
 
       {showPuzzles && (
-        <Sheet onClose={() => setShowPuzzles(false)} label="Puzzles">
+        <Sheet
+          onClose={() => {
+            setShowPuzzles(false);
+            setOpenShelf(null);
+          }}
+          label="Puzzles"
+        >
           <div className="relative rounded-2xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
             <h2 className="mb-1 text-item font-semibold text-text-primary">
               Puzzles
@@ -1880,13 +1890,64 @@ export default function Game({ data }: { data: PuzzleFile }) {
           {/* Themes were unreachable: ten of them existed and the only way to
               land on one was luck. A set you can't navigate to is a set that
               doesn't exist. */}
-          {themes.length > 0 && (
+          {shelves.length > 0 && (
             <div className="relative mt-4 rounded-2xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
-              <h2 className="mb-3 text-item font-semibold text-text-primary">
-                Themes
+              <h2 className="mb-1 text-item font-semibold text-text-primary">
+                {openShelf ? shelves.find((s) => s.id === openShelf)?.name : 'Themes'}
               </h2>
-              <div className="flex flex-col gap-2">
-                {themes.map((t) => {
+
+              {/*
+                Four places, not fifteen tiles.
+                The combined board ruled browsable GROUPS over labels on a flat
+                list, because a labelled flat list still puts every theme on one
+                screen — which is the density complaint itself. Grandmother's
+                test was four things she can each picture as a place, and she
+                holds a block on a thirteenth theme shipping before this exists.
+              */}
+              {openShelf === null ? (
+                <div className="mt-3 flex flex-col gap-2">
+                  {shelves.map((s) => {
+                    const boards = s.themes.reduce((n, t) => n + t.indices.length, 0);
+                    const done = s.themes.reduce(
+                      (n, t) =>
+                        n +
+                        t.indices.filter((i) =>
+                          progress.clearedIds.includes(String(data.puzzles[i].id))
+                        ).length,
+                      0
+                    );
+                    return (
+                      <button
+                        key={s.id}
+                        type="button"
+                        onClick={() => setOpenShelf(s.id)}
+                        className="liquid-interactive relative flex w-full items-center justify-between gap-3 rounded-xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3 text-left"
+                      >
+                        <span>
+                          <span className="block text-body font-medium text-text-primary">
+                            {s.name}
+                          </span>
+                          <span className="block text-meta leading-snug text-text-muted">
+                            {s.blurb}
+                          </span>
+                        </span>
+                        <span className="shrink-0 text-meta tabular-nums text-text-muted">
+                          {done}/{boards}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="mt-3 flex flex-col gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setOpenShelf(null)}
+                    className="self-start text-meta text-text-secondary underline underline-offset-4"
+                  >
+                    ← All themes
+                  </button>
+                  {(shelves.find((s) => s.id === openShelf)?.themes ?? []).map((t) => {
                   const done = t.indices.filter((i) =>
                     progress.clearedIds.includes(String(data.puzzles[i].id))
                   ).length;
@@ -1922,7 +1983,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
                     </button>
                   );
                 })}
-              </div>
+                </div>
+              )}
             </div>
           )}
         </Sheet>
