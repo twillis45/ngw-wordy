@@ -29,7 +29,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 
 /** How many distinct ideas a board must spell to be worth authoring. */
-const BAR = Number(process.env.BAR ?? 3);
+const BAR = Number(process.env.BAR ?? 2);
 /** A base is six letters on a dial, so these are the same puzzle. */
 const letterKey = (w) => [...w].sort().join('');
 const mask = (w) => [...w].reduce((m, c) => m | (1 << (c.charCodeAt(0) - 97)), 0);
@@ -129,7 +129,6 @@ for (const [id, list] of Object.entries(vocabFile)) {
     const bm = mask(base);
     const hit = forms.filter((f) => (f.m & ~bm) === 0 && f.w !== base);
     const n = new Set(hit.map((f) => f.stem)).size;
-    if (n < BAR) continue;
     // Rank by recognition, not by count: one `silk` outweighs three `sigh`s.
     const best = new Map();
     for (const f of hit)
@@ -138,6 +137,29 @@ for (const [id, list] of Object.entries(vocabFile)) {
     const picked = [...best.values()];
     const weight = picked.reduce((s, f) => s + TIER_WEIGHT[f.tier], 0);
     const known = picked.filter((f) => f.tier !== 'voice').length;
+
+    /*
+     * THE BENCH'S BAR, and it replaced a flat count rather than adding to one.
+     *
+     * Three texture hits makes a word-list, not a scene — and the third tier
+     * was defined from the start as never being a board's reason to exist, so
+     * letting it clear the bar contradicted the file's own rule. A board needs
+     * at least one row the player RECOGNISES and at least one the theme
+     * actually SAYS. Texture counts toward neither, which is what `known`
+     * already encodes.
+     *
+     * Keeping BAR at 3 ON TOP of this was the mistake: it scored HBCU at zero
+     * against a vocabulary the bench had just rebuilt, which is the tool
+     * contradicting the ruling it exists to implement.
+     *
+     * One part of their standard no machine can run, recorded so nobody
+     * mistakes this for the whole test: do the six rows describe ONE moment?
+     * Six correct nouns from six different afternoons fails at five-of-five.
+     */
+    const found = new Set(picked.map((f) => f.tier));
+    if (!(found.has('named') || found.has('acts'))) continue;
+    if (!(found.has('said') || found.has('titles'))) continue;
+    if (known < BAR) continue;
     boards.push({
       base,
       ideas: n,
