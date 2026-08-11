@@ -139,7 +139,7 @@ export default function WordTray({
        * only, which is why shrinking it did nothing visible here.
        */
       <div className="flex flex-wrap items-center justify-center gap-1">
-        {grid.map((word) => {
+        {grid.map((word, rowIndex) => {
           const bought = reveal.words.includes(word);
           const solved = found.has(word);
           const done = solved || bought;
@@ -172,12 +172,22 @@ export default function WordTray({
                * wheel still read "Tap a row to choose a hint · 3 left". The
                * chip now opens the same priced menu the full grid does.
                */
+              /*
+               * The row's POSITION leads, because without it these labels are
+               * not unique. Measured in the CDP accessibility tree — the same
+               * tree VoiceOver reads — three separate chips announced as
+               * "3-letter word, not found. Open hint options." A player working
+               * by voice heard the identical sentence three times and had no
+               * way to tell which row they were on, or which one they had just
+               * bought a hint for. Length alone stops distinguishing the moment
+               * a board has two rows the same size, which most boards do.
+               */
               aria-label={
                 done
-                  ? `${word}, done`
+                  ? `Row ${rowIndex + 1} of ${grid.length}, ${word}, done`
                   : actionable
-                    ? `${word.length}-letter word, not found. Open hint options.`
-                    : `${word.length}-letter word, not found`
+                    ? `Row ${rowIndex + 1} of ${grid.length}, ${word.length}-letter word, not found. Open hint options.`
+                    : `Row ${rowIndex + 1} of ${grid.length}, ${word.length}-letter word, not found`
               }
               className={[
                 // min-h/min-w hold the WCAG 2.5.8 floor. Measured 23.3x23.1 at
@@ -235,7 +245,7 @@ export default function WordTray({
 
   return (
     <div className="flex flex-col items-center gap-1 cramped:gap-0.5 roomy:gap-2">
-      {grid.map((word) => {
+      {grid.map((word, rowIndex) => {
         const bought = reveal.words.includes(word);
         const solved = found.has(word);
         const done = solved || bought;
@@ -278,12 +288,12 @@ export default function WordTray({
               // is the control lying about what it does.
               aria-label={
                 definable
-                  ? `${word}. Open the definition.`
+                  ? `Row ${rowIndex + 1} of ${grid.length}, ${word}. Open the definition.`
                   : done
-                    ? `${word.length}-letter word, done`
+                    ? `Row ${rowIndex + 1} of ${grid.length}, ${word.length}-letter word, done`
                     : actionable
-                      ? `${word.length}-letter word, not found. Open hint options.`
-                      : `${word.length}-letter word, not found. No hints left.`
+                      ? `Row ${rowIndex + 1} of ${grid.length}, ${word.length}-letter word, not found. Open hint options.`
+                      : `Row ${rowIndex + 1} of ${grid.length}, ${word.length}-letter word, not found. No hints left.`
               }
             >
               {word.split('').map((ch, i) => {
