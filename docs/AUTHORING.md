@@ -98,3 +98,37 @@ cliché, and generates material at volume. It is not community consultation, and
 research does not close that gap either — a citation can confirm the conk's
 chemistry and cannot say whether the clue reads as respect or as novelty. Budget
 a real reader per pack.
+
+## General packs: the clue gate
+
+The catalogue now includes themes that are not Black American cultural life —
+The Road Trip, The Garden, Laundry Day. The combined board accepted that
+decision and attached a gate to it, because a general theme is much easier to
+write badly and the first draft will be generic.
+
+**Every clue in a general pack must name a position, a time, or a person's
+habit. Never a category.**
+
+The test is not whether a clue is about the theme. It is whether it was written
+from a fixed spot in a real moment:
+
+> "What the mothers do after the benediction, seated, while the building
+> empties around them."
+
+That line is not warm because of whose church it is. It is warm because someone
+stayed after and wrote from where they were standing. The technique travels:
+
+- **Passes** — "The gas station you stop at not because you need gas."
+- **Fails** — "A long drive with your family."
+
+A general pack that produces one category-clue fails review and is re-authored.
+General themes do not get a lower bar for being easier to write; they get the
+same bar, which is the reason only three of them ship.
+
+Two conditions travel with them, both from the bench, both binding:
+
+- **The daily never serves a general pack.** Enforced in `dailyPoolSize` and
+  asserted in the build, not left to authoring discipline — it is the condition
+  on which the highest-paying seat is retained.
+- **The same real-reader budget applies.** Lower standards on the general packs
+  is how the cultural packs come to be read as the gimmick.

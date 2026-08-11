@@ -6,6 +6,8 @@ import {
   clueTarget,
   dailyIndex,
   isReachable,
+  isDailyEligible,
+  dailyPoolSize,
   dayKey,
   rankFor,
   rankLadder,
@@ -1042,5 +1044,40 @@ describe('theme shelves', () => {
   it('never shows an empty shelf', () => {
     // An empty group is a promise of content that is not there.
     for (const s of themeShelves(file)) expect(s.themes.length).toBeGreaterThan(0);
+  });
+});
+
+describe('the daily never serves a general pack', () => {
+  const file = JSON.parse(
+    readFileSync(join(process.cwd(), 'public/data/puzzles.json'), 'utf8')
+  ) as PuzzleFile;
+
+  it('treats an unlisted theme as cultural, so forgetting the list cannot demote a pack', () => {
+    // Listing the GENERAL themes rather than the cultural ones is deliberate:
+    // a new pack added without touching that set defaults into the daily.
+    expect(isDailyEligible('some-brand-new-theme')).toBe(true);
+    expect(isDailyEligible(null)).toBe(true);
+    expect(isDailyEligible('garden')).toBe(false);
+    expect(isDailyEligible('roadtrip')).toBe(false);
+  });
+
+  it('keeps every daily-eligible board inside the head of the array', () => {
+    /*
+     * `dailyPoolSize` seeds the daily by indexing the HEAD of the array, so a
+     * general board landing inside that head would put The Garden in the daily
+     * rotation — silently, on one day in N, months later. The board made this a
+     * hard requirement, not a preference: it is the condition on which their
+     * highest-paying seat is retained.
+     */
+    const pool = dailyPoolSize(file);
+    for (let i = 0; i < pool; i += 1) {
+      expect(file.puzzles[i].theme, `board ${i} is inside the daily pool`).toBeTruthy();
+      expect(isDailyEligible(file.puzzles[i].theme?.id), `board ${i} (${file.puzzles[i].base})`).toBe(true);
+    }
+  });
+
+  it('counts the daily pool as the cultural boards only', () => {
+    const cultural = file.puzzles.filter((p) => p.theme && isDailyEligible(p.theme.id)).length;
+    expect(dailyPoolSize(file)).toBe(cultural);
   });
 });

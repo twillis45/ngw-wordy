@@ -5,6 +5,7 @@ import { withBase } from '@/lib/basePath';
 import { NO_FLASH_SCRIPT } from '@/lib/theme';
 import { NO_FLASH_SCRIPT as A11Y_NO_FLASH } from '@/lib/a11y';
 import { SITE_URL, absoluteUrl } from '@/lib/site';
+import { isDailyEligible } from '@/lib/game';
 import themes from '../../data/themes.json';
 import './globals.css';
 
@@ -31,8 +32,27 @@ import './globals.css';
 const themed = themes.puzzles.length;
 const themeCount = new Set(themes.puzzles.map((p) => p.theme)).size;
 
+/*
+ * The general packs are a SUBORDINATE CLAUSE, and that is a ruling rather than
+ * a style choice.
+ *
+ * The catalogue is broadening past Black American cultural life. Asked how the
+ * product should describe itself afterwards, the board was blunt: a blurb
+ * reading "100 puzzles across many themes" removes the only reason anybody
+ * chooses this over a free alternative. The specificity stays in position one
+ * where it does the selling, the broadening trails it, and the count never
+ * leads — a number is the one claim every competitor can beat.
+ *
+ * `general` is counted rather than assumed, so the sentence stops mentioning
+ * the other packs on a build that has none of them.
+ */
+const general = themes.puzzles.filter(
+  (p) => p.theme && !isDailyEligible(p.theme)
+).length;
+
 const DESCRIPTION =
-  `A six-letter word game with hand-authored puzzles. Find every word on the wheel, then read the clue behind the board — ${themed} of them, across ${themeCount} themes of Black American cultural life.`;
+  `A six-letter word game with hand-authored puzzles. Find every word on the wheel, then read the clue behind the board — written from inside Black American cultural life, across ${themeCount} themes` +
+  `${general > 0 ? ', plus a few packs from the long way home' : ''}. ${themed} boards, every one about something.`;
 
 export const metadata: Metadata = {
   /*

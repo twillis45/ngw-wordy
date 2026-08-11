@@ -631,6 +631,28 @@ for (const base of bases) {
  * So the ramp stays, because opening on a 33%-common-words board is still
  * where onboarding dies. It just stops outstaying its welcome.
  */
+/*
+ * Order the emitted set so the daily can be a prefix of it.
+ *
+ * `dailyPoolSize` seeds the daily by indexing the HEAD of this array, which
+ * only works while the head is exactly the boards the daily may serve. The
+ * combined board made that a hard requirement rather than a preference: the
+ * daily always pulls from a cultural pack, and general packs are reachable
+ * only through the picker. It is the condition on which the highest-paying
+ * seat is retained — a daily that can serve The Garden is a daily she can get
+ * from her existing bundle.
+ *
+ * So: cultural themed boards first, general themed boards next, generated
+ * practice last. This is a stable partition, so the relative order inside each
+ * group is untouched and no board moves that does not have to.
+ */
+const GENERAL_THEMES = new Set(['roadtrip', 'garden', 'laundry', 'diner', 'hardware']);
+const rank = (p) => (!p.theme ? 2 : GENERAL_THEMES.has(p.theme.id) ? 1 : 0);
+puzzles.sort((a, b) => rank(a) - rank(b));
+
+const dailyEligible = puzzles.filter((p) => rank(p) === 0).length;
+const generalThemed = puzzles.filter((p) => rank(p) === 1).length;
+
 const STARTERS = 2;
 const starters = puzzles
   .map((p, i) => ({ i, d: p.difficulty }))
@@ -663,7 +685,27 @@ console.log(
     `${themeReport.rejected.map((r) => `    - ${r}`).join('\n')}${
       themeReport.rejected.length ? '\n' : ''
     }` +
+    `  daily pool: ${dailyEligible} cultural boards` +
+    `${generalThemed ? `, ${generalThemed} general boards reachable only from the picker` : ''}\n` +
     `  warm-up ladder: ${starters
       .map((i) => `${puzzles[i].base} (${puzzles[i].difficulty.toFixed(2)})`)
       .join(', ')}`
 );
+
+/*
+ * The invariant the daily depends on, checked rather than trusted.
+ *
+ * `dailyPoolSize` indexes the head of this array. If a general board ever lands
+ * inside that head the daily starts serving it, which is precisely the thing
+ * the board made a hard requirement — and it would fail silently, on one day in
+ * N, months from now.
+ */
+{
+  const firstGeneral = puzzles.findIndex((p) => rank(p) === 1);
+  const lastCultural = puzzles.findLastIndex((p) => rank(p) === 0);
+  if (firstGeneral !== -1 && firstGeneral < lastCultural) {
+    throw new Error(
+      `ordering broken: a general board sits at ${firstGeneral}, inside the daily pool that ends at ${lastCultural}`
+    );
+  }
+}

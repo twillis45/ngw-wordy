@@ -124,7 +124,45 @@ export function progressKey(puzzleId: string | number, cycle = 0): string {
  * gave them fresh storage keys. That is the day-241 bug again, wearing
  * different numbers, which is exactly why the value now has one home.
  */
+/**
+ * Themes that are NOT drawn from Black American cultural life.
+ *
+ * The owner ruled that not every theme will be that material. The combined
+ * board accepted the decision and attached one hard requirement to it, from the
+ * highest-paying seat: THE DAILY ALWAYS PULLS FROM A CULTURAL PACK, and general
+ * packs are reachable only through the picker.
+ *
+ * Her reasoning is the whole business case. She adds a sixth daily word game
+ * for the one thing her existing bundle cannot produce; a daily that can serve
+ * The Garden is a daily she can get elsewhere. So this is not a taste setting —
+ * it is the difference between a distinctive daily and a Spelling Bee variant,
+ * and it is enforced in `puzzleForPlayer` rather than left to authoring
+ * discipline.
+ *
+ * Listing the GENERAL ones rather than the cultural ones is deliberate: a new
+ * theme added without touching this file defaults to cultural, and therefore to
+ * the daily. Forgetting to update a list should never be able to quietly
+ * demote the material the product is built on.
+ */
+const GENERAL_THEMES = new Set<string>(['roadtrip', 'garden', 'laundry', 'diner', 'hardware']);
+
+/** Is this theme part of the daily rotation? */
+export function isDailyEligible(themeId: string | null | undefined): boolean {
+  return !themeId || !GENERAL_THEMES.has(themeId);
+}
+
 export function dailyPoolSize(file: PuzzleFile): number {
+  /*
+   * Only DAILY-ELIGIBLE themed boards, which excludes the general packs.
+   *
+   * The seed is an index into the head of the array, so this works only while
+   * build-puzzles.mjs emits daily-eligible boards first, general themed boards
+   * next, and generated practice last. That ordering is asserted in the build
+   * and in a test, because the invariant is invisible from here and breaking it
+   * would silently put The Garden in the daily rotation.
+   */
+  const eligible = file.puzzles.filter((p) => p.theme && isDailyEligible(p.theme.id)).length;
+  if (eligible > 0) return eligible;
   const themed = file.puzzles.filter((p) => p.theme).length;
   return themed > 0 ? themed : file.puzzles.length;
 }
@@ -229,7 +267,8 @@ export type ThemeGroup = {
  * vanishing from the picker — a missing entry in this table must never be able
  * to hide content from a player.
  */
-export type ShelfId = 'table' | 'sunday' | 'block' | 'soundtrack' | 'elsewhere';
+export type ShelfId = 'table' | 'sunday' | 'block' | 'soundtrack' | 'longway' | 'elsewhere';
+
 
 export type Shelf = {
   id: ShelfId;
@@ -249,6 +288,15 @@ const SHELF_OF: Record<string, ShelfId> = {
   barbershop: 'block', // The Shop
   spades: 'block', // The Card Table
   beautysupply: 'block',
+  // The general packs the board approved, absorbed where they fit and shelved
+  // together where they do not. A hardware store is on the block; a diner is a
+  // table. Only the un-absorbable three get the fifth shelf, and FIVE is the
+  // ceiling — Grandmother exercises her veto on a sixth.
+  hardware: 'block',
+  diner: 'table',
+  roadtrip: 'longway',
+  garden: 'longway',
+  laundry: 'longway',
   rnb90s: 'soundtrack', // The Nineties
   steppers: 'soundtrack', // The Floor
   sitcom: 'soundtrack', // Rerun Season
@@ -260,6 +308,11 @@ const SHELVES: { id: ShelfId; name: string; blurb: string }[] = [
   { id: 'sunday', name: 'Sunday', blurb: 'The service, the weekend, and the days that get their own clothes.' },
   { id: 'block', name: 'The Block', blurb: 'The chair, the card table, and the stretch of pavement outside.' },
   { id: 'soundtrack', name: 'The Soundtrack', blurb: 'What was playing while all of the above was happening.' },
+  {
+    id: 'longway',
+    name: 'The Long Way',
+    blurb: 'The drive, the garden, and the hour nobody watches.',
+  },
   { id: 'elsewhere', name: 'Elsewhere', blurb: 'Everything that has not found its shelf yet.' },
 ];
 
