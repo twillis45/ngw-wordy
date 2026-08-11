@@ -1,31 +1,112 @@
 {
-  "_doc": "The language of each theme — words a person inside that world actually says. NOT a list of objects visible at the scene: that mistake is what produced boards whose rows were legal English and nothing more. A word earns its place here only if a player who knows the theme would nod at it. Filtered at build time to ENABLE1 + popular + 3..6 letters, so over-listing is harmless and under-listing is not.",
-
-  "cookout": "grill grills coal coals fire smoke char ash embers flame lighter fluid pit rack tongs foil spatula apron plate plates cup cooler ice soda pop meat ribs rib link links wing wings dog dogs patty burger beef pork chicken sauce baste rub marinade slaw beans corn heat hot done rare tender crisp burnt yard shade tent chair table music cousin uncle aunt kids pool hose card cards spades",
-  "fishfry": "fish fry fried grease oil pan skillet batter meal cornmeal breading crisp golden flake catfish perch whiting trout plate side slaw bread roll hush puppy sauce hot mild lemon paper tray line order plates price cash box dollar bill sale fund roof deacon pastor lady ladies hall basement kitchen sink towel apron heat ticket menu",
-  "reunion": "family kin cousin elder branch tree line name names shirt shirts color hotel block room bus drive program page book photo album chart date july park hall banquet dues vote badge tag prize grave stone quilt letter mail invite host toast speech games raffle shuttle roster",
-  "kitchen": "pot pots pan lid stove oven burner sink counter knife spoon fork whisk plate bowl cup salt sugar flour oil grease heat boil bake fry stir mix pour taste season recipe timer towel apron drawer shelf can jar bag box roast dough batter simmer sear knead grate peel rind zest chop dice sift",
-  "sunday": "dinner table grace plate roast greens rice bread roll gravy yam ham pie cake tea ice glass chair seat elder mother kitchen platter dish bowl fork spoon napkin foil second helping hat suit blessing amen served late nap leftover plate wrapped",
-  "barbershop": "chair clip fade edge line razor blade shave neck cape mirror sink comb cut trim shape brush oil talc towel wait turn next boss shop radio bet argue debate loud money tip cash bill dollar hair beard part guard buzz clippers taper lineup bald crown nape shears",
-  "salon": "hair braid braids wash dry set curl press comb part scalp oil cream gel edge wrap cap dryer chair seat mirror sink cape towel bowl clip pin rod roller shop owner stylist rent book polish nail hand curls relaxer weave track sew twist locs cornrow",
-  "hbcu": "yard band step line dorm dean quad greek pledge march drum horn alum class exam grade major minor dues fee book study hall chapel song crown queen king float stroll cane boot shoe cape stand seat bus ride game dance party bid probate line brother sister chant",
-  "homecoming": "game float parade band step line queen crown court dance party tent lot grill class year alum badge tag gate seat stand score half time song shirt tie suit hat bus ride hotel room yard chapel show tailgate coronation",
-  "church": "choir robe organ piano song hymn book page seat pew aisle usher fan hat glove offer plate mother board deacon elder pastor sermon amen praise shout tea dinner basement bus program prayer altar candle bell tithe verse psalm solo anthem",
-  "spades": "card cards deck deal hand book books bid trick trump cut shuffle table chair team score board pad pen point set run talk rule joke laugh drink ice cup seat partner spade heart club ace king queen jack renege boston nil blind rise",
-  "steppers": "step steps line dance floor slide turn spin count beat song music heat party hall club shoe shoes heel sole grip lead follow hand hold quick slow smooth suit dress hat set crowd chair seat room mirror class teach glide sway pivot",
-  "_rnb90s_note": "LOCKED. Three tiers, strongest first. A row earns its place by being something a fan RECOGNISES — an act, or a record — not by being a music-adjacent noun. Two earlier drafts failed: the first led with label/master/credit/royalties, which the cultural bench blocked as documentary grievance-talk that centres the business over the music and writes the women out of a decade they authored; the second led with craft nouns (hook, verse, belt, croon), which was true but generic — a row reading `sigh` tells a player nothing. Entries are cut unless the word literally appears in the act or title: `escape` is NOT Xscape and `level` is NOT LeVert, and both were inflating counts before they were caught. The `voice` tier is support only and may never be a board's reason to exist.",
-
+  "_doc": "The language of each theme, in three tiers. `named` is what a person inside that world recognises on sight — dishes, dances, games, acts, records, roles, rites. `said` is what they actually say: jargon, verbs, terms of art. `voice` is supporting texture and is never a board's reason to exist. Filtered at scoring time to ENABLE1 + popular + 3..6 letters AND NO REPEATED LETTER, because a base is six DISTINCT letters and cannot spell `cool`, `greens` or `grill`.",
+  "_rule": "A word earns a place here only if someone inside the theme would say it — NOT a list of objects visible at the scene. The cultural bench requires this file reviewed BEFORE any base is scored, objects capped at roughly a quarter of a list, and pack floors of 12 / caps of 20 set by judgment, because raw yield rewards ordinary vocabulary and punishes specificity.",
+  "_size": "LIST GENEROUSLY. Board count scales super-linearly with usable vocabulary: rnb90s at 145 usable words yields 63 boards, cookout at 53 yields 3. A thin list looks like a thin theme and is not one — that misreading has already been made twice in this project. Over-listing costs nothing; the filter discards what the build cannot serve.",
+  "_rnb90s_note": "LOCKED and shipped. Two earlier drafts failed: the first led with label/master/credit/royalties, which the cultural bench blocked as documentary grievance-talk centring the business over the music and writing the women out of a decade they authored; the second led with craft nouns, true but generic. Entries are cut unless the word literally appears in the act or title: `escape` is NOT Xscape and `level` is NOT LeVert.",
   "rnb90s": {
     "acts": "silk case next jade guy mint intro brandy usher faith vogue brown price sweat jam swing soul theory faces subway ideal after bone spice method ghost face foxy jay rock tribe quest brand jungle salt rage kane rob base black",
     "titles": "juicy gin juice dear change cream neck brain jump around anthem ice sound police slam ready softly factor nice slow pony hot rain sock crush mack tour west east coast mix tape love weak freak angel candy lady stay down red light road end step thing cry count water runs dry hold mind real first night crazy sexy life sugar time number mine say name honey",
-    "voice": "run belt croon note alto tenor sang sung sing duet trio lead echo hook verse bridge chorus vamp fade beat bars deck radio dial disc rink skate party floor cruise choir hymn organ praise quiet storm smooth satin lace demo wrote crew flow rhyme verse"
+    "voice": "run belt croon note alto tenor sang sung sing duet trio lead echo hook verse bridge chorus vamp fade beat bars deck radio dial disc rink skate party floor cruise choir hymn organ praise quiet storm smooth satin lace demo wrote crew flow rhyme"
   },
-  "juneteenth": "red drink soda cup ice grill park tent chair table flag star date year free news order paper read speech song march parade band hat shirt bead beat dance heat sun shade cooler plate meat side story elder child freedom order union troops texas galveston",
-  "sitcom": "show shows tape set cast star role scene line host guest plot joke laugh seat couch screen dial knob clock week night rerun theme song ad break crew light stage act open close title card tune watch film reel pilot script gag studio",
-  "carolina": "hog hogs pig pigs pit fire coal coals ash wood oak sauce slaw bun tray plate chop chops pull skin salt heat cook tent field church money ticket box pan lid barrel smoke night turn shovel vinegar whole pepper",
-  "texas": "oak post beef brisket rib ribs link links sausage pit smoke fat bark salt pepper paper tray pickle onion bread red soda cooler heat fence yard fire coal wood log ranch boot hat scale pound pounds burnt ends",
-  "chicago": "tip tips rib ribs sauce mild hot link links fry bag window glass south side park lot permit meter grill cart corner block bus train lake wind cold coat porch alley cousin card music speaker hickory",
-  "westcoast": "beach ring sand fire wood coast grill cooler ice tent chair car trunk park lot wave pier boat sun palm freeway valley block yard hose links tri tip shipyard",
-  "caribbean": "jerk pan drum coal pepper curry goat rice pea peas plantain oxtail bread festival music bass tent flag island yard pot spoon lime rum ginger cane market flat roti scotch bonnet",
-  "gogo": "go go beat pocket congas roto timbale drum drums cowbell bell horn horns crank socket call roll call chant crowd band lead talker mic set tape pocket groove break swing rock creek city block hall gig"
+  "cookout": {
+    "named": "spade bid renege boston ribs wings links slaw beans mac yams peach pound cake punch potato uncle aunt cousin auntie slide grill weber brisket rib tips drums flats thigh wing patty dogs brats corn husk melon chips dip tea jug cobbler wafer velvet lemon soda pop kool",
+    "said": "plate plates fixed heap seconds burnt done rare sauce rub mop baste sear char smoke pit tongs foil apron cooler ice chair tent yard shade heat coals ash spark grate rack flip turn rest slice pull chop taste season brine marinade grease bone dry wet mild sweet tangy hot cold cup can bag tray bowl bake fried",
+    "voice": "music song dance kids pool hose card table drink napkin wipe bug bite dusk late fire wood chunk vent lid speaker line float sunset"
+  },
+  "fishfry": {
+    "named": "catfish whiting perch buffalo porgy cornmeal batter hush puppy slaw white bread deacon usher fellowship hall basement tithe filet croaker mullet snapper",
+    "said": "fry fried grease skillet fryer flake crisp golden dredge season plate tray paper order line ticket dinner sauce mild lemon cash box fund roof sale plates fixed dozen scoop dip drain rack basket bone flip turn hot pepper vinegar salt sold served bagged wrapped stacked",
+    "voice": "heat oil pan sink towel apron kitchen menu price side roll cup drink table chair hall church sign card door change"
+  },
+  "reunion": {
+    "named": "family kin cousin elder branch tree roster quilt grave plot july park banquet raffle talent toast potluck lineage matriarch reunion homestead",
+    "said": "shirt color hotel block bus program dues badge tag name descend marry buried named after side born raised kinfolk gather host greet hug seat sing pray eat swap tale claim trace elder oldest young baby",
+    "voice": "photo album chart page book letter mail invite prize vote hall date year shuttle games rules list"
+  },
+  "kitchen": {
+    "named": "skillet cast iron dutch roux drippings colander sifter apron pyrex tupperware crock",
+    "said": "simmer sear braise knead grate zest peel dice chop mince fold whisk stir pour taste season pinch dash boil bake fry roast rest cure brine sift beat cream rub baste blend mash strain drain rinse thaw chill warm scald",
+    "voice": "pot pan lid stove oven burner sink knife spoon fork bowl cup salt sugar flour grease heat timer towel drawer shelf jar recipe can bag box dough batter oil"
+  },
+  "sunday": {
+    "named": "grace blessing roast greens rice gravy yam ham macaroni cornbread roll cobbler cake tea platter napkin elder mother deacon collards okra dressing candied peach banana pudding",
+    "said": "dinner second helping fixed plate leftover wrapped saved late nap said grace served blessed passed bowed hushed waited seated carved sliced ladled",
+    "voice": "table glass dish bowl fork spoon foil chair seat hat suit kitchen sink oven pot pan lid cup ice"
+  },
+  "barbershop": {
+    "named": "fade taper lineup razor blade shears clippers guard cape talc crown nape beard goatee caesar afro waves brush durag",
+    "said": "edge shave neck trim shape buzz bald part line cut next chair waiting turn boss tip talk debate argue bet swept lined faded low high skin bump itch grow booked walked sat paid tipped clipped shaped brushed oiled",
+    "voice": "mirror sink comb oil towel hot shop radio game money cash dollar hair wait floor seat clock window door"
+  },
+  "salon": {
+    "named": "braid cornrow twist locs weave track relaxer roller stylist dryer scalp bundle silk press bonnet",
+    "said": "curl wrap wash dry set part sew clip pin book rent standing touch grow lay edge slick blow flat trim thin dye tint tone rinse deep",
+    "voice": "hair cap chair mirror sink bowl cape towel rod gel oil cream shop owner polish nail hand seat time"
+  },
+  "hbcu": {
+    "named": "yard band step stroll probate dean quad dorm greek pledge alum chapel queen crown float cane sweetheart chant neophyte marching drumline plot pond union homecoming founder charter tuition registrar bursar convocation",
+    "said": "line bid dues march drum horn exam grade major minor study hall brother sister cross made hazed pledged crossed hosed stomp strut salute majored transferred enrolled graduated walked pinned",
+    "voice": "song king boot shoe cape stand seat bus ride game dance party class fee book night gate lawn hall room mate tower green"
+  },
+  "homecoming": {
+    "named": "float parade band step queen crown court coronation tailgate alum chapel drumline sweetheart bonfire pageant marshal",
+    "said": "game class year badge gate seat stand score half time show song march won lost lined packed hosted crowned voted paraded roared cheered",
+    "voice": "tent lot grill shirt tie suit hat bus hotel room yard dance party night music seat lawn field track"
+  },
+  "church": {
+    "named": "choir robe organ hymn pew aisle usher deacon elder pastor sermon amen praise shout tithe altar psalm anthem benediction mother board doxology bishop trustee missionary devotion revival communion baptism testimony armor first lady watch night saint angel lamb cross grace mercy glory faith spirit",
+    "said": "offering plate fan glove program prayer verse solo basement dinner sang testified caught received saved shouted swayed clapped fanned nodded hushed rose knelt tarry moan hum sway clap march preach teach sing pray kneel stand rise sow reap harvest seed count blessed anointed ordained called sent",
+    "voice": "piano song book page hat seat bell candle bus tea white door step water wine bread table feast host word chapter"
+  },
+  "spades": {
+    "named": "spade renege boston nil blind partner trump trick deck ace king queen jack joker",
+    "said": "bid deal cut shuffle book hand set run point score talk trash cheat watch table under over sandbag bags cover lead played tossed slammed counted misdeal",
+    "voice": "card pad pen chair team joke laugh drink ice cup seat heart club board rules turn"
+  },
+  "steppers": {
+    "named": "step glide pivot sway turn spin lead follow chicago detroit smooth bop hustle",
+    "said": "line dance floor slide count beat quick slow hold hand grip set teach class walk rock cross catch guide frame close open turned styled dipped spun paused traded led",
+    "voice": "song music heat party hall club shoe heel sole suit dress hat crowd chair mirror night lights band tie"
+  },
+  "juneteenth": {
+    "named": "freedom order galveston texas union troops general granger jubilee emancipation hibiscus strawberry parade march band flag opal lee",
+    "said": "red drink soda barbecue read speech date year free elder child park cookout marked gathered honored recited raised sang prayed",
+    "voice": "cup ice grill tent chair table star news paper hat shirt bead dance heat sun shade plate meat side story"
+  },
+  "sitcom": {
+    "named": "pilot rerun syndication laugh track theme song cast star guest host studio audience sitcom",
+    "said": "show tape set role scene line plot joke gag break crew light stage act open close title card script week night watch aired taped cued mugged landed bombed",
+    "voice": "seat couch screen dial knob clock song film reel tune slot hour"
+  },
+  "carolina": {
+    "named": "hog whole pit vinegar pepper mop crackling hickory oak barrel shovel slaw lexington eastern piedmont",
+    "said": "sauce ash coals chop pull skin salt heat cook smoke turn tent field church basted tended shoveled buried wrapped sliced weighed hauled tended sold served fed",
+    "voice": "bun tray plate money ticket box pan lid table night wood log fire yard shed door"
+  },
+  "texas": {
+    "named": "brisket post oak beef sausage bark burnt ends butcher market pit fat lockhart hill flat point rendered smoke ring",
+    "said": "rib link smoke salt pepper paper tray pickle onion bread scale pound trim rest cook weighed sliced wrapped smoked tended stoked fired hauled queued waited sold",
+    "voice": "red soda cooler fence yard fire coal wood log ranch boot hat heat line dust sun table bench"
+  },
+  "chicago": {
+    "named": "tips aquarium smoker hickory maxwell polish mild sauce link glass",
+    "said": "rib fry bag window south side permit cart corner block bus train lake wind cold sliced wrapped ordered slid paid",
+    "voice": "park lot meter grill coat porch alley cousin card music speaker hot night"
+  },
+  "westcoast": {
+    "named": "",
+    "said": "",
+    "voice": "",
+    "_blocked": "The cultural bench blocked this theme outright: 'West Coast BBQ has no vernacular in the list at all; it is a beach cookout with a smoker.' Deliberately left empty so the scorer returns zero and the theme cannot be quietly padded back. Delete the theme or replace it with one that has a language of its own."
+  },
+  "caribbean": {
+    "named": "jerk scotch bonnet curry goat oxtail plantain ackee saltfish roti doubles callaloo festival soca calypso steel pan dutchie escovitch bammy",
+    "said": "rice peas bread pot spoon lime rum ginger cane market island flag yard drum coal pepper season stewed jerked curried browned",
+    "voice": "music bass tent flat food shop heat sun cup plate"
+  },
+  "gogo": {
+    "named": "pocket crank congas roto timbale cowbell socket talker chuck brown backyard junkyard rare essence",
+    "said": "beat bell horn call roll chant crowd band lead mic set tape groove break swing rock hyped worked ran held",
+    "voice": "city block hall gig night song floor line crowd"
+  }
 }

@@ -2,7 +2,7 @@
  {
   "id": "rnb90s",
   "vocab": 143,
-  "shipped": 25,
+  "shipped": 12,
   "supported": 113,
   "boards": [
    {
@@ -19,7 +19,7 @@
      "real:titles",
      "lead:voice"
     ],
-    "owner": "juneteenth"
+    "owner": "rnb90s"
    },
    {
     "base": "sweaty",
@@ -33,7 +33,7 @@
      "stay:titles",
      "say:titles"
     ],
-    "owner": "salon"
+    "owner": "rnb90s"
    },
    {
     "base": "derail",
@@ -48,7 +48,7 @@
      "lead:voice",
      "dial:voice"
     ],
-    "owner": "juneteenth"
+    "owner": "rnb90s"
    },
    {
     "base": "aspect",
@@ -61,7 +61,7 @@
      "tape:titles",
      "step:titles"
     ],
-    "owner": "sitcom"
+    "owner": "rnb90s"
    },
    {
     "base": "danger",
@@ -113,7 +113,7 @@
      "mine:titles",
      "name:titles"
     ],
-    "owner": "church"
+    "owner": "rnb90s"
    },
    {
     "base": "lander",
@@ -139,7 +139,8 @@
      "nice:titles",
      "end:titles",
      "deck:voice"
-    ]
+    ],
+    "owner": "rnb90s"
    },
    {
     "base": "ordeal",
@@ -229,7 +230,7 @@
      "mine:titles",
      "name:titles"
     ],
-    "owner": "church"
+    "owner": "rnb90s"
    },
    {
     "base": "rained",
@@ -319,7 +320,7 @@
      "spice:acts",
      "ice:titles"
     ],
-    "owner": "westcoast"
+    "owner": "rnb90s"
    },
    {
     "base": "facets",
@@ -452,8 +453,7 @@
      "mint:acts",
      "time:titles",
      "mine:titles"
-    ],
-    "owner": "rnb90s"
+    ]
    },
    {
     "base": "nights",
@@ -466,7 +466,7 @@
      "night:titles",
      "sing:voice"
     ],
-    "owner": "hbcu"
+    "owner": "rnb90s"
    },
    {
     "base": "priced",
@@ -546,7 +546,8 @@
      "guy:acts",
      "sugar:titles",
      "say:titles"
-    ]
+    ],
+    "owner": "rnb90s"
    },
    {
     "base": "vastly",
@@ -557,7 +558,8 @@
      "salt:acts",
      "stay:titles",
      "say:titles"
-    ]
+    ],
+    "owner": "rnb90s"
    },
    {
     "base": "wasted",
@@ -617,7 +619,7 @@
      "brain:titles",
      "rain:titles"
     ],
-    "owner": "chicago"
+    "owner": "rnb90s"
    },
    {
     "base": "carnie",
@@ -1196,8 +1198,7 @@
      "ice:titles",
      "nice:titles",
      "note:voice"
-    ],
-    "owner": "rnb90s"
+    ]
    },
    {
     "base": "pastry",
@@ -1302,8 +1303,7 @@
      "end:titles",
      "lead:voice",
      "lace:voice"
-    ],
-    "owner": "rnb90s"
+    ]
    },
    {
     "base": "flayed",
@@ -1364,365 +1364,357 @@
   ]
  },
  {
-  "id": "spades",
-  "vocab": 35,
+  "id": "cookout",
+  "vocab": 94,
   "shipped": 21,
-  "supported": 19,
+  "supported": 51,
   "boards": [
    {
-    "base": "pasted",
-    "ideas": 4,
-    "known": 4,
-    "weight": 8,
+    "base": "breast",
+    "ideas": 5,
+    "known": 5,
+    "weight": 12,
     "rows": [
-     "pad:titles",
-     "set:titles",
-     "seat:titles",
-     "spade:titles"
+     "brats:named",
+     "tea:named",
+     "baste:said",
+     "sear:said",
+     "rest:said"
     ],
-    "owner": "hbcu"
-   },
-   {
-    "base": "aspect",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "set:titles",
-     "seat:titles",
-     "ace:titles"
-    ],
-    "owner": "sitcom"
-   },
-   {
-    "base": "blinds",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "bid:titles",
-     "nil:titles",
-     "blind:titles"
-    ]
-   },
-   {
-    "base": "cradle",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "card:titles",
-     "deal:titles",
-     "ace:titles"
-    ],
-    "owner": "reunion"
-   },
-   {
-    "base": "daphne",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "hand:titles",
-     "pad:titles",
-     "pen:titles"
-    ]
-   },
-   {
-    "base": "deltas",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "deal:titles",
-     "set:titles",
-     "seat:titles"
-    ],
-    "owner": "gogo"
+    "owner": "sunday"
    },
    {
     "base": "hearts",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "set:titles",
-     "seat:titles",
-     "heart:titles"
-    ],
-    "owner": "rnb90s"
-   },
-   {
-    "base": "jacked",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "deck:titles",
-     "ace:titles",
-     "jack:titles"
-    ]
-   },
-   {
-    "base": "lacked",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "deck:titles",
-     "deal:titles",
-     "ace:titles"
-    ],
-    "owner": "spades"
-   },
-   {
-    "base": "lapsed",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "deal:titles",
-     "pad:titles",
-     "spade:titles"
-    ],
-    "owner": "spades"
-   },
-   {
-    "base": "master",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "team:titles",
-     "set:titles",
-     "seat:titles"
-    ],
-    "owner": "spades"
-   },
-   {
-    "base": "packed",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "deck:titles",
-     "pad:titles",
-     "ace:titles"
-    ],
-    "owner": "spades"
-   },
-   {
-    "base": "pencil",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "pen:titles",
-     "ice:titles",
-     "nil:titles"
-    ],
-    "owner": "barbershop"
-   },
-   {
-    "base": "placed",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "deal:titles",
-     "pad:titles",
-     "ace:titles"
-    ],
-    "owner": "spades"
-   },
-   {
-    "base": "racked",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "card:titles",
-     "deck:titles",
-     "ace:titles"
-    ],
-    "owner": "spades"
-   },
-   {
-    "base": "satire",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "set:titles",
-     "seat:titles",
-     "rise:titles"
-    ]
-   },
-   {
-    "base": "spaced",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "pad:titles",
-     "spade:titles",
-     "ace:titles"
-    ]
-   },
-   {
-    "base": "stable",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "table:titles",
-     "set:titles",
-     "seat:titles"
-    ]
-   },
-   {
-    "base": "teacup",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "cut:titles",
-     "cup:titles",
-     "ace:titles"
-    ]
-   }
-  ]
- },
- {
-  "id": "juneteenth",
-  "vocab": 30,
-  "shipped": 26,
-  "supported": 17,
-  "boards": [
-   {
-    "base": "hatred",
     "ideas": 5,
     "known": 5,
-    "weight": 10,
+    "weight": 11,
     "rows": [
-     "red:titles",
-     "date:titles",
-     "read:titles",
-     "hat:titles",
-     "heat:titles"
-    ],
-    "owner": "juneteenth"
-   },
-   {
-    "base": "bathed",
-    "ideas": 4,
-    "known": 4,
-    "weight": 8,
-    "rows": [
-     "date:titles",
-     "hat:titles",
-     "beat:titles",
-     "heat:titles"
-    ],
-    "owner": "kitchen"
+     "tea:named",
+     "sear:said",
+     "heat:said",
+     "ash:said",
+     "rest:said"
+    ]
    },
    {
     "base": "deaths",
     "ideas": 4,
     "known": 4,
-    "weight": 8,
+    "weight": 9,
     "rows": [
-     "date:titles",
-     "hat:titles",
-     "heat:titles",
-     "shade:titles"
+     "tea:named",
+     "shade:said",
+     "heat:said",
+     "ash:said"
     ],
     "owner": "gogo"
    },
    {
-    "base": "dreamt",
+    "base": "phased",
     "ideas": 4,
     "known": 4,
-    "weight": 8,
+    "weight": 9,
     "rows": [
-     "red:titles",
-     "date:titles",
-     "read:titles",
-     "meat:titles"
-    ],
-    "owner": "juneteenth"
-   },
-   {
-    "base": "stared",
-    "ideas": 4,
-    "known": 4,
-    "weight": 8,
-    "rows": [
-     "red:titles",
-     "star:titles",
-     "date:titles",
-     "read:titles"
-    ],
-    "owner": "juneteenth"
-   },
-   {
-    "base": "adores",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "red:titles",
-     "soda:titles",
-     "read:titles"
-    ],
-    "owner": "juneteenth"
-   },
-   {
-    "base": "advert",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "red:titles",
-     "date:titles",
-     "read:titles"
+     "spade:named",
+     "heap:said",
+     "shade:said",
+     "ash:said"
     ]
    },
    {
-    "base": "anthem",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "base": "turban",
+    "ideas": 4,
+    "known": 4,
+    "weight": 9,
     "rows": [
-     "hat:titles",
-     "heat:titles",
-     "meat:titles"
+     "aunt:named",
+     "burnt:said",
+     "rub:said",
+     "turn:said"
     ],
-    "owner": "sunday"
+    "owner": "carolina"
    },
    {
-    "base": "bertha",
+    "base": "waters",
+    "ideas": 4,
+    "known": 4,
+    "weight": 9,
+    "rows": [
+     "tea:named",
+     "sear:said",
+     "rest:said",
+     "wet:said"
+    ],
+    "owner": "salon"
+   },
+   {
+    "base": "absent",
     "ideas": 3,
     "known": 3,
-    "weight": 6,
+    "weight": 8,
     "rows": [
-     "hat:titles",
-     "beat:titles",
-     "heat:titles"
+     "beans:named",
+     "tea:named",
+     "baste:said"
     ],
     "owner": "steppers"
    },
    {
-    "base": "dancer",
+    "base": "alerts",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "tea:named",
+     "sear:said",
+     "rest:said",
+     "late:voice"
+    ]
+   },
+   {
+    "base": "buried",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "bid:named",
+     "rib:named",
+     "rub:said"
+    ]
+   },
+   {
+    "base": "hybrid",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "bid:named",
+     "rib:named",
+     "dry:said"
+    ]
+   },
+   {
+    "base": "loathe",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "tea:named",
+     "heat:said",
+     "hot:said",
+     "late:voice"
+    ],
+    "owner": "homecoming"
+   },
+   {
+    "base": "nature",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "aunt:named",
+     "tea:named",
+     "turn:said"
+    ]
+   },
+   {
+    "base": "racket",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "cake:named",
+     "tea:named",
+     "rack:said"
+    ]
+   },
+   {
+    "base": "sliced",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "slide:named",
+     "ice:said",
+     "slice:said",
+     "lid:voice"
+    ]
+   },
+   {
+    "base": "stupid",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "tips:named",
+     "dip:named",
+     "pit:said"
+    ]
+   },
+   {
+    "base": "wealth",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "tea:named",
+     "heat:said",
+     "wet:said",
+     "late:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "anemic",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "mac:named",
+     "ice:said",
+     "can:said"
+    ],
+    "owner": "reunion"
+   },
+   {
+    "base": "backer",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "cake:named",
+     "rack:said",
+     "bake:said"
+    ],
+    "owner": "texas"
+   },
+   {
+    "base": "basket",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tea:named",
+     "baste:said",
+     "bake:said"
+    ],
+    "owner": "cookout"
+   },
+   {
+    "base": "caters",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tea:named",
+     "sear:said",
+     "rest:said"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "cheats",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tea:named",
+     "heat:said",
+     "ash:said"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "depict",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "dip:named",
+     "pit:said",
+     "ice:said"
+    ]
+   },
+   {
+    "base": "earthy",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tea:named",
+     "heat:said",
+     "tray:said"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "gather",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tea:named",
+     "heat:said",
+     "grate:said"
+    ],
+    "owner": "homecoming"
+   },
+   {
+    "base": "priest",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tips:named",
+     "pit:said",
+     "rest:said"
+    ],
+    "owner": "homecoming"
+   },
+   {
+    "base": "septic",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tips:named",
+     "pit:said",
+     "ice:said"
+    ]
+   },
+   {
+    "base": "thawed",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tea:named",
+     "heat:said",
+     "wet:said"
+    ],
+    "owner": "texas"
+   },
+   {
+    "base": "watery",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tea:named",
+     "wet:said",
+     "tray:said"
+    ]
+   },
+   {
+    "base": "burton",
     "ideas": 3,
     "known": 3,
     "weight": 6,
     "rows": [
-     "red:titles",
-     "read:titles",
-     "dance:titles"
-    ],
-    "owner": "hbcu"
+     "burnt:said",
+     "rub:said",
+     "turn:said"
+    ]
    },
    {
     "base": "dasher",
@@ -1730,462 +1722,1240 @@
     "known": 3,
     "weight": 6,
     "rows": [
-     "red:titles",
-     "read:titles",
-     "shade:titles"
+     "sear:said",
+     "shade:said",
+     "ash:said"
     ],
     "owner": "juneteenth"
    },
    {
-    "base": "dearly",
+    "base": "drafty",
     "ideas": 3,
     "known": 3,
     "weight": 6,
     "rows": [
-     "red:titles",
-     "year:titles",
-     "read:titles"
-    ],
-    "owner": "juneteenth"
-   },
-   {
-    "base": "detach",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "date:titles",
-     "hat:titles",
-     "heat:titles"
-    ],
-    "owner": "kitchen"
-   },
-   {
-    "base": "earthy",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "year:titles",
-     "hat:titles",
-     "heat:titles"
-    ],
-    "owner": "juneteenth"
-   },
-   {
-    "base": "hearts",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "star:titles",
-     "hat:titles",
-     "heat:titles"
-    ],
-    "owner": "rnb90s"
-   },
-   {
-    "base": "parked",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "red:titles",
-     "park:titles",
-     "read:titles"
-    ],
-    "owner": "juneteenth"
-   },
-   {
-    "base": "raised",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "red:titles",
-     "read:titles",
-     "side:titles"
-    ],
-    "owner": "fishfry"
-   }
-  ]
- },
- {
-  "id": "sunday",
-  "vocab": 26,
-  "shipped": 20,
-  "supported": 14,
-  "boards": [
-   {
-    "base": "anthem",
-    "ideas": 4,
-    "known": 4,
-    "weight": 8,
-    "rows": [
-     "ham:titles",
-     "tea:titles",
-     "hat:titles",
-     "amen:titles"
-    ],
-    "owner": "sunday"
-   },
-   {
-    "base": "hamlet",
-    "ideas": 4,
-    "known": 4,
-    "weight": 8,
-    "rows": [
-     "ham:titles",
-     "tea:titles",
-     "hat:titles",
-     "late:titles"
-    ],
-    "owner": "fishfry"
-   },
-   {
-    "base": "petals",
-    "ideas": 4,
-    "known": 4,
-    "weight": 8,
-    "rows": [
-     "plate:titles",
-     "tea:titles",
-     "seat:titles",
-     "late:titles"
+     "yard:said",
+     "dry:said",
+     "tray:said"
     ]
    },
    {
-    "base": "planet",
-    "ideas": 4,
-    "known": 4,
-    "weight": 8,
-    "rows": [
-     "plate:titles",
-     "tea:titles",
-     "late:titles",
-     "nap:titles"
-    ],
-    "owner": "carolina"
-   },
-   {
-    "base": "stable",
-    "ideas": 4,
-    "known": 4,
-    "weight": 8,
-    "rows": [
-     "table:titles",
-     "tea:titles",
-     "seat:titles",
-     "late:titles"
-    ]
-   },
-   {
-    "base": "alerts",
+    "base": "phrase",
     "ideas": 3,
     "known": 3,
     "weight": 6,
     "rows": [
-     "tea:titles",
-     "seat:titles",
-     "late:titles"
-    ]
-   },
-   {
-    "base": "casket",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "cake:titles",
-     "tea:titles",
-     "seat:titles"
-    ],
-    "owner": "sunday"
-   },
-   {
-    "base": "chalet",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "tea:titles",
-     "hat:titles",
-     "late:titles"
-    ]
-   },
-   {
-    "base": "cheats",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "tea:titles",
-     "seat:titles",
-     "hat:titles"
-    ],
-    "owner": "steppers"
-   },
-   {
-    "base": "cipher",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "rice:titles",
-     "pie:titles",
-     "ice:titles"
-    ]
-   },
-   {
-    "base": "lament",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "tea:titles",
-     "amen:titles",
-     "late:titles"
+     "heap:said",
+     "sear:said",
+     "ash:said"
     ],
     "owner": "sitcom"
    },
    {
-    "base": "plated",
+    "base": "baited",
     "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "known": 2,
+    "weight": 7,
     "rows": [
-     "plate:titles",
-     "tea:titles",
-     "late:titles"
-    ],
-    "owner": "fishfry"
+     "bid:named",
+     "tea:named",
+     "bite:voice"
+    ]
    },
    {
-    "base": "steamy",
+    "base": "bridal",
     "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "known": 2,
+    "weight": 7,
     "rows": [
-     "yam:titles",
-     "tea:titles",
-     "seat:titles"
-    ],
-    "owner": "sunday"
+     "bid:named",
+     "rib:named",
+     "lid:voice"
+    ]
+   },
+   {
+    "base": "stable",
+    "ideas": 4,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "tea:named",
+     "baste:said",
+     "table:voice",
+     "late:voice"
+    ]
    },
    {
     "base": "tackle",
     "ideas": 3,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "cake:named",
+     "tea:named",
+     "late:voice"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "candor",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "corn:named",
+     "can:said",
+     "card:voice"
+    ],
+    "owner": "cookout"
+   },
+   {
+    "base": "chalet",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "tea:named",
+     "heat:said",
+     "late:voice"
+    ]
+   },
+   {
+    "base": "dimple",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "dip:named",
+     "mild:said",
+     "lid:voice"
+    ]
+   },
+   {
+    "base": "misled",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "slide:named",
+     "mild:said",
+     "lid:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "petals",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "tea:named",
+     "plate:said",
+     "late:voice"
+    ]
+   },
+   {
+    "base": "racked",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "cake:named",
+     "rack:said",
+     "card:voice"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "realty",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "tea:named",
+     "tray:said",
+     "late:voice"
+    ]
+   },
+   {
+    "base": "ashore",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "sear:said",
+     "ash:said",
+     "hose:voice"
+    ],
+    "owner": "cookout"
+   },
+   {
+    "base": "coiled",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "ice:said",
+     "cold:said",
+     "lid:voice"
+    ],
+    "owner": "kitchen"
+   },
+   {
+    "base": "deacon",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "done:said",
+     "can:said",
+     "dance:voice"
+    ],
+    "owner": "sunday"
+   },
+   {
+    "base": "others",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "rest:said",
+     "hot:said",
+     "hose:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "thongs",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "tongs:said",
+     "hot:said",
+     "song:voice"
+    ]
+   },
+   {
+    "base": "detail",
+    "ideas": 3,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "tea:named",
+     "late:voice",
+     "lid:voice"
+    ],
+    "owner": "gogo"
+   },
+   {
+    "base": "entail",
+    "ideas": 3,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "tea:named",
+     "late:voice",
+     "line:voice"
+    ],
+    "owner": "salon"
+   },
+   {
+    "base": "dancer",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "can:said",
+     "dance:voice",
+     "card:voice"
+    ],
+    "owner": "hbcu"
+   }
+  ]
+ },
+ {
+  "id": "spades",
+  "vocab": 45,
+  "shipped": 21,
+  "supported": 28,
+  "boards": [
+   {
+    "base": "lacked",
+    "ideas": 4,
+    "known": 4,
+    "weight": 10,
+    "rows": [
+     "deck:named",
+     "ace:named",
+     "deal:said",
+     "lead:said"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "jacked",
+    "ideas": 3,
+    "known": 3,
+    "weight": 9,
+    "rows": [
+     "deck:named",
+     "ace:named",
+     "jack:named"
+    ]
+   },
+   {
+    "base": "blinds",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "nil:named",
+     "blind:named",
+     "bid:said"
+    ]
+   },
+   {
+    "base": "cheats",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "ace:named",
+     "set:said",
+     "cheat:said",
+     "seat:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "cradle",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "ace:named",
+     "deal:said",
+     "lead:said",
+     "card:voice"
+    ],
+    "owner": "reunion"
+   },
+   {
+    "base": "lapsed",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "spade:named",
+     "deal:said",
+     "lead:said",
+     "pad:voice"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "placed",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "ace:named",
+     "deal:said",
+     "lead:said",
+     "pad:voice"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "calmed",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "ace:named",
+     "deal:said",
+     "lead:said"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "deltas",
+    "ideas": 4,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "deal:said",
+     "set:said",
+     "lead:said",
+     "seat:voice"
+    ],
+    "owner": "gogo"
+   },
+   {
+    "base": "denial",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "nil:named",
+     "deal:said",
+     "lead:said"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "bailed",
+    "ideas": 3,
     "known": 3,
     "weight": 6,
     "rows": [
-     "cake:titles",
-     "tea:titles",
-     "late:titles"
+     "bid:said",
+     "deal:said",
+     "lead:said"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "covers",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "score:said",
+     "over:said",
+     "cover:said"
+    ]
+   },
+   {
+    "base": "handle",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "deal:said",
+     "hand:said",
+     "lead:said"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "talked",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "deal:said",
+     "talk:said",
+     "lead:said"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "packed",
+    "ideas": 3,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "deck:named",
+     "ace:named",
+     "pad:voice"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "pasted",
+    "ideas": 4,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "spade:named",
+     "set:said",
+     "pad:voice",
+     "seat:voice"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "racked",
+    "ideas": 3,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "deck:named",
+     "ace:named",
+     "card:voice"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "spaced",
+    "ideas": 3,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "spade:named",
+     "ace:named",
+     "pad:voice"
+    ]
+   },
+   {
+    "base": "aspect",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "ace:named",
+     "set:said",
+     "seat:voice"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "hearts",
+    "ideas": 4,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "set:said",
+     "trash:said",
+     "seat:voice",
+     "heart:voice"
+    ]
+   },
+   {
+    "base": "teacup",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "ace:named",
+     "cut:said",
+     "cup:voice"
+    ]
+   },
+   {
+    "base": "plated",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "deal:said",
+     "lead:said",
+     "pad:voice"
+    ],
+    "owner": "fishfry"
+   },
+   {
+    "base": "stable",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "set:said",
+     "table:said",
+     "seat:voice"
+    ]
+   },
+   {
+    "base": "turned",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "run:said",
+     "under:said",
+     "turn:voice"
+    ]
+   },
+   {
+    "base": "unrest",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "set:said",
+     "run:said",
+     "turn:voice"
+    ]
+   },
+   {
+    "base": "pencil",
+    "ideas": 3,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "nil:named",
+     "pen:voice",
+     "ice:voice"
+    ],
+    "owner": "barbershop"
+   },
+   {
+    "base": "daphne",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "hand:said",
+     "pad:voice",
+     "pen:voice"
+    ]
+   },
+   {
+    "base": "master",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "set:said",
+     "team:voice",
+     "seat:voice"
     ],
     "owner": "spades"
    }
   ]
  },
  {
-  "id": "steppers",
-  "vocab": 31,
-  "shipped": 21,
-  "supported": 11,
+  "id": "church",
+  "vocab": 70,
+  "shipped": 19,
+  "supported": 25,
   "boards": [
    {
-    "base": "cheats",
-    "ideas": 5,
-    "known": 5,
-    "weight": 10,
+    "base": "aspire",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
     "rows": [
-     "heat:titles",
-     "hat:titles",
-     "set:titles",
-     "seat:titles",
-     "teach:titles"
+     "praise:named",
+     "rise:said",
+     "reap:said"
     ],
-    "owner": "steppers"
+    "owner": "church"
    },
    {
-    "base": "deaths",
-    "ideas": 4,
-    "known": 4,
-    "weight": 8,
+    "base": "bowers",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
     "rows": [
-     "heat:titles",
-     "hat:titles",
-     "set:titles",
-     "seat:titles"
+     "robe:named",
+     "rose:said",
+     "sow:said"
+    ]
+   },
+   {
+    "base": "giants",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "saint:named",
+     "sang:said",
+     "sing:said"
+    ]
+   },
+   {
+    "base": "powers",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "pew:named",
+     "rose:said",
+     "sow:said"
+    ]
+   },
+   {
+    "base": "fasten",
+    "ideas": 5,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "fan:said",
+     "sent:said",
+     "seat:voice",
+     "tea:voice",
+     "feast:voice"
+    ],
+    "owner": "church"
+   },
+   {
+    "base": "agents",
+    "ideas": 4,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "sang:said",
+     "sent:said",
+     "seat:voice",
+     "tea:voice"
+    ],
+    "owner": "homecoming"
+   },
+   {
+    "base": "mouths",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "shout:named",
+     "hum:said",
+     "host:voice"
+    ],
+    "owner": "church"
+   },
+   {
+    "base": "organs",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "organ:named",
+     "sang:said",
+     "song:voice"
+    ],
+    "owner": "sunday"
+   },
+   {
+    "base": "dowser",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "rose:said",
+     "sow:said",
+     "word:voice"
+    ]
+   },
+   {
+    "base": "mangos",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "sang:said",
+     "moan:said",
+     "song:voice"
+    ]
+   },
+   {
+    "base": "sowing",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "sing:said",
+     "sow:said",
+     "song:voice"
     ],
     "owner": "gogo"
    },
    {
-    "base": "absent",
+    "base": "wagons",
     "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "known": 2,
+    "weight": 5,
     "rows": [
-     "beat:titles",
-     "set:titles",
-     "seat:titles"
+     "sang:said",
+     "sow:said",
+     "song:voice"
+    ]
+   },
+   {
+    "base": "anthem",
+    "ideas": 3,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "amen:named",
+     "hat:voice",
+     "tea:voice"
+    ],
+    "owner": "sunday"
+   },
+   {
+    "base": "cheats",
+    "ideas": 4,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "teach:said",
+     "hat:voice",
+     "seat:voice",
+     "tea:voice"
     ],
     "owner": "steppers"
    },
    {
-    "base": "aspect",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "base": "hasten",
+    "ideas": 4,
+    "known": 1,
+    "weight": 5,
     "rows": [
-     "step:titles",
-     "set:titles",
-     "seat:titles"
+     "sent:said",
+     "hat:voice",
+     "seat:voice",
+     "tea:voice"
     ],
-    "owner": "sitcom"
+    "owner": "sunday"
    },
    {
-    "base": "bathed",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "base": "petals",
+    "ideas": 4,
+    "known": 1,
+    "weight": 5,
     "rows": [
-     "beat:titles",
-     "heat:titles",
-     "hat:titles"
+     "plate:said",
+     "seat:voice",
+     "tea:voice",
+     "step:voice"
+    ]
+   },
+   {
+    "base": "absent",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "sent:said",
+     "seat:voice",
+     "tea:voice"
     ],
-    "owner": "kitchen"
+    "owner": "steppers"
    },
    {
     "base": "chalet",
     "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "known": 1,
+    "weight": 4,
     "rows": [
-     "heat:titles",
-     "hat:titles",
-     "teach:titles"
+     "teach:said",
+     "hat:voice",
+     "tea:voice"
+    ]
+   },
+   {
+    "base": "satire",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "rise:said",
+     "seat:voice",
+     "tea:voice"
+    ]
+   },
+   {
+    "base": "sweaty",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "sway:said",
+     "seat:voice",
+     "tea:voice"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "aspect",
+    "ideas": 3,
+    "known": 0,
+    "weight": 3,
+    "rows": [
+     "seat:voice",
+     "tea:voice",
+     "step:voice"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "deaths",
+    "ideas": 3,
+    "known": 0,
+    "weight": 3,
+    "rows": [
+     "hat:voice",
+     "seat:voice",
+     "tea:voice"
+    ],
+    "owner": "gogo"
+   },
+   {
+    "base": "facets",
+    "ideas": 3,
+    "known": 0,
+    "weight": 3,
+    "rows": [
+     "seat:voice",
+     "tea:voice",
+     "feast:voice"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "stable",
+    "ideas": 3,
+    "known": 0,
+    "weight": 3,
+    "rows": [
+     "seat:voice",
+     "tea:voice",
+     "table:voice"
+    ]
+   },
+   {
+    "base": "waters",
+    "ideas": 3,
+    "known": 0,
+    "weight": 3,
+    "rows": [
+     "seat:voice",
+     "tea:voice",
+     "water:voice"
+    ],
+    "owner": "salon"
+   }
+  ]
+ },
+ {
+  "id": "steppers",
+  "vocab": 46,
+  "shipped": 21,
+  "supported": 24,
+  "boards": [
+   {
+    "base": "instep",
+    "ideas": 4,
+    "known": 3,
+    "weight": 9,
+    "rows": [
+     "step:named",
+     "spin:named",
+     "set:said",
+     "tie:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "candle",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "lead:named",
+     "dance:said",
+     "led:said"
     ]
    },
    {
     "base": "deltas",
     "ideas": 3,
     "known": 3,
-    "weight": 6,
+    "weight": 7,
     "rows": [
-     "lead:titles",
-     "set:titles",
-     "seat:titles"
+     "lead:named",
+     "set:said",
+     "led:said"
     ],
     "owner": "gogo"
    },
    {
-    "base": "hostel",
+    "base": "denial",
     "ideas": 3,
     "known": 3,
-    "weight": 6,
+    "weight": 7,
     "rows": [
-     "shoe:titles",
-     "sole:titles",
-     "set:titles"
+     "lead:named",
+     "line:said",
+     "led:said"
     ],
-    "owner": "reunion"
+    "owner": "hbcu"
    },
    {
-    "base": "instep",
+    "base": "dingle",
     "ideas": 3,
     "known": 3,
-    "weight": 6,
+    "weight": 7,
     "rows": [
-     "step:titles",
-     "spin:titles",
-     "set:titles"
-    ],
-    "owner": "steppers"
+     "glide:named",
+     "line:said",
+     "led:said"
+    ]
    },
    {
-    "base": "lowest",
+    "base": "handle",
     "ideas": 3,
     "known": 3,
-    "weight": 6,
+    "weight": 7,
     "rows": [
-     "sole:titles",
-     "slow:titles",
-     "set:titles"
-    ],
-    "owner": "steppers"
-   },
-   {
-    "base": "sweaty",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "set:titles",
-     "seat:titles",
-     "sway:titles"
-    ],
-    "owner": "salon"
-   }
-  ]
- },
- {
-  "id": "sitcom",
-  "vocab": 31,
-  "shipped": 20,
-  "supported": 9,
-  "boards": [
-   {
-    "base": "aspect",
-    "ideas": 5,
-    "known": 5,
-    "weight": 10,
-    "rows": [
-     "tape:titles",
-     "set:titles",
-     "cast:titles",
-     "seat:titles",
-     "act:titles"
-    ],
-    "owner": "sitcom"
-   },
-   {
-    "base": "caters",
-    "ideas": 5,
-    "known": 5,
-    "weight": 10,
-    "rows": [
-     "set:titles",
-     "cast:titles",
-     "star:titles",
-     "seat:titles",
-     "act:titles"
+     "lead:named",
+     "hand:said",
+     "led:said"
     ],
     "owner": "spades"
    },
    {
-    "base": "casket",
-    "ideas": 4,
-    "known": 4,
-    "weight": 8,
-    "rows": [
-     "set:titles",
-     "cast:titles",
-     "seat:titles",
-     "act:titles"
-    ],
-    "owner": "sunday"
-   },
-   {
-    "base": "actors",
+    "base": "ideals",
     "ideas": 3,
     "known": 3,
+    "weight": 7,
+    "rows": [
+     "lead:named",
+     "slide:said",
+     "led:said"
+    ],
+    "owner": "fishfry"
+   },
+   {
+    "base": "listed",
+    "ideas": 4,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "slide:said",
+     "set:said",
+     "led:said",
+     "tie:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "walked",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "lead:named",
+     "walk:said",
+     "led:said"
+    ]
+   },
+   {
+    "base": "cheats",
+    "ideas": 4,
+    "known": 2,
     "weight": 6,
     "rows": [
-     "cast:titles",
-     "star:titles",
-     "act:titles"
+     "set:said",
+     "teach:said",
+     "heat:voice",
+     "hat:voice"
     ],
-    "owner": "sitcom"
+    "owner": "steppers"
+   },
+   {
+    "base": "detail",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "lead:named",
+     "led:said",
+     "tie:voice"
+    ],
+    "owner": "gogo"
+   },
+   {
+    "base": "potsie",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "step:named",
+     "set:said",
+     "tie:voice"
+    ]
+   },
+   {
+    "base": "closed",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "close:said",
+     "led:said",
+     "sole:voice"
+    ],
+    "owner": "chicago"
+   },
+   {
+    "base": "closet",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "set:said",
+     "close:said",
+     "sole:voice"
+    ]
+   },
+   {
+    "base": "enlist",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "line:said",
+     "set:said",
+     "tie:voice"
+    ],
+    "owner": "homecoming"
+   },
+   {
+    "base": "lowest",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "slow:said",
+     "set:said",
+     "sole:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "oldest",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "set:said",
+     "led:said",
+     "sole:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "slowed",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "slow:said",
+     "led:said",
+     "sole:voice"
+    ]
+   },
+   {
+    "base": "soiled",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "slide:said",
+     "led:said",
+     "sole:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "bathed",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "beat:said",
+     "heat:voice",
+     "hat:voice"
+    ],
+    "owner": "kitchen"
+   },
+   {
+    "base": "chalet",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "teach:said",
+     "heat:voice",
+     "hat:voice"
+    ]
+   },
+   {
+    "base": "deaths",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "set:said",
+     "heat:voice",
+     "hat:voice"
+    ],
+    "owner": "gogo"
+   },
+   {
+    "base": "duties",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "set:said",
+     "suit:voice",
+     "tie:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "hostel",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "set:said",
+     "shoe:voice",
+     "sole:voice"
+    ],
+    "owner": "reunion"
+   }
+  ]
+ },
+ {
+  "id": "reunion",
+  "vocab": 46,
+  "shipped": 27,
+  "supported": 17,
+  "boards": [
+   {
+    "base": "deltas",
+    "ideas": 4,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "seat:said",
+     "eat:said",
+     "tale:said",
+     "date:voice"
+    ],
+    "owner": "gogo"
+   },
+   {
+    "base": "staged",
+    "ideas": 4,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tag:said",
+     "seat:said",
+     "eat:said",
+     "date:voice"
+    ],
+    "owner": "homecoming"
+   },
+   {
+    "base": "tandem",
+    "ideas": 4,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "name:said",
+     "named:said",
+     "eat:said",
+     "date:voice"
+    ],
+    "owner": "juneteenth"
    },
    {
     "base": "agents",
@@ -2193,9 +2963,9 @@
     "known": 3,
     "weight": 6,
     "rows": [
-     "set:titles",
-     "seat:titles",
-     "stage:titles"
+     "tag:said",
+     "seat:said",
+     "eat:said"
     ],
     "owner": "homecoming"
    },
@@ -2205,182 +2975,45 @@
     "known": 3,
     "weight": 6,
     "rows": [
-     "set:titles",
-     "star:titles",
-     "seat:titles"
+     "seat:said",
+     "eat:said",
+     "tale:said"
     ]
    },
    {
-    "base": "pasted",
+    "base": "cartel",
     "ideas": 3,
     "known": 3,
     "weight": 6,
     "rows": [
-     "tape:titles",
-     "set:titles",
-     "seat:titles"
-    ],
-    "owner": "hbcu"
-   },
-   {
-    "base": "swatch",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "cast:titles",
-     "act:titles",
-     "watch:titles"
-    ],
-    "owner": "sitcom"
-   },
-   {
-    "base": "unseat",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "set:titles",
-     "seat:titles",
-     "tune:titles"
-    ],
-    "owner": "sitcom"
-   }
-  ]
- },
- {
-  "id": "salon",
-  "vocab": 31,
-  "shipped": 23,
-  "supported": 7,
-  "boards": [
-   {
-    "base": "aspect",
-    "ideas": 4,
-    "known": 4,
-    "weight": 8,
-    "rows": [
-     "set:titles",
-     "cap:titles",
-     "seat:titles",
-     "cape:titles"
-    ],
-    "owner": "sitcom"
-   },
-   {
-    "base": "camper",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "cream:titles",
-     "cap:titles",
-     "cape:titles"
-    ],
-    "owner": "salon"
-   },
-   {
-    "base": "carpet",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "part:titles",
-     "cap:titles",
-     "cape:titles"
-    ],
-    "owner": "barbershop"
-   },
-   {
-    "base": "lowest",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "set:titles",
-     "towel:titles",
-     "sew:titles"
-    ],
-    "owner": "steppers"
-   },
-   {
-    "base": "places",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "scalp:titles",
-     "cap:titles",
-     "cape:titles"
-    ],
-    "owner": "salon"
-   },
-   {
-    "base": "strewn",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "set:titles",
-     "rent:titles",
-     "sew:titles"
-    ],
-    "owner": "salon"
-   },
-   {
-    "base": "sweaty",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "set:titles",
-     "seat:titles",
-     "sew:titles"
-    ],
-    "owner": "salon"
-   }
-  ]
- },
- {
-  "id": "homecoming",
-  "vocab": 30,
-  "shipped": 21,
-  "supported": 6,
-  "boards": [
-   {
-    "base": "agents",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "tag:titles",
-     "gate:titles",
-     "seat:titles"
-    ],
-    "owner": "homecoming"
-   },
-   {
-    "base": "eating",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "tag:titles",
-     "gate:titles",
-     "tie:titles"
+     "eat:said",
+     "tale:said",
+     "trace:said"
     ]
    },
    {
-    "base": "gather",
+    "base": "caters",
     "ideas": 3,
     "known": 3,
     "weight": 6,
     "rows": [
-     "tag:titles",
-     "gate:titles",
-     "hat:titles"
+     "seat:said",
+     "eat:said",
+     "trace:said"
     ],
-    "owner": "homecoming"
+    "owner": "spades"
+   },
+   {
+    "base": "faster",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "after:said",
+     "seat:said",
+     "eat:said"
+    ],
+    "owner": "sunday"
    },
    {
     "base": "gelato",
@@ -2388,11 +3021,23 @@
     "known": 3,
     "weight": 6,
     "rows": [
-     "lot:titles",
-     "tag:titles",
-     "gate:titles"
+     "tag:said",
+     "eat:said",
+     "tale:said"
     ],
     "owner": "caribbean"
+   },
+   {
+    "base": "lament",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "name:said",
+     "eat:said",
+     "tale:said"
+    ],
+    "owner": "sitcom"
    },
    {
     "base": "loathe",
@@ -2400,9 +3045,9 @@
     "known": 3,
     "weight": 6,
     "rows": [
-     "lot:titles",
-     "hat:titles",
-     "hotel:titles"
+     "hotel:said",
+     "eat:said",
+     "tale:said"
     ],
     "owner": "homecoming"
    },
@@ -2412,217 +3057,1173 @@
     "known": 3,
     "weight": 6,
     "rows": [
-     "game:titles",
-     "tag:titles",
-     "gate:titles"
+     "tag:said",
+     "name:said",
+     "eat:said"
     ],
     "owner": "reunion"
+   },
+   {
+    "base": "carted",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "eat:said",
+     "trace:said",
+     "date:voice"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "deaths",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "seat:said",
+     "eat:said",
+     "date:voice"
+    ],
+    "owner": "gogo"
+   },
+   {
+    "base": "dental",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "eat:said",
+     "tale:said",
+     "date:voice"
+    ],
+    "owner": "gogo"
+   },
+   {
+    "base": "grated",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "tag:said",
+     "eat:said",
+     "date:voice"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "realty",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "eat:said",
+     "tale:said",
+     "year:voice"
+    ]
    }
   ]
  },
  {
-  "id": "texas",
-  "vocab": 25,
-  "shipped": 12,
-  "supported": 5,
+  "id": "sunday",
+  "vocab": 39,
+  "shipped": 20,
+  "supported": 16,
   "boards": [
    {
-    "base": "barked",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "base": "planet",
+    "ideas": 5,
+    "known": 4,
+    "weight": 10,
     "rows": [
-     "bark:titles",
-     "bread:titles",
-     "red:titles"
+     "tea:named",
+     "plate:said",
+     "late:said",
+     "nap:said",
+     "pan:voice"
     ],
-    "owner": "texas"
+    "owner": "carolina"
    },
    {
-    "base": "drafty",
-    "ideas": 3,
+    "base": "hamlet",
+    "ideas": 4,
     "known": 3,
-    "weight": 6,
+    "weight": 9,
     "rows": [
-     "fat:titles",
-     "tray:titles",
-     "yard:titles"
+     "ham:named",
+     "tea:named",
+     "late:said",
+     "hat:voice"
+    ],
+    "owner": "fishfry"
+   },
+   {
+    "base": "petals",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "tea:named",
+     "plate:said",
+     "late:said",
+     "seat:voice"
     ]
    },
    {
-    "base": "earthy",
+    "base": "tackle",
     "ideas": 3,
     "known": 3,
-    "weight": 6,
+    "weight": 8,
     "rows": [
-     "tray:titles",
-     "heat:titles",
-     "hat:titles"
+     "cake:named",
+     "tea:named",
+     "late:said"
     ],
-    "owner": "juneteenth"
+    "owner": "spades"
    },
    {
-    "base": "father",
+    "base": "plated",
     "ideas": 3,
     "known": 3,
-    "weight": 6,
+    "weight": 7,
     "rows": [
-     "fat:titles",
-     "heat:titles",
-     "hat:titles"
+     "tea:named",
+     "plate:said",
+     "late:said"
     ],
-    "owner": "sitcom"
+    "owner": "fishfry"
    },
    {
-    "base": "hatred",
+    "base": "anthem",
     "ideas": 3,
-    "known": 3,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "ham:named",
+     "tea:named",
+     "hat:voice"
+    ],
+    "owner": "sunday"
+   },
+   {
+    "base": "casket",
+    "ideas": 3,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "cake:named",
+     "tea:named",
+     "seat:voice"
+    ],
+    "owner": "sunday"
+   },
+   {
+    "base": "stable",
+    "ideas": 4,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "tea:named",
+     "late:said",
+     "table:voice",
+     "seat:voice"
+    ]
+   },
+   {
+    "base": "steamy",
+    "ideas": 3,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "yam:named",
+     "tea:named",
+     "seat:voice"
+    ],
+    "owner": "sunday"
+   },
+   {
+    "base": "alerts",
+    "ideas": 3,
+    "known": 2,
     "weight": 6,
     "rows": [
-     "red:titles",
-     "heat:titles",
-     "hat:titles"
+     "tea:named",
+     "late:said",
+     "seat:voice"
+    ]
+   },
+   {
+    "base": "chalet",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "tea:named",
+     "late:said",
+     "hat:voice"
+    ]
+   },
+   {
+    "base": "detail",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "tea:named",
+     "late:said",
+     "lid:voice"
     ],
-    "owner": "juneteenth"
+    "owner": "gogo"
+   },
+   {
+    "base": "parent",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "tea:named",
+     "nap:said",
+     "pan:voice"
+    ],
+    "owner": "salon"
+   },
+   {
+    "base": "cheats",
+    "ideas": 3,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "tea:named",
+     "seat:voice",
+     "hat:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "parton",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "nap:said",
+     "pot:voice",
+     "pan:voice"
+    ]
+   },
+   {
+    "base": "unpack",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "nap:said",
+     "pan:voice",
+     "cup:voice"
+    ]
    }
   ]
  },
  {
   "id": "kitchen",
-  "vocab": 39,
+  "vocab": 58,
   "shipped": 20,
-  "supported": 4,
+  "supported": 15,
   "boards": [
    {
-    "base": "bodily",
+    "base": "breast",
+    "ideas": 4,
+    "known": 4,
+    "weight": 8,
+    "rows": [
+     "sear:said",
+     "rest:said",
+     "beat:said",
+     "baste:said"
+    ],
+    "owner": "sunday"
+   },
+   {
+    "base": "caters",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "cast:named",
+     "sear:said",
+     "rest:said"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "basket",
     "ideas": 3,
     "known": 3,
     "weight": 6,
     "rows": [
-     "lid:titles",
-     "oil:titles",
-     "boil:titles"
+     "bake:said",
+     "beat:said",
+     "baste:said"
+    ],
+    "owner": "cookout"
+   },
+   {
+    "base": "insert",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "stir:said",
+     "rest:said",
+     "rinse:said"
+    ],
+    "owner": "salon"
+   },
+   {
+    "base": "satire",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "sear:said",
+     "stir:said",
+     "rest:said"
+    ]
+   },
+   {
+    "base": "strife",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "stir:said",
+     "rest:said",
+     "sift:said"
+    ]
+   },
+   {
+    "base": "alerts",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "sear:said",
+     "rest:said",
+     "salt:voice"
+    ]
+   },
+   {
+    "base": "hearts",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "sear:said",
+     "rest:said",
+     "heat:voice"
+    ]
+   },
+   {
+    "base": "merits",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "stir:said",
+     "rest:said",
+     "timer:voice"
+    ],
+    "owner": "kitchen"
+   },
+   {
+    "base": "stable",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "beat:said",
+     "baste:said",
+     "salt:voice"
+    ]
+   },
+   {
+    "base": "parton",
+    "ideas": 3,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "apron:named",
+     "pot:voice",
+     "pan:voice"
+    ]
+   },
+   {
+    "base": "bodily",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "boil:said",
+     "lid:voice",
+     "oil:voice"
     ],
     "owner": "kitchen"
    },
    {
     "base": "coiled",
     "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "known": 1,
+    "weight": 4,
     "rows": [
-     "lid:titles",
-     "oil:titles",
-     "dice:titles"
+     "dice:said",
+     "lid:voice",
+     "oil:voice"
     ],
     "owner": "kitchen"
    },
    {
-    "base": "parton",
+    "base": "foiled",
     "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "known": 1,
+    "weight": 4,
     "rows": [
-     "pot:titles",
-     "pan:titles",
-     "apron:titles"
-    ]
+     "fold:said",
+     "lid:voice",
+     "oil:voice"
+    ],
+    "owner": "kitchen"
    },
    {
     "base": "unpack",
     "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "known": 0,
+    "weight": 3,
     "rows": [
-     "pan:titles",
-     "cup:titles",
-     "can:titles"
+     "pan:voice",
+     "cup:voice",
+     "can:voice"
     ]
    }
   ]
  },
  {
-  "id": "church",
-  "vocab": 28,
-  "shipped": 21,
-  "supported": 4,
+  "id": "salon",
+  "vocab": 44,
+  "shipped": 22,
+  "supported": 15,
   "boards": [
    {
-    "base": "anthem",
+    "base": "dearly",
     "ideas": 3,
     "known": 3,
     "weight": 6,
     "rows": [
-     "hat:titles",
-     "amen:titles",
-     "tea:titles"
+     "dry:said",
+     "lay:said",
+     "dye:said"
     ],
-    "owner": "sunday"
+    "owner": "rnb90s"
    },
    {
-    "base": "cheats",
+    "base": "insert",
     "ideas": 3,
     "known": 3,
     "weight": 6,
     "rows": [
-     "seat:titles",
-     "hat:titles",
-     "tea:titles"
+     "set:said",
+     "rent:said",
+     "rinse:said"
+    ],
+    "owner": "salon"
+   },
+   {
+    "base": "stoner",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "set:said",
+     "rent:said",
+     "tone:said"
+    ]
+   },
+   {
+    "base": "strewn",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "set:said",
+     "sew:said",
+     "rent:said"
+    ],
+    "owner": "salon"
+   },
+   {
+    "base": "trendy",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "dry:said",
+     "rent:said",
+     "dye:said"
+    ]
+   },
+   {
+    "base": "bowels",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "sew:said",
+     "blow:said",
+     "bowl:voice"
     ],
     "owner": "steppers"
    },
    {
-    "base": "fasten",
+    "base": "lowest",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "set:said",
+     "sew:said",
+     "towel:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "merits",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "set:said",
+     "trim:said",
+     "time:voice"
+    ],
+    "owner": "kitchen"
+   },
+   {
+    "base": "rodent",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "rent:said",
+     "tone:said",
+     "rod:voice"
+    ]
+   },
+   {
+    "base": "stayed",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "set:said",
+     "dye:said",
+     "seat:voice"
+    ],
+    "owner": "salon"
+   },
+   {
+    "base": "sweaty",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "set:said",
+     "sew:said",
+     "seat:voice"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "aspect",
+    "ideas": 4,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "set:said",
+     "cap:voice",
+     "cape:voice",
+     "seat:voice"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "places",
+    "ideas": 3,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "scalp:named",
+     "cap:voice",
+     "cape:voice"
+    ],
+    "owner": "salon"
+   },
+   {
+    "base": "carpet",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "part:said",
+     "cap:voice",
+     "cape:voice"
+    ],
+    "owner": "barbershop"
+   },
+   {
+    "base": "camper",
+    "ideas": 3,
+    "known": 0,
+    "weight": 3,
+    "rows": [
+     "cap:voice",
+     "cape:voice",
+     "cream:voice"
+    ],
+    "owner": "salon"
+   }
+  ]
+ },
+ {
+  "id": "juneteenth",
+  "vocab": 33,
+  "shipped": 24,
+  "supported": 15,
+  "boards": [
+   {
+    "base": "hatred",
+    "ideas": 5,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "red:said",
+     "read:said",
+     "date:said",
+     "hat:voice",
+     "heat:voice"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "dreamt",
+    "ideas": 4,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "red:said",
+     "read:said",
+     "date:said",
+     "meat:voice"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "stared",
+    "ideas": 4,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "red:said",
+     "read:said",
+     "date:said",
+     "star:voice"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "adores",
     "ideas": 3,
     "known": 3,
     "weight": 6,
     "rows": [
-     "seat:titles",
-     "fan:titles",
-     "tea:titles"
+     "red:said",
+     "soda:said",
+     "read:said"
     ],
-    "owner": "church"
+    "owner": "juneteenth"
+   },
+   {
+    "base": "advert",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "red:said",
+     "read:said",
+     "date:said"
+    ]
+   },
+   {
+    "base": "dearly",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "red:said",
+     "read:said",
+     "year:said"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "parked",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "red:said",
+     "read:said",
+     "park:said"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "dancer",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "red:said",
+     "read:said",
+     "dance:voice"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "dasher",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "red:said",
+     "read:said",
+     "shade:voice"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "raised",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "red:said",
+     "read:said",
+     "side:voice"
+    ],
+    "owner": "fishfry"
+   },
+   {
+    "base": "deaths",
+    "ideas": 4,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "date:said",
+     "hat:voice",
+     "heat:voice",
+     "shade:voice"
+    ],
+    "owner": "gogo"
+   },
+   {
+    "base": "bathed",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "date:said",
+     "hat:voice",
+     "heat:voice"
+    ],
+    "owner": "kitchen"
+   },
+   {
+    "base": "earthy",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "year:said",
+     "hat:voice",
+     "heat:voice"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "anthem",
+    "ideas": 3,
+    "known": 0,
+    "weight": 3,
+    "rows": [
+     "hat:voice",
+     "heat:voice",
+     "meat:voice"
+    ],
+    "owner": "sunday"
+   },
+   {
+    "base": "hearts",
+    "ideas": 3,
+    "known": 0,
+    "weight": 3,
+    "rows": [
+     "star:voice",
+     "hat:voice",
+     "heat:voice"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sitcom",
+  "vocab": 37,
+  "shipped": 19,
+  "supported": 14,
+  "boards": [
+   {
+    "base": "caters",
+    "ideas": 5,
+    "known": 4,
+    "weight": 11,
+    "rows": [
+     "cast:named",
+     "star:named",
+     "set:said",
+     "act:said",
+     "seat:voice"
+    ],
+    "owner": "spades"
+   },
+   {
+    "base": "tracks",
+    "ideas": 4,
+    "known": 4,
+    "weight": 11,
+    "rows": [
+     "track:named",
+     "cast:named",
+     "star:named",
+     "act:said"
+    ],
+    "owner": "sitcom"
+   },
+   {
+    "base": "aspect",
+    "ideas": 5,
+    "known": 4,
+    "weight": 10,
+    "rows": [
+     "cast:named",
+     "tape:said",
+     "set:said",
+     "act:said",
+     "seat:voice"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "actors",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "cast:named",
+     "star:named",
+     "act:said"
+    ],
+    "owner": "sitcom"
+   },
+   {
+    "base": "casket",
+    "ideas": 4,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "cast:named",
+     "set:said",
+     "act:said",
+     "seat:voice"
+    ],
+    "owner": "sunday"
+   },
+   {
+    "base": "pasted",
+    "ideas": 4,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "tape:said",
+     "set:said",
+     "taped:said",
+     "seat:voice"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "swatch",
+    "ideas": 3,
+    "known": 3,
+    "weight": 7,
+    "rows": [
+     "cast:named",
+     "act:said",
+     "watch:said"
+    ],
+    "owner": "sitcom"
+   },
+   {
+    "base": "alerts",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "star:named",
+     "set:said",
+     "seat:voice"
+    ]
+   },
+   {
+    "base": "hostel",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "host:named",
+     "set:said",
+     "slot:voice"
+    ],
+    "owner": "reunion"
+   },
+   {
+    "base": "pilots",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "pilot:named",
+     "plot:said",
+     "slot:voice"
+    ]
+   },
+   {
+    "base": "agents",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "set:said",
+     "stage:said",
+     "seat:voice"
+    ],
+    "owner": "homecoming"
+   },
+   {
+    "base": "closet",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "set:said",
+     "close:said",
+     "slot:voice"
+    ]
    },
    {
     "base": "petals",
     "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "tape:said",
+     "set:said",
+     "seat:voice"
+    ]
+   },
+   {
+    "base": "unseat",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "set:said",
+     "seat:voice",
+     "tune:voice"
+    ],
+    "owner": "sitcom"
+   }
+  ]
+ },
+ {
+  "id": "texas",
+  "vocab": 43,
+  "shipped": 12,
+  "supported": 12,
+  "boards": [
+   {
+    "base": "piston",
+    "ideas": 3,
     "known": 3,
+    "weight": 9,
+    "rows": [
+     "post:named",
+     "pit:named",
+     "point:named"
+    ],
+    "owner": "texas"
+   },
+   {
+    "base": "faults",
+    "ideas": 3,
+    "known": 3,
+    "weight": 8,
+    "rows": [
+     "fat:named",
+     "flat:named",
+     "salt:said"
+    ],
+    "owner": "texas"
+   },
+   {
+    "base": "barked",
+    "ideas": 3,
+    "known": 2,
     "weight": 6,
     "rows": [
-     "seat:titles",
-     "plate:titles",
-     "tea:titles"
+     "bark:named",
+     "bread:said",
+     "red:voice"
+    ],
+    "owner": "texas"
+   },
+   {
+    "base": "drafty",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "fat:named",
+     "tray:said",
+     "yard:voice"
     ]
+   },
+   {
+    "base": "trends",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "ends:named",
+     "rest:said",
+     "red:voice"
+    ],
+    "owner": "salon"
+   },
+   {
+    "base": "father",
+    "ideas": 3,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "fat:named",
+     "hat:voice",
+     "heat:voice"
+    ],
+    "owner": "sitcom"
+   },
+   {
+    "base": "nursed",
+    "ideas": 3,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "ends:named",
+     "red:voice",
+     "sun:voice"
+    ]
+   },
+   {
+    "base": "earthy",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "tray:said",
+     "hat:voice",
+     "heat:voice"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "finder",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "fired:said",
+     "red:voice",
+     "fire:voice"
+    ]
+   },
+   {
+    "base": "hearts",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "rest:said",
+     "hat:voice",
+     "heat:voice"
+    ]
+   },
+   {
+    "base": "rusted",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "rest:said",
+     "red:voice",
+     "dust:voice"
+    ],
+    "owner": "texas"
+   },
+   {
+    "base": "hatred",
+    "ideas": 3,
+    "known": 0,
+    "weight": 3,
+    "rows": [
+     "red:voice",
+     "hat:voice",
+     "heat:voice"
+    ],
+    "owner": "juneteenth"
    }
   ]
  },
  {
   "id": "barbershop",
-  "vocab": 34,
+  "vocab": 49,
   "shipped": 20,
-  "supported": 3,
+  "supported": 9,
   "boards": [
-   {
-    "base": "chairs",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "chair:titles",
-     "cash:titles",
-     "hair:titles"
-    ],
-    "owner": "barbershop"
-   },
    {
     "base": "fabled",
     "ideas": 3,
     "known": 3,
-    "weight": 6,
+    "weight": 8,
     "rows": [
-     "fade:titles",
-     "blade:titles",
-     "bald:titles"
+     "fade:named",
+     "blade:named",
+     "bald:said"
     ],
     "owner": "barbershop"
    },
@@ -2632,140 +4233,302 @@
     "known": 3,
     "weight": 6,
     "rows": [
-     "trim:titles",
-     "tip:titles",
-     "part:titles"
+     "trim:said",
+     "part:said",
+     "tip:said"
+    ]
+   },
+   {
+    "base": "aspect",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "cape:named",
+     "sat:said",
+     "seat:voice"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "absent",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "bet:said",
+     "sat:said",
+     "seat:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "sicken",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "neck:said",
+     "skin:said",
+     "sink:voice"
+    ]
+   },
+   {
+    "base": "silken",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "line:said",
+     "skin:said",
+     "sink:voice"
+    ]
+   },
+   {
+    "base": "chairs",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "chair:said",
+     "cash:voice",
+     "hair:voice"
+    ],
+    "owner": "barbershop"
+   },
+   {
+    "base": "cheats",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "sat:said",
+     "cash:voice",
+     "seat:voice"
+    ],
+    "owner": "steppers"
+   },
+   {
+    "base": "pathos",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "sat:said",
+     "hot:voice",
+     "shop:voice"
     ]
    }
   ]
  },
  {
-  "id": "cookout",
-  "vocab": 43,
+  "id": "hbcu",
+  "vocab": 45,
+  "shipped": 25,
+  "supported": 5,
+  "boards": [
+   {
+    "base": "candle",
+    "ideas": 3,
+    "known": 2,
+    "weight": 7,
+    "rows": [
+     "dean:named",
+     "cane:named",
+     "dance:voice"
+    ]
+   },
+   {
+    "base": "tandem",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "dean:named",
+     "made:said",
+     "mate:voice"
+    ],
+    "owner": "juneteenth"
+   },
+   {
+    "base": "housed",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "dues:said",
+     "hosed:said",
+     "shoe:voice"
+    ],
+    "owner": "hbcu"
+   },
+   {
+    "base": "aspect",
+    "ideas": 3,
+    "known": 1,
+    "weight": 5,
+    "rows": [
+     "step:named",
+     "cape:voice",
+     "seat:voice"
+    ],
+    "owner": "rnb90s"
+   },
+   {
+    "base": "magnet",
+    "ideas": 3,
+    "known": 0,
+    "weight": 3,
+    "rows": [
+     "game:voice",
+     "gate:voice",
+     "mate:voice"
+    ],
+    "owner": "reunion"
+   }
+  ]
+ },
+ {
+  "id": "fishfry",
+  "vocab": 50,
+  "shipped": 24,
+  "supported": 3,
+  "boards": [
+   {
+    "base": "petals",
+    "ideas": 3,
+    "known": 3,
+    "weight": 6,
+    "rows": [
+     "plate:said",
+     "sale:said",
+     "salt:said"
+    ]
+   },
+   {
+    "base": "stable",
+    "ideas": 3,
+    "known": 2,
+    "weight": 5,
+    "rows": [
+     "sale:said",
+     "salt:said",
+     "table:voice"
+    ]
+   },
+   {
+    "base": "soiled",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "sold:said",
+     "oil:voice",
+     "side:voice"
+    ],
+    "owner": "steppers"
+   }
+  ]
+ },
+ {
+  "id": "homecoming",
+  "vocab": 39,
   "shipped": 21,
+  "supported": 3,
+  "boards": [
+   {
+    "base": "floats",
+    "ideas": 3,
+    "known": 2,
+    "weight": 6,
+    "rows": [
+     "float:named",
+     "lost:said",
+     "lot:voice"
+    ],
+    "owner": "homecoming"
+   },
+   {
+    "base": "hostel",
+    "ideas": 3,
+    "known": 1,
+    "weight": 4,
+    "rows": [
+     "lost:said",
+     "lot:voice",
+     "hotel:voice"
+    ],
+    "owner": "reunion"
+   },
+   {
+    "base": "loathe",
+    "ideas": 3,
+    "known": 0,
+    "weight": 3,
+    "rows": [
+     "lot:voice",
+     "hat:voice",
+     "hotel:voice"
+    ],
+    "owner": "homecoming"
+   }
+  ]
+ },
+ {
+  "id": "carolina",
+  "vocab": 35,
+  "shipped": 12,
   "supported": 2,
   "boards": [
    {
     "base": "deaths",
     "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "known": 2,
+    "weight": 5,
     "rows": [
-     "ash:titles",
-     "heat:titles",
-     "shade:titles"
+     "ash:said",
+     "heat:said",
+     "shed:voice"
     ],
     "owner": "gogo"
    },
    {
-    "base": "turban",
+    "base": "failed",
     "ideas": 3,
-    "known": 3,
-    "weight": 6,
+    "known": 2,
+    "weight": 5,
     "rows": [
-     "rub:titles",
-     "burnt:titles",
-     "aunt:titles"
+     "field:said",
+     "fed:said",
+     "lid:voice"
     ],
     "owner": "carolina"
    }
   ]
  },
  {
-  "id": "hbcu",
-  "vocab": 33,
-  "shipped": 26,
-  "supported": 2,
-  "boards": [
-   {
-    "base": "aspect",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "step:titles",
-     "cape:titles",
-     "seat:titles"
-    ],
-    "owner": "sitcom"
-   },
-   {
-    "base": "candle",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "dean:titles",
-     "cane:titles",
-     "dance:titles"
-    ],
-    "owner": "rnb90s"
-   }
-  ]
- },
- {
-  "id": "fishfry",
-  "vocab": 34,
-  "shipped": 24,
+  "id": "chicago",
+  "vocab": 31,
+  "shipped": 11,
   "supported": 1,
   "boards": [
    {
-    "base": "ideals",
+    "base": "misled",
     "ideas": 3,
     "known": 3,
-    "weight": 6,
+    "weight": 7,
     "rows": [
-     "side:titles",
-     "sale:titles",
-     "ladies:titles"
+     "mild:named",
+     "side:said",
+     "slid:said"
     ],
-    "owner": "fishfry"
-   }
-  ]
- },
- {
-  "id": "reunion",
-  "vocab": 27,
-  "shipped": 27,
-  "supported": 1,
-  "boards": [
-   {
-    "base": "menial",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "line:titles",
-     "name:titles",
-     "mail:titles"
-    ],
-    "owner": "gogo"
-   }
-  ]
- },
- {
-  "id": "carolina",
-  "vocab": 26,
-  "shipped": 12,
-  "supported": 1,
-  "boards": [
-   {
-    "base": "taping",
-    "ideas": 3,
-    "known": 3,
-    "weight": 6,
-    "rows": [
-     "pig:titles",
-     "pit:titles",
-     "pan:titles"
-    ],
-    "owner": "sitcom"
+    "owner": "steppers"
    }
   ]
  },
  {
   "id": "caribbean",
-  "vocab": 18,
+  "vocab": 23,
   "shipped": 12,
   "supported": 1,
   "boards": [
@@ -2773,33 +4536,26 @@
     "base": "pecans",
     "ideas": 3,
     "known": 3,
-    "weight": 6,
+    "weight": 7,
     "rows": [
-     "pan:titles",
-     "pea:titles",
-     "cane:titles"
+     "pan:named",
+     "peas:said",
+     "cane:said"
     ],
     "owner": "caribbean"
    }
   ]
  },
  {
-  "id": "chicago",
-  "vocab": 25,
+  "id": "westcoast",
+  "vocab": 0,
   "shipped": 12,
   "supported": 0,
   "boards": []
  },
  {
-  "id": "westcoast",
-  "vocab": 21,
-  "shipped": 13,
-  "supported": 0,
-  "boards": []
- },
- {
   "id": "gogo",
-  "vocab": 18,
+  "vocab": 25,
   "shipped": 20,
   "supported": 0,
   "boards": []

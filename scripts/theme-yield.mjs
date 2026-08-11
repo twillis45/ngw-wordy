@@ -61,11 +61,27 @@ const claimed = new Map(themes.puzzles.map((p) => [letterKey(p.base), p.theme]))
  * the player RECOGNISES, and a row reading `sigh` is merely music-adjacent.
  * Ranking by raw count put the generic boards on top.
  */
-const TIER_WEIGHT = { acts: 3, titles: 2, voice: 1 };
+const TIER_WEIGHT = {
+  // Tier 1 — the named things a person in this world would recognise on sight:
+  // acts and records for music, dishes and games for a cookout, the roles and
+  // rites for a church. A row here is the reason a board exists.
+  acts: 3,
+  named: 3,
+  // Tier 2 — what people inside the world actually SAY. Jargon, verbs, terms of
+  // art. True to the theme, but a row here alone does not make a board.
+  titles: 2,
+  said: 2,
+  // Tier 3 — supporting texture. Never a board's reason to exist, and the
+  // `known` count deliberately excludes it.
+  voice: 1,
+};
 
 function tiersOf(entry) {
   if (typeof entry === 'string') return { titles: entry };
-  return entry;
+  // Underscore keys are prose — a `_blocked` note explaining why a theme is
+  // empty was being tokenised as vocabulary, so a theme with no words scored
+  // seven boards off its own explanation.
+  return Object.fromEntries(Object.entries(entry).filter(([k]) => !k.startsWith('_')));
 }
 
 function usable(list) {
