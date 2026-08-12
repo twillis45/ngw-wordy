@@ -1252,16 +1252,36 @@ body {
  */
 @media (prefers-color-scheme: light) {
   :root[data-accent='matte']:not([data-theme='dark']) {
-    /* Boundary value: 4.12 on white, 3.32 on surface-2 — both past the 3.0
-       WCAG 1.4.11 floor for a UI boundary, and light enough to read as orange
-       rather than as brown. #8a4409 cleared 7.21 and looked like mud. */
-    --color-success: #c85f0c;
+    /*
+     * Boundary value. 3.10 on white, 2.42 on the measured chip backdrop
+     * (220,228,236) — under the 3.0 of WCAG 1.4.11, and that is a considered
+     * call rather than an oversight.
+     *
+     * 1.4.11 governs a boundary REQUIRED to identify a component. Done-ness
+     * here is not carried by the border: a solved row replaces its digit with
+     * the revealed word, so the content changes completely and the accent is
+     * confirmation, not the signal. The same redundancy is why the prize row
+     * is marked by size and weight rather than by colour, per the note in
+     * WordTray.
+     *
+     * The ladder that got here, all measured against that real backdrop:
+     * #8a4409 read as mud, #c85f0c at 3.22 was the lightest value that could
+     * clear 3.0, and it still read dark. Every orange brighter than it fails
+     * that floor — the limit is the pale blue-grey chip, not the hue. So the
+     * choice was an orange nobody wants or an orange that leans on redundant
+     * encoding, and the encoding is genuinely there.
+     *
+     * The three TEXT sites are unaffected and stay fully compliant; they take
+     * --color-success-ink below, which is held past 4.5.
+     */
+    --color-success: #e0761a;
     /* Text value: 6.18 on white, 4.99 on surface-2, both past 4.5. */
     --color-success-ink: #9c4a06;
   }
 }
 
 :root[data-accent='matte'][data-theme='light'] {
-  --color-success: #c85f0c;
+  /* Mirrors the media-query block above — see the reasoning there. */
+  --color-success: #e0761a;
   --color-success-ink: #9c4a06;
 }
