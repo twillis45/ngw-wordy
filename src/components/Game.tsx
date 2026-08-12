@@ -1299,7 +1299,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
       bonusFound={bonusFound}
       rank={rank}
       score={score}
-      maxScore={puzzle.maxScore}
+      gridScore={gridScore}
+      gridMax={gridMax}
       days={days}
       streak={progress.streak}
       bestStreak={progress.bestStreak}
@@ -1736,7 +1737,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
             bonusFound={bonusFound}
             rank={rank}
             score={score}
-            maxScore={puzzle.maxScore}
+            gridScore={gridScore}
+            gridMax={gridMax}
             days={days}
             streak={progress.streak}
             bestStreak={progress.bestStreak}

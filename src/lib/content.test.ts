@@ -30,7 +30,8 @@ import {
 } from '../../scripts/lib/blocklist.mjs';
 
 type Puzzle = {
-  theme?: { name: string } | null;
+  // `id` is what daily-eligibility is keyed on; `name` is the display label.
+  theme?: { id: string; name: string } | null;
   grid: string[];
   bonus: string[];
   base: string;

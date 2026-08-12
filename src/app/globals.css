@@ -735,14 +735,33 @@ body {
     inset 0 -2px 1px -1px var(--glass-caustic);
 }
 
-/* Specular: a soft bright spot near the top-left, fading well before centre. */
+/*
+ * Specular: a soft bright spot near the top-left, fading well before centre.
+ *
+ * The stop is CAPPED IN PIXELS, and that is the whole point of the min().
+ *
+ * At a flat `30%` the highlight is a percentage of the element, so one light
+ * source produced a 33px spot on a letter tile and a 273px wedge across the
+ * board panel — measured, on the same screen. A reflection does not grow
+ * because the thing reflecting it got bigger; its size is set by the light. The
+ * percentage made the largest panels the brightest objects on screen, which is
+ * also backwards for a surface that is meant to sit behind the board.
+ *
+ * 30% still wins on anything small (a tile, a pill, a chip), so the material
+ * those were tuned against is untouched. The cap only engages past ~240px of
+ * diagonal, which is exactly the panel-sized run that was washing out.
+ */
 .liquid::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(138deg, var(--glass-specular) 0%, transparent 30%);
+  background: linear-gradient(
+    138deg,
+    var(--glass-specular) 0%,
+    transparent min(30%, 72px)
+  );
 }
 
 /* Raised variant — for the pieces that should read as thicker glass. */

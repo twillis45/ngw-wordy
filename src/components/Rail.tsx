@@ -21,8 +21,20 @@ type Props = {
   found: ReadonlySet<string>;
   bonusFound: string[];
   rank: Rank;
+  /** Every word banked, bonus included. What "Your words" is worth. */
   score: number;
-  maxScore: number;
+  /**
+   * The six rows only — the basis `rank` and RANK_BASIS both use.
+   *
+   * The ladder took `score`/`puzzle.maxScore` while the rank beside it was
+   * computed from the grid, so this one card gave two answers to one question:
+   * the header read "2 to go" and the row under it read "+10". It also
+   * disagreed with the RankBar at the top of the board, which had already been
+   * migrated to the grid basis. RANK_BASIS is printed directly above this list
+   * and says ranks track the six rows; now the numbers do too.
+   */
+  gridScore: number;
+  gridMax: number;
   days: DayCell[];
   streak: number;
   bestStreak: number;
@@ -44,7 +56,8 @@ export default function Rail({
   bonusFound,
   rank,
   score,
-  maxScore,
+  gridScore,
+  gridMax,
   days,
   streak,
   bestStreak,
@@ -96,7 +109,24 @@ export default function Rail({
         </Group>
       </Card>
 
-      <Card title="Rank" meta={rank.next ? `${rank.pointsToNext} to go` : 'Maxed'}>
+      {/*
+        The header carries WHERE YOU ARE, then how far the next rung is.
+
+        "2 to Clever" on its own does not survive being checked against the
+        ladder under it: the rows read Sharp 5, Clever 8, so the arithmetic on
+        screen says three. Both numbers were right — the distance is measured
+        from the score, which was 6, and the score was the one quantity the card
+        never showed. Naming it closes the sum in the reader's favour: 5 is
+        behind you, 8 is the next rung, you are at 6, so it is 2.
+      */}
+      <Card
+        title="Rank"
+        meta={
+          rank.next
+            ? `${gridScore} pts · ${rank.pointsToNext} to ${rank.next}`
+            : `${gridScore} pts · maxed`
+        }
+      >
         {/* Without this the names imply cleverness while the numbers measure
             exhaustiveness, and nothing on screen reconciles them. */}
         {/* Dropped on a short viewport. This same sentence is now the last line
@@ -107,7 +137,7 @@ export default function Rail({
           {RANK_BASIS}
         </p>
         <ol className="flex flex-col gap-0.5 short:gap-0">
-          {rankLadder(score, maxScore).map((step) => (
+          {rankLadder(gridScore, gridMax).map((step) => (
             <li
               key={step.name}
               aria-current={step.current ? 'step' : undefined}
@@ -129,10 +159,22 @@ export default function Rail({
                 ].join(' ')}
               />
               <span className="flex-1">{step.name}</span>
-              {/* What it cost, or what it still costs — a percentage is
-                  unusable mid-game, a point count is something to aim at. */}
+              {/*
+                ONE quantity down the column: what each rank costs.
+
+                This alternated between `${step.at} pts` for reached ranks and
+                `+${step.toGo}` for the rest — a threshold and a distance, in
+                one column, distinguished only by a plus sign. Reading down it
+                meant switching units halfway, and the reached half collided
+                with the score shown two cards up ("Sharp 15 pts" beside "Your
+                words 15 pts" are not the same fifteen).
+
+                A ladder of costs also holds still while you play; only the
+                highlight moves. How far the next rung is has its own place --
+                the card header, and the bar at the top of the board.
+              */}
               <span className="text-meta tabular-nums text-text-muted">
-                {step.reached ? `${step.at} pts` : `+${step.toGo}`}
+                {step.at} pts
               </span>
             </li>
           ))}
