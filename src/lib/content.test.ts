@@ -17,6 +17,7 @@ import {
   activeLetters,
   dailyCycle,
   dailyPoolSize,
+  isDailyEligible,
   puzzleForPlayer,
   canSpell,
 } from './game';
@@ -341,7 +342,18 @@ describe('the wrap', () => {
     } as unknown as Parameters<typeof dailyPoolSize>[0];
 
     const pool = dailyPoolSize(asFile);
-    expect(pool).toBe(file.puzzles.filter((p) => p.theme).length);
+    /*
+     * DAILY-ELIGIBLE boards, not every themed board.
+     *
+     * This read `.filter((p) => p.theme)` and passed for as long as those two
+     * numbers were the same number — which they were only because the shipped
+     * puzzles.json predated the general packs. Regenerating it split them (98
+     * cultural, 118 themed) and the assertion fired. The rotation draws from
+     * daily-eligible boards, so that is what a lap has to be measured in.
+     */
+    expect(pool).toBe(
+      file.puzzles.filter((p) => p.theme && isDailyEligible(p.theme.id)).length
+    );
 
     // The day after a full lap must land on a different storage cycle than
     // day zero, or the replay reuses the finished board's key.

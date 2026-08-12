@@ -179,7 +179,7 @@ export function progressKey(puzzleId: string | number, cycle = 0): string {
  * the daily. Forgetting to update a list should never be able to quietly
  * demote the material the product is built on.
  */
-const GENERAL_THEMES = new Set<string>(['roadtrip', 'garden', 'laundry', 'diner', 'hardware']);
+const GENERAL_THEMES = new Set<string>(['roadtrip', 'garden', 'diner', 'hardware']);
 
 /** Is this theme part of the daily rotation? */
 export function isDailyEligible(themeId: string | null | undefined): boolean {
@@ -331,11 +331,9 @@ const SHELF_OF: Record<string, ShelfId> = {
   diner: 'table',
   roadtrip: 'longway',
   garden: 'longway',
-  laundry: 'longway',
   rnb90s: 'soundtrack', // The Nineties
   steppers: 'soundtrack', // The Floor
   sitcom: 'soundtrack', // Rerun Season
-  caribbean: 'soundtrack', // Which Island
 };
 
 const SHELVES: { id: ShelfId; name: string; blurb: string }[] = [

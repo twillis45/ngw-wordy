@@ -565,10 +565,26 @@ for (const base of bases) {
    * available — a random unlock order would routinely deal an unsolvable board.
    */
   const shortest = ordered[ordered.length - 1];
-  const unlockOrder = [
-    ...new Set([...shortest, ...letters]),
-  ];
-  const startActive = new Set(shortest).size;
+  /*
+   * A MULTISET, for the same reason `canSpell` is one.
+   *
+   * This was `new Set([...shortest, ...letters])`, which is correct only while
+   * every base has six distinct letters. Once a base was allowed ONE doubled
+   * letter, the set silently dropped the second copy: REBOOT unlocked five
+   * tiles instead of six, and its opening `startActive` counted BOO as two
+   * letters, so the board opened with two live tiles and no legal three-letter
+   * move. Five boards shipped that way. The dedupe has to run against what is
+   * left of the wheel, not against everything seen so far.
+   */
+  const remaining = [...letters];
+  const unlockOrder = [];
+  for (const ch of [...shortest, ...letters]) {
+    const at = remaining.indexOf(ch);
+    if (at === -1) continue; // already spent — a third copy the wheel does not have
+    remaining.splice(at, 1);
+    unlockOrder.push(ch);
+  }
+  const startActive = shortest.length;
 
   /*
    * Difficulty, 0 (kindest) to 1 (hardest).
@@ -647,7 +663,7 @@ for (const base of bases) {
  * practice last. This is a stable partition, so the relative order inside each
  * group is untouched and no board moves that does not have to.
  */
-const GENERAL_THEMES = new Set(['roadtrip', 'garden', 'laundry', 'diner', 'hardware']);
+const GENERAL_THEMES = new Set(['roadtrip', 'garden', 'diner', 'hardware']);
 const rank = (p) => (!p.theme ? 2 : GENERAL_THEMES.has(p.theme.id) ? 1 : 0);
 puzzles.sort((a, b) => rank(a) - rank(b));
 
