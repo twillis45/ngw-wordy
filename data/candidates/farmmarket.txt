@@ -1,5 +1,5 @@
 # shelf: The Table
-# source: Pinterest Predicts 2026 — food and fermentation, local produce
+# source: A-CONFIRMED Pinterest Predicts 2026 (primary, fetched 2026-08-12): "Cabbage Crush" is a named 2026 trend. No growth figure published for it
 # drafted: 81 words
 
 stall tent table crate box bin basket bag tote cash card coin bill change sign price

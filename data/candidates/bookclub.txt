@@ -1,5 +1,5 @@
 # shelf: Elsewhere — NEEDS A SHELF
-# source: Glimpse — community-based hobbies, social reading
+# source: B-EXTRAPOLATED from a search-summary phrase about "community-based hobbies" rising. No named trend, no figure, no primary source
 # drafted: 76 words
 
 book page chapter spine cover title author name plot twist end start read skim skip mark

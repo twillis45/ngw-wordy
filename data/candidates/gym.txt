@@ -1,5 +1,5 @@
 # shelf: Elsewhere — NEEDS A SHELF
-# source: fitness/wellness hobby boom (Glimpse)
+# source: B-UNCONFIRMED "fitness and wellness hobbies such as pickleball and yoga are booming" is a search-summary phrase; no figure, and not a row in Glimpse's data. The pickleball half IS confirmed - see pickleball.txt
 # drafted: 137 words
 
 reps sets bench squat curl press mat band lift rest core rack plate bar drop warm run

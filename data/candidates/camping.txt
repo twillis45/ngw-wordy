@@ -1,5 +1,5 @@
 # shelf: The Long Way
-# source: Glimpse/Accio — camping renaissance, 58M US households
+# source: A-CONFIRMED Glimpse (primary, fetched 2026-08-12): "58 million U.S. households to camp in the past year, generating an estimated revenue of almost $44 billion in 2023"
 # drafted: 89 words
 
 tent pole stake rope line tarp bag mat pad cot lamp torch match fire wood log ash coal

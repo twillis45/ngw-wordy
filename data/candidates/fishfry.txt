@@ -1,5 +1,5 @@
 # shelf: The Table
-# source: CULTURAL — bench sign-off required before scoring
+# source: C-NO TREND SOURCE. From the repo's own bench sign-off list in data/theme-vocab.json. CULTURAL - bench sign-off required before scoring
 # drafted: 123 words
 
 fish fry grease oil plate bread hot sauce perch corn green roll cup tea tent table hall

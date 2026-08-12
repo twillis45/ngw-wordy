@@ -60,6 +60,54 @@ Second-order: depth also buys BOARDS, not just density. Tailgate at 148 words
 offered 8 usable boards; at 207 words it offered 20, and gained its first
 on-theme prize word (STRIPE).
 
+## Provenance — checked against primaries, and it did not all survive
+
+The candidate sources were first written from SEARCH-RESULT SUMMARIES. Two
+primaries were then fetched directly (2026-08-12) and two claims did not
+hold. Every candidate now carries a tier in its `# source:` header.
+
+**Tier A — confirmed in the primary, with figures.** Three of thirteen.
+
+| theme | the actual claim |
+|---|---|
+| pickleball | Glimpse: pickleball `8.4M Volume, +42% Growth`; pickleball paddle `571K Volume, +49% Growth` |
+| camping | Glimpse: "58 million U.S. households to camp in the past year, generating an estimated revenue of almost $44 billion in 2023" |
+| farmmarket | Pinterest Predicts 2026: **Cabbage Crush** is a named 2026 trend. No growth figure is published for it |
+
+**Tier B — a summary said it; the primary does not.** Six.
+
+- `dinnerparty` was filed as Pinterest's "hostess era". **Pinterest's own 2026
+  report contains no dinner-party, hosting, entertaining or tablescaping
+  trend.** The framing came from third-party write-ups. It is unsourced.
+- `craft` (knitting/crochet/embroidery) is not among the 13 data-backed trends
+  on Glimpse's hobbies page; it came from listicle summaries.
+- `gym` rests on the phrase "fitness and wellness hobbies such as pickleball
+  and yoga are booming" — no figure, not a row in Glimpse's data.
+- `bookclub`, `potluck`, `gamenight`, `karaoke` are all extrapolations from
+  one summary phrase about community-based and analog hobbies rising. No named
+  trend, no figure, no primary.
+
+**Tier C — no trend provenance at all.** Four. `tailgate` is my own
+seasonality call on the NFL calendar. `nailsalon` is adjacency to the shipped
+Beauty Supply pack. `fishfry` and `gogo` come from the repo's own bench
+sign-off list, which is an internal document and not a trend signal.
+
+### What this means for the ranking
+
+**Nothing in this table ranks the packs.** Every ordering in this file is by
+DENSITY, which is our own measurement of whether a theme can carry a pack. No
+popularity figure feeds it. A theme with `8.4M Volume, +42%` behind it and one
+extrapolated from a stray phrase sit in the same list, ordered by a number
+that knows nothing about either.
+
+### Data-backed trends deliberately not pursued
+
+Glimpse's list also contains padel (`336K, +56%`), sim racing (`36K, +18%`),
+golf simulator (`1.1M, +30%`) and wingfoil (`87K, +23%`) — all better
+evidenced than most of what is queued above. They are absent because they are
+narrow equipment vocabularies rather than places with things in them. Padel
+and golf are the two worth a draft if the shelf question ever loosens.
+
 ## Expanded sweep — sourced candidates, measured at comparable depth
 
 Drafted at ~75–90 usable words each so the comparison is between THEMES rather

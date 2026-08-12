@@ -1,5 +1,5 @@
 # shelf: The Soundtrack
-# source: CULTURAL — bench sign-off required before scoring
+# source: C-NO TREND SOURCE. From the repo's own bench sign-off list in data/theme-vocab.json. CULTURAL - bench sign-off required before scoring
 # drafted: 131 words
 
 band drum beat pocket crowd call horn tape party hall mic roll sweat groove conga bounce

@@ -1,5 +1,5 @@
 # shelf: The Block
-# source: Glimpse — analog/social hobbies as counterbalance to digital saturation
+# source: B-EXTRAPOLATED from a search-summary phrase about analog/tactile/social hobbies as a counterbalance to digital saturation. No named trend, no figure
 # drafted: 74 words
 
 card deck suit ace king queen jack hand deal cut shuffle draw pile pass play trick trump
