@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { applyReading, applyTextScale, readReading, readTextScale } from '@/lib/a11y';
 import { applyTheme, readTheme } from '@/lib/theme';
+import { applyAccent, readAccent } from '@/lib/accent';
 
 /**
  * Re-apply display preferences once React has hydrated.
@@ -30,6 +31,9 @@ import { applyTheme, readTheme } from '@/lib/theme';
 export default function Preferences() {
   useEffect(() => {
     applyTheme(readTheme());
+    // Same reason as the theme: React reconciles <html> and strips what the
+    // head script wrote, taking the accent with it.
+    applyAccent(readAccent());
     applyTextScale(readTextScale());
     applyReading(readReading());
   }, []);

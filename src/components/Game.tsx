@@ -43,6 +43,14 @@ import {
   subscribeA11y,
 } from '@/lib/a11y';
 import {
+  ACCENT_LABELS,
+  getAccentSnapshot,
+  getAccentServerSnapshot,
+  setAccent,
+  subscribeAccent,
+  type Accent,
+} from '@/lib/accent';
+import {
   deriveKeys,
   isSyncConfigured,
   passphraseProblem,
@@ -323,6 +331,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * the theme does: the head script applies them before first paint, and a
    * text size applied late reflows the whole board rather than flashing it.
    */
+  /*
+   * Accent, read the same way theme and text size are: it lives in
+   * localStorage and on <html>, both outside React, and another tab can change
+   * it under a running one.
+   */
+  const accent = useSyncExternalStore(
+    subscribeAccent,
+    getAccentSnapshot,
+    getAccentServerSnapshot
+  );
+
   const textScale = useSyncExternalStore(
     subscribeA11y,
     getTextScale,
@@ -2082,6 +2101,28 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 className="liquid-interactive h-10 shrink-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
               >
                 {TEXT_LABEL[textScale]}
+              </button>
+            </div>
+
+            <div className="mt-4 flex items-center justify-between gap-4 border-t border-edge-mid pt-4">
+              <div className="min-w-0">
+                <p className="text-meta font-medium text-text-primary">Accent</p>
+                <p className="mt-0.5 text-kicker leading-snug text-text-muted">
+                  The colour that marks a found row. Both options are matched to
+                  the same measured contrast, so this is taste, not legibility.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() =>
+                  setAccent(
+                    (accent === 'default' ? 'matte' : 'default') as Accent
+                  )
+                }
+                aria-label={`Accent: ${ACCENT_LABELS[accent]}. Tap to change.`}
+                className="liquid-interactive h-10 shrink-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
+              >
+                {ACCENT_LABELS[accent]}
               </button>
             </div>
 

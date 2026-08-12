@@ -4,6 +4,7 @@ import Preferences from '@/components/Preferences';
 import { withBase } from '@/lib/basePath';
 import { NO_FLASH_SCRIPT } from '@/lib/theme';
 import { NO_FLASH_SCRIPT as A11Y_NO_FLASH } from '@/lib/a11y';
+import { NO_FLASH_SCRIPT as ACCENT_NO_FLASH } from '@/lib/accent';
 import { SITE_URL, absoluteUrl } from '@/lib/site';
 import { isDailyEligible } from '@/lib/game';
 import themes from '../../data/themes.json';
@@ -198,6 +199,10 @@ export default function RootLayout({
         {/* Text size before first paint too: a late theme is a flash, a late
             text size is a full reflow of the board. */}
         <script dangerouslySetInnerHTML={{ __html: A11Y_NO_FLASH }} />
+        {/* Accent before first paint too. Applied late it is not a flash but a
+            colour change on every solved row at once, which lands on exactly
+            the part of the board the player is looking at. */}
+        <script dangerouslySetInnerHTML={{ __html: ACCENT_NO_FLASH }} />
       </head>
       <body>
         {children}

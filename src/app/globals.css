@@ -73,6 +73,12 @@
  *
  * One accent moment: successGreen marks a found word. Nothing else on
  * the screen is saturated.
+ *
+ * That ban is about CONFIDENCE HIERARCHY — warmth must never compete with the
+ * one accent moment. An opt-in alternate accent that REPLACES the accent
+ * moment with orange, changing nothing else, honours the rule rather than
+ * breaking it; see the [data-accent='matte'] block at the end of this file.
+ * The default stays green.
  */
 @theme {
   /* Carbon surfaces — dark is the default identity. */
@@ -1178,4 +1184,50 @@ body {
  */
 :root[data-text] .type-fixed {
   font-size: 1rem;
+}
+
+/*
+ * STUDIO MATTE — an alternate accent, orange in place of the signal green.
+ *
+ * A separate axis from light/dark, so it composes with both: these two blocks
+ * are the only overrides needed, because the accent was already a single
+ * token. Every one of the 18 places the accent appears — the solved-row
+ * border, its glow, the landing sweep — reads --color-success and therefore
+ * follows for free. That is what the tokenisation was for.
+ *
+ * The values are MATCHED TO THE GREEN'S MEASURED CONTRAST, not picked by eye,
+ * so switching accent cannot quietly cost legibility:
+ *
+ *   dark   green #4fae7a on #121518 = 6.69   orange #e08c38 = 6.96
+ *   light  green #186438 on #ffffff = 7.19   orange #8a4409 = 7.21
+ *   light  green #186438 on #dfe8f1 = 5.81   orange #8a4409 = 5.82
+ *
+ * Both clear AA for text (4.5) and comfortably clear the 3.0 floor for a UI
+ * boundary, on every surface the accent is drawn on.
+ *
+ * Worth stating plainly: #e08c38 is on the parent design system's banned list.
+ * That ban is about CONFIDENCE HIERARCHY — secondary text must be steel, never
+ * amber, so warmth never competes with the one accent moment. Here the orange
+ * IS the accent moment and nothing else changes hue, so the rule's intent is
+ * preserved even though its literal value is used. This is an opt-in alternate
+ * theme, not the default, and the default remains green.
+ */
+:root[data-accent='matte'] {
+  --color-success: #e08c38;
+}
+
+/*
+ * Light needs its own value for the same reason the green does: an accent tuned
+ * for a dark panel is unreadable on white. Both light selectors are covered —
+ * the media query for 'auto', and the explicit opt-in — mirroring exactly how
+ * --color-success is already declared three times.
+ */
+@media (prefers-color-scheme: light) {
+  :root[data-accent='matte']:not([data-theme='dark']) {
+    --color-success: #8a4409;
+  }
+}
+
+:root[data-accent='matte'][data-theme='light'] {
+  --color-success: #8a4409;
 }
