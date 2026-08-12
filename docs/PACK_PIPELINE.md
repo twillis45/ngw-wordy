@@ -151,10 +151,82 @@ Elsewhere. Worth a ruling: they are good packs with no home, and the shelf
 ceiling is the thing standing between the catalogue and its two densest
 sourced candidates.
 
-## Keeping this current
+## The process — run this, in this order
 
-Re-check the three live sources quarterly, and Year in Search each December.
-When a signal looks promising, the order is always: draft ~140 words, run
-`node scripts/viability.mjs`, and only then decide. Never the other way round —
-that is what cost Laundry Day and Caribbean, both of which were authored,
-shipped and then cut as unfixable.
+Two halves that fail differently, which is why they are separate commands.
+The trend half needs the web and a judgement call. The measuring half is
+arithmetic over files already in the repo and always has an answer, so a
+sweep with no network still produces the list of what to build.
+
+### 1. Standing check — no network, run any time
+
+```
+node scripts/pack-radar.mjs
+```
+
+Reports every shipped theme against the three floors — density 12, four
+boards, on-theme 0.60 — and names what to do. It found, on its first run: two
+themes ready to author, and six shipped packs carrying vocabularies under 100
+words when the packs that reach 0.80 carry ~140. It reports and never gates,
+because a check that blocks a build for saying "stoop has no boards" gets
+muted within a week.
+
+### 2. Sweep the sources — quarterly, plus Year in Search each December
+
+Work the table above. What you are looking for is not "is this popular" but
+**does this have short concrete nouns** — a theme lives or dies on common 3-6
+letter words, which is why the poet aesthetic and Scotland highlands were
+dropped despite being genuine 2026 trends.
+
+### 3. Draft the candidate — cheap, reversible, never touches the catalogue
+
+Write `data/candidates/<id>.txt`:
+
+```
+# shelf: The Long Way
+# source: Glimpse - camping renaissance, 58M US households
+tent pole stake rope tarp ...
+```
+
+**Draft ~140 words.** Not 40. The single most expensive mistake available here
+is judging a theme on a thin draft: every candidate ever drafted at ~35 words
+has failed, and the same themes at ~140 all passed. Tailgate scored 11 at 46
+words and 453 at 207 — the theme never changed.
+
+### 4. Score it
+
+```
+node scripts/candidate.mjs            # everything, ranked
+node scripts/candidate.mjs camping    # one
+```
+
+The gate is density >= 12. Drafts under 120 words are flagged as advisory,
+because at that depth the number is describing the draft.
+
+### 5. Promote a winner
+
+```
+node scripts/candidate.mjs --promote camping
+```
+
+Refuses below the floor, and refuses to overwrite an existing theme. It lands
+the words in `theme-vocab.json` as one undifferentiated `named` tier — split
+into named/said/voice by hand before authoring, then:
+
+```
+node scripts/theme-yield.mjs --json
+node scripts/pack-draft.mjs camping 20
+```
+
+### 6. Author, check, merge
+
+`check-pack` is a gate and `merge-pack` refuses on its failure. Cultural packs
+stop here until the bench has signed the vocabulary and a community reader is
+booked.
+
+### The rule this whole process exists to enforce
+
+Measure, then author. Never the other way round. Laundry Day and Caribbean
+were authored, shipped, and only then measured — both were unviable at any
+wheel size, no rewrite could save either, and both were cut. Ten minutes of
+`candidate.mjs` is the whole cost of not repeating that.
