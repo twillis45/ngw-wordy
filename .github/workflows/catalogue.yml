@@ -1,0 +1,117 @@
+name: Catalogue radar
+
+# The deterministic half of the pack pipeline (docs/PACK_PIPELINE.md).
+#
+# Runs on every push because it needs nothing but a checkout — no network, no
+# credentials, no model. That is the whole reason this is a workflow and the
+# trend sweep is not: this half cannot drift, cannot hallucinate a theme, and
+# cannot fail because a third-party site changed its markup.
+#
+# It never fails the build. The catalogue is allowed to carry known gaps, and a
+# check that goes red for saying "stoop still has no boards" gets muted inside a
+# week — at which point it is worse than not having it, because everyone
+# believes something is watching.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  # Quarterly, plus December for Google's Year in Search, which only publishes
+  # once a year and is the single best free source in the table.
+  schedule:
+    - cron: '0 14 1 1,4,7,10,12 *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Actions pinned to commit SHAs, not tags, matching pages.yml — a tag is
+# mutable and repointing one is the standard CI supply-chain attack. These are
+# the same SHAs that workflow already uses.
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # Into the run summary rather than only the log, so the state of the
+      # catalogue is one click from the commit instead of buried in output
+      # nobody opens.
+      - name: Catalogue radar
+        run: |
+          {
+            echo '## Catalogue radar'
+            echo
+            echo 'Reports only — this step never fails. See `docs/PACK_PIPELINE.md`.'
+            echo
+            echo '```'
+            node scripts/pack-radar.mjs
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  # Only on the cron. A quarterly nudge to do the half a machine cannot: read
+  # the trend sources and exercise judgement about what belongs in this game.
+  sweep-reminder:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Open the sweep issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          RADAR="$(node scripts/pack-radar.mjs)"
+          MONTH="$(date -u +%B\ %Y)"
+          BODY="$(cat <<EOF
+          Quarterly pack sweep — $MONTH.
+
+          The machine half has already run and is below. The half that needs a
+          person is reading the sources and deciding what belongs in a
+          six-letter word game.
+
+          ## What to do
+
+          1. Work the source table in \`docs/PACK_PIPELINE.md\`. In December,
+             Google Year in Search is the one worth the most time.
+          2. Ask of each signal: **does this have short concrete nouns?** A
+             theme lives on common 3-6 letter words. The poet aesthetic and
+             Scotland highlands were real 2026 trends and were dropped for
+             exactly this reason.
+          3. Draft \`data/candidates/<id>.txt\` at **~140 words**. Not 40 —
+             every candidate ever drafted at ~35 words has failed, and the same
+             themes at ~140 all passed. Tailgate scored 11 at 46 words and 453
+             at 207; the theme never changed.
+          4. \`node scripts/candidate.mjs\` to score, \`--promote <id>\` to keep.
+
+          Measure, then author. Never the reverse — that is what cost Laundry
+          Day and Caribbean, both authored, shipped, and then cut as unfixable.
+
+          ## Catalogue radar
+
+          \`\`\`
+          $RADAR
+          \`\`\`
+          EOF
+          )"
+          gh issue create \
+            --title "Pack sweep — $MONTH" \
+            --body "$BODY" \
+            --label "pack-pipeline" 2>/dev/null \
+          || gh issue create --title "Pack sweep — $MONTH" --body "$BODY"
