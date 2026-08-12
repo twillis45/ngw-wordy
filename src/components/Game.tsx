@@ -1537,7 +1537,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             className={[
               'anim-rise text-body font-semibold',
               toast.tone === 'good'
-                ? 'text-success'
+                ? 'text-success-ink'
                 : toast.tone === 'bad'
                   ? 'text-danger'
                   : 'text-text-muted',

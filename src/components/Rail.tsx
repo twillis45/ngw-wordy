@@ -255,7 +255,7 @@ function Chip({
   const cls = [
     'relative rounded-md px-2 py-1 text-meta font-medium uppercase tracking-[0.06em] liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)]',
     tone === 'base'
-      ? 'liquid-raised bg-success/15 text-success'
+      ? 'liquid-raised bg-success/15 text-success-ink'
       : tone === 'target'
         ? 'liquid-raised text-text-primary'
         : 'text-text-secondary',

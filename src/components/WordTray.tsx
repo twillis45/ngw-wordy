@@ -536,7 +536,7 @@ export default function WordTray({
             {floatFor?.word === word && (
               <span
                 aria-hidden
-                className="anim-float pointer-events-none absolute -top-1 left-1/2 text-body font-bold text-success"
+                className="anim-float pointer-events-none absolute -top-1 left-1/2 text-body font-bold text-success-ink"
               >
                 +{floatFor.points}
               </span>

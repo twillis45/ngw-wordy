@@ -130,6 +130,17 @@
 
   /* Status anchors */
   --color-success: #4fae7a;
+  /*
+   * The accent as TEXT, split from the accent as a boundary.
+   *
+   * WCAG asks 4.5:1 of text and 3.0:1 of a UI boundary, and orange cannot
+   * satisfy both with one value: darkening it to 4.5 on white costs most of
+   * its chroma and it reads brown. Green never forced the issue because green
+   * holds its hue while darkening; orange does not. So the border, glow and
+   * sweep take the chromatic value and the three text sites take this one.
+   * They are the same colour in every case where one value does work.
+   */
+  --color-success-ink: #4fae7a;
   --color-danger: #f27a70;
 
   /* Text ladder */
@@ -364,6 +375,7 @@
   --color-steel-muted: #3f5b6a;
 
   --color-success: #186438;
+  --color-success-ink: #186438;
   --color-danger: #a82f2f;
 
   /* Light mode inverts the inversion: the board is white, so the amber goes
@@ -390,9 +402,18 @@
   /* Light theme carries the same blue, just from the other direction: the
      highlight is a cool white rather than a pure one, and the body picks up a
      few percent of steel so panels read as glass over paper, not as paper. */
-  --glass-tint: #eef4ff;
-  --glass-body: color-mix(in srgb, var(--color-steel) 6%, var(--color-carbon-panel));
-  --glass-body-raised: color-mix(in srgb, var(--color-steel) 8%, var(--color-carbon-surface-2));
+  /*
+   * De-blued. #eef4ff carried 17 points of blue over red, and at 85-95% on the
+   * rim — against 30% in dark — that cast landed almost undiluted on the puck,
+   * which read as a blue lens on a white page. Halved to 8 points rather than
+   * neutralised: the cool highlight is the material's identity and a pure white
+   * rim would make it plastic. Same direction, less of it.
+   */
+  --glass-tint: #f3f6fb;
+  /* Steel eased back with the tint, for the same reason: the body and the rim
+     were both pulling blue and the puck sat on both. */
+  --glass-body: color-mix(in srgb, var(--color-steel) 4%, var(--color-carbon-panel));
+  --glass-body-raised: color-mix(in srgb, var(--color-steel) 6%, var(--color-carbon-surface-2));
 
   --glass-fill: color-mix(in srgb, var(--glass-body) 72%, transparent);
   --glass-fill-raised: color-mix(in srgb, var(--glass-body-raised) 82%, transparent);
@@ -435,6 +456,7 @@
   --color-steel-muted: #3f5b6a;
 
   --color-success: #186438;
+  --color-success-ink: #186438;
   --color-danger: #a82f2f;
 
   /* Light mode inverts the inversion: the board is white, so the amber goes
@@ -461,9 +483,12 @@
   /* Light theme carries the same blue, just from the other direction: the
      highlight is a cool white rather than a pure one, and the body picks up a
      few percent of steel so panels read as glass over paper, not as paper. */
-  --glass-tint: #eef4ff;
-  --glass-body: color-mix(in srgb, var(--color-steel) 6%, var(--color-carbon-panel));
-  --glass-body-raised: color-mix(in srgb, var(--color-steel) 8%, var(--color-carbon-surface-2));
+  /* Mirrors the media-query block above — see the de-blue note there. These
+     two light blocks must stay in lockstep; patching one and not the other
+     meant 'auto' light was fixed and an explicit light choice was not. */
+  --glass-tint: #f3f6fb;
+  --glass-body: color-mix(in srgb, var(--color-steel) 4%, var(--color-carbon-panel));
+  --glass-body-raised: color-mix(in srgb, var(--color-steel) 6%, var(--color-carbon-surface-2));
 
   --glass-fill: color-mix(in srgb, var(--glass-body) 72%, transparent);
   --glass-fill-raised: color-mix(in srgb, var(--glass-body-raised) 82%, transparent);
@@ -1214,6 +1239,9 @@ body {
  */
 :root[data-accent='matte'] {
   --color-success: #e08c38;
+  /* Dark mode needs no split: #e08c38 measures 6.96 on the panel, past AA for
+     text on its own. */
+  --color-success-ink: #e08c38;
 }
 
 /*
@@ -1224,10 +1252,16 @@ body {
  */
 @media (prefers-color-scheme: light) {
   :root[data-accent='matte']:not([data-theme='dark']) {
-    --color-success: #8a4409;
+    /* Boundary value: 4.12 on white, 3.32 on surface-2 — both past the 3.0
+       WCAG 1.4.11 floor for a UI boundary, and light enough to read as orange
+       rather than as brown. #8a4409 cleared 7.21 and looked like mud. */
+    --color-success: #c85f0c;
+    /* Text value: 6.18 on white, 4.99 on surface-2, both past 4.5. */
+    --color-success-ink: #9c4a06;
   }
 }
 
 :root[data-accent='matte'][data-theme='light'] {
-  --color-success: #8a4409;
+  --color-success: #c85f0c;
+  --color-success-ink: #9c4a06;
 }
