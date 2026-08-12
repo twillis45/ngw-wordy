@@ -1001,12 +1001,30 @@ export default function Game({ data }: { data: PuzzleFile }) {
         lastActivity.current = Date.now();
         return;
       }
-      // Start (or restart) the clock here rather than in render.
-      if (clockFor.current !== puzzleId || lastActivity.current === 0) {
+      /*
+       * A NEW BOARD IS NOT A STALLED BOARD. The clock does not start until the
+       * player has touched something.
+       *
+       * It used to arm itself here, on the first poll after mount, which meant
+       * the clock ran against a player who had not yet done anything at all.
+       * Measured on a cold first load of the production build, no interaction:
+       * "Stuck? I'll open the 3-letter one" appeared after THIRTY-NINE SECONDS,
+       * on the warm-up, offering to spend all three of a new player's hints
+       * before they had made a single move. A first-timer reading the clue is
+       * the single most likely person to meet this, and it tells them the game
+       * thinks they are failing at something they have not started.
+       *
+       * `touchIdle` is now the only thing that starts it, so "idle" means idle
+       * SINCE ACTING rather than idle since arriving. Being stuck presupposes
+       * having tried. The wrong-guess route is untouched and needs no clock —
+       * it counts submissions, which are themselves proof the player began.
+       */
+      if (clockFor.current !== puzzleId) {
         clockFor.current = puzzleId;
-        lastActivity.current = Date.now();
+        lastActivity.current = 0;
         return;
       }
+      if (lastActivity.current === 0) return;
       const stalled = isStalled({
         idleMs: Date.now() - lastActivity.current,
         missesSinceProgress: misses,
@@ -2552,10 +2570,22 @@ function ThemeIcon({ theme }: { theme: Theme }) {
   return (
     <span className="relative grid place-items-center">
       {showing === 'light' ? <SunIcon /> : <MoonIcon />}
-      {theme === 'auto' && (
+      {/*
+        Studio and dark are both dark, so both draw the moon — and without a
+        mark the control cannot say which of the two is on. The dot is the
+        ACCENT COLOUR because the accent is the entire difference between them:
+        the swatch answers the question rather than encoding it.
+
+        The auto dot stays steel and means something else (following the OS),
+        which is why these are different colours and not one shared dot.
+      */}
+      {(theme === 'auto' || theme === 'studio') && (
         <span
           aria-hidden
-          className="absolute -bottom-1.5 h-1 w-1 rounded-full bg-steel-muted"
+          className={[
+            'absolute -bottom-1.5 h-1 w-1 rounded-full',
+            theme === 'studio' ? 'bg-success' : 'bg-steel-muted',
+          ].join(' ')}
         />
       )}
     </span>

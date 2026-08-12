@@ -367,7 +367,7 @@
  */
 /* Follow the OS by default... */
 @media (prefers-color-scheme: light) {
-  :root:not([data-theme='dark']) {
+  :root:not([data-theme='dark']):not([data-theme='studio']) {
   --color-carbon-body: #eef3f8;
   --color-carbon-panel: #ffffff;
   --color-carbon-surface-2: #dfe8f1;
@@ -1294,7 +1294,7 @@ body {
  * --color-success is already declared three times.
  */
 @media (prefers-color-scheme: light) {
-  :root[data-accent='matte']:not([data-theme='dark']) {
+  :root[data-accent='matte']:not([data-theme='dark']):not([data-theme='studio']) {
     /*
      * Boundary value. 3.10 on white, 2.42 on the measured chip backdrop
      * (220,228,236) — under the 3.0 of WCAG 1.4.11, and that is a considered
@@ -1347,4 +1347,77 @@ body {
   /* Mirrors the media-query block above — see the reasoning there. */
   --color-success: #ef8f2a;
   --color-success-ink: #9c4a06;
+}
+
+/*
+ * STUDIO — the locked Studio Matte palette, offered as a named theme.
+ *
+ * Surfaces are the dark identity unchanged; this block only moves the accent.
+ * Green becomes orange, which is the same swap [data-accent='matte'] makes and
+ * is justified in exactly the same way: the confidence-hierarchy rule says ONE
+ * thing on screen is saturated, so REPLACING the accent honours it where adding
+ * a second warm colour beside the green would not. The ban this palette
+ * inherits is on warm gold as a competing hierarchy accent, not on warmth.
+ *
+ * Values are copied from the matte accent block above rather than re-derived,
+ * for the reason that block records: #e08c38 measures 6.96 on the panel, past
+ * AA as text on its own, so dark needs no separate ink value.
+ *
+ * This wins over [data-accent='matte'] only by being later in the file at equal
+ * specificity, which is fine — they set the identical value. A player on
+ * studio WITH the matte accent selected gets orange either way.
+ */
+:root[data-theme='studio'] {
+  --color-success: #e08c38;
+  --color-success-ink: #e08c38;
+
+  /*
+   * FLAT. No liquid glass.
+   *
+   * Studio Matte is a matte system — the name says so, and the reference build
+   * has flat panels on a flat ground with a hairline and nothing else: no
+   * specular, no rim light, no caustic, no backdrop blur.
+   *
+   * Every one of those is a TOKEN, so the whole material switches here and not
+   * one component has to know which theme is on. Fills become opaque because a
+   * translucent fill over a blurred backdrop IS the glass effect; making them
+   * solid is what turns the surface matte.
+   */
+  --glass-body: #16191c;
+  --glass-body-raised: #1c2024;
+  --glass-fill: #16191c;
+  --glass-fill-raised: #1c2024;
+
+  /* The three that draw light in the material. Off. */
+  --glass-rim-light: transparent;
+  --glass-rim-light-strong: transparent;
+  --glass-caustic: transparent;
+  --glass-caustic-strong: transparent;
+  --glass-specular: transparent;
+  --glass-specular-strong: transparent;
+
+  /* A matte surface still sits ON something — keep contact, drop the sheen. */
+  --glass-rim-dark: transparent;
+  --glass-rim-dark-strong: transparent;
+  --glass-contact: color-mix(in srgb, #000 34%, transparent);
+  --glass-contact-strong: color-mix(in srgb, #000 42%, transparent);
+
+  /* Backdrop filters are the other half of glass. Neutral values, so the
+     backdrop-blur/saturate utilities on the components become no-ops. */
+  --glass-blur: 0px;
+  --glass-saturate: 1;
+}
+
+/*
+ * The two pseudo-elements that PAINT glass rather than tint it.
+ *
+ * `.liquid::after` is the top-left specular wedge and `.liquid-disc::before` is
+ * the conic rim sheen travelling around the dial. Both are gradients built from
+ * more than the tint token — the disc ring also mixes --color-edge — so
+ * clearing the colour variables above thins them without removing them. On a
+ * matte theme they should not be drawn at all.
+ */
+:root[data-theme='studio'] .liquid::after,
+:root[data-theme='studio'] .liquid-disc::before {
+  content: none;
 }

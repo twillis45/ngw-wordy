@@ -7,7 +7,28 @@
  * no-flash script in the document head has to read it before any JS bundle
  * loads — it can't wait for the store to hydrate or know its JSON shape.
  */
-export type Theme = 'auto' | 'light' | 'dark';
+/**
+ * 'studio' is the LOCKED Studio Matte palette, and it is a fourth member rather
+ * than a tweak to 'dark' because the two disagree about one specific thing.
+ *
+ * The whole app is already Studio Matte — globals.css opens by saying so, and
+ * names the bans it inherits from the NGW system: no #f0bc44, no #e08c38, no
+ * warm gold as a hierarchy accent. 'dark' then takes one deliberate exception,
+ * the selection amber, argued at length in that file: on a board of desaturated
+ * blue-greys a selected tile could only ever be a lighter shade, never a
+ * different thing, so it leaves the hue family on purpose.
+ *
+ * 'studio' keeps those surfaces and swaps the accent moment from green to
+ * orange. That is the move globals.css already argues for at the
+ * [data-accent='matte'] block: the confidence-hierarchy rule is that ONE thing
+ * on screen is saturated, so REPLACING the accent with orange respects it,
+ * while adding orange alongside green would not. Warm gold is banned as a
+ * hierarchy accent, not as the accent itself.
+ *
+ * A fourth theme rather than a redefinition of 'dark', because 'dark' is what
+ * everyone already using the game has, and its green is load-bearing there.
+ */
+export type Theme = 'auto' | 'light' | 'dark' | 'studio';
 
 export const THEME_KEY = 'ngw-wordy/theme';
 
@@ -21,7 +42,7 @@ export const THEME_KEY = 'ngw-wordy/theme';
  */
 export const NO_FLASH_SCRIPT = `try{var t=localStorage.getItem(${JSON.stringify(
   THEME_KEY
-)});if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}`;
+)});if(t==='light'||t==='dark'||t==='studio')document.documentElement.dataset.theme=t}catch(e){}`;
 
 /**
  * Theme as an external store.
@@ -69,7 +90,7 @@ export function getThemeServerSnapshot(): Theme {
 export function readTheme(): Theme {
   if (typeof window === 'undefined') return 'auto';
   const t = window.localStorage.getItem(THEME_KEY);
-  return t === 'light' || t === 'dark' ? t : 'auto';
+  return t === 'light' || t === 'dark' || t === 'studio' ? t : 'auto';
 }
 
 export function applyTheme(theme: Theme) {
@@ -89,8 +110,16 @@ export function applyTheme(theme: Theme) {
   }
 }
 
-/** What the page is actually showing right now, following the OS under 'auto'. */
+/**
+ * What the page is actually showing right now, following the OS under 'auto'.
+ *
+ * 'studio' answers 'dark': callers use this to pick between a light and a dark
+ * ASSET — the share card, an icon — and Studio Matte is a dark palette. Adding
+ * it to the return type would push a third case onto every one of those call
+ * sites to describe a distinction none of them cares about.
+ */
 export function effectiveTheme(theme: Theme): 'light' | 'dark' {
+  if (theme === 'studio') return 'dark';
   if (theme !== 'auto') return theme;
   if (typeof window === 'undefined') return 'dark';
   return window.matchMedia('(prefers-color-scheme: light)').matches
@@ -98,7 +127,13 @@ export function effectiveTheme(theme: Theme): 'light' | 'dark' {
     : 'dark';
 }
 
-/** auto -> light -> dark -> auto */
+/** auto -> light -> dark -> studio -> auto */
 export function nextTheme(theme: Theme): Theme {
-  return theme === 'auto' ? 'light' : theme === 'light' ? 'dark' : 'auto';
+  return theme === 'auto'
+    ? 'light'
+    : theme === 'light'
+      ? 'dark'
+      : theme === 'dark'
+        ? 'studio'
+        : 'auto';
 }
