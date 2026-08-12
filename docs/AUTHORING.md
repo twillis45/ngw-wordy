@@ -184,3 +184,39 @@ it stops being legitimate the moment the metric is the reason.
 
 Also: this product is written for a US audience. `peg` and `tap` were British
 for clothespin and faucet, and both shipped.
+
+## The prize word must be a word of the theme
+
+The base is what the player is rewarded with. It is the last thing they find,
+it is celebrated, and it goes on the share card. It should be a word that
+belongs to the pack.
+
+**Measured across the catalogue: 0 of 126 prize words were their own theme
+word.** Not one. Laundry Day's prizes were PAINTS, PIANOS, SENIOR, ACTORS and
+METALS; The Cookout's included CINEMA, CANDOR and DEPICT. The letters spelled
+the theme and the word itself was a stranger to it.
+
+This happened because base selection optimised for DENSITY — how many theme
+words the six letters can spell — and nothing ever asked whether the base
+belonged. Density is necessary and it is not sufficient.
+
+It is also fixable, which is what makes it worth a rule. Legal on-theme bases
+exist in quantity and were simply never used:
+
+  church 15 (DEACON SERMON PASTOR EULOGY CASKET)   rnb90s 14 (BRANDY CHORUS)
+  texas  13 (MARKET SHRIMP SMOKED PICKLE)          laundry 11 (WASHER BASKET
+  cookout 8 (COUSIN AUNTIE FAMILY GATHER)          HAMPER BLEACH FABRIC HANGER)
+
+Rank candidates by density, then prefer the ones that are themselves theme
+words. A pack whose prizes are WASHER, BASKET, HAMPER and BLEACH is a
+different object from one whose prizes are PAINTS, PIANOS and METALS, before a
+single clue is written.
+
+Note garden yields NONE, which is the honest signal that a theme can fail this
+test outright — in which case say so rather than shipping strangers.
+
+## Write US English
+
+The audience is US. These shipped as British and had to be corrected: `tyre`
+(tire), `kerb` (curb), `bonnet` (hood), `boot` (trunk), `peg` (clothespin),
+`tap` (faucet). `flat` is kept because a flat tire and a flat note are both US.
