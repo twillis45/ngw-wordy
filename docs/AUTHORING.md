@@ -44,6 +44,38 @@ names, and so are `ladies` and `ideals`.
 - Don't leak another row's answer inside a clue. It is not a build error, it
   just gives the board away.
 
+### Name the record, with the answer blanked
+
+A clue that points at a specific work must NAME it. Write the title out and put
+`———` where the answer goes:
+
+    end   Boyz II Men, 1992 — ——— of the Road, thirteen weeks at number one
+
+not
+
+    end   Boyz II Men held the number one spot thirteen weeks with it
+
+The second one only works for a player who already knows the answer, which is
+the one player who does not need a clue. It also throws away the citation: the
+canon entry behind that row says "End of the Road ... 13 consecutive weeks at
+number one", so the title was already researched, already verified, and simply
+not on screen. Thirty-one clues in the Nineties pack were written the second
+way.
+
+Three mechanical traps, all of which fired on the first pass:
+
+- **Blank the ANSWER, not the first word of the title.** `name` wants
+  "Say My ———", not "——— My Name". Written the wrong way round it trips
+  check-pack's own-answer rule, which is the thing that caught it.
+- **The redactor matches INSIDE longer words.** `red` cannot appear in a clue
+  containing "remembered". Check the whole sentence, not just the title.
+- **A title that IS the answer gains nothing.** Jodeci's "Stay" for `stay`
+  redacts to "———". Leave those clues pointing at the record from outside.
+
+Writing the title in full and letting the build redact it is NOT available:
+`check-pack` rejects a clue containing its own answer before the build ever
+runs. So the `———` goes in the source, by hand.
+
 ## Standing requirements
 
 - **Insider-accurate, never stereotype.** Specific beats general every time.
