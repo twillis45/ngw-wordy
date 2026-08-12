@@ -1382,7 +1382,14 @@ export default function Game({ data }: { data: PuzzleFile }) {
         aria-label="Rank and progress details"
         className="block w-full text-left md:pointer-events-none md:mb-2"
       >
-        <RankBar rank={rank} score={score} />
+        <RankBar
+          rank={rank}
+          /* gridScore, NOT score — the strip must show the number its rank is
+             computed from. See RankBar. */
+          gridScore={gridScore}
+          gridMax={gridMax}
+          bonusCount={bonusFound.length}
+        />
       </button>
 
       {/* Sits in the flow, above the board, so it pushes nothing over and traps
