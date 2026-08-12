@@ -159,6 +159,12 @@
    * loudest thing on the board and it is doing the single most important job on
    * the board.
    *
+   * Saturation raised 0.68 -> 0.88 at the same hue (28 -> 29 degrees), which is
+   * the axis that was actually short. The earlier value was a near-complement
+   * chosen for its ANGLE and left at whatever saturation fell out; against a
+   * board of desaturated blue-greys the angle was right and the intensity was
+   * not. Ink contrast is unaffected at 6.96, still well past AA.
+   *
    * It is LIGHT with a dark letter, which is the opposite of every other tile,
    * and that inversion is most of the effect: 7.53:1 on the letter and 7.59:1
    * against the panel behind it. A dark rust at the same hue managed 3.23:1
@@ -205,7 +211,7 @@
   --radius-inset: 12px;
   --radius-row: 8px;
 
-  --color-select: #e8934a;
+  --color-select: #f2831c;
   /* The letter ON a selected tile — inverted, because the tile is. */
   --color-select-ink: #12161a;
   --color-text-primary: #eef0f4;
@@ -396,7 +402,7 @@
    * on the tile, not behind text, so it never had to clear 4.5 against the
    * panel — that requirement was imported from the wrong place.
    */
-  --color-select: #e8934a;
+  --color-select: #f2831c;
   --color-select-ink: #12161a;
   --color-text-primary: #0d0f12;
   /* Light: 16.8 / 9.0 / 6.3. Darker means MORE emphasis here. */
@@ -480,7 +486,7 @@
   /* Mirrors the media-query block above. The light theme is declared TWICE —
      prefers-color-scheme for 'auto' and this explicit block — and patching one
      without the other is a trap this file has sprung more than once. */
-  --color-select: #e8934a;
+  --color-select: #f2831c;
   --color-select-ink: #12161a;
   --color-text-primary: #0d0f12;
   /* Light: 16.8 / 9.0 / 6.3. Darker means MORE emphasis here. */
