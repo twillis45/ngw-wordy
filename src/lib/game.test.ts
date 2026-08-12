@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   activeLetters,
+  unlockedIndices,
   clueTarget,
   dailyIndex,
   isReachable,
@@ -360,6 +361,46 @@ describe('hint economy', () => {
  * never wrong: revealLetter did its job and the chip did not read the result.
  * Asserting the ENGINE is not the same as asserting the player can see it.
  */
+describe('unlockedIndices', () => {
+  /*
+   * Shuffling reorders the dial. It must not change the GAME.
+   *
+   * The indices were resolved against puzzle.letters and then applied to the
+   * shuffled array the wheel actually renders, so position 3 meant one letter
+   * to the lock and a different one to the tile under the player's thumb.
+   * Every shuffle quietly dealt a different set of playable letters.
+   */
+  it('lights the same letters no matter how the dial is ordered', () => {
+    const original = ['b', 'e', 'o', 'o', 'r', 't'];
+    const active = ['b', 'o', 'o']; // the opening set for REBOOT
+    const lit = (order: string[]) =>
+      [...unlockedIndices(order, active)].map((i) => order[i]).sort().join('');
+
+    expect(lit(original)).toBe('boo');
+    for (const order of [
+      ['o', 'o', 'b', 't', 'r', 'e'],
+      ['t', 'r', 'e', 'o', 'b', 'o'],
+      ['e', 'b', 'r', 'o', 't', 'o'],
+    ]) {
+      expect(lit(order)).toBe('boo');
+    }
+  });
+
+  it('unlocks only one tile of a doubled letter when only one is active', () => {
+    // The reason this is indices and not a Set: collapsing to a Set would
+    // light both O's and the player would tap a locked one.
+    const order = ['o', 'b', 'o', 't'];
+    const idx = unlockedIndices(order, ['o', 'b']);
+    expect(idx.size).toBe(2);
+    expect([...idx].map((i) => order[i]).sort()).toEqual(['b', 'o']);
+  });
+
+  it('lights every tile when nothing is locked', () => {
+    const order = ['c', 'a', 's', 't', 'l', 'e'];
+    expect(unlockedIndices(order, order).size).toBe(6);
+  });
+});
+
 describe('revealedChip', () => {
   it('is null before anything is revealed, so the chip shows the length', () => {
     expect(revealedChip('nicked', EMPTY_REVEAL)).toBe(null);

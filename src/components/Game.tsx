@@ -93,6 +93,7 @@ import {
 } from '@/lib/fullscreen';
 import {
   activeLetters,
+  unlockedIndices,
   MIN_WORD_LENGTH,
   RANK_BASIS,
   clueTarget,
@@ -409,23 +410,15 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const active = activeLetters(puzzle, rowsDone, escalating);
   const hasLocked = active.length < puzzle.letters.length;
   /*
-   * The wheel locks by INDEX, not by letter.
-   *
-   * `active` is a multiset now, so a base with two T's can have one unlocked
-   * and one not. Collapsing it to a Set for display would light both tiles and
-   * the player would tap a locked one. Consuming the multiset positionally is
-   * the only representation that survives a repeated letter.
+   * Resolved against `letters` — the SHUFFLED array the wheel renders — not
+   * against puzzle.letters. Those are different orders, and these are indices.
+   * See unlockedIndices: pointing them at the original order meant every
+   * shuffle changed which letters were playable.
    */
-  const unlockedIdx = useMemo(() => {
-    const pool = new Map<string, number>();
-    for (const ch of active) pool.set(ch, (pool.get(ch) ?? 0) + 1);
-    const out = new Set<number>();
-    puzzle.letters.forEach((ch, i) => {
-      const left = pool.get(ch) ?? 0;
-      if (left > 0) { pool.set(ch, left - 1); out.add(i); }
-    });
-    return out;
-  }, [active, puzzle.letters]);
+  const unlockedIdx = useMemo(
+    () => unlockedIndices(letters, active),
+    [active, letters]
+  );
   const clueWord = progress.clueMode
     ? clueTarget(puzzle.grid, rowDone, clueCursor, (w) =>
         isReachable(w, active)

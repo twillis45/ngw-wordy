@@ -1,2474 +1,2474 @@
 {
-  "_readme": [
-    "Themed puzzles. This file is the ONLY place a theme is authored — the",
-    "generator merges it over the generated set, so an editor never touches code.",
-    "",
-    "A theme claims a base word. Claimed bases are generated FIRST and win their",
-    "anagram slot, so a claim reliably lands. Clues written here override the",
-    "auto-generated Webster ones; anything not overridden falls back, so a theme",
-    "can ship partially authored.",
-    "",
-    "Clue rules, enforced by the build (it prints what it rejected and why):",
-    "  - never contain the answer or a 4+ character stem of it",
-    "  - 30..120 characters",
-    "  - no two rows in a puzzle may pose the same question",
-    "",
-    "VOICE NOTE: these are a first draft written to prove the pipeline and give",
-    "an editor something to react to. They should be revised by someone with",
-    "VOICE NOTE: specific over general. A clue should name a thing you can picture — a red cup, a thick envelope, the chair by the window — not gesture at a mood. Generic warmth reads as an outsider being careful."
-  ],
-  "themes": [
-    {
-      "id": "cookout",
-      "name": "The Cookout",
-      "blurb": "Somebody's cousin on the grill, matching shirts nobody agreed to, and a plate made for you before you asked.",
-      "category": "THE TABLE"
-    },
-    {
-      "id": "rnb90s",
-      "name": "The Nineties",
-      "blurb": "R&B, hip-hop, new jack and neo-soul — the decade as it came out of the speakers.",
-      "category": "BLACK MUSIC"
-    },
-    {
-      "id": "sitcom",
-      "name": "Rerun Season",
-      "blurb": "Four episodes back to back on a Saturday, and you know every line before it lands.",
-      "category": "THE LIVING ROOM"
-    },
-    {
-      "id": "hbcu",
-      "name": "Homecoming Weekend",
-      "blurb": "The band, the yard, the stroll and the step show — and the graduates who drove six hours to stand in the same spot.",
-      "category": "THE YARD"
-    },
-    {
-      "id": "barbershop",
-      "name": "The Shop",
-      "blurb": "Two rooms with the same rules: you wait your turn, you tip, and you do not touch the chair.",
-      "category": "THE CHAIR"
-    },
-    {
-      "id": "sunday",
-      "name": "Sunday Dinner",
-      "blurb": "The pot that went on before church, the plate fixed for somebody who could not come, and the seat nobody else sits in.",
-      "category": "THE TABLE"
-    },
-    {
-      "id": "spades",
-      "name": "The Card Table",
-      "blurb": "Four chairs, a bid you have to make, and a score kept on the back of an envelope.",
-      "category": "THE GAME"
-    },
-    {
-      "id": "church",
-      "name": "Sunday Service",
-      "blurb": "The organ, the fan, the mothers in white, and the Friday fish fry that pays for the roof.",
-      "category": "THE SANCTUARY"
-    },
-    {
-      "id": "steppers",
-      "name": "The Floor",
-      "blurb": "Chicago steppin' and DC go-go — two cities that never stopped dancing to a live band.",
-      "category": "THE POCKET"
-    },
-    {
-      "id": "juneteenth",
-      "name": "The Nineteenth",
-      "blurb": "Two and a half years late to Galveston, and observed ever since in red — the drink, the cake, the whole table.",
-      "category": "THE DAY"
-    },
-    {
-      "id": "texas",
-      "name": "Barbecue",
-      "blurb": "Whole hog in the Carolinas, brisket in Central Texas, rib tips and hot links on the South Side — three traditions, one fire, and Black pitmasters in all three.",
-      "category": "THE PIT"
-    },
-    {
-      "id": "beautysupply",
-      "name": "The Beauty Supply",
-      "category": "THE BLOCK",
-      "blurb": "Aisle four, forty shades of the same thing, and a decision that takes twenty minutes."
-    },
-    {
-      "id": "roadtrip",
-      "name": "The Road Trip",
-      "category": "THE LONG WAY",
-      "blurb": "Eleven hours, one playlist, and a gas station nobody needed."
-    },
-    {
-      "id": "garden",
-      "name": "The Garden",
-      "category": "THE LONG WAY",
-      "blurb": "Four square feet, one season, and something that was not there in April."
-    },
-    {
-      "id": "stoop",
-      "name": "The Stoop",
-      "category": "THE BLOCK",
-      "blurb": "The front room of the block, and everybody who passes has to be spoken to."
-    }
-  ],
-  "puzzles": [
-    {
-      "base": "dearly",
-      "theme": "rnb90s",
-      "clues": {
-        "dearly": "How half these songs begin — someone talking straight to someone",
-        "dear": "2Pac, 1995. A letter to his mother, and the one everybody agrees on",
-        "lady": "Jodeci's first album, 1991 — four men out of Charlotte on Uptown",
-        "red": "TLC's slow one, written by Babyface",
-        "dry": "Boyz II Men, and the harmony they sing standing perfectly still",
-        "real": "Mary J. Blige, 1992. Hip-hop drums under a soul voice, and the decade turns"
-      },
-      "prefer": [
-        "dear",
-        "lady",
-        "red",
-        "dry",
-        "real"
-      ],
-      "scene": "Records that open by addressing somebody"
-    },
-    {
-      "base": "sweaty",
-      "theme": "rnb90s",
-      "clues": {
-        "sweaty": "What the club was, and what the video pretended it wasn't",
-        "sweat": "Keith Sweat — new jack's first and most patient voice",
-        "west": "One coast, and the argument that ran the whole decade",
-        "east": "The coast on the other side of the argument",
-        "stay": "Jodeci again, and the begging is the point",
-        "say": "Destiny's Child, 1999 — the decade's last big question"
-      },
-      "prefer": [
-        "sweat",
-        "west",
-        "east",
-        "stay",
-        "say"
-      ],
-      "scene": "Two coasts, and the men singing on both"
-    },
-    {
-      "base": "derail",
-      "theme": "rnb90s",
-      "clues": {
-        "derail": "What one bad follow-up single did to a career",
-        "dial": "How you found the station before anybody named it a format",
-        "ideal": "The group, and the thing every A&R claimed to be looking for",
-        "dear": "2Pac wrote his mother a letter, then released it",
-        "real": "Mary J. Blige's, from What's the 411?",
-        "red": "TLC's light, and what it was signalling"
-      },
-      "prefer": [
-        "dial",
-        "ideal",
-        "dear",
-        "real",
-        "red"
-      ],
-      "scene": "The radio dial, somewhere around 1995"
-    },
-    {
-      "base": "aspect",
-      "theme": "rnb90s",
-      "clues": {
-        "aspect": "The angle a producer hears that nobody else does",
-        "tape": "Ninety minutes, hand-labelled, passed to one person",
-        "case": "One name, one word — Def Jam's smooth one",
-        "east": "The coast that claimed it started here",
-        "step": "Bobby Brown, and the dance that came with it",
-        "cast": "Who you put on the tape says everything about you"
-      },
-      "prefer": [
-        "tape",
-        "case",
-        "east",
-        "step",
-        "cast"
-      ],
-      "scene": "The mixtape, and who made the cut"
-    },
-    {
-      "base": "inmate",
-      "theme": "rnb90s",
-      "clues": {
-        "inmate": "The contract everybody signed before they read it",
-        "mint": "Minneapolis, a full band, and no interest in being a boy band",
-        "mine": "Brandy and Monica, 1998, arguing over a boy for thirteen weeks",
-        "name": "Destiny's Child wanted you to say it",
-        "time": "SWV's first album said it was about it",
-        "team": "What a group is until the solo album gets announced"
-      },
-      "prefer": [
-        "mint",
-        "mine",
-        "name",
-        "time",
-        "team"
-      ],
-      "scene": "Group names, 1991 to 1999"
-    },
-    {
-      "base": "nicked",
-      "theme": "rnb90s",
-      "clues": {
-        "nicked": "What sampling was called before the lawyers arrived",
-        "neck": "Wu-Tang debut single, 1992, and the whole thing starts",
-        "ice": "Cube, and later the cream — the decade's most reused syllable",
-        "nice": "Usher, and the tempo he built a career on",
-        "deck": "Where the tape went, and why the song had to be under four minutes",
-        "end": "Boyz II Men held the number one spot thirteen weeks with it"
-      },
-      "prefer": [
-        "neck",
-        "ice",
-        "nice",
-        "deck",
-        "end"
-      ],
-      "scene": "Protect ya neck"
-    },
-    {
-      "base": "maiden",
-      "theme": "rnb90s",
-      "clues": {
-        "maiden": "The first single — the one the label bets the album on",
-        "mind": "En Vogue, 1992, and a rock guitar nobody expected",
-        "mine": "Brandy and Monica's boy, still under discussion",
-        "name": "Destiny's Child asked you to say it out loud",
-        "end": "Boyz II Men held number one thirteen weeks",
-        "dime": "What the single cost, roughly, once you'd taped it off the radio"
-      },
-      "prefer": [
-        "mind",
-        "mine",
-        "name",
-        "end",
-        "dime"
-      ],
-      "scene": "Free your mind"
-    },
-    {
-      "base": "cripes",
-      "theme": "rnb90s",
-      "clues": {
-        "cripes": "What you said when the beat dropped and you were at your grandmother's",
-        "price": "Kelly — the voice behind more hooks than her own records",
-        "spice": "A number after the name, which was very 1993",
-        "ice": "Cube or Cream, take your pick",
-        "epic": "A label, and what every debut called itself",
-        "pier": "Where the video got shot when the budget ran out"
-      },
-      "prefer": [
-        "price",
-        "spice",
-        "ice",
-        "epic",
-        "pier"
-      ],
-      "scene": "One-word names"
-    },
-    {
-      "base": "nights",
-      "theme": "rnb90s",
-      "clues": {
-        "nights": "The format had a name: quiet storm, and it started at ten",
-        "gin": "Snoop, off Doggystyle, the most relaxed hit of the decade",
-        "night": "Monica held number one five weeks with it, 1998",
-        "thing": "Mary J. Blige's cover, sweet as advertised",
-        "sing": "What the hip-hop record started doing on the hook, around 1995",
-        "sign": "What you did before you understood what you were signing"
-      },
-      "prefer": [
-        "gin",
-        "night",
-        "thing",
-        "sing",
-        "sign"
-      ],
-      "scene": "Gin and juice, and what came after"
-    },
-    {
-      "base": "sugary",
-      "theme": "rnb90s",
-      "clues": {
-        "sugary": "The thing critics called it when they meant they liked it",
-        "sugar": "D'Angelo, 1995, and neo-soul arrives without announcing itself",
-        "guy": "Teddy Riley's group, and new jack swing's actual starting point",
-        "say": "Destiny's Child built a whole hit on the demand",
-        "gray": "The area publishing rights lived in for most of the decade",
-        "rays": "The video look: one window, blinds half shut"
-      },
-      "prefer": [
-        "sugar",
-        "guy",
-        "say",
-        "gray",
-        "rays"
-      ],
-      "scene": "Brown sugar"
-    },
-    {
-      "base": "vastly",
-      "theme": "rnb90s",
-      "clues": {
-        "vastly": "How much bigger the audience got between 1990 and 1999",
-        "salt": "Half of the group that made rap radio stop treating women as a novelty",
-        "stay": "Jodeci asking, and not taking no for an answer",
-        "say": "Destiny's Child wanted the name out loud",
-        "last": "The last track — where the album put the one it believed in",
-        "slay": "What the dancers did, and what the word meant before it meant that"
-      },
-      "prefer": [
-        "salt",
-        "stay",
-        "say",
-        "last",
-        "slay"
-      ],
-      "scene": "Salt-N-Pepa's decade"
-    },
-    {
-      "base": "baring",
-      "theme": "rnb90s",
-      "clues": {
-        "baring": "What the confessional verse started doing around 1994",
-        "brain": "Cypress Hill, 1993, and a hook nobody could sing but everybody did",
-        "gin": "Snoop poured it with juice, single out January 1994",
-        "rain": "Missy's, and a video that looked like nothing before it",
-        "bring": "What the producer says he'll do and occasionally does",
-        "grab": "How a sample got cleared, retroactively, if you were lucky"
-      },
-      "prefer": [
-        "brain",
-        "gin",
-        "rain",
-        "bring",
-        "grab"
-      ],
-      "scene": "Insane in the brain"
-    },
-    {
-      "base": "hostel",
-      "theme": "hbcu",
-      "clues": {
-        "hostel": "What the block ends up being, four to a room, booked in February",
-        "hotel": "Sold out by August, at a rate the alumni association pretends to be shocked by",
-        "stole": "Over the shoulder, letters showing, ironed on the bed at seven in the morning",
-        "lost": "The room key, twice, by the same cousin who drove",
-        "shoe": "The other one, under the bed, and the shuttle leaves in four minutes",
-        "hoe": "What the garden out front has not seen since the last reunion"
-      },
-      "prefer": [
-        "hotel",
-        "stole",
-        "lost",
-        "shoe",
-        "hoe"
-      ],
-      "scene": "Where everybody stays, and nobody sleeps"
-    },
-    {
-      "base": "sowing",
-      "theme": "hbcu",
-      "clues": {
-        "sowing": "What four years of it looks like, on a stage, in one dress",
-        "gown": "Kept in a garment bag on the back of a door since March",
-        "song": "The alma mater, and the whole room knows which verse is the one",
-        "won": "The vote was in October and the margin is still being discussed",
-        "sign": "Held up in the third row by people who have been up since five",
-        "owing": "How the court feels toward the women who did this before them"
-      },
-      "prefer": [
-        "gown",
-        "song",
-        "won",
-        "sign",
-        "owing"
-      ],
-      "scene": "Coronation night, and the gown nobody has seen yet"
-    },
-    {
-      "base": "nailed",
-      "theme": "hbcu",
-      "clues": {
-        "nailed": "What the last set was, in front of everyone, after eight weeks",
-        "dean": "Signs off on all of it, and knows more than the paperwork says",
-        "line": "Numbered, in order, and the order does not change for the rest of your life",
-        "lined": "Up the same way at every show, because that is how you learned it",
-        "aide": "The one from the chapter above who checked on you at two in the morning",
-        "idea": "What it was in September, before anybody understood the hours"
-      },
-      "prefer": [
-        "dean",
-        "line",
-        "lined",
-        "aide",
-        "idea"
-      ],
-      "scene": "Crossing, and the line that made it"
-    },
-    {
-      "base": "floats",
-      "theme": "hbcu",
-      "clues": {
-        "floats": "Chicken wire and tissue paper, built over three nights in a parking lot",
-        "float": "Yours, and the theme was decided by committee and nobody is happy",
-        "lost": "The route sheet, which is why the second half improvises",
-        "alto": "The horn line that carries the melody once the trumpets tire",
-        "flat": "What the sousaphone is by the fourth mile, and the crowd does not care",
-        "loft": "How high the drum major throws it, and the block goes quiet watching"
-      },
-      "prefer": [
-        "float",
-        "lost",
-        "alto",
-        "flat",
-        "loft"
-      ],
-      "scene": "The parade, from the staging lot"
-    },
-    {
-      "base": "camped",
-      "theme": "hbcu",
-      "clues": {
-        "camped": "What you did in the lounge for three days because the room was not ready",
-        "mace": "Carried at the front of the procession, and older than everyone holding it",
-        "made": "What people ask if you did, and the answer changes the conversation",
-        "cape": "Somebody's, from the show, hanging on the back of a chair",
-        "came": "The whole family, in two cars, and stayed longer than anyone wanted",
-        "acme": "The dining hall's finest hour, which is a fried chicken Wednesday"
-      },
-      "prefer": [
-        "mace",
-        "made",
-        "cape",
-        "came",
-        "acme"
-      ],
-      "scene": "The dorm, freshman year, the first week"
-    },
-    {
-      "base": "barged",
-      "theme": "hbcu",
-      "clues": {
-        "barged": "How your people get to the front, and no usher has ever stopped them",
-        "grad": "Four years, or six, and the cap says which in glitter",
-        "badge": "The parking pass on the dash that got three cars in on one",
-        "brag": "What the whole row has earned the right to do, loudly, during your name",
-        "gear": "In the trunk since Thursday, because nobody was driving back twice",
-        "bread": "Handed down the row at some point, because it is a long ceremony"
-      },
-      "prefer": [
-        "grad",
-        "badge",
-        "brag",
-        "gear",
-        "bread"
-      ],
-      "scene": "Graduation morning, and who is in the stands"
-    },
-    {
-      "base": "dreamy",
-      "theme": "hbcu",
-      "clues": {
-        "dreamy": "What the light is at four, on the grass, in the last week of term",
-        "yard": "The whole institution in one word, and it is a lawn",
-        "made": "The question again, asked across the quad, by somebody you barely know",
-        "year": "Counted in homecomings rather than semesters, by everyone who left",
-        "dear": "How the letters are addressed when the alumni office wants money",
-        "army": "What the band becomes at eight in the morning on the practice field"
-      },
-      "prefer": [
-        "yard",
-        "made",
-        "year",
-        "dear",
-        "army"
-      ],
-      "scene": "The yard between classes, in April"
-    },
-    {
-      "base": "closet",
-      "theme": "hbcu",
-      "clues": {
-        "closet": "Emptied into a bag on Wednesday for a weekend that needs four outfits",
-        "stole": "The one thing that had to come, and it travelled in its own bag",
-        "lost": "The good jacket, at the tailgate, and it is somebody's now",
-        "cost": "Of the weekend, tallied on the drive home, and worth it",
-        "sole": "Wiped off before the step show, because the yard is the yard",
-        "clot": "The traffic on the one road in, from eleven onward, every year"
-      },
-      "prefer": [
-        "stole",
-        "lost",
-        "cost",
-        "sole",
-        "clot"
-      ],
-      "scene": "What you packed, and what you actually wore"
-    },
-    {
-      "base": "fabled",
-      "theme": "barbershop",
-      "clues": {
-        "fabled": "His line-up is, across three neighbourhoods, and the wait proves it",
-        "fade": "Low, mid or high, and getting that wrong is the one unforgivable thing",
-        "blade": "Off the guard entirely for the last pass, freehand, near the ear",
-        "bald": "Where it ends at the bottom, and skin means skin",
-        "deal": "What the man in the next chair is describing, and it involves a truck",
-        "lead": "Who has the floor in the argument, which changes about every four minutes"
-      },
-      "prefer": [
-        "fade",
-        "blade",
-        "bald",
-        "deal",
-        "lead"
-      ],
-      "scene": "The fade, and the man who will not rush it"
-    },
-    {
-      "base": "bridal",
-      "theme": "barbershop",
-      "clues": {
-        "bridal": "Half the appointments in June, and the deposit is non-refundable",
-        "braid": "Knotless, waist length, and the quote was for four hours",
-        "laid": "The edges, with the little brush, and this is the part that gets photographed",
-        "bald": "What she warns you about if you ask for them any tighter",
-        "rail": "The back of the chair, where your neck has been for two hours",
-        "raid": "On the snack bag at hour three, conducted by the stylist, unapologetically"
-      },
-      "prefer": [
-        "braid",
-        "laid",
-        "bald",
-        "rail",
-        "raid"
-      ],
-      "scene": "Braids, and the six hours nobody warned you about"
-    },
-    {
-      "base": "silken",
-      "theme": "barbershop",
-      "clues": {
-        "silken": "What the press is for, and the argument about whether it is worth it",
-        "silk": "The press, and the flat iron, and about a week if it does not rain",
-        "skin": "Of your scalp, which she will tell you about honestly and unprompted",
-        "line": "Where the new growth starts, and she can see it from the door",
-        "sink": "The bowl, the cold rim on your neck, and the water finally going warm",
-        "kiln": "What the dryer feels like at hour two, said by everyone, every time"
-      },
-      "prefer": [
-        "silk",
-        "skin",
-        "line",
-        "sink",
-        "kiln"
-      ],
-      "scene": "Wash day, at the bowl"
-    },
-    {
-      "base": "frayed",
-      "theme": "barbershop",
-      "clues": {
-        "frayed": "The ends, which is why she is talking about a trim you did not book",
-        "fade": "What the colour does by week five, which is the part nobody budgets for",
-        "dye": "Mixed in the back, in a bowl, to a shade that has no name on any box",
-        "dry": "Air, hood or blow, and the answer determines the next ninety minutes",
-        "year": "How long since the last big change, and she remembers exactly",
-        "read": "What she does to your face in the mirror before she picks up anything"
-      },
-      "prefer": [
-        "fade",
-        "dye",
-        "dry",
-        "year",
-        "read"
-      ],
-      "scene": "Colour, and what it costs"
-    },
-    {
-      "base": "tokens",
-      "theme": "barbershop",
-      "clues": {
-        "tokens": "What the seats become on a Saturday: held, traded, and fiercely defended",
-        "knots": "Bantu, put in wet on Friday, taken out Sunday morning for the curl",
-        "tone": "Of the room, set by whoever has been coming longest, not by the owner",
-        "set": "Standing, same time every three weeks, and it survives house moves",
-        "note": "On the mirror about the price going up, ignored by everyone including her",
-        "stone": "What the floor is by four, according to everybody standing on it"
-      },
-      "prefer": [
-        "knots",
-        "tone",
-        "set",
-        "note",
-        "stone"
-      ],
-      "scene": "The regulars, and their standing times"
-    },
-    {
-      "base": "castle",
-      "theme": "barbershop",
-      "clues": {
-        "castle": "What the chair is, and the person in it is not to be disturbed",
-        "lace": "The front, laid and cut, and the scissors near your forehead are fine",
-        "seat": "Yours when he says it is yours, and not one minute before",
-        "set": "The chair height, pumped up with a foot, without asking",
-        "sale": "The products by the door, mentioned once, never pushed twice",
-        "slate": "Wiped between heads, and the next name goes up in marker"
-      },
-      "prefer": [
-        "lace",
-        "seat",
-        "set",
-        "sale",
-        "slate"
-      ],
-      "scene": "The cape, and the rules of the chair"
-    },
-    {
-      "base": "bailed",
-      "theme": "barbershop",
-      "clues": {
-        "bailed": "The eleven o'clock, again, and there is a policy about this now",
-        "blade": "Cleaned and oiled between heads, and the sound of it is the shop",
-        "bald": "The joke made at the man in the door, by everyone, immediately",
-        "laid": "Edges, again, on the woman who took the cancelled slot and cannot believe her luck",
-        "idea": "Somebody's, about a business, explained at length to a captive room",
-        "able": "What she says you are, about doing your own edges, and she is being kind"
-      },
-      "prefer": [
-        "blade",
-        "bald",
-        "laid",
-        "idea",
-        "able"
-      ],
-      "scene": "Who did not show, and who took the slot"
-    },
-    {
-      "base": "potsie",
-      "theme": "texas",
-      "clues": {
-        "potsie": "Nobody's name for it. Everyone's name for the man who runs it",
-        "tips": "Rib. Chopped, on white bread, in a styrofoam box, and that IS the dish",
-        "pit": "Behind glass, so you watch your own dinner for twenty minutes",
-        "post": "Where the line forms, out the door, from about nine on a Friday",
-        "step": "Up to the plexiglass, order through the slot, and do not dawdle",
-        "set": "The order the man builds it in, and correcting him is not done"
-      },
-      "prefer": [
-        "tips",
-        "pit",
-        "post",
-        "step",
-        "set"
-      ],
-      "scene": "The South Side, and the aquarium smoker in the window"
-    },
-    {
-      "base": "priest",
-      "theme": "texas",
-      "clues": {
-        "priest": "What the man with the knife is treated as, and he does not discourage it",
-        "tips": "Not the dish here. Here they are the burnt ends of a brisket, sold quietly",
-        "pit": "Brick, indirect, post oak, and it has not gone fully out since the seventies",
-        "step": "Along the counter as it is cut, one cut at a time, in front of you",
-        "rest": "An hour minimum, wrapped, and the whole day is arranged around it",
-        "ripe": "What the smoke smell is on your coat by the time you reach the car"
-      },
-      "prefer": [
-        "tips",
-        "pit",
-        "step",
-        "rest",
-        "ripe"
-      ],
-      "scene": "Central Texas, at the counter, by the pound"
-    },
-    {
-      "base": "crafty",
-      "theme": "texas",
-      "clues": {
-        "crafty": "What twelve hours over coals with no thermometer actually requires",
-        "fry": "What the skin does at the end, and it is handed round before the meat",
-        "fat": "Rendered down and back into the chop, which is the whole argument for whole hog",
-        "tray": "Paper-lined, from the window, with slaw and hush puppies and no plate",
-        "cart": "Ash from the burn barrel to the pit, all night, by somebody's nephew",
-        "cry": "What the vinegar does to a cut on your hand, and the reason for gloves"
-      },
-      "prefer": [
-        "fry",
-        "fat",
-        "tray",
-        "cart",
-        "cry"
-      ],
-      "scene": "Eastern Carolina, and the whole hog"
-    },
-    {
-      "base": "ambush",
-      "theme": "texas",
-      "clues": {
-        "ambush": "What the wind does at about four, and the whole night turns on it",
-        "ash": "Shovelled, not swept, and its depth is how you read the fire",
-        "mush": "What the meat becomes if the shoveller sleeps, and it cannot be undone",
-        "bus": "The one that goes past at five and tells you how long you have been here",
-        "hams": "Two of them, over the coals, and they are the last thing to come off",
-        "hub": "The barrel itself, and everything that happens tonight happens around it"
-      },
-      "prefer": [
-        "ash",
-        "mush",
-        "bus",
-        "hams",
-        "hub"
-      ],
-      "scene": "The burn barrel, three in the morning"
-    },
-    {
-      "base": "misled",
-      "theme": "texas",
-      "clues": {
-        "misled": "What everyone outside your county has been, on this subject, their whole life",
-        "mild": "On the South Side, in a squeeze bottle, and it is a specific thing not a spice level",
-        "side": "Which one of the Carolinas you are in, and it changes the whole recipe",
-        "slid": "Under the door of the argument, every family gathering, by an uncle",
-        "lids": "Off the bottles at the table, because it goes on after, not before",
-        "dime": "What the whole disagreement is worth, and it will outlive everyone present"
-      },
-      "prefer": [
-        "mild",
-        "side",
-        "slid",
-        "lids",
-        "dime"
-      ],
-      "scene": "Sauce, and who is wrong about it"
-    },
-    {
-      "base": "curate",
-      "theme": "texas",
-      "clues": {
-        "curate": "What you do with a wood pile if you want it burning right in November",
-        "cure": "Before the smoke, in salt, and the day before matters as much as the day",
-        "crate": "Post oak, split, stacked by the fence, and seasoned since spring",
-        "cart": "Loaded twice because the first load was optimistic",
-        "race": "Against the rain, which is why the tarp is already in the truck",
-        "acre": "How far you can smell a Saturday from, out there, with the wind right"
-      },
-      "prefer": [
-        "cure",
-        "crate",
-        "cart",
-        "race",
-        "acre"
-      ],
-      "scene": "Buying the wood, in August"
-    },
-    {
-      "base": "drafty",
-      "theme": "texas",
-      "clues": {
-        "drafty": "What the firebox door is, deliberately, and closing it fully kills the whole thing",
-        "fry": "The catfish on the flat top, for people who did not come for the ribs",
-        "fat": "Trimmed to a quarter inch, and the trimmings go in the beans",
-        "tray": "Handed through the window with a slice of bread doing the work of a plate",
-        "yard": "Somebody's, and the permit situation is best described as ongoing",
-        "raft": "Of smoke across the road at eleven, which is the only advertising there is"
-      },
-      "prefer": [
-        "fry",
-        "fat",
-        "tray",
-        "yard",
-        "raft"
-      ],
-      "scene": "The trailer pit at the side of the road"
-    },
-    {
-      "base": "pathos",
-      "theme": "texas",
-      "clues": {
-        "pathos": "The mood at four when the trays are down to bread and sauce",
-        "ash": "Grey, banked at the side, and still hot enough to matter tomorrow",
-        "post": "Oak, one log left, saved deliberately for the last hour",
-        "hats": "Off, finally, and the sunburn line is exactly where it was last year",
-        "hot": "The links, and the word is doing double duty on that sign",
-        "oath": "Sworn every year about starting earlier, and broken every year by noon"
-      },
-      "prefer": [
-        "ash",
-        "post",
-        "hats",
-        "hot",
-        "oath"
-      ],
-      "scene": "Sunday afternoon, and what is left"
-    },
-    {
-      "base": "planet",
-      "theme": "sunday",
-      "clues": {
-        "planet": "The size of the plate, which is why nobody eats again until Tuesday",
-        "plate": "Fixed and covered in foil for somebody who could not come, before anyone sits",
-        "late": "You are, and something is already covered in foil on the stove for you",
-        "nap": "What happens at four, in the chair, mid-sentence, and nobody comments",
-        "tea": "Poured over ice into the glass that is only used today",
-        "pane": "The kitchen window, steamed over since noon, and the sound behind it"
-      },
-      "prefer": [
-        "plate",
-        "late",
-        "nap",
-        "tea",
-        "pane"
-      ],
-      "scene": "The plate, and who it is being made for"
-    },
-    {
-      "base": "satire",
-      "theme": "sunday",
-      "clues": {
-        "satire": "The tone taken about anything instant, by a woman who has never bought it",
-        "stir": "Constantly, and handing the spoon over is a small ceremony",
-        "rest": "Off the heat with the lid on, which is where they actually finish",
-        "sear": "The salmon croquettes in the same pan, and the fond is the point",
-        "tears": "From the onion, and from being handed the spoon, and both get denied",
-        "tea": "In the jug by eleven, because it needs those three hours to get properly cold"
-      },
-      "prefer": [
-        "stir",
-        "rest",
-        "sear",
-        "tears",
-        "tea"
-      ],
-      "scene": "The pot that needs watching, and the spoon that gets handed over"
-    },
-    {
-      "base": "warmth",
-      "theme": "sunday",
-      "clues": {
-        "warmth": "What the lowest setting is for, and it holds four dishes at once",
-        "ham": "In there since one, foil tented, waiting for everything slower than it",
-        "warm": "Not hot. The distinction is the entire skill and it is never explained",
-        "thaw": "Started Friday night, in the fridge, because Sunday was always the plan",
-        "hat": "Still on, because she came straight from church and has not sat down",
-        "wham": "The oven door, closed with a hip, both hands full"
-      },
-      "prefer": [
-        "ham",
-        "warm",
-        "thaw",
-        "hat",
-        "wham"
-      ],
-      "scene": "The oven door, and the things kept behind it"
-    },
-    {
-      "base": "aprons",
-      "theme": "sunday",
-      "clues": {
-        "aprons": "There are two, and only one of them has ever been offered to a guest",
-        "apron": "Over the good dress, tied at the back by somebody else, still buttoned",
-        "nap": "What the man on the couch is taking during all of this, unbothered",
-        "sop": "What the bread is for, and doing it is the compliment",
-        "span": "Of the counter she works in, about four feet, and stepping into it is a mistake",
-        "soar": "What the smoke alarm does at some point, and it is ignored"
-      },
-      "prefer": [
-        "apron",
-        "nap",
-        "sop",
-        "span",
-        "soar"
-      ],
-      "scene": "Who is allowed in the kitchen"
-    },
-    {
-      "base": "backed",
-      "theme": "sunday",
-      "clues": {
-        "backed": "What the whole afternoon is, by something that happened at eleven last night",
-        "cake": "Pound, from a recipe on a card in handwriting nobody living can read",
-        "bake": "Started at nine at night, because the oven was busy until then",
-        "dab": "Of the batter on a finger, which is the whole reason to be in there",
-        "deck": "The counter, cleared entirely, which happens exactly once a week",
-        "back": "Of the recipe card, where the instructions that matter were added later"
-      },
-      "prefer": [
-        "cake",
-        "bake",
-        "dab",
-        "deck",
-        "back"
-      ],
-      "scene": "The cake, made the night before"
-    },
-    {
-      "base": "tigers",
-      "theme": "sunday",
-      "clues": {
-        "tigers": "What the pot is guarded like, from about noon onward",
-        "grits": "Not today. Today the pot is doing something else entirely",
-        "stir": "Once an hour, and the smell is the thing that fills the house",
-        "rest": "What the greens do best of all, and Monday's are better than today's",
-        "tries": "How many times someone lifts the lid, and each one is noticed",
-        "tires": "What she insists she never does, while refusing every offer of a chair"
-      },
-      "prefer": [
-        "grits",
-        "stir",
-        "rest",
-        "tries",
-        "tires"
-      ],
-      "scene": "The greens, and the pot liquor"
-    },
-    {
-      "base": "lacked",
-      "theme": "spades",
-      "clues": {
-        "lacked": "What your hand did, and the table found out on the fourth book",
-        "deal": "Clockwise, one at a time, and doing it any other way restarts everything",
-        "deck": "Cut by the player on the right, and skipping that is worth an argument",
-        "ace": "Of spades, and the only card whose location everyone is quietly tracking",
-        "lead": "Whoever took the last book, and never a spade until they are broken",
-        "cake": "What the last four books were, and saying so out loud invites disaster"
-      },
-      "prefer": [
-        "deal",
-        "deck",
-        "ace",
-        "lead",
-        "cake"
-      ],
-      "scene": "The bid, and what you did not have"
-    },
-    {
-      "base": "blinds",
-      "theme": "spades",
-      "clues": {
-        "blinds": "Bidding before you have seen a single card, which is either courage or arithmetic",
-        "nil": "Zero books, on purpose, and your partner now has to cover you",
-        "bid": "Said once, out loud, and written down before anyone can revise it",
-        "blind": "The variant where you and your partner both go without looking",
-        "slid": "The envelope across the table, with the running score on the back",
-        "bind": "What a nil bid puts your partner in for the entire hand"
-      },
-      "prefer": [
-        "nil",
-        "bid",
-        "blind",
-        "slid",
-        "bind"
-      ],
-      "scene": "Going without looking"
-    },
-    {
-      "base": "lapsed",
-      "theme": "spades",
-      "clues": {
-        "lapsed": "Your attention, for one card, and the table has been waiting for this",
-        "spade": "Followed if you have one. Failing to is the offence with a name",
-        "deal": "What the accused was doing when this started, allegedly badly",
-        "lead": "Went out, and somebody did not follow suit, and somebody else noticed",
-        "pads": "Where the score lives, and the handwriting on it is being disputed",
-        "pale": "What the accused goes, briefly, before deciding on total denial"
-      },
-      "prefer": [
-        "spade",
-        "deal",
-        "lead",
-        "pads",
-        "pale"
-      ],
-      "scene": "The renege, and the accusation"
-    },
-    {
-      "base": "lucked",
-      "theme": "spades",
-      "clues": {
-        "lucked": "Into it, and pretending otherwise is the etiquette",
-        "deck": "Shuffled seven times by the one player who read that somewhere",
-        "duck": "Under a book you could take, to set up a later one, and it looks like a mistake",
-        "clue": "What your partner is trying to send with the card they just played",
-        "cued": "What that was, and reading it wrong loses the hand and the peace",
-        "luck": "Named out loud only by the person who did not have it"
-      },
-      "prefer": [
-        "deck",
-        "duck",
-        "clue",
-        "cued",
-        "luck"
-      ],
-      "scene": "The hand you did nothing to deserve"
-    },
-    {
-      "base": "pasted",
-      "theme": "spades",
-      "clues": {
-        "pasted": "What the other team just did to you, by three books",
-        "spade": "Broken on the second trick, which nobody at this table thinks is fair",
-        "set": "Short of your bid, and it costs you what you bid and then some",
-        "seat": "Swapped after, on the theory that it is the chair and not the play",
-        "pest": "The kibitzer behind you, who has opinions and no cards",
-        "taped": "The corner of the box, holding together a deck older than the table"
-      },
-      "prefer": [
-        "spade",
-        "set",
-        "seat",
-        "pest",
-        "taped"
-      ],
-      "scene": "Getting set, badly"
-    },
-    {
-      "base": "cradle",
-      "theme": "spades",
-      "clues": {
-        "cradle": "Where you learned it, roughly, watching from somebody's lap",
-        "ace": "The first card you were allowed to hold, turned inward, saying nothing",
-        "card": "Handed to you at eight, in a hand of four, by an aunt with no patience",
-        "deal": "The first thing you were taught, and badly, for about a year",
-        "lead": "The second thing, and the one that takes ten years",
-        "clear": "What the rules never were, because every house plays them differently"
-      },
-      "prefer": [
-        "ace",
-        "card",
-        "deal",
-        "lead",
-        "clear"
-      ],
-      "scene": "Who taught you, and how"
-    },
-    {
-      "base": "instep",
-      "theme": "steppers",
-      "clues": {
-        "instep": "Where the weight sits through the whole turn, and getting it wrong shows",
-        "step": "The unit. Everything else is decoration on top of it",
-        "spin": "Led with the hand, not the shoulder, and never more than the count allows",
-        "set": "The pattern you both already know, so nothing has to be said",
-        "pine": "What the floor is, and a sprung one is worth driving across town for",
-        "snipe": "What the couple by the wall are doing about everybody else's footwork"
-      },
-      "prefer": [
-        "step",
-        "spin",
-        "set",
-        "pine",
-        "snipe"
-      ],
-      "scene": "The turn, and the eight count under it"
-    },
-    {
-      "base": "candle",
-      "theme": "steppers",
-      "clues": {
-        "candle": "What she is not holding for anyone, which is the point of the whole dance",
-        "lead": "Two fingers and a change of weight. Anything more is manhandling",
-        "dance": "The word does not cover it, and everyone here knows a better one",
-        "clean": "What the footwork has to be before anyone will call it anything",
-        "laced": "The shoes, tight, because a loose heel ruins a turn",
-        "lance": "How the good ones cut across a crowded floor without touching anybody"
-      },
-      "prefer": [
-        "lead",
-        "dance",
-        "clean",
-        "laced",
-        "lance"
-      ],
-      "scene": "Who leads, and how little it takes"
-    },
-    {
-      "base": "ponies",
-      "theme": "steppers",
-      "clues": {
-        "ponies": "What the horn section calls the young ones on their first paying set",
-        "spin": "What a DJ does, and this is not that, and the distinction is defended",
-        "open": "The set does, with something everybody knows, to fill the floor early",
-        "pines": "The stage boards, and you can feel the kick drum through them",
-        "noise": "What the neighbours call it, and the permit conversation follows",
-        "peon": "Who carries the congas in, and it is always the newest member"
-      },
-      "prefer": [
-        "spin",
-        "open",
-        "pines",
-        "noise",
-        "peon"
-      ],
-      "scene": "The band, not the DJ"
-    },
-    {
-      "base": "handle",
-      "theme": "steppers",
-      "clues": {
-        "handle": "How you hold it, and holding it wrong is the difference between two dancers",
-        "hand": "Open, at her shoulder height, and it waits rather than pulls",
-        "lead": "Given, not taken, and any teacher will say that in the first ten minutes",
-        "land": "Where the count puts you, and being early is worse than being late",
-        "held": "The frame, through the whole eight, even when the feet are doing everything",
-        "heal": "What the floor does to shoes, and what an evening on it does to knees"
-      },
-      "prefer": [
-        "hand",
-        "lead",
-        "land",
-        "held",
-        "heal"
-      ],
-      "scene": "The frame, and what it is for"
-    },
-    {
-      "base": "dingle",
-      "theme": "steppers",
-      "clues": {
-        "dingle": "The dip at the end, small enough that half the room misses it",
-        "glide": "The whole aesthetic: no bounce, no visible effort, feet barely leaving",
-        "line": "What the couple travels along, and crossing someone else's is bad manners",
-        "idle": "What the hands look like, and are not, for the entire dance",
-        "deli": "Where the crowd ends up at one in the morning, still in the shoes",
-        "dine": "What nobody does beforehand, because the floor fills at ten"
-      },
-      "prefer": [
-        "glide",
-        "line",
-        "idle",
-        "deli",
-        "dine"
-      ],
-      "scene": "The glide, and why it looks like nothing"
-    },
-    {
-      "base": "absent",
-      "theme": "steppers",
-      "clues": {
-        "absent": "What the space between the beats is not, and hearing that is the whole thing",
-        "beat": "The pocket. Congas, roto toms and cowbell, and it does not stop between songs",
-        "set": "Runs an hour without a gap, because stopping lets the crowd cool",
-        "bent": "What the note is, on the horn, right before the crowd answers it",
-        "beans": "What the band eats after, at three, from the one place still open",
-        "bean": "What the drummer calls the newest conga player, and it sticks for years"
-      },
-      "prefer": [
-        "beat",
-        "set",
-        "bent",
-        "beans",
-        "bean"
-      ],
-      "scene": "The pocket, and the crank"
-    },
-    {
-      "base": "stared",
-      "theme": "juneteenth",
-      "clues": {
-        "stared": "What the crowd does at the person holding the paper, every year, in silence",
-        "read": "Out loud, the same order, by whoever the elders have decided gets to",
-        "date": "The nineteenth, and the two and a half years it came late by",
-        "red": "The drink, the cake, the whole table, and the colour is the point",
-        "star": "On the flag, with the arc around it, and both mean something specific",
-        "dares": "What nobody does: talk through it, however long it runs"
-      },
-      "prefer": [
-        "read",
-        "date",
-        "red",
-        "star",
-        "dares"
-      ],
-      "scene": "The reading, before anybody eats"
-    },
-    {
-      "base": "hatred",
-      "theme": "juneteenth",
-      "clues": {
-        "hatred": "Not the subject. The subject is what came after it, and who is still here",
-        "date": "Marked on a calendar in a kitchen, in pen, before it was a federal thing",
-        "read": "The proclamation, again, and the children are told to listen this time",
-        "red": "In the cooler, in the cake, on the shirts, and nobody had to be told",
-        "heat": "By ten it is already the main topic, and the tents went up at seven",
-        "hat": "Straw, wide, and lent to whoever forgot theirs within the first hour"
-      },
-      "prefer": [
-        "date",
-        "read",
-        "red",
-        "heat",
-        "hat"
-      ],
-      "scene": "The park at ten in the morning"
-    },
-    {
-      "base": "adores",
-      "theme": "juneteenth",
-      "clues": {
-        "adores": "What the whole table does to the one who brings it, without saying so",
-        "soda": "Big Red, strawberry, or whatever the store had, and the brand is not the point",
-        "red": "Hibiscus once, and the colour carried across an ocean before the flavour did",
-        "read": "The label, by a child, who is checking whether this is the real one",
-        "does": "What the grandmother insists the homemade one still has over the bottle",
-        "roads": "How far people drive for it, and the answer is further than it sounds"
-      },
-      "prefer": [
-        "soda",
-        "red",
-        "read",
-        "does",
-        "roads"
-      ],
-      "scene": "The red drink, and what it used to be"
-    },
-    {
-      "base": "creamy",
-      "theme": "juneteenth",
-      "clues": {
-        "creamy": "The icing, red, made from a recipe with no measurements written down",
-        "cream": "Red velvet, and the argument about cheese icing versus the older way",
-        "year": "Counted since 1865, out loud, by somebody doing the arithmetic wrong",
-        "care": "Taken over the first slice, which goes to the oldest person present",
-        "acre": "The park, and the corner of it this family has used since the sixties",
-        "mace": "In the spice tin, and it is in there for a reason nobody can explain"
-      },
-      "prefer": [
-        "cream",
-        "year",
-        "care",
-        "acre",
-        "mace"
-      ],
-      "scene": "The cake, and who is allowed to cut it"
-    },
-    {
-      "base": "packer",
-      "theme": "juneteenth",
-      "clues": {
-        "packer": "Whoever loaded the car, and they are not to be questioned about the order",
-        "park": "Claimed at seven with two tables and a cousin left behind to hold them",
-        "cake": "Travelled flat on the floor of the back seat, and it survived",
-        "care": "Taken with the cooler, which goes in last and comes out first",
-        "rake": "In the trunk, for the fire pit, from the uncle who plans for everything",
-        "pace": "Set by the drive, and everyone arrives already tired and already happy"
-      },
-      "prefer": [
-        "park",
-        "cake",
-        "care",
-        "rake",
-        "pace"
-      ],
-      "scene": "Getting there, and holding the spot"
-    },
-    {
-      "base": "caters",
-      "theme": "sitcom",
-      "clues": {
-        "caters": "What the whole show does to one character by season four, and it works",
-        "cast": "Six of them, and the credits order was a negotiation nobody talks about",
-        "star": "Billed first, and not the reason anybody is actually watching",
-        "act": "Three of them, and you can feel the break coming before it does",
-        "seat": "The same one on the couch, and nobody else takes it during a marathon",
-        "trace": "Of the laugh track under the biggest line, which you only hear once told"
-      },
-      "prefer": [
-        "cast",
-        "star",
-        "act",
-        "seat",
-        "trace"
-      ],
-      "scene": "The cast, and the one everybody quotes"
-    },
-    {
-      "base": "tracks",
-      "theme": "sitcom",
-      "clues": {
-        "tracks": "Recorded decades before the show, from audiences long since gone",
-        "track": "The laugh. Sweetened, they call it, which is a generous word",
-        "cast": "Plays to it, waits for it, and times the next line against it",
-        "star": "Knows exactly how long it runs and never once steps on it",
-        "carts": "Rolled off between takes, and the audience is told to stay seated",
-        "act": "What the pause after the biggest laugh belongs to, structurally"
-      },
-      "prefer": [
-        "track",
-        "cast",
-        "star",
-        "carts",
-        "act"
-      ],
-      "scene": "The laugh, and where it came from"
-    },
-    {
-      "base": "sponge",
-      "theme": "sitcom",
-      "clues": {
-        "sponge": "What your memory is for the words, thirty years on, unprompted",
-        "song": "Under a minute, and it explains the entire premise so nobody has to",
-        "open": "Freeze frame on each name, and everyone has a favourite one",
-        "pens": "In the credits, of the two people who wrote it in an afternoon",
-        "peon": "What the network treated them as, on a flat fee, before syndication",
-        "gone": "What the long version is, once the show hits its fourth season"
-      },
-      "prefer": [
-        "song",
-        "open",
-        "pens",
-        "peon",
-        "gone"
-      ],
-      "scene": "The theme song, and the twelve seconds of it"
-    },
-    {
-      "base": "thongs",
-      "theme": "sitcom",
-      "clues": {
-        "thongs": "What the beach episode was an excuse for, and everyone knew it then",
-        "host": "Of the variety show the lead came from, never mentioned again after the pilot",
-        "song": "Performed in full, mid-episode, for no reason the plot ever supplies",
-        "shot": "Held three seconds too long on the guest, because of who they were",
-        "ghost": "The one-episode cousin, never referred to again by anybody, ever",
-        "hogs": "What the guest does to the scene, and the regulars let them have it"
-      },
-      "prefer": [
-        "host",
-        "song",
-        "shot",
-        "ghost",
-        "hogs"
-      ],
-      "scene": "The guest star, and the episode people remember"
-    },
-    {
-      "base": "aspire",
-      "theme": "church",
-      "clues": {
-        "aspire": "What the whole hour is pointed at, and it is not the sermon",
-        "praise": "Breaks out where the program says the offering should be, and the program loses",
-        "rise": "Nobody announces it. The Hammond drops a step and the room is already up",
-        "reap": "The half of the verse everyone can finish, and the reason it gets quoted",
-        "ears": "What the drummer is playing by, because the key changed without warning",
-        "pair": "Of white gloves, folded on a lap, belonging to a woman who has not moved"
-      },
-      "prefer": [
-        "praise",
-        "rise",
-        "reap",
-        "ears",
-        "pair"
-      ],
-      "scene": "When the organ modulates and the room stands"
-    },
-    {
-      "base": "giants",
-      "theme": "church",
-      "clues": {
-        "giants": "The verse is about facing them, and this choir sings it like they have",
-        "saint": "What the program calls the ones who go first, and the front pew is theirs",
-        "sing": "The instruction and the whole job, and the director mouths every word",
-        "sang": "Past tense, and the way it is said afterwards makes it a verdict",
-        "gain": "What the offering is not for, said twice, by a man who means it",
-        "gnat": "Circling the flowers at the front all through the second verse"
-      },
-      "prefer": [
-        "saint",
-        "sing",
-        "sang",
-        "gain",
-        "gnat"
-      ],
-      "scene": "The choir stand, second service"
-    },
-    {
-      "base": "insure",
-      "theme": "church",
-      "clues": {
-        "insure": "Not what they do. What they do has no policy behind it and no invoice",
-        "nurse": "White dress, white shoes, standing before anyone else notices anything",
-        "rise": "What she helps someone do afterwards, with a hand under the elbow",
-        "rein": "What she puts on the moment, so it stays the person's own",
-        "ruin": "What a fall on that floor would be, which is why she is standing there",
-        "runs": "For the fan, the water, the tissue, the whole hour, and sits down last"
-      },
-      "prefer": [
-        "nurse",
-        "rise",
-        "rein",
-        "ruin",
-        "runs"
-      ],
-      "scene": "The nurses' board, in white, along the wall"
-    },
-    {
-      "base": "humane",
-      "theme": "church",
-      "clues": {
-        "humane": "The word for feeding people on the worst day of their lives",
-        "amen": "Said quietly here, by fewer people, and it lands heavier than upstairs",
-        "hum": "What the room does instead of talking, for the first twenty minutes",
-        "ham": "On the long table with the foil pans, because somebody cooked all night",
-        "hen": "In the other pan, and the two of them are the whole menu, every time",
-        "human": "What the day makes everyone here, more plainly than any other day"
-      },
-      "prefer": [
-        "amen",
-        "hum",
-        "ham",
-        "hen",
-        "human"
-      ],
-      "scene": "The repast, downstairs, after"
-    },
-    {
-      "base": "bowers",
-      "theme": "church",
-      "clues": {
-        "bowers": "What the room does when he finally comes through the door",
-        "robe": "Zipped by somebody else, because he is already somewhere in the third point",
-        "rose": "In the lapel, from the box the flower committee brings without being asked",
-        "sow": "What the text is about, and the reaping is not until the fourth point",
-        "brow": "Wiped once before he goes out, and about forty times after",
-        "bore": "What he is privately afraid of being, which is why the notes are that long"
-      },
-      "prefer": [
-        "robe",
-        "rose",
-        "sow",
-        "brow",
-        "bore"
-      ],
-      "scene": "The vestry, ten minutes before"
-    },
-    {
-      "base": "powers",
-      "theme": "church",
-      "clues": {
-        "powers": "The verse says they are made perfect in weakness, which helps at this moment",
-        "pew": "Third from the back, and everyone in it slides without being asked",
-        "rose": "The one on the end, which means somebody is being remembered today",
-        "sow": "What the sermon is already ten minutes into, and you have missed the setup",
-        "pose": "What you strike coming down the aisle, and it fools absolutely nobody",
-        "owe": "The feeling walking in at half past, and it is entirely self-issued"
-      },
-      "prefer": [
-        "pew",
-        "rose",
-        "sow",
-        "pose",
-        "owe"
-      ],
-      "scene": "Finding a seat when you have come in late"
-    },
-    {
-      "base": "mouths",
-      "theme": "church",
-      "clues": {
-        "mouths": "Some open, some moving without sound, and both count",
-        "shout": "Not a volume. A step, and the ushers know it before it starts",
-        "hum": "Under everything, from women who have known this hymn sixty years",
-        "host": "What the small table at the front holds, on the first Sunday",
-        "moth": "Circling the light above the choir stand, all through the invitation",
-        "must": "What she says about coming next week, to a visitor, holding both her hands"
-      },
-      "prefer": [
-        "shout",
-        "hum",
-        "host",
-        "moth",
-        "must"
-      ],
-      "scene": "The sound the building makes"
-    },
-    {
-      "base": "organs",
-      "theme": "church",
-      "clues": {
-        "organs": "Plural because the building has two, and only one of them gets played",
-        "organ": "The Hammond, the Leslie spinning behind it, and the drawbars set his way",
-        "song": "He can carry it from a single hummed note, in any key, without asking",
-        "sang": "What the soloist did, and he was already under her before the second line",
-        "gran": "In the second row, who has been requesting the same hymn since 1981",
-        "oars": "What the whole room is pulling on by the last verse, together and slightly late"
-      },
-      "prefer": [
-        "organ",
-        "song",
-        "sang",
-        "gran",
-        "oars"
-      ],
-      "scene": "The man on the Hammond, who never once looks up"
-    },
-    {
-      "base": "angels",
-      "theme": "church",
-      "clues": {
-        "angels": "In the glass, and the light through them lands on the water at eleven",
-        "angel": "Singular, in the pane nearest the door, with a hand raised",
-        "sang": "What the congregation did while somebody came up out of that water",
-        "angle": "The sun's, in October, which is the one Sunday it reaches the back wall",
-        "gale": "What the fan does in July, and it is not enough, and nobody complains",
-        "lens": "What the child in the third row has, and the photograph is terrible and kept"
-      },
-      "prefer": [
-        "angel",
-        "sang",
-        "angle",
-        "gale",
-        "lens"
-      ],
-      "scene": "The window over the baptismal pool"
-    },
-    {
-      "base": "aliens",
-      "theme": "church",
-      "clues": {
-        "aliens": "What the line out front looks like to the new pastor, and he learns fast",
-        "sale": "Plate. Ten dollars, cash, and the flyer went up on Tuesday",
-        "aisle": "Cleared of chairs by four so the tables can go where the pews are not",
-        "line": "Out the door by five, and it is mostly people from the block, not the church",
-        "lane": "Behind the building, where the cars idle with their hazards on",
-        "seal": "On the foil, pressed down hard, because these are going in car boots"
-      },
-      "prefer": [
-        "sale",
-        "aisle",
-        "line",
-        "lane",
-        "seal"
-      ],
-      "scene": "The plate sale, Friday, in the fellowship hall"
-    },
-    {
-      "base": "boxers",
-      "theme": "church",
-      "clues": {
-        "boxers": "What the two deacons on the fryer have been, about this, since 1998",
-        "box": "Styrofoam, hinged, and the count of them is the count of the evening",
-        "robe": "Hanging in the back, untouched, because tonight is not that kind of night",
-        "rose": "The price did, by a dollar, and it was announced from the pulpit",
-        "bore": "What the wait never is, because the line is where the news gets exchanged",
-        "rob": "What the price increase was called, loudly, by one man, every year"
-      },
-      "prefer": [
-        "box",
-        "robe",
-        "rose",
-        "bore",
-        "rob"
-      ],
-      "scene": "Who cooks, and who is not allowed near the fryer"
-    },
-    {
-      "base": "bylaws",
-      "theme": "church",
-      "clues": {
-        "bylaws": "What the kitchen runs on, unwritten, and violating them is noticed",
-        "slaw": "Made Thursday night so it is right by Friday, and never bought",
-        "sway": "What the room does when somebody puts the radio on in the kitchen",
-        "bays": "The three sinks, and which one is for what is not negotiable",
-        "slay": "What the fish does to the fryer oil by the third batch",
-        "lays": "How the fish goes in: away from you, one at a time, never dropped"
-      },
-      "prefer": [
-        "slaw",
-        "sway",
-        "bays",
-        "slay",
-        "lays"
-      ],
-      "scene": "The slaw, and the recipe nobody will hand over"
-    },
-    {
-      "base": "pointe",
-      "theme": "beautysupply",
-      "clues": {
-        "pointe": "The precision this takes, and nobody who has not done it believes you",
-        "point": "At the one on the top shelf, because it is always on the top shelf",
-        "tone": "Held against the back of your hand under a light that lies to you",
-        "open": "One pack, carefully, to check — and put back exactly as it was",
-        "pin": "In the bag of six, and you will need every one of them tonight",
-        "note": "In your phone from last time, with the number, so this goes faster"
-      },
-      "prefer": [
-        "point",
-        "tone",
-        "open",
-        "pin",
-        "note"
-      ],
-      "scene": "Aisle four, and the twenty minutes it takes"
-    },
-    {
-      "base": "calmer",
-      "theme": "beautysupply",
-      "clues": {
-        "calmer": "How you feel once the right jar is in your hand and the search is over",
-        "cream": "In the tub with the wide lid, and the smell decides it before the label does",
-        "lace": "The front, sold by the inch, and the good ones are behind the counter",
-        "real": "The word doing the most work on that entire wall of packaging",
-        "care": "What the aisle is actually for, and the word is right there on half the tubs",
-        "clam": "How tight the lid is, and why she asks somebody to start it for her"
-      },
-      "prefer": [
-        "cream",
-        "lace",
-        "real",
-        "care",
-        "clam"
-      ],
-      "scene": "The shelf where everything is a cream"
-    },
-    {
-      "base": "legacy",
-      "theme": "beautysupply",
-      "clues": {
-        "legacy": "What your edges are: your mother's, and hers, and the same brush",
-        "gel": "The little tub, and everybody has a position on which one is correct",
-        "lace": "Laid with the brush, then wrapped, then left alone for ten minutes",
-        "lay": "The whole verb. It carries the edges, the wig and the entire afternoon",
-        "clay": "What the cheap one turns into by hour four, and why it is the cheap one",
-        "gale": "What the wrap protects against, on the walk to the car in November"
-      },
-      "prefer": [
-        "gel",
-        "lace",
-        "lay",
-        "clay",
-        "gale"
-      ],
-      "scene": "Edge control, and the small brush"
-    },
-    {
-      "base": "preach",
-      "theme": "beautysupply",
-      "clues": {
-        "preach": "What the woman in the next aisle does when you ask, and she is right",
-        "cheap": "The word she uses about the one you are holding, with real feeling",
-        "reach": "Past you, without asking, to hand you the one you should have",
-        "cap": "What she takes off the shelf instead, one size up from the one you had",
-        "care": "What the whole exchange is, from a stranger, in under a minute",
-        "pace": "Hers, through the aisle, of somebody who has done this a hundred times"
-      },
-      "prefer": [
-        "cheap",
-        "reach",
-        "cap",
-        "care",
-        "pace"
-      ],
-      "scene": "What she says when you ask her opinion"
-    },
-    {
-      "base": "chairs",
-      "theme": "beautysupply",
-      "clues": {
-        "chairs": "Two, by the door, for the people who came with somebody",
-        "cash": "Counted out, because the card machine has an opinion about small totals",
-        "hair": "Four packs of it, and the fourth was bought because three is never enough",
-        "rich": "How the good bundle feels between two fingers, and you know instantly",
-        "arch": "Of the brow in the mirror by the till, checking one last time",
-        "airs": "What nobody in this shop puts on, and the reason people come here"
-      },
-      "prefer": [
-        "cash",
-        "hair",
-        "rich",
-        "arch",
-        "airs"
-      ],
-      "scene": "Paying, and what is in the bag"
-    },
-    {
-      "base": "picker",
-      "theme": "beautysupply",
-      "clues": {
-        "picker": "Nobody's word for it. Everybody's word for the person who is fussy",
-        "pick": "Metal or plastic, and the fist on the handle is not decorative",
-        "price": "In marker on the shelf edge, and it has been the same for six years",
-        "epic": "The wall itself: nine feet of combs, and you need exactly one",
-        "ripe": "What the timing has to be, on a wash day planned around a Saturday",
-        "ice": "In the cup by the till, mostly melted, since about eleven"
-      },
-      "prefer": [
-        "pick",
-        "price",
-        "epic",
-        "ripe",
-        "ice"
-      ],
-      "scene": "The comb wall"
-    },
-    {
-      "base": "bagels",
-      "theme": "beautysupply",
-      "clues": {
-        "bagels": "From two doors down, because the aisle took longer than anybody planned",
-        "bag": "Thin, doubled at the till, and it will not survive the parking lot",
-        "gel": "In it, on its side, and this is how the lid ends up loose",
-        "sale": "The sign in that window since before you moved onto this block",
-        "able": "What you are, to do all of this yourself, which was never in doubt",
-        "gale": "What the wind does on that corner to a thin doubled bag, every time"
-      },
-      "prefer": [
-        "bag",
-        "gel",
-        "sale",
-        "able",
-        "gale"
-      ],
-      "scene": "The walk back to the car"
-    },
-    {
-      "base": "tamper",
-      "theme": "beautysupply",
-      "clues": {
-        "tamper": "What you do not do with the timing, not by one minute, ever",
-        "perm": "In the box with the two bottles, and the instructions are not a suggestion",
-        "part": "Into four, greased at the scalp, before a single thing is opened",
-        "team": "Two people, because doing your own back is how it goes wrong",
-        "tape": "On the mirror, with the timing written on it in marker",
-        "mart": "The one on the corner, open until nine, which is why tonight is possible"
-      },
-      "prefer": [
-        "perm",
-        "part",
-        "team",
-        "tape",
-        "mart"
-      ],
-      "scene": "The relaxer box, and the timer"
-    },
-    {
-      "base": "wraith",
-      "theme": "beautysupply",
-      "clues": {
-        "wraith": "How you feel by minute forty, still holding two packs",
-        "hair": "Everybody in here is holding some, and no two are buying the same thing",
-        "wait": "Not for a till. For the woman at the counter to finish her opinion",
-        "hart": "On the calendar behind the register, from a garage, from 2011",
-        "wrath": "Of the person behind you, entirely silent, entirely legible",
-        "with": "Who you came, and whether they are helping or are on their phone"
-      },
-      "prefer": [
-        "hair",
-        "wait",
-        "hart",
-        "wrath",
-        "with"
-      ],
-      "scene": "The wait, and who is ahead of you"
-    },
-    {
-      "base": "roadie",
-      "theme": "roadtrip",
-      "clues": {
-        "roadie": "Whoever loaded the trunk, and they are not to be questioned about the order",
-        "radio": "Scanned until the third station, which is the one everybody agrees on",
-        "read": "The exit numbers out loud, by the one person who does not need to",
-        "ride": "Shotgun, claimed at the door of the house before anybody was outside",
-        "road": "Still four lanes at this point, which will not be true by dark",
-        "aide": "What the person with the phone becomes about forty minutes in"
-      },
-      "prefer": [
-        "radio",
-        "read",
-        "ride",
-        "road",
-        "aide"
-      ],
-      "scene": "Hour two, before anyone is tired of anyone"
-    },
-    {
-      "base": "driven",
-      "theme": "roadtrip",
-      "clues": {
-        "driven": "Four hours by the same person, and the argument about it is starting",
-        "drive": "Handed over reluctantly, with commentary, at a gas pump at dusk",
-        "diner": "Two exits back, and the person who wanted it is still saying so",
-        "ride": "Different from the passenger seat, and everyone forgets that",
-        "vein": "On the back of the hand at ten and two, hour five",
-        "dive": "Into the cooler in the footwell, blind, for whatever is left"
-      },
-      "prefer": [
-        "drive",
-        "diner",
-        "ride",
-        "vein",
-        "dive"
-      ],
-      "scene": "The swap, in a lot with the engine running"
-    },
-    {
-      "base": "trunks",
-      "theme": "roadtrip",
-      "clues": {
-        "trunks": "Two of them, and the second one is why nothing can be reached",
-        "trunk": "Packed at eleven last night by somebody who had a system",
-        "turn": "Missed at the exact moment the bag on top slides forward",
-        "sun": "Straight through the back window from about four, and no shade in it",
-        "runt": "The smallest bag, containing the only things anybody needs",
-        "stun": "What the heat off the tarmac does when the hatch finally opens"
-      },
-      "prefer": [
-        "trunk",
-        "turn",
-        "sun",
-        "runt",
-        "stun"
-      ],
-      "scene": "What is in the back, and what is on top of it"
-    },
-    {
-      "base": "argues",
-      "theme": "roadtrip",
-      "clues": {
-        "argues": "About the vent, and it has been the same argument since 2009",
-        "argue": "What the back seat does about the window, at a volume the front can hear",
-        "gas": "Three quarters full, and the person driving wants to stop anyway",
-        "sugar": "In the coffee at the last stop, six of them, and it is being mentioned",
-        "urges": "The one at hour seven that has nothing to do with the bladder",
-        "sage": "What nobody in this car is being, and they know it"
-      },
-      "prefer": [
-        "argue",
-        "gas",
-        "sugar",
-        "urges",
-        "sage"
-      ],
-      "scene": "Hour seven, and the temperature question"
-    },
-    {
-      "base": "piston",
-      "theme": "roadtrip",
-      "clues": {
-        "piston": "The noise it started making outside Chattanooga, still unexplained",
-        "stop": "Refused now, on principle, with under an hour to go",
-        "point": "At the sign, silently, because everybody is past talking",
-        "spin": "Of the tyre in gravel at the last turn, and nobody comments",
-        "pints": "What is waiting, and it is the only thing keeping the car quiet",
-        "snip": "Of the bag corner, for the last of the crisps, at eleven at night"
-      },
-      "prefer": [
-        "stop",
-        "point",
-        "spin",
-        "pints",
-        "snip"
-      ],
-      "scene": "The last hour, in the dark"
-    },
-    {
-      "base": "loaned",
-      "theme": "roadtrip",
-      "clues": {
-        "loaned": "The aux, once, briefly, and never again after that",
-        "lane": "Changed for no reason during the chorus, and everybody noticed",
-        "load": "Queued at the house so nothing has to be chosen at seventy",
-        "alone": "How the person in the third row feels about the song selection",
-        "dean": "The name of the road the sat-nav keeps saying, and it is not a road",
-        "lend": "What nobody does with the charger, at any point in eleven hours"
-      },
-      "prefer": [
-        "lane",
-        "load",
-        "alone",
-        "dean",
-        "lend"
-      ],
-      "scene": "The playlist, and who is in charge of it"
-    },
-    {
-      "base": "genius",
-      "theme": "roadtrip",
-      "clues": {
-        "genius": "What the person who packed the snacks is called, at hour six",
-        "sign": "Read aloud in a voice, for the fourth time, and it is still funny",
-        "sing": "Only the chorus, only in the tunnel, and only all together",
-        "sun": "Down finally, which is when the car gets quiet and stays quiet",
-        "guns": "On the billboard, and there is a conversation about it and then there is not",
-        "using": "The good speaker in the back, discovered at hour nine"
-      },
-      "prefer": [
-        "sign",
-        "sing",
-        "sun",
-        "guns",
-        "using"
-      ],
-      "scene": "The sign, and the sing-along"
-    },
-    {
-      "base": "parent",
-      "theme": "roadtrip",
-      "clues": {
-        "parent": "Says five more minutes at the stop and means twenty, every time",
-        "nap": "Announced as a plan and then defended for the next two hours",
-        "tape": "In the glovebox, from a car that has not existed since 2004",
-        "rent": "The car, and the conversation about the insurance at the counter",
-        "pane": "The window somebody keeps touching, and the mark is permanent now",
-        "trap": "The middle seat, given to whoever got in last, without discussion"
-      },
-      "prefer": [
-        "nap",
-        "tape",
-        "rent",
-        "pane",
-        "trap"
-      ],
-      "scene": "Who is actually running this"
-    },
-    {
-      "base": "laughs",
-      "theme": "roadtrip",
-      "clues": {
-        "laughs": "At the pump price, out loud, and then pays it anyway",
-        "gas": "Cheaper one exit further and everybody finds that out afterwards",
-        "haul": "What is still ahead, said in a tone, by the person not driving",
-        "slug": "Of the drink left in the cup from three hours ago, taken anyway",
-        "gals": "In the car behind, doing exactly the same trip, going the other way",
-        "hags": "What the group photo at the pump makes everybody claim they look like"
-      },
-      "prefer": [
-        "gas",
-        "haul",
-        "slug",
-        "gals",
-        "hags"
-      ],
-      "scene": "The last fill-up before the interstate"
-    },
-    {
-      "base": "hearts",
-      "theme": "roadtrip",
-      "clues": {
-        "hearts": "What the sign at the welcome centre claims the state is full of",
-        "rest": "Taken for eleven minutes, of which nine are spent finding the door",
-        "seat": "Warm from four hours and somehow still claimed when you get back",
-        "share": "The last of the crisps, unwillingly, at a picnic table nobody wiped",
-        "heat": "Off the tarmac through the soles of your shoes, at three in the afternoon",
-        "hear": "The interstate from the picnic table, and it never actually stops"
-      },
-      "prefer": [
-        "rest",
-        "seat",
-        "share",
-        "heat",
-        "hear"
-      ],
-      "scene": "The rest stop at the state line"
-    },
-    {
-      "base": "showed",
-      "theme": "garden",
-      "clues": {
-        "showed": "The neighbour, over the fence, exactly how deep and you did it anyway",
-        "hoe": "Leaned against the fence on day one and not picked up again until June",
-        "hose": "Dragged out for the first time and kinked in the same place as last year",
-        "shed": "Opened after five months, and the smell tells you what overwintered in there",
-        "sow": "Too early, because the one warm week in April lies to everybody",
-        "dose": "Of feed measured by eye, which is why the label is still full"
-      },
-      "prefer": [
-        "hoe",
-        "hose",
-        "shed",
-        "sow",
-        "dose"
-      ],
-      "scene": "April, and the bed is still an idea"
-    },
-    {
-      "base": "hosted",
-      "theme": "garden",
-      "clues": {
-        "hosted": "Two people at the fence for forty minutes, over four square feet",
-        "hoe": "Handed over so they can try it, and taken back within a minute",
-        "hose": "Turned on to demonstrate something, and it soaks a shoe",
-        "shed": "Not opened, because it is not at the stage where it can be opened",
-        "set": "The tomatoes finally did, and this is the whole reason anyone was invited",
-        "dot": "Of green on the bare soil that you have to point at twice"
-      },
-      "prefer": [
-        "hoe",
-        "hose",
-        "shed",
-        "set",
-        "dot"
-      ],
-      "scene": "The first person you show it to"
-    },
-    {
-      "base": "bashed",
-      "theme": "garden",
-      "clues": {
-        "bashed": "What one night at minus two does to everything you put out on Sunday",
-        "bed": "Covered with a sheet at eleven at night, in slippers, in the dark",
-        "shade": "The thing you spent April engineering and now desperately do not want",
-        "shed": "Raided at midnight for anything flat enough to lay over a row",
-        "dash": "From the back door to the far end and back, twice, before the temperature drops",
-        "head": "Of the lettuce, checked first thing, and it has come through fine"
-      },
-      "prefer": [
-        "bed",
-        "shade",
-        "shed",
-        "dash",
-        "head"
-      ],
-      "scene": "The frost that comes after you were sure"
-    },
-    {
-      "base": "wrongs",
-      "theme": "garden",
-      "clues": {
-        "wrongs": "Committed against the bed in April, all of them now visible at once",
-        "grow": "What the things you did not plant are doing best of all",
-        "row": "Identifiable only by memory at this point, and the memory is not reliable",
-        "sow": "What you swore you would not do this thickly, and did",
-        "gowns": "What the whole bed needs and what you have run out of cloches for",
-        "song": "From the phone on the step, the same one, all summer"
-      },
-      "prefer": [
-        "grow",
-        "row",
-        "sow",
-        "gowns",
-        "song"
-      ],
-      "scene": "June, and everything is winning"
-    },
-    {
-      "base": "gather",
-      "theme": "garden",
-      "clues": {
-        "gather": "Enough for one meal, in a shirt held out like a bag, at eight at night",
-        "earth": "Under every fingernail, and it stays there through two washes",
-        "gate": "Left open, and the argument about it is a whole separate thing",
-        "heat": "Still coming off the wall at nine, which is why anything ripened at all",
-        "hare": "The thing you blame, having never actually seen one",
-        "great": "Said out loud, to nobody, holding four tomatoes"
-      },
-      "prefer": [
-        "earth",
-        "gate",
-        "heat",
-        "hare",
-        "great"
-      ],
-      "scene": "The evening you take something inside"
-    },
-    {
-      "base": "martin",
-      "theme": "garden",
-      "clues": {
-        "martin": "Nesting under the eave, and now the chair has been moved",
-        "mint": "Planted in the ground once, by somebody who was warned",
-        "rain": "Enough that the pot by the door has not been watered since May",
-        "trim": "Done constantly to one plant and never once to any of the others",
-        "train": "What the beans are supposed to be doing and are refusing to do",
-        "aim": "For the base of the plant, and miss, and soak the leaves anyway"
-      },
-      "prefer": [
-        "mint",
-        "rain",
-        "trim",
-        "train",
-        "aim"
-      ],
-      "scene": "The herbs by the door, which get all the attention"
-    },
-    {
-      "base": "merits",
-      "theme": "garden",
-      "clues": {
-        "merits": "A proper cage, and gets a bamboo cane and some string instead",
-        "stem": "Snapped at the exact moment you were being careful about it",
-        "tie": "Loose enough to allow for thickening, which nobody does the first year",
-        "trim": "The lower leaves, on advice you half remember from a video",
-        "mist": "On the leaves at six in the morning, gone by seven",
-        "timer": "On the tap, set once, and never adjusted for the rest of the season"
-      },
-      "prefer": [
-        "stem",
-        "tie",
-        "trim",
-        "mist",
-        "timer"
-      ],
-      "scene": "Staking, and the argument with a plant"
-    },
-    {
-      "base": "pilots",
-      "theme": "garden",
-      "clues": {
-        "pilots": "The potatoes in a bag, as an experiment, and tells nobody in case",
-        "pot": "Moved four times in one afternoon chasing a patch of sun",
-        "soil": "Bought in a bag, because the stuff in the ground is clay and you have accepted it",
-        "split": "The pot, over one winter, from water that got in and froze",
-        "slop": "Out the bottom the first time you overwater a container",
-        "list": "On the back of an envelope, of what went where, already inaccurate"
-      },
-      "prefer": [
-        "pot",
-        "soil",
-        "split",
-        "slop",
-        "list"
-      ],
-      "scene": "Containers, for the things that will not behave"
-    },
-    {
-      "base": "gifted",
-      "theme": "garden",
-      "clues": {
-        "gifted": "Courgette. Nine of them. By somebody who will do it again next week",
-        "dig": "A hole for something that arrived in a carrier bag with no warning",
-        "fig": "In a pot by the wall, kept small on purpose, and it is the pride of the place",
-        "tie": "In the new thing loosely, next to the label written in someone else's hand",
-        "deft": "What the person who handed it over is, and you are not",
-        "edit": "The plan, again, to make room for something you did not choose"
-      },
-      "prefer": [
-        "dig",
-        "fig",
-        "tie",
-        "deft",
-        "edit"
-      ],
-      "scene": "What somebody gives you that you did not ask for"
-    },
-    {
-      "base": "bolted",
-      "theme": "garden",
-      "clues": {
-        "bolted": "Overnight, in the heat, and now it is bitter and four feet tall",
-        "bed": "Half of it pulled in one afternoon, which feels worse than it is",
-        "bolt": "On the shed door that has to be lifted and pushed at the same time",
-        "bled": "The tap, at the end of the season, so the pipe does not split",
-        "debt": "To the person who told you to sow it in succession",
-        "toe": "The line about pulling it up now, and lose the argument to yourself"
-      },
-      "prefer": [
-        "bed",
-        "bolt",
-        "bled",
-        "debt",
-        "toe"
-      ],
-      "scene": "August, and the lettuce has made its decision"
-    },
-    {
-      "base": "breast",
-      "theme": "cookout",
-      "clues": {
-        "breast": "Goes on last because it dries out first, whatever your uncle says",
-        "brats": "The ones that get eaten standing up before the plates come out",
-        "baste": "Every turn, with the sauce that has been on the side burner since noon",
-        "sear": "Hot side first, then moved — the whole method in four words",
-        "rest": "Off the heat, under foil, and hands off",
-        "tea": "The jug again, and somebody has already gone for more ice"
-      },
-      "prefer": [
-        "brats",
-        "baste",
-        "sear",
-        "rest",
-        "tea"
-      ],
-      "scene": "What goes on the grate, and in what order"
-    },
-    {
-      "base": "phased",
-      "theme": "cookout",
-      "clues": {
-        "phased": "What nobody at this table gets, no matter what you lead with",
-        "spade": "The suit that decides it, and the reason two grown people are standing up",
-        "shade": "Both the tree and the conversation, and the tree is the lesser one",
-        "heap": "How a plate is built when your auntie builds it for you",
-        "head": "What the argument is about by round three, and it is not the cards",
-        "ash": "Flicked off the end of a cigarette nobody admits to having"
-      },
-      "prefer": [
-        "spade",
-        "shade",
-        "heap",
-        "head",
-        "ash"
-      ],
-      "scene": "The card table under the tree"
-    },
-    {
-      "base": "turban",
-      "theme": "cookout",
-      "clues": {
-        "turban": "The wrap on her head that says she has been up since six",
-        "aunt": "Holds the tongs. Has held the tongs since 1994. Will hold the tongs",
-        "rub": "Went on last night, which is the part that makes it hers",
-        "turn": "Once. Anyone who does it twice is asked to sit down",
-        "burnt": "The edge some people ask for on purpose, and they are correct",
-        "bran": "In the muffins nobody came for, brought by the cousin who tries"
-      },
-      "prefer": [
-        "aunt",
-        "rub",
-        "turn",
-        "burnt",
-        "bran"
-      ],
-      "scene": "Who runs the grill, and what happens if you touch it"
-    },
-    {
-      "base": "cinema",
-      "theme": "cookout",
-      "clues": {
-        "cinema": "What the yard becomes once the sun drops and the speaker gets louder",
-        "mac": "Baked, with the crust, and there is exactly one person allowed to bring it",
-        "ice": "Ran out at four. Somebody is already in the car",
-        "can": "Buried to the elbow in the cooler, and the cold water is the good part",
-        "amen": "Said fast by whoever is nearest, because the food is going cold",
-        "acme": "The peak of the afternoon, roughly twenty minutes after the plates"
-      },
-      "prefer": [
-        "mac",
-        "ice",
-        "can",
-        "amen",
-        "acme"
-      ],
-      "scene": "The table, not the grill"
-    },
-    {
-      "base": "candor",
-      "theme": "cookout",
-      "clues": {
-        "candor": "What the aux cord produces within one hour, from someone's nephew",
-        "corn": "In the husk, straight on the grate, and the silk burns off",
-        "cord": "Orange, running from the kitchen window to the speaker, taped down badly",
-        "can": "Handed to you without being asked for, which is how you know you are family",
-        "card": "The table by the fence, and the reason nobody helps carry anything",
-        "arc": "The one the horseshoe makes before it misses"
-      },
-      "prefer": [
-        "corn",
-        "cord",
-        "can",
-        "card",
-        "arc"
-      ],
-      "scene": "The extension cord and everything running off it"
-    },
-    {
-      "base": "sliced",
-      "theme": "cookout",
-      "clues": {
-        "sliced": "How the melon arrives, on the good tray, from the trunk of a car",
-        "slide": "Starts when the right song comes on, and the aunties know it first",
-        "ice": "Second run of the day, and this time somebody went with them",
-        "dice": "Come out once the kids are inside and the grown folks are grown",
-        "lid": "Back on the cooler, which is the first sign it is winding down",
-        "deli": "Where the potato salad came from, a fact being actively denied"
-      },
-      "prefer": [
-        "slide",
-        "ice",
-        "dice",
-        "lid",
-        "deli"
-      ],
-      "scene": "After the plates, before the dark"
-    },
-    {
-      "base": "backer",
-      "theme": "cookout",
-      "clues": {
-        "backer": "Every dish here has one, and they are standing near it watching you",
-        "cake": "Pound. Under a dome. Not to be touched until it is announced",
-        "bake": "What she did at eleven at night so it would sit right by two",
-        "rack": "Cooling on it by the window since this morning",
-        "beak": "What the one bold bird has been eyeing since the foil came off",
-        "acre": "How far the smell has carried, roughly, by four in the afternoon"
-      },
-      "prefer": [
-        "cake",
-        "bake",
-        "rack",
-        "beak",
-        "acre"
-      ],
-      "scene": "The dessert table, which is a folding table"
-    },
-    {
-      "base": "depict",
-      "theme": "cookout",
-      "clues": {
-        "depict": "What the group photo fails to do, every single year",
-        "dip": "In the bowl with the lid that does not match, and it goes first",
-        "pit": "Dug once, years ago, and still where the whole thing happens",
-        "ice": "The third bag. Nobody planned for the third bag",
-        "tide": "How the chairs drift toward the shade over the course of an afternoon",
-        "diet": "Announced on Monday by at least two people here"
-      },
-      "prefer": [
-        "dip",
-        "pit",
-        "ice",
-        "tide",
-        "diet"
-      ],
-      "scene": "The cooler, the dip, and the folding chairs"
-    },
-    {
-      "base": "asking",
-      "theme": "cookout",
-      "clues": {
-        "asking": "What the first ten minutes are, in both directions, at every table",
-        "kin": "The word on the banner, and the definition is deliberately generous",
-        "sing": "What the elders do after the food, unaccompanied, and everyone stands",
-        "king": "What the oldest man present is treated as for one afternoon a year",
-        "gain": "Two this year, in the babies, announced before anybody eats",
-        "skin": "Whose you have, decided loudly by an aunt within a minute of meeting you"
-      },
-      "prefer": [
-        "kin",
-        "sing",
-        "king",
-        "gain",
-        "skin"
-      ],
-      "scene": "Working out how you are related"
-    },
-    {
-      "base": "brides",
-      "theme": "cookout",
-      "clues": {
-        "brides": "Two of them here today, neither married yet, both being asked when",
-        "ribs": "On since eight, and the person who put them on has not sat down since",
-        "bid": "Made for the end piece, out loud, an hour before anything is ready",
-        "side": "Argued about more seriously than the meat, every single year",
-        "bride": "Cousin who is not one yet and has been asked four times before two o'clock",
-        "rides": "Worked out at the end, badly, with three people going the same way"
-      },
-      "prefer": [
-        "ribs",
-        "bid",
-        "side",
-        "bride",
-        "rides"
-      ],
-      "scene": "The ribs, and who is allowed an opinion"
-    },
-    {
-      "base": "corned",
-      "theme": "cookout",
-      "clues": {
-        "corned": "The beef somebody's people put in the greens, and it is not up for debate",
-        "corn": "In the husk, straight on the grate, turned with a bare hand and a fast wrist",
-        "cord": "Orange, running from the kitchen window to the speaker, taped to the step",
-        "done": "Said about the meat by someone who is not the one who decides that",
-        "code": "Nobody explained about which cooler is which, and everybody follows it",
-        "cone": "Of the yard where the pot lives, out of the wind, where it always is"
-      },
-      "prefer": [
-        "corn",
-        "cord",
-        "done",
-        "code",
-        "cone"
-      ],
-      "scene": "The pot on the side burner"
-    },
-    {
-      "base": "sparky",
-      "theme": "cookout",
-      "clues": {
-        "sparky": "The lighter that works if you hold it at the angle only one person knows",
-        "spark": "Off the chimney starter, caught on the wind, and everybody steps back",
-        "park": "Where this would be if the yard had not been claimed by April",
-        "pray": "Over the food, and the length of it is a whole conversation afterwards",
-        "spar": "Over the domino score, in a way that is not actually an argument",
-        "rays": "Coming level across the yard, which is when the chairs get moved"
-      },
-      "prefer": [
-        "spark",
-        "park",
-        "pray",
-        "spar",
-        "rays"
-      ],
-      "scene": "Getting it lit"
-    },
-    {
-      "base": "creaky",
-      "theme": "cookout",
-      "clues": {
-        "creaky": "The good chair, which is the bad chair, and it goes to whoever arrives last",
-        "rack": "Lifted off with two towels because the mitt is somewhere in the house",
-        "year": "Since the last one, and the count is done out loud at the table",
-        "acre": "What the yard is not, and the number of people here does not care",
-        "race": "Of the children to the cooler the second the lid is lifted",
-        "cake": "Brought by the one person whose gets eaten first, every year"
-      },
-      "prefer": [
-        "rack",
-        "year",
-        "acre",
-        "race",
-        "cake"
-      ],
-      "scene": "The chairs, and where you are allowed to sit"
-    },
-    {
-      "base": "naught",
-      "theme": "cookout",
-      "clues": {
-        "naught": "What you say you want, and a plate is made for you regardless",
-        "aunt": "Greeted first, by name, before you put anything down anywhere",
-        "hug": "Not optional, and the length of it is not yours to decide",
-        "tag": "Played around the legs of people who are trying to hold plates",
-        "haunt": "The corner of the yard the older ones keep, out of the sun, all day",
-        "gnat": "Around the light over the back door from about eight"
-      },
-      "prefer": [
-        "aunt",
-        "hug",
-        "tag",
-        "haunt",
-        "gnat"
-      ],
-      "scene": "The aunts, and the greeting line"
-    },
-    {
-      "base": "carmen",
-      "theme": "cookout",
-      "clues": {
-        "carmen": "Whose dish it is, and the name is said before the dish is",
-        "mac": "The one that matters, and there is only one that counts as the one",
-        "amen": "Said at the end, by everybody, a half-beat after it was expected",
-        "can": "Bring a dish next year, and the answer to that is carefully worded",
-        "name": "On the bottom of the pan in marker, because it is going home tonight",
-        "cream": "In it, which is the part that is never fully admitted to"
-      },
-      "prefer": [
-        "mac",
-        "amen",
-        "can",
-        "name",
-        "cream"
-      ],
-      "scene": "The macaroni, and who is trusted with it"
-    }
-  ]
+ "_readme": [
+  "Themed puzzles. This file is the ONLY place a theme is authored — the",
+  "generator merges it over the generated set, so an editor never touches code.",
+  "",
+  "A theme claims a base word. Claimed bases are generated FIRST and win their",
+  "anagram slot, so a claim reliably lands. Clues written here override the",
+  "auto-generated Webster ones; anything not overridden falls back, so a theme",
+  "can ship partially authored.",
+  "",
+  "Clue rules, enforced by the build (it prints what it rejected and why):",
+  "  - never contain the answer or a 4+ character stem of it",
+  "  - 30..120 characters",
+  "  - no two rows in a puzzle may pose the same question",
+  "",
+  "VOICE NOTE: these are a first draft written to prove the pipeline and give",
+  "an editor something to react to. They should be revised by someone with",
+  "VOICE NOTE: specific over general. A clue should name a thing you can picture — a red cup, a thick envelope, the chair by the window — not gesture at a mood. Generic warmth reads as an outsider being careful."
+ ],
+ "themes": [
+  {
+   "id": "cookout",
+   "name": "The Cookout",
+   "blurb": "Somebody's cousin on the grill, matching shirts nobody agreed to, and a plate made for you before you asked.",
+   "category": "THE TABLE"
+  },
+  {
+   "id": "rnb90s",
+   "name": "The Nineties",
+   "blurb": "R&B, hip-hop, new jack and neo-soul — the decade as it came out of the speakers.",
+   "category": "BLACK MUSIC"
+  },
+  {
+   "id": "sitcom",
+   "name": "Rerun Season",
+   "blurb": "Four episodes back to back on a Saturday, and you know every line before it lands.",
+   "category": "THE LIVING ROOM"
+  },
+  {
+   "id": "hbcu",
+   "name": "Homecoming Weekend",
+   "blurb": "The band, the yard, the stroll and the step show — and the graduates who drove six hours to stand in the same spot.",
+   "category": "THE YARD"
+  },
+  {
+   "id": "barbershop",
+   "name": "The Shop",
+   "blurb": "Two rooms with the same rules: you wait your turn, you tip, and you do not touch the chair.",
+   "category": "THE CHAIR"
+  },
+  {
+   "id": "sunday",
+   "name": "Sunday Dinner",
+   "blurb": "The pot that went on before church, the plate fixed for somebody who could not come, and the seat nobody else sits in.",
+   "category": "THE TABLE"
+  },
+  {
+   "id": "spades",
+   "name": "The Card Table",
+   "blurb": "Four chairs, a bid you have to make, and a score kept on the back of an envelope.",
+   "category": "THE GAME"
+  },
+  {
+   "id": "church",
+   "name": "Sunday Service",
+   "blurb": "The organ, the fan, the mothers in white, and the Friday fish fry that pays for the roof.",
+   "category": "THE SANCTUARY"
+  },
+  {
+   "id": "steppers",
+   "name": "The Floor",
+   "blurb": "Chicago steppin' and DC go-go — two cities that never stopped dancing to a live band.",
+   "category": "THE POCKET"
+  },
+  {
+   "id": "juneteenth",
+   "name": "The Nineteenth",
+   "blurb": "Two and a half years late to Galveston, and observed ever since in red — the drink, the cake, the whole table.",
+   "category": "THE DAY"
+  },
+  {
+   "id": "texas",
+   "name": "Barbecue",
+   "blurb": "Whole hog in the Carolinas, brisket in Central Texas, rib tips and hot links on the South Side — three traditions, one fire, and Black pitmasters in all three.",
+   "category": "THE PIT"
+  },
+  {
+   "id": "beautysupply",
+   "name": "The Beauty Supply",
+   "category": "THE BLOCK",
+   "blurb": "Aisle four, forty shades of the same thing, and a decision that takes twenty minutes."
+  },
+  {
+   "id": "roadtrip",
+   "name": "The Road Trip",
+   "category": "THE LONG WAY",
+   "blurb": "Eleven hours, one playlist, and a gas station nobody needed."
+  },
+  {
+   "id": "garden",
+   "name": "The Garden",
+   "category": "THE LONG WAY",
+   "blurb": "Four square feet, one season, and something that was not there in April."
+  },
+  {
+   "id": "stoop",
+   "name": "The Stoop",
+   "category": "THE BLOCK",
+   "blurb": "The front room of the block, and everybody who passes has to be spoken to."
+  }
+ ],
+ "puzzles": [
+  {
+   "base": "hostel",
+   "theme": "hbcu",
+   "clues": {
+    "hostel": "What the block ends up being, four to a room, booked in February",
+    "hotel": "Sold out by August, at a rate the alumni association pretends to be shocked by",
+    "stole": "Over the shoulder, letters showing, ironed on the bed at seven in the morning",
+    "lost": "The room key, twice, by the same cousin who drove",
+    "shoe": "The other one, under the bed, and the shuttle leaves in four minutes",
+    "hoe": "What the garden out front has not seen since the last reunion"
+   },
+   "prefer": [
+    "hotel",
+    "stole",
+    "lost",
+    "shoe",
+    "hoe"
+   ],
+   "scene": "Where everybody stays, and nobody sleeps"
+  },
+  {
+   "base": "sowing",
+   "theme": "hbcu",
+   "clues": {
+    "sowing": "What four years of it looks like, on a stage, in one dress",
+    "gown": "Kept in a garment bag on the back of a door since March",
+    "song": "The alma mater, and the whole room knows which verse is the one",
+    "won": "The vote was in October and the margin is still being discussed",
+    "sign": "Held up in the third row by people who have been up since five",
+    "owing": "How the court feels toward the women who did this before them"
+   },
+   "prefer": [
+    "gown",
+    "song",
+    "won",
+    "sign",
+    "owing"
+   ],
+   "scene": "Coronation night, and the gown nobody has seen yet"
+  },
+  {
+   "base": "nailed",
+   "theme": "hbcu",
+   "clues": {
+    "nailed": "What the last set was, in front of everyone, after eight weeks",
+    "dean": "Signs off on all of it, and knows more than the paperwork says",
+    "line": "Numbered, in order, and the order does not change for the rest of your life",
+    "lined": "Up the same way at every show, because that is how you learned it",
+    "aide": "The one from the chapter above who checked on you at two in the morning",
+    "idea": "What it was in September, before anybody understood the hours"
+   },
+   "prefer": [
+    "dean",
+    "line",
+    "lined",
+    "aide",
+    "idea"
+   ],
+   "scene": "Crossing, and the line that made it"
+  },
+  {
+   "base": "floats",
+   "theme": "hbcu",
+   "clues": {
+    "floats": "Chicken wire and tissue paper, built over three nights in a parking lot",
+    "float": "Yours, and the theme was decided by committee and nobody is happy",
+    "lost": "The route sheet, which is why the second half improvises",
+    "alto": "The horn line that carries the melody once the trumpets tire",
+    "flat": "What the sousaphone is by the fourth mile, and the crowd does not care",
+    "loft": "How high the drum major throws it, and the block goes quiet watching"
+   },
+   "prefer": [
+    "float",
+    "lost",
+    "alto",
+    "flat",
+    "loft"
+   ],
+   "scene": "The parade, from the staging lot"
+  },
+  {
+   "base": "camped",
+   "theme": "hbcu",
+   "clues": {
+    "camped": "What you did in the lounge for three days because the room was not ready",
+    "mace": "Carried at the front of the procession, and older than everyone holding it",
+    "made": "What people ask if you did, and the answer changes the conversation",
+    "cape": "Somebody's, from the show, hanging on the back of a chair",
+    "came": "The whole family, in two cars, and stayed longer than anyone wanted",
+    "acme": "The dining hall's finest hour, which is a fried chicken Wednesday"
+   },
+   "prefer": [
+    "mace",
+    "made",
+    "cape",
+    "came",
+    "acme"
+   ],
+   "scene": "The dorm, freshman year, the first week"
+  },
+  {
+   "base": "barged",
+   "theme": "hbcu",
+   "clues": {
+    "barged": "How your people get to the front, and no usher has ever stopped them",
+    "grad": "Four years, or six, and the cap says which in glitter",
+    "badge": "The parking pass on the dash that got three cars in on one",
+    "brag": "What the whole row has earned the right to do, loudly, during your name",
+    "gear": "In the trunk since Thursday, because nobody was driving back twice",
+    "bread": "Handed down the row at some point, because it is a long ceremony"
+   },
+   "prefer": [
+    "grad",
+    "badge",
+    "brag",
+    "gear",
+    "bread"
+   ],
+   "scene": "Graduation morning, and who is in the stands"
+  },
+  {
+   "base": "dreamy",
+   "theme": "hbcu",
+   "clues": {
+    "dreamy": "What the light is at four, on the grass, in the last week of term",
+    "yard": "The whole institution in one word, and it is a lawn",
+    "made": "The question again, asked across the quad, by somebody you barely know",
+    "year": "Counted in homecomings rather than semesters, by everyone who left",
+    "dear": "How the letters are addressed when the alumni office wants money",
+    "army": "What the band becomes at eight in the morning on the practice field"
+   },
+   "prefer": [
+    "yard",
+    "made",
+    "year",
+    "dear",
+    "army"
+   ],
+   "scene": "The yard between classes, in April"
+  },
+  {
+   "base": "closet",
+   "theme": "hbcu",
+   "clues": {
+    "closet": "Emptied into a bag on Wednesday for a weekend that needs four outfits",
+    "stole": "The one thing that had to come, and it travelled in its own bag",
+    "lost": "The good jacket, at the tailgate, and it is somebody's now",
+    "cost": "Of the weekend, tallied on the drive home, and worth it",
+    "sole": "Wiped off before the step show, because the yard is the yard",
+    "clot": "The traffic on the one road in, from eleven onward, every year"
+   },
+   "prefer": [
+    "stole",
+    "lost",
+    "cost",
+    "sole",
+    "clot"
+   ],
+   "scene": "What you packed, and what you actually wore"
+  },
+  {
+   "base": "fabled",
+   "theme": "barbershop",
+   "clues": {
+    "fabled": "His line-up is, across three neighbourhoods, and the wait proves it",
+    "fade": "Low, mid or high, and getting that wrong is the one unforgivable thing",
+    "blade": "Off the guard entirely for the last pass, freehand, near the ear",
+    "bald": "Where it ends at the bottom, and skin means skin",
+    "deal": "What the man in the next chair is describing, and it involves a truck",
+    "lead": "Who has the floor in the argument, which changes about every four minutes"
+   },
+   "prefer": [
+    "fade",
+    "blade",
+    "bald",
+    "deal",
+    "lead"
+   ],
+   "scene": "The fade, and the man who will not rush it"
+  },
+  {
+   "base": "bridal",
+   "theme": "barbershop",
+   "clues": {
+    "bridal": "Half the appointments in June, and the deposit is non-refundable",
+    "braid": "Knotless, waist length, and the quote was for four hours",
+    "laid": "The edges, with the little brush, and this is the part that gets photographed",
+    "bald": "What she warns you about if you ask for them any tighter",
+    "rail": "The back of the chair, where your neck has been for two hours",
+    "raid": "On the snack bag at hour three, conducted by the stylist, unapologetically"
+   },
+   "prefer": [
+    "braid",
+    "laid",
+    "bald",
+    "rail",
+    "raid"
+   ],
+   "scene": "Braids, and the six hours nobody warned you about"
+  },
+  {
+   "base": "silken",
+   "theme": "barbershop",
+   "clues": {
+    "silken": "What the press is for, and the argument about whether it is worth it",
+    "silk": "The press, and the flat iron, and about a week if it does not rain",
+    "skin": "Of your scalp, which she will tell you about honestly and unprompted",
+    "line": "Where the new growth starts, and she can see it from the door",
+    "sink": "The bowl, the cold rim on your neck, and the water finally going warm",
+    "kiln": "What the dryer feels like at hour two, said by everyone, every time"
+   },
+   "prefer": [
+    "silk",
+    "skin",
+    "line",
+    "sink",
+    "kiln"
+   ],
+   "scene": "Wash day, at the bowl"
+  },
+  {
+   "base": "frayed",
+   "theme": "barbershop",
+   "clues": {
+    "frayed": "The ends, which is why she is talking about a trim you did not book",
+    "fade": "What the colour does by week five, which is the part nobody budgets for",
+    "dye": "Mixed in the back, in a bowl, to a shade that has no name on any box",
+    "dry": "Air, hood or blow, and the answer determines the next ninety minutes",
+    "year": "How long since the last big change, and she remembers exactly",
+    "read": "What she does to your face in the mirror before she picks up anything"
+   },
+   "prefer": [
+    "fade",
+    "dye",
+    "dry",
+    "year",
+    "read"
+   ],
+   "scene": "Colour, and what it costs"
+  },
+  {
+   "base": "tokens",
+   "theme": "barbershop",
+   "clues": {
+    "tokens": "What the seats become on a Saturday: held, traded, and fiercely defended",
+    "knots": "Bantu, put in wet on Friday, taken out Sunday morning for the curl",
+    "tone": "Of the room, set by whoever has been coming longest, not by the owner",
+    "set": "Standing, same time every three weeks, and it survives house moves",
+    "note": "On the mirror about the price going up, ignored by everyone including her",
+    "stone": "What the floor is by four, according to everybody standing on it"
+   },
+   "prefer": [
+    "knots",
+    "tone",
+    "set",
+    "note",
+    "stone"
+   ],
+   "scene": "The regulars, and their standing times"
+  },
+  {
+   "base": "castle",
+   "theme": "barbershop",
+   "clues": {
+    "castle": "What the chair is, and the person in it is not to be disturbed",
+    "lace": "The front, laid and cut, and the scissors near your forehead are fine",
+    "seat": "Yours when he says it is yours, and not one minute before",
+    "set": "The chair height, pumped up with a foot, without asking",
+    "sale": "The products by the door, mentioned once, never pushed twice",
+    "slate": "Wiped between heads, and the next name goes up in marker"
+   },
+   "prefer": [
+    "lace",
+    "seat",
+    "set",
+    "sale",
+    "slate"
+   ],
+   "scene": "The cape, and the rules of the chair"
+  },
+  {
+   "base": "bailed",
+   "theme": "barbershop",
+   "clues": {
+    "bailed": "The eleven o'clock, again, and there is a policy about this now",
+    "blade": "Cleaned and oiled between heads, and the sound of it is the shop",
+    "bald": "The joke made at the man in the door, by everyone, immediately",
+    "laid": "Edges, again, on the woman who took the cancelled slot and cannot believe her luck",
+    "idea": "Somebody's, about a business, explained at length to a captive room",
+    "able": "What she says you are, about doing your own edges, and she is being kind"
+   },
+   "prefer": [
+    "blade",
+    "bald",
+    "laid",
+    "idea",
+    "able"
+   ],
+   "scene": "Who did not show, and who took the slot"
+  },
+  {
+   "base": "potsie",
+   "theme": "texas",
+   "clues": {
+    "potsie": "Nobody's name for it. Everyone's name for the man who runs it",
+    "tips": "Rib. Chopped, on white bread, in a styrofoam box, and that IS the dish",
+    "pit": "Behind glass, so you watch your own dinner for twenty minutes",
+    "post": "Where the line forms, out the door, from about nine on a Friday",
+    "step": "Up to the plexiglass, order through the slot, and do not dawdle",
+    "set": "The order the man builds it in, and correcting him is not done"
+   },
+   "prefer": [
+    "tips",
+    "pit",
+    "post",
+    "step",
+    "set"
+   ],
+   "scene": "The South Side, and the aquarium smoker in the window"
+  },
+  {
+   "base": "priest",
+   "theme": "texas",
+   "clues": {
+    "priest": "What the man with the knife is treated as, and he does not discourage it",
+    "tips": "Not the dish here. Here they are the burnt ends of a brisket, sold quietly",
+    "pit": "Brick, indirect, post oak, and it has not gone fully out since the seventies",
+    "step": "Along the counter as it is cut, one cut at a time, in front of you",
+    "rest": "An hour minimum, wrapped, and the whole day is arranged around it",
+    "ripe": "What the smoke smell is on your coat by the time you reach the car"
+   },
+   "prefer": [
+    "tips",
+    "pit",
+    "step",
+    "rest",
+    "ripe"
+   ],
+   "scene": "Central Texas, at the counter, by the pound"
+  },
+  {
+   "base": "crafty",
+   "theme": "texas",
+   "clues": {
+    "crafty": "What twelve hours over coals with no thermometer actually requires",
+    "fry": "What the skin does at the end, and it is handed round before the meat",
+    "fat": "Rendered down and back into the chop, which is the whole argument for whole hog",
+    "tray": "Paper-lined, from the window, with slaw and hush puppies and no plate",
+    "cart": "Ash from the burn barrel to the pit, all night, by somebody's nephew",
+    "cry": "What the vinegar does to a cut on your hand, and the reason for gloves"
+   },
+   "prefer": [
+    "fry",
+    "fat",
+    "tray",
+    "cart",
+    "cry"
+   ],
+   "scene": "Eastern Carolina, and the whole hog"
+  },
+  {
+   "base": "ambush",
+   "theme": "texas",
+   "clues": {
+    "ambush": "What the wind does at about four, and the whole night turns on it",
+    "ash": "Shovelled, not swept, and its depth is how you read the fire",
+    "mush": "What the meat becomes if the shoveller sleeps, and it cannot be undone",
+    "bus": "The one that goes past at five and tells you how long you have been here",
+    "hams": "Two of them, over the coals, and they are the last thing to come off",
+    "hub": "The barrel itself, and everything that happens tonight happens around it"
+   },
+   "prefer": [
+    "ash",
+    "mush",
+    "bus",
+    "hams",
+    "hub"
+   ],
+   "scene": "The burn barrel, three in the morning"
+  },
+  {
+   "base": "misled",
+   "theme": "texas",
+   "clues": {
+    "misled": "What everyone outside your county has been, on this subject, their whole life",
+    "mild": "On the South Side, in a squeeze bottle, and it is a specific thing not a spice level",
+    "side": "Which one of the Carolinas you are in, and it changes the whole recipe",
+    "slid": "Under the door of the argument, every family gathering, by an uncle",
+    "lids": "Off the bottles at the table, because it goes on after, not before",
+    "dime": "What the whole disagreement is worth, and it will outlive everyone present"
+   },
+   "prefer": [
+    "mild",
+    "side",
+    "slid",
+    "lids",
+    "dime"
+   ],
+   "scene": "Sauce, and who is wrong about it"
+  },
+  {
+   "base": "curate",
+   "theme": "texas",
+   "clues": {
+    "curate": "What you do with a wood pile if you want it burning right in November",
+    "cure": "Before the smoke, in salt, and the day before matters as much as the day",
+    "crate": "Post oak, split, stacked by the fence, and seasoned since spring",
+    "cart": "Loaded twice because the first load was optimistic",
+    "race": "Against the rain, which is why the tarp is already in the truck",
+    "acre": "How far you can smell a Saturday from, out there, with the wind right"
+   },
+   "prefer": [
+    "cure",
+    "crate",
+    "cart",
+    "race",
+    "acre"
+   ],
+   "scene": "Buying the wood, in August"
+  },
+  {
+   "base": "drafty",
+   "theme": "texas",
+   "clues": {
+    "drafty": "What the firebox door is, deliberately, and closing it fully kills the whole thing",
+    "fry": "The catfish on the flat top, for people who did not come for the ribs",
+    "fat": "Trimmed to a quarter inch, and the trimmings go in the beans",
+    "tray": "Handed through the window with a slice of bread doing the work of a plate",
+    "yard": "Somebody's, and the permit situation is best described as ongoing",
+    "raft": "Of smoke across the road at eleven, which is the only advertising there is"
+   },
+   "prefer": [
+    "fry",
+    "fat",
+    "tray",
+    "yard",
+    "raft"
+   ],
+   "scene": "The trailer pit at the side of the road"
+  },
+  {
+   "base": "pathos",
+   "theme": "texas",
+   "clues": {
+    "pathos": "The mood at four when the trays are down to bread and sauce",
+    "ash": "Grey, banked at the side, and still hot enough to matter tomorrow",
+    "post": "Oak, one log left, saved deliberately for the last hour",
+    "hats": "Off, finally, and the sunburn line is exactly where it was last year",
+    "hot": "The links, and the word is doing double duty on that sign",
+    "oath": "Sworn every year about starting earlier, and broken every year by noon"
+   },
+   "prefer": [
+    "ash",
+    "post",
+    "hats",
+    "hot",
+    "oath"
+   ],
+   "scene": "Sunday afternoon, and what is left"
+  },
+  {
+   "base": "planet",
+   "theme": "sunday",
+   "clues": {
+    "planet": "The size of the plate, which is why nobody eats again until Tuesday",
+    "plate": "Fixed and covered in foil for somebody who could not come, before anyone sits",
+    "late": "You are, and something is already covered in foil on the stove for you",
+    "nap": "What happens at four, in the chair, mid-sentence, and nobody comments",
+    "tea": "Poured over ice into the glass that is only used today",
+    "pane": "The kitchen window, steamed over since noon, and the sound behind it"
+   },
+   "prefer": [
+    "plate",
+    "late",
+    "nap",
+    "tea",
+    "pane"
+   ],
+   "scene": "The plate, and who it is being made for"
+  },
+  {
+   "base": "satire",
+   "theme": "sunday",
+   "clues": {
+    "satire": "The tone taken about anything instant, by a woman who has never bought it",
+    "stir": "Constantly, and handing the spoon over is a small ceremony",
+    "rest": "Off the heat with the lid on, which is where they actually finish",
+    "sear": "The salmon croquettes in the same pan, and the fond is the point",
+    "tears": "From the onion, and from being handed the spoon, and both get denied",
+    "tea": "In the jug by eleven, because it needs those three hours to get properly cold"
+   },
+   "prefer": [
+    "stir",
+    "rest",
+    "sear",
+    "tears",
+    "tea"
+   ],
+   "scene": "The pot that needs watching, and the spoon that gets handed over"
+  },
+  {
+   "base": "warmth",
+   "theme": "sunday",
+   "clues": {
+    "warmth": "What the lowest setting is for, and it holds four dishes at once",
+    "ham": "In there since one, foil tented, waiting for everything slower than it",
+    "warm": "Not hot. The distinction is the entire skill and it is never explained",
+    "thaw": "Started Friday night, in the fridge, because Sunday was always the plan",
+    "hat": "Still on, because she came straight from church and has not sat down",
+    "wham": "The oven door, closed with a hip, both hands full"
+   },
+   "prefer": [
+    "ham",
+    "warm",
+    "thaw",
+    "hat",
+    "wham"
+   ],
+   "scene": "The oven door, and the things kept behind it"
+  },
+  {
+   "base": "aprons",
+   "theme": "sunday",
+   "clues": {
+    "aprons": "There are two, and only one of them has ever been offered to a guest",
+    "apron": "Over the good dress, tied at the back by somebody else, still buttoned",
+    "nap": "What the man on the couch is taking during all of this, unbothered",
+    "sop": "What the bread is for, and doing it is the compliment",
+    "span": "Of the counter she works in, about four feet, and stepping into it is a mistake",
+    "soar": "What the smoke alarm does at some point, and it is ignored"
+   },
+   "prefer": [
+    "apron",
+    "nap",
+    "sop",
+    "span",
+    "soar"
+   ],
+   "scene": "Who is allowed in the kitchen"
+  },
+  {
+   "base": "backed",
+   "theme": "sunday",
+   "clues": {
+    "backed": "What the whole afternoon is, by something that happened at eleven last night",
+    "cake": "Pound, from a recipe on a card in handwriting nobody living can read",
+    "bake": "Started at nine at night, because the oven was busy until then",
+    "dab": "Of the batter on a finger, which is the whole reason to be in there",
+    "deck": "The counter, cleared entirely, which happens exactly once a week",
+    "back": "Of the recipe card, where the instructions that matter were added later"
+   },
+   "prefer": [
+    "cake",
+    "bake",
+    "dab",
+    "deck",
+    "back"
+   ],
+   "scene": "The cake, made the night before"
+  },
+  {
+   "base": "tigers",
+   "theme": "sunday",
+   "clues": {
+    "tigers": "What the pot is guarded like, from about noon onward",
+    "grits": "Not today. Today the pot is doing something else entirely",
+    "stir": "Once an hour, and the smell is the thing that fills the house",
+    "rest": "What the greens do best of all, and Monday's are better than today's",
+    "tries": "How many times someone lifts the lid, and each one is noticed",
+    "tires": "What she insists she never does, while refusing every offer of a chair"
+   },
+   "prefer": [
+    "grits",
+    "stir",
+    "rest",
+    "tries",
+    "tires"
+   ],
+   "scene": "The greens, and the pot liquor"
+  },
+  {
+   "base": "lacked",
+   "theme": "spades",
+   "clues": {
+    "lacked": "What your hand did, and the table found out on the fourth book",
+    "deal": "Clockwise, one at a time, and doing it any other way restarts everything",
+    "deck": "Cut by the player on the right, and skipping that is worth an argument",
+    "ace": "Of spades, and the only card whose location everyone is quietly tracking",
+    "lead": "Whoever took the last book, and never a spade until they are broken",
+    "cake": "What the last four books were, and saying so out loud invites disaster"
+   },
+   "prefer": [
+    "deal",
+    "deck",
+    "ace",
+    "lead",
+    "cake"
+   ],
+   "scene": "The bid, and what you did not have"
+  },
+  {
+   "base": "blinds",
+   "theme": "spades",
+   "clues": {
+    "blinds": "Bidding before you have seen a single card, which is either courage or arithmetic",
+    "nil": "Zero books, on purpose, and your partner now has to cover you",
+    "bid": "Said once, out loud, and written down before anyone can revise it",
+    "blind": "The variant where you and your partner both go without looking",
+    "slid": "The envelope across the table, with the running score on the back",
+    "bind": "What a nil bid puts your partner in for the entire hand"
+   },
+   "prefer": [
+    "nil",
+    "bid",
+    "blind",
+    "slid",
+    "bind"
+   ],
+   "scene": "Going without looking"
+  },
+  {
+   "base": "lapsed",
+   "theme": "spades",
+   "clues": {
+    "lapsed": "Your attention, for one card, and the table has been waiting for this",
+    "spade": "Followed if you have one. Failing to is the offence with a name",
+    "deal": "What the accused was doing when this started, allegedly badly",
+    "lead": "Went out, and somebody did not follow suit, and somebody else noticed",
+    "pads": "Where the score lives, and the handwriting on it is being disputed",
+    "pale": "What the accused goes, briefly, before deciding on total denial"
+   },
+   "prefer": [
+    "spade",
+    "deal",
+    "lead",
+    "pads",
+    "pale"
+   ],
+   "scene": "The renege, and the accusation"
+  },
+  {
+   "base": "lucked",
+   "theme": "spades",
+   "clues": {
+    "lucked": "Into it, and pretending otherwise is the etiquette",
+    "deck": "Shuffled seven times by the one player who read that somewhere",
+    "duck": "Under a book you could take, to set up a later one, and it looks like a mistake",
+    "clue": "What your partner is trying to send with the card they just played",
+    "cued": "What that was, and reading it wrong loses the hand and the peace",
+    "luck": "Named out loud only by the person who did not have it"
+   },
+   "prefer": [
+    "deck",
+    "duck",
+    "clue",
+    "cued",
+    "luck"
+   ],
+   "scene": "The hand you did nothing to deserve"
+  },
+  {
+   "base": "pasted",
+   "theme": "spades",
+   "clues": {
+    "pasted": "What the other team just did to you, by three books",
+    "spade": "Broken on the second trick, which nobody at this table thinks is fair",
+    "set": "Short of your bid, and it costs you what you bid and then some",
+    "seat": "Swapped after, on the theory that it is the chair and not the play",
+    "pest": "The kibitzer behind you, who has opinions and no cards",
+    "taped": "The corner of the box, holding together a deck older than the table"
+   },
+   "prefer": [
+    "spade",
+    "set",
+    "seat",
+    "pest",
+    "taped"
+   ],
+   "scene": "Getting set, badly"
+  },
+  {
+   "base": "cradle",
+   "theme": "spades",
+   "clues": {
+    "cradle": "Where you learned it, roughly, watching from somebody's lap",
+    "ace": "The first card you were allowed to hold, turned inward, saying nothing",
+    "card": "Handed to you at eight, in a hand of four, by an aunt with no patience",
+    "deal": "The first thing you were taught, and badly, for about a year",
+    "lead": "The second thing, and the one that takes ten years",
+    "clear": "What the rules never were, because every house plays them differently"
+   },
+   "prefer": [
+    "ace",
+    "card",
+    "deal",
+    "lead",
+    "clear"
+   ],
+   "scene": "Who taught you, and how"
+  },
+  {
+   "base": "instep",
+   "theme": "steppers",
+   "clues": {
+    "instep": "Where the weight sits through the whole turn, and getting it wrong shows",
+    "step": "The unit. Everything else is decoration on top of it",
+    "spin": "Led with the hand, not the shoulder, and never more than the count allows",
+    "set": "The pattern you both already know, so nothing has to be said",
+    "pine": "What the floor is, and a sprung one is worth driving across town for",
+    "snipe": "What the couple by the wall are doing about everybody else's footwork"
+   },
+   "prefer": [
+    "step",
+    "spin",
+    "set",
+    "pine",
+    "snipe"
+   ],
+   "scene": "The turn, and the eight count under it"
+  },
+  {
+   "base": "candle",
+   "theme": "steppers",
+   "clues": {
+    "candle": "What she is not holding for anyone, which is the point of the whole dance",
+    "lead": "Two fingers and a change of weight. Anything more is manhandling",
+    "dance": "The word does not cover it, and everyone here knows a better one",
+    "clean": "What the footwork has to be before anyone will call it anything",
+    "laced": "The shoes, tight, because a loose heel ruins a turn",
+    "lance": "How the good ones cut across a crowded floor without touching anybody"
+   },
+   "prefer": [
+    "lead",
+    "dance",
+    "clean",
+    "laced",
+    "lance"
+   ],
+   "scene": "Who leads, and how little it takes"
+  },
+  {
+   "base": "ponies",
+   "theme": "steppers",
+   "clues": {
+    "ponies": "What the horn section calls the young ones on their first paying set",
+    "spin": "What a DJ does, and this is not that, and the distinction is defended",
+    "open": "The set does, with something everybody knows, to fill the floor early",
+    "pines": "The stage boards, and you can feel the kick drum through them",
+    "noise": "What the neighbours call it, and the permit conversation follows",
+    "peon": "Who carries the congas in, and it is always the newest member"
+   },
+   "prefer": [
+    "spin",
+    "open",
+    "pines",
+    "noise",
+    "peon"
+   ],
+   "scene": "The band, not the DJ"
+  },
+  {
+   "base": "handle",
+   "theme": "steppers",
+   "clues": {
+    "handle": "How you hold it, and holding it wrong is the difference between two dancers",
+    "hand": "Open, at her shoulder height, and it waits rather than pulls",
+    "lead": "Given, not taken, and any teacher will say that in the first ten minutes",
+    "land": "Where the count puts you, and being early is worse than being late",
+    "held": "The frame, through the whole eight, even when the feet are doing everything",
+    "heal": "What the floor does to shoes, and what an evening on it does to knees"
+   },
+   "prefer": [
+    "hand",
+    "lead",
+    "land",
+    "held",
+    "heal"
+   ],
+   "scene": "The frame, and what it is for"
+  },
+  {
+   "base": "dingle",
+   "theme": "steppers",
+   "clues": {
+    "dingle": "The dip at the end, small enough that half the room misses it",
+    "glide": "The whole aesthetic: no bounce, no visible effort, feet barely leaving",
+    "line": "What the couple travels along, and crossing someone else's is bad manners",
+    "idle": "What the hands look like, and are not, for the entire dance",
+    "deli": "Where the crowd ends up at one in the morning, still in the shoes",
+    "dine": "What nobody does beforehand, because the floor fills at ten"
+   },
+   "prefer": [
+    "glide",
+    "line",
+    "idle",
+    "deli",
+    "dine"
+   ],
+   "scene": "The glide, and why it looks like nothing"
+  },
+  {
+   "base": "absent",
+   "theme": "steppers",
+   "clues": {
+    "absent": "What the space between the beats is not, and hearing that is the whole thing",
+    "beat": "The pocket. Congas, roto toms and cowbell, and it does not stop between songs",
+    "set": "Runs an hour without a gap, because stopping lets the crowd cool",
+    "bent": "What the note is, on the horn, right before the crowd answers it",
+    "beans": "What the band eats after, at three, from the one place still open",
+    "bean": "What the drummer calls the newest conga player, and it sticks for years"
+   },
+   "prefer": [
+    "beat",
+    "set",
+    "bent",
+    "beans",
+    "bean"
+   ],
+   "scene": "The pocket, and the crank"
+  },
+  {
+   "base": "stared",
+   "theme": "juneteenth",
+   "clues": {
+    "stared": "What the crowd does at the person holding the paper, every year, in silence",
+    "read": "Out loud, the same order, by whoever the elders have decided gets to",
+    "date": "The nineteenth, and the two and a half years it came late by",
+    "red": "The drink, the cake, the whole table, and the colour is the point",
+    "star": "On the flag, with the arc around it, and both mean something specific",
+    "dares": "What nobody does: talk through it, however long it runs"
+   },
+   "prefer": [
+    "read",
+    "date",
+    "red",
+    "star",
+    "dares"
+   ],
+   "scene": "The reading, before anybody eats"
+  },
+  {
+   "base": "hatred",
+   "theme": "juneteenth",
+   "clues": {
+    "hatred": "Not the subject. The subject is what came after it, and who is still here",
+    "date": "Marked on a calendar in a kitchen, in pen, before it was a federal thing",
+    "read": "The proclamation, again, and the children are told to listen this time",
+    "red": "In the cooler, in the cake, on the shirts, and nobody had to be told",
+    "heat": "By ten it is already the main topic, and the tents went up at seven",
+    "hat": "Straw, wide, and lent to whoever forgot theirs within the first hour"
+   },
+   "prefer": [
+    "date",
+    "read",
+    "red",
+    "heat",
+    "hat"
+   ],
+   "scene": "The park at ten in the morning"
+  },
+  {
+   "base": "adores",
+   "theme": "juneteenth",
+   "clues": {
+    "adores": "What the whole table does to the one who brings it, without saying so",
+    "soda": "Big Red, strawberry, or whatever the store had, and the brand is not the point",
+    "red": "Hibiscus once, and the colour carried across an ocean before the flavour did",
+    "read": "The label, by a child, who is checking whether this is the real one",
+    "does": "What the grandmother insists the homemade one still has over the bottle",
+    "roads": "How far people drive for it, and the answer is further than it sounds"
+   },
+   "prefer": [
+    "soda",
+    "red",
+    "read",
+    "does",
+    "roads"
+   ],
+   "scene": "The red drink, and what it used to be"
+  },
+  {
+   "base": "creamy",
+   "theme": "juneteenth",
+   "clues": {
+    "creamy": "The icing, red, made from a recipe with no measurements written down",
+    "cream": "Red velvet, and the argument about cheese icing versus the older way",
+    "year": "Counted since 1865, out loud, by somebody doing the arithmetic wrong",
+    "care": "Taken over the first slice, which goes to the oldest person present",
+    "acre": "The park, and the corner of it this family has used since the sixties",
+    "mace": "In the spice tin, and it is in there for a reason nobody can explain"
+   },
+   "prefer": [
+    "cream",
+    "year",
+    "care",
+    "acre",
+    "mace"
+   ],
+   "scene": "The cake, and who is allowed to cut it"
+  },
+  {
+   "base": "packer",
+   "theme": "juneteenth",
+   "clues": {
+    "packer": "Whoever loaded the car, and they are not to be questioned about the order",
+    "park": "Claimed at seven with two tables and a cousin left behind to hold them",
+    "cake": "Travelled flat on the floor of the back seat, and it survived",
+    "care": "Taken with the cooler, which goes in last and comes out first",
+    "rake": "In the trunk, for the fire pit, from the uncle who plans for everything",
+    "pace": "Set by the drive, and everyone arrives already tired and already happy"
+   },
+   "prefer": [
+    "park",
+    "cake",
+    "care",
+    "rake",
+    "pace"
+   ],
+   "scene": "Getting there, and holding the spot"
+  },
+  {
+   "base": "caters",
+   "theme": "sitcom",
+   "clues": {
+    "caters": "What the whole show does to one character by season four, and it works",
+    "cast": "Six of them, and the credits order was a negotiation nobody talks about",
+    "star": "Billed first, and not the reason anybody is actually watching",
+    "act": "Three of them, and you can feel the break coming before it does",
+    "seat": "The same one on the couch, and nobody else takes it during a marathon",
+    "trace": "Of the laugh track under the biggest line, which you only hear once told"
+   },
+   "prefer": [
+    "cast",
+    "star",
+    "act",
+    "seat",
+    "trace"
+   ],
+   "scene": "The cast, and the one everybody quotes"
+  },
+  {
+   "base": "tracks",
+   "theme": "sitcom",
+   "clues": {
+    "tracks": "Recorded decades before the show, from audiences long since gone",
+    "track": "The laugh. Sweetened, they call it, which is a generous word",
+    "cast": "Plays to it, waits for it, and times the next line against it",
+    "star": "Knows exactly how long it runs and never once steps on it",
+    "carts": "Rolled off between takes, and the audience is told to stay seated",
+    "act": "What the pause after the biggest laugh belongs to, structurally"
+   },
+   "prefer": [
+    "track",
+    "cast",
+    "star",
+    "carts",
+    "act"
+   ],
+   "scene": "The laugh, and where it came from"
+  },
+  {
+   "base": "sponge",
+   "theme": "sitcom",
+   "clues": {
+    "sponge": "What your memory is for the words, thirty years on, unprompted",
+    "song": "Under a minute, and it explains the entire premise so nobody has to",
+    "open": "Freeze frame on each name, and everyone has a favourite one",
+    "pens": "In the credits, of the two people who wrote it in an afternoon",
+    "peon": "What the network treated them as, on a flat fee, before syndication",
+    "gone": "What the long version is, once the show hits its fourth season"
+   },
+   "prefer": [
+    "song",
+    "open",
+    "pens",
+    "peon",
+    "gone"
+   ],
+   "scene": "The theme song, and the twelve seconds of it"
+  },
+  {
+   "base": "thongs",
+   "theme": "sitcom",
+   "clues": {
+    "thongs": "What the beach episode was an excuse for, and everyone knew it then",
+    "host": "Of the variety show the lead came from, never mentioned again after the pilot",
+    "song": "Performed in full, mid-episode, for no reason the plot ever supplies",
+    "shot": "Held three seconds too long on the guest, because of who they were",
+    "ghost": "The one-episode cousin, never referred to again by anybody, ever",
+    "hogs": "What the guest does to the scene, and the regulars let them have it"
+   },
+   "prefer": [
+    "host",
+    "song",
+    "shot",
+    "ghost",
+    "hogs"
+   ],
+   "scene": "The guest star, and the episode people remember"
+  },
+  {
+   "base": "aspire",
+   "theme": "church",
+   "clues": {
+    "aspire": "What the whole hour is pointed at, and it is not the sermon",
+    "praise": "Breaks out where the program says the offering should be, and the program loses",
+    "rise": "Nobody announces it. The Hammond drops a step and the room is already up",
+    "reap": "The half of the verse everyone can finish, and the reason it gets quoted",
+    "ears": "What the drummer is playing by, because the key changed without warning",
+    "pair": "Of white gloves, folded on a lap, belonging to a woman who has not moved"
+   },
+   "prefer": [
+    "praise",
+    "rise",
+    "reap",
+    "ears",
+    "pair"
+   ],
+   "scene": "When the organ modulates and the room stands"
+  },
+  {
+   "base": "giants",
+   "theme": "church",
+   "clues": {
+    "giants": "The verse is about facing them, and this choir sings it like they have",
+    "saint": "What the program calls the ones who go first, and the front pew is theirs",
+    "sing": "The instruction and the whole job, and the director mouths every word",
+    "sang": "Past tense, and the way it is said afterwards makes it a verdict",
+    "gain": "What the offering is not for, said twice, by a man who means it",
+    "gnat": "Circling the flowers at the front all through the second verse"
+   },
+   "prefer": [
+    "saint",
+    "sing",
+    "sang",
+    "gain",
+    "gnat"
+   ],
+   "scene": "The choir stand, second service"
+  },
+  {
+   "base": "insure",
+   "theme": "church",
+   "clues": {
+    "insure": "Not what they do. What they do has no policy behind it and no invoice",
+    "nurse": "White dress, white shoes, standing before anyone else notices anything",
+    "rise": "What she helps someone do afterwards, with a hand under the elbow",
+    "rein": "What she puts on the moment, so it stays the person's own",
+    "ruin": "What a fall on that floor would be, which is why she is standing there",
+    "runs": "For the fan, the water, the tissue, the whole hour, and sits down last"
+   },
+   "prefer": [
+    "nurse",
+    "rise",
+    "rein",
+    "ruin",
+    "runs"
+   ],
+   "scene": "The nurses' board, in white, along the wall"
+  },
+  {
+   "base": "humane",
+   "theme": "church",
+   "clues": {
+    "humane": "The word for feeding people on the worst day of their lives",
+    "amen": "Said quietly here, by fewer people, and it lands heavier than upstairs",
+    "hum": "What the room does instead of talking, for the first twenty minutes",
+    "ham": "On the long table with the foil pans, because somebody cooked all night",
+    "hen": "In the other pan, and the two of them are the whole menu, every time",
+    "human": "What the day makes everyone here, more plainly than any other day"
+   },
+   "prefer": [
+    "amen",
+    "hum",
+    "ham",
+    "hen",
+    "human"
+   ],
+   "scene": "The repast, downstairs, after"
+  },
+  {
+   "base": "bowers",
+   "theme": "church",
+   "clues": {
+    "bowers": "What the room does when he finally comes through the door",
+    "robe": "Zipped by somebody else, because he is already somewhere in the third point",
+    "rose": "In the lapel, from the box the flower committee brings without being asked",
+    "sow": "What the text is about, and the reaping is not until the fourth point",
+    "brow": "Wiped once before he goes out, and about forty times after",
+    "bore": "What he is privately afraid of being, which is why the notes are that long"
+   },
+   "prefer": [
+    "robe",
+    "rose",
+    "sow",
+    "brow",
+    "bore"
+   ],
+   "scene": "The vestry, ten minutes before"
+  },
+  {
+   "base": "powers",
+   "theme": "church",
+   "clues": {
+    "powers": "The verse says they are made perfect in weakness, which helps at this moment",
+    "pew": "Third from the back, and everyone in it slides without being asked",
+    "rose": "The one on the end, which means somebody is being remembered today",
+    "sow": "What the sermon is already ten minutes into, and you have missed the setup",
+    "pose": "What you strike coming down the aisle, and it fools absolutely nobody",
+    "owe": "The feeling walking in at half past, and it is entirely self-issued"
+   },
+   "prefer": [
+    "pew",
+    "rose",
+    "sow",
+    "pose",
+    "owe"
+   ],
+   "scene": "Finding a seat when you have come in late"
+  },
+  {
+   "base": "mouths",
+   "theme": "church",
+   "clues": {
+    "mouths": "Some open, some moving without sound, and both count",
+    "shout": "Not a volume. A step, and the ushers know it before it starts",
+    "hum": "Under everything, from women who have known this hymn sixty years",
+    "host": "What the small table at the front holds, on the first Sunday",
+    "moth": "Circling the light above the choir stand, all through the invitation",
+    "must": "What she says about coming next week, to a visitor, holding both her hands"
+   },
+   "prefer": [
+    "shout",
+    "hum",
+    "host",
+    "moth",
+    "must"
+   ],
+   "scene": "The sound the building makes"
+  },
+  {
+   "base": "organs",
+   "theme": "church",
+   "clues": {
+    "organs": "Plural because the building has two, and only one of them gets played",
+    "organ": "The Hammond, the Leslie spinning behind it, and the drawbars set his way",
+    "song": "He can carry it from a single hummed note, in any key, without asking",
+    "sang": "What the soloist did, and he was already under her before the second line",
+    "gran": "In the second row, who has been requesting the same hymn since 1981",
+    "oars": "What the whole room is pulling on by the last verse, together and slightly late"
+   },
+   "prefer": [
+    "organ",
+    "song",
+    "sang",
+    "gran",
+    "oars"
+   ],
+   "scene": "The man on the Hammond, who never once looks up"
+  },
+  {
+   "base": "angels",
+   "theme": "church",
+   "clues": {
+    "angels": "In the glass, and the light through them lands on the water at eleven",
+    "angel": "Singular, in the pane nearest the door, with a hand raised",
+    "sang": "What the congregation did while somebody came up out of that water",
+    "angle": "The sun's, in October, which is the one Sunday it reaches the back wall",
+    "gale": "What the fan does in July, and it is not enough, and nobody complains",
+    "lens": "What the child in the third row has, and the photograph is terrible and kept"
+   },
+   "prefer": [
+    "angel",
+    "sang",
+    "angle",
+    "gale",
+    "lens"
+   ],
+   "scene": "The window over the baptismal pool"
+  },
+  {
+   "base": "aliens",
+   "theme": "church",
+   "clues": {
+    "aliens": "What the line out front looks like to the new pastor, and he learns fast",
+    "sale": "Plate. Ten dollars, cash, and the flyer went up on Tuesday",
+    "aisle": "Cleared of chairs by four so the tables can go where the pews are not",
+    "line": "Out the door by five, and it is mostly people from the block, not the church",
+    "lane": "Behind the building, where the cars idle with their hazards on",
+    "seal": "On the foil, pressed down hard, because these are going in car boots"
+   },
+   "prefer": [
+    "sale",
+    "aisle",
+    "line",
+    "lane",
+    "seal"
+   ],
+   "scene": "The plate sale, Friday, in the fellowship hall"
+  },
+  {
+   "base": "boxers",
+   "theme": "church",
+   "clues": {
+    "boxers": "What the two deacons on the fryer have been, about this, since 1998",
+    "box": "Styrofoam, hinged, and the count of them is the count of the evening",
+    "robe": "Hanging in the back, untouched, because tonight is not that kind of night",
+    "rose": "The price did, by a dollar, and it was announced from the pulpit",
+    "bore": "What the wait never is, because the line is where the news gets exchanged",
+    "rob": "What the price increase was called, loudly, by one man, every year"
+   },
+   "prefer": [
+    "box",
+    "robe",
+    "rose",
+    "bore",
+    "rob"
+   ],
+   "scene": "Who cooks, and who is not allowed near the fryer"
+  },
+  {
+   "base": "bylaws",
+   "theme": "church",
+   "clues": {
+    "bylaws": "What the kitchen runs on, unwritten, and violating them is noticed",
+    "slaw": "Made Thursday night so it is right by Friday, and never bought",
+    "sway": "What the room does when somebody puts the radio on in the kitchen",
+    "bays": "The three sinks, and which one is for what is not negotiable",
+    "slay": "What the fish does to the fryer oil by the third batch",
+    "lays": "How the fish goes in: away from you, one at a time, never dropped"
+   },
+   "prefer": [
+    "slaw",
+    "sway",
+    "bays",
+    "slay",
+    "lays"
+   ],
+   "scene": "The slaw, and the recipe nobody will hand over"
+  },
+  {
+   "base": "pointe",
+   "theme": "beautysupply",
+   "clues": {
+    "pointe": "The precision this takes, and nobody who has not done it believes you",
+    "point": "At the one on the top shelf, because it is always on the top shelf",
+    "tone": "Held against the back of your hand under a light that lies to you",
+    "open": "One pack, carefully, to check — and put back exactly as it was",
+    "pin": "In the bag of six, and you will need every one of them tonight",
+    "note": "In your phone from last time, with the number, so this goes faster"
+   },
+   "prefer": [
+    "point",
+    "tone",
+    "open",
+    "pin",
+    "note"
+   ],
+   "scene": "Aisle four, and the twenty minutes it takes"
+  },
+  {
+   "base": "calmer",
+   "theme": "beautysupply",
+   "clues": {
+    "calmer": "How you feel once the right jar is in your hand and the search is over",
+    "cream": "In the tub with the wide lid, and the smell decides it before the label does",
+    "lace": "The front, sold by the inch, and the good ones are behind the counter",
+    "real": "The word doing the most work on that entire wall of packaging",
+    "care": "What the aisle is actually for, and the word is right there on half the tubs",
+    "clam": "How tight the lid is, and why she asks somebody to start it for her"
+   },
+   "prefer": [
+    "cream",
+    "lace",
+    "real",
+    "care",
+    "clam"
+   ],
+   "scene": "The shelf where everything is a cream"
+  },
+  {
+   "base": "legacy",
+   "theme": "beautysupply",
+   "clues": {
+    "legacy": "What your edges are: your mother's, and hers, and the same brush",
+    "gel": "The little tub, and everybody has a position on which one is correct",
+    "lace": "Laid with the brush, then wrapped, then left alone for ten minutes",
+    "lay": "The whole verb. It carries the edges, the wig and the entire afternoon",
+    "clay": "What the cheap one turns into by hour four, and why it is the cheap one",
+    "gale": "What the wrap protects against, on the walk to the car in November"
+   },
+   "prefer": [
+    "gel",
+    "lace",
+    "lay",
+    "clay",
+    "gale"
+   ],
+   "scene": "Edge control, and the small brush"
+  },
+  {
+   "base": "preach",
+   "theme": "beautysupply",
+   "clues": {
+    "preach": "What the woman in the next aisle does when you ask, and she is right",
+    "cheap": "The word she uses about the one you are holding, with real feeling",
+    "reach": "Past you, without asking, to hand you the one you should have",
+    "cap": "What she takes off the shelf instead, one size up from the one you had",
+    "care": "What the whole exchange is, from a stranger, in under a minute",
+    "pace": "Hers, through the aisle, of somebody who has done this a hundred times"
+   },
+   "prefer": [
+    "cheap",
+    "reach",
+    "cap",
+    "care",
+    "pace"
+   ],
+   "scene": "What she says when you ask her opinion"
+  },
+  {
+   "base": "chairs",
+   "theme": "beautysupply",
+   "clues": {
+    "chairs": "Two, by the door, for the people who came with somebody",
+    "cash": "Counted out, because the card machine has an opinion about small totals",
+    "hair": "Four packs of it, and the fourth was bought because three is never enough",
+    "rich": "How the good bundle feels between two fingers, and you know instantly",
+    "arch": "Of the brow in the mirror by the till, checking one last time",
+    "airs": "What nobody in this shop puts on, and the reason people come here"
+   },
+   "prefer": [
+    "cash",
+    "hair",
+    "rich",
+    "arch",
+    "airs"
+   ],
+   "scene": "Paying, and what is in the bag"
+  },
+  {
+   "base": "picker",
+   "theme": "beautysupply",
+   "clues": {
+    "picker": "Nobody's word for it. Everybody's word for the person who is fussy",
+    "pick": "Metal or plastic, and the fist on the handle is not decorative",
+    "price": "In marker on the shelf edge, and it has been the same for six years",
+    "epic": "The wall itself: nine feet of combs, and you need exactly one",
+    "ripe": "What the timing has to be, on a wash day planned around a Saturday",
+    "ice": "In the cup by the till, mostly melted, since about eleven"
+   },
+   "prefer": [
+    "pick",
+    "price",
+    "epic",
+    "ripe",
+    "ice"
+   ],
+   "scene": "The comb wall"
+  },
+  {
+   "base": "bagels",
+   "theme": "beautysupply",
+   "clues": {
+    "bagels": "From two doors down, because the aisle took longer than anybody planned",
+    "bag": "Thin, doubled at the till, and it will not survive the parking lot",
+    "gel": "In it, on its side, and this is how the lid ends up loose",
+    "sale": "The sign in that window since before you moved onto this block",
+    "able": "What you are, to do all of this yourself, which was never in doubt",
+    "gale": "What the wind does on that corner to a thin doubled bag, every time"
+   },
+   "prefer": [
+    "bag",
+    "gel",
+    "sale",
+    "able",
+    "gale"
+   ],
+   "scene": "The walk back to the car"
+  },
+  {
+   "base": "tamper",
+   "theme": "beautysupply",
+   "clues": {
+    "tamper": "What you do not do with the timing, not by one minute, ever",
+    "perm": "In the box with the two bottles, and the instructions are not a suggestion",
+    "part": "Into four, greased at the scalp, before a single thing is opened",
+    "team": "Two people, because doing your own back is how it goes wrong",
+    "tape": "On the mirror, with the timing written on it in marker",
+    "mart": "The one on the corner, open until nine, which is why tonight is possible"
+   },
+   "prefer": [
+    "perm",
+    "part",
+    "team",
+    "tape",
+    "mart"
+   ],
+   "scene": "The relaxer box, and the timer"
+  },
+  {
+   "base": "wraith",
+   "theme": "beautysupply",
+   "clues": {
+    "wraith": "How you feel by minute forty, still holding two packs",
+    "hair": "Everybody in here is holding some, and no two are buying the same thing",
+    "wait": "Not for a till. For the woman at the counter to finish her opinion",
+    "hart": "On the calendar behind the register, from a garage, from 2011",
+    "wrath": "Of the person behind you, entirely silent, entirely legible",
+    "with": "Who you came, and whether they are helping or are on their phone"
+   },
+   "prefer": [
+    "hair",
+    "wait",
+    "hart",
+    "wrath",
+    "with"
+   ],
+   "scene": "The wait, and who is ahead of you"
+  },
+  {
+   "base": "roadie",
+   "theme": "roadtrip",
+   "clues": {
+    "roadie": "Whoever loaded the trunk, and they are not to be questioned about the order",
+    "radio": "Scanned until the third station, which is the one everybody agrees on",
+    "read": "The exit numbers out loud, by the one person who does not need to",
+    "ride": "Shotgun, claimed at the door of the house before anybody was outside",
+    "road": "Still four lanes at this point, which will not be true by dark",
+    "aide": "What the person with the phone becomes about forty minutes in"
+   },
+   "prefer": [
+    "radio",
+    "read",
+    "ride",
+    "road",
+    "aide"
+   ],
+   "scene": "Hour two, before anyone is tired of anyone"
+  },
+  {
+   "base": "driven",
+   "theme": "roadtrip",
+   "clues": {
+    "driven": "Four hours by the same person, and the argument about it is starting",
+    "drive": "Handed over reluctantly, with commentary, at a gas pump at dusk",
+    "diner": "Two exits back, and the person who wanted it is still saying so",
+    "ride": "Different from the passenger seat, and everyone forgets that",
+    "vein": "On the back of the hand at ten and two, hour five",
+    "dive": "Into the cooler in the footwell, blind, for whatever is left"
+   },
+   "prefer": [
+    "drive",
+    "diner",
+    "ride",
+    "vein",
+    "dive"
+   ],
+   "scene": "The swap, in a lot with the engine running"
+  },
+  {
+   "base": "trunks",
+   "theme": "roadtrip",
+   "clues": {
+    "trunks": "Two of them, and the second one is why nothing can be reached",
+    "trunk": "Packed at eleven last night by somebody who had a system",
+    "turn": "Missed at the exact moment the bag on top slides forward",
+    "sun": "Straight through the back window from about four, and no shade in it",
+    "runt": "The smallest bag, containing the only things anybody needs",
+    "stun": "What the heat off the tarmac does when the hatch finally opens"
+   },
+   "prefer": [
+    "trunk",
+    "turn",
+    "sun",
+    "runt",
+    "stun"
+   ],
+   "scene": "What is in the back, and what is on top of it"
+  },
+  {
+   "base": "argues",
+   "theme": "roadtrip",
+   "clues": {
+    "argues": "About the vent, and it has been the same argument since 2009",
+    "argue": "What the back seat does about the window, at a volume the front can hear",
+    "gas": "Three quarters full, and the person driving wants to stop anyway",
+    "sugar": "In the coffee at the last stop, six of them, and it is being mentioned",
+    "urges": "The one at hour seven that has nothing to do with the bladder",
+    "sage": "What nobody in this car is being, and they know it"
+   },
+   "prefer": [
+    "argue",
+    "gas",
+    "sugar",
+    "urges",
+    "sage"
+   ],
+   "scene": "Hour seven, and the temperature question"
+  },
+  {
+   "base": "piston",
+   "theme": "roadtrip",
+   "clues": {
+    "piston": "The noise it started making outside Chattanooga, still unexplained",
+    "stop": "Refused now, on principle, with under an hour to go",
+    "point": "At the sign, silently, because everybody is past talking",
+    "spin": "Of the tyre in gravel at the last turn, and nobody comments",
+    "pints": "What is waiting, and it is the only thing keeping the car quiet",
+    "snip": "Of the bag corner, for the last of the crisps, at eleven at night"
+   },
+   "prefer": [
+    "stop",
+    "point",
+    "spin",
+    "pints",
+    "snip"
+   ],
+   "scene": "The last hour, in the dark"
+  },
+  {
+   "base": "loaned",
+   "theme": "roadtrip",
+   "clues": {
+    "loaned": "The aux, once, briefly, and never again after that",
+    "lane": "Changed for no reason during the chorus, and everybody noticed",
+    "load": "Queued at the house so nothing has to be chosen at seventy",
+    "alone": "How the person in the third row feels about the song selection",
+    "dean": "The name of the road the sat-nav keeps saying, and it is not a road",
+    "lend": "What nobody does with the charger, at any point in eleven hours"
+   },
+   "prefer": [
+    "lane",
+    "load",
+    "alone",
+    "dean",
+    "lend"
+   ],
+   "scene": "The playlist, and who is in charge of it"
+  },
+  {
+   "base": "genius",
+   "theme": "roadtrip",
+   "clues": {
+    "genius": "What the person who packed the snacks is called, at hour six",
+    "sign": "Read aloud in a voice, for the fourth time, and it is still funny",
+    "sing": "Only the chorus, only in the tunnel, and only all together",
+    "sun": "Down finally, which is when the car gets quiet and stays quiet",
+    "guns": "On the billboard, and there is a conversation about it and then there is not",
+    "using": "The good speaker in the back, discovered at hour nine"
+   },
+   "prefer": [
+    "sign",
+    "sing",
+    "sun",
+    "guns",
+    "using"
+   ],
+   "scene": "The sign, and the sing-along"
+  },
+  {
+   "base": "parent",
+   "theme": "roadtrip",
+   "clues": {
+    "parent": "Says five more minutes at the stop and means twenty, every time",
+    "nap": "Announced as a plan and then defended for the next two hours",
+    "tape": "In the glovebox, from a car that has not existed since 2004",
+    "rent": "The car, and the conversation about the insurance at the counter",
+    "pane": "The window somebody keeps touching, and the mark is permanent now",
+    "trap": "The middle seat, given to whoever got in last, without discussion"
+   },
+   "prefer": [
+    "nap",
+    "tape",
+    "rent",
+    "pane",
+    "trap"
+   ],
+   "scene": "Who is actually running this"
+  },
+  {
+   "base": "laughs",
+   "theme": "roadtrip",
+   "clues": {
+    "laughs": "At the pump price, out loud, and then pays it anyway",
+    "gas": "Cheaper one exit further and everybody finds that out afterwards",
+    "haul": "What is still ahead, said in a tone, by the person not driving",
+    "slug": "Of the drink left in the cup from three hours ago, taken anyway",
+    "gals": "In the car behind, doing exactly the same trip, going the other way",
+    "hags": "What the group photo at the pump makes everybody claim they look like"
+   },
+   "prefer": [
+    "gas",
+    "haul",
+    "slug",
+    "gals",
+    "hags"
+   ],
+   "scene": "The last fill-up before the interstate"
+  },
+  {
+   "base": "hearts",
+   "theme": "roadtrip",
+   "clues": {
+    "hearts": "What the sign at the welcome centre claims the state is full of",
+    "rest": "Taken for eleven minutes, of which nine are spent finding the door",
+    "seat": "Warm from four hours and somehow still claimed when you get back",
+    "share": "The last of the crisps, unwillingly, at a picnic table nobody wiped",
+    "heat": "Off the tarmac through the soles of your shoes, at three in the afternoon",
+    "hear": "The interstate from the picnic table, and it never actually stops"
+   },
+   "prefer": [
+    "rest",
+    "seat",
+    "share",
+    "heat",
+    "hear"
+   ],
+   "scene": "The rest stop at the state line"
+  },
+  {
+   "base": "showed",
+   "theme": "garden",
+   "clues": {
+    "showed": "The neighbour, over the fence, exactly how deep and you did it anyway",
+    "hoe": "Leaned against the fence on day one and not picked up again until June",
+    "hose": "Dragged out for the first time and kinked in the same place as last year",
+    "shed": "Opened after five months, and the smell tells you what overwintered in there",
+    "sow": "Too early, because the one warm week in April lies to everybody",
+    "dose": "Of feed measured by eye, which is why the label is still full"
+   },
+   "prefer": [
+    "hoe",
+    "hose",
+    "shed",
+    "sow",
+    "dose"
+   ],
+   "scene": "April, and the bed is still an idea"
+  },
+  {
+   "base": "hosted",
+   "theme": "garden",
+   "clues": {
+    "hosted": "Two people at the fence for forty minutes, over four square feet",
+    "hoe": "Handed over so they can try it, and taken back within a minute",
+    "hose": "Turned on to demonstrate something, and it soaks a shoe",
+    "shed": "Not opened, because it is not at the stage where it can be opened",
+    "set": "The tomatoes finally did, and this is the whole reason anyone was invited",
+    "dot": "Of green on the bare soil that you have to point at twice"
+   },
+   "prefer": [
+    "hoe",
+    "hose",
+    "shed",
+    "set",
+    "dot"
+   ],
+   "scene": "The first person you show it to"
+  },
+  {
+   "base": "bashed",
+   "theme": "garden",
+   "clues": {
+    "bashed": "What one night at minus two does to everything you put out on Sunday",
+    "bed": "Covered with a sheet at eleven at night, in slippers, in the dark",
+    "shade": "The thing you spent April engineering and now desperately do not want",
+    "shed": "Raided at midnight for anything flat enough to lay over a row",
+    "dash": "From the back door to the far end and back, twice, before the temperature drops",
+    "head": "Of the lettuce, checked first thing, and it has come through fine"
+   },
+   "prefer": [
+    "bed",
+    "shade",
+    "shed",
+    "dash",
+    "head"
+   ],
+   "scene": "The frost that comes after you were sure"
+  },
+  {
+   "base": "wrongs",
+   "theme": "garden",
+   "clues": {
+    "wrongs": "Committed against the bed in April, all of them now visible at once",
+    "grow": "What the things you did not plant are doing best of all",
+    "row": "Identifiable only by memory at this point, and the memory is not reliable",
+    "sow": "What you swore you would not do this thickly, and did",
+    "gowns": "What the whole bed needs and what you have run out of cloches for",
+    "song": "From the phone on the step, the same one, all summer"
+   },
+   "prefer": [
+    "grow",
+    "row",
+    "sow",
+    "gowns",
+    "song"
+   ],
+   "scene": "June, and everything is winning"
+  },
+  {
+   "base": "gather",
+   "theme": "garden",
+   "clues": {
+    "gather": "Enough for one meal, in a shirt held out like a bag, at eight at night",
+    "earth": "Under every fingernail, and it stays there through two washes",
+    "gate": "Left open, and the argument about it is a whole separate thing",
+    "heat": "Still coming off the wall at nine, which is why anything ripened at all",
+    "hare": "The thing you blame, having never actually seen one",
+    "great": "Said out loud, to nobody, holding four tomatoes"
+   },
+   "prefer": [
+    "earth",
+    "gate",
+    "heat",
+    "hare",
+    "great"
+   ],
+   "scene": "The evening you take something inside"
+  },
+  {
+   "base": "martin",
+   "theme": "garden",
+   "clues": {
+    "martin": "Nesting under the eave, and now the chair has been moved",
+    "mint": "Planted in the ground once, by somebody who was warned",
+    "rain": "Enough that the pot by the door has not been watered since May",
+    "trim": "Done constantly to one plant and never once to any of the others",
+    "train": "What the beans are supposed to be doing and are refusing to do",
+    "aim": "For the base of the plant, and miss, and soak the leaves anyway"
+   },
+   "prefer": [
+    "mint",
+    "rain",
+    "trim",
+    "train",
+    "aim"
+   ],
+   "scene": "The herbs by the door, which get all the attention"
+  },
+  {
+   "base": "merits",
+   "theme": "garden",
+   "clues": {
+    "merits": "A proper cage, and gets a bamboo cane and some string instead",
+    "stem": "Snapped at the exact moment you were being careful about it",
+    "tie": "Loose enough to allow for thickening, which nobody does the first year",
+    "trim": "The lower leaves, on advice you half remember from a video",
+    "mist": "On the leaves at six in the morning, gone by seven",
+    "timer": "On the tap, set once, and never adjusted for the rest of the season"
+   },
+   "prefer": [
+    "stem",
+    "tie",
+    "trim",
+    "mist",
+    "timer"
+   ],
+   "scene": "Staking, and the argument with a plant"
+  },
+  {
+   "base": "pilots",
+   "theme": "garden",
+   "clues": {
+    "pilots": "The potatoes in a bag, as an experiment, and tells nobody in case",
+    "pot": "Moved four times in one afternoon chasing a patch of sun",
+    "soil": "Bought in a bag, because the stuff in the ground is clay and you have accepted it",
+    "split": "The pot, over one winter, from water that got in and froze",
+    "slop": "Out the bottom the first time you overwater a container",
+    "list": "On the back of an envelope, of what went where, already inaccurate"
+   },
+   "prefer": [
+    "pot",
+    "soil",
+    "split",
+    "slop",
+    "list"
+   ],
+   "scene": "Containers, for the things that will not behave"
+  },
+  {
+   "base": "gifted",
+   "theme": "garden",
+   "clues": {
+    "gifted": "Courgette. Nine of them. By somebody who will do it again next week",
+    "dig": "A hole for something that arrived in a carrier bag with no warning",
+    "fig": "In a pot by the wall, kept small on purpose, and it is the pride of the place",
+    "tie": "In the new thing loosely, next to the label written in someone else's hand",
+    "deft": "What the person who handed it over is, and you are not",
+    "edit": "The plan, again, to make room for something you did not choose"
+   },
+   "prefer": [
+    "dig",
+    "fig",
+    "tie",
+    "deft",
+    "edit"
+   ],
+   "scene": "What somebody gives you that you did not ask for"
+  },
+  {
+   "base": "bolted",
+   "theme": "garden",
+   "clues": {
+    "bolted": "Overnight, in the heat, and now it is bitter and four feet tall",
+    "bed": "Half of it pulled in one afternoon, which feels worse than it is",
+    "bolt": "On the shed door that has to be lifted and pushed at the same time",
+    "bled": "The tap, at the end of the season, so the pipe does not split",
+    "debt": "To the person who told you to sow it in succession",
+    "toe": "The line about pulling it up now, and lose the argument to yourself"
+   },
+   "prefer": [
+    "bed",
+    "bolt",
+    "bled",
+    "debt",
+    "toe"
+   ],
+   "scene": "August, and the lettuce has made its decision"
+  },
+  {
+   "base": "breast",
+   "theme": "cookout",
+   "clues": {
+    "breast": "Goes on last because it dries out first, whatever your uncle says",
+    "brats": "The ones that get eaten standing up before the plates come out",
+    "baste": "Every turn, with the sauce that has been on the side burner since noon",
+    "sear": "Hot side first, then moved — the whole method in four words",
+    "rest": "Off the heat, under foil, and hands off",
+    "tea": "The jug again, and somebody has already gone for more ice"
+   },
+   "prefer": [
+    "brats",
+    "baste",
+    "sear",
+    "rest",
+    "tea"
+   ],
+   "scene": "What goes on the grate, and in what order"
+  },
+  {
+   "base": "phased",
+   "theme": "cookout",
+   "clues": {
+    "phased": "What nobody at this table gets, no matter what you lead with",
+    "spade": "The suit that decides it, and the reason two grown people are standing up",
+    "shade": "Both the tree and the conversation, and the tree is the lesser one",
+    "heap": "How a plate is built when your auntie builds it for you",
+    "head": "What the argument is about by round three, and it is not the cards",
+    "ash": "Flicked off the end of a cigarette nobody admits to having"
+   },
+   "prefer": [
+    "spade",
+    "shade",
+    "heap",
+    "head",
+    "ash"
+   ],
+   "scene": "The card table under the tree"
+  },
+  {
+   "base": "turban",
+   "theme": "cookout",
+   "clues": {
+    "turban": "The wrap on her head that says she has been up since six",
+    "aunt": "Holds the tongs. Has held the tongs since 1994. Will hold the tongs",
+    "rub": "Went on last night, which is the part that makes it hers",
+    "turn": "Once. Anyone who does it twice is asked to sit down",
+    "burnt": "The edge some people ask for on purpose, and they are correct",
+    "bran": "In the muffins nobody came for, brought by the cousin who tries"
+   },
+   "prefer": [
+    "aunt",
+    "rub",
+    "turn",
+    "burnt",
+    "bran"
+   ],
+   "scene": "Who runs the grill, and what happens if you touch it"
+  },
+  {
+   "base": "cinema",
+   "theme": "cookout",
+   "clues": {
+    "cinema": "What the yard becomes once the sun drops and the speaker gets louder",
+    "mac": "Baked, with the crust, and there is exactly one person allowed to bring it",
+    "ice": "Ran out at four. Somebody is already in the car",
+    "can": "Buried to the elbow in the cooler, and the cold water is the good part",
+    "amen": "Said fast by whoever is nearest, because the food is going cold",
+    "acme": "The peak of the afternoon, roughly twenty minutes after the plates"
+   },
+   "prefer": [
+    "mac",
+    "ice",
+    "can",
+    "amen",
+    "acme"
+   ],
+   "scene": "The table, not the grill"
+  },
+  {
+   "base": "candor",
+   "theme": "cookout",
+   "clues": {
+    "candor": "What the aux cord produces within one hour, from someone's nephew",
+    "corn": "In the husk, straight on the grate, and the silk burns off",
+    "cord": "Orange, running from the kitchen window to the speaker, taped down badly",
+    "can": "Handed to you without being asked for, which is how you know you are family",
+    "card": "The table by the fence, and the reason nobody helps carry anything",
+    "arc": "The one the horseshoe makes before it misses"
+   },
+   "prefer": [
+    "corn",
+    "cord",
+    "can",
+    "card",
+    "arc"
+   ],
+   "scene": "The extension cord and everything running off it"
+  },
+  {
+   "base": "sliced",
+   "theme": "cookout",
+   "clues": {
+    "sliced": "How the melon arrives, on the good tray, from the trunk of a car",
+    "slide": "Starts when the right song comes on, and the aunties know it first",
+    "ice": "Second run of the day, and this time somebody went with them",
+    "dice": "Come out once the kids are inside and the grown folks are grown",
+    "lid": "Back on the cooler, which is the first sign it is winding down",
+    "deli": "Where the potato salad came from, a fact being actively denied"
+   },
+   "prefer": [
+    "slide",
+    "ice",
+    "dice",
+    "lid",
+    "deli"
+   ],
+   "scene": "After the plates, before the dark"
+  },
+  {
+   "base": "backer",
+   "theme": "cookout",
+   "clues": {
+    "backer": "Every dish here has one, and they are standing near it watching you",
+    "cake": "Pound. Under a dome. Not to be touched until it is announced",
+    "bake": "What she did at eleven at night so it would sit right by two",
+    "rack": "Cooling on it by the window since this morning",
+    "beak": "What the one bold bird has been eyeing since the foil came off",
+    "acre": "How far the smell has carried, roughly, by four in the afternoon"
+   },
+   "prefer": [
+    "cake",
+    "bake",
+    "rack",
+    "beak",
+    "acre"
+   ],
+   "scene": "The dessert table, which is a folding table"
+  },
+  {
+   "base": "depict",
+   "theme": "cookout",
+   "clues": {
+    "depict": "What the group photo fails to do, every single year",
+    "dip": "In the bowl with the lid that does not match, and it goes first",
+    "pit": "Dug once, years ago, and still where the whole thing happens",
+    "ice": "The third bag. Nobody planned for the third bag",
+    "tide": "How the chairs drift toward the shade over the course of an afternoon",
+    "diet": "Announced on Monday by at least two people here"
+   },
+   "prefer": [
+    "dip",
+    "pit",
+    "ice",
+    "tide",
+    "diet"
+   ],
+   "scene": "The cooler, the dip, and the folding chairs"
+  },
+  {
+   "base": "asking",
+   "theme": "cookout",
+   "clues": {
+    "asking": "What the first ten minutes are, in both directions, at every table",
+    "kin": "The word on the banner, and the definition is deliberately generous",
+    "sing": "What the elders do after the food, unaccompanied, and everyone stands",
+    "king": "What the oldest man present is treated as for one afternoon a year",
+    "gain": "Two this year, in the babies, announced before anybody eats",
+    "skin": "Whose you have, decided loudly by an aunt within a minute of meeting you"
+   },
+   "prefer": [
+    "kin",
+    "sing",
+    "king",
+    "gain",
+    "skin"
+   ],
+   "scene": "Working out how you are related"
+  },
+  {
+   "base": "brides",
+   "theme": "cookout",
+   "clues": {
+    "brides": "Two of them here today, neither married yet, both being asked when",
+    "ribs": "On since eight, and the person who put them on has not sat down since",
+    "bid": "Made for the end piece, out loud, an hour before anything is ready",
+    "side": "Argued about more seriously than the meat, every single year",
+    "bride": "Cousin who is not one yet and has been asked four times before two o'clock",
+    "rides": "Worked out at the end, badly, with three people going the same way"
+   },
+   "prefer": [
+    "ribs",
+    "bid",
+    "side",
+    "bride",
+    "rides"
+   ],
+   "scene": "The ribs, and who is allowed an opinion"
+  },
+  {
+   "base": "corned",
+   "theme": "cookout",
+   "clues": {
+    "corned": "The beef somebody's people put in the greens, and it is not up for debate",
+    "corn": "In the husk, straight on the grate, turned with a bare hand and a fast wrist",
+    "cord": "Orange, running from the kitchen window to the speaker, taped to the step",
+    "done": "Said about the meat by someone who is not the one who decides that",
+    "code": "Nobody explained about which cooler is which, and everybody follows it",
+    "cone": "Of the yard where the pot lives, out of the wind, where it always is"
+   },
+   "prefer": [
+    "corn",
+    "cord",
+    "done",
+    "code",
+    "cone"
+   ],
+   "scene": "The pot on the side burner"
+  },
+  {
+   "base": "sparky",
+   "theme": "cookout",
+   "clues": {
+    "sparky": "The lighter that works if you hold it at the angle only one person knows",
+    "spark": "Off the chimney starter, caught on the wind, and everybody steps back",
+    "park": "Where this would be if the yard had not been claimed by April",
+    "pray": "Over the food, and the length of it is a whole conversation afterwards",
+    "spar": "Over the domino score, in a way that is not actually an argument",
+    "rays": "Coming level across the yard, which is when the chairs get moved"
+   },
+   "prefer": [
+    "spark",
+    "park",
+    "pray",
+    "spar",
+    "rays"
+   ],
+   "scene": "Getting it lit"
+  },
+  {
+   "base": "creaky",
+   "theme": "cookout",
+   "clues": {
+    "creaky": "The good chair, which is the bad chair, and it goes to whoever arrives last",
+    "rack": "Lifted off with two towels because the mitt is somewhere in the house",
+    "year": "Since the last one, and the count is done out loud at the table",
+    "acre": "What the yard is not, and the number of people here does not care",
+    "race": "Of the children to the cooler the second the lid is lifted",
+    "cake": "Brought by the one person whose gets eaten first, every year"
+   },
+   "prefer": [
+    "rack",
+    "year",
+    "acre",
+    "race",
+    "cake"
+   ],
+   "scene": "The chairs, and where you are allowed to sit"
+  },
+  {
+   "base": "naught",
+   "theme": "cookout",
+   "clues": {
+    "naught": "What you say you want, and a plate is made for you regardless",
+    "aunt": "Greeted first, by name, before you put anything down anywhere",
+    "hug": "Not optional, and the length of it is not yours to decide",
+    "tag": "Played around the legs of people who are trying to hold plates",
+    "haunt": "The corner of the yard the older ones keep, out of the sun, all day",
+    "gnat": "Around the light over the back door from about eight"
+   },
+   "prefer": [
+    "aunt",
+    "hug",
+    "tag",
+    "haunt",
+    "gnat"
+   ],
+   "scene": "The aunts, and the greeting line"
+  },
+  {
+   "base": "carmen",
+   "theme": "cookout",
+   "clues": {
+    "carmen": "Whose dish it is, and the name is said before the dish is",
+    "mac": "The one that matters, and there is only one that counts as the one",
+    "amen": "Said at the end, by everybody, a half-beat after it was expected",
+    "can": "Bring a dish next year, and the answer to that is carefully worded",
+    "name": "On the bottom of the pan in marker, because it is going home tonight",
+    "cream": "In it, which is the part that is never fully admitted to"
+   },
+   "prefer": [
+    "mac",
+    "amen",
+    "can",
+    "name",
+    "cream"
+   ],
+   "scene": "The macaroni, and who is trusted with it"
+  },
+  {
+   "base": "dearly",
+   "theme": "rnb90s",
+   "clues": {
+    "dearly": "How half these songs begin — someone talking straight to someone",
+    "dear": "2Pac, 1995 — ——— Mama, the letter to his mother, and the one everybody agrees on",
+    "lady": "Jodeci’s debut, 1991 — Forever My ———, four men out of Charlotte on Uptown",
+    "red": "TLC’s slow one — ——— Light Special, written by Babyface",
+    "dry": "Boyz II Men, 1995 — Water Runs ———, and the harmony they sing standing perfectly still",
+    "real": "Mary J. Blige, 1992 — ——— Love, hip-hop drums under a soul voice, and the decade turns"
+   },
+   "prefer": [
+    "dear",
+    "lady",
+    "red",
+    "dry",
+    "real"
+   ],
+   "scene": "Records that open by addressing somebody"
+  },
+  {
+   "base": "sweaty",
+   "theme": "rnb90s",
+   "clues": {
+    "sweaty": "What the club was, and what the video pretended it wasn't",
+    "sweat": "Keith’s surname, and new jack swing’s first and most patient voice",
+    "west": "One coast, and the argument that ran the whole decade",
+    "east": "The coast on the other side of the argument",
+    "stay": "Jodeci again, and the begging is the point",
+    "say": "Destiny’s Child, 1999 — ——— My Name, the decade’s last big question"
+   },
+   "prefer": [
+    "sweat",
+    "west",
+    "east",
+    "stay",
+    "say"
+   ],
+   "scene": "Two coasts, and the men singing on both"
+  },
+  {
+   "base": "derail",
+   "theme": "rnb90s",
+   "clues": {
+    "derail": "What one bad follow-up single did to a career",
+    "dial": "How you found the station before anybody named it a format",
+    "ideal": "The group, and the thing every A&R claimed to be looking for",
+    "dear": "2Pac wrote his mother a letter and released it — ——— Mama, 1995",
+    "real": "Mary J. Blige’s ——— Love, the single that opened What’s the 411?",
+    "red": "TLC’s ——— Light Special, the slow one from CrazySexyCool"
+   },
+   "prefer": [
+    "dial",
+    "ideal",
+    "dear",
+    "real",
+    "red"
+   ],
+   "scene": "The radio dial, somewhere around 1995"
+  },
+  {
+   "base": "aspect",
+   "theme": "rnb90s",
+   "clues": {
+    "aspect": "The angle a producer hears that nobody else does",
+    "tape": "Ninety minutes, hand-labelled, passed to one person",
+    "case": "———, 1996 — Touch Me Tease Me, one name and one word on Def Jam",
+    "east": "The coast that claimed it started here",
+    "step": "Bobby Brown, and the dance that came with it",
+    "cast": "Who you put on the tape says everything about you"
+   },
+   "prefer": [
+    "tape",
+    "case",
+    "east",
+    "step",
+    "cast"
+   ],
+   "scene": "The mixtape, and who made the cut"
+  },
+  {
+   "base": "inmate",
+   "theme": "rnb90s",
+   "clues": {
+    "inmate": "The contract everybody signed before they read it",
+    "mint": "——— Condition — Minneapolis, a full band, and no interest in being a boy band",
+    "mine": "Brandy and Monica, 1998 — The Boy Is ———, thirteen weeks of arguing over him",
+    "name": "Destiny’s Child wanted you to say it — Say My ———, 1999",
+    "time": "SWV’s debut, 1992 — It’s About ———",
+    "team": "What a group is until the solo album gets announced"
+   },
+   "prefer": [
+    "mint",
+    "mine",
+    "name",
+    "time",
+    "team"
+   ],
+   "scene": "Group names, 1991 to 1999"
+  },
+  {
+   "base": "nicked",
+   "theme": "rnb90s",
+   "clues": {
+    "nicked": "What sampling was called before the lawyers arrived",
+    "neck": "Wu-Tang Clan’s debut single, 1992 — Protect Ya ———, and the whole thing starts",
+    "ice": "Cube, and later the cream — the decade's most reused syllable",
+    "nice": "Usher, 1998 — ——— & Slow, and the tempo he built a career on",
+    "deck": "Where the tape went, and why the song had to be under four minutes",
+    "end": "Boyz II Men, 1992 — ——— of the Road, thirteen weeks at number one"
+   },
+   "prefer": [
+    "neck",
+    "ice",
+    "nice",
+    "deck",
+    "end"
+   ],
+   "scene": "Protect ya neck"
+  },
+  {
+   "base": "maiden",
+   "theme": "rnb90s",
+   "clues": {
+    "maiden": "The first single — the one the label bets the album on",
+    "mind": "En Vogue, 1992 — Free Your ———, and a rock guitar nobody expected",
+    "mine": "Brandy and Monica’s The Boy Is ———, still under discussion",
+    "name": "Destiny’s Child asked you to say it out loud — Say My ———",
+    "end": "Boyz II Men — ——— of the Road, and nothing had held number one that long since 1956",
+    "dime": "What the single cost, roughly, once you'd taped it off the radio"
+   },
+   "prefer": [
+    "mind",
+    "mine",
+    "name",
+    "end",
+    "dime"
+   ],
+   "scene": "Free your mind"
+  },
+  {
+   "base": "cripes",
+   "theme": "rnb90s",
+   "clues": {
+    "cripes": "What you said when the beat dropped and you were at your grandmother's",
+    "price": "Kelly — the voice behind more hooks than her own records",
+    "spice": "——— 1, 1993 — a number after the name, which was very of its moment",
+    "ice": "Cube or Cream, take your pick",
+    "epic": "A label, and what every debut called itself",
+    "pier": "Where the video got shot when the budget ran out"
+   },
+   "prefer": [
+    "price",
+    "spice",
+    "ice",
+    "epic",
+    "pier"
+   ],
+   "scene": "One-word names"
+  },
+  {
+   "base": "nights",
+   "theme": "rnb90s",
+   "clues": {
+    "nights": "The format had a name: quiet storm, and it started at ten",
+    "gin": "Snoop Doggy Dogg, January 1994 — ——— and Juice, the second single off Doggystyle",
+    "night": "Monica, 1998 — The First ———, five weeks at number one",
+    "thing": "Mary J. Blige’s cover, off My Life — Sweet ———, sweet as advertised",
+    "sing": "What the hip-hop record started doing on the hook, around 1995",
+    "sign": "What the contract wanted from you, before anybody explained it"
+   },
+   "prefer": [
+    "gin",
+    "night",
+    "thing",
+    "sing",
+    "sign"
+   ],
+   "scene": "Gin and juice, and what came after"
+  },
+  {
+   "base": "sugary",
+   "theme": "rnb90s",
+   "clues": {
+    "sugary": "The thing critics called it when they meant they liked it",
+    "sugar": "D’Angelo, 1995 — Brown ———, and neo-soul arrives without announcing itself",
+    "guy": "Teddy Riley’s group ———, and new jack swing’s actual starting point",
+    "say": "Destiny's Child built a whole hit on the demand",
+    "gray": "The area publishing rights lived in for most of the decade",
+    "rays": "The video look: one window, blinds half shut"
+   },
+   "prefer": [
+    "sugar",
+    "guy",
+    "say",
+    "gray",
+    "rays"
+   ],
+   "scene": "Brown sugar"
+  },
+  {
+   "base": "vastly",
+   "theme": "rnb90s",
+   "clues": {
+    "vastly": "How much bigger the audience got between 1990 and 1999",
+    "salt": "Half of ———-N-Pepa, the group that made rap radio stop treating women as a novelty",
+    "stay": "Jodeci asking, and not taking no for an answer",
+    "say": "Destiny's Child wanted the name out loud",
+    "last": "The closing track — where an album put the one it believed in",
+    "slay": "What the dancers did, and what the word meant before it meant that"
+   },
+   "prefer": [
+    "salt",
+    "stay",
+    "say",
+    "last",
+    "slay"
+   ],
+   "scene": "Salt-N-Pepa's decade"
+  },
+  {
+   "base": "baring",
+   "theme": "rnb90s",
+   "clues": {
+    "baring": "What the confessional verse started doing around 1994",
+    "brain": "Cypress Hill, 1993 — Insane in the ———, a hook nobody could sing but everybody did",
+    "gin": "Snoop poured it with juice — ——— and Juice, single out January 1994",
+    "rain": "Missy Elliott, 1997 — The ——— (Supa Dupa Fly), and a video that looked like nothing before it",
+    "bring": "What the producer says he'll do and occasionally does",
+    "grab": "How a sample got cleared, retroactively, if you were lucky"
+   },
+   "prefer": [
+    "brain",
+    "gin",
+    "rain",
+    "bring",
+    "grab"
+   ],
+   "scene": "Insane in the brain"
+  }
+ ]
 }

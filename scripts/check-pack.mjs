@@ -70,6 +70,8 @@ const claimed = new Map(
 );
 
 let failures = 0;
+/** Boards carrying at least one act name — a PACK-level property. See below. */
+let boardsWithNamed = 0;
 const freq = {};
 const seenSets = new Map();
 
@@ -105,11 +107,38 @@ for (const b of pack.boards) {
     if (c.toLowerCase().includes(w.toLowerCase())) errs.push(`${w}: clue contains its own answer`);
   }
 
-  // The bench's bar: one row the player recognises, one the theme says.
+  /*
+   * The bench's bar, measured on the BOARD as strength and on the PACK as
+   * composition.
+   *
+   * It used to demand a `named` row AND a `said` row on every board, and that
+   * composition test ran opposite to strength on the pack it was written for.
+   * Measured across the Nineties: DEARLY and NICKED are the only two boards at
+   * 5/5 on-theme and BOTH failed, while three boards at 3/5 passed. They failed
+   * for having no artist name — DEARLY's five rows are five song titles, which
+   * is what its scene is for ("Records that open by addressing somebody").
+   *
+   * There was also no way to comply. Not one of the 40 words in the `acts`
+   * tier is spellable from any of the five failing bases, so the only route
+   * was to add ordinary words like `big`, `ray` and `kid` to the tier — which
+   * is the padding the vocabulary rule exists to forbid, since each would sit
+   * as comfortably in a cookout or a barbershop.
+   *
+   * So the floor here is now STRENGTH, at the same height the old pair
+   * implied: two on-theme rows, of whichever tier the board is built from.
+   * That keeps the boards the rule was written to stop — the ones that are
+   * about nothing — while letting a title-only board be a title-only board.
+   * "Does this pack teach anybody a name" is a fair question, but it is a
+   * question about the pack, and it is asked once, below.
+   */
   const n = rows.filter((w) => named.has(w)).length;
   const s = rows.filter((w) => said.has(w)).length;
-  if (n < 1) errs.push('no `named` row — the board has no reason to exist');
-  if (s < 1) errs.push('no `said` row');
+  if (n + s < 2) {
+    errs.push(
+      `${n + s} on-theme rows — needs 2, of any tier (the board is about nothing)`
+    );
+  }
+  if (n > 0) boardsWithNamed += 1;
 
   // A base is six letters on a dial, so anagrams are the same puzzle.
   const k = letterKey(b.base);
@@ -133,6 +162,33 @@ const over = Object.entries(freq).filter(([, n]) => n > 3);
 if (over.length) {
   failures += 1;
   console.log(`\nFAIL row words over the frequency cap: ${over.map(([w, n]) => `${w} x${n}`).join(', ')}`);
+}
+
+/*
+ * Does this pack teach anybody a NAME?
+ *
+ * The question the old per-board rule was really asking, asked where it can be
+ * answered honestly. A pack of nothing but song titles is a pack a player
+ * finishes without learning who made any of it; a single board of song titles
+ * is just a good board.
+ *
+ * A third of the boards, because that is a floor the material can actually
+ * meet — measured on the Nineties, 7 of 12 boards carry an act row, and it is
+ * the strongest pack in the catalogue. Set at half, the reference pack itself
+ * would sit one board above failing, which is a rule calibrated to nothing.
+ */
+const NAMED_SHARE = 3;
+const needNamed = Math.ceil(pack.boards.length / NAMED_SHARE);
+if (boardsWithNamed < needNamed) {
+  failures += 1;
+  console.log(
+    `\nFAIL only ${boardsWithNamed} of ${pack.boards.length} boards name an act — needs ${needNamed}.` +
+      '\n     A pack of pure titles never tells the player who made any of it.'
+  );
+} else {
+  console.log(
+    `\n${boardsWithNamed} of ${pack.boards.length} boards name an act (needs ${needNamed}).`
+  );
 }
 
 console.log(`\n${pack.boards.length} boards, ${failures} problem(s)`);

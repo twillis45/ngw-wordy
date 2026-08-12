@@ -186,6 +186,42 @@ export function isDailyEligible(themeId: string | null | undefined): boolean {
   return !themeId || !GENERAL_THEMES.has(themeId);
 }
 
+/**
+ * Which TILE POSITIONS are unlocked, resolved against the letters actually on
+ * the dial.
+ *
+ * The wheel locks by INDEX, not by letter, because `active` is a multiset: a
+ * base with two T's can have one unlocked and one not, and collapsing that to a
+ * Set would light both tiles and let the player tap a locked one.
+ *
+ * Which makes the ORDER passed in load-bearing, and that is the bug this
+ * function exists to make impossible. Indices were resolved against
+ * `puzzle.letters` — the original, unshuffled order — and then handed to a
+ * wheel rendering the SHUFFLED array. Position 3 is a different letter in the
+ * two orders, so every shuffle silently changed which letters were available
+ * to play. Pass the letters that are on screen.
+ *
+ * This is the second time this pair has drifted. The first was a puzzle-id
+ * desync that left an unplayable two-letter board; the fix keyed the shuffle by
+ * id and did not notice that ORDER was the other half of the same coupling.
+ */
+export function unlockedIndices(
+  letters: readonly string[],
+  active: readonly string[]
+): Set<number> {
+  const pool = new Map<string, number>();
+  for (const ch of active) pool.set(ch, (pool.get(ch) ?? 0) + 1);
+  const out = new Set<number>();
+  letters.forEach((ch, i) => {
+    const left = pool.get(ch) ?? 0;
+    if (left > 0) {
+      pool.set(ch, left - 1);
+      out.add(i);
+    }
+  });
+  return out;
+}
+
 export function dailyPoolSize(file: PuzzleFile): number {
   /*
    * Only DAILY-ELIGIBLE themed boards, which excludes the general packs.
