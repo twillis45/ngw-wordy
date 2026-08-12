@@ -1,5 +1,5 @@
 # shelf: The Table
-# source: A-CONFIRMED Pinterest Predicts 2026 (primary, fetched 2026-08-12): "Cabbage Crush" is a named 2026 trend. No growth figure published for it
+# source: A-CONFIRMED Pinterest Predicts 2026 (primary PDF, read 2026-08-12): "Cabbage Crush" is a named Food+beverage trend — cabbage dumplings +110%, golumpki soup +95%, cabbage alfredo +45%, sauteed bok choy +35%, fermented cabbage +35%. NOTE the figures are GLOBAL English-language search growth, not US demand
 # drafted: 81 words
 
 stall tent table crate box bin basket bag tote cash card coin bill change sign price

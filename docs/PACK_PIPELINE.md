@@ -60,6 +60,61 @@ Second-order: depth also buys BOARDS, not just density. Tailgate at 148 words
 offered 8 usable boards; at 207 words it offered 20, and gained its first
 on-theme prize word (STRIPE).
 
+## Pinterest Predicts 2026 — the primary, read in full
+
+The report PDF was fetched and read directly on 2026-08-12. All 21 named
+trends: Cool Blue, Brooched, Opera Aesthetic, Extra Celestial, Vamp Romantic,
+Afrohemian Decor, Gimme Gummy, Neo Deco, Pen Pals, FunHaus, Glitchy Glam,
+Cabbage Crush, Glamoratti, Scent Stacking, Darecations, Mystic Outlands,
+Poetcore, Laced Up, Khaki Coded, Wilderkind, Throwback Kid.
+
+**There is no hosting, dinner-party, entertaining or tablescaping trend in it.**
+That settles `dinnerparty`: the "hostess era" was a third-party invention laid
+over this report, and the candidate has no source.
+
+Read the figures knowing what they are. Pinterest's own sourcing note: *"Pinterest
+internal data, English language search data, Global, analysis period September
+2023 to August 2025"*, comparing Sept 2024–Aug 2025 against Sept 2023–Aug 2024.
+So these are **global** English-language search growth rates, not US demand, and
+they are growth against a small base rather than volume. This game's audience is
+US/English. A +465% can be a rounding error in absolute terms.
+
+Trends with figures that bear on the catalogue:
+
+| trend | published searches |
+|---|---|
+| Afrohemian Decor | afrobohemian home decor +220%, motif berbere +210%, adire fabric +130%, bamboo beaded curtains +60%, ethiopian art +50%, rattan accent chair +50% |
+| Cabbage Crush | cabbage dumplings +110%, golumpki soup +95%, cabbage alfredo +45%, sautéed bok choy +35%, fermented cabbage +35% |
+| Laced Up | lace nails +215%, lace bandana +150%, lace makeup +120%, lace doily +105%, lace belt +55% |
+| Darecations | auto racing events +85%, adventure tourism +75%, football tournament +50%, adrenaline rush aesthetic +50%, river rafting +35% |
+| Mystic Outlands | scotland highlands aesthetic +465%, faroe islands +95%, bolivia salar de uyuni +70%, arashiyama bamboo forest +50%, ethereal places +45% |
+
+Two candidates came out of this read, and they are now the strongest in the
+queue on BOTH provenance and measurement:
+
+- **`penpals`** (Pen Pals — Hobbies, Wellbeing). Density **284**, the highest of
+  any candidate measured, with on-theme prize words `PENCIL(4)` and
+  `DRAWER(3)`. Letters, stamps, ink and the mail are exactly the short concrete
+  nouns this game runs on.
+- **`afrohemian`** (Afrohemian Decor — Home). Density **148**, prize word
+  `MARKET(3)`. The one 2026 trend that lands on this game's own cultural
+  ground: baskets, adire and Nigerian textiles, Ethiopian wall art, fiber rugs.
+  **CULTURAL — the bench signs the vocabulary before it is scored for
+  authoring**, which is the rule that exists for exactly this material.
+
+And one correction in the other direction: `craft` is partly supported after
+all. Laced Up is a named trend with real figures, and the report says "even
+phone cases will go crochet" — so crochet and doily work are in the primary,
+even though knitting is not.
+
+Trends read and NOT pursued, with the reason: Poetcore, Mystic Outlands, Cool
+Blue, Extra Celestial, Glitchy Glam, Vamp Romantic, Glamoratti, Khaki Coded,
+Wilderkind, Scent Stacking, Neo Deco, Opera Aesthetic, Throwback Kid, Brooched
+and Gimme Gummy are aesthetics, palettes and wardrobes. They have adjectives,
+not objects, and a board needs common 3-6 letter nouns. FunHaus (circus
+interiors) and Darecations (rafting, climbing) do have concrete nouns and are
+worth a draft if the shelf question ever loosens.
+
 ## Provenance — checked against primaries, and it did not all survive
 
 The candidate sources were first written from SEARCH-RESULT SUMMARIES. Two

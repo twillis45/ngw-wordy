@@ -1,5 +1,5 @@
 # shelf: The Table
-# source: B-UNCONFIRMED The "hostess era" framing came from a third-party summary of Pinterest Predicts. Fetching Pinterest's own 2026 report found NO dinner-party, hosting, entertaining or tablescaping trend. Treat as unsourced until a primary is found
+# source: DEAD — NO SOURCE. The full Pinterest Predicts 2026 PDF was read on 2026-08-12: all 21 trends are named in docs/PACK_PIPELINE.md and NONE is about hosting, dinner parties, entertaining or tablescaping. The "hostess era" was laid over the report by third-party write-ups. Re-source this from somewhere real or drop it
 # drafted: 90 words
 
 table cloth plate bowl fork spoon knife glass wine cork stem candle wick flame light
