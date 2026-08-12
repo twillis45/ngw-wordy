@@ -52,6 +52,28 @@ export function revealedCount(r: RevealState, word: string): number {
   return r.letters[word] ?? 0;
 }
 
+/**
+ * What a compact clue-mode row chip shows: revealed letters, then a dot for
+ * each letter still hidden. `null` when nothing has been revealed, which is the
+ * caller's cue to show the word's length instead.
+ *
+ * This lives here, as a pure function, because the bug it fixes was invisible
+ * to every test in the suite. The clue-mode chip rendered `word.length` and
+ * nothing else, so buying a letter — the cheaper of the two spends, in the
+ * DEFAULT mode — took a token and changed nothing on screen. The full grid
+ * rendered the reveal correctly, so the engine was never at fault and no
+ * engine test could have caught it. There is no DOM test stack here, so the
+ * derivation is pulled out of the component to somewhere it can be asserted.
+ */
+export function revealedChip(
+  word: string,
+  reveal: RevealState
+): string | null {
+  const shown = revealedCount(reveal, word);
+  if (shown <= 0) return null;
+  return `${word.slice(0, shown).toUpperCase()}${'·'.repeat(Math.max(0, word.length - shown))}`;
+}
+
 export type HintOutcome =
   | { ok: true; reveal: RevealState; cost: number }
   | { ok: false; reason: 'no-tokens' | 'already-solved' | 'nothing-left' };

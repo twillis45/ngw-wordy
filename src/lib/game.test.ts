@@ -32,11 +32,13 @@ import {
   COST_LETTER,
   COST_WORD,
   EMPTY_REVEAL,
+  revealedChip,
   revealedCount,
   revealLetter,
   revealWord,
   STARTING_TOKENS,
   tokenBalance,
+  type RevealState,
 } from './hints';
 import { parseModern } from './definitions';
 import { assistFor, isStalled, STALL_IDLE_MS, STALL_MISSES } from './assist';
@@ -346,6 +348,46 @@ describe('hint economy', () => {
     expect(bonusToNextToken(0)).toBe(3);
     expect(bonusToNextToken(2)).toBe(1);
     expect(bonusToNextToken(3)).toBe(3);
+  });
+});
+
+/*
+ * The letter a player PAID for has to appear somewhere.
+ *
+ * Clue mode is the default mode, and its compact row chip rendered the word's
+ * length and nothing else — so buying a letter spent a token and changed
+ * nothing on screen. Every test here passed throughout, because the engine was
+ * never wrong: revealLetter did its job and the chip did not read the result.
+ * Asserting the ENGINE is not the same as asserting the player can see it.
+ */
+describe('revealedChip', () => {
+  it('is null before anything is revealed, so the chip shows the length', () => {
+    expect(revealedChip('nicked', EMPTY_REVEAL)).toBe(null);
+  });
+
+  it('shows the bought letters and keeps the length readable as dots', () => {
+    const r = revealLetter(EMPTY_REVEAL, 'nicked', { solved: false, balance: 3 });
+    expect(r.ok).toBe(true);
+    if (r.ok) expect(revealedChip('nicked', r.reveal)).toBe('N·····');
+  });
+
+  it('grows one letter per spend, never changing width', () => {
+    let reveal: RevealState = EMPTY_REVEAL;
+    const seen: string[] = [];
+    for (let i = 0; i < 3; i += 1) {
+      const r = revealLetter(reveal, 'nicked', { solved: false, balance: 9 });
+      if (r.ok) reveal = r.reveal;
+      seen.push(revealedChip('nicked', reveal) ?? '');
+    }
+    expect(seen).toEqual(['N·····', 'NI····', 'NIC···']);
+    // A chip that changed width on every spend would reflow the whole row.
+    expect(new Set(seen.map((s) => s.length))).toEqual(new Set([6]));
+  });
+
+  it('spells a bought word out in full', () => {
+    const r = revealWord(EMPTY_REVEAL, 'nice', { solved: false, balance: 3 });
+    expect(r.ok).toBe(true);
+    if (r.ok) expect(revealedChip('nice', r.reveal)).toBe('NICE');
   });
 });
 

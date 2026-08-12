@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { revealedCount, type RevealState } from '@/lib/hints';
+import { revealedChip, revealedCount, type RevealState } from '@/lib/hints';
 
 /**
  * The target grid — Word Cookies "tray" model: one row per target word,
@@ -316,6 +316,22 @@ export default function WordTray({
           const done = solved || bought;
           const definable = done && hasDefinition(word);
           const actionable = canHint && !done;
+          /*
+           * The chip has to READ the reveal, not just gate on it.
+           *
+           * This branch showed `word.length` for every unsolved row and nothing
+           * else, so "reveal a letter" — the cheaper of the two hint spends —
+           * charged a token and changed nothing on screen. Clue mode is the
+           * DEFAULT mode, so that was the whole letter economy silently failing
+           * for most players: the full grid rendered `shown` and this did not,
+           * and the two rows were never compared.
+           *
+           * Revealed letters replace the count, with a dot standing in for each
+           * letter still hidden — so the length the number was carrying is
+           * still on the chip, and the paid-for letter is visible next to it.
+           */
+          const shown = done ? 0 : revealedCount(reveal, word);
+          const partial = done ? null : revealedChip(word, reveal);
           return (
             <div key={word} className="relative flex items-center">
             <button
@@ -354,12 +370,22 @@ export default function WordTray({
                * bought a hint for. Length alone stops distinguishing the moment
                * a board has two rows the same size, which most boards do.
                */
+              /*
+                The revealed letters are spelled out, because a token was spent
+                to learn them and the dots on screen say nothing aloud.
+              */
               aria-label={
                 done
                   ? `Row ${rowIndex + 1} of ${grid.length}, ${word}, done`
-                  : actionable
-                    ? `Row ${rowIndex + 1} of ${grid.length}, ${word.length}-letter word, not found. Open hint options.`
-                    : `Row ${rowIndex + 1} of ${grid.length}, ${word.length}-letter word, not found`
+                  : [
+                      `Row ${rowIndex + 1} of ${grid.length}, ${word.length}-letter word`,
+                      shown > 0
+                        ? `starts with ${word.slice(0, shown).toUpperCase().split('').join(' ')}`
+                        : null,
+                      'not found',
+                    ]
+                      .filter(Boolean)
+                      .join(', ') + (actionable ? '. Open hint options.' : '')
               }
               className={[
                 // min-h/min-w hold the WCAG 2.5.8 floor. Measured 23.3x23.1 at
@@ -397,7 +423,7 @@ export default function WordTray({
                 solved && justSolved.has(word) ? 'anim-land' : '',
               ].join(' ')}
             >
-              {done ? word.toUpperCase() : word.length}
+              {done ? word.toUpperCase() : (partial ?? word.length)}
             </button>
             {actionable && menuFor === word && (
               <HintMenu

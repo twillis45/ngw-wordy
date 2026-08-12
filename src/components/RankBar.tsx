@@ -57,12 +57,25 @@ export default function RankBar({
           {rank.name}
         </span>
         <span className="text-meta tabular-nums text-text-muted">
-          {/* "rows" is the label doing the work: it says what this number
-              counts, and therefore what moves the rank beside it. */}
+          {/*
+            "row pts", not "rows" — the number counts POINTS the rows are
+            worth, and calling it rows made it a count of the wrong thing.
+
+            The rail two panels over reads "Targets · 3/6", which IS a count of
+            rows, so the board showed 3/6 and 6/26 side by side both claiming to
+            describe the same six things. This element's own aria-label had it
+            right all along ("6 of 26 row points"); only the visible text
+            dropped the word that made it true.
+
+            "row pts" rather than plain "pts" because the qualifier is still
+            carrying the original point: it names which pot this number comes
+            from, and therefore what moves the rank beside it — bonus words
+            score and never appear here.
+          */}
           <span className="font-semibold text-text-secondary">
             {gridScore}/{gridMax}
           </span>{' '}
-          rows
+          row pts
           {/*
             "0 pts · 2 to Solid" was the first line a new player read, and every
             term in it is internal: Solid is a rank they have not been told
