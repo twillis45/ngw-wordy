@@ -1723,26 +1723,6 @@
    "scene": "Edge control, and the small brush"
   },
   {
-   "base": "chapel",
-   "theme": "beautysupply",
-   "clues": {
-    "chapel": "Where the finished result is going on Sunday, which sets the whole budget",
-    "cap": "The base everything else is built on, and the wrong size ruins all of it",
-    "lace": "Cut to the hairline with the small scissors, and there is no second try",
-    "cheap": "The trap on the bottom shelf, bought once by everyone, exactly once",
-    "pale": "The shade the photo on the packet is, and the shade it is not",
-    "peach": "The clip colour, and there are nine of them in the bag for a reason"
-   },
-   "prefer": [
-    "cap",
-    "lace",
-    "cheap",
-    "pale",
-    "peach"
-   ],
-   "scene": "The cap, and what goes over it"
-  },
-  {
    "base": "preach",
    "theme": "beautysupply",
    "clues": {
@@ -1761,26 +1741,6 @@
     "pace"
    ],
    "scene": "What she says when you ask her opinion"
-  },
-  {
-   "base": "argyle",
-   "theme": "beautysupply",
-   "clues": {
-    "argyle": "The pattern on the only chair in the shop, and it has been there for years",
-    "gel": "Beside it, because the two purchases go together whether you planned it",
-    "real": "What you are checking for, holding a strand up, in the doorway light",
-    "gray": "The reason for the box, said out loud by nobody, ever",
-    "year": "How long since the last big change, and this is how it starts",
-    "rely": "On the one brand that has never once let you down, at any price"
-   },
-   "prefer": [
-    "gel",
-    "real",
-    "gray",
-    "year",
-    "rely"
-   ],
-   "scene": "Colour, and the decision under bad light"
   },
   {
    "base": "chairs",
@@ -1821,26 +1781,6 @@
     "ice"
    ],
    "scene": "The comb wall"
-  },
-  {
-   "base": "carpet",
-   "theme": "beautysupply",
-   "clues": {
-    "carpet": "The strip by the door, worn through in one place by one direction of traffic",
-    "cap": "First thing in the basket, because you already know that part",
-    "part": "What the whole plan starts from, decided in the mirror at home",
-    "trace": "Of last night's gel still at the hairline, and it is coming out today",
-    "crate": "By the register, holding the ones that came in on Thursday",
-    "pace": "Yours at nine in the morning, which is why you came at nine"
-   },
-   "prefer": [
-    "cap",
-    "part",
-    "trace",
-    "crate",
-    "pace"
-   ],
-   "scene": "Saturday morning, before the shop fills"
   },
   {
    "base": "bagels",
@@ -1921,26 +1861,6 @@
     "aide"
    ],
    "scene": "Hour two, before anyone is tired of anyone"
-  },
-  {
-   "base": "rained",
-   "theme": "roadtrip",
-   "clues": {
-    "rained": "Started somewhere around the state line and has not let up since",
-    "diner": "Chosen off a sign, not a review, and the pie is the correct order",
-    "read": "The laminated menu twice, front and back, while nobody decides",
-    "ride": "Half an hour shorter if this stop had not happened, and worth it",
-    "dine": "What you came in claiming you would not do, sixty seconds ago",
-    "rein": "Handed over at the counter: whoever is driving next gets the coffee"
-   },
-   "prefer": [
-    "diner",
-    "read",
-    "ride",
-    "dine",
-    "rein"
-   ],
-   "scene": "The stop nobody needed"
   },
   {
    "base": "driven",
@@ -2043,26 +1963,6 @@
    "scene": "The playlist, and who is in charge of it"
   },
   {
-   "base": "alpine",
-   "theme": "roadtrip",
-   "clues": {
-    "alpine": "The air setting nobody chose, blowing at the one person asleep",
-    "nap": "Taken by whoever drove first, immediately, and it looks like betrayal",
-    "lane": "Drifted toward twice before the passenger says anything about it",
-    "pain": "In the neck of the person who slept against the window",
-    "pale": "What the driver goes when the fuel light finally comes on",
-    "plane": "What somebody points out would have taken ninety minutes"
-   },
-   "prefer": [
-    "nap",
-    "lane",
-    "pain",
-    "pale",
-    "plane"
-   ],
-   "scene": "The nap, and who is allowed one"
-  },
-  {
    "base": "genius",
    "theme": "roadtrip",
    "clues": {
@@ -2163,26 +2063,6 @@
    "scene": "April, and the bed is still an idea"
   },
   {
-   "base": "shower",
-   "theme": "garden",
-   "clues": {
-    "shower": "Arrives the afternoon you finally hand-watered everything",
-    "hoe": "Left out in it, which is how the handle got that grey furred look",
-    "hose": "Coiled properly for once, and now it will not be needed for nine days",
-    "row": "Straight in the plan, and visibly not straight once things come up",
-    "sow": "Postponed all week, which turns out to have been the right call",
-    "horse": "On the bag of manure, and the joke about it has been made twice"
-   },
-   "prefer": [
-    "hoe",
-    "hose",
-    "row",
-    "sow",
-    "horse"
-   ],
-   "scene": "The week it rains and you do nothing"
-  },
-  {
    "base": "hosted",
    "theme": "garden",
    "clues": {
@@ -2241,26 +2121,6 @@
     "song"
    ],
    "scene": "June, and everything is winning"
-  },
-  {
-   "base": "growth",
-   "theme": "garden",
-   "clues": {
-    "growth": "Six inches in nine days, measured against the same fence post",
-    "grow": "Faster than you can tie in, which is a good problem and still a problem",
-    "row": "Closed over entirely, so you now walk the long way round",
-    "worth": "The argument you have with yourself about the cost of the compost",
-    "throw": "The old sheet over the whole thing, done fast, done badly, and it works",
-    "tow": "What the whole thing needs, and what a stake and twine is standing in for"
-   },
-   "prefer": [
-    "grow",
-    "row",
-    "worth",
-    "throw",
-    "tow"
-   ],
-   "scene": "The week you stop being able to keep up"
   },
   {
    "base": "gather",
@@ -2523,26 +2383,6 @@
    "scene": "What is playing while it gets done"
   },
   {
-   "base": "intros",
-   "theme": "laundry",
-   "clues": {
-    "intros": "Of the songs, all you hear, because the phone is skipping in another room",
-    "iron": "Kept on the top shelf where it has to be reached for, on purpose",
-    "sort": "By bed, not by person, which is the system and it took years to settle",
-    "riot": "In there by November, when nobody else has put anything back correctly",
-    "rots": "What the towel at the bottom does, found in spring, and thrown out quietly",
-    "trio": "Of shelves, and every one of them is a different household's worth of rules"
-   },
-   "prefer": [
-    "iron",
-    "sort",
-    "riot",
-    "rots",
-    "trio"
-   ],
-   "scene": "The airing cupboard, and who knows the system"
-  },
-  {
    "base": "liners",
    "theme": "laundry",
    "clues": {
@@ -2601,26 +2441,6 @@
     "salt"
    ],
    "scene": "Whites, and the war on the collar"
-  },
-  {
-   "base": "pastor",
-   "theme": "laundry",
-   "clues": {
-    "pastor": "Will not notice, and that is not the point and never was",
-    "soap": "The good one, kept separate, used on four things a week",
-    "sort": "The shirts out the night before so the morning has one less argument in it",
-    "roast": "In the oven while this is happening, and both are being timed at once",
-    "strap": "On the shoe, wiped with the cloth that is already out",
-    "past": "Ten, and still going, and nobody in the house knows that"
-   },
-   "prefer": [
-    "soap",
-    "sort",
-    "roast",
-    "strap",
-    "past"
-   ],
-   "scene": "Sunday clothes, done Saturday night"
   },
   {
    "base": "breast",
@@ -2881,126 +2701,6 @@
     "cake"
    ],
    "scene": "The chairs, and where you are allowed to sit"
-  },
-  {
-   "base": "baking",
-   "theme": "cookout",
-   "clues": {
-    "baking": "Going on inside while the grill goes on outside, and the two do not speak",
-    "bag": "Of ice, third one, and the person sent for it has not come back",
-    "kin": "Everybody here, by a route that takes four minutes to explain",
-    "king": "Of the kitchen, and the title is not shared and never has been",
-    "gain": "On the plate the second you look away from it",
-    "bank": "On her to bring it, and the trust has never once been misplaced"
-   },
-   "prefer": [
-    "bag",
-    "kin",
-    "king",
-    "gain",
-    "bank"
-   ],
-   "scene": "The kitchen, which is a second cookout"
-  },
-  {
-   "base": "births",
-   "theme": "cookout",
-   "clues": {
-    "births": "Three since last year, and all three are being passed around right now",
-    "ribs": "Handed over on a paper plate that is already going soft",
-    "shirt": "Changed after the grill, because the smoke got into the first one",
-    "bits": "Of the end piece, given away, which is how you know who is favoured",
-    "birth": "Being retold at the table by everyone except the person it happened to",
-    "stir": "The pot on the side burner, by whoever is passing, without being asked"
-   },
-   "prefer": [
-    "ribs",
-    "shirt",
-    "bits",
-    "birth",
-    "stir"
-   ],
-   "scene": "The catching-up, done standing"
-  },
-  {
-   "base": "pranks",
-   "theme": "cookout",
-   "clues": {
-    "pranks": "Run on the youngest, by the second youngest, in the same order as always",
-    "park": "Across the road, where they get sent when the volume gets decided",
-    "spark": "In the eye of the one who is about to start something",
-    "snap": "Of the towel, once, and then the rule about it gets restated",
-    "pans": "Stacked by the sink by whoever is quietly doing the actual work",
-    "rank": "Worked out among the cousins by age, and enforced without anybody saying it"
-   },
-   "prefer": [
-    "park",
-    "spark",
-    "snap",
-    "pans",
-    "rank"
-   ],
-   "scene": "The cousins, and what they get away with"
-  },
-  {
-   "base": "sawing",
-   "theme": "cookout",
-   "clues": {
-    "sawing": "What the speaker is doing to the song at the volume it is set to",
-    "sing": "Everyone, on the one song, and nobody has agreed to it in advance",
-    "wings": "Gone in eleven minutes, and the plate is not replaced",
-    "gain": "Turned up by somebody who then walks away from the phone",
-    "swig": "From the wrong cup, discovered a second too late",
-    "wins": "The argument about the volume, for about ninety seconds"
-   },
-   "prefer": [
-    "sing",
-    "wings",
-    "gain",
-    "swig",
-    "wins"
-   ],
-   "scene": "The music, and the volume argument"
-  },
-  {
-   "base": "podium",
-   "theme": "cookout",
-   "clues": {
-    "podium": "Where the person who made the dip is standing, spiritually",
-    "dip": "Guarded, at the near end, by the one who knows what went into it",
-    "mop": "Fetched for the spill before anybody has finished apologising for it",
-    "mud": "By the tap where the children have been running, since about one o'clock",
-    "dump": "What you do not do to the last of it, and there are rules about this",
-    "dim": "The corner of the yard by six, which is when the citronella comes out"
-   },
-   "prefer": [
-    "dip",
-    "mop",
-    "mud",
-    "dump",
-    "dim"
-   ],
-   "scene": "The dip, and its defenders"
-  },
-  {
-   "base": "builds",
-   "theme": "cookout",
-   "clues": {
-    "builds": "The cooler in layers, and will explain the layers to anyone who asks",
-    "bid": "For the last cold one, put in early, honoured later",
-    "bus": "Stop where somebody's people are walking from, and a car goes anyway",
-    "lid": "Left up for four seconds too long, and it gets mentioned",
-    "slid": "The chair back on the concrete, which is the sound of somebody giving up",
-    "buds": "On the branch over the fence, and somebody says it is going to rain"
-   },
-   "prefer": [
-    "bid",
-    "bus",
-    "lid",
-    "slid",
-    "buds"
-   ],
-   "scene": "Packing the cooler, which is a skill"
   },
   {
    "base": "naught",
