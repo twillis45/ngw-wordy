@@ -44,7 +44,32 @@ type Props = {
   compact?: boolean;
   /** The row the visible clue points at, so it can be marked. */
   activeWord?: string | null;
+  /**
+   * Clue text per row, for the press-and-hold peek. Optional: a board with no
+   * clues simply has no peek, rather than a control that opens an empty card.
+   */
+  clueFor?: (word: string) => string | undefined;
 };
+
+/**
+ * Press-and-hold to peek at a row's clue.
+ *
+ * This is an ACCELERATOR, never the only route. Long-press is invisible to
+ * keyboard and unreliable under a screen reader — VoiceOver's own gestures own
+ * the hold — so the clue stays reachable the way it already was, by cycling
+ * the clue card. Anything that made the hold the sole path would be a WCAG
+ * 2.5.1 failure dressed up as a shortcut.
+ *
+ * 420ms: comfortably past iOS's ~350ms threshold for its own text-selection
+ * hold, so the two do not race on a row the player is merely tapping.
+ */
+const PEEK_MS = 420;
+/**
+ * Movement that cancels the hold. A thumb resting on glass jitters a few
+ * pixels; a scroll does not, and the grid sits inside a scrollable board.
+ * Cancelling on real movement is what stops a peek from firing mid-scroll.
+ */
+const PEEK_SLOP = 10;
 
 /**
  * Hint costs, mirrored from lib/hints so the price can be SHOWN before it is
@@ -69,7 +94,152 @@ export default function WordTray({
   onShowDefinition,
   compact,
   activeWord,
+  clueFor,
 }: Props) {
+  /*
+   * The row whose clue is being peeked at. Held in state rather than shown by
+   * CSS so that dismissing it is a real event — a peek that lingered after the
+   * finger lifted read as the app having navigated somewhere.
+   */
+  const [peek, setPeek] = useState<string | null>(null);
+  const holdRef = useRef<{ timer: number; x: number; y: number; fired: boolean } | null>(null);
+  /*
+   * Survives pointerup, which holdRef deliberately does not.
+   *
+   * The suppression guard originally read holdRef at click time and never
+   * fired, because pointerup nulls holdRef and the click arrives after it —
+   * so a hold showed the peek AND opened the priced hint menu behind it.
+   * Caught by driving a real hold in the browser, not by reading the code:
+   * the logic looks right until you notice the event order.
+   */
+  const swallowClickRef = useRef(false);
+
+  const cancelHold = useCallback(() => {
+    if (holdRef.current) window.clearTimeout(holdRef.current.timer);
+    holdRef.current = null;
+  }, []);
+
+  useEffect(() => cancelHold, [cancelHold]);
+
+  /*
+   * Release dismisses the peek, listened for on the WINDOW rather than on the
+   * row.
+   *
+   * Per-element onPointerUp did not dismiss it — measured in the browser, the
+   * card stayed up after release. Rather than chase the event ordering, this
+   * is the more correct design regardless: a finger held on a small chip
+   * routinely drifts off it before lifting, and a row-scoped listener simply
+   * never hears that pointerup. The window always does, so the peek cannot get
+   * stuck on screen with nothing touching it.
+   */
+  useEffect(() => {
+    if (!peek) return;
+    const drop = () => {
+      setPeek(null);
+      /*
+       * Clear the suppression flag here, not only in onClickCapture.
+       *
+       * A hold sets it so the release click cannot also open the priced hint
+       * menu. But if the finger drifts off the row and lifts elsewhere, that
+       * click never arrives — the flag stayed set and swallowed the player's
+       * NEXT tap on any row. Measured: hold row 2, release off-target, then
+       * tap row 3, and the hint menu did not open. Release always happens, so
+       * release is where this belongs.
+       *
+       * DEFERRED, because pointerup fires BEFORE click. Clearing it inline
+       * would unswallow the very click this exists to swallow, restoring the
+       * peek-plus-hint-menu bug. The delay only has to outlast the browser's
+       * own pointerup->click gap; onClickCapture still clears it immediately
+       * in the common case, so this is purely the drifted-finger backstop.
+       */
+      window.setTimeout(() => {
+        swallowClickRef.current = false;
+      }, 300);
+    };
+    window.addEventListener('pointerup', drop);
+    window.addEventListener('pointercancel', drop);
+    return () => {
+      window.removeEventListener('pointerup', drop);
+      window.removeEventListener('pointercancel', drop);
+    };
+  }, [peek]);
+
+  /*
+   * Handlers for one row. Returns {} when there is no clue to show, so a board
+   * without clues attaches no listeners at all rather than arming a timer that
+   * can only ever resolve to nothing.
+   */
+  /*
+   * The peek card. Rendered once at the tray root rather than per row, because
+   * six absolutely-positioned cards inside a grid that already scrolls is six
+   * chances to clip one at the container edge.
+   *
+   * aria-live rather than a dialog: nothing here takes focus, there is nothing
+   * to dismiss with Escape, and the finger lifting is the dismissal. Announcing
+   * it politely means a screen-reader user who does reach it by some route
+   * hears the clue instead of nothing.
+   */
+  const peekCard =
+    peek && clueFor?.(peek) ? (
+      <div
+        role="status"
+        aria-live="polite"
+        className="pointer-events-none absolute inset-x-0 top-0 z-20 mx-auto max-w-[22rem] rounded-xl border border-edge px-3 py-2 text-center text-meta leading-snug text-text-primary liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)]"
+      >
+        <span className="block text-kicker font-semibold uppercase tracking-wide text-text-muted">
+          {peek.length} letters
+        </span>
+        {clueFor(peek)}
+      </div>
+    ) : null;
+
+  const holdProps = useCallback(
+    (word: string) => {
+      if (!clueFor?.(word)) return {};
+      return {
+        onPointerDown: (e: React.PointerEvent) => {
+          // Mouse users have hover and a click; the hold is for touch and pen.
+          if (e.pointerType === 'mouse') return;
+          cancelHold();
+          holdRef.current = {
+            x: e.clientX,
+            y: e.clientY,
+            fired: false,
+            timer: window.setTimeout(() => {
+              if (holdRef.current) holdRef.current.fired = true;
+              swallowClickRef.current = true;
+              setPeek(word);
+            }, PEEK_MS),
+          };
+        },
+        onPointerMove: (e: React.PointerEvent) => {
+          const h = holdRef.current;
+          if (!h || h.fired) return;
+          if (Math.hypot(e.clientX - h.x, e.clientY - h.y) > PEEK_SLOP) cancelHold();
+        },
+        // Dismissal is handled by a WINDOW listener, not here — see below.
+        onPointerUp: cancelHold,
+        onPointerCancel: cancelHold,
+        onPointerLeave: cancelHold,
+        /*
+         * A hold that fired must not ALSO open the hint menu on release.
+         * Without this the peek and the priced hint chooser both appear, and
+         * the player is looking at a menu they did not ask for over a clue
+         * they did.
+         */
+        onClickCapture: (e: React.MouseEvent) => {
+          if (swallowClickRef.current) {
+            swallowClickRef.current = false;
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        },
+        // Stops iOS raising its own selection/callout bubble over the peek.
+        onContextMenu: (e: React.MouseEvent) => e.preventDefault(),
+      };
+    },
+    [clueFor, cancelHold]
+  );
   /*
    * Which row is showing its hint menu.
    *
@@ -138,7 +308,8 @@ export default function WordTray({
        * Note these are NOT sized by --slot-h. That token drives the full grid
        * only, which is why shrinking it did nothing visible here.
        */
-      <div className="flex flex-wrap items-center justify-center gap-1">
+      <div className="relative flex flex-wrap items-center justify-center gap-1">
+        {peekCard}
         {grid.map((word, rowIndex) => {
           const bought = reveal.words.includes(word);
           const solved = found.has(word);
@@ -150,6 +321,7 @@ export default function WordTray({
             <button
               type="button"
               data-hint-opener
+              {...holdProps(word)}
               ref={(el) => {
                 if (menuFor === word) openerRef.current = el;
               }}
@@ -244,7 +416,8 @@ export default function WordTray({
   }
 
   return (
-    <div className="flex flex-col items-center gap-1 cramped:gap-0.5 roomy:gap-2">
+    <div className="relative flex flex-col items-center gap-1 cramped:gap-0.5 roomy:gap-2">
+      {peekCard}
       {grid.map((word, rowIndex) => {
         const bought = reveal.words.includes(word);
         const solved = found.has(word);
@@ -261,6 +434,7 @@ export default function WordTray({
             <button
               type="button"
               data-hint-opener
+              {...holdProps(word)}
               ref={(el) => {
                 if (menuFor === word) openerRef.current = el;
               }}

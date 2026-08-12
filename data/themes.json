@@ -113,6 +113,12 @@
    "name": "Laundry Day",
    "category": "THE LONG WAY",
    "blurb": "The quiet hour nobody watches, repeated every week for a lifetime."
+  },
+  {
+   "id": "stoop",
+   "name": "The Stoop",
+   "category": "THE BLOCK",
+   "blurb": "The front room of the block, and everybody who passes has to be spoken to."
   }
  ],
  "puzzles": [

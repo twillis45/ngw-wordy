@@ -1439,6 +1439,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onShowDefinition={openDefinition}
           compact={progress.clueMode}
           activeWord={clueWord}
+          /* Press-and-hold peek. Reads the same clue map the clue card does,
+             so the two can never disagree about what a row is asking. */
+          clueFor={(w) => puzzle.clues?.[w]}
         />
       </section>
 
