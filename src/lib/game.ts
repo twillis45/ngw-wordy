@@ -187,6 +187,23 @@ export function isDailyEligible(themeId: string | null | undefined): boolean {
 }
 
 /**
+ * Put the answer back into a clue that was written around it.
+ *
+ * Clues carry their citation with the answer blanked — "Boyz II Men, 1992 —
+ * ——— of the Road, thirteen weeks at number one" — because naming the record
+ * is what makes the clue worth reading, and printing the word would hand over
+ * the row. Once the row is SOLVED that trade is over: the player has earned the
+ * word, and the blank is now just the sentence withholding its own point.
+ *
+ * Only ever call this for a solved row. The marker is a run of three or more
+ * em dashes, which is what redactAnswer writes; a lone em dash is ordinary
+ * punctuation in these clues ("1992 — ———") and must survive untouched.
+ */
+export function fillClue(clue: string, word: string): string {
+  return clue.replace(/—{3,}/g, word.toUpperCase());
+}
+
+/**
  * Which TILE POSITIONS are unlocked, resolved against the letters actually on
  * the dial.
  *

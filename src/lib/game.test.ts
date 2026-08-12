@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   activeLetters,
+  fillClue,
   unlockedIndices,
   clueTarget,
   dailyIndex,
@@ -361,6 +362,38 @@ describe('hint economy', () => {
  * never wrong: revealLetter did its job and the chip did not read the result.
  * Asserting the ENGINE is not the same as asserting the player can see it.
  */
+describe('fillClue', () => {
+  /*
+   * The clue carries its citation with the answer blanked, which is the right
+   * trade while the row is a question and the wrong one the moment it is
+   * answered — the definition sheet only ever opens on a solved row, and it
+   * was still showing "——— of the Road" to the player who had just found it.
+   */
+  const END = 'Boyz II Men, 1992 — ——— of the Road, thirteen weeks at number one';
+
+  it('puts the answer back where the blank was', () => {
+    expect(fillClue(END, 'end')).toBe(
+      'Boyz II Men, 1992 — END of the Road, thirteen weeks at number one'
+    );
+  });
+
+  it('leaves a lone em dash alone — it is punctuation, not a blank', () => {
+    // The clue above contains BOTH: "1992 — ———". Only the run is a marker,
+    // and a naive replace on a single dash would eat the sentence's grammar.
+    expect(fillClue(END, 'end')).toContain('1992 — END');
+  });
+
+  it('handles a blank at the start of the citation', () => {
+    expect(fillClue('TLC’s slow one — ——— Light Special, written by Babyface', 'red'))
+      .toBe('TLC’s slow one — RED Light Special, written by Babyface');
+  });
+
+  it('leaves a clue with no blank untouched', () => {
+    const plain = 'What sampling was called before the lawyers arrived';
+    expect(fillClue(plain, 'nicked')).toBe(plain);
+  });
+});
+
 describe('unlockedIndices', () => {
   /*
    * Shuffling reorders the dial. It must not change the GAME.

@@ -93,6 +93,7 @@ import {
 } from '@/lib/fullscreen';
 import {
   activeLetters,
+  fillClue,
   unlockedIndices,
   MIN_WORD_LENGTH,
   RANK_BASIS,
@@ -885,7 +886,18 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * only exist on themed boards, so this is null on the free-practice set and
    * the sheet falls back to the dictionary alone.
    */
-  const themedClue = showDef ? (puzzle.clues?.[showDef.word] ?? null) : null;
+  /*
+   * Filled in, not blanked. This sheet only ever opens on a row that is
+   * already done, so the redaction has no work left to do here — it was
+   * hiding the answer from the one player who has already found it, and
+   * turning a citation back into a riddle at the moment it should read as a
+   * fact.
+   */
+  const themedClue = showDef
+    ? (puzzle.clues?.[showDef.word]
+        ? fillClue(puzzle.clues[showDef.word], showDef.word)
+        : null)
+    : null;
 
   const openDefinition = useCallback(
     (word: string) => {

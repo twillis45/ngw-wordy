@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { revealedChip, revealedCount, type RevealState } from '@/lib/hints';
+import { fillClue } from '@/lib/game';
 
 /**
  * The target grid — Word Cookies "tray" model: one row per target word,
@@ -186,10 +187,17 @@ export default function WordTray({
         aria-live="polite"
         className="pointer-events-none absolute inset-x-0 top-0 z-20 mx-auto max-w-[22rem] rounded-xl border border-edge px-3 py-2 text-center text-meta leading-snug text-text-primary liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)]"
       >
+        {/* A solved row is named, not counted — "4 letters" is the question,
+            and this row is past being asked. */}
         <span className="block text-kicker font-semibold uppercase tracking-wide text-text-muted">
-          {peek.length} letters
+          {found.has(peek) || reveal.words.includes(peek)
+            ? peek.toUpperCase()
+            : `${peek.length} letters`}
         </span>
-        {clueFor(peek)}
+        {/* Blank while it is still a question; filled once it is a fact. */}
+        {found.has(peek) || reveal.words.includes(peek)
+          ? fillClue(clueFor(peek) as string, peek)
+          : clueFor(peek)}
       </div>
     ) : null;
 
