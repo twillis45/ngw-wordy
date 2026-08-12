@@ -16,7 +16,7 @@ type Props = {
    * Escalating mode: letters not yet unlocked. They stay on the wheel so the
    * player can see what's coming, but can't be selected.
    */
-  active?: ReadonlySet<string>;
+  activeIndices?: ReadonlySet<number>;
 };
 
 /**
@@ -149,7 +149,7 @@ export default function LetterWheel({
   onClear,
   onUndo,
   disabled,
-  active,
+  activeIndices,
 }: Props) {
   const boxRef = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
@@ -192,22 +192,22 @@ export default function LetterWheel({
   }, []);
 
   const isLocked = useCallback(
-    (i: number) => (active ? !active.has(letters[i]) : false),
-    [active, letters]
+    (i: number) => (activeIndices ? !activeIndices.has(i) : false),
+    [activeIndices]
   );
 
   const hitTest = useCallback(
     (pt: { x: number; y: number }) => {
       for (let i = 0; i < positions.length; i += 1) {
         // A locked tile is not a target, so a drag glides straight over it.
-        if (active && !active.has(letters[i])) continue;
+        if (activeIndices && !activeIndices.has(i)) continue;
         const dx = pt.x - positions[i].x;
         const dy = pt.y - positions[i].y;
         if (Math.hypot(dx, dy) <= HIT) return i;
       }
       return -1;
     },
-    [positions, active, letters]
+    [positions, activeIndices]
   );
 
   /**
@@ -369,7 +369,7 @@ export default function LetterWheel({
     let nearest = -1;
     let best = Infinity;
     for (let i = 0; i < positions.length; i += 1) {
-      if (active && !active.has(letters[i])) continue;
+      if (activeIndices && !activeIndices.has(i)) continue;
       const d = Math.hypot(cursor.x - positions[i].x, cursor.y - positions[i].y);
       if (d < best) {
         best = d;

@@ -407,7 +407,25 @@ export default function Game({ data }: { data: PuzzleFile }) {
    */
   const escalating = progress.escalating && warmup === null;
   const active = activeLetters(puzzle, rowsDone, escalating);
-  const hasLocked = active.size < puzzle.letters.length;
+  const hasLocked = active.length < puzzle.letters.length;
+  /*
+   * The wheel locks by INDEX, not by letter.
+   *
+   * `active` is a multiset now, so a base with two T's can have one unlocked
+   * and one not. Collapsing it to a Set for display would light both tiles and
+   * the player would tap a locked one. Consuming the multiset positionally is
+   * the only representation that survives a repeated letter.
+   */
+  const unlockedIdx = useMemo(() => {
+    const pool = new Map<string, number>();
+    for (const ch of active) pool.set(ch, (pool.get(ch) ?? 0) + 1);
+    const out = new Set<number>();
+    puzzle.letters.forEach((ch, i) => {
+      const left = pool.get(ch) ?? 0;
+      if (left > 0) { pool.set(ch, left - 1); out.add(i); }
+    });
+    return out;
+  }, [active, puzzle.letters]);
   const clueWord = progress.clueMode
     ? clueTarget(puzzle.grid, rowDone, clueCursor, (w) =>
         isReachable(w, active)
@@ -1051,8 +1069,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
       if (!/^[a-zA-Z]$/.test(e.key)) return;
       const ch = e.key.toLowerCase();
       setSel((prev) => {
+        // Index-based: the first unused tile of this letter that is unlocked.
         const i = letters.findIndex(
-          (l, idx) => l === ch && !prev.includes(idx) && active.has(l)
+          (l, idx) =>
+            l === ch && !prev.includes(idx) && unlockedIdx.has(idx)
         );
         if (i === -1) return prev;
         feedback.tap();
@@ -1061,7 +1081,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [commit, letters, setSel, active, setLetters]);
+  }, [commit, letters, setSel, unlockedIdx, setLetters]);
 
   /**
    * Hints are targeted: the player taps the row they're stuck on, because
@@ -1626,7 +1646,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onCommit={commit}
           onClear={() => setSel([])}
           onUndo={undoLetter}
-          active={active}
+          activeIndices={unlockedIdx}
         />
       </div>
 

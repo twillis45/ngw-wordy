@@ -44,13 +44,15 @@ export function activeLetters(
   puzzle: Puzzle,
   rowsDone: number,
   escalating: boolean
-): Set<string> {
-  if (!escalating) return new Set(puzzle.letters);
+): string[] {
+  // An ARRAY, so a repeated letter's two copies stay two entries. A Set here
+  // was correct only for as long as every base had six distinct letters.
+  if (!escalating) return [...puzzle.letters];
   const n = Math.min(
     puzzle.unlockOrder.length,
     puzzle.startActive + Math.max(0, rowsDone)
   );
-  return new Set(puzzle.unlockOrder.slice(0, n));
+  return puzzle.unlockOrder.slice(0, n);
 }
 
 /**
@@ -74,10 +76,43 @@ export function clueTarget(
   return list[((cursor % list.length) + list.length) % list.length];
 }
 
-/** Can this word be spelled with the letters currently unlocked? */
-export function isReachable(word: string, active: ReadonlySet<string>): boolean {
-  for (const ch of word) if (!active.has(ch)) return false;
+/**
+ * Can `word` be spelled from `letters`, CONSUMING each tile at most once?
+ *
+ * A multiset question, not a set question. While every base was six distinct
+ * letters the two were accidentally equivalent — you can never need a letter
+ * twice because you never have it twice — and every check in this engine took
+ * the cheaper form. Allowing a repeated letter in a base (COTTON, CHURCH,
+ * POTATO, COFFEE) ends that equivalence, and in the dangerous direction: a set
+ * check says TOTTER is spellable from COTTON, because both T and O are
+ * "present". They are present twice and TOTTER wants three.
+ *
+ * That is the same class of bug as the bitmask which once counted `cool` and
+ * `total` as spellable from six distinct letters, inflating a measurement from
+ * 45 boards to 118 and producing LOCUST. See multiset.test.ts, where LOCUST is
+ * kept as a named regression case.
+ */
+export function canSpell(word: string, letters: string): boolean {
+  const pool = new Map<string, number>();
+  for (const ch of letters) pool.set(ch, (pool.get(ch) ?? 0) + 1);
+  for (const ch of word) {
+    const left = pool.get(ch) ?? 0;
+    if (left === 0) return false;
+    pool.set(ch, left - 1);
+  }
   return true;
+}
+
+/**
+ * Can this word be spelled with the letters currently unlocked?
+ *
+ * Takes an ARRAY rather than a Set, because with a repeated base letter the
+ * two copies unlock separately and a Set cannot hold that: unlocking "T" would
+ * silently unlock both tiles, and the escalating wheel would offer a word the
+ * player cannot yet spell.
+ */
+export function isReachable(word: string, active: readonly string[]): boolean {
+  return canSpell(word, active.join(''));
 }
 
 export type PuzzleFile = {

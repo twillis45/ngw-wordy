@@ -18,6 +18,7 @@ import {
   dailyCycle,
   dailyPoolSize,
   puzzleForPlayer,
+  canSpell,
 } from './game';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -367,7 +368,7 @@ describe('the opening wheel is always playable', () => {
     const thin = file.puzzles
       .map((p) => ({
         base: p.base,
-        live: activeLetters(p as never, 0, true).size,
+        live: activeLetters(p as never, 0, true).length,
       }))
       .filter((x) => x.live < MIN_WORD_LENGTH);
     expect(thin.slice(0, 5), `${thin.length} boards open unplayable`).toEqual([]);
@@ -378,7 +379,7 @@ describe('the opening wheel is always playable', () => {
     for (const p of file.puzzles) {
       const live = activeLetters(p as never, 0, true);
       const playable = [...p.grid, ...p.bonus].some(
-        (w) => w.length >= MIN_WORD_LENGTH && [...w].every((c) => live.has(c))
+        (w) => w.length >= MIN_WORD_LENGTH && canSpell(w, live.join(''))
       );
       if (!playable) stuck.push(p.base);
     }

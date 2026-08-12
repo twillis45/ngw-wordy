@@ -550,7 +550,7 @@ describe('activeLetters', () => {
   };
 
   it('is the whole wheel when escalating is off', () => {
-    expect(activeLetters(p, 0, false).size).toBe(6);
+    expect(activeLetters(p, 0, false).length).toBe(6);
   });
 
   it('starts with only the opening letters', () => {
@@ -558,16 +558,16 @@ describe('activeLetters', () => {
   });
 
   it('unlocks one letter per cleared row', () => {
-    expect(activeLetters(p, 1, true).size).toBe(5);
-    expect(activeLetters(p, 2, true).size).toBe(6);
+    expect(activeLetters(p, 1, true).length).toBe(5);
+    expect(activeLetters(p, 2, true).length).toBe(6);
   });
 
   it('never exceeds the wheel', () => {
-    expect(activeLetters(p, 99, true).size).toBe(6);
+    expect(activeLetters(p, 99, true).length).toBe(6);
   });
 
   it('tolerates a negative row count', () => {
-    expect(activeLetters(p, -3, true).size).toBe(4);
+    expect(activeLetters(p, -3, true).length).toBe(4);
   });
 });
 
@@ -601,7 +601,7 @@ describe('clueTarget with locked letters', () => {
   const grid = ['heriot', 'their', 'rote'];
   const none = () => false;
   // 'i' is the only locked letter, so heriot and their are out and rote is in.
-  const active = new Set(['h', 'e', 'r', 'o', 't']);
+  const active = [...['h', 'e', 'r', 'o', 't']];
   const reachable = (w: string) => isReachable(w, active);
 
   it('skips words whose letters are still locked', () => {
@@ -625,9 +625,9 @@ describe('clueTarget with locked letters', () => {
 
 describe('isReachable', () => {
   it('is true only when every letter is unlocked', () => {
-    expect(isReachable('rote', new Set(['r', 'o', 't', 'e']))).toBe(true);
-    expect(isReachable('rote', new Set(['r', 'o', 't']))).toBe(false);
-    expect(isReachable('', new Set<string>())).toBe(true);
+    expect(isReachable('rote', ['r', 'o', 't', 'e'])).toBe(true);
+    expect(isReachable('rote', ['r', 'o', 't'])).toBe(false);
+    expect(isReachable('', [])).toBe(true);
   });
 });
 
