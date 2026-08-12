@@ -1,0 +1,158 @@
+{
+  "_doc": "STAGING. General pack, and the one the bench LIKED rather than tolerated. Wing 7's finding is the brief: across 59 clues no woman had a role outside the kitchen or the receiving end of a joke. Laundry Day is the fix — the quiet, repeated, unwatched domestic hour, written with interiority. So the person in these clues is thinking, deciding, and keeping count, never being observed doing a chore. No clue here is a joke at anyone's expense. Standard general gate still binds: position, time or habit, never a category.",
+
+  "theme": {
+    "id": "laundry",
+    "name": "Laundry Day",
+    "category": "THE LONG WAY",
+    "blurb": "The quiet hour nobody watches, repeated every week for a lifetime."
+  },
+
+  "boards": [
+    {
+      "_note": "Letter-set on loan from barbershop, which keeps 15 of its 16 spare boards.",
+      "base": "paints",
+      "scene": "Sorting, which is where the decisions get made",
+      "clues": {
+        "paints": "On the knee of the good trousers, and today is when that gets decided",
+        "pant": "Checked at both pockets before anything goes in, having learned once",
+        "pin": "Found at the bottom of the drum, and where it came from is a mystery",
+        "spin": "Chosen lower than the label says, because the label does not know this machine",
+        "stain": "Worked at with a thumbnail under the tap for longer than it is worth",
+        "snap": "The waistband, tested, and the answer decides whether it goes in or out"
+      }
+    },
+    {
+      "base": "pianos",
+      "scene": "The first load, and the smell of it",
+      "clues": {
+        "pianos": "Practice upstairs, the same eight bars, all the way through the first load",
+        "pin": "Straightened and put on the sill, because it will be needed",
+        "soap": "Measured properly by one person in the house and by eye by everyone else",
+        "spin": "The noise it makes at the top of the cycle, which is how you know the load is uneven",
+        "pain": "In the lower back, from the third bend at the machine door",
+        "pains": "Taken over one shirt, on a day when nothing else got that much attention"
+      }
+    },
+    {
+      "base": "senior",
+      "scene": "Ironing, at the board by the window",
+      "clues": {
+        "senior": "Taught you to do collars first, and was right, and you have never said so",
+        "iron": "Filled with the wrong water for years before anybody mentioned it",
+        "noise": "From the street, at the level where it stops registering as anything",
+        "rinse": "Given to the one thing that came out smelling of the machine",
+        "risen": "The steam, into a face turned deliberately away from it",
+        "sire": "On the paperwork in the pocket of the coat, which is why the coat is not going in"
+      }
+    },
+    {
+      "base": "actors",
+      "scene": "The trip down and back",
+      "clues": {
+        "actors": "On the poster in the stairwell, faded, from a film nobody in the building saw",
+        "cart": "Loaded so it can be pushed with one hand and the door held with the other",
+        "sort": "Done on the way down, mentally, so the machines can be claimed faster",
+        "coat": "Kept on for the first ten minutes because the room has not warmed up",
+        "cost": "Counted in coins, in advance, and the sum has not changed in three years",
+        "oats": "Left on the counter upstairs, which is what you think about on the way back"
+      }
+    },
+    {
+      "base": "amends",
+      "scene": "The pile of things that need a hand, not a machine",
+      "clues": {
+        "amends": "The hem, badly, and it holds for two years, which counts",
+        "mend": "Put off from March to August and then done in eleven minutes",
+        "seam": "Gone at the shoulder, on the shirt that is not worth it and gets fixed anyway",
+        "dame": "Whose needle case this was, and whose handwriting is on the lid",
+        "mean": "What the thread does when it will not go through, at the third attempt",
+        "made": "The decision to keep it, which is the whole reason the box came down"
+      }
+    },
+    {
+      "base": "foiled",
+      "scene": "The airer, and the weather forecast",
+      "clues": {
+        "foiled": "By rain at two, having hung the whole load out at noon",
+        "fold": "Done straight from the line while it is still warm, which is the best minute of it",
+        "lid": "Of the machine, left up on purpose so the drum can dry out",
+        "field": "Beyond the fence, and where your eye goes while your hands keep working",
+        "idle": "The ten minutes waiting on the last spin, which are nothing of the kind",
+        "file": "Of things to hang next, arranged in your head before you reach the door"
+      }
+    },
+    {
+      "base": "gospel",
+      "scene": "What is playing while it gets done",
+      "clues": {
+        "gospel": "From the phone propped against the powder box, at a volume for one person",
+        "lose": "One sock a load, reliably, and the arithmetic has never been explained",
+        "peg": "Split at the spring, kept in the bag anyway, and it still works",
+        "pole": "Propped under the middle of the line, because the load is heavier than it looks",
+        "slope": "Of the line by the time it is full, and the adjustment made without thinking",
+        "goes": "The last thing on, and then you stand there a second before going in"
+      }
+    },
+    {
+      "base": "intros",
+      "scene": "The airing cupboard, and who knows the system",
+      "clues": {
+        "intros": "Of the songs, all you hear, because the phone is skipping in another room",
+        "iron": "Kept on the top shelf where it has to be reached for, on purpose",
+        "sort": "By bed, not by person, which is the system and it took years to settle",
+        "riot": "In there by November, when nobody else has put anything back correctly",
+        "rots": "What the towel at the bottom does, found in spring, and thrown out quietly",
+        "trio": "Of shelves, and every one of them is a different household's worth of rules"
+      }
+    },
+    {
+      "base": "liners",
+      "scene": "The last hour, and the standing up",
+      "clues": {
+        "liners": "In the drawers, changed once a year, and today happens to be the day",
+        "line": "Wiped down before anything touches it, which is the step people skip",
+        "rinse": "The cloth, twice, and hang it over the tap in the way it always goes",
+        "rise": "What you do from the chair when the machine stops, before it finishes beeping",
+        "risen": "The pile on the bed, higher than the day looked when it started",
+        "siren": "Outside, and everything in the room stops for it and then carries on"
+      }
+    },
+    {
+      "base": "lowest",
+      "scene": "Towels, which are their own event",
+      "clues": {
+        "lowest": "Setting the dryer has, and the only one that does not wreck them",
+        "lose": "The good one, to somebody else's bathroom, permanently",
+        "towel": "Folded in three because it is the only way it fits the shelf",
+        "stole": "The warm one straight off the pile, and would do it again",
+        "slow": "The whole load, deliberately, because rushing towels is how they go hard",
+        "west": "Facing window, which is why the airer lives where it lives"
+      }
+    },
+    {
+      "base": "metals",
+      "scene": "Whites, and the war on the collar",
+      "clues": {
+        "metals": "In the water here, which is the real reason nothing stays white",
+        "seam": "Under the arm, checked every time, because that is where it always goes first",
+        "steam": "Held over the kettle, an old trick from someone, and it half works",
+        "melts": "The plastic button, on a setting chosen too confidently",
+        "least": "Favourite job in the house, and still done every single week",
+        "salt": "On the winter coat hem, brushed off dry, never washed in"
+      }
+    },
+    {
+      "base": "pastor",
+      "scene": "Sunday clothes, done Saturday night",
+      "clues": {
+        "pastor": "Will not notice, and that is not the point and never was",
+        "soap": "The good one, kept separate, used on four things a week",
+        "sort": "The shirts out the night before so the morning has one less argument in it",
+        "roast": "In the oven while this is happening, and both are being timed at once",
+        "strap": "On the shoe, wiped with the cloth that is already out",
+        "past": "Ten, and still going, and nobody in the house knows that"
+      }
+    }
+  ]
+}
