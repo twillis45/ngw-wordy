@@ -220,3 +220,31 @@ test outright — in which case say so rather than shipping strangers.
 The audience is US. These shipped as British and had to be corrected: `tyre`
 (tire), `kerb` (curb), `bonnet` (hood), `boot` (trunk), `peg` (clothespin),
 `tap` (faucet). `flat` is kept because a flat tire and a flat note are both US.
+
+### The prize-word rule collides with density, and the collision is the point
+
+Measured immediately after writing the rule above, and it does not hold as
+stated. A base that IS a theme word usually spells almost none of them:
+
+  laundry   WASHER 1 on-theme row   BASKET 0   BLEACH 0   FABRIC 0   TUMBLE 0
+  church    DEACON 0   PASTOR 0   EULOGY 0   BISHOP 0   but ANTHEM 4
+  cookout   COUSIN 0   OLDEST 0   but GATHER 5, AUNTIE 3
+
+So the two rules pull against each other. A dense base is a stranger to its
+theme; an on-theme base spells nothing. The reason is arithmetic rather than
+bad luck: a 55-word vocabulary gives any particular six letters a poor chance
+of spelling four of them, and a word chosen for BEING vocabulary was never
+chosen for spelling it.
+
+The workable rule is therefore narrower than "the prize word must be a theme
+word", which is unachievable, and stronger than ignoring it:
+
+  Prefer bases that are theme words AND carry 3+ on-theme rows. They are rare
+  — one to three per pack — and they are the best boards the pack can have.
+  ANTHEM, GATHER, AUNTIE, PRAISE and CASKET are worth more than any dense
+  stranger, and a pack should open on one.
+
+And the diagnostic that matters more: **if a theme has NO base that satisfies
+both, the theme is too narrow to carry a pack.** Laundry's best is WASHER at
+one row. That is not an authoring problem to be solved with better clues, it
+is the theme telling you it is a scene inside another pack rather than a pack.
