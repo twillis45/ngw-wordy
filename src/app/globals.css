@@ -381,8 +381,23 @@
   /* Light mode inverts the inversion: the board is white, so the amber goes
      deep and the letter goes light. 4.91:1 on the letter, 5.20:1 against the
      panel — it still has to be the loudest thing on a bright screen. */
-  --color-select: #a85712;
-  --color-select-ink: #fff7ef;
+  /*
+   * The SAME orange the dark theme uses, and the same ink.
+   *
+   * This was #a85712 with white text — an orange darkened until it cleared
+   * contrast against a light panel, which is the identical mistake the accent
+   * went through four times before landing back on one value for both themes.
+   * A tile that is DARKER than the board reads as a dark undertone rather than
+   * as orange, whatever its hue, because valence comes from the relationship
+   * to the surface and not from the swatch.
+   *
+   * The contrast that matters here is INK ON FILL, and that pair is unchanged:
+   * #12161a on #e8934a is the same measurement in both themes. The fill sits
+   * on the tile, not behind text, so it never had to clear 4.5 against the
+   * panel — that requirement was imported from the wrong place.
+   */
+  --color-select: #e8934a;
+  --color-select-ink: #12161a;
   --color-text-primary: #0d0f12;
   /* Light: 16.8 / 9.0 / 6.3. Darker means MORE emphasis here. */
   --color-text-secondary: #2f4353;
@@ -462,8 +477,11 @@
   /* Light mode inverts the inversion: the board is white, so the amber goes
      deep and the letter goes light. 4.91:1 on the letter, 5.20:1 against the
      panel — it still has to be the loudest thing on a bright screen. */
-  --color-select: #a85712;
-  --color-select-ink: #fff7ef;
+  /* Mirrors the media-query block above. The light theme is declared TWICE —
+     prefers-color-scheme for 'auto' and this explicit block — and patching one
+     without the other is a trap this file has sprung more than once. */
+  --color-select: #e8934a;
+  --color-select-ink: #12161a;
   --color-text-primary: #0d0f12;
   /* Light: 16.8 / 9.0 / 6.3. Darker means MORE emphasis here. */
   --color-text-secondary: #2f4353;

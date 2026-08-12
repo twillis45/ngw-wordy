@@ -386,8 +386,13 @@ export default function WordTray({
                 // Mark the row the clue is currently asking about.
                 // Was text-secondary vs text-muted — 1.01:1 apart, i.e. no
                 // marker at all. Now carries weight and a ring, not just hue.
+                /* The row the clue points at is marked in the SELECTION
+                   orange, not steel. Steel is the resting edge colour, so the
+                   marker was a slightly different grey on a board full of
+                   greys — the same "shade, not a different thing" problem the
+                   selection amber exists to solve on the wheel. */
                 !done && word === activeWord
-                  ? 'border-edge ring-2 ring-steel-muted font-bold text-text-primary'
+                  ? 'border-select ring-2 ring-select font-bold text-text-primary'
                   : '',
                 solved && justSolved.has(word) ? 'anim-land' : '',
               ].join(' ')}
