@@ -82,9 +82,9 @@
   },
   "roadtrip": {
     "_note": "GENERAL PACK. The clue gate in docs/AUTHORING.md is binding here: every clue must name a position, a time, or a habit — never a category. A general theme is easier to write badly and the first draft is always generic, so budget re-authoring rather than authoring. Ranked first of the general candidates as the only one with an emotional register of its own.",
-    "named": "map atlas exit mile marker rest stop gas pump snack cooler tape mix radio diner motel toll lane truck sign sunrise trunk shoulder curve bend ridge crest verge tar tyre wheel horn vent visor mirror cup lid straw crumb token pass bridge rent dive pane",
-    "said": "drive stop fill wait ride merge pass turn park nap swap seat share point read sing count argue sleep arrive load haul honk brake coast climb slow speed idle roll wind lower raise steer check split settle wake spin trap sugar",
-    "voice": "car belt window sun heat light road night hour dark rain coffee cup"
+    "named": "map atlas exit mile marker rest stop gas pump snack cooler tape mix radio diner motel toll lane truck sign trunk curve bend ridge crest verge tar tyre wheel horn vent visor mirror cup lid straw crumb token pass bridge rent dive pane seat belt door hood wiper beam dash gauge fuel tank oil brake pedal gear key ring plate tag bumper grill hub cap boot glove pin route north south east west town city county line state border ramp shoulder gravel dust bug dive pane",
+    "said": "drive stop fill wait ride merge pass turn park nap swap seat share point read sing count argue sleep arrive load haul honk brake coast climb slow speed idle roll wind lower raise steer check split settle wake pull push crawl race trail follow lead miss find lose pay tip fold recline stretch yawn spot claim call text charge plug tune skip mute blast sip chew refill spin trap sugar",
+    "voice": "car window sun heat light road night dark rain coffee hour mile time noise music talk sky cloud storm wind cold warm"
   },
   "garden": {
     "_note": "GENERAL PACK. The clue gate in docs/AUTHORING.md is binding here: every clue must name a position, a time, or a habit — never a category. A general theme is easier to write badly and the first draft is always generic, so budget re-authoring rather than authoring. Seasonal and patient, and it pairs with the Grandmother seat.",
@@ -94,9 +94,9 @@
   },
   "laundry": {
     "_note": "GENERAL PACK. The clue gate in docs/AUTHORING.md is binding here: every clue must name a position, a time, or a habit — never a category. A general theme is easier to write badly and the first draft is always generic, so budget re-authoring rather than authoring. The board LIKED this one rather than merely accepting it. Wing 7 found that across 59 clues no woman had a role outside the kitchen or the receiving end of a joke, and Laundry Day is a general theme that is also that fix: the quiet, repeated, unwatched domestic hour, written with interiority. Put beside The Cookout, the cookout reads louder.",
-    "named": "washer dryer basket hamper soap bleach sheet towel sock lint quarter coin cart rack line peg iron stain drum lid vent dial timer chute pin clip cuff hem seam shirt pant robe coat pole salt snap cost",
-    "said": "wash dry fold sort load pour spin rinse hang drape shrink press steam match pair lose stack carry haul wait time tumble check turn empty refill mend patch pin clip smooth shake toss slow idle melts pain",
-    "voice": "room door light change bag heat noise hour chair phone floor window"
+    "named": "washer dryer basket hamper soap bleach sheet towel sock lint quarter coin cart rack line peg iron stain drum lid vent dial timer chute pin clip cuff hem seam shirt pant robe cost tub sink tap water powder scoop cap bottle brush board mat floor shelf drawer bag tag label collar sleeve zip button thread patch dust fluff steam pile load coat pole salt snap",
+    "said": "wash dry fold sort load pour spin rinse hang drape shrink press steam match pair lose stack carry haul wait time tumble check turn empty refill mend patch pin clip smooth shake toss idle melts pain lift drop set stand reach bend count mark treat soak scrub wring air cool warm sniff pick pull tug slow",
+    "voice": "room door light change bag heat noise hour chair phone floor window morning night quiet street coin song radio"
   },
   "stoop": {
     "_note": "CULTURAL pack. The stoop as the front room of the block — the place between the house and the street where the day is watched, business is done, and everyone passing has to be greeted. Third in the board list after Beauty Supply and the Cookout deepen. A community reader is budgeted before this ships commercially; nothing here is signed off yet.",
