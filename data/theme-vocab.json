@@ -94,9 +94,9 @@
   },
   "laundry": {
     "_note": "GENERAL PACK. The clue gate in docs/AUTHORING.md is binding here: every clue must name a position, a time, or a habit — never a category. A general theme is easier to write badly and the first draft is always generic, so budget re-authoring rather than authoring. The board LIKED this one rather than merely accepting it. Wing 7 found that across 59 clues no woman had a role outside the kitchen or the receiving end of a joke, and Laundry Day is a general theme that is also that fix: the quiet, repeated, unwatched domestic hour, written with interiority. Put beside The Cookout, the cookout reads louder.",
-    "named": "washer dryer basket hamper soap bleach sheet towel sock lint quarter coin cart rack line peg iron stain drum lid vent dial timer chute pin clip cuff hem seam shirt pant robe cost tub sink tap water powder scoop cap bottle brush board mat floor shelf drawer bag tag label collar sleeve zip button thread patch dust fluff steam pile load coat pole salt snap",
-    "said": "wash dry fold sort load pour spin rinse hang drape shrink press steam match pair lose stack carry haul wait time tumble check turn empty refill mend patch pin clip smooth shake toss idle melts pain lift drop set stand reach bend count mark treat soak scrub wring air cool warm sniff pick pull tug slow",
-    "voice": "room door light change bag heat noise hour chair phone floor window morning night quiet street coin song radio"
+    "named": "washer dryer basket hamper soap bleach detergent sheet towel sock lint quarter coin cart rack line iron stain drum dial timer chute cuff hem seam collar sleeve button thread patch powder load laundry linen fabric starch hanger clothes",
+    "said": "wash dry fold sort spin rinse hang shrink press steam match pair stack tumble soak scrub wring mend darn bleach iron sort tumble",
+    "voice": "room door light change heat noise hour chair phone floor window morning night quiet coin song radio"
   },
   "stoop": {
     "_note": "CULTURAL pack. The stoop as the front room of the block — the place between the house and the street where the day is watched, business is done, and everyone passing has to be greeted. Third in the board list after Beauty Supply and the Cookout deepen. A community reader is budgeted before this ships commercially; nothing here is signed off yet.",

@@ -132,3 +132,55 @@ Two conditions travel with them, both from the bench, both binding:
   on which the highest-paying seat is retained.
 - **The same real-reader budget applies.** Lower standards on the general packs
   is how the cultural packs come to be read as the gimmick.
+
+## Measure base density before you author a pack
+
+A base is six letters on a dial. **Density** is how many words of the theme's
+vocabulary those six letters can actually spell. It is the number that decides
+a pack's on-theme rate, and it is decided before a single clue is written.
+
+A board has five grid rows. So:
+
+| density | best possible board | best possible pack |
+|---|---|---|
+| 2 on-theme rows | 0.40 | 0.40 |
+| 3 | 0.60 | 0.60 |
+| 4 | 0.80 | 0.80 |
+| 5+ | 1.00 | 1.00 |
+
+**A 2-density base caps the board at 0.40 no matter how good the clues are.**
+No rewrite, no donor swap and no amount of care moves it. This was learned the
+expensive way: The Road Trip and Laundry Day were authored by choosing bases
+for how many IDEAS they carried, which is a different and weaker thing, and
+both landed at 0.58 with no available repair. Rewriting rows was dead, base
+swapping was dead, and cutting to four boards still only reached 0.70.
+
+Rank candidate bases by density FIRST. Author the dense ones. A pack built
+entirely on 4+ density bases starts at 0.80 and needs no rescue.
+
+## Do not pad a vocabulary to move a number
+
+The on-theme rate is only meaningful if the vocabulary is honest, and a
+vocabulary is the easiest thing in this repo to quietly corrupt. Two ways it
+has actually happened here:
+
+1. **Adding a word because it appears in a shipped row.** `melts` and `pain`
+   went into the laundry vocabulary for exactly this reason. That is writing
+   the answer key after seeing the test.
+2. **Adding generic words that fit any theme.** The laundry vocabulary reached
+   100 words by admitting `mat`, `cap`, `bag`, `tag`, `brush`, `sink`,
+   `shelf`, `board`, `lift`, `drop`, `set`, `stand`, `reach`, `bend`, `count`
+   and `pick` — every one equally at home in a kitchen pack or a garage pack.
+
+**The test: would this word be on-theme for a DIFFERENT pack?** If yes, it is
+texture, not vocabulary. A word that fits the kitchen, the garage and the
+laundry is doing no work in any of them.
+
+Pruning laundry against that test took it from a reported 0.58 to a true 0.34,
+and the quality suite immediately failed on three boards — one of which had
+ZERO laundry rows. The padding had been hiding them. Backfilling a vocabulary
+is legitimate when the word is genuinely of the theme and was simply missing;
+it stops being legitimate the moment the metric is the reason.
+
+Also: this product is written for a US audience. `peg` and `tap` were British
+for clothespin and faucet, and both shipped.
