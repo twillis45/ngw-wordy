@@ -1264,6 +1264,13 @@ body {
      * is marked by size and weight rather than by colour, per the note in
      * WordTray.
      *
+     * FOURTH pass. #e0761a still read dark, so this goes to #f2922b — 1.83 on
+     * the chip, 2.35 on white. That is well under 3.0 and the redundant-
+     * encoding argument below is now doing real work rather than buying a
+     * rounding error, so it is worth restating what it rests on: the row's
+     * CONTENT changes on solve, digit to word. If that ever stops being true,
+     * this value has to go back down.
+     *
      * The ladder that got here, all measured against that real backdrop:
      * #8a4409 read as mud, #c85f0c at 3.22 was the lightest value that could
      * clear 3.0, and it still read dark. Every orange brighter than it fails
@@ -1274,7 +1281,7 @@ body {
      * The three TEXT sites are unaffected and stay fully compliant; they take
      * --color-success-ink below, which is held past 4.5.
      */
-    --color-success: #e0761a;
+    --color-success: #f2922b;
     /* Text value: 6.18 on white, 4.99 on surface-2, both past 4.5. */
     --color-success-ink: #9c4a06;
   }
@@ -1282,6 +1289,6 @@ body {
 
 :root[data-accent='matte'][data-theme='light'] {
   /* Mirrors the media-query block above — see the reasoning there. */
-  --color-success: #e0761a;
+  --color-success: #f2922b;
   --color-success-ink: #9c4a06;
 }
