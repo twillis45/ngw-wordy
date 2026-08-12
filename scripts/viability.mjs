@@ -34,6 +34,19 @@ for(const [id,v] of Object.entries(V)){
     if(n>best) best=n;
     if(vocSet.has(b)&&n>=3){ prize++; if(!bestPair||n>bestPair[1]) bestPair=[b,n]; }
   }
-  const viable = dense>=12 && prize>=1;
+  /*
+   * DENSITY IS THE GATE. The prize word is reported beside it and does not
+   * vote.
+   *
+   * This read `dense>=12 && prize>=1`, which contradicts the header six lines
+   * up — "an on-theme prize word is a strong preference and NOT a gate,
+   * because using it as one rejects rnb90s, which sits at 0.80 and is the best
+   * pack in the catalogue." It did exactly that: rnb90s, hbcu, sitcom,
+   * steppers, beautysupply and garden all shipped, all clear the density
+   * floor by a wide margin, and all printed "no". A gate that fails six live
+   * packs is not measuring viability, and reading it would have blocked work
+   * that should go ahead.
+   */
+  const viable = dense>=12;
   console.log(id.padEnd(14), String(prize).padStart(4), String(best).padStart(16), String(dense).padStart(18), '  ', viable?'YES':'no', bestPair?(' <- '+bestPair[0].toUpperCase()+'('+bestPair[1]+')'):'');
 }
