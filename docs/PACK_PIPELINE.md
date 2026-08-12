@@ -4,15 +4,35 @@ Working tracker for new packs. Updated 2026-08-12.
 
 ## Where this list came from — read this first
 
-**These candidates are editorial judgement plus seasonality, not scraped trend
-data.** One web search for word-game pack trends was run and returned only
-generic copy ("themed packs including music, movies and geography appeal to
-different interests") — nothing that names a category or ranks one. So nothing
-below is sourced from a trend feed, and no number in the "why now" column is a
-measurement of popularity.
+The candidates below now come from named trend sources, listed in the next
+section, and each row records which signal it came from. What they are NOT is
+a ranking: none of these sources measures demand for a WORD GAME PACK, and no
+source consulted publishes anything like that. They measure what people are
+searching, pinning and taking up as hobbies. Treating "camping is up" as
+"a camping pack will sell" is a leap, and it is the reader's leap to make
+knowingly.
 
-What IS measured is the right-hand side: whether a theme can carry a pack at
-all. That is the column to trust.
+The first version of this file was drafted from editorial judgement alone and
+said so. The trend sourcing is new; the honest caveat survives it.
+
+What IS measured, by us, is the right-hand side: whether a theme can carry a
+pack at all. That is the column to trust without qualification.
+
+## Resources — where to check what is trending
+
+Free unless noted. The first three are the ones worth a recurring look.
+
+| source | what it is good for | cadence |
+|---|---|---|
+| [Google Trends](https://trends.google.com/trends/) | search interest for any term, by region and over time. The baseline check before committing to a theme | live |
+| [Google Year in Search](https://trends.withgoogle.com/year-in-search/) | curated annual trending lists across 47 categories. Explicitly *trending*, not *most searched* — generic evergreen terms are filtered out ([methodology](https://trends.withgoogle.com/year-in-search/data-methodology/)) | annual, December |
+| [Pinterest Predicts](https://business.pinterest.com/pdf/pinterest-predicts/2026-trend-report/) | forward-looking; Pinterest's trend data tends to surface months before interest peaks elsewhere. Strongest for food, home, aesthetic and entertaining | annual + [live trends tool](https://business.pinterest.com/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/) |
+| [Exploding Topics](https://explodingtopics.com/) | early-stage trends 6–24 months out, drawn from search, social, forums, news and e-commerce | live, freemium |
+| [TikTok Creative Center](https://ads.tiktok.com/business/creativecenter/) | real-time engagement and emerging formats | live |
+| [Glimpse](https://meetglimpse.com/trends/hobbies-activities-trends/) | hobby and activity trend data with volumes; good for the leisure categories this game lives in | live, freemium |
+| [Statista Consumer Trends](https://statista.com/study/206237/consumer-trends-2026/) / [Euromonitor](https://www.businesswire.com/news/home/20251105486775/en/Euromonitor-International-unveils-Global-Consumer-Trends-for-2026) | annual consumer-behaviour reports; slower and broader than the rest | annual, paid |
+
+Signals these produced for 2026, and what came of each, are in the table below.
 
 ## The gate
 
@@ -39,6 +59,43 @@ theme — so a "no" from a thin vocabulary means nothing. Deepen, then judge.
 Second-order: depth also buys BOARDS, not just density. Tailgate at 148 words
 offered 8 usable boards; at 207 words it offered 20, and gained its first
 on-theme prize word (STRIPE).
+
+## Expanded sweep — sourced candidates, measured at comparable depth
+
+Drafted at ~75–90 usable words each so the comparison is between THEMES rather
+than between how long I spent on each. `tailgate` is included as a control: it
+is the pack being authored, and it appears here at its ~86-word draft and in
+the status table at its finished 207-word depth.
+
+| theme | density | shelf | trend signal it came from |
+|---|---|---|---|
+| bookclub | **148** | Elsewhere | community-based hobbies, social reading (Glimpse) |
+| gamenight | **122** | The Block | analog/social hobbies as counterbalance to digital saturation (Glimpse) |
+| pickleball | **100** | Elsewhere | pickleball boom (Glimpse, Accio) |
+| nailsalon | **93** | The Block | adjacent to the shipped Beauty Supply pack |
+| *tailgate (control @86w)* | *75* | *The Table* | *seasonal — NFL kickoff* |
+| camping | **60** | The Long Way | camping renaissance, 58M US households (Glimpse/Accio) |
+| dinnerparty | **40** | The Table | Pinterest Predicts 2026 "hostess era" — dinner parties, tablescaping |
+| farmmarket | **35** | The Table | Pinterest 2026 food + fermentation trend |
+| craft | **31** | Elsewhere | knitting/crochet/embroidery boom (Rest Less, Glimpse) |
+| potluck | **29** | The Table | community-based hobbies (Glimpse) |
+| karaoke | **24** | The Soundtrack | social/community hobby resurgence |
+
+**Every one of these clears the gate of 12 at this depth**, which is the real
+headline: viability has stopped being the constraint. The control row is how
+to read the numbers — tailgate scores 75 here and **453** at full depth, so
+expect roughly a 6x lift on anything deepened to ~140 words. A theme at 24 is
+not marginal; it is under-drafted.
+
+What actually decides the order now is shelf fit, the cultural gate, and
+authoring cost — not whether the theme works.
+
+Signals deliberately NOT pursued, and why: the poet aesthetic, field jackets,
+Scotland highlands and ethereal places (all Pinterest 2026) have no short
+concrete vocabulary — a theme needs 3–6 letter common nouns, and an aesthetic
+mood does not have them. Sensory/fidget products and golf simulators, same
+problem. Cabbage and fermentation fold into `farmmarket` rather than carrying
+a pack alone.
 
 ## Status
 
@@ -82,6 +139,22 @@ carry no such gate, which is why the first new pack is a general one.
 1. **tailgate** — authoring now. General, fits The Table, timed to the season.
 2. **stoop** — vocabulary already shipped and scores 159 with zero boards. It
    is a theme sitting in `themes.json` doing nothing.
-3. **gym** — densest measured candidate; needs a shelf answer first.
-4. Deepen the untested drafts to ~140 words and re-measure as a batch.
-5. Cultural queue (fishfry, gogo, reunion, salon) behind the bench.
+3. **gamenight** (The Block) and **dinnerparty** (The Table) — both sourced,
+   both on shelves that exist, neither cultural. The strongest next two.
+4. **camping** (The Long Way) — that shelf currently holds two packs and has
+   room; strong outdoor signal.
+5. **gym** — densest candidate measured, still blocked on having no shelf.
+6. Cultural queue (fishfry, gogo, reunion, salon) behind the bench.
+
+`bookclub` and `pickleball` score highest in the sweep and are both parked in
+Elsewhere. Worth a ruling: they are good packs with no home, and the shelf
+ceiling is the thing standing between the catalogue and its two densest
+sourced candidates.
+
+## Keeping this current
+
+Re-check the three live sources quarterly, and Year in Search each December.
+When a signal looks promising, the order is always: draft ~140 words, run
+`node scripts/viability.mjs`, and only then decide. Never the other way round —
+that is what cost Laundry Day and Caribbean, both of which were authored,
+shipped and then cut as unfixable.
