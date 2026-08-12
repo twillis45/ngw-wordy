@@ -253,13 +253,14 @@ export function scoreWord(word, wheelSize = WHEEL) {
   return base + (word.length === wheelSize ? wheelSize : 0);
 }
 
-// Candidate bases: 6-letter words with 6 distinct letters, no more than
-// two of {j,q,x,z,v,w,k} so the wheel stays solvable-feeling.
+// Candidate bases: 6-letter words with at most ONE doubled letter, no more
+// than two of {j,q,x,z,v,w,k} so the wheel stays solvable-feeling. See
+// vet-bases.mjs for why six-distinct was too strict.
 const RARE = new Set(['j', 'q', 'x', 'z', 'v', 'w', 'k']);
 const bases = [];
 for (const [sig, group] of bySignature) {
   if (sig.length !== WHEEL) continue;
-  if (new Set(sig).size !== WHEEL) continue;
+  if (new Set(sig).size < WHEEL - 1) continue;
   let rare = 0;
   for (const ch of sig) if (RARE.has(ch)) rare += 1;
   if (rare > 1) continue;

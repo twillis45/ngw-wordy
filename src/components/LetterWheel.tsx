@@ -703,9 +703,21 @@ export default function LetterWheel({
             // tile is still keyboard-reachable and reads as available to a
             // screen reader.
             disabled={disabled || locked}
-            aria-label={`Letter ${letter.toUpperCase()}${
-              locked ? ', locked' : ''
-            }${picked ? `, selected position ${order + 1}` : ''}`}
+            /*
+             * POSITION leads once a base may double a letter.
+             *
+             * "Letter T" spoken twice on one wheel is the same defect already
+             * fixed for the row chips, where three of them announced as
+             * "3-letter word" and a player working by voice could not tell
+             * which row they were on. With COTTON or CHURCH on the dial there
+             * are two identical tiles, and they are NOT interchangeable — in
+             * escalating mode one can be unlocked while the other is not.
+             */
+            aria-label={`Letter ${letter.toUpperCase()}, tile ${
+              i + 1
+            } of ${letters.length}${locked ? ', locked' : ''}${
+              picked ? `, selected position ${order + 1}` : ''
+            }`}
             aria-pressed={picked}
             onClick={() => {
               if (locked) return;

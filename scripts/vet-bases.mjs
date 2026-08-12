@@ -82,11 +82,17 @@ const claimedSets = new Set(existing.map(letterKey));
 
 /*
  * Bucket the wordlist by letter set. Testing every word against every candidate
- * base is 172k x 6k; testing sorted-letter-subsets is not. A word is spellable
- * from a base of six DISTINCT letters only when it repeats no letter itself,
- * which collapses the check to a subset test on a character set.
+ * base is 172k x 6k; testing sorted-letter-subsets is not.
+ *
+ * That collapse held ONLY while every base was six distinct letters: a word
+ * repeating a letter could never be spelled, so dropping such words up front
+ * was free. With one doubled letter allowed in a base (COTTON, CHURCH, POTATO,
+ * COLLAR) it stops being free — it would silently reject LETTER as a row of
+ * LETTER. The multiset key below is correct either way, because answersFor
+ * enumerates the base's letters WITH their duplicates, so a doubled letter
+ * simply produces subsets that contain it twice.
  */
-const spellable = words.filter((w) => new Set(w).size === w.length);
+const spellable = words;
 const byKey = new Map();
 for (const w of spellable) {
   const key = [...w].sort().join('');
@@ -107,13 +113,30 @@ function answersFor(base) {
     const hit = byKey.get(sub.join(''));
     if (hit) out.push(...hit);
   }
-  return out;
+  // Deduped: with a doubled letter, two different index combinations produce
+  // the SAME multiset, so a word would otherwise be counted twice and inflate
+  // the answer count that gates the 24-110 band.
+  return [...new Set(out)];
 }
 
 const pool = [];
 for (const base of words) {
   if (base.length !== 6) continue;
-  if (new Set(base).size !== 6) continue;
+  /*
+   * At most ONE doubled letter. Six distinct letters or five-plus-a-pair.
+   *
+   * The old rule demanded six distinct, which threw away 103 of 215 six-letter
+   * theme words across the catalogue — and disproportionately the iconic ones,
+   * because English doubles letters exactly in the concrete nouns this game is
+   * made of: CHURCH, POTATO, COFFEE, COLLAR, PARADE, TOMATO. That is the root
+   * cause of the measurement that 0 of 126 prize words were their own theme
+   * word.
+   *
+   * Stopping at one pair is deliberate. Two pairs leaves four distinct letters
+   * on a six-tile wheel, which collapses the answer space and reads as a
+   * cheaper puzzle.
+   */
+  if (new Set(base).size < 5) continue;
   if (!popular.has(base)) continue;
   if (claimed.has(base)) continue;
   if (claimedSets.has(letterKey(base))) continue;
