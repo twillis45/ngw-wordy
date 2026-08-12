@@ -148,6 +148,25 @@ export function progressKey(puzzleId: string | number, cycle = 0): string {
 }
 
 /**
+ * The stable half of a progress key: the BASE WORD, never the numeric id.
+ *
+ * `puzzle.id` is `puzzles.length + 1` at generation time, so it is an array
+ * POSITION wearing an identifier's name. Cutting two packs renumbered every
+ * board generated after them, and the saved progress — keyed by id — stayed
+ * pointing at whatever board inherited the number. Observed in a real save:
+ * key `63#206` held CRAFTY's seventeen words while id 63 had become INSTEP.
+ * `clearedIds` is keyed the same way, and the daily SKIPS cleared boards, so
+ * a shift can also hide boards a player never finished.
+ *
+ * The base word is unique across the catalogue — a base is six letters on a
+ * dial, and the suite already asserts no two boards share a letter-set — so
+ * it identifies a board by what the board IS rather than where it landed.
+ */
+export function puzzleKeyFor(puzzle: { base: string }, cycle = 0): string {
+  return progressKey(puzzle.base, cycle);
+}
+
+/**
  * How many puzzles the daily actually rotates through.
  *
  * The authored catalogue, when there is one. This has to be a single exported

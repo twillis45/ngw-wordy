@@ -170,10 +170,140 @@ export function configureMigration(fn: (key: string) => string | null) {
   dayToPuzzleId = fn;
 }
 
+export type BoardRef = { id: string | number; base: string; letters: string[] };
+
+/**
+ * Re-key id-keyed progress onto base words. NOTHING IS EVER DELETED.
+ *
+ * Old keys are `<id>#<cycle>` where id is an array POSITION, so any change to
+ * the catalogue slides saved progress onto whatever board inherited the
+ * number. Two passes, both of which have to be confident before they move
+ * anything:
+ *
+ *   1. The board that id points at now — accepted only if it can spell every
+ *      word stored under the key.
+ *   2. Failing that, the board the words THEMSELVES name: a saved list nearly
+ *      always contains the base it was played on, so the content identifies
+ *      the board even when the number no longer does. This is what recovers a
+ *      save from before a catalogue edit.
+ *
+ * If neither is confident the key is left exactly as it is. An orphaned
+ * `<id>#<cycle>` key is inert — nothing reads it, because live keys are base
+ * words now — so the cost of keeping it is a few bytes, and the cost of the
+ * alternative is somebody's game.
+ *
+ * That balance is not theoretical. An earlier draft deleted whatever it could
+ * not resolve, and because the resolver is configured during render while
+ * read() can run before it, one load resolved every id to null and emptied a
+ * real save — every word, every reveal, every cleared board. Unknown is not
+ * permission to delete.
+ *
+ * Entries already keyed by base pass through untouched, so this is idempotent
+ * and safe to run on every read.
+ */
+export function migrateToBaseKeys(
+  p: Progress,
+  boardsFor: (id: string) => BoardRef | null,
+  allBoards: () => BoardRef[] = () => []
+): { next: Progress; moved: number; recovered: number } {
+  const canSpell = (word: string, letters: string[]) => {
+    const pool = [...letters];
+    for (const ch of word) {
+      const i = pool.indexOf(ch);
+      if (i === -1) return false;
+      pool.splice(i, 1);
+    }
+    return true;
+  };
+
+  const fits = (words: string[], b: BoardRef) =>
+    words.every((w) => canSpell(w, b.letters));
+
+  const remap = new Map<string, string>();
+  let recovered = 0;
+
+  for (const key of Object.keys(p.words)) {
+    const [head, cycle] = key.split('#');
+    // Already a base word: nothing numeric to slide.
+    if (!/^\d+$/.test(head)) continue;
+    const words = p.words[key] ?? [];
+    const rename = (b: BoardRef) =>
+      remap.set(key, cycle ? `${b.base}#${cycle}` : b.base);
+
+    // 1. The board this number points at now, if it can spell the save.
+    const byId = boardsFor(head);
+    if (byId && fits(words, byId)) {
+      rename(byId);
+      continue;
+    }
+
+    /*
+     * 2. Ask the WORDS which board they came from.
+     *
+     * A saved list nearly always contains the base it was played on, so the
+     * content identifies the board even after the numbering moved under it.
+     * Requiring the named base AND full spellability makes a false match
+     * essentially impossible — the suite already asserts no two boards share
+     * a letter-set.
+     */
+    const match = allBoards().find((b) => words.includes(b.base) && fits(words, b));
+    if (match) {
+      rename(match);
+      recovered += 1;
+      continue;
+    }
+
+    // 3. Not confident. Leave the key exactly as it is — it is inert, and
+    //    guessing here is how progress gets destroyed.
+  }
+
+  if (remap.size === 0) return { next: p, moved: 0, recovered };
+
+  const move = <T,>(src: Record<string, T>): Record<string, T> => {
+    const out: Record<string, T> = {};
+    for (const [k, v] of Object.entries(src)) out[remap.get(k) ?? k] = v;
+    return out;
+  };
+
+  return {
+    moved: remap.size,
+    recovered,
+    next: {
+      ...p,
+      words: move(p.words),
+      reveals: move(p.reveals),
+      clearedIds: p.clearedIds.map((k) => remap.get(k) ?? k),
+    },
+  };
+}
+
+/** Set by the app before first read, so ids can be resolved to boards. */
+let idToBoard: (id: string) => BoardRef | null = () => null;
+let everyBoard: () => BoardRef[] = () => [];
+export function configureBaseKeyMigration(
+  fn: (id: string) => BoardRef | null,
+  all: () => BoardRef[]
+) {
+  idToBoard = fn;
+  everyBoard = all;
+}
+
 function read(): Progress {
   try {
     const raw = window.localStorage.getItem(KEY);
-    if (raw) return { ...EMPTY, ...(JSON.parse(raw) as Partial<Progress>) };
+    if (raw) {
+      const stored = { ...EMPTY, ...(JSON.parse(raw) as Partial<Progress>) };
+      /*
+       * Runs on every read and is a no-op once converted — the check is
+       * "does this key start with digits", and a base word never does. It has
+       * to be here rather than behind a version bump because the damage is
+       * silent: an id-keyed save looks perfectly valid, it is just pointing
+       * at the wrong board.
+       */
+      const { next, moved } = migrateToBaseKeys(stored, idToBoard, everyBoard);
+      if (moved) write(next);
+      return next;
+    }
 
     const legacy = window.localStorage.getItem(LEGACY_KEY);
     if (legacy) {

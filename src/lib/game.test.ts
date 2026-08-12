@@ -28,7 +28,13 @@ import {
   progressKey,
   gridMaxScore,
 } from './game';
-import { EMPTY, migrateV1, touchStreak, type Progress } from './storage';
+import {
+  EMPTY,
+  migrateToBaseKeys,
+  migrateV1,
+  touchStreak,
+  type Progress,
+} from './storage';
 import {
   bonusToNextToken,
   COST_LETTER,
@@ -534,6 +540,105 @@ describe('revealWord', () => {
       ok: false,
       reason: 'already-solved',
     });
+  });
+});
+
+describe('migrateToBaseKeys', () => {
+  /*
+   * puzzle.id is `puzzles.length + 1` — an array POSITION wearing an
+   * identifier's name. Cutting two packs renumbered every board after them
+   * and slid saved progress onto whoever inherited the number. This is the
+   * real save it was found in: key 63 held CRAFTY's words, and id 63 had
+   * become INSTEP.
+   */
+  const BOARDS = [
+    { id: 36, base: 'nicked', letters: [...'cdeikn'] },
+    { id: 63, base: 'instep', letters: [...'einpst'] },
+    { id: 90, base: 'crafty', letters: [...'acfrty'] },
+  ];
+  const board = (id: string) =>
+    BOARDS.find((b) => String(b.id) === id) ?? null;
+  const all = () => BOARDS;
+
+  const save = (words: Record<string, string[]>): Progress => ({
+    ...EMPTY,
+    words,
+    reveals: Object.fromEntries(
+      Object.keys(words).map((k) => [k, { letters: {}, words: [] }])
+    ),
+    clearedIds: Object.keys(words),
+  });
+
+  it('re-keys an entry whose words still fit the board', () => {
+    const { next, moved } = migrateToBaseKeys(
+      save({ '36#210': ['nice', 'deck', 'end'] }),
+      board,
+      all
+    );
+    expect(moved).toBe(1);
+    expect(next.words['nicked#210']).toEqual(['nice', 'deck', 'end']);
+    expect(next.words['36#210']).toBeUndefined();
+    // The lap survives, and reveals and clearedIds move with it.
+    expect(next.reveals['nicked#210']).toBeDefined();
+    expect(next.clearedIds).toEqual(['nicked#210']);
+  });
+
+  it('RECOVERS a slid entry by asking the words which board they came from', () => {
+    /*
+     * The observed corruption: key 63 held CRAFTY's words after id 63 became
+     * INSTEP. The number is wrong and the content is not, so the content
+     * wins — this is a save from before a catalogue edit, restored rather
+     * than thrown away.
+     */
+    const { next, recovered } = migrateToBaseKeys(
+      save({ '63#206': ['crafty', 'tray', 'arc'] }),
+      board,
+      all
+    );
+    expect(recovered).toBe(1);
+    expect(next.words['crafty#206']).toEqual(['crafty', 'tray', 'arc']);
+    expect(next.clearedIds).toEqual(['crafty#206']);
+  });
+
+  it('leaves a key alone when neither the id nor the words identify a board', () => {
+    const { next, moved, recovered } = migrateToBaseKeys(
+      save({ '999#210': ['zzz'] }),
+      board,
+      all
+    );
+    expect(moved).toBe(0);
+    expect(recovered).toBe(0);
+    expect(next.words['999#210']).toEqual(['zzz']);
+    expect(next.clearedIds).toEqual(['999#210']);
+  });
+
+  it('NEVER empties a save because the resolver is not ready yet', () => {
+    /*
+     * The failure this pins, which I caused on a live save: the resolver is
+     * configured during render while read() can run before it, so every id
+     * resolved to null — and an earlier draft deleted what it could not
+     * resolve. Every word, reveal and cleared board went at once. Unknown is
+     * not permission to delete.
+     */
+    const full = save({ '36#210': ['nice'], '63#206': ['crafty'] });
+    const { next } = migrateToBaseKeys(full, () => null, () => []);
+    expect(next.words).toEqual(full.words);
+    expect(next.reveals).toEqual(full.reveals);
+    expect(next.clearedIds).toEqual(full.clearedIds);
+  });
+
+  it('is idempotent — base-keyed progress passes straight through', () => {
+    const already = save({ 'nicked#210': ['nice'] });
+    const once = migrateToBaseKeys(already, board, all);
+    expect(once.moved).toBe(0);
+    expect(once.next).toBe(already); // untouched, not merely equal
+    const twice = migrateToBaseKeys(once.next, board, all);
+    expect(twice.next.words).toEqual({ 'nicked#210': ['nice'] });
+  });
+
+  it('keeps a cycle-less key working', () => {
+    const { next } = migrateToBaseKeys(save({ "36": ["nice"] }), board, all);
+    expect(next.words['nicked']).toEqual(['nice']);
   });
 });
 

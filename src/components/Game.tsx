@@ -102,7 +102,7 @@ import {
   dailyIndex,
   dailyCycle,
   dailyPoolSize,
-  progressKey,
+  puzzleKeyFor,
   puzzleForPlayer,
   themeShelves,
   type ShelfId,
@@ -123,6 +123,7 @@ import {
   markBackupOffered,
   shouldOfferBackup,
   addWord,
+  configureBaseKeyMigration,
   configureMigration,
   getServerSnapshot,
   getSnapshot,
@@ -177,6 +178,20 @@ export default function Game({ data }: { data: PuzzleFile }) {
   /* A score from a challenge link. Held back until the receiver has submitted
      their own, because two seats quit against a visible target. */
   const [beatTarget, setBeatTarget] = useState<number | null>(null);
+
+  /*
+   * Lets the id -> base re-key resolve which board a saved number meant.
+   * Reads the CURRENT file, which is the honest best available answer: if the
+   * words do not fit the board the id now points at, the migration drops the
+   * entry rather than keeping a grid the wheel cannot spell.
+   */
+  configureBaseKeyMigration(
+    (id) => {
+      const p = data.puzzles.find((x) => String(x.id) === id);
+      return p ? { id: p.id, base: p.base, letters: p.letters } : null;
+    },
+    () => data.puzzles.map((p) => ({ id: p.id, base: p.base, letters: p.letters }))
+  );
 
   // Lets the v1 -> v2 migration re-key old day-based words onto puzzles.
   configureMigration((dk) => {
@@ -236,7 +251,11 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * the wider counter caught up.
    */
   const cycle = dailyCycle(today, dailyPoolSize(data));
-  const puzzleId = progressKey(puzzle.id, cycle);
+  /*
+   * Keyed on the BASE WORD, not puzzle.id — see puzzleKeyFor. The id is an
+   * array position, and cutting two packs renumbered every board after them.
+   */
+  const puzzleId = puzzleKeyFor(puzzle, cycle);
   /*
    * A CHALLENGED board is never the daily, whatever offset it resolves to.
    *
