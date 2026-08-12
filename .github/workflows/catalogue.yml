@@ -40,20 +40,31 @@ jobs:
 
       - run: npm ci
 
-      # Into the run summary rather than only the log, so the state of the
-      # catalogue is one click from the commit instead of buried in output
-      # nobody opens.
+      # Into the run summary, so the state of the catalogue is one click from
+      # the commit instead of buried in output nobody opens — but through tee,
+      # so it lands in the LOG as well.
+      #
+      # The first version redirected the whole block to $GITHUB_STEP_SUMMARY
+      # and nothing else. That step passes whether the radar printed the
+      # catalogue or printed nothing at all, and the log cannot tell you which:
+      # I went to verify the first green run and found there was nothing to
+      # read. A report you cannot see failing is not a report.
       - name: Catalogue radar
         run: |
+          OUT="$(node scripts/pack-radar.mjs)"
+          if [ -z "$OUT" ]; then
+            echo "radar produced no output — that is a bug in scripts/pack-radar.mjs" >&2
+            exit 1
+          fi
           {
             echo '## Catalogue radar'
             echo
-            echo 'Reports only — this step never fails. See `docs/PACK_PIPELINE.md`.'
+            echo 'Reports only — this step never fails on catalogue gaps. See `docs/PACK_PIPELINE.md`.'
             echo
             echo '```'
-            node scripts/pack-radar.mjs
+            echo "$OUT"
             echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
 
   # Only on the cron. A quarterly nudge to do the half a machine cannot: read
   # the trend sources and exercise judgement about what belongs in this game.
