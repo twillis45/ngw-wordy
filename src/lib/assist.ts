@@ -11,7 +11,16 @@
  */
 
 export type StallInput = {
-  /** ms since the last word was banked. */
+  /**
+   * ms since the player last DID anything — tapped a letter, undid one,
+   * shuffled, submitted. Not "since the last word was banked".
+   *
+   * This doc used to say the latter, and the caller dutifully passed it, so a
+   * player spelling and trying and shuffling for forty-five seconds on a hard
+   * board was declared stuck and handed a modal over the board they were
+   * reading. Working on a puzzle is the opposite of stalling on it. The
+   * fruitless-effort case has its own signal below.
+   */
   idleMs: number;
   /** Rejected submissions since the last banked word. */
   missesSinceProgress: number;

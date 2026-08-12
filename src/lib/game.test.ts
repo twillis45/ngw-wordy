@@ -874,6 +874,21 @@ describe('isStalled', () => {
     expect(isStalled({ ...base, missesSinceProgress: STALL_MISSES })).toBe(true);
   });
 
+  it('leaves a busy player alone, however long the board has resisted them', () => {
+    /*
+     * The bug this pins: idleMs was fed "time since the last banked word", so
+     * a player spelling, undoing and shuffling their way through a hard board
+     * got "Stuck? I'll start the 3-letter one" over the board they were
+     * reading, mid-word. Activity restarts the idle clock now, so the only
+     * routes to an offer are real silence or real failure.
+     */
+    const busy = { ...base, idleMs: 2_000, missesSinceProgress: 3 };
+    expect(isStalled(busy)).toBe(false);
+    // And the fruitless-effort route is untouched by that: one more miss,
+    // still no silence, still stalled.
+    expect(isStalled({ ...busy, missesSinceProgress: STALL_MISSES })).toBe(true);
+  });
+
   it('never fires once the grid is done', () => {
     expect(isStalled({ ...base, idleMs: 99_000, rowsLeft: 0 })).toBe(false);
   });

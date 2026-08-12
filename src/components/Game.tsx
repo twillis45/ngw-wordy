@@ -310,7 +310,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const misses = missState.id === puzzleId ? missState.n : 0;
   const [offeredFor, setOfferedFor] = useState<string | null>(null);
   const [assistOpen, setAssistOpen] = useState(false);
-  const lastProgress = useRef(0);
+  const lastActivity = useRef(0);
   const clockFor = useRef('');
   const [defs, setDefs] = useState<Definitions | null>(null);
   const [showDef, setShowDef] = useState<Resolved | null>(null);
@@ -641,6 +641,26 @@ export default function Game({ data }: { data: PuzzleFile }) {
     return () => clearTimeout(t);
   }, [toast]);
 
+  /**
+   * The player did something. Restarts the IDLE clock only.
+   *
+   * The clock measured time since the last BANKED WORD, which is a different
+   * quantity from idleness and a much easier one to trip. Spelling, undoing,
+   * shuffling and submitting all left it running, so forty-five seconds of
+   * genuine work on a hard board ended in "Stuck? I'll start the 3-letter
+   * one" — offered to somebody in the middle of a word, over a modal that
+   * covers the board they were reading. Reported from live play, which is the
+   * only way it shows up: every clock in the tests is driven by hand.
+   *
+   * Deliberately does NOT clear `misses`. A stall has two shapes and this is
+   * only the silent one; a run of wrong guesses is still a stall, and that is
+   * exactly the case where the player IS touching the board. Resetting both
+   * here would make the offer unreachable for the player who most needs it.
+   */
+  const touchIdle = useCallback(() => {
+    lastActivity.current = Date.now();
+  }, []);
+
   const pick = useCallback(
     (i: number) => {
       // Feedback is computed OUTSIDE the updater: a state updater must be
@@ -648,17 +668,19 @@ export default function Game({ data }: { data: PuzzleFile }) {
       // concurrent re-entry), which double-fired the haptic and clicked the
       // hidden iOS switch element twice.
       if (!selRef.current.includes(i)) feedback.tap();
+      touchIdle();
       setSel((prev) => (prev.includes(i) ? prev : [...prev, i]));
     },
-    [setSel]
+    [setSel, touchIdle]
   );
 
   /** Backspace, for the tap path — tapping the last letter takes it back. */
   const undoLetter = useCallback(() => {
     if (selRef.current.length === 0) return;
     feedback.tap();
+    touchIdle();
     setSel((prev) => prev.slice(0, -1));
-  }, [setSel]);
+  }, [setSel, touchIdle]);
 
   /**
    * Fires exactly once, from either path that can finish a grid: submitting the
@@ -702,6 +724,9 @@ export default function Game({ data }: { data: PuzzleFile }) {
     const flight = measureFlight(word, letters);
     setSel([]);
     if (!word) return;
+    // Submitting is not idling, whatever the verdict turns out to be. A wrong
+    // guess still counts against `misses`, which is the other stall shape.
+    touchIdle();
 
     // Read the store directly rather than the render-time snapshot: two
     // submissions inside one React batch must not both bank the same word.
@@ -749,7 +774,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
            */
           finishIfDone(380);
         };
-        lastProgress.current = Date.now();
+        lastActivity.current = Date.now();
         setMissState({ id: puzzleId, n: 0 });
         if (flightMs > 0) setTimeout(land, flightMs * 0.62);
         else land();
@@ -795,7 +820,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         break;
       }
       case 'bonus':
-        lastProgress.current = Date.now();
+        lastActivity.current = Date.now();
         setMissState({ id: puzzleId, n: 0 });
         feedback.bonus();
         addWord(puzzleId, result.word, true);
@@ -844,6 +869,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
     announceOnly,
     setSel,
     finishIfDone,
+    touchIdle,
   ]);
 
   const cycleTheme = useCallback(() => {
@@ -953,17 +979,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
        * counted as being stuck either. Being stuck means staring at the board.
        */
       if (dialogOpen()) {
-        lastProgress.current = Date.now();
+        lastActivity.current = Date.now();
         return;
       }
       // Start (or restart) the clock here rather than in render.
-      if (clockFor.current !== puzzleId || lastProgress.current === 0) {
+      if (clockFor.current !== puzzleId || lastActivity.current === 0) {
         clockFor.current = puzzleId;
-        lastProgress.current = Date.now();
+        lastActivity.current = Date.now();
         return;
       }
       const stalled = isStalled({
-        idleMs: Date.now() - lastProgress.current,
+        idleMs: Date.now() - lastActivity.current,
         missesSinceProgress: misses,
         rowsLeft: unsolvedRows.length,
         tokens,
@@ -999,7 +1025,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
     if (!r.ok) return;
     spendHint(puzzleId, r.reveal, plan.cost);
     feedback.spend();
-    lastProgress.current = Date.now();
+    lastActivity.current = Date.now();
     setMissState({ id: puzzleId, n: 0 });
     say(
       plan.cost === 0 ? 'Here — on the house' : `Letter revealed · −${plan.cost}`,
@@ -1067,6 +1093,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       }
       if (e.key === ' ') {
         e.preventDefault();
+        touchIdle();
         setLetters((prev) => shuffle(prev));
         setSel([]);
         return;
@@ -1086,7 +1113,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [commit, letters, setSel, unlockedIdx, setLetters]);
+  }, [commit, letters, setSel, unlockedIdx, setLetters, touchIdle]);
 
   /**
    * Hints are targeted: the player taps the row they're stuck on, because
@@ -1667,6 +1694,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       <div className="mt-4 flex items-center justify-center gap-2 md:mt-5 md:gap-3 short:mt-2">
         <ControlButton
           onClick={() => {
+            touchIdle();
             setLetters((prev) => shuffle(prev));
             setSel([]);
           }}
