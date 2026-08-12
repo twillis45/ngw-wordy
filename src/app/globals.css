@@ -1264,11 +1264,19 @@ body {
      * is marked by size and weight rather than by colour, per the note in
      * WordTray.
      *
-     * Settled on #e08c38 — the SAME value the dark theme uses, which was the
-     * one nobody had a complaint about. Three passes of tuning a separate
-     * light value (#8a4409, #c85f0c, #e0761a, #f2922b) all missed, and the
-     * simplest reading is that they missed because a second value was never
-     * wanted: one accent, both themes.
+     * FIVE passes of hue-tuning missed because the problem was never the hue.
+     *
+     * In DARK the accent is LIGHTER than what it sits on, so it reads bright.
+     * In LIGHT the same orange is DARKER than what it sits on, so it reads
+     * dark — same colour, opposite valence. A thin orange outline on a pale
+     * chip is the darkest thing in the chip, and no orange fixes that while it
+     * is only an outline; lightening it just makes it vanish instead.
+     *
+     * So the accent became a FILL as well as a boundary (bg-success/20 on the
+     * solved row, see WordTray). The orange is now the bright element in
+     * light, which is what it already was in dark, and the two themes finally
+     * read the same way. The value can then be a real, luminous orange rather
+     * than whatever survived a contrast fight it was always going to lose.
      *
      * It measures 2.05 on the chip and 2.63 on white, under the 3.0 of WCAG
      * 1.4.11, so the redundant-encoding argument below is load-bearing rather
@@ -1286,7 +1294,7 @@ body {
      * The three TEXT sites are unaffected and stay fully compliant; they take
      * --color-success-ink below, which is held past 4.5.
      */
-    --color-success: #e08c38;
+    --color-success: #ef8f2a;
     /* Text value: 6.18 on white, 4.99 on surface-2, both past 4.5. */
     --color-success-ink: #9c4a06;
   }
@@ -1294,6 +1302,6 @@ body {
 
 :root[data-accent='matte'][data-theme='light'] {
   /* Mirrors the media-query block above — see the reasoning there. */
-  --color-success: #e08c38;
+  --color-success: #ef8f2a;
   --color-success-ink: #9c4a06;
 }

@@ -82,8 +82,8 @@
   },
   "roadtrip": {
     "_note": "GENERAL PACK. The clue gate in docs/AUTHORING.md is binding here: every clue must name a position, a time, or a habit — never a category. A general theme is easier to write badly and the first draft is always generic, so budget re-authoring rather than authoring. Ranked first of the general candidates as the only one with an emotional register of its own.",
-    "named": "map atlas exit mile marker rest stop gas pump snack cooler tape mix radio diner motel toll lane truck sign sunrise trunk shoulder curve bend ridge crest verge tar tyre wheel horn vent visor mirror cup lid straw crumb token pass bridge rent",
-    "said": "drive stop fill wait ride merge pass turn park nap swap seat share point read sing count argue sleep arrive load haul honk brake coast climb slow speed idle roll wind lower raise steer check split settle wake spin",
+    "named": "map atlas exit mile marker rest stop gas pump snack cooler tape mix radio diner motel toll lane truck sign sunrise trunk shoulder curve bend ridge crest verge tar tyre wheel horn vent visor mirror cup lid straw crumb token pass bridge rent dive pane",
+    "said": "drive stop fill wait ride merge pass turn park nap swap seat share point read sing count argue sleep arrive load haul honk brake coast climb slow speed idle roll wind lower raise steer check split settle wake spin trap sugar",
     "voice": "car belt window sun heat light road night hour dark rain coffee cup"
   },
   "garden": {
@@ -94,8 +94,8 @@
   },
   "laundry": {
     "_note": "GENERAL PACK. The clue gate in docs/AUTHORING.md is binding here: every clue must name a position, a time, or a habit — never a category. A general theme is easier to write badly and the first draft is always generic, so budget re-authoring rather than authoring. The board LIKED this one rather than merely accepting it. Wing 7 found that across 59 clues no woman had a role outside the kitchen or the receiving end of a joke, and Laundry Day is a general theme that is also that fix: the quiet, repeated, unwatched domestic hour, written with interiority. Put beside The Cookout, the cookout reads louder.",
-    "named": "washer dryer basket hamper soap bleach sheet towel sock lint quarter coin cart rack line peg iron stain drum lid vent dial timer chute pin clip cuff hem seam shirt pant robe coat pole salt snap",
-    "said": "wash dry fold sort load pour spin rinse hang drape shrink press steam match pair lose stack carry haul wait time tumble check turn empty refill mend patch pin clip smooth shake toss slow",
+    "named": "washer dryer basket hamper soap bleach sheet towel sock lint quarter coin cart rack line peg iron stain drum lid vent dial timer chute pin clip cuff hem seam shirt pant robe coat pole salt snap cost",
+    "said": "wash dry fold sort load pour spin rinse hang drape shrink press steam match pair lose stack carry haul wait time tumble check turn empty refill mend patch pin clip smooth shake toss slow idle melts pain",
     "voice": "room door light change bag heat noise hour chair phone floor window"
   },
   "stoop": {
