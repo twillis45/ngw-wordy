@@ -15,6 +15,7 @@
  * Nothing is committed. Run `git diff data/themes.json` before believing it.
  */
 import fs from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -22,6 +23,33 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const at = (p) => path.join(ROOT, p);
 
 const packPath = process.argv[2] ?? 'data/packs/nineties.json';
+
+/*
+ * check-pack is a GATE, not a suggestion.
+ *
+ * It was advisory, and that is how a board with an unspellable row reached the
+ * catalogue: check-pack said `first: not spellable from births`, this script
+ * merged the pack anyway, and only a re-run of the checker afterwards caught
+ * it. Nothing else would have — `npm test` passed on the broken catalogue,
+ * because the ratchet measures on-theme RATE and an unsolvable row is still an
+ * on-theme row.
+ *
+ * Two commands where one had to be remembered in the right order is not a
+ * process; it is a trap that fires on whoever is tired. Pass --force only to
+ * inspect a diff you have no intention of committing.
+ */
+if (!process.argv.includes('--force')) {
+  const { status } = spawnSync(
+    process.execPath,
+    [at('scripts/check-pack.mjs'), packPath],
+    { stdio: 'inherit' }
+  );
+  if (status !== 0) {
+    console.error(`\nrefusing to merge ${packPath} — fix the problems above.`);
+    process.exit(1);
+  }
+}
+
 const pack = JSON.parse(fs.readFileSync(at(packPath), 'utf8'));
 const themes = JSON.parse(fs.readFileSync(at('data/themes.json'), 'utf8'));
 

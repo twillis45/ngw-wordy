@@ -1657,186 +1657,6 @@
    "scene": "The slaw, and the recipe nobody will hand over"
   },
   {
-   "base": "breast",
-   "theme": "cookout",
-   "clues": {
-    "breast": "Goes on last because it dries out first, whatever your uncle says",
-    "brats": "The ones that get eaten standing up before the plates come out",
-    "baste": "Every turn, with the sauce that has been on the side burner since noon",
-    "sear": "Hot side first, then moved — the whole method in four words",
-    "rest": "Off the heat, under foil, and hands off",
-    "tea": "The jug again, and somebody has already gone for more ice"
-   },
-   "prefer": [
-    "brats",
-    "baste",
-    "sear",
-    "rest",
-    "tea"
-   ],
-   "scene": "What goes on the grate, and in what order"
-  },
-  {
-   "base": "phased",
-   "theme": "cookout",
-   "clues": {
-    "phased": "What nobody at this table gets, no matter what you lead with",
-    "spade": "The suit that decides it, and the reason two grown people are standing up",
-    "shade": "Both the tree and the conversation, and the tree is the lesser one",
-    "heap": "How a plate is built when your auntie builds it for you",
-    "head": "What the argument is about by round three, and it is not the cards",
-    "ash": "Flicked off the end of a cigarette nobody admits to having"
-   },
-   "prefer": [
-    "spade",
-    "shade",
-    "heap",
-    "head",
-    "ash"
-   ],
-   "scene": "The card table under the tree"
-  },
-  {
-   "base": "turban",
-   "theme": "cookout",
-   "clues": {
-    "turban": "The wrap on her head that says she has been up since six",
-    "aunt": "Holds the tongs. Has held the tongs since 1994. Will hold the tongs",
-    "rub": "Went on last night, which is the part that makes it hers",
-    "turn": "Once. Anyone who does it twice is asked to sit down",
-    "burnt": "The edge some people ask for on purpose, and they are correct",
-    "bran": "In the muffins nobody came for, brought by the cousin who tries"
-   },
-   "prefer": [
-    "aunt",
-    "rub",
-    "turn",
-    "burnt",
-    "bran"
-   ],
-   "scene": "Who runs the grill, and what happens if you touch it"
-  },
-  {
-   "base": "cinema",
-   "theme": "cookout",
-   "clues": {
-    "cinema": "What the yard becomes once the sun drops and the speaker gets louder",
-    "mac": "Baked, with the crust, and there is exactly one person allowed to bring it",
-    "ice": "Ran out at four. Somebody is already in the car",
-    "can": "Buried to the elbow in the cooler, and the cold water is the good part",
-    "amen": "Said fast by whoever is nearest, because the food is going cold",
-    "acme": "The peak of the afternoon, roughly twenty minutes after the plates"
-   },
-   "prefer": [
-    "mac",
-    "ice",
-    "can",
-    "amen",
-    "acme"
-   ],
-   "scene": "The table, not the grill"
-  },
-  {
-   "base": "candor",
-   "theme": "cookout",
-   "clues": {
-    "candor": "What the aux cord produces within one hour, from someone's nephew",
-    "corn": "In the husk, straight on the grate, and the silk burns off",
-    "cord": "Orange, running from the kitchen window to the speaker, taped down badly",
-    "can": "Handed to you without being asked for, which is how you know you are family",
-    "card": "The table by the fence, and the reason nobody helps carry anything",
-    "arc": "The one the horseshoe makes before it misses"
-   },
-   "prefer": [
-    "corn",
-    "cord",
-    "can",
-    "card",
-    "arc"
-   ],
-   "scene": "The extension cord and everything running off it"
-  },
-  {
-   "base": "sliced",
-   "theme": "cookout",
-   "clues": {
-    "sliced": "How the melon arrives, on the good tray, from the trunk of a car",
-    "slide": "Starts when the right song comes on, and the aunties know it first",
-    "ice": "Second run of the day, and this time somebody went with them",
-    "dice": "Come out once the kids are inside and the grown folks are grown",
-    "lid": "Back on the cooler, which is the first sign it is winding down",
-    "deli": "Where the potato salad came from, a fact being actively denied"
-   },
-   "prefer": [
-    "slide",
-    "ice",
-    "dice",
-    "lid",
-    "deli"
-   ],
-   "scene": "After the plates, before the dark"
-  },
-  {
-   "base": "backer",
-   "theme": "cookout",
-   "clues": {
-    "backer": "Every dish here has one, and they are standing near it watching you",
-    "cake": "Pound. Under a dome. Not to be touched until it is announced",
-    "bake": "What she did at eleven at night so it would sit right by two",
-    "rack": "Cooling on it by the window since this morning",
-    "beak": "What the one bold bird has been eyeing since the foil came off",
-    "acre": "How far the smell has carried, roughly, by four in the afternoon"
-   },
-   "prefer": [
-    "cake",
-    "bake",
-    "rack",
-    "beak",
-    "acre"
-   ],
-   "scene": "The dessert table, which is a folding table"
-  },
-  {
-   "base": "depict",
-   "theme": "cookout",
-   "clues": {
-    "depict": "What the group photo fails to do, every single year",
-    "dip": "In the bowl with the lid that does not match, and it goes first",
-    "pit": "Dug once, years ago, and still where the whole thing happens",
-    "ice": "The third bag. Nobody planned for the third bag",
-    "tide": "How the chairs drift toward the shade over the course of an afternoon",
-    "diet": "Announced on Monday by at least two people here"
-   },
-   "prefer": [
-    "dip",
-    "pit",
-    "ice",
-    "tide",
-    "diet"
-   ],
-   "scene": "The cooler, the dip, and the folding chairs"
-  },
-  {
-   "base": "asking",
-   "theme": "cookout",
-   "clues": {
-    "asking": "What the first ten minutes are, in both directions, at every table",
-    "kin": "The word on the banner, and the definition is deliberately generous",
-    "sing": "What the elders do after the food, unaccompanied, and everyone stands",
-    "king": "What the oldest man present is treated as for one afternoon a year",
-    "gain": "Two this year, in the babies, announced before anybody eats",
-    "skin": "Whose you have, decided loudly by an aunt within a minute of meeting you"
-   },
-   "prefer": [
-    "kin",
-    "sing",
-    "king",
-    "gain",
-    "skin"
-   ],
-   "scene": "Working out how you are related"
-  },
-  {
    "base": "pointe",
    "theme": "beautysupply",
    "clues": {
@@ -2795,6 +2615,426 @@
     "past"
    ],
    "scene": "Sunday clothes, done Saturday night"
+  },
+  {
+   "base": "breast",
+   "theme": "cookout",
+   "clues": {
+    "breast": "Goes on last because it dries out first, whatever your uncle says",
+    "brats": "The ones that get eaten standing up before the plates come out",
+    "baste": "Every turn, with the sauce that has been on the side burner since noon",
+    "sear": "Hot side first, then moved — the whole method in four words",
+    "rest": "Off the heat, under foil, and hands off",
+    "tea": "The jug again, and somebody has already gone for more ice"
+   },
+   "prefer": [
+    "brats",
+    "baste",
+    "sear",
+    "rest",
+    "tea"
+   ],
+   "scene": "What goes on the grate, and in what order"
+  },
+  {
+   "base": "phased",
+   "theme": "cookout",
+   "clues": {
+    "phased": "What nobody at this table gets, no matter what you lead with",
+    "spade": "The suit that decides it, and the reason two grown people are standing up",
+    "shade": "Both the tree and the conversation, and the tree is the lesser one",
+    "heap": "How a plate is built when your auntie builds it for you",
+    "head": "What the argument is about by round three, and it is not the cards",
+    "ash": "Flicked off the end of a cigarette nobody admits to having"
+   },
+   "prefer": [
+    "spade",
+    "shade",
+    "heap",
+    "head",
+    "ash"
+   ],
+   "scene": "The card table under the tree"
+  },
+  {
+   "base": "turban",
+   "theme": "cookout",
+   "clues": {
+    "turban": "The wrap on her head that says she has been up since six",
+    "aunt": "Holds the tongs. Has held the tongs since 1994. Will hold the tongs",
+    "rub": "Went on last night, which is the part that makes it hers",
+    "turn": "Once. Anyone who does it twice is asked to sit down",
+    "burnt": "The edge some people ask for on purpose, and they are correct",
+    "bran": "In the muffins nobody came for, brought by the cousin who tries"
+   },
+   "prefer": [
+    "aunt",
+    "rub",
+    "turn",
+    "burnt",
+    "bran"
+   ],
+   "scene": "Who runs the grill, and what happens if you touch it"
+  },
+  {
+   "base": "cinema",
+   "theme": "cookout",
+   "clues": {
+    "cinema": "What the yard becomes once the sun drops and the speaker gets louder",
+    "mac": "Baked, with the crust, and there is exactly one person allowed to bring it",
+    "ice": "Ran out at four. Somebody is already in the car",
+    "can": "Buried to the elbow in the cooler, and the cold water is the good part",
+    "amen": "Said fast by whoever is nearest, because the food is going cold",
+    "acme": "The peak of the afternoon, roughly twenty minutes after the plates"
+   },
+   "prefer": [
+    "mac",
+    "ice",
+    "can",
+    "amen",
+    "acme"
+   ],
+   "scene": "The table, not the grill"
+  },
+  {
+   "base": "candor",
+   "theme": "cookout",
+   "clues": {
+    "candor": "What the aux cord produces within one hour, from someone's nephew",
+    "corn": "In the husk, straight on the grate, and the silk burns off",
+    "cord": "Orange, running from the kitchen window to the speaker, taped down badly",
+    "can": "Handed to you without being asked for, which is how you know you are family",
+    "card": "The table by the fence, and the reason nobody helps carry anything",
+    "arc": "The one the horseshoe makes before it misses"
+   },
+   "prefer": [
+    "corn",
+    "cord",
+    "can",
+    "card",
+    "arc"
+   ],
+   "scene": "The extension cord and everything running off it"
+  },
+  {
+   "base": "sliced",
+   "theme": "cookout",
+   "clues": {
+    "sliced": "How the melon arrives, on the good tray, from the trunk of a car",
+    "slide": "Starts when the right song comes on, and the aunties know it first",
+    "ice": "Second run of the day, and this time somebody went with them",
+    "dice": "Come out once the kids are inside and the grown folks are grown",
+    "lid": "Back on the cooler, which is the first sign it is winding down",
+    "deli": "Where the potato salad came from, a fact being actively denied"
+   },
+   "prefer": [
+    "slide",
+    "ice",
+    "dice",
+    "lid",
+    "deli"
+   ],
+   "scene": "After the plates, before the dark"
+  },
+  {
+   "base": "backer",
+   "theme": "cookout",
+   "clues": {
+    "backer": "Every dish here has one, and they are standing near it watching you",
+    "cake": "Pound. Under a dome. Not to be touched until it is announced",
+    "bake": "What she did at eleven at night so it would sit right by two",
+    "rack": "Cooling on it by the window since this morning",
+    "beak": "What the one bold bird has been eyeing since the foil came off",
+    "acre": "How far the smell has carried, roughly, by four in the afternoon"
+   },
+   "prefer": [
+    "cake",
+    "bake",
+    "rack",
+    "beak",
+    "acre"
+   ],
+   "scene": "The dessert table, which is a folding table"
+  },
+  {
+   "base": "depict",
+   "theme": "cookout",
+   "clues": {
+    "depict": "What the group photo fails to do, every single year",
+    "dip": "In the bowl with the lid that does not match, and it goes first",
+    "pit": "Dug once, years ago, and still where the whole thing happens",
+    "ice": "The third bag. Nobody planned for the third bag",
+    "tide": "How the chairs drift toward the shade over the course of an afternoon",
+    "diet": "Announced on Monday by at least two people here"
+   },
+   "prefer": [
+    "dip",
+    "pit",
+    "ice",
+    "tide",
+    "diet"
+   ],
+   "scene": "The cooler, the dip, and the folding chairs"
+  },
+  {
+   "base": "asking",
+   "theme": "cookout",
+   "clues": {
+    "asking": "What the first ten minutes are, in both directions, at every table",
+    "kin": "The word on the banner, and the definition is deliberately generous",
+    "sing": "What the elders do after the food, unaccompanied, and everyone stands",
+    "king": "What the oldest man present is treated as for one afternoon a year",
+    "gain": "Two this year, in the babies, announced before anybody eats",
+    "skin": "Whose you have, decided loudly by an aunt within a minute of meeting you"
+   },
+   "prefer": [
+    "kin",
+    "sing",
+    "king",
+    "gain",
+    "skin"
+   ],
+   "scene": "Working out how you are related"
+  },
+  {
+   "base": "brides",
+   "theme": "cookout",
+   "clues": {
+    "brides": "Two of them here today, neither married yet, both being asked when",
+    "ribs": "On since eight, and the person who put them on has not sat down since",
+    "bid": "Made for the end piece, out loud, an hour before anything is ready",
+    "side": "Argued about more seriously than the meat, every single year",
+    "bride": "Cousin who is not one yet and has been asked four times before two o'clock",
+    "rides": "Worked out at the end, badly, with three people going the same way"
+   },
+   "prefer": [
+    "ribs",
+    "bid",
+    "side",
+    "bride",
+    "rides"
+   ],
+   "scene": "The ribs, and who is allowed an opinion"
+  },
+  {
+   "base": "corned",
+   "theme": "cookout",
+   "clues": {
+    "corned": "The beef somebody's people put in the greens, and it is not up for debate",
+    "corn": "In the husk, straight on the grate, turned with a bare hand and a fast wrist",
+    "cord": "Orange, running from the kitchen window to the speaker, taped to the step",
+    "done": "Said about the meat by someone who is not the one who decides that",
+    "code": "Nobody explained about which cooler is which, and everybody follows it",
+    "cone": "Of the yard where the pot lives, out of the wind, where it always is"
+   },
+   "prefer": [
+    "corn",
+    "cord",
+    "done",
+    "code",
+    "cone"
+   ],
+   "scene": "The pot on the side burner"
+  },
+  {
+   "base": "sparky",
+   "theme": "cookout",
+   "clues": {
+    "sparky": "The lighter that works if you hold it at the angle only one person knows",
+    "spark": "Off the chimney starter, caught on the wind, and everybody steps back",
+    "park": "Where this would be if the yard had not been claimed by April",
+    "pray": "Over the food, and the length of it is a whole conversation afterwards",
+    "spar": "Over the domino score, in a way that is not actually an argument",
+    "rays": "Coming level across the yard, which is when the chairs get moved"
+   },
+   "prefer": [
+    "spark",
+    "park",
+    "pray",
+    "spar",
+    "rays"
+   ],
+   "scene": "Getting it lit"
+  },
+  {
+   "base": "creaky",
+   "theme": "cookout",
+   "clues": {
+    "creaky": "The good chair, which is the bad chair, and it goes to whoever arrives last",
+    "rack": "Lifted off with two towels because the mitt is somewhere in the house",
+    "year": "Since the last one, and the count is done out loud at the table",
+    "acre": "What the yard is not, and the number of people here does not care",
+    "race": "Of the children to the cooler the second the lid is lifted",
+    "cake": "Brought by the one person whose gets eaten first, every year"
+   },
+   "prefer": [
+    "rack",
+    "year",
+    "acre",
+    "race",
+    "cake"
+   ],
+   "scene": "The chairs, and where you are allowed to sit"
+  },
+  {
+   "base": "baking",
+   "theme": "cookout",
+   "clues": {
+    "baking": "Going on inside while the grill goes on outside, and the two do not speak",
+    "bag": "Of ice, third one, and the person sent for it has not come back",
+    "kin": "Everybody here, by a route that takes four minutes to explain",
+    "king": "Of the kitchen, and the title is not shared and never has been",
+    "gain": "On the plate the second you look away from it",
+    "bank": "On her to bring it, and the trust has never once been misplaced"
+   },
+   "prefer": [
+    "bag",
+    "kin",
+    "king",
+    "gain",
+    "bank"
+   ],
+   "scene": "The kitchen, which is a second cookout"
+  },
+  {
+   "base": "births",
+   "theme": "cookout",
+   "clues": {
+    "births": "Three since last year, and all three are being passed around right now",
+    "ribs": "Handed over on a paper plate that is already going soft",
+    "shirt": "Changed after the grill, because the smoke got into the first one",
+    "bits": "Of the end piece, given away, which is how you know who is favoured",
+    "birth": "Being retold at the table by everyone except the person it happened to",
+    "stir": "The pot on the side burner, by whoever is passing, without being asked"
+   },
+   "prefer": [
+    "ribs",
+    "shirt",
+    "bits",
+    "birth",
+    "stir"
+   ],
+   "scene": "The catching-up, done standing"
+  },
+  {
+   "base": "pranks",
+   "theme": "cookout",
+   "clues": {
+    "pranks": "Run on the youngest, by the second youngest, in the same order as always",
+    "park": "Across the road, where they get sent when the volume gets decided",
+    "spark": "In the eye of the one who is about to start something",
+    "snap": "Of the towel, once, and then the rule about it gets restated",
+    "pans": "Stacked by the sink by whoever is quietly doing the actual work",
+    "rank": "Worked out among the cousins by age, and enforced without anybody saying it"
+   },
+   "prefer": [
+    "park",
+    "spark",
+    "snap",
+    "pans",
+    "rank"
+   ],
+   "scene": "The cousins, and what they get away with"
+  },
+  {
+   "base": "sawing",
+   "theme": "cookout",
+   "clues": {
+    "sawing": "What the speaker is doing to the song at the volume it is set to",
+    "sing": "Everyone, on the one song, and nobody has agreed to it in advance",
+    "wings": "Gone in eleven minutes, and the plate is not replaced",
+    "gain": "Turned up by somebody who then walks away from the phone",
+    "swig": "From the wrong cup, discovered a second too late",
+    "wins": "The argument about the volume, for about ninety seconds"
+   },
+   "prefer": [
+    "sing",
+    "wings",
+    "gain",
+    "swig",
+    "wins"
+   ],
+   "scene": "The music, and the volume argument"
+  },
+  {
+   "base": "podium",
+   "theme": "cookout",
+   "clues": {
+    "podium": "Where the person who made the dip is standing, spiritually",
+    "dip": "Guarded, at the near end, by the one who knows what went into it",
+    "mop": "Fetched for the spill before anybody has finished apologising for it",
+    "mud": "By the tap where the children have been running, since about one o'clock",
+    "dump": "What you do not do to the last of it, and there are rules about this",
+    "dim": "The corner of the yard by six, which is when the citronella comes out"
+   },
+   "prefer": [
+    "dip",
+    "mop",
+    "mud",
+    "dump",
+    "dim"
+   ],
+   "scene": "The dip, and its defenders"
+  },
+  {
+   "base": "builds",
+   "theme": "cookout",
+   "clues": {
+    "builds": "The cooler in layers, and will explain the layers to anyone who asks",
+    "bid": "For the last cold one, put in early, honoured later",
+    "bus": "Stop where somebody's people are walking from, and a car goes anyway",
+    "lid": "Left up for four seconds too long, and it gets mentioned",
+    "slid": "The chair back on the concrete, which is the sound of somebody giving up",
+    "buds": "On the branch over the fence, and somebody says it is going to rain"
+   },
+   "prefer": [
+    "bid",
+    "bus",
+    "lid",
+    "slid",
+    "buds"
+   ],
+   "scene": "Packing the cooler, which is a skill"
+  },
+  {
+   "base": "naught",
+   "theme": "cookout",
+   "clues": {
+    "naught": "What you say you want, and a plate is made for you regardless",
+    "aunt": "Greeted first, by name, before you put anything down anywhere",
+    "hug": "Not optional, and the length of it is not yours to decide",
+    "tag": "Played around the legs of people who are trying to hold plates",
+    "haunt": "The corner of the yard the older ones keep, out of the sun, all day",
+    "gnat": "Around the light over the back door from about eight"
+   },
+   "prefer": [
+    "aunt",
+    "hug",
+    "tag",
+    "haunt",
+    "gnat"
+   ],
+   "scene": "The aunts, and the greeting line"
+  },
+  {
+   "base": "carmen",
+   "theme": "cookout",
+   "clues": {
+    "carmen": "Whose dish it is, and the name is said before the dish is",
+    "mac": "The one that matters, and there is only one that counts as the one",
+    "amen": "Said at the end, by everybody, a half-beat after it was expected",
+    "can": "Bring a dish next year, and the answer to that is carefully worded",
+    "name": "On the bottom of the pan in marker, because it is going home tonight",
+    "cream": "In it, which is the part that is never fully admitted to"
+   },
+   "prefer": [
+    "mac",
+    "amen",
+    "can",
+    "name",
+    "cream"
+   ],
+   "scene": "The macaroni, and who is trusted with it"
   }
  ]
 }
