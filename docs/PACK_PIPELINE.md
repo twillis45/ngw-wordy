@@ -151,6 +151,26 @@ Elsewhere. Worth a ruling: they are good packs with no home, and the shelf
 ceiling is the thing standing between the catalogue and its two densest
 sourced candidates.
 
+## What the radar found on its first run
+
+Recorded because it is a backlog that existed before anyone wrote it down, and
+because it says something about where effort should go.
+
+**Six shipped packs are carrying vocabularies under 100 words** — sitcom 50,
+spades 52, juneteenth 52, beautysupply 75, garden 82, steppers 89 — against
+the ~140 that the packs reaching 0.80 carry. Those six are also, in almost the
+same order, the six lowest densities in the catalogue: steppers 30,
+beautysupply 49, spades 52, sitcom 60, juneteenth 61, garden 88.
+
+That is the same finding as the candidate sweep, seen from the other end.
+Depth is the lever, and it is as true of a shipped pack as of a draft.
+Deepening those six vocabularies is likely worth more than a new pack: it
+raises density, which raises the boards available, which raises the on-theme
+rate, and it needs no new shelf, no bench sitting and no new clues.
+
+Both `ready` findings are the ones to clear first, though — a theme with a
+vocabulary and no boards is work already paid for and not collected.
+
 ## The process — run this, in this order
 
 Two halves that fail differently, which is why they are separate commands.
