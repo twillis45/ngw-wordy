@@ -1442,9 +1442,16 @@ body {
    *
    * Opaque on purpose — a translucent fill over a blurred backdrop IS the
    * glass effect, so solid is what makes the surface matte.
+   *
+   * AND NO STEEL IN THEM. These mixed 12% steel, which put the panels at 7.6
+   * blue-over-red against a carbon ramp measured at 3 — so the de-blued ramp
+   * was being re-blued one layer above itself, and the theme still read cold.
+   * palette.js is explicit that steel is IDENTITY, not surface, and locks it
+   * across every mode for that reason. Using it as a surface mixer is how
+   * neutral carbon turns back into Studio Steel.
    */
-  --glass-body: color-mix(in srgb, var(--color-carbon-panel) 88%, var(--color-steel));
-  --glass-body-raised: color-mix(in srgb, var(--color-carbon-surface-2) 88%, var(--color-steel));
+  --glass-body: var(--color-carbon-panel);
+  --glass-body-raised: var(--color-carbon-surface-2);
   --glass-fill: var(--glass-body);
   --glass-fill-raised: var(--glass-body-raised);
 
@@ -1568,9 +1575,18 @@ body {
 
 :root[data-theme='studio'] div:has(> .liquid-disc) > button {
   border-color: transparent;
-  /* Steel lifted off the surface it sits on — the separation that replaces the
-     border, composed from the palette so it tracks any retune of either. */
-  background-color: color-mix(in srgb, var(--color-steel) 62%, var(--color-carbon-surface-2));
+  /*
+   * carbonNeutral.softer.border. A LEVEL of the de-blued ramp, not a steel mix.
+   *
+   * This was 62% steel, which measured 28 blue-over-red — nine times the
+   * ramp's own 3, and by far the bluest thing on the board. The tiles are the
+   * largest coloured area in the dial, so that one mix was most of the tint.
+   *
+   * Measured against the disc beneath them, this holds the separation that
+   * replaces the removed border almost exactly — 2.04 against the steel mix's
+   * 2.19 — at 9 blue-over-red instead of 28. White on it is 8.0:1.
+   */
+  background-color: #46484f;
 }
 
 /* The selected tile keeps its accent fill — that state is the one thing on
