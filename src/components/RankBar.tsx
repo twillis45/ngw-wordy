@@ -1,6 +1,6 @@
 'use client';
 
-import { RANKS, type Rank } from '@/lib/game';
+import { rankLadder, type Rank } from '@/lib/game';
 
 /**
  * Rank, score and the whole ladder in one line.
@@ -33,14 +33,14 @@ import { RANKS, type Rank } from '@/lib/game';
  */
 export default function RankBar({
   rank,
-  gridScore,
-  gridMax,
+  rowsFilled,
+  totalRows,
   bonusCount,
 }: {
   rank: Rank;
-  /** Points from the six grid rows. This is what rank is computed from. */
-  gridScore: number;
-  gridMax: number;
+  /** Rows cleared, and how many the board has. The rank basis. */
+  rowsFilled: number;
+  totalRows: number;
   /** Bonus words banked — the hint currency, deliberately not rank fuel. */
   bonusCount: number;
 }) {
@@ -58,24 +58,19 @@ export default function RankBar({
         </span>
         <span className="text-meta tabular-nums text-text-muted">
           {/*
-            "row pts", not "rows" — the number counts POINTS the rows are
-            worth, and calling it rows made it a count of the wrong thing.
+            "rows", and now it is literally true.
 
-            The rail two panels over reads "Targets · 3/6", which IS a count of
-            rows, so the board showed 3/6 and 6/26 side by side both claiming to
-            describe the same six things. This element's own aria-label had it
-            right all along ("6 of 26 row points"); only the visible text
-            dropped the word that made it true.
-
-            "row pts" rather than plain "pts" because the qualifier is still
-            carrying the original point: it names which pot this number comes
-            from, and therefore what moves the rank beside it — bonus words
-            score and never appear here.
+            This said "rows" once, when it counted POINTS — 6/26 sitting beside
+            the rail's "Targets · 3/6", two different numbers claiming to
+            describe the same six things. It was corrected to "row pts", which
+            was honest about a quantity that should not have been there. Now
+            that rank counts rows, the plain word is the accurate one and the
+            two readouts agree.
           */}
           <span className="font-semibold text-text-secondary">
-            {gridScore}/{gridMax}
+            {rowsFilled}/{totalRows}
           </span>{' '}
-          row pts
+          rows
           {/*
             "0 pts · 2 to Solid" was the first line a new player read, and every
             term in it is internal: Solid is a rank they have not been told
@@ -83,10 +78,10 @@ export default function RankBar({
             been told how to earn. Until the first word lands there is nothing
             to track, so the slot says what the board is actually for instead.
           */}
-          {gridScore === 0
+          {rowsFilled === 0
             ? ' · fill the six rows'
             : rank.next
-              ? ` · ${rank.pointsToNext} to ${rank.next}`
+              ? ` · ${rank.rowsToNext} to ${rank.next}`
               : ' · maxed'}
           {/* Bonus trails, in a quieter weight, because it is a separate
               economy — it buys hints and never moves the rank. Hidden at zero
@@ -103,7 +98,7 @@ export default function RankBar({
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(rank.progress * 100)}
-        aria-label={`Rank progress: ${rank.name}, ${gridScore} of ${gridMax} row points${
+        aria-label={`Rank progress: ${rank.name}, ${rowsFilled} of ${totalRows} rows${
           bonusCount > 0 ? `, ${bonusCount} bonus words` : ''
         }`}
         className="relative h-2.5 w-full rounded-full border border-edge/60 short:h-2 liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)]"
@@ -113,21 +108,24 @@ export default function RankBar({
           style={{ width: `${Math.max(2, rank.progress * 100)}%` }}
         />
 
-        {/* One tick per rank, at its actual threshold — the ladder is the
-            track, so there's nothing extra to render or scroll to. */}
-        {RANKS.map((r, i) => {
-          if (i === 0) return null;
-          const reached = i <= rank.index;
+        {/*
+          One tick per row — the ladder IS the track, so there is nothing extra
+          to render. Evenly spaced now rather than sitting at percentage
+          thresholds, which is the visible half of the change: the rungs used
+          to bunch up wherever the points happened to fall.
+        */}
+        {rankLadder(rowsFilled, totalRows).map((step) => {
+          if (step.at === 0) return null;
           return (
             <span
-              key={r.name}
+              key={step.name + step.at}
               aria-hidden
-              title={r.name}
+              title={`${step.name} — ${step.at === 1 ? '1 row' : `${step.at} rows`}`}
               className={[
                 'absolute top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full transition-colors',
-                reached ? 'bg-carbon-body/70' : 'bg-edge',
+                step.reached ? 'bg-carbon-body/70' : 'bg-edge',
               ].join(' ')}
-              style={{ left: `${r.at * 100}%` }}
+              style={{ left: `${totalRows > 0 ? (step.at / totalRows) * 100 : 0}%` }}
             />
           );
         })}

@@ -546,20 +546,58 @@ export function submit(
  * Recalibrated so Genius is a good day's play and completionism gets its own
  * name above it.
  */
-export const RANKS = [
-  { name: 'Novice', at: 0 },
-  { name: 'Solid', at: 0.08 },
-  { name: 'Sharp', at: 0.18 },
-  { name: 'Clever', at: 0.3 },
-  { name: 'Fluent', at: 0.45 },
-  { name: 'Wordsmith', at: 0.6 },
-  { name: 'Genius', at: 0.75 },
-  { name: 'Complete', at: 1 },
+/**
+ * The ladder, in ROWS FILLED. One rung per answer.
+ *
+ * It was eight rungs at percentages of a board's points, and the review found
+ * that could not measure what it claimed to. The base word takes the
+ * all-wheel bonus, so it is worth 12 points on a grid worth 23-33 — 36 to 52%
+ * of everything available, measured across three boards. A played warm-up
+ * crossed six of eight ranks in six words and the LAST word jumped four rungs
+ * at once, Fluent straight to Complete. A ladder one move can leap most of is
+ * not reporting progress; it is reporting whether the long word has been
+ * found, while the names promise a skill read ("Clever", "Wordsmith") the
+ * arithmetic cannot support.
+ *
+ * Rows fix it by construction. Six answers, six steps, one each: a leap is not
+ * possible, every rung costs exactly one word, and the strip already told the
+ * player this is the goal — "fill the six rows".
+ *
+ * SEVEN names for the seven states of a six-row board, so `Genius` is gone. It
+ * was the least honest of the eight: on the new ladder it would have meant
+ * "found five of six", which is a good board and not genius.
+ *
+ * `rowsFilled` counts rows CLEARED, whether solved or bought with a hint —
+ * `rowDone` in the component makes no distinction, and neither should this.
+ */
+export const RANK_NAMES = [
+  'Novice',
+  'Solid',
+  'Sharp',
+  'Clever',
+  'Fluent',
+  'Wordsmith',
+  'Complete',
 ] as const;
+
+/**
+ * Which name a row count earns.
+ *
+ * Scaled rather than indexed, so a board with fewer than six rows still ENDS
+ * at Complete instead of stopping mid-ladder. On the standard six-row board
+ * this is the identity — row 3 is Clever — and on a five-row board it drops a
+ * middle rung rather than the summit.
+ */
+export function rankNameFor(rowsFilled: number, totalRows: number): string {
+  if (totalRows <= 0) return RANK_NAMES[0];
+  const capped = Math.max(0, Math.min(rowsFilled, totalRows));
+  const i = Math.round((capped / totalRows) * (RANK_NAMES.length - 1));
+  return RANK_NAMES[i];
+}
 
 /** One line explaining what the ladder is actually counting. */
 export const RANK_BASIS =
-  'Ranks track the six rows. Extra words still score, and every 3 earns a hint.';
+  'One rank per row you fill. Extra words still score, and every 3 earns a hint.';
 
 /**
  * The points available from the SIX ROWS, which is what ranks measure.
@@ -585,76 +623,52 @@ export type Rank = {
   index: number;
   progress: number;
   next: string | null;
-  pointsToNext: number;
+  /** Rows still needed for the next rank. Always 1 or 0 — see RANK_NAMES. */
+  rowsToNext: number;
 };
 
-export function rankFor(score: number, maxScore: number): Rank {
-  const ratio = maxScore > 0 ? score / maxScore : 0;
-
-  let index = 0;
-  for (let i = 0; i < RANKS.length; i += 1) {
-    if (ratio >= RANKS[i].at) index = i;
-  }
-
-  const next = index < RANKS.length - 1 ? RANKS[index + 1] : null;
+/** Rank from rows filled. `totalRows` is this board's grid length. */
+export function rankFor(rowsFilled: number, totalRows: number): Rank {
+  const capped = Math.max(0, Math.min(rowsFilled, totalRows));
+  const atTop = capped >= totalRows;
 
   return {
-    name: RANKS[index].name,
-    index,
-    progress: Math.min(1, ratio),
-    next: next ? next.name : null,
-    pointsToNext: next
-      ? Math.max(0, thresholdPoints(next.at, maxScore) - score)
-      : 0,
+    name: rankNameFor(capped, totalRows),
+    index: capped,
+    progress: totalRows > 0 ? capped / totalRows : 0,
+    next: atTop ? null : rankNameFor(capped + 1, totalRows),
+    rowsToNext: atTop ? 0 : 1,
   };
-}
-
-/**
- * Points needed to reach a threshold.
- *
- * Naive Math.ceil(fraction * max) is wrong: 0.55 * 100 is 55.00000000000001 in
- * binary floating point, so it ceils to 56 and the player is told a rank costs
- * a point more than it does. Scrub the dust before rounding up.
- */
-function thresholdPoints(fraction: number, maxScore: number): number {
-  return Math.ceil(Number((fraction * maxScore).toFixed(6)));
 }
 
 export type LadderStep = {
   name: string;
-  /** Points this rank starts at, for this puzzle's ceiling. */
+  /** Rows this rank starts at. */
   at: number;
   reached: boolean;
   current: boolean;
-  /** Points still needed. 0 once reached. */
+  /** Rows still needed. 0 once reached. */
   toGo: number;
 };
 
 /**
- * The rank ladder in POINTS, not percentages.
+ * The ladder in ROWS — one rung per answer, and the same list every board.
  *
- * "Clever at 40%" is unusable while playing — you can't act on a percentage of
- * a total you don't know. Resolving each threshold against this puzzle's
- * ceiling turns the ladder into something you can aim at: what a rank cost,
- * and what the next one costs from here.
+ * It used to resolve percentages against each puzzle's point ceiling, so the
+ * rungs moved from board to board and a player could not learn them. Rows are
+ * the same everywhere: three rows is Clever here and Clever tomorrow.
  */
-export function rankLadder(score: number, maxScore: number): LadderStep[] {
-  let currentIndex = 0;
-  const ratio = maxScore > 0 ? score / maxScore : 0;
-  for (let i = 0; i < RANKS.length; i += 1) {
-    if (ratio >= RANKS[i].at) currentIndex = i;
-  }
+export function rankLadder(rowsFilled: number, totalRows: number): LadderStep[] {
+  const capped = Math.max(0, Math.min(rowsFilled, totalRows));
+  const steps = Math.max(0, totalRows);
 
-  return RANKS.map((r, i) => {
-    const at = thresholdPoints(r.at, maxScore);
-    return {
-      name: r.name,
-      at,
-      reached: i <= currentIndex,
-      current: i === currentIndex,
-      toGo: i <= currentIndex ? 0 : Math.max(0, at - score),
-    };
-  });
+  return Array.from({ length: steps + 1 }, (_, rows) => ({
+    name: rankNameFor(rows, totalRows),
+    at: rows,
+    reached: rows <= capped,
+    current: rows === capped,
+    toGo: rows <= capped ? 0 : rows - capped,
+  }));
 }
 
 /** Shuffle the wheel without ever returning the same order twice running. */

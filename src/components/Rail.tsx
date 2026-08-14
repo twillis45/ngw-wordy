@@ -33,8 +33,9 @@ type Props = {
    * migrated to the grid basis. RANK_BASIS is printed directly above this list
    * and says ranks track the six rows; now the numbers do too.
    */
-  gridScore: number;
-  gridMax: number;
+  /** Rows cleared, and how many the board has. The rank basis. */
+  rowsFilled: number;
+  totalRows: number;
   days: DayCell[];
   streak: number;
   bestStreak: number;
@@ -56,8 +57,8 @@ export default function Rail({
   bonusFound,
   rank,
   score,
-  gridScore,
-  gridMax,
+  rowsFilled,
+  totalRows,
   days,
   streak,
   bestStreak,
@@ -143,8 +144,8 @@ export default function Rail({
         title="Rank"
         meta={
           rank.next
-            ? `${gridScore} pts · ${rank.pointsToNext} to ${rank.next}`
-            : `${gridScore} pts · maxed`
+            ? `${rowsFilled} rows · ${rank.rowsToNext} to ${rank.next}`
+            : `${rowsFilled} rows · maxed`
         }
       >
         {/* Without this the names imply cleverness while the numbers measure
@@ -163,7 +164,7 @@ export default function Rail({
           which is the failure this rail has had twice before.
         */}
         <ol className="flex min-h-0 flex-1 flex-col justify-between gap-0.5 overflow-y-auto short:gap-0">
-          {rankLadder(gridScore, gridMax).map((step) => (
+          {rankLadder(rowsFilled, totalRows).map((step) => (
             <li
               key={step.name}
               aria-current={step.current ? 'step' : undefined}
@@ -200,7 +201,7 @@ export default function Rail({
                 the card header, and the bar at the top of the board.
               */}
               <span className="text-meta tabular-nums text-text-muted">
-                {step.at} pts
+                {step.at === 1 ? '1 row' : `${step.at} rows`}
               </span>
             </li>
           ))}

@@ -120,52 +120,78 @@ describe('submit', () => {
 });
 
 describe('rankFor', () => {
+  const ROWS = 6;
+
   it('starts at Novice and tops out at Complete', () => {
-    expect(rankFor(0, 100).name).toBe('Novice');
-    expect(rankFor(100, 100).name).toBe('Complete');
+    expect(rankFor(0, ROWS).name).toBe('Novice');
+    expect(rankFor(ROWS, ROWS).name).toBe('Complete');
   });
 
-  it('makes clearing the grid the TOP rank, not rank 3 of 8', () => {
+  it('gives one rank per row, so nothing can be leapt', () => {
     /*
-     * The regression this guards: ranks measured every word the letters can
-     * make, and the six rows are worth a mean 27.4% of that — so doing exactly
-     * what the UI asks ("fill every row") showed "Sharp", with five ranks
-     * greyed out above it, gated on bonus words the player was never shown.
+     * The finding this exists for. Ranks were percentages of a board's POINTS,
+     * and the base word takes the all-wheel bonus — 12 points on a grid worth
+     * 23-33, i.e. 36-52% of the whole board. A played warm-up crossed six of
+     * eight ranks in six words and the last word jumped FOUR rungs at once,
+     * Fluent straight to Complete. A ladder one move can leap most of measures
+     * whether the long word was found, not how the player is doing.
+     *
+     * Rows make that impossible by construction: every rung costs exactly one
+     * answer, so the index can only ever move by one.
      */
-    const puzzle = {
-      grid: ['faucet', 'facet', 'cafe', 'fact', 'ace', 'cut'],
-    } as unknown as Parameters<typeof gridMaxScore>[0];
-    const max = gridMaxScore(puzzle, 6);
-    expect(rankFor(max, max).name).toBe('Complete');
-    // And a half-cleared grid lands mid-ladder, not near the bottom.
-    const half = rankFor(Math.round(max * 0.5), max);
-    expect(half.index).toBeGreaterThanOrEqual(4);
+    const names = Array.from({ length: ROWS + 1 }, (_, r) => rankFor(r, ROWS).name);
+    expect(names).toEqual([
+      'Novice',
+      'Solid',
+      'Sharp',
+      'Clever',
+      'Fluent',
+      'Wordsmith',
+      'Complete',
+    ]);
+    for (let r = 1; r <= ROWS; r += 1) {
+      expect(rankFor(r, ROWS).index - rankFor(r - 1, ROWS).index).toBe(1);
+    }
   });
 
-  it('counts only the six rows toward rank', () => {
-    const puzzle = { grid: ['cafe', 'ace'] } as unknown as Parameters<
-      typeof gridMaxScore
-    >[0];
-    // 4 + 1 = 5. Bonus words are deliberately absent from this number.
-    expect(gridMaxScore(puzzle, 6)).toBe(5);
+  it('always ends at Complete, even on a board with fewer rows', () => {
+    // Scaled rather than indexed, so a short board drops a middle rung and
+    // never the summit.
+    expect(rankFor(5, 5).name).toBe('Complete');
+    expect(rankFor(4, 4).name).toBe('Complete');
+    expect(rankFor(0, 5).name).toBe('Novice');
   });
 
-  it('puts Genius within reach rather than at perfection', () => {
-    // 75% is a good day; 100% is a different achievement with its own name.
-    expect(rankFor(75, 100).name).toBe('Genius');
-    expect(rankFor(99, 100).name).toBe('Genius');
-    expect(rankFor(100, 100).name).toBe('Complete');
+  it('is always exactly one row to the next rank', () => {
+    const r = rankFor(3, ROWS);
+    expect(r.name).toBe('Clever');
+    expect(r.next).toBe('Fluent');
+    expect(r.rowsToNext).toBe(1);
   });
 
-  it('reports the points needed for the next rank', () => {
-    const r = rankFor(10, 100); // 10% -> Solid, next Sharp at 18%
-    expect(r.name).toBe('Solid');
-    expect(r.next).toBe('Sharp');
-    expect(r.pointsToNext).toBe(8);
+  it('reports no next rank once every row is filled', () => {
+    const top = rankFor(ROWS, ROWS);
+    expect(top.next).toBeNull();
+    expect(top.rowsToNext).toBe(0);
+    expect(top.progress).toBe(1);
+  });
+
+  it('clamps a row count past the end rather than running off the ladder', () => {
+    expect(rankFor(99, ROWS).name).toBe('Complete');
+    expect(rankFor(-3, ROWS).name).toBe('Novice');
   });
 
   it('does not divide by zero on an empty puzzle', () => {
     expect(rankFor(0, 0).progress).toBe(0);
+  });
+
+  it('counts only the six rows toward score', () => {
+    const puzzle = { grid: ['cafe', 'ace'] } as unknown as Parameters<
+      typeof gridMaxScore
+    >[0];
+    // 4 + 1 = 5. Bonus words are deliberately absent from this number, which
+    // is still true — points remain the SCORE, they just no longer set rank.
+    expect(gridMaxScore(puzzle, 6)).toBe(5);
   });
 });
 
@@ -853,13 +879,27 @@ describe('isReachable', () => {
 });
 
 describe('rankLadder', () => {
-  it('resolves each rank to a point cost for this puzzle', () => {
-    const l = rankLadder(0, 100);
-    expect(l.map((s) => s.at)).toEqual([0, 8, 18, 30, 45, 60, 75, 100]);
+  const ROWS = 6;
+
+  it('is one rung per row, and the same rungs on every board', () => {
+    // Rungs used to be percentages resolved against each puzzle's point
+    // ceiling, so they moved board to board and could not be learned. Three
+    // rows is Clever here and Clever tomorrow.
+    const l = rankLadder(0, ROWS);
+    expect(l.map((s) => s.at)).toEqual([0, 1, 2, 3, 4, 5, 6]);
+    expect(l.map((s) => s.name)).toEqual([
+      'Novice',
+      'Solid',
+      'Sharp',
+      'Clever',
+      'Fluent',
+      'Wordsmith',
+      'Complete',
+    ]);
   });
 
   it('marks what you have reached and where you are', () => {
-    const l = rankLadder(30, 100); // 30% -> Clever
+    const l = rankLadder(3, ROWS);
     expect(l.find((s) => s.current)?.name).toBe('Clever');
     expect(l.filter((s) => s.reached).map((s) => s.name)).toEqual([
       'Novice',
@@ -869,43 +909,44 @@ describe('rankLadder', () => {
     ]);
   });
 
-  it('says what the next step costs from here, not from zero', () => {
-    const l = rankLadder(30, 100);
-    expect(l.find((s) => s.name === 'Fluent')?.toGo).toBe(15);
-    expect(l.find((s) => s.name === 'Genius')?.toGo).toBe(45);
+  it('says how many rows away each unreached rank is, from here', () => {
+    const l = rankLadder(3, ROWS);
+    expect(l.find((s) => s.name === 'Fluent')?.toGo).toBe(1);
+    expect(l.find((s) => s.name === 'Complete')?.toGo).toBe(3);
   });
 
   it('reports nothing to go for ranks already earned', () => {
     expect(
-      rankLadder(30, 100)
+      rankLadder(3, ROWS)
         .filter((s) => s.reached)
         .every((s) => s.toGo === 0)
     ).toBe(true);
   });
 
-  it('survives a zero ceiling', () => {
+  it('survives a zero-row puzzle', () => {
     const l = rankLadder(0, 0);
-    expect(l).toHaveLength(8);
-    expect(l.every((s) => s.at === 0)).toBe(true);
+    expect(l).toHaveLength(1);
+    expect(l[0].at).toBe(0);
   });
 });
 
-describe('threshold rounding', () => {
-  // 0.55 * 100 === 55.00000000000001, which naively ceils to 56.
-  it('does not inflate a threshold by floating-point dust', () => {
-    expect(rankLadder(0, 100).find((s) => s.name === 'Fluent')?.at).toBe(45);
-  });
-
-  it('keeps rankFor and rankLadder in agreement', () => {
-    for (const max of [100, 137, 213, 999]) {
-      for (const score of [0, 7, 41, 88]) {
-        const r = rankFor(score, max);
-        const ladder = rankLadder(score, max);
-        const current = ladder.find((s) => s.current);
-        expect(current?.name).toBe(r.name);
+describe('rank agreement', () => {
+  /*
+   * Replaces a floating-point rounding suite that guarded
+   * `Math.ceil(fraction * max)` — 0.55 * 100 is 55.00000000000001, which
+   * ceils to 56 and told a player a rank cost a point more than it did. Rows
+   * are integers, so that entire class of bug is gone rather than fixed.
+   */
+  it('keeps rankFor and rankLadder saying the same thing', () => {
+    for (const rows of [4, 5, 6]) {
+      for (const filled of [0, 1, 3, rows]) {
+        const r = rankFor(filled, rows);
+        const ladder = rankLadder(filled, rows);
+        expect(ladder.find((s) => s.current)?.name).toBe(r.name);
         if (r.next) {
-          const next = ladder.find((s) => s.name === r.next);
-          expect(next?.toGo).toBe(r.pointsToNext);
+          expect(ladder.find((s) => s.name === r.next)?.toGo).toBe(r.rowsToNext);
+        } else {
+          expect(ladder.at(-1)?.current).toBe(true);
         }
       }
     }

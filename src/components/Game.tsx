@@ -459,7 +459,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
     () => gridMaxScore(puzzle, data.wheel),
     [puzzle, data.wheel]
   );
-  const rank = rankFor(gridScore, gridMax);
+  // Rank counts ROWS FILLED now, not points — see RANK_NAMES.
+  const rank = rankFor(rowsDone, puzzle.grid.length);
 
   const current = selected.map((i) => letters[i]).join('');
   /*
@@ -470,7 +471,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
    */
   const announcement = toast
     ? `${toast.text}. ${rank.name}, ${score} points${
-        rank.next ? `, ${rank.pointsToNext} to ${rank.next}` : ''
+        rank.next ? `, ${rank.rowsToNext} to ${rank.next}` : ''
       }.`
     : '';
   const days = useMemo(() => last7(progress, today), [progress, today]);
@@ -819,9 +820,12 @@ export default function Game({ data }: { data: PuzzleFile }) {
             .filter((w) => set.has(w))
             .reduce((sum, w) => sum + scoreWord(w, data.wheel), 0);
         };
-        const max = gridMaxScore(puzzle, data.wheel);
-        const before = rankFor(gridPoints(banked), max);
-        const after = rankFor(gridPoints([...banked, result.word]), max);
+        /* Promotion is now a ROW count, so the comparison is rows before and
+           after this word — and only a grid word can move it. */
+        const rowsOf = (extra?: string) =>
+          puzzle.grid.filter((w) => banked.has(w) || w === extra).length;
+        const before = rankFor(rowsOf(), puzzle.grid.length);
+        const after = rankFor(rowsOf(result.word), puzzle.grid.length);
         if (after.index > before.index) {
           setTimeout(() => celebrateRank(after.name, after.next), 620);
           // Delayed to match the banner, so it does not interrupt the '+N'
@@ -830,7 +834,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             () =>
               announceOnly(
                 after.next
-                  ? `Promoted to ${after.name}. ${after.pointsToNext} to ${after.next}.`
+                  ? `Promoted to ${after.name}. ${after.rowsToNext} to ${after.next}.`
                   : `Promoted to ${after.name}.`
               ),
             620
@@ -1368,8 +1372,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
       bonusFound={bonusFound}
       rank={rank}
       score={score}
-      gridScore={gridScore}
-      gridMax={gridMax}
+      rowsFilled={rowsDone}
+      totalRows={puzzle.grid.length}
       days={days}
       streak={progress.streak}
       bestStreak={progress.bestStreak}
@@ -1495,8 +1499,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
           rank={rank}
           /* gridScore, NOT score — the strip must show the number its rank is
              computed from. See RankBar. */
-          gridScore={gridScore}
-          gridMax={gridMax}
+          rowsFilled={rowsDone}
+          totalRows={puzzle.grid.length}
           bonusCount={bonusFound.length}
         />
       </button>
@@ -1813,8 +1817,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
             bonusFound={bonusFound}
             rank={rank}
             score={score}
-            gridScore={gridScore}
-            gridMax={gridMax}
+            rowsFilled={rowsDone}
+            totalRows={puzzle.grid.length}
             days={days}
             streak={progress.streak}
             bestStreak={progress.bestStreak}
