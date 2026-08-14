@@ -2558,7 +2558,11 @@ function ModeRow({
         aria-hidden
         className={[
           'mt-0.5 grid h-6 w-10 shrink-0 items-center rounded-full border-2 px-0.5 transition-colors',
-          on ? 'border-steel bg-steel-dark/80 backdrop-blur-sm' : `border-edge ${'liquid'}`,
+          // `backdrop-blur-sm` is a fixed 8px and ignored the theme, so the
+          // one switch stayed a lens on a matte board. Reads the token now.
+          on
+            ? 'border-steel bg-steel-dark/80 backdrop-blur-[var(--glass-blur)]'
+            : `border-edge ${'liquid'}`,
         ].join(' ')}
       >
         <span

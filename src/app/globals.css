@@ -1494,7 +1494,21 @@ body {
    * The sunlight argument is not refuted, it is traded: this is the theme a
    * player chooses for a dim room, and the other three are unchanged.
    */
-  --color-edge: #66717d;
+  --color-edge: #6c6e73;
+
+  /*
+   * SECONDARY TEXT, DE-BLUED. This was the one font colour out of step.
+   *
+   * Measured across every text colour actually painting on screen: primary
+   * #eef0f4 and muted #9a9ca0 both sit at 6 blue-over-red, in keeping with a
+   * ramp built to sit near 3 — and secondary was #a9caeb at SIXTY-SIX. It is
+   * the colour on the clue itself, the most-read text on the board, so the
+   * one genuinely blue thing in the type was also the most visible.
+   *
+   * #c2c4c8 is a luminance match, not a guess: 10.27:1 on a panel against the
+   * old 10.54:1, so nothing in the reading hierarchy moves — only the hue.
+   */
+  --color-text-secondary: #c2c4c8;
 
   /*
    * Flat ground. The body lays three steel radial washes over the base colour
@@ -1580,7 +1594,7 @@ body {
   --glass-fill-raised: #2d2f33;
 }
 
-:root[data-theme='studio'] div:has(> .liquid-disc) > button {
+:root[data-theme='studio'] div:has(> .liquid-disc) > button.rounded-2xl {
   border-color: transparent;
   /*
    * Lifted with the disc, so the stack keeps BOTH boundaries.
@@ -1596,7 +1610,7 @@ body {
    * needs, and the levels above it in the blue-led ramp would undo the
    * de-bluing. This holds 6 blue-over-red, in step with the disc's own 6.
    */
-  background-color: #5c5e62;
+  background-color: var(--dial-tile);
 }
 
 /*
@@ -1609,16 +1623,23 @@ body {
  * selected tile was in fact taking the generic tile treatment and looking
  * right by accident.
  *
- * Brighter top edge than a resting tile, because the accent face is far
- * lighter and a 0.085 highlight vanishes on it, and a shadow tinted with the
- * accent rather than neutral black — a lit object tints what falls beneath it.
+ * Brighter top edge than a resting tile — 0.28 against 0.085 — because the
+ * accent face is far lighter and the smaller value vanishes on it.
+ *
+ * The DARK contact shadow stays. An earlier pass replaced it with an
+ * accent-tinted one on the theory that a lit object tints what falls beneath
+ * it, and that quietly removed the depth: an orange glow on a dark board
+ * reads as bloom, not as a shadow, so a picked tile went flat the moment it
+ * was picked. The neutral shadow does the lifting and a wider accent bloom
+ * sits UNDER it, where it adds warmth without standing in for the depth cue.
  */
-:root[data-theme='studio'] div:has(> .liquid-disc) > button.tile-selected {
+:root[data-theme='studio'] div:has(> .liquid-disc) > button.rounded-2xl.tile-selected {
   background-color: var(--color-select);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 1px 1px var(--raise-shadow),
-    0 6px 14px -5px color-mix(in srgb, var(--color-select) 42%, transparent);
+    inset 0 1px 0 var(--raise-light-accent),
+    0 2px 2px -1px var(--raise-shadow-tile),
+    0 8px 18px -6px var(--raise-shadow-tile),
+    0 10px 22px -8px color-mix(in srgb, var(--color-select) 32%, transparent);
 }
 
 /*
@@ -1710,13 +1731,57 @@ body {
   --raise-light: rgba(255, 255, 255, 0.085);
   --raise-light-soft: rgba(255, 255, 255, 0.05);
   --raise-shadow: rgba(0, 0, 0, 0.55);
+  /* The accent face is far lighter, so the resting value vanishes on it. */
+  --raise-light-accent: rgba(255, 255, 255, 0.28);
+
+  /*
+   * The TILES lift harder than anything else on the dial.
+   *
+   * They and the centre puck carried one shared value, and at that setting the
+   * puck read as the more raised object — which inverts the hierarchy, because
+   * the letters are what a player is aiming at and the puck is a control that
+   * only appears once a word is started. A brighter top edge and a deeper,
+   * wider contact shadow put the letters back in front.
+   */
+  --raise-light-tile: rgba(255, 255, 255, 0.17);
+  --raise-shadow-tile: rgba(0, 0, 0, 0.68);
+
+  /*
+   * The two dial surfaces, named once.
+   *
+   * They were literals sitting inside the rules that used them, which is the
+   * same trap as the steel mixes: a value you cannot find is a value nobody
+   * retunes. They are hand-mixed neutrals rather than ramp levels because the
+   * de-blued ramp tops out at softer.border #46484F, below the luminance the
+   * stack needs — see the dial comment for the measurements they satisfy.
+   */
+  --dial-face: #2d2f33;
+  --dial-tile: #5c5e62;
 }
 
-:root[data-theme='studio'] div:has(> .liquid-disc) > button {
+/*
+ * The letter tiles AND the submit puck at the dial's centre both lift, but
+ * only the tiles take a fill.
+ *
+ * The puck is a direct child too, so the blanket rule was painting it
+ * #5c5e62 and OVERRIDING its own states — it carries `bg-steel-dark/60` once
+ * a word is long enough to submit and nothing before that, which is the only
+ * signal that Enter has become available. Flattening both to one colour threw
+ * that away. Scoped by shape: tiles are rounded-2xl, the puck is rounded-full.
+ */
+:root[data-theme='studio'] div:has(> .liquid-disc) > button.rounded-full {
   box-shadow:
     inset 0 1px 0 var(--raise-light),
     0 1px 1px var(--raise-shadow),
     0 5px 12px -5px var(--raise-shadow);
+}
+
+/* The letters, lifted further — see --raise-light-tile. */
+:root[data-theme='studio'] div:has(> .liquid-disc) > button.rounded-2xl {
+  box-shadow:
+    inset 0 1px 0 var(--raise-light-tile),
+    0 2px 2px -1px var(--raise-shadow-tile),
+    0 8px 18px -6px var(--raise-shadow-tile);
 }
 
 /* The dial itself lifts off the board panel. */

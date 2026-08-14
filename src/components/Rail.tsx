@@ -131,13 +131,15 @@ export default function Rail({
         between rows rather than a pool of nothing at the bottom of a card.
         Streak stays its own size and sits on the floor of the rail.
 
-        `grow`, NOT `flex-1`. flex-1 is `1 1 0%`, so it also lets the card
-        SHRINK below its contents: measured at 1280x560 the card came out
-        157px tall around a 176px list, and the ladder spilled over the Streak
-        card beneath it. This only ever wanted the growth half.
+        It both GROWS and SHRINKS, which is only safe because the ladder
+        below scrolls. An earlier pass used `flex-1` without that, and the
+        card shrank to 157px around a 176px list and spilled the rungs over
+        the Streak card. With the list able to scroll, shrinking is contained
+        — and shrinking is what keeps Streak on screen at all: at 898x586 the
+        rail overflowed by 52px and Streak was cut by 47.
       */}
       <Card
-        className="flex grow flex-col"
+        className="flex min-h-0 flex-1 flex-col"
         title="Rank"
         meta={
           rank.next
@@ -154,7 +156,13 @@ export default function Rail({
         <p className="mb-2.5 hidden text-meta leading-snug text-text-muted short:hidden [@media(min-height:801px)]:block">
           {RANK_BASIS}
         </p>
-        <ol className="flex grow flex-col justify-between gap-0.5 short:gap-0">
+        {/*
+          The ladder is the one thing here that can lose height gracefully. It
+          is eight rungs of the same shape, so a scroll costs a reader almost
+          nothing — where clipping the Streak card costs them the whole card,
+          which is the failure this rail has had twice before.
+        */}
+        <ol className="flex min-h-0 flex-1 flex-col justify-between gap-0.5 overflow-y-auto short:gap-0">
           {rankLadder(gridScore, gridMax).map((step) => (
             <li
               key={step.name}
