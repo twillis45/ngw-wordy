@@ -53,9 +53,34 @@ export default function SupportPage() {
       </p>
       <p>
         <strong>Definitions:</strong> WordNet 3.1, the lexical database from
-        Princeton University, used under its own licence. Clues are edited from
-        its definitions.
+        Princeton University. Clues are edited from its definitions.
       </p>
+      {/*
+        The WordNet licence does not ask to be summarised, it asks to be
+        REPRODUCED: permission is granted "provided that you agree to comply
+        with the following copyright notice and statements, including the
+        disclaimer, and that the same appear on ALL copies of the software,
+        database and documentation". A credit line met the spirit and not the
+        condition, and this ships inside every build, so the notice belongs
+        where a user can reach it.
+      */}
+      <blockquote>
+        <p>WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.</p>
+        <p>
+          THIS SOFTWARE AND DATABASE IS PROVIDED &ldquo;AS IS&rdquo; AND
+          PRINCETON UNIVERSITY MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS
+          OR IMPLIED. BY WAY OF EXAMPLE, BUT NOT LIMITATION, PRINCETON
+          UNIVERSITY MAKES NO REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY
+          OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED
+          SOFTWARE, DATABASE OR DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY
+          PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+        </p>
+        <p>
+          The name of Princeton University or Princeton may not be used in
+          advertising or publicity pertaining to distribution of the software
+          and/or database.
+        </p>
+      </blockquote>
       <p>
         <strong>Sound:</strong> synthesised in the browser with the Web Audio
         API. No sampled audio is used.

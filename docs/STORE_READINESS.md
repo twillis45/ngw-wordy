@@ -30,7 +30,7 @@ Activity, via Bubblewrap) for Play, **Capacitor** or a WKWebView shell for iOS.
 | 1.6 | Play Data Safety form | TODO | Same content, different form. Must agree with 1.5 or it reads as a lie. |
 | 1.7 | Content rating (IARC via Play, Apple age rating) | TODO | Word game, no violence. Check the wordlist question below first. |
 | 1.8 | **ENABLE1 wordlist license** | **TODO** | ENABLE1 is public domain in practice; confirm and record the provenance. Ships inside the binary. |
-| 1.9 | **WordNet definitions license** | **TODO** | `data/wordnet.json`. WordNet's license is permissive and REQUIRES an attribution notice. Not present in the UI as far as this pass found — likely an actual compliance gap. |
+| 1.9 | WordNet definitions license | **DONE 2026-08-14** | Correction to this row's first version: attribution WAS already present on `/support`, crediting WordNet 3.1 and ENABLE. The real gap was narrower — the licence grants permission "provided that you agree to comply with the following copyright notice and statements, including the disclaimer, and that the same appear on ALL copies". A summary does not satisfy that. The copyright notice, the AS-IS disclaimer and the name-use clause are now reproduced on `/support`. Bundled data confirmed as WordNet 3.1 (`wordnet-db@3.1.14`), so the version claim on that page was already correct. |
 | 1.10 | Cultural content review | **BLOCKER** | `AGENTS.md`: *"a real reader is budgeted per pack before anything ships commercially."* Has not happened for ANY pack. Store release is the definition of commercial. |
 | 1.11 | Trademark sweep on theme + clue text | TODO | Clues name real records, artists and brands. Nominative reference is normally fine; a pass is still owed. |
 
@@ -80,7 +80,8 @@ Activity, via Bubblewrap) for Play, **Capacitor** or a WKWebView shell for iOS.
 
 | # | Item | Status | Note |
 |---|---|---|---|
-| 5.1 | **Service worker serves a stale build** | **BLOCKER** | Observed twice in one session: the live GitHub Pages site rendered a build old enough to predate clue mode, and locally the browser kept serving pre-rebuild CSS until the SW was unregistered and caches cleared by hand. In a store binary this is worse — a shipped bad cache cannot be fixed by a redeploy, and support has no "clear your cache" instruction to give. Needs a versioned cache with a skipWaiting/refresh path, and a visible "update available" affordance. |
+| 5.1 | Service worker served a stale build | **FIXED 2026-08-14 — verify on the live deploy** | Three causes, all closed: the cache name was hand-edited and is now stamped from a content hash at build time (`scripts/stamp-sw.mjs`); `fetch()` on navigations went through the HTTP cache, so "network-first" degraded to "whatever the browser kept", and now passes `cache: 'no-store'`; and a new worker took over without the open document reloading, which `ServiceWorker.tsx` now handles on `controllerchange`. Verified end to end: one normal reload picks up a new build. **Still to confirm on the live Pages deploy**, since every measurement here was local. |
+| 5.1a | I twice reported 5.1 as unfixed when it was working | note | Worth recording as a testing lesson, not a code one. I verified by unregistering the worker and clearing caches, which leaves `navigator.serviceWorker.controller` null — so `hadController` is false and the auto-reload is *correctly* suppressed. The test method defeated the fix and I read that as the fix failing. A hard refresh cannot verify a soft-refresh path. |
 | 5.2 | First-run stall offer fired at 39s with zero interaction | **FIXED 2026-08-12** | Measured on the production export: a brand-new player who had touched nothing was told "Stuck? I'll open the 3-letter one. Costs 3 hints. You have 3." The clock now starts on first action. Would have read badly to a reviewer and is a Grandmother-veto condition. |
 | 5.3 | No first-run explainer appears | **DECIDE** | Measured: no intro on a cleared profile. The one-line teach ("Six letters. Six words. All from the wheel.") may be enough — that is a defensible Wardle-style restraint — but it is currently an accident rather than a decision. |
 
@@ -89,7 +90,9 @@ Activity, via Bubblewrap) for Play, **Capacitor** or a WKWebView shell for iOS.
 ## Suggested order
 
 1. **Rule on 0.1.** iOS-as-wrapper may not be viable; that answer changes the plan.
-2. Clear the two real BLOCKERS that are nobody's opinion: **5.1 (stale cache)** and **1.10 (cultural reader)**.
+2. Clear the remaining hard BLOCKER that is nobody's opinion: **1.10 (cultural
+   reader)**. 5.1 is closed pending one confirmation on the live deploy.
 3. Ship **Android via TWA first** — cheaper, likelier to pass, and it proves the pipeline.
-4. Do the licence work (1.8, 1.9) — small, and unpleasant to discover late.
+4. Finish the licence work — 1.9 is done, **1.8 (ENABLE provenance)** remains.
+   Small, and unpleasant to discover late.
 5. Only then decide paid (section 4), because IAP is most of the remaining work.
