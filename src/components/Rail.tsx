@@ -130,9 +130,14 @@ export default function Rail({
         with a LIST — eight rungs that can breathe — so growing it adds space
         between rows rather than a pool of nothing at the bottom of a card.
         Streak stays its own size and sits on the floor of the rail.
+
+        `grow`, NOT `flex-1`. flex-1 is `1 1 0%`, so it also lets the card
+        SHRINK below its contents: measured at 1280x560 the card came out
+        157px tall around a 176px list, and the ladder spilled over the Streak
+        card beneath it. This only ever wanted the growth half.
       */}
       <Card
-        className="flex min-h-0 flex-1 flex-col"
+        className="flex grow flex-col"
         title="Rank"
         meta={
           rank.next
@@ -149,7 +154,7 @@ export default function Rail({
         <p className="mb-2.5 hidden text-meta leading-snug text-text-muted short:hidden [@media(min-height:801px)]:block">
           {RANK_BASIS}
         </p>
-        <ol className="flex flex-1 flex-col justify-between gap-0.5 short:gap-0">
+        <ol className="flex grow flex-col justify-between gap-0.5 short:gap-0">
           {rankLadder(gridScore, gridMax).map((step) => (
             <li
               key={step.name}

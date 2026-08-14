@@ -1398,17 +1398,22 @@ body {
    * Studio was inheriting the blue-led #070809, which is why its canvas read
    * wrong next to the reference.
    *
-   * All four move together, not just the page. The body alone would land
-   * LIGHTER than carbonPanel (#141518 vs #121518) and invert the surface
-   * hierarchy — page above panel — so the ramp is taken whole.
+   * DEEP, not mid. The palette marks `mid` as its default, and deep is the
+   * next level down — "dark↔mid" in its own comment — which is the darker
+   * canvas this theme wants while staying on the de-blued ramp rather than
+   * falling back to the blue-led one.
+   *
+   * All four move together, not just the page. Taking the body alone from a
+   * different level than its panels is what inverts a surface hierarchy, so
+   * the ramp is taken whole.
    *
    * Steel is deliberately NOT de-blued: the same palette locks it across every
    * mode because it is identity rather than surface.
    */
-  --color-carbon-body: #141518;
-  --color-carbon-panel: #1e1f22;
-  --color-carbon-surface-2: #25262a;
-  --color-carbon-border: #313338;
+  --color-carbon-body: #0d0e10;
+  --color-carbon-panel: #161719;
+  --color-carbon-surface-2: #1c1d20;
+  --color-carbon-border: #282a2e;
 
   --color-success: #e08c38;
   --color-success-ink: #e08c38;
