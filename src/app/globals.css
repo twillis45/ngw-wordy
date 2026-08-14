@@ -269,6 +269,24 @@
   --glass-saturate: 1.8;
 
   /*
+   * The desktop cursor puck, tokenized.
+   *
+   * These were hardcoded Tailwind arbitrary values on .glass-wall
+   * (backdrop-blur-[5px] backdrop-brightness-125 backdrop-saturate-[1.7]), so
+   * they ignored the theme entirely — a matte theme still got a lens. The
+   * brightness is what reads as opacity: at 125% the puck stopped being a
+   * window and became a pale disc sitting on the board.
+   *
+   * Lowered to 112% and 4px so it veils rather than covers. It still has to be
+   * findable — on a mouse this REPLACES the OS cursor, and a pointer you
+   * cannot see is worse than a heavy one — so the contact shadow and rim carry
+   * that job instead of a bright fill.
+   */
+  --puck-blur: 4px;
+  --puck-brightness: 1.12;
+  --puck-saturate: 1.35;
+
+  /*
    * Ambient field — the thing the glass refracts.
    *
    * The body was a flat #070809, which meant every backdrop-blur and
@@ -1368,6 +1386,30 @@ body {
  * studio WITH the matte accent selected gets orange either way.
  */
 :root[data-theme='studio'] {
+  /*
+   * THE DE-BLUED NEUTRAL CARBON RAMP — carbonNeutral.mid, the documented
+   * default in ngw-event-planner demo/src/theme/palette.js.
+   *
+   * The rest of this file uses the Standard carbon ramp, which that palette
+   * calls "Studio Steel" and describes as deliberately blue-led — blue channel
+   * about 8 over red. The same file records the preference against it for this
+   * system: "User (2026-06-23) preferred a NEUTRAL carbon: most of the blue
+   * removed (blue ~3 over red), still a hair warm-cool-balanced, never steel."
+   * Studio was inheriting the blue-led #070809, which is why its canvas read
+   * wrong next to the reference.
+   *
+   * All four move together, not just the page. The body alone would land
+   * LIGHTER than carbonPanel (#141518 vs #121518) and invert the surface
+   * hierarchy — page above panel — so the ramp is taken whole.
+   *
+   * Steel is deliberately NOT de-blued: the same palette locks it across every
+   * mode because it is identity rather than surface.
+   */
+  --color-carbon-body: #141518;
+  --color-carbon-panel: #1e1f22;
+  --color-carbon-surface-2: #25262a;
+  --color-carbon-border: #313338;
+
   --color-success: #e08c38;
   --color-success-ink: #e08c38;
 
@@ -1383,10 +1425,23 @@ body {
    * translucent fill over a blurred backdrop IS the glass effect; making them
    * solid is what turns the surface matte.
    */
-  --glass-body: #16191c;
-  --glass-body-raised: #1c2024;
-  --glass-fill: #16191c;
-  --glass-fill-raised: #1c2024;
+  /*
+   * DERIVED FROM THE PALETTE, not typed as hex.
+   *
+   * These were four literals. They matched, and they were still wrong: a
+   * literal does not move when the carbon ramp moves, so the day somebody
+   * retunes the surfaces this theme silently stops agreeing with the other
+   * three. Every value here now composes from the same carbon tokens the rest
+   * of the file uses, which is what "tokenized" has to mean if it is going to
+   * survive a palette change.
+   *
+   * Opaque on purpose — a translucent fill over a blurred backdrop IS the
+   * glass effect, so solid is what makes the surface matte.
+   */
+  --glass-body: color-mix(in srgb, var(--color-carbon-panel) 88%, var(--color-steel));
+  --glass-body-raised: color-mix(in srgb, var(--color-carbon-surface-2) 88%, var(--color-steel));
+  --glass-fill: var(--glass-body);
+  --glass-fill-raised: var(--glass-body-raised);
 
   /* The three that draw light in the material. Off. */
   --glass-rim-light: transparent;
@@ -1439,6 +1494,15 @@ body {
   --ambient-1: transparent;
   --ambient-2: transparent;
   --ambient-3: transparent;
+
+  /*
+   * The cursor puck, quieter again. A matte theme has no lens in it, so the
+   * pointer veils what is behind it instead of brightening it — near-neutral
+   * brightness, minimal blur. Its shadow and rim still make it findable.
+   */
+  --puck-blur: 2px;
+  --puck-brightness: 1.06;
+  --puck-saturate: 1.1;
 }
 
 /*
@@ -1492,12 +1556,16 @@ body {
  */
 :root[data-theme='studio'] .liquid-disc {
   border-color: transparent;
-  --glass-fill-raised: #101315;
+  /* Sits BETWEEN the page and a panel, so it is mixed from exactly those two
+     rather than picked by eye. */
+  --glass-fill-raised: color-mix(in srgb, var(--color-carbon-panel) 55%, var(--color-carbon-body));
 }
 
 :root[data-theme='studio'] div:has(> .liquid-disc) > button {
   border-color: transparent;
-  background-color: #3b444d;
+  /* Steel lifted off the surface it sits on — the separation that replaces the
+     border, composed from the palette so it tracks any retune of either. */
+  background-color: color-mix(in srgb, var(--color-steel) 62%, var(--color-carbon-surface-2));
 }
 
 /* The selected tile keeps its accent fill — that state is the one thing on

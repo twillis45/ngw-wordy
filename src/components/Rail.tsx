@@ -74,7 +74,13 @@ export default function Rail({
   const solvedTargets = gridWords.filter((w) => found.has(w));
 
   return (
-    <div className="flex flex-col gap-3 short:gap-2.5">
+    /*
+     * h-full so the column fills the grid row the board already fills. Without
+     * it the column is content-sized and stopped 107px short of the board's
+     * bottom edge on a 1440x900 — measured — which read as the rail floating
+     * rather than as a deliberate gap.
+     */
+    <div className="flex h-full flex-col gap-3 short:gap-2.5">
       <Card title="Your words" meta={`${score} pts`}>
         <Group
           label={`Targets · ${solvedTargets.length}/${gridWords.length}`}
@@ -119,7 +125,14 @@ export default function Rail({
         never showed. Naming it closes the sum in the reader's favour: 5 is
         behind you, 8 is the next rung, you are at 6, so it is 2.
       */}
+      {/*
+        Rank absorbs the column's leftover height. It is the only card here
+        with a LIST — eight rungs that can breathe — so growing it adds space
+        between rows rather than a pool of nothing at the bottom of a card.
+        Streak stays its own size and sits on the floor of the rail.
+      */}
       <Card
+        className="flex min-h-0 flex-1 flex-col"
         title="Rank"
         meta={
           rank.next
@@ -136,7 +149,7 @@ export default function Rail({
         <p className="mb-2.5 hidden text-meta leading-snug text-text-muted short:hidden [@media(min-height:801px)]:block">
           {RANK_BASIS}
         </p>
-        <ol className="flex flex-col gap-0.5 short:gap-0">
+        <ol className="flex flex-1 flex-col justify-between gap-0.5 short:gap-0">
           {rankLadder(gridScore, gridMax).map((step) => (
             <li
               key={step.name}
@@ -234,10 +247,13 @@ function Card({
   title,
   meta,
   children,
+  className = '',
 }: {
   title: string;
   meta?: string;
   children: React.ReactNode;
+  /** Lets one card in the column absorb leftover height — see the rail root. */
+  className?: string;
 }) {
   /*
    * Panel radius, not card radius. These three sit directly on the page beside
@@ -245,7 +261,9 @@ function Card({
    * its 24px, which read as drift rather than hierarchy.
    */
   return (
-    <section className="relative rounded-3xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4 lg:p-3.5 short:p-3">
+    <section
+      className={`relative rounded-3xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4 lg:p-3.5 short:p-3 ${className}`}
+    >
       <div className="mb-3 flex items-baseline justify-between gap-3">
         <h2 className="text-item font-semibold text-text-primary">
           {title}

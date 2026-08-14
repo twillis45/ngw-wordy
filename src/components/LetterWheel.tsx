@@ -643,7 +643,7 @@ export default function LetterWheel({
               centre of the lens stays clear and the letter reads through it. */}
           <span
             aria-hidden
-            className="glass-wall absolute inset-0 backdrop-blur-[5px] backdrop-brightness-125 backdrop-saturate-[1.7]"
+            className="glass-wall absolute inset-0 backdrop-blur-[var(--puck-blur)] backdrop-brightness-[var(--puck-brightness)] backdrop-saturate-[var(--puck-saturate)]"
             style={{ borderRadius: 'inherit', padding: '30%' }}
           />
         </span>

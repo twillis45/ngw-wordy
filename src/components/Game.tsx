@@ -1777,8 +1777,14 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </div>
 
         {/* Evidence rail — below the board on tablet, beside it on desktop. */}
-        {/* self-start keeps the rail at its natural height so the board column
-            can stretch and center its own contents. */}
+        {/*
+          STRETCHES to the row, where it used to sit at its natural height.
+          `self-start` meant the aside was content-sized, so the rail ended
+          107px above the board's bottom edge on a 1440x900 — measured — and
+          any h-full inside it resolved against that short box rather than the
+          row. `max-h-full` plus the scroll behaviour below still handle the
+          opposite case, where the cards are taller than the viewport.
+        */}
         <aside
           aria-label="Your progress"
           /*
@@ -1792,7 +1798,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
            * streak existed. The short: compaction above recovers most of it;
            * the fade covers whatever is left at any height.
            */
-          className="rail-scroll hidden md:block md:max-h-full md:self-start md:overflow-y-auto lg:sticky lg:top-6"
+          className="rail-scroll hidden md:block md:max-h-full md:self-stretch md:overflow-y-auto lg:sticky lg:top-6"
         >
           {rail}
         </aside>
