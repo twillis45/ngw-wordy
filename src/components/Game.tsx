@@ -2199,22 +2199,36 @@ export default function Game({ data }: { data: PuzzleFile }) {
             <div className="mt-4 flex items-center justify-between gap-4 border-t border-edge-mid pt-4">
               <div className="min-w-0">
                 <p className="text-meta font-medium text-text-primary">Accent</p>
+                {/*
+                  Studio SETS the accent, so this control cannot also claim it.
+                  It read "Signal green" while the board was painting orange —
+                  a control describing a state that is not on screen, which is
+                  the one thing a settings row must never do. It says who is in
+                  charge instead, and the button stops offering a choice that
+                  the theme would immediately overrule.
+                */}
                 <p className="mt-0.5 text-kicker leading-snug text-text-muted">
-                  The colour that marks a found row. Both options are matched to
-                  the same measured contrast, so this is taste, not legibility.
+                  {theme === 'studio'
+                    ? 'Set by the Studio theme. Switch theme to choose your own.'
+                    : 'The colour that marks a found row. Both options are matched to the same measured contrast, so this is taste, not legibility.'}
                 </p>
               </div>
               <button
                 type="button"
+                disabled={theme === 'studio'}
                 onClick={() =>
                   setAccent(
                     (accent === 'default' ? 'matte' : 'default') as Accent
                   )
                 }
-                aria-label={`Accent: ${ACCENT_LABELS[accent]}. Tap to change.`}
-                className="liquid-interactive h-10 shrink-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
+                aria-label={
+                  theme === 'studio'
+                    ? 'Accent: Signal orange, set by the Studio theme.'
+                    : `Accent: ${ACCENT_LABELS[accent]}. Tap to change.`
+                }
+                className="liquid-interactive h-10 shrink-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary disabled:opacity-60"
               >
-                {ACCENT_LABELS[accent]}
+                {theme === 'studio' ? 'Signal orange' : ACCENT_LABELS[accent]}
               </button>
             </div>
 

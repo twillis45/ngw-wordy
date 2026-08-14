@@ -24,7 +24,23 @@
  *
  * Any future content correction must bump this too.
  */
-const CACHE = 'wordy-v3';
+/*
+ * STAMPED AT BUILD TIME. `scripts/stamp-sw.mjs` replaces the placeholder with
+ * a hash of the built asset names, so every deploy that changes anything gets
+ * a new cache and the activate handler sweeps the old one.
+ *
+ * It was a hand-edited constant, and the comment above admits the failure mode
+ * — "any future content correction must bump this too", i.e. a correctness
+ * guarantee resting on somebody remembering. It was not remembered: a live
+ * build and a local rebuild both kept serving superseded assets in one session
+ * until the worker was unregistered by hand. A player cannot do that, and a
+ * store binary cannot be fixed by redeploying, which is why this is stamped
+ * rather than typed.
+ *
+ * The literal below is the DEV fallback: unstamped (running from source, or a
+ * build that skipped the script) behaves exactly as before.
+ */
+const CACHE = '__BUILD_ID__'.startsWith('__') ? 'wordy-dev' : '__BUILD_ID__';
 
 /**
  * Where the app is mounted, derived from this file's own URL — "/" on
@@ -71,7 +87,17 @@ self.addEventListener('fetch', (event) => {
 
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request)
+      /*
+       * `cache: 'no-store'` — network-first has to mean the NETWORK.
+       *
+       * A bare fetch() still goes through the HTTP cache, so a document served
+       * with any max-age comes back from disk without touching the server, and
+       * "network-first" quietly degrades to "whatever the browser kept".
+       * GitHub Pages sends max-age on HTML, which is exactly the shape of the
+       * staleness seen live. The document is one small request; spending it is
+       * the whole point of this branch.
+       */
+      fetch(request, { cache: 'no-store' })
         .then((response) => {
           /*
            * Only cache a navigation that actually SUCCEEDED.

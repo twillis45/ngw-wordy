@@ -1505,3 +1505,37 @@ body {
 :root[data-theme='studio'] div:has(> .liquid-disc) > button.tile-selected {
   background-color: var(--color-select);
 }
+
+/*
+ * Everything else that paints a GRADIENT rather than a tint.
+ *
+ * The token overrides above flatten anything whose colour comes from a glass
+ * variable, which is most of the app. These five do not: they declare their own
+ * linear-gradients in this file or as utilities in the markup, so they survive
+ * a token change and were the last lit surfaces left on this theme. Found by
+ * walking the sheets rather than the stylesheet — the "Do it for me" button is
+ * the obvious one, a pale steel pill on a matte sheet.
+ *
+ * `background-image: none` rather than a new colour, so each keeps whatever
+ * background-color it already had and simply stops being shiny.
+ */
+:root[data-theme='studio'] .glass-puck::after,
+:root[data-theme='studio'] .anim-sweep::after {
+  content: none;
+}
+
+:root[data-theme='studio'] .liquid-interactive {
+  background-image: none;
+}
+
+/*
+ * The selected tile, everywhere — not just on the dial.
+ *
+ * Its gradient runs white-tinted to black-tinted across the accent and carries
+ * a five-layer shadow with two inset rims. On a matte theme that is the single
+ * shiniest object on screen. Flat accent, one contact shadow, no rims.
+ */
+:root[data-theme='studio'] .tile-selected {
+  background: var(--color-select);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-select) 62%, black);
+}
