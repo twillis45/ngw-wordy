@@ -98,6 +98,7 @@ import {
   MIN_WORD_LENGTH,
   RANK_BASIS,
   clueTarget,
+  completionStats,
   isReachable,
   dailyIndex,
   dailyCycle,
@@ -2715,6 +2716,7 @@ function CompleteSheet({
    * be: the counter was fine, the way out of the sheet was not.
    */
   const ref = useDialog(onClose);
+  const stats = completionStats({ score, bonus, streak, warmup, warmupTotal });
   /*
    * Portalled, for the same reason every other sheet is.
    *
@@ -2751,10 +2753,25 @@ function CompleteSheet({
         </p>
         <h2 className="mt-1 text-hero font-bold text-text-primary">{rank}</h2>
 
-        <dl className="mt-5 grid grid-cols-3 gap-3 text-center">
-          <Stat label="Score" value={score} />
-          <Stat label="Bonus" value={bonus} />
-          <Stat label="Streak" value={streak} />
+        {/*
+          Only the stats that can mean something yet — see `completionStats`.
+          The column count is spelled out rather than interpolated because
+          Tailwind reads these class names statically; `grid-cols-${n}` would
+          compile to nothing and collapse the tiles into one column.
+        */}
+        <dl
+          className={[
+            'mt-5 grid gap-3 text-center',
+            stats.length === 1
+              ? 'grid-cols-1'
+              : stats.length === 2
+                ? 'grid-cols-2'
+                : 'grid-cols-3',
+          ].join(' ')}
+        >
+          {stats.map((s) => (
+            <Stat key={s.label} label={s.label} value={s.value} />
+          ))}
         </dl>
 
         {/*
@@ -2896,7 +2913,7 @@ function CompleteSheet({
   );
 }
 
-function Stat({ label, value }: { label: string; value: number }) {
+function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="relative rounded-xl border border-edge-mid liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] py-3">
       <dd className="text-title font-bold tabular-nums text-text-primary">
