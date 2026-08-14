@@ -1589,10 +1589,26 @@ body {
   background-color: #46484f;
 }
 
-/* The selected tile keeps its accent fill — that state is the one thing on
-   the dial allowed to be loud, and it must still win over the rule above. */
+/*
+ * The selected tile: accent fill, and a lift tuned to it.
+ *
+ * ONE rule, at the specificity that actually wins. There were three — a
+ * `.tile-selected` flat-fill rule and a `.tile-selected` raise rule, both
+ * outranked by the `:has(> .liquid-disc) > button` selector above and
+ * therefore dead, while each carried a comment describing what it "did". The
+ * selected tile was in fact taking the generic tile treatment and looking
+ * right by accident.
+ *
+ * Brighter top edge than a resting tile, because the accent face is far
+ * lighter and a 0.085 highlight vanishes on it, and a shadow tinted with the
+ * accent rather than neutral black — a lit object tints what falls beneath it.
+ */
 :root[data-theme='studio'] div:has(> .liquid-disc) > button.tile-selected {
   background-color: var(--color-select);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 1px var(--raise-shadow),
+    0 6px 14px -5px color-mix(in srgb, var(--color-select) 42%, transparent);
 }
 
 /*
@@ -1613,21 +1629,19 @@ body {
   content: none;
 }
 
+/*
+ * Gradients off — but a control still needs a FILL.
+ *
+ * The two primary CTAs painted themselves with `bg-gradient-to-b` and nothing
+ * else, so removing the gradient left "Do it for me" as a hollow outline: the
+ * most important control on the stuck panel, with no surface at all. The
+ * markup now carries a solid `bg-steel-dark/80` UNDER the gradient, which the
+ * other themes paint straight over and this one reveals.
+ */
 :root[data-theme='studio'] .liquid-interactive {
   background-image: none;
 }
 
-/*
- * The selected tile, everywhere — not just on the dial.
- *
- * Its gradient runs white-tinted to black-tinted across the accent and carries
- * a five-layer shadow with two inset rims. On a matte theme that is the single
- * shiniest object on screen. Flat accent, one contact shadow, no rims.
- */
-:root[data-theme='studio'] .tile-selected {
-  background: var(--color-select);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-select) 62%, black);
-}
 
 /*
  * EDGE WEIGHT SCALES WITH THE THING IT OUTLINES.
@@ -1662,3 +1676,55 @@ body {
 :root[data-theme='studio'] .rounded-md.border-2.border-select {
   border-width: 2px;
 }
+
+/*
+ * RAISED — the dial, its letter tiles, and the cursor puck.
+ *
+ * Flattening the material took the elevation with it, and on this theme that
+ * is unrecoverable by shadow alone. Measured: the only layer left on a tile
+ * was rgba(0,0,0,0.42) over a rgb(13,14,16) canvas. A black shadow on a
+ * near-black ground has almost nothing left to darken toward, so the tiles
+ * read as holes cut in the disc rather than objects sitting on it.
+ *
+ * So the lift comes from a LIGHT TOP EDGE, which is how a dark matte surface
+ * shows depth: a 1px inset highlight on the upper edge, where a real raised
+ * face would catch the room. That is not the gloss this theme removed — gloss
+ * is a broad specular gradient ACROSS the face, which is still gone. This is
+ * one hairline at the boundary.
+ *
+ * A contact shadow still does the rest of the work where there is something
+ * lighter beneath to cast onto: the disc sits on the board panel, so its
+ * shadow reads; a tile sits on the disc, so it gets a tighter one.
+ */
+:root[data-theme='studio'] {
+  --raise-light: rgba(255, 255, 255, 0.085);
+  --raise-light-soft: rgba(255, 255, 255, 0.05);
+  --raise-shadow: rgba(0, 0, 0, 0.55);
+}
+
+:root[data-theme='studio'] div:has(> .liquid-disc) > button {
+  box-shadow:
+    inset 0 1px 0 var(--raise-light),
+    0 1px 1px var(--raise-shadow),
+    0 5px 12px -5px var(--raise-shadow);
+}
+
+/* The dial itself lifts off the board panel. */
+:root[data-theme='studio'] .liquid-disc {
+  box-shadow:
+    inset 0 1px 0 var(--raise-light-soft),
+    0 10px 26px -14px var(--raise-shadow);
+}
+
+/*
+ * The cursor puck. It REPLACES the OS pointer on a mouse, so it has to sit
+ * above the board unambiguously — a pointer that reads as a hole is worse than
+ * one that is slightly too present.
+ */
+:root[data-theme='studio'] .glass-puck {
+  box-shadow:
+    inset 0 1px 0 var(--raise-light),
+    0 2px 6px -1px var(--raise-shadow),
+    0 8px 18px -8px var(--raise-shadow);
+}
+

@@ -1946,7 +1946,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 <button
                   type="button"
                   onClick={acceptAssist}
-                  className="liquid-interactive relative mt-5 h-12 w-full rounded-full border-2 border-edge bg-gradient-to-b from-steel/80 to-steel-dark/80 text-body font-semibold text-text-primary backdrop-blur-[var(--glass-blur)]"
+                  className="liquid-interactive relative mt-5 h-12 w-full rounded-full border-2 border-edge bg-steel-dark/80 bg-gradient-to-b from-steel/80 to-steel-dark/80 text-body font-semibold text-text-primary backdrop-blur-[var(--glass-blur)]"
                 >
                   Do it for me
                 </button>
@@ -2825,7 +2825,7 @@ function CompleteSheet({
         <button
           type="button"
           onClick={onNext}
-          className="liquid-interactive relative mt-6 h-12 w-full rounded-full border-2 border-edge bg-gradient-to-b from-steel/80 to-steel-dark/80 text-body font-semibold text-text-primary backdrop-blur-[var(--glass-blur)]"
+          className="liquid-interactive relative mt-6 h-12 w-full rounded-full border-2 border-edge bg-steel-dark/80 bg-gradient-to-b from-steel/80 to-steel-dark/80 text-body font-semibold text-text-primary backdrop-blur-[var(--glass-blur)]"
         >
           {/* The arrow here is typography inside a phrase, not an icon in a
               slot — it moves with the words and would break the line's rhythm
