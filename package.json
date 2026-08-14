@@ -9,6 +9,7 @@
     "lint": "eslint",
     "test": "vitest run",
     "check:rail": "node scripts/check-rail.mjs",
+    "check:intro": "node scripts/check-intro.mjs",
     "puzzles": "node scripts/build-puzzles.mjs 520",
     "icons": "python3 scripts/build-icons.py",
     "definitions": "node scripts/build-definitions.mjs",
