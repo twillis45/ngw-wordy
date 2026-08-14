@@ -1406,6 +1406,39 @@ body {
      backdrop-blur/saturate utilities on the components become no-ops. */
   --glass-blur: 0px;
   --glass-saturate: 1;
+
+  /*
+   * The edge, brought down to what the rule actually asks for.
+   *
+   * The default #ccd6e4 is lit to 11-13:1 against the surfaces it outlines,
+   * deliberately, so the SHAPES survive direct sunlight. That is a real
+   * decision and it is why the board reads as outlined rather than matte: it
+   * measures ~4x the contrast WCAG 1.4.11 requires of a boundary, while the
+   * fills sit at 1.14-1.22:1 against the page — so the outline was carrying
+   * all of the identification and the surfaces almost none of it.
+   *
+   * Matching the reference by DELETING the border is not available. For a fill
+   * to identify itself at 3:1 against a near-black page it would have to be
+   * about #5c5c5c — light grey, not matte. So the boundary stays and stops
+   * shouting: measured on this theme's own surfaces, #66717d gives 3.30:1 on a
+   * tile, 3.55:1 on a panel and 4.03:1 on the page. Past the 3:1 floor
+   * everywhere, and a quarter of the previous loudness.
+   *
+   * The sunlight argument is not refuted, it is traded: this is the theme a
+   * player chooses for a dim room, and the other three are unchanged.
+   */
+  --color-edge: #66717d;
+
+  /*
+   * Flat ground. The body lays three steel radial washes over the base colour
+   * — a lit room, which is the right instinct for a glass material and the
+   * wrong one for a matte theme. They are the corner glow that stops this
+   * reading as one flat surface. Cleared to transparent, so the solid
+   * carbon-body underneath is the whole background.
+   */
+  --ambient-1: transparent;
+  --ambient-2: transparent;
+  --ambient-3: transparent;
 }
 
 /*
