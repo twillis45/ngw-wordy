@@ -671,6 +671,53 @@ export function rankLadder(rowsFilled: number, totalRows: number): LadderStep[] 
   }));
 }
 
+/** One tile on the completion sheet. */
+export type CompletionStat = { label: string; value: string };
+
+/**
+ * The stats worth showing on a cleared board.
+ *
+ * The sheet used to render Score, Bonus and Streak unconditionally, so the
+ * first success a new player ever saw read `23 / 0 / 0` — and one of those
+ * zeros is zero BY DEFINITION on a first clear, because a streak cannot be
+ * more than a day old until there has been a second day. The moment meant to
+ * land as an achievement spent two thirds of its space naming things the
+ * player did not have yet.
+ *
+ * So a stat appears only once it can mean something:
+ *
+ * - Score always. Clearing a board takes six words, so it is never zero.
+ * - Bonus once there is one. Zero bonus words is not a result, it is the
+ *   default.
+ * - Streak once it is longer than a day. `1` is not a streak, it is today —
+ *   the rail already draws this exact line for the same reason ("Play
+ *   tomorrow to start a streak").
+ *
+ * Warm-up progress fills the gap when there is one, because it is the thing
+ * that IS true on a first clear: you have finished one of two. It is added
+ * last and only if a slot is free, so it never pushes out a real result.
+ */
+export function completionStats(s: {
+  score: number;
+  bonus: number;
+  streak: number;
+  warmup: number | null;
+  warmupTotal: number;
+}): CompletionStat[] {
+  const stats: CompletionStat[] = [{ label: 'Score', value: String(s.score) }];
+
+  if (s.bonus > 0) stats.push({ label: 'Bonus', value: String(s.bonus) });
+  if (s.streak > 1) stats.push({ label: 'Streak', value: String(s.streak) });
+
+  // The sheet's grid is three wide; a fourth tile would wrap alone onto a
+  // second row, which reads as a mistake rather than as more information.
+  if (s.warmup !== null && s.warmupTotal > 0 && stats.length < 3) {
+    stats.push({ label: 'Warm-up', value: `${s.warmup}/${s.warmupTotal}` });
+  }
+
+  return stats;
+}
+
 /** Shuffle the wheel without ever returning the same order twice running. */
 export function shuffle(letters: string[]): string[] {
   if (letters.length < 2) return [...letters];

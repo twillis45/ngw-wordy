@@ -6,6 +6,7 @@ import {
   fillClue,
   unlockedIndices,
   clueTarget,
+  completionStats,
   dailyIndex,
   isReachable,
   isDailyEligible,
@@ -1356,5 +1357,63 @@ describe('the daily never serves a general pack', () => {
   it('counts the daily pool as the cultural boards only', () => {
     const cultural = file.puzzles.filter((p) => p.theme && isDailyEligible(p.theme.id)).length;
     expect(dailyPoolSize(file)).toBe(cultural);
+  });
+});
+
+describe('completionStats', () => {
+  const base = { score: 23, bonus: 0, streak: 0, warmup: null, warmupTotal: 2 };
+
+  /*
+   * The finding this exists for: the first success a new player sees read
+   * `23 / 0 / 0`, and Streak is zero by definition on a first clear.
+   */
+  it('never shows a zero on a first clear', () => {
+    const stats = completionStats({ ...base, warmup: 1 });
+    expect(stats.map((s) => s.value)).not.toContain('0');
+  });
+
+  it('fills the gap on a first warm-up clear with what IS true', () => {
+    expect(completionStats({ ...base, warmup: 1 })).toEqual([
+      { label: 'Score', value: '23' },
+      { label: 'Warm-up', value: '1/2' },
+    ]);
+  });
+
+  it('shows Score alone rather than padding it with zeros', () => {
+    expect(completionStats(base)).toEqual([{ label: 'Score', value: '23' }]);
+  });
+
+  it('brings Bonus back the moment there is one', () => {
+    const stats = completionStats({ ...base, bonus: 3 });
+    expect(stats).toContainEqual({ label: 'Bonus', value: '3' });
+  });
+
+  /*
+   * A streak of 1 is not a streak, it is today. The rail draws this same line
+   * ("Play tomorrow to start a streak") and the two must not disagree.
+   */
+  it.each([0, 1])('hides a streak of %i, which is not yet a streak', (streak) => {
+    const labels = completionStats({ ...base, streak }).map((s) => s.label);
+    expect(labels).not.toContain('Streak');
+  });
+
+  it('shows a streak once it outlives a single day', () => {
+    const stats = completionStats({ ...base, streak: 2 });
+    expect(stats).toContainEqual({ label: 'Streak', value: '2' });
+  });
+
+  /*
+   * The sheet's grid is three wide. A fourth tile wraps alone onto a second
+   * row, which reads as a bug rather than as more information.
+   */
+  it('never exceeds the three the grid can hold', () => {
+    const full = completionStats({ score: 31, bonus: 4, streak: 9, warmup: 1, warmupTotal: 2 });
+    expect(full).toHaveLength(3);
+    expect(full.map((s) => s.label)).toEqual(['Score', 'Bonus', 'Streak']);
+  });
+
+  it('drops warm-up progress rather than a real result', () => {
+    const stats = completionStats({ ...base, bonus: 2, streak: 5, warmup: 1 });
+    expect(stats.map((s) => s.label)).not.toContain('Warm-up');
   });
 });
