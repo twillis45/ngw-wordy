@@ -1628,3 +1628,37 @@ body {
   background: var(--color-select);
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-select) 62%, black);
 }
+
+/*
+ * EDGE WEIGHT SCALES WITH THE THING IT OUTLINES.
+ *
+ * 2px is one number that means two different things. Measured on this theme as
+ * a share of the element it wraps: the board panel's border is 0.12% of its
+ * height, the dial's 0.6% — and a row chip's is 8.3%, a streak cell's 7.1%, a
+ * Shuffle pill's 6.3%. The small controls were carrying roughly seventy times
+ * the relative edge weight of the largest surface, so on a matte theme they
+ * were the loudest edges on screen while being the least important objects.
+ *
+ * A hairline is a hairline at any size; it is the RATIO that reads. Dropping
+ * the sub-40px controls to 1px puts a chip at 4.2% and a pill at 3.1%, in the
+ * same register as everything else, and costs nothing in identification —
+ * WCAG 1.4.11 specifies the CONTRAST of a boundary, never its thickness, and
+ * the contrast is unchanged at 3.3:1.
+ *
+ * Scoped to studio deliberately. The same disparity exists on dark and light,
+ * but those are what every existing player already has, and quietly restyling
+ * their controls is a different decision from finishing this theme.
+ */
+:root[data-theme='studio'] .liquid-interactive,
+:root[data-theme='studio'] .rounded-md.border-2 {
+  border-width: 1px;
+}
+
+/*
+ * Except the row the clue is asking about. That ring is the one accent moment
+ * on the strip, and thinning it with the rest would flatten the single marker
+ * that says which row you are solving.
+ */
+:root[data-theme='studio'] .rounded-md.border-2.border-select {
+  border-width: 2px;
+}
