@@ -9,11 +9,13 @@ import { join } from 'node:path';
  * "past the 3:1 floor" — and until now not one of them was checked by
  * anything. A number in a comment is a claim that was true when it was typed;
  * nothing stops a retune from falsifying it, and this file has already proved
- * that happens. Two comments in it are stale RIGHT NOW: the selection amber
- * still says "7.53:1 on the letter and 7.59:1 against the panel" when the
- * current tokens compute 6.96 and 7.01, and the studio edge paragraph reasons
- * about "#66717d gives 3.30:1 on a tile" when the token beneath it is
- * #6c6e73. Both drifted the same way — the value moved, the prose did not.
+ * that happens. Two comments in it WERE stale when this file was written: the
+ * selection amber said "7.53:1 on the letter and 7.59:1 against the panel"
+ * when the tokens computed 6.96 and 7.01, and the studio edge paragraph
+ * reasoned about "#66717d gives 3.30:1 on a tile" one de-blue pass after the
+ * token became #6c6e73. Both drifted the same way — the value moved and the
+ * prose did not. Both are corrected, and both are asserted below, which is
+ * the only version of "corrected" that stays true.
  *
  * So the hexes are READ FROM THE STYLESHEET rather than repeated here. A test
  * holding its own copy of #c2c4c8 would keep passing after somebody retuned
@@ -108,6 +110,60 @@ describe('contrast claims in globals.css', () => {
     const secondary = token(STUDIO, 'color-text-secondary');
     const panel = token(STUDIO, 'color-carbon-panel');
     expect(ratio(secondary, panel)).toBeGreaterThanOrEqual(7);
+  });
+
+  /*
+   * The selection amber, from the --color-select comment in @theme:
+   *
+   *   "It is LIGHT with a dark letter, which is the opposite of every other
+   *    tile, and that inversion is most of the effect: 6.96:1 on the letter
+   *    and 7.01:1 against the panel behind it."
+   *
+   * The inversion IS the mechanic — every other tile is dark with a light
+   * letter — so both halves have to hold: the ink must stay readable ON the
+   * amber, and the amber must stay separable FROM the panel it sits on. One
+   * number moving without the other means the tile has stopped being the
+   * loudest thing on the board or stopped being legible, and the comment
+   * calls it "the single most important job on the board".
+   */
+  const DARK = '@theme';
+
+  it('the selection amber holds 6.96:1 on its own letter', () => {
+    expect(ratio(token(DARK, 'color-select'), token(DARK, 'color-select-ink'))).toBe(6.96);
+  });
+
+  it('and 7.01:1 against the panel behind it', () => {
+    expect(ratio(token(DARK, 'color-select'), token(DARK, 'color-carbon-panel'))).toBe(7.01);
+  });
+
+  it('keeps the amber past AA on its letter, which is what makes it usable', () => {
+    // 4.5:1 is WCAG 1.4.3. The comment's own defence of the colour is that the
+    // ink contrast is "still well past AA" after the saturation raise.
+    expect(
+      ratio(token(DARK, 'color-select'), token(DARK, 'color-select-ink'))
+    ).toBeGreaterThanOrEqual(4.5);
+  });
+
+  /*
+   * The studio edge, from its comment: "the value below gives 3.52:1 on a
+   * panel, 3.78:1 on the page and 3.30:1 on a raised surface. Past the 3:1
+   * floor everywhere."
+   *
+   * The floor is the load-bearing part. This theme deletes the border from the
+   * dial and its tiles and leans on fill separation instead, and the edge that
+   * REMAINS — on chips, cards, the clue box, empty slots — is the only thing
+   * identifying those components. WCAG 1.4.11 asks 3:1 of exactly that. The
+   * edge was quietened from ~13:1 on purpose; this is the line it must not
+   * cross while being quietened further.
+   */
+  it('the studio edge clears the 3:1 floor on every surface it outlines', () => {
+    const edge = token(STUDIO, 'color-edge');
+    expect(ratio(edge, token(STUDIO, 'color-carbon-panel'))).toBe(3.52);
+    expect(ratio(edge, token(STUDIO, 'color-carbon-body'))).toBe(3.78);
+    expect(ratio(edge, token(STUDIO, 'color-carbon-surface-2'))).toBe(3.3);
+    for (const surface of ['color-carbon-panel', 'color-carbon-body', 'color-carbon-surface-2']) {
+      expect(ratio(edge, token(STUDIO, surface))).toBeGreaterThanOrEqual(3);
+    }
   });
 
   it('reads the hexes from the stylesheet, so a retune moves the test with it', () => {

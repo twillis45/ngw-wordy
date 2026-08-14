@@ -166,10 +166,16 @@
    * not. Ink contrast is unaffected at 6.96, still well past AA.
    *
    * It is LIGHT with a dark letter, which is the opposite of every other tile,
-   * and that inversion is most of the effect: 7.53:1 on the letter and 7.59:1
+   * and that inversion is most of the effect: 6.96:1 on the letter and 7.01:1
    * against the panel behind it. A dark rust at the same hue managed 3.23:1
    * against the panel — legible, but it sank into the board instead of sitting
    * on it.
+   *
+   * Those two figures read 7.53 and 7.59 until 2026-08-14, from before the
+   * saturation raise described above — the paragraph disagreed with its own
+   * "unaffected at 6.96" a few lines up. Both are now pinned in
+   * src/lib/contrast.test.ts, which reads the tokens rather than trusting the
+   * prose, so the next retune moves the number here or fails.
    *
    * Two things this deliberately is NOT: the success green, which stays
    * reserved for done-ness, and the danger red at 5 degrees. Amber at 28 is
@@ -1487,9 +1493,15 @@ body {
    * Matching the reference by DELETING the border is not available. For a fill
    * to identify itself at 3:1 against a near-black page it would have to be
    * about #5c5c5c — light grey, not matte. So the boundary stays and stops
-   * shouting: measured on this theme's own surfaces, #66717d gives 3.30:1 on a
-   * tile, 3.55:1 on a panel and 4.03:1 on the page. Past the 3:1 floor
-   * everywhere, and a quarter of the previous loudness.
+   * shouting: measured on this theme's own surfaces, the value below gives
+   * 3.52:1 on a panel, 3.78:1 on the page and 3.30:1 on a raised surface.
+   * Past the 3:1 floor everywhere, and a quarter of the previous loudness.
+   *
+   * This paragraph reasoned about #66717d and those numbers until 2026-08-14,
+   * one de-blue pass after the token became #6c6e73 — the reasoning survived
+   * the edit and the evidence did not. The hex is deliberately not repeated
+   * here now; the token is directly below, and the floor is pinned in
+   * src/lib/contrast.test.ts.
    *
    * The sunlight argument is not refuted, it is traded: this is the theme a
    * player chooses for a dim room, and the other three are unchanged.
