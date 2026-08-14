@@ -66,8 +66,14 @@ jobs:
       # disagree with the sources it was built from and nothing would say so —
       # every test that reads the artifact would be reading a version of the
       # corpus that no longer exists. Rebuild it and require no diff.
+      # data/wordnet.json is a 5.5MB generated file, gitignored on purpose, and
+      # build-puzzles reads it for the unthemed glosses. A fresh checkout does
+      # not have it — the first version of this workflow died here with ENOENT.
+      # It is derived from the pinned `wordnet-db` dependency, so regenerating
+      # it produces the same file every time.
       - name: The committed puzzle build matches its sources
         run: |
+          npm run wordnet > /dev/null
           npm run puzzles > /dev/null
           if ! git diff --quiet -- public/data/puzzles.json; then
             echo "public/data/puzzles.json is stale — run 'npm run puzzles' and commit the result."
