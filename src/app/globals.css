@@ -1454,3 +1454,54 @@ body {
 :root[data-theme='studio'] .liquid-disc::before {
   content: none;
 }
+
+/*
+ * The dial and its letter tiles carry NO outline on this theme. They separate
+ * by fill, which is what the reference does and what "matte" means here.
+ *
+ * This is a real accessibility trade and it is narrow on purpose.
+ *
+ * WCAG 1.4.11 asks 3:1 of visual information REQUIRED to identify a control.
+ * Fill alone cannot reach it in this value range — measured, the best matte
+ * pairing available is 2.23:1 (tile #454f59 on disc #101315), and hitting 3:1
+ * would need a tile around #646464, which is light grey and stops being this
+ * theme. So the question is whether the outline is required, and for these two
+ * it is not:
+ *
+ *   - a letter tile always contains its letter, white at 8-11:1, and that is
+ *     what identifies it. The border is decoration on top of a glyph nobody
+ *     can miss.
+ *   - the disc is a container, not a control. Nothing is operated by it.
+ *
+ * EMPTY GRID SLOTS AND ROW CHIPS KEEP THEIR EDGE, deliberately. They have no
+ * glyph, so the boundary is the only thing that says a component is there —
+ * which is the exact case globals.css already calls out ("Empty grid slots ARE
+ * such a component ... Accessibility overrides the 'make it quieter'
+ * instinct"). That ruling is untouched; this rule does not reach them.
+ *
+ * Fills are pushed apart to compensate: the disc drops toward the page and the
+ * tiles rise away from it, so the separation the border used to provide is
+ * still visible without one.
+ */
+/*
+ * The disc is an absolutely-positioned OVERLAY and the letter tiles are its
+ * SIBLINGS, not its children — so `.liquid-disc button` selects nothing. The
+ * shared parent is the only thing that relates them, which makes this a
+ * structural test: `:has(> .liquid-disc)` finds that parent, and `> button`
+ * takes the tiles off it directly.
+ */
+:root[data-theme='studio'] .liquid-disc {
+  border-color: transparent;
+  --glass-fill-raised: #101315;
+}
+
+:root[data-theme='studio'] div:has(> .liquid-disc) > button {
+  border-color: transparent;
+  background-color: #3b444d;
+}
+
+/* The selected tile keeps its accent fill — that state is the one thing on
+   the dial allowed to be loud, and it must still win over the rule above. */
+:root[data-theme='studio'] div:has(> .liquid-disc) > button.tile-selected {
+  background-color: var(--color-select);
+}
