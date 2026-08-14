@@ -1784,11 +1784,30 @@ body {
     0 8px 18px -6px var(--raise-shadow-tile);
 }
 
-/* The dial itself lifts off the board panel. */
+/*
+ * The dial sits IN the board, not on it.
+ *
+ * Same inversion as the puck's trench, one scale up: shadow inside the top
+ * edge where a raised face takes its highlight, a hairline of light along the
+ * inner bottom where a raised face casts. One light source, read twice.
+ *
+ * That makes the whole dial legible as a stack — a well cut into the panel,
+ * the letter tiles standing proud of it, and the puck seated in its own
+ * smaller trench at the centre. The tiles are the only thing on the dial that
+ * comes toward you, which is right: they are what a player is aiming at.
+ *
+ * Its fill stays LIGHTER than the panel even so. That is not a contradiction
+ * to resolve — the fill is doing separation work (1.34:1, measured, where it
+ * used to be 1.04 and invisible) and the shadow geometry is doing the depth.
+ * Losing the fill to make it "properly" recessed would trade a boundary you
+ * can see for a cue you can only feel.
+ *
+ * Kept slight, like the trench.
+ */
 :root[data-theme='studio'] .liquid-disc {
   box-shadow:
-    inset 0 1px 0 var(--raise-light-soft),
-    0 10px 26px -14px var(--raise-shadow);
+    inset 0 2px 4px -1px rgba(0, 0, 0, 0.38),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 }
 
 /*
@@ -1803,3 +1822,40 @@ body {
     0 8px 18px -8px var(--raise-shadow);
 }
 
+
+/*
+ * A TRENCH for the puck to sit in.
+ *
+ * The submit control is the one thing on the dial that appears and disappears
+ * — it exists only once a word is started — so it had nowhere to belong: it
+ * arrived floating in the middle of a flat face. A permanent well gives it a
+ * seat, and reads as a hub on the dial when it is empty.
+ *
+ * Recessed is the exact inverse of the raised treatment above, which is what
+ * makes the two legible together: shadow INSIDE the top edge where a raised
+ * face takes a highlight, and a hairline of light along the INNER BOTTOM where
+ * a raised face casts its shadow. Same light source, opposite geometry.
+ *
+ * 34% against the puck's 30%, so a 2% ring of trench shows all the way round.
+ *
+ * This re-enables `::after` on the disc, which the flattening pass set to
+ * `content: none` for the specular wedge. Higher specificity than that rule,
+ * and later in the file, so it wins on both counts.
+ */
+:root[data-theme='studio'] .liquid-disc::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34%;
+  height: 34%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  /* Slight on purpose. The trench is a seat, not a hole — it should read as
+     the face dipping, which you notice without looking at it. */
+  background: color-mix(in srgb, var(--dial-face) 92%, #000);
+  box-shadow:
+    inset 0 1px 2px -0.5px rgba(0, 0, 0, 0.34),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.035);
+}
