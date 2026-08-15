@@ -86,6 +86,8 @@ import { dialogOpen, useDialog, useMounted } from '@/lib/dialog';
 import {
   autoFullscreenOnFirstGesture,
   fullscreenSupported,
+  subscribeSupport,
+  supportedSnapshotServer,
   isFullscreen,
   rememberFullscreenExit,
   subscribeFullscreen,
@@ -340,6 +342,16 @@ export default function Game({ data }: { data: PuzzleFile }) {
     subscribeFullscreen,
     isFullscreen,
     () => false
+  );
+  /*
+   * Whether the browser CAN go fullscreen is also a question the server and
+   * client answer differently, and it was being asked in the render body. See
+   * subscribeSupport: that one line cost every load its prerender.
+   */
+  const canFullscreen = useSyncExternalStore(
+    subscribeSupport,
+    fullscreenSupported,
+    supportedSnapshotServer
   );
   const theme = useSyncExternalStore(
     subscribeTheme,
@@ -1427,7 +1439,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </div>
 
         <div className="flex shrink-0 items-center gap-2 max-[379px]:gap-1.5">
-        {fullscreenSupported() && (
+        {canFullscreen && (
           <button
             type="button"
             onClick={() => void toggleFullscreen()}
