@@ -96,7 +96,6 @@ import {
   fillClue,
   unlockedIndices,
   MIN_WORD_LENGTH,
-  RANK_BASIS,
   clueTarget,
   completionStats,
   isReachable,
@@ -109,7 +108,6 @@ import {
   type ShelfId,
   offsetForIndex,
   rankFor,
-  gridMaxScore,
   scoreWord,
   shareParts,
   shareText,
@@ -436,10 +434,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * See unlockedIndices: pointing them at the original order meant every
    * shuffle changed which letters were playable.
    */
-  const unlockedIdx = useMemo(
-    () => unlockedIndices(letters, active),
-    [active, letters]
-  );
+  const unlockedIdx = unlockedIndices(letters, active);
   const clueWord = progress.clueMode
     ? clueTarget(puzzle.grid, rowDone, clueCursor, (w) =>
         isReachable(w, active)
@@ -451,15 +446,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
   /*
    * Rank measures the SIX ROWS — the thing the game actually asks for.
    * `score` keeps counting everything, so extra words still feel like they
-   * count, and they still pay out in hints. See gridMaxScore for why.
+   * count, and they still pay out in hints.
    */
-  const gridScore = puzzle.grid
-    .filter((w) => found.has(w))
-    .reduce((s, w) => s + scoreWord(w, data.wheel), 0);
-  const gridMax = useMemo(
-    () => gridMaxScore(puzzle, data.wheel),
-    [puzzle, data.wheel]
-  );
   // Rank counts ROWS FILLED now, not points — see RANK_NAMES.
   const rank = rankFor(rowsDone, puzzle.grid.length);
 
@@ -603,7 +591,18 @@ export default function Game({ data }: { data: PuzzleFile }) {
    *
    * The hash is cleared immediately so a reload does not keep dragging the
    * player back to a board they have moved on from.
+   *
+   * The React Compiler's set-state-in-effect rule is disabled here, on purpose
+   * and only here. Its advice — seed the state during initialization instead —
+   * cannot apply: this app is a STATIC EXPORT, so `out/index.html` already
+   * contains a fully rendered board, and the server that rendered it could not
+   * have known the fragment. A `useState` initializer reading
+   * `window.location.hash` would render a different board than the HTML being
+   * hydrated, which is a hydration mismatch, not an optimization. The URL is an
+   * external system and this is the sanctioned way to read one after mount.
+   * Scoped to this effect so the rule keeps working everywhere else.
    */
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     const hash = window.location.hash;
     const n = puzzleFromHash(hash);
@@ -634,6 +633,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
     // Held, not shown. It is revealed only once they have submitted their own.
     if (beat !== null) setBeatTarget(beat);
   }, [data, today]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   /*
    * Announcements with no toast behind them.
@@ -815,12 +815,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
         // Promotion is the one recurring reward with no moment attached to it.
         // Same basis as the displayed rank: grid rows only, or the banner
         // would fire on a threshold the rank strip does not agree with.
-        const gridPoints = (words: Iterable<string>) => {
-          const set = new Set(words);
-          return puzzle.grid
-            .filter((w) => set.has(w))
-            .reduce((sum, w) => sum + scoreWord(w, data.wheel), 0);
-        };
         /* Promotion is now a ROW count, so the comparison is rows before and
            after this word — and only a grid word can move it. */
         const rowsOf = (extra?: string) =>
@@ -1498,7 +1492,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       >
         <RankBar
           rank={rank}
-          /* gridScore, NOT score — the strip must show the number its rank is
+          /* ROWS, not score — the strip must show the thing its rank is
              computed from. See RankBar. */
           rowsFilled={rowsDone}
           totalRows={puzzle.grid.length}

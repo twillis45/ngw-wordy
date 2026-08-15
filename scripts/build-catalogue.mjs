@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 
 const t = JSON.parse(fs.readFileSync('data/themes.json', 'utf8'));
-const themeById = new Map(t.themes.map((x) => [x.id, x]));
 const byTheme = new Map();
 for (const p of t.puzzles) {
   if (!byTheme.has(p.theme)) byTheme.set(p.theme, []);
