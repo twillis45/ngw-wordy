@@ -532,7 +532,24 @@ export default function WordTray({
                         : bought
                           // Filled, but not earned — structure without accent.
                           ? 'border-edge-mid liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] italic text-text-muted'
-                          : 'border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-muted',
+                          /*
+                           * EMPTY: flat. No `liquid`, deliberately.
+                           *
+                           * The glass recipe is one bevel width — a 1px light
+                           * inset top-left and a 1px dark inset bottom-right —
+                           * and it does not scale with the box it is on. On a
+                           * 74px wheel tile that is 2.7% of the width and reads
+                           * as a clean edge. On a 22.8px empty slot it is 17%,
+                           * so the border and the inset separate into a visible
+                           * double line and the grid of unfilled slots reads
+                           * embossed while the wheel above it reads flat.
+                           *
+                           * It is also the same argument as the comment above:
+                           * illumination follows achievement, and a bevelled
+                           * empty slot spends light on the thing that has not
+                           * happened yet.
+                           */
+                          : 'border-edge-mid bg-steel-dark/40 text-text-muted',
                       
                       fresh ? 'anim-land anim-sweep' : '',
                     ].join(' ')}
