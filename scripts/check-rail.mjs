@@ -23,11 +23,10 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import puppeteer from 'puppeteer-core';
+import { launch } from './lib/browser.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'out');
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 /*
  * Every entry is a window this rail has actually failed at, not a guess at
@@ -75,11 +74,9 @@ const base = `http://localhost:${server.address().port}`;
  * the profile a running Chrome already holds a lock on, and the launch hangs
  * until puppeteer times out waiting for a WS endpoint that never appears.
  */
-const browser = await puppeteer.launch({
-  executablePath: CHROME,
+const browser = await launch({
   headless: true,
   userDataDir: path.join(ROOT, 'node_modules', '.cache', 'rail-chrome'),
-  args: ['--no-sandbox'],
 });
 const results = [];
 

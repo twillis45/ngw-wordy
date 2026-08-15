@@ -21,12 +21,7 @@
  *   npx serve out -p 4420
  *   node scripts/probe-input.mjs http://localhost:4420
  */
-import { createRequire } from 'node:module';
-
-// Puppeteer's own Chrome, required from a sibling checkout: both node installs
-// here are x64 on an arm64 Mac, so a system Chrome fails cross-arch.
-const require = createRequire('/Users/toddwillis/Code/ngw-core/');
-const puppeteer = require('puppeteer');
+import { launch } from './lib/browser.mjs';
 
 const BASE = process.argv[2] || 'http://localhost:4420';
 
@@ -75,7 +70,7 @@ function drift(a, b) {
   return out;
 }
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await launch();
 let failures = 0;
 
 for (const vp of VIEWPORTS) {

@@ -18,10 +18,7 @@
  *
  * Usage: node scripts/check-intro.mjs [http://localhost:4310]
  */
-import { createRequire } from 'node:module';
-
-const require = createRequire('/Users/toddwillis/Code/ngw-core/');
-const puppeteer = require('puppeteer');
+import { launch } from './lib/browser.mjs';
 
 const BASE = process.argv[2] || 'http://localhost:4310';
 const LINE = 'Six letters. Six words. All from the wheel.';
@@ -44,13 +41,7 @@ const readTeach = (page) =>
   );
 
 const run = async () => {
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    executablePath:
-      process.env.CHROME_PATH ||
-      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    args: ['--no-sandbox'],
-  });
+  const browser = await launch();
 
   const failures = [];
   const ok = (pass, msg) => {

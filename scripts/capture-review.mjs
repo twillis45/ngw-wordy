@@ -10,10 +10,7 @@
  */
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
-import { createRequire } from 'node:module';
-
-const require = createRequire('/Users/toddwillis/Code/ngw-core/');
-const puppeteer = require('puppeteer');
+import { launch } from './lib/browser.mjs';
 
 const BASE = process.argv[2] || 'http://localhost:4310';
 const OUT = path.resolve('review-artifacts');
@@ -113,12 +110,8 @@ async function clickText(page, re) {
 const run = async () => {
   await mkdir(OUT, { recursive: true });
   // System Chrome — puppeteer's own download isn't present on this machine.
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    executablePath:
-      process.env.CHROME_PATH ||
-      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    args: ['--no-sandbox', '--font-render-hinting=none'],
+  const browser = await launch({
+    args: ['--no-sandbox', '--disable-dev-shm-usage', '--font-render-hinting=none'],
   });
 
   for (const vp of VIEWPORTS) {
