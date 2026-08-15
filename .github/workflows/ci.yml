@@ -1,0 +1,83 @@
+name: CI
+
+# The suite already ran in CI — but only in pages.yml, on push to main, as the
+# step before a deploy. So it gated the deploy and never the review: a pull
+# request could sit green for a day with a red suite, and the first thing to
+# know would be a failed deploy of code already merged. This runs the same
+# checks where the decision is actually made.
+#
+# Unlike catalogue.yml, this one IS allowed to fail the build. That workflow
+# reports on a catalogue that is allowed to carry known gaps; these three
+# report on rules the repo has already decided it wants.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A newer push supersedes an in-flight run on the same ref.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  suite:
+    runs-on: ubuntu-latest
+    steps:
+      # Actions pinned to commit SHAs, not tags, matching pages.yml and
+      # catalogue.yml — a tag is mutable and repointing one is the standard CI
+      # supply-chain attack. Same SHAs as those two workflows.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      # Node 20, not "latest": vitest 4 will not start on 18, and
+      # build-puzzles.mjs dies on 16 (`findLastIndex`).
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm test
+
+      # check-pack holds rules nothing else enforces — base structure, the
+      # answer band, on-theme floors, the anagram collision, and the clue rules
+      # the build cannot see because it repairs them first. It was written to be
+      # run per-pack by hand before a merge, which means it was run when
+      # somebody remembered. All 14 packs, every time.
+      - name: Every staged pack still passes its own checker
+        run: |
+          fail=0
+          for f in data/packs/*.json; do
+            if node scripts/check-pack.mjs "$f" > /tmp/pack.log 2>&1; then
+              echo "ok   $(basename "$f")"
+            else
+              fail=1
+              echo "FAIL $(basename "$f")"
+              cat /tmp/pack.log
+            fi
+          done
+          exit $fail
+
+      # public/data/puzzles.json is a BUILT file that is committed, so it can
+      # disagree with the sources it was built from and nothing would say so —
+      # every test that reads the artifact would be reading a version of the
+      # corpus that no longer exists. Rebuild it and require no diff.
+      # data/wordnet.json is a 5.5MB generated file, gitignored on purpose, and
+      # build-puzzles reads it for the unthemed glosses. A fresh checkout does
+      # not have it — the first version of this workflow died here with ENOENT.
+      # It is derived from the pinned `wordnet-db` dependency, so regenerating
+      # it produces the same file every time.
+      - name: The committed puzzle build matches its sources
+        run: |
+          npm run wordnet > /dev/null
+          npm run puzzles > /dev/null
+          if ! git diff --quiet -- public/data/puzzles.json; then
+            echo "public/data/puzzles.json is stale — run 'npm run puzzles' and commit the result."
+            git diff --stat -- public/data/puzzles.json
+            exit 1
+          fi
+          echo "puzzles.json is in step with data/themes.json"
