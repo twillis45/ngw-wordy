@@ -69,6 +69,29 @@ const run = async () => {
       `${label} hydrates the server HTML` +
         (hydration.length ? ` — ${hydration[0].slice(0, 160)}` : '')
     );
+
+    /*
+     * A production build minifies the failure to a number, so the error alone
+     * cannot say WHAT differed — and the first CI run of this check failed on
+     * a machine where it passes locally, with nothing to go on.
+     *
+     * React has regenerated the tree by now, so the live DOM IS the client's
+     * version and the served file is the server's. Diffing them names the
+     * element, which is the whole question.
+     */
+    if (hydration.length) {
+      const server = await (await fetch(`${BASE}/`)).text();
+      const client = await page.evaluate(() => document.body.innerHTML);
+      const sBody = server.slice(server.indexOf('<body'), server.lastIndexOf('</body>'));
+      let i = 0;
+      while (i < sBody.length && i < client.length && sBody[i] === client[i]) i += 1;
+      const around = (s) => s.slice(Math.max(0, i - 90), i + 160).replace(/\s+/g, ' ');
+      process.stdout.write(
+        `   first difference at char ${i} of the body\n` +
+          `     server: …${around(sBody)}\n` +
+          `     client: …${around(client)}\n`
+      );
+    }
     await ctx.close();
   }
 
