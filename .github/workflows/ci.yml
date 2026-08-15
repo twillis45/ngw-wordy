@@ -82,6 +82,23 @@ jobs:
           fi
           echo "puzzles.json is in step with data/themes.json"
 
+      # docs/catalogue.html is the same shape of trap and was caught the same
+      # way: it is generated, committed, and read by people rather than by code,
+      # so nothing complains when it goes stale. On 2026-08-14 it claimed "100
+      # boards across 13 themes, 600 hand-written clues" against a corpus of
+      # 118, 15 and 708 — two packs had landed since anyone ran the generator.
+      # It is deterministic (no timestamps), so a rebuild with no diff is a
+      # fair thing to require.
+      - name: The catalogue page matches the corpus it describes
+        run: |
+          node scripts/build-catalogue.mjs > /dev/null
+          if ! git diff --quiet -- docs/catalogue.html; then
+            echo "docs/catalogue.html is stale — run 'node scripts/build-catalogue.mjs' and commit the result."
+            git diff --stat -- docs/catalogue.html
+            exit 1
+          fi
+          echo "catalogue.html is in step with data/themes.json"
+
   # The three checks that drive a real browser against the BUILT export. Until
   # 2026-08-14 none of them could run here: four resolved puppeteer out of a
   # different repository's node_modules on one laptop, and check-rail hardcoded
