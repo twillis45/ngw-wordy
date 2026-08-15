@@ -138,16 +138,3 @@ jobs:
       - name: The export hydrates instead of being thrown away
         run: npm run check:hydration
 
-      # TEMPORARY. The production build minifies the failure to a number, so a
-      # red run here says nothing about which element moved. This starts the
-      # dev server and prints React's unminified tree. Remove once the CI-only
-      # mismatch is named.
-      - name: Name the element (dev build)
-        if: failure()
-        run: |
-          npm run dev -- -p 3009 > /tmp/dev.log 2>&1 &
-          for i in $(seq 1 60); do
-            curl -sf -o /dev/null http://localhost:3009/ && break
-            sleep 2
-          done
-          node scripts/diag-hydration-dev.mjs http://localhost:3009 || cat /tmp/dev.log

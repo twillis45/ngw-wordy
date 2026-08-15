@@ -59,6 +59,16 @@ const PATHS = [
  */
 const ZONES = ['Pacific/Midway', 'UTC', 'Pacific/Kiritimati'];
 
+/*
+ * And both colour schemes, because the theme control under 'auto' draws what
+ * the OS is asking for. The server has no OS, answers dark, and writes a moon
+ * into the HTML — so a LIGHT-mode visitor drew a sun over it and lost the whole
+ * tree. That shipped, and this check could not see it: it passed on a dark-mode
+ * laptop and failed on a light-mode CI runner, which reads as flakiness rather
+ * than a bug until someone looks.
+ */
+const SCHEMES = ['light', 'dark'];
+
 const run = async () => {
   const browser = await launch();
 
@@ -69,11 +79,12 @@ const run = async () => {
   };
 
   const cases = [
-    ...PATHS.map(([label, hash]) => [label, hash, null]),
-    ...ZONES.map((tz) => [`a plain load in ${tz}`, '', tz]),
+    ...PATHS.map(([label, hash]) => [label, hash, null, null]),
+    ...ZONES.map((tz) => [`a plain load in ${tz}`, '', tz, null]),
+    ...SCHEMES.map((s) => [`a plain load in ${s} mode`, '', null, s]),
   ];
 
-  for (const [label, hash, tz] of cases) {
+  for (const [label, hash, tz, scheme] of cases) {
     // A fresh context per case: a previous case's storage changes which board
     // renders, and a different board is a different hydration.
     const ctx = await browser.createBrowserContext();
@@ -85,6 +96,10 @@ const run = async () => {
     page.on('pageerror', (e) => errs.push(String(e)));
 
     if (tz) await page.emulateTimezone(tz);
+    if (scheme)
+      await page.emulateMediaFeatures([
+        { name: 'prefers-color-scheme', value: scheme },
+      ]);
     await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
     await page.goto(`${BASE}/${hash}`, { waitUntil: 'networkidle0' });
     await settle(1500);

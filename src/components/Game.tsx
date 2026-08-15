@@ -60,6 +60,9 @@ import {
 import {
   applyTheme,
   effectiveTheme,
+  systemScheme,
+  systemSchemeServer,
+  subscribeSystemScheme,
   getThemeServerSnapshot,
   getThemeSnapshot,
   nextTheme,
@@ -358,6 +361,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
     subscribeTheme,
     getThemeSnapshot,
     getThemeServerSnapshot
+  );
+  /*
+   * What the OS is asking for, which only matters under 'auto'. Read through
+   * the store because the server has no OS: it answers 'dark', the HTML says
+   * moon, and a light-mode visitor who resolved this during render drew a sun
+   * over it and lost the prerender. See systemScheme.
+   */
+  const scheme = useSyncExternalStore(
+    subscribeSystemScheme,
+    systemScheme,
+    systemSchemeServer
   );
   /*
    * Display preferences live outside the progress store for the same reason
@@ -1472,7 +1486,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           aria-label={`Theme: ${theme}. Tap to change.`}
           className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11"
         >
-          <ThemeIcon theme={theme} />
+          <ThemeIcon theme={theme} scheme={scheme} />
         </button>
         <button
           type="button"
@@ -2616,8 +2630,14 @@ function ModeRow({
  * the system rather than pinned. The dot is a status marker, not part of the
  * icon, so it lives outside the SVG and never bends the icon convention.
  */
-function ThemeIcon({ theme }: { theme: Theme }) {
-  const showing = effectiveTheme(theme);
+function ThemeIcon({ theme, scheme }: { theme: Theme; scheme: 'light' | 'dark' }) {
+  /*
+   * `scheme` is passed in rather than read here, because under 'auto' the
+   * answer is the visitor's OS and the server has no OS. Reading it during
+   * render drew a sun over a prerendered moon on every light-mode machine and
+   * cost the page its whole tree. See systemScheme.
+   */
+  const showing = theme === 'auto' ? scheme : effectiveTheme(theme);
   return (
     <span className="relative grid place-items-center">
       {showing === 'light' ? <SunIcon /> : <MoonIcon />}
