@@ -15,10 +15,7 @@
  * Serve the export first, then:
  *   node scripts/check-hydration.mjs [http://localhost:4310]
  */
-import { createRequire } from 'node:module';
-
-const require = createRequire('/Users/toddwillis/Code/ngw-core/');
-const puppeteer = require('puppeteer');
+import { launch } from './lib/browser.mjs';
 
 const BASE = process.argv[2] || 'http://localhost:4310';
 const settle = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -43,13 +40,7 @@ const PATHS = [
 ];
 
 const run = async () => {
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    executablePath:
-      process.env.CHROME_PATH ||
-      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    args: ['--no-sandbox'],
-  });
+  const browser = await launch();
 
   const failures = [];
   const ok = (pass, msg) => {
@@ -78,6 +69,26 @@ const run = async () => {
       `${label} hydrates the server HTML` +
         (hydration.length ? ` — ${hydration[0].slice(0, 160)}` : '')
     );
+
+    /*
+     * Do NOT try to diff the served HTML against the live DOM to find what
+     * moved. Two attempts at that are in this file's history and both were
+     * useless: React has already regenerated the tree, and Next injects its
+     * own scripts at the top of <body> at runtime, so the two strings differ
+     * at character 1 on a page that hydrates perfectly.
+     *
+     * The only thing that names the element is React's DEV build, which prints
+     * the component tree with the offending props marked +/-. That is how the
+     * fullscreen-button mismatch was found. Reproduce with:
+     *
+     *   npm run dev   →  load the page  →  read the console
+     */
+    if (hydration.length) {
+      process.stdout.write(
+        '   run `npm run dev` and load the page to see which element differs;\n' +
+          '   a production build minifies this failure down to its number.\n'
+      );
+    }
     await ctx.close();
   }
 

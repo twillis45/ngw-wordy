@@ -81,3 +81,57 @@ jobs:
             exit 1
           fi
           echo "puzzles.json is in step with data/themes.json"
+
+  # The three checks that drive a real browser against the BUILT export. Until
+  # 2026-08-14 none of them could run here: four resolved puppeteer out of a
+  # different repository's node_modules on one laptop, and check-rail hardcoded
+  # the macOS Chrome bundle. So the checks holding the strongest claims in the
+  # project — the rail holds at five viewports, the teach retires, the export
+  # hydrates — were the only ones CI could never run. scripts/lib/browser.mjs
+  # resolves puppeteer-core from this repo and Chrome from CHROME_PATH or the
+  # usual system locations, which is all it took.
+  runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # These check the artifact, so the artifact has to exist. NEXT_PUBLIC_*
+      # are deliberately unset: this is the plain build, not the Pages one.
+      - run: npm run build
+
+      - name: Chrome
+        run: |
+          which google-chrome-stable google-chrome chromium-browser chromium 2>/dev/null || true
+          google-chrome-stable --version || google-chrome --version
+
+      # check-rail serves out/ itself on a random port. The other two expect
+      # something already on 4310, matching how they are run locally.
+      - name: The rail holds at every viewport
+        run: npm run check:rail
+
+      - name: Serve the export
+        run: |
+          npx --yes serve -l 4310 out > /tmp/serve.log 2>&1 &
+          for i in $(seq 1 30); do
+            curl -sf -o /dev/null http://localhost:4310/ && break
+            sleep 1
+          done
+          curl -sf -o /dev/null http://localhost:4310/ || { cat /tmp/serve.log; exit 1; }
+
+      - name: The first-run teach appears and retires
+        run: npm run check:intro
+
+      # check:hydration is NOT here yet, and that is a finding rather than an
+      # omission. It passes locally and fails on this runner, on the same
+      # commit and the same build command — so there is a second mismatch that
+      # only reproduces here, and #7 fixed a real one without fixing them all.
+      # Wiring it in red would only teach everyone to ignore a red job. Run it
+      # by hand (`npm run check:hydration`) until the CI-only case is found,
+      # which needs React's dev build to name the element.
