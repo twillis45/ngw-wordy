@@ -129,6 +129,7 @@ import {
   getServerSnapshot,
   getSnapshot,
   last7,
+  subscribeNever,
   markCleared,
   advanceWarmup,
   markIntroSeen,
@@ -475,7 +476,22 @@ export default function Game({ data }: { data: PuzzleFile }) {
         rank.next ? `, ${rank.rowsToNext} to ${rank.next}` : ''
       }.`
     : '';
-  const days = useMemo(() => last7(progress, today), [progress, today]);
+  /*
+   * The streak strip is the one thing on the board whose CONTENT is the
+   * calendar, and a static export is prerendered on the build machine's
+   * calendar. Read through the store so the first client render matches the
+   * HTML — blank cells — and the real week arrives immediately after. See
+   * last7 for what this was doing to the live site.
+   */
+  const todayKey = useSyncExternalStore(
+    subscribeNever,
+    () => new Date().toDateString(),
+    () => null
+  );
+  const days = useMemo(
+    () => last7(progress, todayKey ? new Date(todayKey) : null),
+    [progress, todayKey]
+  );
 
   const shelves = useMemo(() => themeShelves(data), [data]);
   /* Which shelf is open; null is the four-shelf overview. Reset whenever the

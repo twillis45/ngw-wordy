@@ -432,13 +432,43 @@ export function setMode(
   return update((p) => (p[key] === on ? p : { ...p, [key]: on }));
 }
 
+/**
+ * A subscribe function for `useSyncExternalStore` when the answer cannot
+ * change after load — a browser capability, or the calendar day as far as one
+ * page view is concerned. The hook still does the useful half: hydrate against
+ * the server snapshot, then re-render with the client's answer.
+ */
+export function subscribeNever(): () => void {
+  return () => {};
+}
+
 export type DayCell = { key: string; label: string; played: boolean };
 
-/** The trailing 7 days ending today, oldest first — for the streak strip. */
-export function last7(p: Progress, today: Date): DayCell[] {
+/**
+ * The trailing 7 days ending today, oldest first — for the streak strip.
+ *
+ * `today` may be null, and that is the SERVER's answer. A static export is
+ * prerendered on the build machine, so a `new Date()` in the component body
+ * bakes the build's calendar day into the HTML — and any player whose local
+ * date is a different day renders different weekday letters than the file they
+ * are hydrating. That is a real mismatch, it fired on the live site, and React
+ * responded by throwing away the whole prerendered tree. Measured: a build made
+ * on a Friday in EDT hydrates cleanly in New York and Midway, and fails in UTC,
+ * Tokyo and Kiritimati, where it is already Saturday.
+ *
+ * With null the strip renders seven blank, unplayed cells — which is exactly
+ * what the server can honestly say, since progress is client-only too. The
+ * letters arrive on the first client render. Nothing else on the board depends
+ * on this, so the daily puzzle still prerenders as before.
+ */
+export function last7(p: Progress, today: Date | null): DayCell[] {
   const labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const out: DayCell[] = [];
   for (let i = 6; i >= 0; i -= 1) {
+    if (!today) {
+      out.push({ key: `pending-${i}`, label: '', played: false });
+      continue;
+    }
     const d = new Date(today);
     d.setDate(d.getDate() - i);
     const key = dayKey(d);

@@ -39,6 +39,26 @@ const PATHS = [
   ['a #play= share link', '#play=3'],
 ];
 
+/*
+ * Timezones, because the first version of this check passed on the machine
+ * that built the export and failed on every other one.
+ *
+ * The daily board is chosen from `new Date()`, which at prerender is the BUILD
+ * instant. A player whose local date is not the build's local date renders a
+ * different board than the HTML, so the mismatch follows the calendar rather
+ * than the browser. Measured on a build made on Aug 14 EDT:
+ *
+ *   America/New_York   Fri Aug 14   ok
+ *   Pacific/Midway     Fri Aug 14   ok
+ *   UTC                Sat Aug 15   FAIL (text)
+ *   Asia/Tokyo         Sat Aug 15   FAIL (text)
+ *   Pacific/Kiritimati Sat Aug 15   FAIL (text)
+ *
+ * Two of these are always a day apart from each other, whatever day it is
+ * run, which is the point: this cannot pass by being run at a lucky hour.
+ */
+const ZONES = ['Pacific/Midway', 'UTC', 'Pacific/Kiritimati'];
+
 const run = async () => {
   const browser = await launch();
 
@@ -48,7 +68,12 @@ const run = async () => {
     if (!pass) failures.push(msg);
   };
 
-  for (const [label, hash] of PATHS) {
+  const cases = [
+    ...PATHS.map(([label, hash]) => [label, hash, null]),
+    ...ZONES.map((tz) => [`a plain load in ${tz}`, '', tz]),
+  ];
+
+  for (const [label, hash, tz] of cases) {
     // A fresh context per case: a previous case's storage changes which board
     // renders, and a different board is a different hydration.
     const ctx = await browser.createBrowserContext();
@@ -59,6 +84,7 @@ const run = async () => {
     });
     page.on('pageerror', (e) => errs.push(String(e)));
 
+    if (tz) await page.emulateTimezone(tz);
     await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
     await page.goto(`${BASE}/${hash}`, { waitUntil: 'networkidle0' });
     await settle(1500);
@@ -96,7 +122,7 @@ const run = async () => {
 
   if (failures.length) {
     process.stdout.write(
-      `\n✖ ${failures.length} of ${PATHS.length} loads threw away the prerender\n`
+      `\n✖ ${failures.length} of ${cases.length} loads threw away the prerender\n`
     );
     process.exit(1);
   }
