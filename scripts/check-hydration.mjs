@@ -82,7 +82,13 @@ const run = async () => {
     if (hydration.length) {
       const server = await (await fetch(`${BASE}/`)).text();
       const client = await page.evaluate(() => document.body.innerHTML);
-      const sBody = server.slice(server.indexOf('<body'), server.lastIndexOf('</body>'));
+      // innerHTML, so the server side has to lose its own <body …> open tag or
+      // the two differ at char 1 and the diff says nothing. It did, once.
+      const open = server.indexOf('<body');
+      const sBody = server.slice(
+        server.indexOf('>', open) + 1,
+        server.lastIndexOf('</body>')
+      );
       let i = 0;
       while (i < sBody.length && i < client.length && sBody[i] === client[i]) i += 1;
       const around = (s) => s.slice(Math.max(0, i - 90), i + 160).replace(/\s+/g, ' ');
