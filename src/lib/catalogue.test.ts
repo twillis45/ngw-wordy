@@ -127,3 +127,91 @@ describe('themed catalogue quality', () => {
     expect(bad.length, `boards under 2 on-theme rows: ${bad.length}. e.g. ${sample}`).toBe(0);
   });
 });
+
+/**
+ * The pack rules, applied to the corpus that actually ships.
+ *
+ * `scripts/check-pack.mjs` holds these and runs on a STAGED pack file, by
+ * hand, before a merge. That is the right place to catch a bad pack and the
+ * wrong place to be the only check: what ships is `data/themes.json`, the
+ * merged corpus, and a board edited there after its pack was merged is
+ * measured by nothing. CI runs check-pack over `data/packs/*.json` now (#5),
+ * which still leaves the merged file unwatched.
+ *
+ * I twice said this could not be done because themes.json did not carry the
+ * pack grouping. It does — every puzzle has `theme`, all 14 themes have a
+ * vocabulary entry, and the board counts agree with the pack files. That was a
+ * claim made from memory instead of from the data.
+ */
+describe('the pack rules, on the merged corpus', () => {
+  const tier = (entry: Record<string, string>, name: string) =>
+    new Set(String(entry?.[name] ?? '').split(/\s+/).filter(Boolean));
+
+  const byTheme = new Map<string, Board[]>();
+  for (const b of boards.filter((b) => b.clues)) {
+    if (!byTheme.has(b.theme)) byTheme.set(b.theme, []);
+    byTheme.get(b.theme)!.push(b);
+  }
+
+  it('no shipped board is about nothing', () => {
+    /*
+     * Two on-theme rows, of either tier — the floor check-pack settled on
+     * after the pair rule was measured running opposite to strength. See its
+     * comment for why it is strength rather than composition.
+     */
+    const thin: string[] = [];
+    for (const [id, group] of byTheme) {
+      const entry = vocab[id] ?? {};
+      const named = new Set([...tier(entry, 'named'), ...tier(entry, 'acts')]);
+      const said = new Set([...tier(entry, 'said'), ...tier(entry, 'titles')]);
+      for (const b of group) {
+        const rows = Object.keys(b.clues).filter((w) => w !== b.base);
+        const on = rows.filter((w) => named.has(w) || said.has(w)).length;
+        if (on < 2) thin.push(`${id}/${b.base}: ${on} on-theme rows`);
+      }
+    }
+    expect(thin, `${thin.length} boards are about nothing`).toEqual([]);
+  });
+
+  it('every pack still teaches somebody a name', () => {
+    /*
+     * A third of the boards must carry a row from the `named`/`acts` tier — a
+     * pack of pure titles is one a player finishes without learning who made
+     * any of it. The floor is a third because that is what the reference pack
+     * can meet: rnb90s sits at 7 of 12, and it is the strongest in the
+     * catalogue. Every other theme is currently at 100%, so this rule is doing
+     * almost no work outside rnb90s — worth knowing before anyone reads a
+     * green run as evidence the vocabularies are tight.
+     */
+    const short: string[] = [];
+    for (const [id, group] of byTheme) {
+      const entry = vocab[id] ?? {};
+      const named = new Set([...tier(entry, 'named'), ...tier(entry, 'acts')]);
+      const withName = group.filter((b) =>
+        Object.keys(b.clues).filter((w) => w !== b.base).some((w) => named.has(w))
+      ).length;
+      const need = Math.ceil(group.length / 3);
+      if (withName < need) short.push(`${id}: ${withName} of ${group.length} name an act, needs ${need}`);
+    }
+    expect(short, `${short.length} packs never name anybody`).toEqual([]);
+  });
+
+  it('no row word is worn out inside its own pack', () => {
+    /*
+     * check-pack's frequency cap: a row appearing more than three times in one
+     * pack stops being the theme's language and starts being filler the base
+     * pool made easy.
+     */
+    const over: string[] = [];
+    for (const [id, group] of byTheme) {
+      const freq = new Map<string, number>();
+      for (const b of group) {
+        for (const w of Object.keys(b.clues).filter((w) => w !== b.base)) {
+          freq.set(w, (freq.get(w) ?? 0) + 1);
+        }
+      }
+      for (const [w, n] of freq) if (n > 3) over.push(`${id}/${w} x${n}`);
+    }
+    expect(over, `${over.length} row words over the cap`).toEqual([]);
+  });
+});
