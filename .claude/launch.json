@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "wordy",
-      "runtimeExecutable": "/usr/local/opt/node@20/bin/npm",
+      "runtimeExecutable": "/Users/toddwillis/.local/node20/bin/npm",
       "runtimeArgs": ["run", "dev", "--", "-p", "3007"],
       "port": 3007
     }

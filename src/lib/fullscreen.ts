@@ -24,6 +24,33 @@ export function fullscreenSupported(): boolean {
   );
 }
 
+/**
+ * The same answer, safe to ask during render.
+ *
+ * `fullscreenSupported()` says false on the server and true in most browsers,
+ * so calling it in a component body renders a header the prerendered HTML does
+ * not have. It did, and EVERY load of the export died on React error #418 —
+ * "the server rendered HTML didn't match the client" — and silently rebuilt
+ * the whole tree on the client. The prerender was being paid for at build time
+ * and thrown away at run time, invisibly, which is why it lasted.
+ *
+ * `useSyncExternalStore` exists for exactly this: it hydrates against
+ * `supportedSnapshotServer` so the first client render matches the HTML, then
+ * re-renders with the real answer. Support cannot change after load, so the
+ * subscribe half has nothing to listen to and never fires.
+ *
+ *   const canFullscreen = useSyncExternalStore(
+ *     subscribeSupport, fullscreenSupported, supportedSnapshotServer
+ *   );
+ */
+export function subscribeSupport(): () => void {
+  return () => {};
+}
+
+export function supportedSnapshotServer(): boolean {
+  return false;
+}
+
 export function isFullscreen(): boolean {
   if (typeof document === 'undefined') return false;
   const d = document as Document & { webkitFullscreenElement?: Element | null };
