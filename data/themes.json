@@ -454,7 +454,7 @@
    "base": "crafty",
    "theme": "texas",
    "clues": {
-    "crafty": "What twelve hours over coals with no thermometer actually requires",
+    "crafty": "No thermometer for twelve hours, and she lets you think that part is luck",
     "fry": "What the skin does at the end, and it is handed round before the meat",
     "fat": "Rendered down and back into the chop, which is the whole argument for whole hog",
     "tray": "Paper-lined, from the window, with slaw and hush puppies and no plate",
@@ -1039,7 +1039,7 @@
     "star": "Billed first, and not the reason anybody is actually watching",
     "act": "Three of them, and you can feel the break coming before it does",
     "seat": "The same one on the couch, and nobody else takes it during a marathon",
-    "trace": "Of the laugh track under the biggest line, which you only hear once told"
+    "trace": "Of the canned laugh under the biggest line, which you only hear once somebody tells you"
    },
    "prefer": [
     "cast",
@@ -1594,7 +1594,7 @@
    "base": "argues",
    "theme": "roadtrip",
    "clues": {
-    "argues": "About the vent, and it has been the same argument since 2009",
+    "argues": "About the vent, every trip, and it has been the same three sentences since 2009",
     "argue": "What the back seat does about the window, at a volume the front can hear",
     "gas": "Three quarters full, and the person driving wants to stop anyway",
     "sugar": "In the coffee at the last stop, six of them, and it is being mentioned",

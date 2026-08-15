@@ -216,15 +216,25 @@ describe('regressions', () => {
     expect(bad.slice(0, 5), `${bad.length} truncated clues`).toEqual([]);
   });
 
-  it('never lets an authored clue contain its own answer', () => {
+  it('never SHIPS a clue that leaks its answer', () => {
     /*
-     * Authored clues bypass redactAnswer entirely — they are trusted as
-     * written — so the only thing standing between a typo and a board that
-     * gives itself away is this check.
+     * This used to read `if (!p.theme) continue`, i.e. it watched authored
+     * clues only, and its comment claimed to be "the only thing standing
+     * between a typo and a board that gives itself away". It was not, and it
+     * could not be. Red-proofed on 2026-08-14 by writing the answer into its
+     * own clue — "A crafty pitmaster with no thermometer at all" — and the
+     * suite stayed green at 220, because the build had already redacted it to
+     * "A ——— pitmaster with no thermometer at all" before this test read it.
+     * A check on the artifact cannot see a fault the artifact-builder repairs.
+     *
+     * So this one now watches every shipped clue, authored and generated, for
+     * a leak the redactor did NOT catch — which is what an artifact check is
+     * actually good for. The source is guarded separately, in "authored clue
+     * corpus" below, against `data/themes.json`, which is where a clue is
+     * written and the only place the fault exists.
      */
     const leaks: string[] = [];
     for (const p of file.puzzles) {
-      if (!p.theme) continue;
       for (const [word, clue] of Object.entries(p.clues ?? {})) {
         const stem = word.slice(0, 4);
         if (stem.length >= 3 && new RegExp(stem, 'i').test(clue)) {
@@ -260,6 +270,37 @@ describe('authored clue corpus', () => {
       }
     }
     expect(dupes, `${dupes.length} duplicated clues`).toEqual([]);
+  });
+
+  it('never writes an answer, or its first four letters, into its own clue', () => {
+    /*
+     * The authoring contract calls this "the most common failure", and until
+     * 2026-08-14 nothing in the suite could fail on it. `check-pack.mjs` has
+     * the rule, but it runs per-pack, by hand, and neither `npm test` nor the
+     * build calls it — so a clue edited straight into `data/themes.json`, the
+     * merged corpus every board actually ships from, was checked by nothing.
+     *
+     * It has to be the SOURCE. `build-puzzles` redacts the answer out of an
+     * authored clue on its way to `public/data/puzzles.json`, so by the time
+     * the shipped artifact exists the fault has been converted into a `———`
+     * mid-sentence and cannot be detected. The build repairing it quietly is
+     * the reason this went unwatched for so long.
+     *
+     * Four letters, not the whole word, per the contract: `plate` forbids
+     * "plat". Set at exact-word-only this test would have passed the two
+     * leaks it found on the day it was written — "the same argument" under
+     * ARGUES, and "the laugh track" under TRACE.
+     */
+    const leaks: string[] = [];
+    for (const p of authored.puzzles) {
+      for (const [word, clue] of Object.entries(p.clues)) {
+        const stem = word.slice(0, 4);
+        if (stem.length >= 3 && new RegExp(stem, 'i').test(clue)) {
+          leaks.push(`${p.theme}/${p.base}/${word} [${stem}]: ${clue}`);
+        }
+      }
+    }
+    expect(leaks, `${leaks.length} authored clues leak their answer`).toEqual([]);
   });
 
   it('does not fall into one sentence shape', () => {
