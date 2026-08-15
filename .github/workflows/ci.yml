@@ -128,10 +128,12 @@ jobs:
       - name: The first-run teach appears and retires
         run: npm run check:intro
 
-      # check:hydration is NOT here yet, and that is a finding rather than an
-      # omission. It passes locally and fails on this runner, on the same
-      # commit and the same build command — so there is a second mismatch that
-      # only reproduces here, and #7 fixed a real one without fixing them all.
-      # Wiring it in red would only teach everyone to ignore a red job. Run it
-      # by hand (`npm run check:hydration`) until the CI-only case is found,
-      # which needs React's dev build to name the element.
+      # Held out of CI in #8 because it was red here and green locally. That
+      # difference was the bug, not the runner: the daily strip rendered the
+      # BUILD machine's calendar day, so the check failed wherever the local
+      # date was not the build's date — this job runs in UTC. Fixed in #10, and
+      # the check now drives three timezones of its own, two of which are always
+      # a day apart from each other whatever hour it runs. So it cannot go green
+      # here by being run at a lucky moment, which is what made it safe to add.
+      - name: The export hydrates instead of being thrown away
+        run: npm run check:hydration
