@@ -12,6 +12,7 @@
  * three.
  */
 import { describe, expect, it } from 'vitest';
+import { createHash } from 'node:crypto';
 import {
   MIN_WORD_LENGTH,
   activeLetters,
@@ -312,6 +313,27 @@ describe('authored clue corpus', () => {
     const clues = authored.puzzles.flatMap((p) => Object.values(p.clues));
     const what = clues.filter((c) => /^what\b/i.test(c)).length;
     expect(what / clues.length, 'share of clues opening "What"').toBeLessThan(0.34);
+  });
+});
+
+describe('the shipped word list is the one that was vetted', () => {
+  /*
+   * The list ships inside the binary on both stores, and the permission to do
+   * that is recorded in data/enable1.PROVENANCE.md against a specific file:
+   * ENABLE 1.x, 172,823 words, sha256 3f161302…. A different list — a newer
+   * edition, a "cleaned" copy, somebody's fork — would inherit a provenance
+   * document that was never written about it.
+   *
+   * This is a hash, not a quality check. It says the bytes are the bytes that
+   * were checked; it says nothing about whether the words are good.
+   */
+  const SHA = '3f16130220645692ed49c7134e24a18504c2ca55b3c012f7290e3e77c63b1a89';
+  const WORDS = 172_823;
+
+  it('is byte-for-byte the list the provenance record describes', () => {
+    const bytes = readFileSync(path.join(process.cwd(), 'data', 'enable1.txt'));
+    expect(createHash('sha256').update(bytes).digest('hex')).toBe(SHA);
+    expect(bytes.toString('utf8').trim().split('\n').length).toBe(WORDS);
   });
 });
 

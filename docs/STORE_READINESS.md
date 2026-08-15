@@ -29,7 +29,7 @@ Activity, via Bubblewrap) for Play, **Capacitor** or a WKWebView shell for iOS.
 | 1.5 | Apple privacy nutrition labels | TODO | Must match reality. Today: no accounts, no ads, no analytics found in the export — that is a strong, simple label. Verify before filing. |
 | 1.6 | Play Data Safety form | TODO | Same content, different form. Must agree with 1.5 or it reads as a lie. |
 | 1.7 | Content rating (IARC via Play, Apple age rating) | TODO | Word game, no violence. Check the wordlist question below first. |
-| 1.8 | **ENABLE1 wordlist license** | **TODO** | ENABLE1 is public domain in practice; confirm and record the provenance. Ships inside the binary. |
+| 1.8 | **ENABLE1 wordlist license** | **DONE 2026-08-14 — one question left for the attorney** | Recorded in `data/enable1.PROVENANCE.md`. What ships is ENABLE 1.x, 172,823 words, sha256 `3f161302…`, byte-identical to the widely mirrored copy — re-downloaded and compared on the day. The project's own readme releases it: *"The ENABLE master word list, WORD.LST, is herewith formally released into the Public Domain."* Three things stay soft and are written down rather than smoothed over: the permission is not IN the file (172,823 bare words, no header, no notice), the readme quoted is the ENABLE2K edition and describes a later revision of the same master list, and a public-domain dedication is a claim about a jurisdiction — some do not let an author abandon copyright, and neither store limits distribution by territory. A hash cannot close that last one; ask the attorney already reading the filing whether a CC0 fallback is wanted. `src/lib/content.test.ts` asserts the hash and the count, so the vetted file is the file that ships. |
 | 1.9 | WordNet definitions license | **DONE 2026-08-14** | Correction to this row's first version: attribution WAS already present on `/support`, crediting WordNet 3.1 and ENABLE. The real gap was narrower — the licence grants permission "provided that you agree to comply with the following copyright notice and statements, including the disclaimer, and that the same appear on ALL copies". A summary does not satisfy that. The copyright notice, the AS-IS disclaimer and the name-use clause are now reproduced on `/support`. Bundled data confirmed as WordNet 3.1 (`wordnet-db@3.1.14`), so the version claim on that page was already correct. |
 | 1.10 | Cultural content review | **BLOCKER** | `AGENTS.md`: *"a real reader is budgeted per pack before anything ships commercially."* Has not happened for ANY pack. Store release is the definition of commercial. |
 | 1.11 | Trademark sweep on theme + clue text | TODO | Clues name real records, artists and brands. Nominative reference is normally fine; a pass is still owed. |
@@ -94,6 +94,8 @@ Activity, via Bubblewrap) for Play, **Capacitor** or a WKWebView shell for iOS.
 2. Clear the remaining hard BLOCKER that is nobody's opinion: **1.10 (cultural
    reader)**. 5.1 is closed pending one confirmation on the live deploy.
 3. Ship **Android via TWA first** — cheaper, likelier to pass, and it proves the pipeline.
-4. Finish the licence work — 1.9 is done, **1.8 (ENABLE provenance)** remains.
-   Small, and unpleasant to discover late.
+4. Licence work is done — 1.9 (WordNet notice) and 1.8 (ENABLE provenance) are
+   both recorded. One question rides along to the attorney: whether a 1997 US
+   public-domain dedication wants a CC0 fallback for territories that do not
+   recognise abandonment.
 5. Only then decide paid (section 4), because IAP is most of the remaining work.
