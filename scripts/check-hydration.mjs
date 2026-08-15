@@ -71,31 +71,22 @@ const run = async () => {
     );
 
     /*
-     * A production build minifies the failure to a number, so the error alone
-     * cannot say WHAT differed — and the first CI run of this check failed on
-     * a machine where it passes locally, with nothing to go on.
+     * Do NOT try to diff the served HTML against the live DOM to find what
+     * moved. Two attempts at that are in this file's history and both were
+     * useless: React has already regenerated the tree, and Next injects its
+     * own scripts at the top of <body> at runtime, so the two strings differ
+     * at character 1 on a page that hydrates perfectly.
      *
-     * React has regenerated the tree by now, so the live DOM IS the client's
-     * version and the served file is the server's. Diffing them names the
-     * element, which is the whole question.
+     * The only thing that names the element is React's DEV build, which prints
+     * the component tree with the offending props marked +/-. That is how the
+     * fullscreen-button mismatch was found. Reproduce with:
+     *
+     *   npm run dev   →  load the page  →  read the console
      */
     if (hydration.length) {
-      const server = await (await fetch(`${BASE}/`)).text();
-      const client = await page.evaluate(() => document.body.innerHTML);
-      // innerHTML, so the server side has to lose its own <body …> open tag or
-      // the two differ at char 1 and the diff says nothing. It did, once.
-      const open = server.indexOf('<body');
-      const sBody = server.slice(
-        server.indexOf('>', open) + 1,
-        server.lastIndexOf('</body>')
-      );
-      let i = 0;
-      while (i < sBody.length && i < client.length && sBody[i] === client[i]) i += 1;
-      const around = (s) => s.slice(Math.max(0, i - 90), i + 160).replace(/\s+/g, ' ');
       process.stdout.write(
-        `   first difference at char ${i} of the body\n` +
-          `     server: …${around(sBody)}\n` +
-          `     client: …${around(client)}\n`
+        '   run `npm run dev` and load the page to see which element differs;\n' +
+          '   a production build minifies this failure down to its number.\n'
       );
     }
     await ctx.close();
