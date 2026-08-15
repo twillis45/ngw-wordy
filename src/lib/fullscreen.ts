@@ -43,9 +43,7 @@ export function fullscreenSupported(): boolean {
  *     subscribeSupport, fullscreenSupported, supportedSnapshotServer
  *   );
  */
-export function subscribeSupport(): () => void {
-  return () => {};
-}
+export { subscribeNever as subscribeSupport } from './storage';
 
 export function supportedSnapshotServer(): boolean {
   return false;
