@@ -48,11 +48,6 @@ function fits(word, tiles) {
 const distinctCount = (w) => new Set(w).size;
 const key = (w) => [...w].sort().join('');
 
-/** Every word the build would serve as a row, at any dial. */
-const serviceable = [...enable].filter(
-  (w) => w.length >= 3 && w.length <= 6 && popular.has(w) && !isBlocked(w)
-);
-
 /** Candidate bases per dial shape. */
 const DIALS = {
   A: { label: '6 tiles, 6 distinct  (ships today)', len: 6, distinct: 6 },

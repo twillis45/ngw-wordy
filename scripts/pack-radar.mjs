@@ -33,7 +33,6 @@ const popular = new Set(read('data/popular.txt').split('\n').map((s) => s.trim()
 const cnt = (w) => { const m = new Map(); for (const c of w) m.set(c, (m.get(c) || 0) + 1); return m; };
 const fits = (w, bm) => { const wm = cnt(w); for (const [c, n] of wm) if ((bm.get(c) || 0) < n) return false; return true; };
 const okBase = (b) => b.length === 6 && popular.has(b) && new Set(b).size >= 5;
-const distinct = (w) => new Set(w).size === w.length;
 
 /** The theme's language, filtered the way the build filters it. */
 function wordsFor(id) {
