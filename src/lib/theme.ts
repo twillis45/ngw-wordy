@@ -127,6 +127,37 @@ export function effectiveTheme(theme: Theme): 'light' | 'dark' {
     : 'dark';
 }
 
+/**
+ * The OS colour scheme, as a store the render can read safely.
+ *
+ * `effectiveTheme('auto')` asks matchMedia during render and answers 'dark' on
+ * the server, because the server has no OS to ask. Any visitor whose system is
+ * set to LIGHT therefore drew a sun where the prerendered HTML had a moon, and
+ * React threw away the page. It passed on a dark-mode laptop and failed on a
+ * light-mode CI runner, which is how it stayed hidden.
+ *
+ * The server snapshot is 'dark' deliberately: it must agree with what
+ * effectiveTheme already writes into the HTML, or the fix would introduce the
+ * mismatch it removes. Light-mode visitors get one silent re-render, which is
+ * what useSyncExternalStore is for.
+ */
+export function systemScheme(): 'light' | 'dark' {
+  if (typeof window === 'undefined') return 'dark';
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+}
+
+export function systemSchemeServer(): 'light' | 'dark' {
+  return 'dark';
+}
+
+/** Unlike a capability, this one really does change - the OS toggle at dusk. */
+export function subscribeSystemScheme(listener: () => void): () => void {
+  if (typeof window === 'undefined') return () => {};
+  const mq = window.matchMedia('(prefers-color-scheme: light)');
+  mq.addEventListener('change', listener);
+  return () => mq.removeEventListener('change', listener);
+}
+
 /** auto -> light -> dark -> studio -> auto */
 export function nextTheme(theme: Theme): Theme {
   return theme === 'auto'
