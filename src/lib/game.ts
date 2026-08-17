@@ -843,7 +843,7 @@ export function shareText(opts: {
     .filter(Boolean)
     .join(' · ');
 
-  const name = opts.dayNumber != null ? `Wordy #${opts.dayNumber}` : 'Wordy';
+  const name = opts.dayNumber != null ? `Six on the Dial #${opts.dayNumber}` : 'Six on the Dial';
   const heading = opts.theme
     ? `${name} — ${opts.theme} · ${opts.rank}`
     : `${name} — ${opts.rank}`;

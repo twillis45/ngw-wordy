@@ -601,7 +601,7 @@ export type ImportResult =
 export function importProgress(code: string): ImportResult {
   const trimmed = code.trim();
   if (!trimmed.startsWith(BACKUP_PREFIX)) {
-    return { ok: false, reason: 'That does not look like a Wordy backup code.' };
+    return { ok: false, reason: 'That does not look like a Six on the Dial backup code.' };
   }
   try {
     const binary = atob(trimmed.slice(BACKUP_PREFIX.length));

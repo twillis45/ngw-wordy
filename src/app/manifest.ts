@@ -21,8 +21,13 @@ export default function manifest(): MetadataRoute.Manifest {
      * origin like a URL, hence withBase.
      */
     id: withBase('/'),
-    name: 'Wordy — six-letter word game',
-    short_name: 'Wordy',
+    name: 'Six on the Dial — six-letter word game',
+    /*
+     * Home-screen label, where ~12 characters survive. The full name is 15
+     * and truncates to "Six on th…" on iOS, so the label is the game's own
+     * nickname for its wheel. Change here and in appleWebApp.title together.
+     */
+    short_name: 'The Dial',
     description:
       'A six-letter word game with hand-authored puzzles: find every word on the wheel, and read the clue behind the board.',
     start_url: withBase('/'),
