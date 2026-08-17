@@ -101,9 +101,12 @@ climb cool with elevation. Elevation means one thing: lightness.
 
 ### Functional edge vs. decorative hairline
 
-`--color-edge` (`#ccd6e4` dark / `#24333f` light) is the boundary a shape is
+`--color-edge` (`#d2d4d8` dark / `#24333f` light) is the boundary a shape is
 *identified by* — lit to ~13:1 on dark, ~11:1 on light, deliberately extreme
-so shapes survive direct sunlight. `--color-carbon-border` is decorative
+so shapes survive direct sunlight. De-blued 2026-08-17 from `#ccd6e4`
+(24 blue-over-red) at held luminance, after the neutral surfaces left the
+old edge reading as the blue in the interface; the ratio is pinned in
+`contrast.test.ts`. `--color-carbon-border` is decorative
 only (a hairline at 1.24–1.35:1) and never carries meaning on its own; it
 was mistakenly flagged as a WCAG 1.4.11 gap once and the finding was
 retracted after checking actual usage (66 real uses of the functional edge
@@ -120,12 +123,14 @@ removing the identity color, not fixing a defect.
 
 ### One accent moment
 
-> "One accent moment: successGreen marks a found word. Nothing else on the
-> screen is saturated." — `globals.css`, top of file
+> "One accent moment: the success color marks a found word. Nothing else
+> on the screen is saturated." — `globals.css`, top of file
 
-- `--color-success` — `#4fae7a` (dark) / `#e08c38` opt-in alternate
-  (`[data-accent='matte']`, orange, same rule honored a different way — never
-  both accents live at once)
+- `--color-success` — `#e08c38` orange, the shipped default since 2026-08-17
+  (the accent axis resolves unset to `matte` in `lib/accent.ts`; light matte
+  splits the value, `#ef8f2a` chromatic / `#9c4a06` text). Green `#4fae7a`
+  (dark) / `#186438` (light) stays selectable as the opt-in alternate — same
+  rule honored a different way, never both accents live at once.
 - `--color-select` — `#f2831c`, amber. The single deliberate break from the
   palette's blue-grey hue family (~202°), reserved for "this tile is picked."
   Chosen at a near-complement angle (28°) because a same-hue fill (steel)
@@ -135,7 +140,7 @@ removing the identity color, not fixing a defect.
   by lightness and by never appearing as text.
 
 **Banned, explicitly, as a hierarchy accent:** `#1a6fba`, `#14b8a6`,
-`#f0bc44`, `#e08c38` (outside its sanctioned opt-in accent role above) — no
+`#f0bc44`, `#e08c38` (outside its sanctioned accent role above) — no
 warm gold competing with the one accent moment. This is a confidence-
 hierarchy rule, not a taste rule: warmth must never compete with the single
 saturated thing on screen.
