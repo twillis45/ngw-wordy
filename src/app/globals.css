@@ -169,6 +169,16 @@
   --color-steel: #4e6877;
   --color-steel-dark: #3f5b6a;
   --color-steel-muted: #6f8794;
+  /*
+   * The rank bar's fill, its own token so a theme can dissent.
+   *
+   * The fill was bg-steel-muted directly, which is fine where steel is the
+   * ambient identity — but a full-width filled strip is SURFACE usage of an
+   * identity color, exactly the line the studio block draws ("steel is
+   * IDENTITY, not surface"). Studio overrides this token; every other theme
+   * resolves it to steel-muted unchanged.
+   */
+  --color-rank-fill: var(--color-steel-muted);
 
   /* Status anchors */
   --color-success: #4fae7a;
@@ -1670,6 +1680,18 @@ body {
    * player chooses for a dim room, and the other three are unchanged.
    */
   --color-edge: #6c6e73;
+
+  /*
+   * RANK FILL, DE-BLUED — the one steel surface this theme still painted.
+   *
+   * Steel stays locked as identity (the ruling above holds), but the rank
+   * bar's fill is a full-width strip of steel-muted, and on this theme's
+   * neutral surfaces it read as the blue in the interface (b-r 37 against a
+   * ramp near 3). #808286 is steel-muted's luminance match (b-r 6), so the
+   * fill keeps its weight against the track and only the temperature moves —
+   * the same shape of swap as this block's edge and secondary text.
+   */
+  --color-rank-fill: #808286;
 
   /*
    * SECONDARY TEXT, DE-BLUED. This was the one font colour out of step.
