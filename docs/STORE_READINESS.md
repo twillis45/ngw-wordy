@@ -13,8 +13,10 @@ Activity, via Bubblewrap) for Play, **Capacitor** or a WKWebView shell for iOS.
 
 | # | Item | Status | Note |
 |---|---|---|---|
-| 0.1 | **Apple Guideline 4.2 — minimum functionality** | **BLOCKER · DECIDE** | *"a repackaged website gets rejected."* A WKWebView wrapper around a web game is the single most-rejected shape on iOS. Needs native surface to survive: offline-first (have it), home-screen widget, Game Center, haptics, share sheet, push. **Decide before building anything else** — this determines whether iOS is a wrapper or a real client. |
-| 0.2 | Google Play — repackaged-web is fine via TWA | TODO | Play accepts TWA. Play's equivalent risk is low. **Ship Android first** is the obvious sequencing. |
+| 0.1 | **Apple Guideline 4.2 — minimum functionality** | **BLOCKER · DECIDE** | *"a repackaged website gets rejected."* A WKWebView wrapper around a web game is the single most-rejected shape on iOS. Needs native surface to survive: offline-first (have it), home-screen widget, Game Center, haptics, share sheet, push. **Decide before building anything else** — this determines whether iOS is a wrapper or a real client. **Intent stated 2026-08-15: all three surfaces are wanted (web + Play + App Store).** That settles *whether*, not *what shape* — see the audit in 0.4. |
+| 0.2 | Google Play — repackaged-web is fine via TWA | TODO — **gated by 0.3** | Play accepts TWA. Play's equivalent risk is low. **Ship Android first** is the obvious sequencing — but it cannot start until 0.3 is closed. |
+| 0.3 | **A custom domain is a hard prerequisite for TWA** | **BLOCKER — newly found 2026-08-15** | A TWA proves it owns its web content with a Digital Asset Links file at **`https://<domain>/.well-known/assetlinks.json` — the ORIGIN root, not the app's sub-path.** Today the app is served from `https://twillis45.github.io/ngw-wordy/` (confirmed via the Pages API; `cname` is null, no `public/CNAME`). That well-known path belongs to the *`twillis45.github.io` user-pages repo*, not this one, so this repo structurally cannot publish it. `github.io` is also on the Public Suffix List, which is not a domain to anchor app identity to. Unverified, a TWA falls back to Custom-Tab UI **with a visible address bar** — which is precisely the "repackaged website" read we are trying to avoid, on the store that was supposed to be the easy one. Buy the domain and point Pages at it; it is cheap and it unblocks Play, iOS universal links, and the `start_url`/`id` migration the manifest already anticipates. |
+| 0.4 | **What native surface already exists** | note, 2026-08-15 | Audited against the source, because the 4.2 argument turns on it and the tracker had never written it down. Present today, in the web app: real iOS **Taptic haptics** (`lib/feedback.ts` — the iOS 18 hidden `<input switch>` trick, since Safari exposes no haptic API, with an 8-signal rhythm vocabulary designed to be legible with the screen off), synthesized **WebAudio** with a limiter on the bus, **share sheet** via `navigator.share` with clipboard fallback, **offline-first** service worker, `display: 'fullscreen'` with maskable icons, and **optional end-to-end-encrypted sync** with no account and no server-readable progress (`lib/sync.ts`). This is materially more than a webview around a page — but 4.2 is judged on the **binary**, and none of it is native code. |
 
 ---
 
@@ -90,12 +92,28 @@ Activity, via Bubblewrap) for Play, **Capacitor** or a WKWebView shell for iOS.
 
 ## Suggested order
 
-1. **Rule on 0.1.** iOS-as-wrapper may not be viable; that answer changes the plan.
-2. Clear the remaining hard BLOCKER that is nobody's opinion: **1.10 (cultural
-   reader)**. 5.1 is closed pending one confirmation on the live deploy.
-3. Ship **Android via TWA first** — cheaper, likelier to pass, and it proves the pipeline.
-4. Licence work is done — 1.9 (WordNet notice) and 1.8 (ENABLE provenance) are
+Revised 2026-08-15, now that all three surfaces are wanted.
+
+1. **Buy the domain (0.3).** Smallest action with the largest unblock: it is the
+   gate on Play, on iOS universal links, and on moving off the Pages sub-path.
+   Nothing else in the store track can start ahead of it.
+2. **Start the two enrollments (3.1, 3.2).** Apple is $99/yr, Play is $25 once,
+   and both take real calendar time for identity verification. They are pure
+   waiting, so they should be waiting in the background from day one.
+3. **Confirm 5.1 on the live deploy.** One reload on the real Pages URL. Every
+   measurement behind that fix was local.
+4. **Clear 1.10 (cultural reader).** The one hard blocker that is nobody's
+   opinion and that no amount of engineering closes. Store release is the
+   definition of commercial ship, and it has not happened for ANY pack. It gates
+   release on *every* surface, so it should be running in parallel from now.
+5. **Ship Android via TWA.** Cheapest, likeliest to pass, and it proves the
+   release pipeline end to end before iOS raises the stakes.
+6. **Then iOS, and not as a bare wrapper** — see 0.1 and 0.4. The web app
+   already has haptics, share, offline and fullscreen; what it does not have is
+   native code, and 4.2 is judged on the binary.
+7. Licence work is done — 1.9 (WordNet notice) and 1.8 (ENABLE provenance) are
    both recorded. One question rides along to the attorney: whether a 1997 US
    public-domain dedication wants a CC0 fallback for territories that do not
-   recognise abandonment.
-5. Only then decide paid (section 4), because IAP is most of the remaining work.
+   recognize abandonment.
+8. Only then decide paid (section 4), because IAP is most of the remaining work
+   — and note 4.3 forces a native layer on iOS regardless of what 0.1 decides.
