@@ -81,12 +81,44 @@
  * The default stays green.
  */
 @theme {
-  /* Carbon surfaces — dark is the default identity. */
-  --color-carbon-body: #070809;
-  --color-carbon-panel: #121518;
-  --color-carbon-surface-2: #171b1f;
-  --color-carbon-border: #232830;
-  --color-carbon-strong: #2b3039;
+  /*
+   * Carbon surfaces — dark is the default identity.
+   *
+   * DE-BLUED 2026-08-17, and the defect was the GRADIENT rather than the tint.
+   * Blue-over-red used to climb with elevation — 2 at the body, 6 at the panel,
+   * 8 at surface-2, 13 at the border, 14 at strong — so a surface got cooler as
+   * it got higher and elevation was quietly encoding temperature as well as
+   * lightness. It is +3 flat now, so elevation means one thing.
+   *
+   * The value is the one already recorded for this system: "User (2026-06-23)
+   * preferred a NEUTRAL carbon: most of the blue removed (blue ~3 over red),
+   * still a hair warm-cool-balanced, never steel." The studio block below has
+   * been running it since; dark never got it.
+   *
+   * Measured against the field, because the preference alone is not evidence.
+   * Eight dark-mode leaders on Mobbin — Notion, Apple Fitness, Character AI,
+   * TIDE, Calm, alias, Opal, Fabric — average +0.0 on the ground and -0.3 on
+   * panels, and NYT's App Store neutrals sit at +0.1/+1.6. Nobody in that set
+   * climbs cool with elevation; Notion holds flat and Apple Fitness warms as it
+   * rises. We were the only one going the other way.
+   *
+   * Kept at +3 rather than the field's 0 on purpose. The visible change is
+   * 6 -> 3 on panels and 14 -> 3 on borders; the last three points buy nothing
+   * anyone can see, and dropping them would trade a recorded design decision
+   * for a rounding difference. A hair of cool is identity here, not drift.
+   *
+   * LUMINANCE IS HELD. Every value below is the nearest b-r=3 neutral to the
+   * one it replaces — absolute luminance moves by ~0.0003 — so this is a
+   * temperature change and not a hierarchy change. Every text and edge ratio
+   * moves by at most 0.05 and nothing crosses a threshold; the one pinned
+   * figure that does move, the selection amber against the panel, went 7.01 ->
+   * 6.99 and is updated in contrast.test.ts rather than left to rot.
+   */
+  --color-carbon-body: #07080a;
+  --color-carbon-panel: #141517;
+  --color-carbon-surface-2: #1a1b1d;
+  --color-carbon-border: #27282a;
+  --color-carbon-strong: #2f3032;
   /*
    * Functional edge.
    *
@@ -166,7 +198,7 @@
    * not. Ink contrast is unaffected at 6.96, still well past AA.
    *
    * It is LIGHT with a dark letter, which is the opposite of every other tile,
-   * and that inversion is most of the effect: 6.96:1 on the letter and 7.01:1
+   * and that inversion is most of the effect: 6.96:1 on the letter and 6.99:1
    * against the panel behind it. A dark rust at the same hue managed 3.23:1
    * against the panel — legible, but it sank into the board instead of sitting
    * on it.
@@ -267,8 +299,32 @@
   /* Light exiting the lower edge — the brightest line on a piece of glass. */
   --glass-caustic: color-mix(in srgb, var(--glass-tint) 38%, transparent);
   --glass-caustic-strong: color-mix(in srgb, var(--glass-tint) 54%, transparent);
-  --glass-specular: color-mix(in srgb, var(--glass-tint) 34%, transparent);
-  --glass-specular-strong: color-mix(in srgb, var(--glass-tint) 78%, transparent);
+  /*
+   * SPECULAR OFF, 2026-08-17 — both of them, and both a SHARED TOKEN now.
+   *
+   * `--glass-specular` drives `.liquid::after`, the 138deg wedge that entered
+   * every panel from its top-left corner — 29 surfaces carry `.liquid`, so it
+   * was on the board, the clue box and every chip at once. Removed on the
+   * author's call: it read as a smudge rather than as light, and a wash that
+   * lands on the top-left of everything stops being a highlight and becomes a
+   * texture nobody chose.
+   *
+   * `--glass-specular-strong` (`.glass-puck::after` and its inset highlights)
+   * first stayed lit on the theory that a single moving object reads a
+   * specular as light rather than texture. Looked at live, it just made the
+   * cursor read as a solid pale disc instead of glass. Off here too, matching
+   * the value studio already used — so this is now ONE definition instead of
+   * a different opacity invented per theme. Only declared again where a
+   * cascade quirk in THIS file has already proven it must be (see the light
+   * blocks below); nowhere else needs to repeat it.
+   *
+   * Zeroed as a TOKEN rather than by deleting either rule, which is how the
+   * studio block already turns both wedges off. The rules, their masks and
+   * their geometry all stay intact, so restoring the material is one value
+   * rather than a rewrite.
+   */
+  --glass-specular: transparent;
+  --glass-specular-strong: transparent;
   --glass-contact: color-mix(in srgb, #000 50%, transparent);
   --glass-contact-strong: color-mix(in srgb, #000 60%, transparent);
   --glass-blur: 16px;
@@ -283,14 +339,22 @@
    * brightness is what reads as opacity: at 125% the puck stopped being a
    * window and became a pale disc sitting on the board.
    *
-   * Lowered to 112% and 4px so it veils rather than covers. It still has to be
-   * findable — on a mouse this REPLACES the OS cursor, and a pointer you
-   * cannot see is worse than a heavy one — so the contact shadow and rim carry
-   * that job instead of a bright fill.
+   * 2026-08-17: the wall used to be masked to a RING, clear in the middle so a
+   * letter under the puck read undistorted — see the note on `.glass-wall`.
+   * Author's call, live: the ring read as a hole rather than as glass. The
+   * wall now covers the whole puck, and blur/brightness/saturate were retuned
+   * together for that — brightness and saturate turned DOWN from 1.12/1.35 so
+   * a letter under the full-coverage wall is still legible rather than
+   * washed out, blur turned UP slightly so the glass still reads as
+   * distorting something rather than just tinting it.
+   *
+   * It still has to be findable — on a mouse this REPLACES the OS cursor, and
+   * a pointer you cannot see is worse than a heavy one — so the contact
+   * shadow and rim still carry most of that job, same as before.
    */
-  --puck-blur: 4px;
-  --puck-brightness: 1.12;
-  --puck-saturate: 1.35;
+  --puck-blur: 6px;
+  --puck-brightness: 1.06;
+  --puck-saturate: 1.15;
 
   /*
    * Ambient field — the thing the glass refracts.
@@ -392,11 +456,29 @@
 /* Follow the OS by default... */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme='dark']):not([data-theme='studio']) {
-  --color-carbon-body: #eef3f8;
+  /*
+   * DE-BLUED 2026-08-17, same treatment as the dark ramp and for the same
+   * reason — surfaces are neutral, steel is identity. Light was the worse of
+   * the two: body sat at +10 blue-over-red, surface-2 at +18, border at +43
+   * and strong at +41, against dark's worst of +14. Border and strong sit at
+   * 51% and 37% lightness, which is the band where a tint reads hardest.
+   *
+   * Six light-mode leaders measured on Mobbin — Apple News, The Atlantic, The
+   * New Yorker, Duolingo, Nibble, South China Morning Post — average +0.3 on
+   * the ground. Ours was thirty times that. Nobody in the set is near +10.
+   *
+   * Luminance is held, so this is temperature only. It is also contrast-
+   * neutral: every boundary ratio moves by at most 0.01. The panel stays pure
+   * white, which is where the field already sits.
+   *
+   * Steel is NOT touched, here or anywhere. It is identity rather than surface,
+   * and the parent design system locks it across every mode.
+   */
+  --color-carbon-body: #f2f3f5;
   --color-carbon-panel: #ffffff;
-  --color-carbon-surface-2: #dfe8f1;
-  --color-carbon-border: #a9c0d4;
-  --color-carbon-strong: #8fa6b8;
+  --color-carbon-surface-2: #e6e7e9;
+  --color-carbon-border: #bcbdbf;
+  --color-carbon-strong: #a2a3a5;
   --color-edge: #24333f;
 
   --color-steel: #4e6877;
@@ -468,8 +550,13 @@
   --glass-rim-dark-strong: color-mix(in srgb, var(--color-edge) 42%, transparent);
   --glass-caustic: color-mix(in srgb, var(--glass-tint) 80%, transparent);
   --glass-caustic-strong: color-mix(in srgb, var(--glass-tint) 95%, transparent);
-  --glass-specular: color-mix(in srgb, var(--glass-tint) 70%, transparent);
-  --glass-specular-strong: color-mix(in srgb, var(--glass-tint) 92%, transparent);
+  /* Both specular tokens off — see the note in @theme, including why
+     `-strong` (the wheel puck) joined the panel wedge in being off. The light
+     theme declares this block TWICE (prefers-color-scheme and
+     [data-theme='light']) and patching one without the other is a trap this
+     file has sprung before, so both carry both tokens. */
+  --glass-specular: transparent;
+  --glass-specular-strong: transparent;
   --glass-contact: color-mix(in srgb, var(--color-edge) 28%, transparent);
   --glass-contact-strong: color-mix(in srgb, var(--color-edge) 38%, transparent);
   --glass-blur: 14px;
@@ -488,11 +575,29 @@
    passed through the build unexpanded — the light values silently never
    applied. Plain CSS is verbose here and actually works. */
 :root[data-theme='light'] {
-  --color-carbon-body: #eef3f8;
+  /*
+   * DE-BLUED 2026-08-17, same treatment as the dark ramp and for the same
+   * reason — surfaces are neutral, steel is identity. Light was the worse of
+   * the two: body sat at +10 blue-over-red, surface-2 at +18, border at +43
+   * and strong at +41, against dark's worst of +14. Border and strong sit at
+   * 51% and 37% lightness, which is the band where a tint reads hardest.
+   *
+   * Six light-mode leaders measured on Mobbin — Apple News, The Atlantic, The
+   * New Yorker, Duolingo, Nibble, South China Morning Post — average +0.3 on
+   * the ground. Ours was thirty times that. Nobody in the set is near +10.
+   *
+   * Luminance is held, so this is temperature only. It is also contrast-
+   * neutral: every boundary ratio moves by at most 0.01. The panel stays pure
+   * white, which is where the field already sits.
+   *
+   * Steel is NOT touched, here or anywhere. It is identity rather than surface,
+   * and the parent design system locks it across every mode.
+   */
+  --color-carbon-body: #f2f3f5;
   --color-carbon-panel: #ffffff;
-  --color-carbon-surface-2: #dfe8f1;
-  --color-carbon-border: #a9c0d4;
-  --color-carbon-strong: #8fa6b8;
+  --color-carbon-surface-2: #e6e7e9;
+  --color-carbon-border: #bcbdbf;
+  --color-carbon-strong: #a2a3a5;
   --color-edge: #24333f;
 
   --color-steel: #4e6877;
@@ -546,8 +651,13 @@
   --glass-rim-dark-strong: color-mix(in srgb, var(--color-edge) 42%, transparent);
   --glass-caustic: color-mix(in srgb, var(--glass-tint) 80%, transparent);
   --glass-caustic-strong: color-mix(in srgb, var(--glass-tint) 95%, transparent);
-  --glass-specular: color-mix(in srgb, var(--glass-tint) 70%, transparent);
-  --glass-specular-strong: color-mix(in srgb, var(--glass-tint) 92%, transparent);
+  /* Both specular tokens off — see the note in @theme, including why
+     `-strong` (the wheel puck) joined the panel wedge in being off. The light
+     theme declares this block TWICE (prefers-color-scheme and
+     [data-theme='light']) and patching one without the other is a trap this
+     file has sprung before, so both carry both tokens. */
+  --glass-specular: transparent;
+  --glass-specular-strong: transparent;
   --glass-contact: color-mix(in srgb, var(--color-edge) 28%, transparent);
   --glass-contact-strong: color-mix(in srgb, var(--color-edge) 38%, transparent);
   --glass-blur: 14px;
@@ -652,7 +762,7 @@ body {
 }
 
 /*
- * The pointer glass — Liquid Glass, edge-refracting.
+ * The pointer glass — Liquid Glass, full coverage.
  *
  * The reference (Apple's Liquid Glass slabs) shows what a flat translucent
  * disc gets wrong: real glass has THICKNESS. Its centre is essentially clear,
@@ -660,11 +770,14 @@ body {
  * background is compressed and brightened. There is a caustic where light
  * exits the lower edge, and the whole piece picks up the colour beneath it.
  *
- * So refraction here is applied to a RING, not the whole element — the wall
- * bends what's behind it while the middle stays clear, which is both what the
- * reference does and what keeps the letter underneath readable.
+ * 2026-08-17: this used to mask the wall to a RING, clear in the middle, so a
+ * letter under the puck read undistorted through the hole. Looked at live it
+ * read as a hole in the fill rather than as a lens, so the wall now covers
+ * the whole element. `--puck-brightness` and `--puck-saturate` were turned
+ * down to compensate — see the note by those tokens — so a letter under the
+ * puck stays legible through a lighter wash instead of a clear gap.
  *
- * The ring is a real child element with Tailwind backdrop utilities rather
+ * The wall is a real child element with Tailwind backdrop utilities rather
  * than a pseudo-element: Lightning CSS silently dropped a hand-written
  * backdrop-filter earlier in this build, and a pseudo-element can't take
  * utility classes.
@@ -717,15 +830,12 @@ body {
 }
 
 /*
- * The refracting wall. Masked to a ring that follows the element's own
- * border-radius, so it morphs with the pointer.
+ * `.glass-wall` used to carry a mask here, ring-only and following the
+ * element's own border-radius so the mask morphed with the pointer. Unmasked
+ * as of 2026-08-17 — see the note above the puck comment block — so the class
+ * is now just a hook for the backdrop-filter utilities on the element itself;
+ * nothing to declare here.
  */
-.glass-wall {
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-}
 
 /*
  * Liquid glass, as a surface treatment for everything.
@@ -1102,6 +1212,42 @@ body {
   border: 1.5px solid var(--color-success);
   box-shadow: 0 0 12px -2px var(--color-success);
   animation: land-ring 520ms cubic-bezier(0.16, 0.8, 0.3, 1) both;
+  animation-delay: inherit;
+}
+
+/*
+ * Fill rising off the floor of a just-solved tile, 2026-08-17.
+ *
+ * The one gradient this file allows on a surface, and it is deliberately
+ * NOT a background — see the note on `--glass-specular` above, where a
+ * static wedge on every panel got turned OFF for reading as texture rather
+ * than light. This is the opposite case: transient, tied to a single event
+ * (a correct word), gone within a second. A milestone moment earns the
+ * thing a resting surface does not.
+ *
+ * Rises from the bottom edge (`transform-origin: bottom`) rather than
+ * fading in place, so the tile reads as FILLING with the accent rather than
+ * being tinted by it — the same "answer confirmed" read as the land bounce
+ * and the ring, from underneath instead of on top.
+ */
+@keyframes fill-up {
+  0%   { transform: scaleY(0); opacity: 0.85; }
+  55%  { transform: scaleY(1); opacity: 0.6; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+.anim-land::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transform-origin: bottom;
+  background: linear-gradient(
+    to top,
+    var(--color-success) 0%,
+    transparent 85%
+  );
+  animation: fill-up 620ms cubic-bezier(0.16, 0.8, 0.3, 1) both;
   animation-delay: inherit;
 }
 
