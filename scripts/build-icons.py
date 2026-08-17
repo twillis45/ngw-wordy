@@ -2,8 +2,10 @@
 """
 App icon generator.
 
-The mark is the product itself: six tiles in a ring, one lit in steel-blue.
-Studio Matte palette, same values as globals.css.
+The mark is the product itself: six tiles in a ring around the wheel's
+center — the Six on the Dial brand mark, matching docs/brand/icon.svg
+value-for-value. Off-white tiles on panel carbon, the six-o'clock tile in
+the selection amber (the one accent moment), a center dot for the puck.
 
 Rendered at 4x and downsampled so the rounded corners stay clean.
 
@@ -17,54 +19,41 @@ OUT = os.path.join(os.path.dirname(__file__), "..", "public")
 # Upload-only store art. Deliberately outside public/ — see main().
 STORE = os.path.join(os.path.dirname(__file__), "..", "store")
 
-CARBON_BODY = (7, 8, 9)
-CARBON_SURFACE_2 = (23, 27, 31)
-CARBON_STRONG = (43, 48, 57)
-STEEL = (78, 104, 119)
-STEEL_MUTED = (111, 135, 148)
+CARBON_PANEL = (20, 21, 23)   # #141517 — the mark's ground, per icon.svg
+TILE = (238, 240, 244)        # #eef0f4
+AMBER = (242, 131, 28)        # #f2831c — six o'clock only
 
 SS = 4  # supersample factor
 
 
-def draw_icon(size, safe=1.0, rounded=False):
+def draw_icon(size, safe=1.0):
     """
     safe < 1 shrinks the mark for maskable icons, whose outer ~10% on each
     edge can be cropped to any shape by the launcher.
+
+    Proportions are icon.svg's, expressed as fractions of its 1024 canvas:
+    ring radius 300/1024, tile 196/1024, corner 0.32·tile, dot 44/1024.
     """
     s = size * SS
-    img = Image.new("RGB", (s, s), CARBON_BODY)
+    img = Image.new("RGB", (s, s), CARBON_PANEL)
     d = ImageDraw.Draw(img)
 
     cx = cy = s / 2
-    # Disc the tiles sit on — the same one-step lift the wheel has in-app.
-    disc_r = s * 0.42 * safe
-    d.ellipse(
-        [cx - disc_r, cy - disc_r, cx + disc_r, cy + disc_r],
-        fill=CARBON_SURFACE_2,
-    )
-
-    ring_r = disc_r * 0.66
-    tile = disc_r * 0.40
-    radius = tile * 0.30
+    ring_r = s * (300 / 1024) * safe
+    tile = s * (196 / 1024) * safe
+    radius = tile * 0.32
+    dot_r = s * (44 / 1024) * safe
 
     for i in range(6):
+        # i == 0 is the top of the ring; i == 3 is six o'clock, which is the
+        # tile the name points at and the only one allowed the accent.
         angle = (i / 6) * math.tau - math.pi / 2
         tx = cx + math.cos(angle) * ring_r
         ty = cy + math.sin(angle) * ring_r
         box = [tx - tile / 2, ty - tile / 2, tx + tile / 2, ty + tile / 2]
-        lit = i == 0  # one accent moment, top tile
-        d.rounded_rectangle(
-            box,
-            radius=radius,
-            fill=STEEL if lit else CARBON_BODY,
-            outline=STEEL_MUTED if lit else CARBON_STRONG,
-            width=max(1, int(s * 0.006)),
-        )
+        d.rounded_rectangle(box, radius=radius, fill=AMBER if i == 3 else TILE)
 
-    if rounded:
-        # Apple applies its own mask, but a square source with our own carbon
-        # field avoids a white halo in older launchers.
-        pass
+    d.ellipse([cx - dot_r, cy - dot_r, cx + dot_r, cy + dot_r], fill=TILE)
 
     return img.resize((size, size), Image.LANCZOS)
 
