@@ -56,7 +56,7 @@ takes a correction to the record as well as to the sentence.
 
 - **derail** — What one bad follow-up single did to a career
 - **ideal** — The group, and the thing every A&R claimed to be looking for
-- **dial** — How you found the station before anybody named it a format
+- ⚑ **dial** — How you found the station before anybody named it a format
 - **dear** — 2Pac wrote his mother a letter and released it — ——— Mama, 1995
 - **real** — Mary J. Blige’s ——— Love, the single that opened What’s the 411?
 - **red** — TLC’s ——— Light Special, the slow one from CrazySexyCool
@@ -132,7 +132,7 @@ takes a correction to the record as well as to the sentence.
 ### 9. NIGHTS
 *Gin and juice, and what came after*
 
-- **nights** — The format had a name: quiet storm, and it started at ten
+- ⚑ **nights** — The format had a name: quiet storm, and it started at ten
 - ⚑ **night** — Monica, 1998 — The First ———, five weeks at number one
 - **thing** — Mary J. Blige’s cover, off My Life — Sweet ———, sweet as advertised
 - **sing** — What the hip-hop record started doing on the hook, around 1995

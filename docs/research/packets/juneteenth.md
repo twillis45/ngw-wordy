@@ -29,7 +29,7 @@ These are already known to be open. They need someone who has lived it.
 
 ### The red drink descends from West African hibiscus and kola traditions.
 
-WEAKLY SOURCED and widely repeated as fact. Opie, Miller and Twitty all hedge — "may come from", "some historians believe". There is plant provenance and colour symbolism, and no documentary chain. The shipped clue is already the safe version and claims no unbroken line. Keep it, and refuse any edit that hardens it.
+WEAKLY SOURCED and widely repeated as fact. Opie, Miller and Twitty all hedge — "may come from", "some historians believe". There is plant provenance and color symbolism, and no documentary chain. The shipped clue is already the safe version and claims no unbroken line. Keep it, and refuse any edit that hardens it.
 
 > ⚠︎ This finding is no longer attached to a specific clue — the board it was raised against was replaced in a rebuild. If it quotes wording you cannot find in the boards below, answer the question in general and ignore the quote.
 

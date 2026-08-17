@@ -29,7 +29,7 @@ These are already known to be open. They need someone who has lived it.
 
 ### Whether the conk clue reads as respect for the old heads or as novelty at their expense.
 
-Not answerable from sources, and research does not settle it. Malcolm X’s own conclusion was that the conk was self-degradation, so a clue treating it as period colour is standing on top of that judgement whether it means to or not. Needs a reader old enough to have had one.
+Not answerable from sources, and research does not settle it. Malcolm X’s own conclusion was that the conk was self-degradation, so a clue treating it as period color is standing on top of that judgment whether it means to or not. Needs a reader old enough to have had one.
 
 > ⚠︎ This finding is no longer attached to a specific clue — the board it was raised against was replaced in a rebuild. If it quotes wording you cannot find in the boards below, answer the question in general and ignore the quote.
 

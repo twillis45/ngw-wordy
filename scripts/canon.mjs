@@ -11,6 +11,7 @@
  *   node scripts/canon.mjs juneteenth    entries grounding one cluster
  *   node scripts/canon.mjs --open        only what still needs a human
  *   node scripts/canon.mjs --check       validate refs, sources, schema
+ *   node scripts/canon.mjs --bare        entries grounding no shipped clue
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -94,6 +95,24 @@ if (!invokedDirectly) {
     process.exit(1);
   }
   process.stdout.write(`canon OK — ${canon.entries.length} entries, all references resolve\n`);
+} else if (arg === '--bare') {
+  /*
+   * Entries grounding nothing that ships. NOT an error list — see the note in
+   * the summary. It exists so "which research has come unstuck from the
+   * corpus" is a question you can answer in one command instead of by reading
+   * 38 entries, and so a board that picks a finding back up can be spotted:
+   * `shop-wash-day` said "a future board on this should pick it back up", one
+   * did, and nothing surfaced that until someone went looking.
+   */
+  const bare = canon.entries.filter((e) => !(e.clues ?? []).length);
+  for (const e of bare) {
+    process.stdout.write(`[${e.verdict}] ${e.cluster} — ${e.id}\n  ${e.claim}\n`);
+  }
+  process.stdout.write(
+    `\n${bare.length} of ${canon.entries.length} entries ground no shipped clue.\n` +
+      'Normal for research that outlived its board. Worth a look when authoring\n' +
+      'the same theme again — the finding is already paid for.\n'
+  );
 } else if (arg === '--brief') {
   /*
    * The reader brief.
@@ -173,4 +192,22 @@ if (!invokedDirectly) {
   }
   const errs = check();
   process.stdout.write(`\n${canon.entries.length} entries · ${errs.length ? `${errs.length} PROBLEMS (run --check)` : 'all references resolve'}\n`);
+
+  /*
+   * "All references resolve" is true of an entry with NO references, which is
+   * how 33 of 38 entries came to ground nothing shipped without the summary
+   * ever saying so. Clearing a citation when its board is replaced is the
+   * right move — a citation pointing at rewritten text is worse than none —
+   * but the resulting detachment should be visible rather than inferred.
+   *
+   * Reported, never gated. Research that outlives the board it was raised
+   * against is a normal state, not a build failure: `shop-conk-history` is
+   * still true and still worth keeping when no clue happens to rest on it.
+   */
+  const grounded = canon.entries.filter((e) => (e.clues ?? []).length).length;
+  const bare = canon.entries.length - grounded;
+  process.stdout.write(
+    `${grounded} ground a live clue · ${bare} ground nothing shipped` +
+      (bare ? ' (run --bare)' : '') + '\n'
+  );
 }
