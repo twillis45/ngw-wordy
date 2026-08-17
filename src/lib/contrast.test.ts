@@ -180,4 +180,28 @@ describe('contrast claims in globals.css', () => {
     expect(token(STUDIO, 'color-text-secondary')).toMatch(/^#[0-9a-fA-F]{6}$/);
     expect(token(STUDIO, 'color-carbon-panel')).toMatch(/^#[0-9a-fA-F]{6}$/);
   });
+
+  /*
+   * Default dark took the studio theme's two de-blue swaps on 2026-08-17, and
+   * both comments make the same shape of claim studio's did: the hue moved
+   * and the luminance did not. Same defence, same guard.
+   *
+   * Edge: "12.31:1 on a panel against 12.45:1 before" — held near the top of
+   * the range on purpose; this theme keeps the sunlight argument, so the pin
+   * is the exact figure, not just a floor.
+   *
+   * Secondary text: "10.46:1 on this theme's panel against 10.73:1" — the
+   * clue text, which still has to clear AAA (7:1) to stay quiet legitimately.
+   */
+  it('the dark edge holds 12.31:1 on a panel, as its comment claims', () => {
+    const edge = token(DARK, 'color-edge');
+    expect(ratio(edge, token(DARK, 'color-carbon-panel'))).toBe(12.31);
+  });
+
+  it('dark secondary text holds 10.46:1 on a panel and clears AAA', () => {
+    const secondary = token(DARK, 'color-text-secondary');
+    const panel = token(DARK, 'color-carbon-panel');
+    expect(ratio(secondary, panel)).toBe(10.46);
+    expect(ratio(secondary, panel)).toBeGreaterThanOrEqual(7);
+  });
 });

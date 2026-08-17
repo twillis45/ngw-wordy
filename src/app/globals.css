@@ -133,8 +133,16 @@
    * apparent contrast, so an edge that looks strong indoors is a suggestion
    * outdoors. Studio Matte's restraint lives in the SURFACES; the edges are the
    * one place this UI is allowed to be loud.
+   *
+   * DE-BLUED 2026-08-17, luminance held. Was #ccd6e4, blue-over-red of 24 on a
+   * carbon ramp rebuilt to sit near 3 — with the surfaces neutral, every tile
+   * and card border read as the blue in the interface. The value below is the
+   * nearest b-r=6 near-neutral at the same luminance: 12.31:1 on a panel
+   * against 12.45:1 before, so the sunlight argument above still holds; only
+   * the temperature moves. Loudness is unchanged — quieting the edge is the
+   * studio theme's trade, not this one's.
    */
-  --color-edge: #ccd6e4;
+  --color-edge: #d2d4d8;
 
   /*
    * The edge, tiered.
@@ -258,8 +266,15 @@
    * 5.58:1 — 0.3% apart in luminance, i.e. the same tier under two names, which
    * made every de-emphasis decision downstream a no-op that only changed hue.
    * The ladder is now 13.4 / 9.0 / 5.6 on the panel.
+   *
+   * DE-BLUED 2026-08-17, same move the studio theme already made and for the
+   * same measured reason: primary #eef0f4 and muted #9a9ca0 both sit at 6
+   * blue-over-red, and secondary was #a9caeb at SIXTY-SIX — on the clue, the
+   * most-read text on the board. #c2c4c8 is the studio block's luminance
+   * match — 10.46:1 on this theme's panel against 10.73:1 — so the ladder is untouched
+   * and only the hue moves.
    */
-  --color-text-secondary: #a9caeb;
+  --color-text-secondary: #c2c4c8;
   --color-text-muted: #9a9ca0;
 
   /* Theme-dependent surface treatments, so components don't hardcode a
