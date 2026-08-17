@@ -71,14 +71,16 @@
  * copied, not re-derived. Banned here as there: #1a6fba, #14b8a6,
  * #f0bc44, #e08c38 — no warm gold as a hierarchy accent.
  *
- * One accent moment: successGreen marks a found word. Nothing else on
- * the screen is saturated.
+ * One accent moment: the success color marks a found word. Nothing else
+ * on the screen is saturated.
  *
  * That ban is about CONFIDENCE HIERARCHY — warmth must never compete with the
- * one accent moment. An opt-in alternate accent that REPLACES the accent
- * moment with orange, changing nothing else, honours the rule rather than
- * breaking it; see the [data-accent='matte'] block at the end of this file.
- * The default stays green.
+ * one accent moment. An alternate accent that REPLACES the accent moment,
+ * changing nothing else, honours the rule rather than breaking it; see the
+ * [data-accent='matte'] block at the end of this file. Since 2026-08-17 the
+ * accent axis DEFAULTS to matte (orange, resolved in lib/accent.ts), so the
+ * green defined in this block is the opt-in and #e08c38's sanctioned role is
+ * the shipped default — the ban on it as a HIERARCHY accent stands unchanged.
  */
 @theme {
   /*
