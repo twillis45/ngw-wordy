@@ -299,7 +299,27 @@
   /* Light exiting the lower edge — the brightest line on a piece of glass. */
   --glass-caustic: color-mix(in srgb, var(--glass-tint) 38%, transparent);
   --glass-caustic-strong: color-mix(in srgb, var(--glass-tint) 54%, transparent);
-  --glass-specular: color-mix(in srgb, var(--glass-tint) 34%, transparent);
+  /*
+   * PANEL SPECULAR OFF, 2026-08-17.
+   *
+   * `--glass-specular` drives `.liquid::after`, the 138deg wedge that entered
+   * every panel from its top-left corner — 29 surfaces carry `.liquid`, so it
+   * was on the board, the clue box and every chip at once. Removed on the
+   * author's call: it read as a smudge rather than as light, and a wash that
+   * lands on the top-left of everything stops being a highlight and becomes a
+   * texture nobody chose.
+   *
+   * Zeroed as a TOKEN rather than by deleting the rule, which is how the studio
+   * block already turns the same wedge off. The rule, its mask and its geometry
+   * all stay intact, so restoring the material is one value rather than a
+   * rewrite.
+   *
+   * `--glass-specular-strong` is deliberately LEFT ON. It drives
+   * `.glass-puck::after`, the pointer-following puck on the wheel — a single
+   * moving element where a specular reads as what it is, rather than a static
+   * corner wash on a panel that never moves.
+   */
+  --glass-specular: transparent;
   --glass-specular-strong: color-mix(in srgb, var(--glass-tint) 78%, transparent);
   --glass-contact: color-mix(in srgb, #000 50%, transparent);
   --glass-contact-strong: color-mix(in srgb, #000 60%, transparent);
@@ -500,7 +520,11 @@
   --glass-rim-dark-strong: color-mix(in srgb, var(--color-edge) 42%, transparent);
   --glass-caustic: color-mix(in srgb, var(--glass-tint) 80%, transparent);
   --glass-caustic-strong: color-mix(in srgb, var(--glass-tint) 95%, transparent);
-  --glass-specular: color-mix(in srgb, var(--glass-tint) 70%, transparent);
+  /* Panel specular off — see the note in @theme. The light theme declares this
+     block TWICE (prefers-color-scheme and [data-theme='light']) and patching
+     one without the other is a trap this file has sprung before, so both carry
+     it. `-strong` stays: it is the wheel puck, not a panel. */
+  --glass-specular: transparent;
   --glass-specular-strong: color-mix(in srgb, var(--glass-tint) 92%, transparent);
   --glass-contact: color-mix(in srgb, var(--color-edge) 28%, transparent);
   --glass-contact-strong: color-mix(in srgb, var(--color-edge) 38%, transparent);
@@ -578,7 +602,11 @@
   --glass-rim-dark-strong: color-mix(in srgb, var(--color-edge) 42%, transparent);
   --glass-caustic: color-mix(in srgb, var(--glass-tint) 80%, transparent);
   --glass-caustic-strong: color-mix(in srgb, var(--glass-tint) 95%, transparent);
-  --glass-specular: color-mix(in srgb, var(--glass-tint) 70%, transparent);
+  /* Panel specular off — see the note in @theme. The light theme declares this
+     block TWICE (prefers-color-scheme and [data-theme='light']) and patching
+     one without the other is a trap this file has sprung before, so both carry
+     it. `-strong` stays: it is the wheel puck, not a panel. */
+  --glass-specular: transparent;
   --glass-specular-strong: color-mix(in srgb, var(--glass-tint) 92%, transparent);
   --glass-contact: color-mix(in srgb, var(--color-edge) 28%, transparent);
   --glass-contact-strong: color-mix(in srgb, var(--color-edge) 38%, transparent);
