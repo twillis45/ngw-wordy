@@ -51,6 +51,13 @@ async function pngSize(file) {
 }
 
 async function shot(page, file, expect) {
+  // The harness types and presses Escape, which leaves a focused element —
+  // and after keyboard use Chrome paints its default blue :focus-visible ring,
+  // a full-viewport blue frame on every light shot. Not product UI; drop it.
+  await page.evaluate(() => {
+    const el = document.activeElement;
+    if (el instanceof HTMLElement) el.blur();
+  });
   await page.screenshot({ path: file });
   const [w, h] = await pngSize(file);
   const ok = w === expect[0] && h === expect[1];
