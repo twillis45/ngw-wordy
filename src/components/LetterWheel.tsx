@@ -639,12 +639,13 @@ export default function LetterWheel({
               'width 110ms ease-out, height 110ms ease-out, margin-left 110ms ease-out, margin-top 110ms ease-out, border-radius 110ms ease-out',
           }}
         >
-          {/* The glass wall: refraction lives here and only here, so the
-              centre of the lens stays clear and the letter reads through it. */}
+          {/* The glass wall: refraction lives here and only here. Full
+              coverage as of 2026-08-17 — see globals.css — so a letter under
+              the puck reads through a light wash rather than a clear hole. */}
           <span
             aria-hidden
             className="glass-wall absolute inset-0 backdrop-blur-[var(--puck-blur)] backdrop-brightness-[var(--puck-brightness)] backdrop-saturate-[var(--puck-saturate)]"
-            style={{ borderRadius: 'inherit', padding: '30%' }}
+            style={{ borderRadius: 'inherit' }}
           />
         </span>
       )}
