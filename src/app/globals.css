@@ -444,11 +444,29 @@
 /* Follow the OS by default... */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme='dark']):not([data-theme='studio']) {
-  --color-carbon-body: #eef3f8;
+  /*
+   * DE-BLUED 2026-08-17, same treatment as the dark ramp and for the same
+   * reason — surfaces are neutral, steel is identity. Light was the worse of
+   * the two: body sat at +10 blue-over-red, surface-2 at +18, border at +43
+   * and strong at +41, against dark's worst of +14. Border and strong sit at
+   * 51% and 37% lightness, which is the band where a tint reads hardest.
+   *
+   * Six light-mode leaders measured on Mobbin — Apple News, The Atlantic, The
+   * New Yorker, Duolingo, Nibble, South China Morning Post — average +0.3 on
+   * the ground. Ours was thirty times that. Nobody in the set is near +10.
+   *
+   * Luminance is held, so this is temperature only. It is also contrast-
+   * neutral: every boundary ratio moves by at most 0.01. The panel stays pure
+   * white, which is where the field already sits.
+   *
+   * Steel is NOT touched, here or anywhere. It is identity rather than surface,
+   * and the parent design system locks it across every mode.
+   */
+  --color-carbon-body: #f2f3f5;
   --color-carbon-panel: #ffffff;
-  --color-carbon-surface-2: #dfe8f1;
-  --color-carbon-border: #a9c0d4;
-  --color-carbon-strong: #8fa6b8;
+  --color-carbon-surface-2: #e6e7e9;
+  --color-carbon-border: #bcbdbf;
+  --color-carbon-strong: #a2a3a5;
   --color-edge: #24333f;
 
   --color-steel: #4e6877;
@@ -544,11 +562,29 @@
    passed through the build unexpanded — the light values silently never
    applied. Plain CSS is verbose here and actually works. */
 :root[data-theme='light'] {
-  --color-carbon-body: #eef3f8;
+  /*
+   * DE-BLUED 2026-08-17, same treatment as the dark ramp and for the same
+   * reason — surfaces are neutral, steel is identity. Light was the worse of
+   * the two: body sat at +10 blue-over-red, surface-2 at +18, border at +43
+   * and strong at +41, against dark's worst of +14. Border and strong sit at
+   * 51% and 37% lightness, which is the band where a tint reads hardest.
+   *
+   * Six light-mode leaders measured on Mobbin — Apple News, The Atlantic, The
+   * New Yorker, Duolingo, Nibble, South China Morning Post — average +0.3 on
+   * the ground. Ours was thirty times that. Nobody in the set is near +10.
+   *
+   * Luminance is held, so this is temperature only. It is also contrast-
+   * neutral: every boundary ratio moves by at most 0.01. The panel stays pure
+   * white, which is where the field already sits.
+   *
+   * Steel is NOT touched, here or anywhere. It is identity rather than surface,
+   * and the parent design system locks it across every mode.
+   */
+  --color-carbon-body: #f2f3f5;
   --color-carbon-panel: #ffffff;
-  --color-carbon-surface-2: #dfe8f1;
-  --color-carbon-border: #a9c0d4;
-  --color-carbon-strong: #8fa6b8;
+  --color-carbon-surface-2: #e6e7e9;
+  --color-carbon-border: #bcbdbf;
+  --color-carbon-strong: #a2a3a5;
   --color-edge: #24333f;
 
   --color-steel: #4e6877;
