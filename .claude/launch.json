@@ -3,9 +3,12 @@
   "configurations": [
     {
       "name": "wordy",
-      "runtimeExecutable": "/Users/toddwillis/.local/node20/bin/npm",
-      "runtimeArgs": ["run", "dev", "--", "-p", "3007"],
-      "port": 3007
+      "runtimeExecutable": "/Users/toddwillis/.local/node20/bin/node",
+      "runtimeArgs": ["/Users/toddwillis/.local/node20/bin/npm", "run", "dev", "--", "-p", "3007"],
+      "port": 3007,
+      "env": {
+        "PATH": "/Users/toddwillis/.local/node20/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+      }
     }
   ]
 }
