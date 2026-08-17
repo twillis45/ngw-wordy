@@ -130,6 +130,49 @@ describe('shipped puzzle content', () => {
     expect(file.puzzles.length).toBeGreaterThan(100);
   });
 
+  /*
+   * US English, gated.
+   *
+   * AUTHORING.md rule 4 is US English, and HANDOFF lists `tyre`, `kerb`,
+   * `bonnet`, `boot`, `peg` and `tap` as words that "all shipped and had to be
+   * corrected". `tyre` was back — "Of the tyre in gravel at the last turn" —
+   * along with 14 others across nine themes, because the rule was written down
+   * and then measured by nothing.
+   *
+   * Two exclusions, both deliberate.
+   *
+   * Answer WORDS come from ENABLE1 and are not ours to respell — a British
+   * spelling that is a legal answer has to stay as the wordlist has it or the
+   * row stops being solvable. So this reads clue text only.
+   *
+   * GENERATED clues are excluded too, because they are WordNet definitions
+   * reproduced verbatim ("A brittle grey crystalline element…"). /support
+   * reproduces the WordNet licence, which grants permission provided the
+   * notice and disclaimer "appear on ALL copies" — quietly Americanising the
+   * definitions would make that reproduction inexact, which is a licence
+   * question rather than a style one. AUTHORING.md governs what WE write.
+   */
+  it('spells authored clue text in US English', () => {
+    const BRITISH =
+      /\b(colour\w*|honour\w*|flavour\w*|favour\w*|neighbour\w*|labour\w*|savour\w*|centre|theatre|litre|metre|grey|kerb|tyre|bonnet|whilst|realis(?:e|ed|es|ing)|organis(?:e|ed|es|ing|ation)|recognis(?:e|ed|es|ing)|apologis(?:e|ed|es|ing)|practise|licence|defence|offence|travelled|labelled|cancelled|jewellery|pyjamas|moustache|storey)\b/gi;
+
+    const offenders: string[] = [];
+    for (const p of file.puzzles) {
+      // In the BUILT artifact `theme` is the resolved object, not the id it is
+      // in data/themes.json — reading it as a string prints [object Object].
+      const theme = (p.theme as { id?: string } | undefined)?.id;
+      if (!theme) continue; // generated → WordNet's words, not ours
+      for (const [word, clue] of Object.entries(p.clues ?? {})) {
+        const hits = clue.match(BRITISH);
+        if (hits) offenders.push(`${theme}/${word}: ${hits.join(', ')}`);
+      }
+    }
+    expect(
+      offenders,
+      'British spellings in shipped clue text — AUTHORING.md rule 4 is US English'
+    ).toEqual([]);
+  });
+
   it('contains no blocked word in any scoreable field', () => {
     const found = new Map<string, number>();
     for (const p of file.puzzles) {
