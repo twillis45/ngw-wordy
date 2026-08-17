@@ -44,9 +44,9 @@ Activity, via Bubblewrap) for Play, **Capacitor** or a WKWebView shell for iOS.
 |---|---|---|---|
 | 2.1 | App icon — 1024×1024 (iOS), 512×512 (Play) | **DONE 2026-08-16** | Confirmed the suspicion in this row's first version: the script emitted PWA sizes only (192, 512, maskable pair, 180). Play's 512 was already covered by `icon-512.png`; **Apple's 1024 was missing entirely.** `build-icons.py` now also emits `store/app-store-icon-1024.png` — verified 1024×1024, mode RGB, **no alpha**, which App Store Connect rejects. Written outside `public/` on purpose: store art is uploaded, never served, and `public/` is the deploy artifact. Note the repo's Pillow is an x86_64 build on an arm64 machine and `npm run icons` fails on `import PIL`; that is a pre-existing environment problem, not a script one. |
 | 2.2 | Play feature graphic 1024×500 | TODO | Play-only, required. |
-| 2.3 | iPhone screenshots (6.7" and 6.5" required) | TODO | Can be captured from the render harness at the right viewports. |
+| 2.3 | iPhone screenshots (6.7" and 6.5" required) | **DONE 2026-08-17 — verify the required set before filing** | `node scripts/capture-store.mjs` shoots the production export at exact store pixel sizes: 6.9" 1320×2868, 6.7" 1290×2796, 6.5" 1242×2688. Three states each, in `store/screenshots/`. Dimensions are **asserted from each PNG's own header** and the run exits non-zero on a mismatch, because App Store Connect rejects an off-by-one screenshot at the end of a filing session rather than at capture. Apple's required set has changed twice in two years — confirm it in App Store Connect and add a row to `TARGETS` rather than resizing a PNG by hand. |
 | 2.4 | iPad screenshots | TODO | Only if the iOS build declares iPad support. Cheaper to ship iPhone-only first. |
-| 2.5 | Play phone/tablet screenshots (2–8) | TODO | Same source. |
+| 2.5 | Play phone/tablet screenshots (2–8) | **DONE 2026-08-17 (phone)** | Same harness: `play-phone` at 1080×1920, 9:16, three shots — inside Play's 2–8 range and its 320–3840px bounds. Tablet shots are not built; they are only needed if the listing declares tablet support. |
 | 2.6 | Description, subtitle, keywords | TODO | |
 | 2.7 | Privacy-policy URL in both listings | TODO | Points at 1.1. |
 
