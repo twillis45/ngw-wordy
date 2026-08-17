@@ -13,6 +13,7 @@
     "check:hydration": "node scripts/check-hydration.mjs",
     "puzzles": "node scripts/build-puzzles.mjs 520",
     "icons": "python3 scripts/build-icons.py",
+    "feature-graphic": "node scripts/build-feature-graphic.mjs",
     "definitions": "node scripts/build-definitions.mjs",
     "wordnet": "node scripts/build-wordnet.mjs"
   },
