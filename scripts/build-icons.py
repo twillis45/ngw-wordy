@@ -14,6 +14,8 @@ import os
 from PIL import Image, ImageDraw
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "public")
+# Upload-only store art. Deliberately outside public/ — see main().
+STORE = os.path.join(os.path.dirname(__file__), "..", "store")
 
 CARBON_BODY = (7, 8, 9)
 CARBON_SURFACE_2 = (23, 27, 31)
@@ -83,6 +85,22 @@ def main():
         path = os.path.join(OUT, name)
         draw_icon(size, safe).save(path, "PNG", optimize=True)
         print(f"  {name}  {size}x{size}  {os.path.getsize(path)} bytes")
+
+    # Store listing art is UPLOADED, never served, so it does not belong in
+    # public/ — that directory is the deploy artifact and every byte in it
+    # ships to players who will never request this file.
+    #
+    # Play's 512 is already covered by icon-512.png above. Apple's is not:
+    # App Store Connect wants 1024x1024, full-bleed, and it REJECTS an alpha
+    # channel. draw_icon builds in "RGB" rather than "RGBA", so that holds by
+    # construction — but it is the reason not to casually switch that mode.
+    os.makedirs(STORE, exist_ok=True)
+    store_path = os.path.join(STORE, "app-store-icon-1024.png")
+    draw_icon(1024, 1.0).save(store_path, "PNG", optimize=True)
+    print(
+        f"  store/app-store-icon-1024.png  1024x1024  "
+        f"{os.path.getsize(store_path)} bytes"
+    )
 
 
 if __name__ == "__main__":
