@@ -4,7 +4,7 @@ import { absoluteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Terms of use',
-  description: 'The terms for using Wordy.',
+  description: 'The terms for using Six on the Dial.',
   alternates: { canonical: absoluteUrl('/terms/') },
 };
 
@@ -12,7 +12,7 @@ export default function TermsPage() {
   return (
     <Legal title="Terms of use" updated="August 10, 2026">
       <p>
-        Wordy is a word game, free to play. By using it you agree to these
+        Six on the Dial is a word game, free to play. By using it you agree to these
         terms, which are deliberately brief.
       </p>
 
@@ -33,7 +33,7 @@ export default function TermsPage() {
 
       <h2>No warranty</h2>
       <p>
-        Wordy is provided as-is, without warranty of any kind. It may contain
+        Six on the Dial is provided as-is, without warranty of any kind. It may contain
         errors, a puzzle may be harder than intended, and it may be unavailable
         at times. To the extent the law allows, we are not liable for any loss
         arising from using it.

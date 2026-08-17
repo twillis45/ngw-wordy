@@ -192,7 +192,7 @@ export type DecodeResult =
 export function decodeProgress(code: string, file: PuzzleFile): DecodeResult {
   const trimmed = code.trim();
   if (!trimmed.startsWith(CODE_PREFIX)) {
-    return { ok: false, reason: 'That does not look like a Wordy backup code.' };
+    return { ok: false, reason: 'That does not look like a Six on the Dial backup code.' };
   }
   let buf: Uint8Array;
   try {

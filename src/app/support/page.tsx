@@ -4,7 +4,7 @@ import { absoluteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Support',
-  description: 'Help with Wordy, and what it is built from.',
+  description: 'Help with Six on the Dial, and what it is built from.',
   alternates: { canonical: absoluteUrl('/support/') },
 };
 
@@ -45,7 +45,7 @@ export default function SupportPage() {
         can turn that off under the <em>?</em> button.
       </p>
 
-      <h2>What Wordy is built from</h2>
+      <h2>What Six on the Dial is built from</h2>
       <p>
         <strong>Word list:</strong> ENABLE (Enhanced North American Benchmark
         Lexicon), released into the public domain by Alan Beale and Mendel

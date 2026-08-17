@@ -1316,7 +1316,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const challenge = async () => {
     const n = isDaily ? dailyIndex(today, dailyPoolSize(data)) + 1 : index + 1;
     const url = `${origin().replace(/\/$/, '')}/#play=${n}&beat=${score}`;
-    const text = `I scored ${score} on ${puzzle.theme?.name ?? 'Wordy'}. Your turn.`;
+    const text = `I scored ${score} on ${puzzle.theme?.name ?? 'Six on the Dial'}. Your turn.`;
     try {
       if (navigator.share) return void (await navigator.share({ text, url }));
       await navigator.clipboard.writeText(`${text}\n${url}`);
@@ -1342,7 +1342,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
         : score === beatTarget
           ? `Dead tie. ${score} each.`
           : `You win: ${beatTarget} to ${score}.`;
-    const text = `${verdict} ${puzzle.theme?.name ?? 'Wordy'}.`;
+    const text = `${verdict} ${puzzle.theme?.name ?? 'Six on the Dial'}.`;
     try {
       if (navigator.share) return void (await navigator.share({ text }));
       await navigator.clipboard.writeText(text);
@@ -1364,7 +1364,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
     if (!t) return;
     const count = data.puzzles.filter((p) => p.theme?.id === t.id).length;
     const url = `${origin().replace(/\/$/, '')}/#theme=${t.id}`;
-    const text = `${t.name} on Wordy — ${count} boards. ${t.blurb}`;
+    const text = `${t.name} on Six on the Dial — ${count} boards. ${t.blurb}`;
     try {
       if (navigator.share) return void (await navigator.share({ text, url }));
       await navigator.clipboard.writeText(`${text}\n${url}`);
@@ -1439,7 +1439,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       <header className="flex items-center justify-between gap-2">
         <div>
           <h1 className="whitespace-nowrap text-item font-semibold text-text-primary max-[379px]:text-meta">
-            Wordy
+            Six on the Dial
           </h1>
           <button
             type="button"

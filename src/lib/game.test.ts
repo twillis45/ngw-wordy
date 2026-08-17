@@ -242,7 +242,7 @@ describe('shareText', () => {
       streak: 5,
       url: 'https://wordy.example',
     });
-    expect(text).toContain('Wordy — Fluent');
+    expect(text).toContain('Six on the Dial — Fluent');
     // No answer from the puzzle may appear anywhere in the card.
     for (const answer of [...puzzle.grid, ...puzzle.bonus]) {
       expect(text.toLowerCase()).not.toContain(answer);
@@ -296,7 +296,7 @@ describe('shareText', () => {
       streak: 1,
     });
     const lines = text.split('\n');
-    expect(lines[0]).toBe('Wordy — The Cookout · Clever');
+    expect(lines[0]).toBe('Six on the Dial — The Cookout · Clever');
     // Above the tiles: a reader scanning a feed sees line one and nothing else.
     expect(lines[1]).toContain('Dug out the couch');
     expect(lines[2]).toContain('🟩');
@@ -310,7 +310,7 @@ describe('shareText', () => {
       bonusFound: 0,
       streak: 1,
     });
-    expect(text.split('\n')[0]).toBe('Wordy — Solid');
+    expect(text.split('\n')[0]).toBe('Six on the Dial — Solid');
   });
 
   it('includes bonus, streak and url when they do', () => {
@@ -1215,7 +1215,7 @@ describe('share card day number', () => {
 
   it('names the puzzle when it is the daily, so two people know they mean the same board', () => {
     const out = shareText({ ...base, theme: 'The Nineties', dayNumber: 205 });
-    expect(out.split('\n')[0]).toBe('Wordy #205 — The Nineties · Complete');
+    expect(out.split('\n')[0]).toBe('Six on the Dial #205 — The Nineties · Complete');
   });
 
   it('prints NO number for practice and warm-up', () => {
@@ -1223,7 +1223,7 @@ describe('share card day number', () => {
     // at a board nobody else could see. Those genuinely are not a shared thing.
     for (const n of [null, undefined]) {
       const out = shareText({ ...base, theme: 'The Nineties', dayNumber: n });
-      expect(out.split('\n')[0]).toBe('Wordy — The Nineties · Complete');
+      expect(out.split('\n')[0]).toBe('Six on the Dial — The Nineties · Complete');
       expect(out).not.toContain('#');
     }
   });

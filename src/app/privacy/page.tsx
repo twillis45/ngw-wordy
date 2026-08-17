@@ -4,7 +4,7 @@ import { absoluteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Privacy',
-  description: 'What Wordy stores, and what it sends. (Nothing leaves your device.)',
+  description: 'What Six on the Dial stores, and what it sends. (Nothing leaves your device.)',
   alternates: { canonical: absoluteUrl('/privacy/') },
 };
 
@@ -21,7 +21,7 @@ export default function PrivacyPage() {
   return (
     <Legal title="Privacy" updated="August 16, 2026">
       <p>
-        Wordy runs entirely in your browser. There is no server, no account and
+        Six on the Dial runs entirely in your browser. There is no server, no account and
         no login. Nothing you do here is sent anywhere.
       </p>
 
@@ -40,14 +40,14 @@ export default function PrivacyPage() {
       <h2>What is collected</h2>
       <p>
         Nothing. No analytics, no crash reporting, no advertising, no
-        fingerprinting, no cookies, no email address, no name. Wordy makes no
+        fingerprinting, no cookies, no email address, no name. Six on the Dial makes no
         requests to any third party at all — the only files it ever fetches are
         its own, from the same address you loaded it from.
       </p>
 
       <h2>Deleting your data</h2>
       <p>
-        Clearing your browser&rsquo;s site data for Wordy erases everything, and
+        Clearing your browser&rsquo;s site data for Six on the Dial erases everything, and
         that is the whole of it — there is no copy anywhere else, and no request
         to send us. Note that this also deletes your progress and streak, and we
         cannot restore them.
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
 
       <h2>Children</h2>
       <p>
-        Wordy is suitable for all ages and is not directed at children
+        Six on the Dial is suitable for all ages and is not directed at children
         specifically. Because it collects no personal information from anyone,
         it collects none from children either.
       </p>

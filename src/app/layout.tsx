@@ -63,21 +63,21 @@ export const metadata: Metadata = {
    */
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Wordy — six-letter word game',
+    default: 'Six on the Dial — six-letter word game',
     // Sub-pages set their own full title; this keeps any that don't from
     // losing the product name in a browser tab or a search result.
-    template: '%s — Wordy',
+    template: '%s — Six on the Dial',
   },
   description: DESCRIPTION,
-  applicationName: 'Wordy',
+  applicationName: 'Six on the Dial',
   // Two spellings of a page — with and without the trailing slash, or on the
   // Pages sub-path as well as the real domain — is one page's rank split in
   // half. The canonical says which one counts.
   alternates: { canonical: absoluteUrl('/') },
   openGraph: {
     type: 'website',
-    siteName: 'Wordy',
-    title: 'Wordy — six-letter word game',
+    siteName: 'Six on the Dial',
+    title: 'Six on the Dial — six-letter word game',
     description: DESCRIPTION,
     url: absoluteUrl('/'),
     locale: 'en_US',
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: 'image/png',
-        alt: 'The Wordy letter wheel spelling TAPING, beside the name Wordy.',
+        alt: 'The Six on the Dial letter wheel spelling TAPING, beside the game name.',
       },
     ],
   },
@@ -104,7 +104,7 @@ export const metadata: Metadata = {
     // summary_large_image, not summary: summary crops to a small square and
     // throws away the half of the card that says what the game is.
     card: 'summary_large_image',
-    title: 'Wordy — six-letter word game',
+    title: 'Six on the Dial — six-letter word game',
     description: DESCRIPTION,
     images: [absoluteUrl('/og.png')],
   },
@@ -114,7 +114,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Wordy',
+    title: 'The Dial',
   },
   icons: {
     icon: [
