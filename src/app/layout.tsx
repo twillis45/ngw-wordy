@@ -96,7 +96,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: 'image/png',
-        alt: 'The Six on the Dial letter wheel spelling TAPING, beside the game name.',
+        alt: 'The Six on the Dial wordmark, with the o in on drawn as the game’s six-tile letter wheel.',
       },
     ],
   },
