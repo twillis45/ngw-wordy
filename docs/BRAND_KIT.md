@@ -17,11 +17,13 @@ regenerate it after any edit here so the two never drift.
 **Name:** Six on the Dial
 **Domain:** sixonthedial.com (decided 2026-08-17; purchase gated on the
 attorney closing STORE_READINESS 1.11)
-**Working title being retired:** Wordy — replaced because WORDY is a live
-third-party trademark in Class 009 for exactly this product category
-(mobile application software, Wordy Plus LLC). The in-app UI, store
-screenshots and code still carry the working title until the rename ships
-as its own change.
+**Working title, retired 2026-08-17:** Wordy — replaced because WORDY is a
+live third-party trademark in Class 009 for exactly this product category
+(mobile application software, Wordy Plus LLC). The rename shipped in PR #20:
+the in-app UI, manifest, metadata and store screenshots all read Six on the
+Dial now. Internal identifiers (the repo name, storage keys like
+`ngw-wordy/v2`) keep the old slug on purpose — renaming a live localStorage
+key would orphan every player's progress.
 
 **What the name means:** the *dial* is the game's own letter wheel — six
 letter tiles around a center puck, the thing a player spins and drags to
@@ -120,6 +122,13 @@ purpose — mixed into the liquid-glass material (`--glass-body`,
 `--glass-tint`) so the *lens* carries a signature cast even where the
 *carbon underneath it* is neutral. Do not de-blue steel; that would be
 removing the identity color, not fixing a defect.
+
+The line this rule draws is identity vs. *surface*: a full-width filled
+strip of steel is surface usage, which is why the rank bar's fill is its own
+token (`--color-rank-fill`, resolving to steel-muted) and Studio Matte —
+the one theme with a fully neutral ramp — overrides it to a luminance-
+matched neutral (`#808286`) rather than painting a blue bar across a
+de-blued screen.
 
 ### One accent moment
 
