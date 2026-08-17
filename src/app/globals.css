@@ -81,12 +81,44 @@
  * The default stays green.
  */
 @theme {
-  /* Carbon surfaces — dark is the default identity. */
-  --color-carbon-body: #070809;
-  --color-carbon-panel: #121518;
-  --color-carbon-surface-2: #171b1f;
-  --color-carbon-border: #232830;
-  --color-carbon-strong: #2b3039;
+  /*
+   * Carbon surfaces — dark is the default identity.
+   *
+   * DE-BLUED 2026-08-17, and the defect was the GRADIENT rather than the tint.
+   * Blue-over-red used to climb with elevation — 2 at the body, 6 at the panel,
+   * 8 at surface-2, 13 at the border, 14 at strong — so a surface got cooler as
+   * it got higher and elevation was quietly encoding temperature as well as
+   * lightness. It is +3 flat now, so elevation means one thing.
+   *
+   * The value is the one already recorded for this system: "User (2026-06-23)
+   * preferred a NEUTRAL carbon: most of the blue removed (blue ~3 over red),
+   * still a hair warm-cool-balanced, never steel." The studio block below has
+   * been running it since; dark never got it.
+   *
+   * Measured against the field, because the preference alone is not evidence.
+   * Eight dark-mode leaders on Mobbin — Notion, Apple Fitness, Character AI,
+   * TIDE, Calm, alias, Opal, Fabric — average +0.0 on the ground and -0.3 on
+   * panels, and NYT's App Store neutrals sit at +0.1/+1.6. Nobody in that set
+   * climbs cool with elevation; Notion holds flat and Apple Fitness warms as it
+   * rises. We were the only one going the other way.
+   *
+   * Kept at +3 rather than the field's 0 on purpose. The visible change is
+   * 6 -> 3 on panels and 14 -> 3 on borders; the last three points buy nothing
+   * anyone can see, and dropping them would trade a recorded design decision
+   * for a rounding difference. A hair of cool is identity here, not drift.
+   *
+   * LUMINANCE IS HELD. Every value below is the nearest b-r=3 neutral to the
+   * one it replaces — absolute luminance moves by ~0.0003 — so this is a
+   * temperature change and not a hierarchy change. Every text and edge ratio
+   * moves by at most 0.05 and nothing crosses a threshold; the one pinned
+   * figure that does move, the selection amber against the panel, went 7.01 ->
+   * 6.99 and is updated in contrast.test.ts rather than left to rot.
+   */
+  --color-carbon-body: #07080a;
+  --color-carbon-panel: #141517;
+  --color-carbon-surface-2: #1a1b1d;
+  --color-carbon-border: #27282a;
+  --color-carbon-strong: #2f3032;
   /*
    * Functional edge.
    *
@@ -166,7 +198,7 @@
    * not. Ink contrast is unaffected at 6.96, still well past AA.
    *
    * It is LIGHT with a dark letter, which is the opposite of every other tile,
-   * and that inversion is most of the effect: 6.96:1 on the letter and 7.01:1
+   * and that inversion is most of the effect: 6.96:1 on the letter and 6.99:1
    * against the panel behind it. A dark rust at the same hue managed 3.23:1
    * against the panel — legible, but it sank into the board instead of sitting
    * on it.

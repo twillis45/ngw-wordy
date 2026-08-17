@@ -117,7 +117,7 @@ describe('contrast claims in globals.css', () => {
    *
    *   "It is LIGHT with a dark letter, which is the opposite of every other
    *    tile, and that inversion is most of the effect: 6.96:1 on the letter
-   *    and 7.01:1 against the panel behind it."
+   *    and 6.99:1 against the panel behind it."
    *
    * The inversion IS the mechanic — every other tile is dark with a light
    * letter — so both halves have to hold: the ink must stay readable ON the
@@ -132,8 +132,15 @@ describe('contrast claims in globals.css', () => {
     expect(ratio(token(DARK, 'color-select'), token(DARK, 'color-select-ink'))).toBe(6.96);
   });
 
-  it('and 7.01:1 against the panel behind it', () => {
-    expect(ratio(token(DARK, 'color-select'), token(DARK, 'color-carbon-panel'))).toBe(7.01);
+  it('and 6.99:1 against the panel behind it', () => {
+    /*
+     * 7.01 until 2026-08-17. The amber did not move — the PANEL did, when the
+     * carbon ramp was de-blued from #121518 to #141517. Two hundredths, from a
+     * change that held luminance deliberately, and the gate caught it anyway,
+     * which is the whole reason the figure is pinned to two decimals rather
+     * than asserted as "about 7".
+     */
+    expect(ratio(token(DARK, 'color-select'), token(DARK, 'color-carbon-panel'))).toBe(6.99);
   });
 
   it('keeps the amber past AA on its letter, which is what makes it usable', () => {
