@@ -28,7 +28,7 @@
    "cluster": "the-shop",
    "claim": "Whether the conk clue reads as respect for the old heads or as novelty at their expense.",
    "verdict": "tone",
-   "detail": "Not answerable from sources, and research does not settle it. Malcolm X’s own conclusion was that the conk was self-degradation, so a clue treating it as period colour is standing on top of that judgement whether it means to or not. Needs a reader old enough to have had one. [2026-08-11: the cited board was replaced during the vocabulary-first rebuild. Finding retained, citation cleared — it vouches for no live text, and a future board on this should pick it back up.]",
+   "detail": "Not answerable from sources, and research does not settle it. Malcolm X’s own conclusion was that the conk was self-degradation, so a clue treating it as period color is standing on top of that judgment whether it means to or not. Needs a reader old enough to have had one. [2026-08-11: the cited board was replaced during the vocabulary-first rebuild. Finding retained, citation cleared — it vouches for no live text, and a future board on this should pick it back up.]",
    "sources": [],
    "clues": [],
    "replacement": null
@@ -57,7 +57,7 @@
   {
    "id": "shop-guard-numbers",
    "cluster": "the-shop",
-   "claim": "Clipper guard numbers are standardised across brands; a #2 is a quarter inch.",
+   "claim": "Clipper guard numbers are standardized across brands; a #2 is a quarter inch.",
    "verdict": "verified",
    "detail": "Fade vs taper and line-up/edge-up are used in the packs the way barbers use them. One piece of vocabulary the packs do not use and could: the taper lever, around a sixteenth of an inch.",
    "sources": [
@@ -110,7 +110,7 @@
    "cluster": "the-shop",
    "claim": "Wash day is a multi-hour ritual, not a wash.",
    "verdict": "verified",
-   "detail": "Sourced wash range is 30-90 minutes for the washing itself; the pack’s \"ten until noon\" describes the full wash-and-style, which is how the sources use the term. Imprecise rather than wrong. [2026-08-11: the cited board was replaced during the vocabulary-first rebuild. Finding retained, citation cleared — it vouches for no live text, and a future board on this should pick it back up.]",
+   "detail": "Sourced wash range is 30-90 minutes for the washing itself; the pack’s \"ten until noon\" describes the full wash-and-style, which is how the sources use the term. Imprecise rather than wrong. [2026-08-11: the cited board was replaced during the vocabulary-first rebuild. Finding retained, citation cleared — it vouches for no live text, and a future board on this should pick it back up.] [2026-08-17: picked back up, as that note anticipated. beautysupply/picker/ripe — \"What the timing has to be, on a wash day planned around a Saturday\" — rests on wash day being a planned multi-hour ritual rather than a wash, so the citation is restored.]",
    "sources": [
     {
      "title": "CNN — wash day, photographed",
@@ -123,7 +123,13 @@
      "kind": "scholarship"
     }
    ],
-   "clues": [],
+   "clues": [
+    {
+     "theme": "beautysupply",
+     "base": "picker",
+     "word": "ripe"
+    }
+   ],
    "replacement": null
   },
   {
@@ -204,7 +210,7 @@
    "cluster": "the-shop",
    "claim": "The salon pack has practice but no political history — the single largest gap found in either pack.",
    "verdict": "verified",
-   "detail": "Gill’s Beauty Shop Politics documents the beauty shop as a civil-rights organising site. Bernice Robinson, a 41-year-old Charleston beautician, taught Highlander’s first Citizenship School, and women were prepared for literacy tests in her shop at night — precisely BECAUSE a beautician’s income came from Black clients, so white employers had no economic leverage over her. That is the salon’s answer to the barbershop’s institutional weight, and the pack does not have it.",
+   "detail": "Gill’s Beauty Shop Politics documents the beauty shop as a civil-rights organizing site. Bernice Robinson, a 41-year-old Charleston beautician, taught Highlander’s first Citizenship School, and women were prepared for literacy tests in her shop at night — precisely BECAUSE a beautician’s income came from Black clients, so white employers had no economic leverage over her. That is the salon’s answer to the barbershop’s institutional weight, and the pack does not have it.",
    "sources": [
     {
      "title": "Tiffany M. Gill, Beauty Shop Politics (Univ. of Illinois Press, 2010)",
@@ -303,7 +309,7 @@
    "cluster": "juneteenth",
    "claim": "Houston renamed Dowling Street to Emancipation Avenue in January 2017.",
    "verdict": "corrected",
-   "detail": "The shipped clue said the neighbourhood fought to \"restore\" the name. The street never carried it — it was named for Confederate commander Richard \"Dick\" Dowling, and the change, led by Rep. Garnet Coleman, was won rather than restored. Timed to Juneteenth 2017 and the park’s $33m reopening. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
+   "detail": "The shipped clue said the neighborhood fought to \"restore\" the name. The street never carried it — it was named for Confederate commander Richard \"Dick\" Dowling, and the change, led by Rep. Garnet Coleman, was won rather than restored. Timed to Juneteenth 2017 and the park’s $33m reopening. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
    "sources": [
     {
      "title": "City of Houston — Dowling Street renamed to Emancipation Avenue",
@@ -346,7 +352,7 @@
    "cluster": "juneteenth",
    "claim": "The red drink descends from West African hibiscus and kola traditions.",
    "verdict": "unverifiable",
-   "detail": "WEAKLY SOURCED and widely repeated as fact. Opie, Miller and Twitty all hedge — \"may come from\", \"some historians believe\". There is plant provenance and colour symbolism, and no documentary chain. The shipped clue is already the safe version and claims no unbroken line. Keep it, and refuse any edit that hardens it. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
+   "detail": "WEAKLY SOURCED and widely repeated as fact. Opie, Miller and Twitty all hedge — \"may come from\", \"some historians believe\". There is plant provenance and color symbolism, and no documentary chain. The shipped clue is already the safe version and claims no unbroken line. Keep it, and refuse any edit that hardens it. [2026-08-11: cited board replaced in the vocabulary-first rebuild. Finding retained, citation cleared.]",
    "sources": [
     {
      "title": "Britannica — Juneteenth",
@@ -470,7 +476,7 @@
    "cluster": "music-and-games",
    "claim": "Quiet storm is a radio format, originated by Melvin Lindsey at WHUR in May 1976 and named by Cathy Hughes.",
    "verdict": "verified",
-   "detail": "Three shipped clues rest on this and all hold.",
+   "detail": "Two shipped clues rest on this and both hold. [2026-08-17: the prose said THREE while the citation list was empty — the count was written before the vocabulary-first rebuild and never revised with it. Re-cited against the corpus: rnb90s/derail/dial (\"How you found the station before anybody named it a format\") and rnb90s/nights/nights (\"The format had a name: quiet storm, and it started at ten\"). Both rest on quiet storm being a named radio format, which is what this entry verifies; neither asserts the 1976 origin or the naming, so the entry vouches for less than it did and the count now says so.]",
    "sources": [
     {
      "title": "WHUR — the Quiet Storm format, Melvin Lindsey, 1976",
@@ -478,7 +484,18 @@
      "kind": "primary"
     }
    ],
-   "clues": [],
+   "clues": [
+    {
+     "theme": "rnb90s",
+     "base": "derail",
+     "word": "dial"
+    },
+    {
+     "theme": "rnb90s",
+     "base": "nights",
+     "word": "nights"
+    }
+   ],
    "replacement": null
   },
   {
@@ -556,7 +573,7 @@
    "cluster": "foodways",
    "claim": "Chicago lakefront parking is metered and plate-read, not a permit on the dash; grilling is banned on the beaches and in Grant Park.",
    "verdict": "corrected",
-   "detail": "The shipped clue had a permit on the dash and a noon ticket sweep. Reality is ParkChicago meters and licence-plate-reading gates. Useful for authors: the Park District picnic permit threshold is 50 people and $45, and this board is a lakefront PARK scene, which is legal, rather than a beach one, which would not be. [2026-08-11: the board carrying this clue was removed when The Cookout was rebuilt vocabulary-first against the bench-signed vocabulary. Finding retained, citation cleared — it vouches for no live text, and a future cookout board about the lakefront should pick it back up.]",
+   "detail": "The shipped clue had a permit on the dash and a noon ticket sweep. Reality is ParkChicago meters and license-plate-reading gates. Useful for authors: the Park District picnic permit threshold is 50 people and $45, and this board is a lakefront PARK scene, which is legal, rather than a beach one, which would not be. [2026-08-11: the board carrying this clue was removed when The Cookout was rebuilt vocabulary-first against the bench-signed vocabulary. Finding retained, citation cleared — it vouches for no live text, and a future cookout board about the lakefront should pick it back up.]",
    "sources": [
     {
      "title": "Chicago Park District — picnic permits and lakefront rules",
@@ -607,7 +624,7 @@
    "cluster": "foodways",
    "claim": "The no-soap-on-cast-iron rule.",
    "verdict": "verified",
-   "detail": "A non-finding, recorded so nobody re-opens it: the doctrine does not appear in these packs at all. The two cast-iron clues state the heat-dry and warm-oil steps, which Lodge and America’s Test Kitchen both endorse. For the record, soap does not strip polymerised seasoning — the rule dates to lye soap, and at least one state extension service still prints it as fact.",
+   "detail": "A non-finding, recorded so nobody re-opens it: the doctrine does not appear in these packs at all. The two cast-iron clues state the heat-dry and warm-oil steps, which Lodge and America’s Test Kitchen both endorse. For the record, soap does not strip polymerized seasoning — the rule dates to lye soap, and at least one state extension service still prints it as fact.",
    "sources": [
     {
      "title": "Big Bob Gibson Bar-B-Q — Decatur, 1925, white sauce",
