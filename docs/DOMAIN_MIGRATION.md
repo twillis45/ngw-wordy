@@ -17,10 +17,14 @@ track is blocked on anything this cheap.
 below, `<domain>` is whatever gets bought. Exactly two files carry the choice:
 `public/CNAME`, and the `package_name` in `assetlinks.json`.
 
-Front-runner as of 2026-08-16 is **`sixonthedial.com`**, with `6onthedial.com`
-and both `.app` variants also free — worth taking all four, because the only
-real weakness of a digit name is that people hear "six" and type either
-spelling, and owning both retires that problem permanently.
+**Decided 2026-08-17: `sixonthedial.com` is the pick.** `6onthedial.com` and
+both `.app` variants were re-verified free the same day (RDAP, with a control
+query) — still worth taking all four, because the only real weakness of a
+digit name is that people hear "six" and type either spelling, and owning both
+retires that problem permanently. The spelled form is canonical for a hard
+reason as well as a soft one: an Android package segment cannot start with a
+digit, so `com.6onthedial.game` is structurally invalid and the TWA identity
+was always going to be `com.sixonthedial.game`.
 
 Its knockout search is clean: a USPTO wordmark search for `six` + `dial`
 returns zero marks, live or dead. That is a knockout, **not clearance** — see
