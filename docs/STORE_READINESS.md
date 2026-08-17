@@ -24,17 +24,17 @@ Activity, via Bubblewrap) for Play, **Capacitor** or a WKWebView shell for iOS.
 
 | # | Item | Status | Note |
 |---|---|---|---|
-| 1.1 | Privacy policy, publicly hosted | **DONE?** | `/privacy` route exists in the export. Needs a read against what the app actually collects. |
-| 1.2 | Terms of service | **DONE?** | `/terms` route exists. Same check. |
-| 1.3 | Support URL / contact | **DONE?** | `/support` route exists. Stores require a reachable channel. |
+| 1.1 | Privacy policy, publicly hosted | **DONE 2026-08-16** | Read against the code rather than taken on trust, and it holds. Two things were wrong and are fixed. (a) The page claimed Wordy "makes no network requests to anyone once the page has loaded" — literally false: it fetches its own `/data/definitions.json` and the worker fetches its own assets. The claim now says what is actually true and is still the strong version — no requests to any *third party*, only its own files from the address you loaded it from. An untrue sentence is a liability precisely because the rest of this posture is genuinely excellent. (b) The date read `10 August 2026`; house style is US format. |
+| 1.2 | Terms of service | **DONE 2026-08-16** | `/terms` read; no claims that contradict the code. Date format corrected. |
+| 1.3 | Support URL / contact | **DONE 2026-08-16** | `/support` read; reachable channel present, and it carries the WordNet notice required by 1.9. Date format corrected. |
 | 1.4 | **COPPA / age gate** | **TODO** | The board's privacy seat: *"a word game will attract children whether or not it is aimed at them."* Decide the target age band before the rating questionnaires, because both stores ask and the answer changes obligations. |
-| 1.5 | Apple privacy nutrition labels | TODO | Must match reality. Today: no accounts, no ads, no analytics found in the export — that is a strong, simple label. Verify before filing. |
-| 1.6 | Play Data Safety form | TODO | Same content, different form. Must agree with 1.5 or it reads as a lie. |
+| 1.5 | Apple privacy nutrition labels | **ANSWERED 2026-08-16 — file as "Data Not Collected"** | Measured, not assumed. Zero analytics/tracker SDKs in source or export (searched gtag, GA, GTM, Segment, Mixpanel, Amplitude, PostHog, Sentry, Bugsnag, Firebase, Meta, Hotjar, Plausible, DoubleClick — the only hit was a code comment). Three runtime dependencies total: `next`, `react`, `react-dom`. Four `fetch` sites exist and none reach a third party in a shipped build: two are the optional sync, which is off unless `NEXT_PUBLIC_SYNC_URL` is set and the deploy never sets it; one is same-origin `/data/definitions.json`; the fourth is `api.dictionaryapi.dev` behind `MODERN_UPGRADE_ENABLED = false`, disabled deliberately and documented in `definitions.ts`. The shipped CSP is the backstop and makes it structural rather than a promise: **`connect-src 'self'`**. |
+| 1.6 | Play Data Safety form | **ANSWERED 2026-08-16 — "No data collected"** | Same measurement as 1.5, and it must stay in step with it. On-device `localStorage` keys (progress, streak, hints, theme, accent, reading mode, fullscreen) are **storage, not collection** — nothing transmits them. |
 | 1.7 | Content rating (IARC via Play, Apple age rating) | TODO | Word game, no violence. Check the wordlist question below first. |
 | 1.8 | **ENABLE1 wordlist license** | **DONE 2026-08-14 — one question left for the attorney** | Recorded in `data/enable1.PROVENANCE.md`. What ships is ENABLE 1.x, 172,823 words, sha256 `3f161302…`, byte-identical to the widely mirrored copy — re-downloaded and compared on the day. The project's own readme releases it: *"The ENABLE master word list, WORD.LST, is herewith formally released into the Public Domain."* Three things stay soft and are written down rather than smoothed over: the permission is not IN the file (172,823 bare words, no header, no notice), the readme quoted is the ENABLE2K edition and describes a later revision of the same master list, and a public-domain dedication is a claim about a jurisdiction — some do not let an author abandon copyright, and neither store limits distribution by territory. A hash cannot close that last one; ask the attorney already reading the filing whether a CC0 fallback is wanted. `src/lib/content.test.ts` asserts the hash and the count, so the vetted file is the file that ships. |
 | 1.9 | WordNet definitions license | **DONE 2026-08-14** | Correction to this row's first version: attribution WAS already present on `/support`, crediting WordNet 3.1 and ENABLE. The real gap was narrower — the licence grants permission "provided that you agree to comply with the following copyright notice and statements, including the disclaimer, and that the same appear on ALL copies". A summary does not satisfy that. The copyright notice, the AS-IS disclaimer and the name-use clause are now reproduced on `/support`. Bundled data confirmed as WordNet 3.1 (`wordnet-db@3.1.14`), so the version claim on that page was already correct. |
 | 1.10 | Cultural content review | **BLOCKER** | `AGENTS.md`: *"a real reader is budgeted per pack before anything ships commercially."* Has not happened for ANY pack. Store release is the definition of commercial. |
-| 1.11 | Trademark sweep on theme + clue text | TODO | Clues name real records, artists and brands. Nominative reference is normally fine; a pass is still owed. |
+| 1.11 | Trademark sweep on the NAME, and on theme + clue text | **PARTIAL 2026-08-16 — knockout done, clearance owed** | Two separate jobs; only the first has moved. **The name:** run on USPTO's live search, with a control query to prove the syntax returned results at all. `WM:"six on the dial"` → **0 results** (stopwords drop, so this searched marks containing both *six* and *dial*, live and dead). Control `WM:"wordy"` → 37, which also settles the old name: **WORDY is LIVE/PENDING in Class 009 for "downloadable software in the nature of a mobile application", owned by Wordy Plus LLC** — the exact goods this app is. That is a knockout search, **not clearance**: it does not cover confusingly-similar marks, common-law rights, or state registrations, and it is not a legal opinion. Send it to the attorney already engaged on 1.8 — one engagement, two questions. **Do not buy the domain until this closes**; the point of clearing first is not to pay for an asset that must be abandoned. **Clue text:** untouched. Clues name real records, artists and brands; nominative reference is normally fine, but the pass is still owed. |
 
 ---
 
@@ -42,7 +42,7 @@ Activity, via Bubblewrap) for Play, **Capacitor** or a WKWebView shell for iOS.
 
 | # | Item | Status | Note |
 |---|---|---|---|
-| 2.1 | App icon — 1024×1024 (iOS), 512×512 (Play) | TODO | `scripts/build-icons.py` exists; confirm it emits store sizes, not just PWA sizes. |
+| 2.1 | App icon — 1024×1024 (iOS), 512×512 (Play) | **DONE 2026-08-16** | Confirmed the suspicion in this row's first version: the script emitted PWA sizes only (192, 512, maskable pair, 180). Play's 512 was already covered by `icon-512.png`; **Apple's 1024 was missing entirely.** `build-icons.py` now also emits `store/app-store-icon-1024.png` — verified 1024×1024, mode RGB, **no alpha**, which App Store Connect rejects. Written outside `public/` on purpose: store art is uploaded, never served, and `public/` is the deploy artifact. Note the repo's Pillow is an x86_64 build on an arm64 machine and `npm run icons` fails on `import PIL`; that is a pre-existing environment problem, not a script one. |
 | 2.2 | Play feature graphic 1024×500 | TODO | Play-only, required. |
 | 2.3 | iPhone screenshots (6.7" and 6.5" required) | TODO | Can be captured from the render harness at the right viewports. |
 | 2.4 | iPad screenshots | TODO | Only if the iOS build declares iPad support. Cheaper to ship iPhone-only first. |
@@ -94,9 +94,13 @@ Activity, via Bubblewrap) for Play, **Capacitor** or a WKWebView shell for iOS.
 
 Revised 2026-08-15, now that all three surfaces are wanted.
 
-1. **Buy the domain (0.3).** Smallest action with the largest unblock: it is the
-   gate on Play, on iOS universal links, and on moving off the Pages sub-path.
-   Nothing else in the store track can start ahead of it.
+1. **Clear the name (1.11), then buy the domain (0.3).** The domain is still the
+   smallest action with the largest unblock — it gates Play, iOS universal links,
+   and moving off the Pages sub-path — but clearance now comes first. The
+   knockout search is clean and the review board declined to bless the name on a
+   knockout alone, which is the right call: a domain bought ahead of clearance is
+   an asset that may have to be abandoned. One attorney engagement covers this
+   and the 1.8 question together.
 2. **Start the two enrollments (3.1, 3.2).** Apple is $99/yr, Play is $25 once,
    and both take real calendar time for identity verification. They are pure
    waiting, so they should be waiting in the background from day one.

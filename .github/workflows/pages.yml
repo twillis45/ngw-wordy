@@ -41,12 +41,33 @@ jobs:
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
         id: pages
 
+      # Moving to a custom domain is ONE FILE: public/CNAME. Everything that has
+      # to change with it is derived here, because the two settings below must
+      # agree and hand-editing them in separate places is how they stop agreeing.
+      #
+      # A project repo is served from /<repo>, so every asset needs that prefix.
+      # A custom domain is served from the root, where the same prefix 404s the
+      # whole site. The prefix is also why a TWA cannot be built today: its
+      # assetlinks.json has to sit at the ORIGIN root, and on the shared
+      # github.io host that path is not ours to publish. See docs/DOMAIN_MIGRATION.md.
+      - name: Resolve deploy origin
+        id: origin
+        run: |
+          if [ -f public/CNAME ]; then
+            domain=$(tr -d '[:space:]' < public/CNAME)
+            echo "base_path=" >> "$GITHUB_OUTPUT"
+            echo "share_url=https://$domain" >> "$GITHUB_OUTPUT"
+            echo "custom domain: $domain — serving from root, no base path"
+          else
+            echo "base_path=/${{ github.event.repository.name }}" >> "$GITHUB_OUTPUT"
+            echo "share_url=${{ steps.pages.outputs.base_url }}" >> "$GITHUB_OUTPUT"
+            echo "project pages: /${{ github.event.repository.name }}"
+          fi
+
       - name: Build static export
         env:
-          # Pages serves a project repo from /<repo>. Keep this in step with
-          # the repository name or every asset 404s.
-          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-          NEXT_PUBLIC_SHARE_URL: ${{ steps.pages.outputs.base_url }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.origin.outputs.base_path }}
+          NEXT_PUBLIC_SHARE_URL: ${{ steps.origin.outputs.share_url }}
         run: npm run build
 
       # Without this, Pages runs Jekyll, which strips every directory starting

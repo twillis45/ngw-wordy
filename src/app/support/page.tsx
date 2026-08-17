@@ -15,7 +15,7 @@ export const metadata: Metadata = {
  */
 export default function SupportPage() {
   return (
-    <Legal title="Support" updated="10 August 2026">
+    <Legal title="Support" updated="August 10, 2026">
       <h2>Getting help</h2>
       <p>
         Something wrong with a puzzle, or a word you think should count? Email{' '}

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <Legal title="Terms of use" updated="10 August 2026">
+    <Legal title="Terms of use" updated="August 10, 2026">
       <p>
         Wordy is a word game, free to play. By using it you agree to these
         terms, which are deliberately brief.

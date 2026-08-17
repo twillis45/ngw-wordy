@@ -19,7 +19,7 @@ export const metadata: Metadata = {
  */
 export default function PrivacyPage() {
   return (
-    <Legal title="Privacy" updated="10 August 2026">
+    <Legal title="Privacy" updated="August 16, 2026">
       <p>
         Wordy runs entirely in your browser. There is no server, no account and
         no login. Nothing you do here is sent anywhere.
@@ -41,7 +41,8 @@ export default function PrivacyPage() {
       <p>
         Nothing. No analytics, no crash reporting, no advertising, no
         fingerprinting, no cookies, no email address, no name. Wordy makes no
-        network requests to anyone once the page has loaded.
+        requests to any third party at all — the only files it ever fetches are
+        its own, from the same address you loaded it from.
       </p>
 
       <h2>Deleting your data</h2>
