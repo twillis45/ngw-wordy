@@ -119,6 +119,54 @@ function rowsSolved(page) {
   });
 }
 
+/*
+ * Sheet navigation, lifted from capture-review.mjs — the store set covers the
+ * same six surfaces the review harness shoots, because a listing whose every
+ * screenshot is the board says the game has one screen.
+ */
+async function closeSheet(page) {
+  for (let i = 0; i < 3; i += 1) {
+    const open = await page.evaluate(() => !!document.querySelector('[role="dialog"]'));
+    if (!open) return true;
+    const clicked = await page.evaluate(() => {
+      const b = [...document.querySelectorAll('button')].find((x) =>
+        /^\s*(close|done|i.?ve got it)\s*$/i.test(x.textContent || '')
+      );
+      if (b) { b.click(); return true; }
+      return false;
+    });
+    if (!clicked) await page.keyboard.press('Escape');
+    await settle(500);
+  }
+  const still = await page.evaluate(() => !!document.querySelector('[role="dialog"]'));
+  if (still) throw new Error('sheet would not close — refusing to shoot the wrong screen');
+  return true;
+}
+
+async function clickText(page, re) {
+  const clicked = await page.evaluate((src) => {
+    const rx = new RegExp(src, 'i');
+    const b = [...document.querySelectorAll('button')].find((x) => rx.test(x.textContent || ''));
+    if (b) { b.click(); return true; }
+    return false;
+  }, re);
+  await settle(700);
+  return clicked;
+}
+
+async function clickAria(page, re) {
+  const clicked = await page.evaluate((src) => {
+    const rx = new RegExp(src, 'i');
+    const b = [...document.querySelectorAll('button')].find((x) =>
+      rx.test(x.getAttribute('aria-label') || '')
+    );
+    if (b) { b.click(); return true; }
+    return false;
+  }, re);
+  await settle(700);
+  return clicked;
+}
+
 const run = async () => {
   await mkdir(OUT, { recursive: true });
   const puzzles = JSON.parse(
@@ -163,11 +211,27 @@ const run = async () => {
     process.stdout.write(`    solved ${solved}/6 rows\n`);
     if (!(await shot(page, path.join(OUT, `${t.name}__2-solving.png`), t.expect))) bad++;
 
+    // The meta surfaces — themes catalog, rank progress, the rules sheet.
+    if (await clickText(page, 'warm-?up|today|puzzle \\+?\\d|in the kitchen')) {
+      if (!(await shot(page, path.join(OUT, `${t.name}__3-themes.png`), t.expect))) bad++;
+    }
+    await closeSheet(page);
+
+    if (await clickAria(page, 'rank and progress')) {
+      if (!(await shot(page, path.join(OUT, `${t.name}__4-progress.png`), t.expect))) bad++;
+    }
+    await closeSheet(page);
+
+    if (await clickAria(page, 'help|rules|how to')) {
+      if (!(await shot(page, path.join(OUT, `${t.name}__5-rules.png`), t.expect))) bad++;
+    }
+    await closeSheet(page);
+
     await page.evaluate(() =>
       document.documentElement.setAttribute('data-theme', 'light')
     );
     await settle(500);
-    if (!(await shot(page, path.join(OUT, `${t.name}__3-light.png`), t.expect))) bad++;
+    if (!(await shot(page, path.join(OUT, `${t.name}__6-light.png`), t.expect))) bad++;
 
     await page.close();
   }
