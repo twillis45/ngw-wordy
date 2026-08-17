@@ -111,6 +111,26 @@ async function solveSome(page, puzzles, want = 4) {
   return after;
 }
 
+/**
+ * Wait for the celebration layer to drain.
+ *
+ * Every reward the game pays out — bonus flights, rank banners, the prize
+ * card — is transient DOM inside #wordy-flight-layer, and the rank banner
+ * alone lives 2400ms. Shooting on a fixed settle() after playing words
+ * captured a stale "Sharp → next: Clever" banner over the header and a "+4"
+ * frozen mid-flight, on every surface shot after solveSome.
+ */
+async function flightIdle(page) {
+  await page.waitForFunction(
+    () => {
+      const layer = document.getElementById('wordy-flight-layer');
+      return !layer || layer.childElementCount === 0;
+    },
+    { timeout: 8000, polling: 200 }
+  );
+  await settle(300); // let the board's own tile animations finish landing
+}
+
 /** Read the "N/6 rows" counter out of the page. */
 function rowsSolved(page) {
   return page.evaluate(() => {
@@ -209,6 +229,7 @@ const run = async () => {
 
     const solved = await solveSome(page, puzzles);
     process.stdout.write(`    solved ${solved}/6 rows\n`);
+    await flightIdle(page);
     if (!(await shot(page, path.join(OUT, `${t.name}__2-solving.png`), t.expect))) bad++;
 
     // The meta surfaces — themes catalog, rank progress, the rules sheet.

@@ -28,18 +28,24 @@ const run = async () => {
     * { margin: 0; }
     body {
       width: ${W}px; height: ${H}px; overflow: hidden;
+      position: relative;
       background: #07080a;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 8px;
       font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-    /* The wordmark SVG carries its own carbon ground, so it composites
-       seamlessly; sized by height and the 2048:1331 ratio takes care of
-       the rest. */
-    img { height: 400px; }
+    /* The SVG's 2048×1331 canvas is mostly padded carbon ground — the drawn
+       wordmark occupies only y 559–786 of it. Sizing by canvas height left the
+       visible mark ~524px wide on a 1200px card, so the height here is derived
+       from the CONTENT bounds instead: 702px canvas height puts the visible
+       wordmark at ~920px wide, and absolute positioning keeps the padding from
+       driving the layout. The ground color matches the body, so the overflow
+       crops invisibly. */
+    img {
+      position: absolute; height: 702px;
+      left: 50%; top: 272px; transform: translate(-50%, -50%);
+    }
     p {
-      color: #9a9ca0; font-size: 30px; letter-spacing: 0.02em;
-      margin-top: -48px; /* the SVG's own ground has generous padding */
+      position: absolute; left: 0; right: 0; top: 402px; text-align: center;
+      color: #9a9ca0; font-size: 34px; letter-spacing: 0.02em;
     }
   </style>
   <img src="data:image/svg+xml;base64,${b64}" alt="">
