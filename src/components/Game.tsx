@@ -436,7 +436,12 @@ export default function Game({ data }: { data: PuzzleFile }) {
    */
   const railRef = useRef<HTMLElement>(null);
   useEffect(() => {
-    const el = railRef.current;
+    /*
+     * The scroller is INSIDE the aside now — Streak sits outside it as a
+     * pinned footer — so this measures the element that actually scrolls
+     * rather than the column that contains it.
+     */
+    const el = railRef.current?.querySelector<HTMLElement>('.rail-scroll');
     if (!el) return;
     const update = () => {
       const more = el.scrollHeight - el.clientHeight - el.scrollTop > 1;
@@ -1887,7 +1892,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
            * gradient whose whole job was to say "there is more below" on the
            * one layout where there was not.
            */
-          className="rail-scroll hidden md:block md:max-h-full md:self-stretch md:overflow-y-auto lg:sticky lg:top-6"
+          className="hidden md:flex md:max-h-full md:flex-col md:self-stretch lg:sticky lg:top-6"
         >
           {rail}
         </aside>

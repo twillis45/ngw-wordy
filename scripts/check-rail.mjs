@@ -42,6 +42,15 @@ const VIEWPORTS = [
   { w: 1440, h: 900, note: 'fitted before — regression canary' },
   { w: 1280, h: 800, note: 'smallest desktop with the rail' },
   { w: 1512, h: 982, note: 'MacBook Pro 14 default' },
+  /*
+   * Short windows, added 2026-08-19. These are where Streak fell BELOW THE
+   * VIEWPORT rather than below the rail: 23px at 1024x400, 3px at 1280x420,
+   * measured before Streak was moved out of the scrollport. The old assertion
+   * could not see either one, because it compared Streak against the scroll
+   * box and the scroll box was itself off-screen.
+   */
+  { w: 1024, h: 400, note: 'Streak was 23px below the viewport' },
+  { w: 1280, h: 420, note: 'Streak was 3px below the viewport' },
 ];
 
 const TYPES = {
@@ -91,10 +100,16 @@ for (const vp of VIEWPORTS) {
     if (!rail) return { error: 'no .rail-scroll' };
     if (getComputedStyle(rail).display === 'none') return { hidden: true };
 
-    const card = [...rail.querySelectorAll('section')].find(
+    /*
+     * Streak lives OUTSIDE the scroller now, as a pinned footer, so it is
+     * looked up from the rail column rather than from the scrollport.
+     */
+    const column = rail.parentElement ?? rail;
+    const card = [...column.querySelectorAll('section')].find(
       (s) => s.querySelector('h2')?.textContent?.trim() === 'Streak',
     );
     if (!card) return { error: 'no Streak card' };
+    if (rail.contains(card)) return { error: 'Streak is back inside the scrollport' };
 
     /*
      * Measured at scrollTop 0 deliberately. The rail CAN scroll — that is what
@@ -121,13 +136,21 @@ for (const vp of VIEWPORTS) {
      */
     const FADE = 28;
     const masked = getComputedStyle(rail).maskImage !== 'none';
-    const clearance = r.bottom - c.bottom;
     return {
       overflow: Math.max(0, rail.scrollHeight - rail.clientHeight),
-      cutBy: Math.max(0, Math.round(c.bottom - r.bottom)),
+      /*
+       * The invariant, restated 2026-08-19: the bottom of the Streak card is
+       * inside the VIEWPORT. Not "inside the rail" — the rail can itself be
+       * taller than the screen, which is how this passed while the card was
+       * off the bottom of a 1024x400 window.
+       */
+      belowFold: Math.max(0, Math.round(c.bottom - window.innerHeight)),
       streakHeight: Math.round(c.height),
       masked,
-      fadedBy: masked ? Math.max(0, Math.round(FADE - clearance)) : 0,
+      overlapsFade:
+        masked && c.bottom > r.bottom - FADE && c.top < r.bottom
+          ? Math.round(Math.min(c.bottom, r.bottom) - (r.bottom - FADE))
+          : 0,
       moreBelow: rail.scrollHeight - rail.clientHeight - rail.scrollTop > 1,
     };
   });
@@ -142,7 +165,7 @@ for (const vp of VIEWPORTS) {
    * grew: it can be cut off the bottom, or it can be sitting under a fade
    * that has nothing to fade to.
    */
-  const fail = m.cutBy > 0 || (m.fadedBy > 0 && !m.moreBelow);
+  const fail = m.belowFold > 0 || m.overlapsFade > 0 || (m.masked && !m.moreBelow);
   results.push({ vp, fail, ...m });
 }
 
@@ -155,14 +178,25 @@ for (const r of results) {
   if (r.skip) { console.log(`—  ${label} rail hidden at this width`); continue; }
   if (r.fail) {
     failed++;
+    /*
+     * `r.why` first: it carries the structural errors (no Streak card, Streak
+     * back inside the scrollport). Without this the error fell through to the
+     * fade branch and a revert of the layout split was reported as a fade
+     * problem — a guard that fails for the right reason and says the wrong
+     * one is only half a guard.
+     */
     const why =
-      r.cutBy > 0
-        ? `Streak cut by ${r.cutBy}px`
-        : `Streak faded by ${r.fadedBy}px with nothing below to fade to`;
+      r.why
+        ? r.why
+        : r.belowFold > 0
+          ? `Streak ${r.belowFold}px below the viewport`
+          : r.overlapsFade > 0
+            ? `Streak overlaps the fade by ${r.overlapsFade}px`
+            : 'fade is on with nothing below to fade to';
     console.log(`✗  ${label} ${why}  — ${r.vp.note}`);
   } else {
     console.log(
-      `✔  ${label} Streak fully visible and unfaded (overflow ${r.overflow}px, fade ${r.masked ? 'on' : 'off'})`,
+      `✔  ${label} Streak in viewport, clear of the fade (scroller overflow ${r.overflow}px, fade ${r.masked ? 'on' : 'off'})`,
     );
   }
 }
