@@ -21,9 +21,20 @@ attorney closing STORE_READINESS 1.11)
 live third-party trademark in Class 009 for exactly this product category
 (mobile application software, Wordy Plus LLC). The rename shipped in PR #20:
 the in-app UI, manifest, metadata and store screenshots all read Six on the
-Dial now. Internal identifiers (the repo name, storage keys like
-`ngw-wordy/v2`) keep the old slug on purpose — renaming a live localStorage
-key would orphan every player's progress.
+Dial now.
+
+**The repo followed on 2026-08-19:** `ngw-wordy` is now `sixonthedial`,
+matching the chosen domain rather than hyphenating it. GitHub redirects the
+old path, and the Pages deploy derives its `basePath` from the repo name, so
+the live URL moved to `https://twillis45.github.io/sixonthedial/` with no
+config edit. Doing it pre-launch was the point: the manifest `id` resolves
+against the URL, so the rename resets installed-app identity — a real cost
+after launch, and none before it.
+
+**Storage keys keep the old slug on purpose.** `ngw-wordy/v2` and its
+siblings are storage addresses, not labels; renaming one orphans the data
+behind it rather than moving it. The PBKDF2 salt in `sync.ts` is the sharpest
+case — it feeds the derived account id. See the note in `storage.ts`.
 
 **What the name means:** the *dial* is the game's own letter wheel — six
 letter tiles around a center puck, the thing a player spins and drags to

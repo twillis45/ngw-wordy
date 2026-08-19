@@ -1,6 +1,6 @@
 /**
  * Where the app is mounted. Empty on localhost and on a root-served host;
- * "/ngw-wordy" on GitHub Pages, which serves a project repo from a subpath.
+ * "/sixonthedial" on GitHub Pages, which serves a project repo from a subpath.
  *
  * Next rewrites `basePath` into its own links and assets automatically, but
  * NOT into things we author by hand — manifest fields, icon URLs, the service

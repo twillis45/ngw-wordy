@@ -7,7 +7,7 @@ import type { NextConfig } from 'next';
  * prerenders.
  *
  * BASE_PATH exists because GitHub Pages serves a project repo from a
- * subpath (/ngw-wordy), while localhost and Render serve from the root.
+ * subpath (/sixonthedial), while localhost and Render serve from the root.
  * It is empty by default so local dev is unaffected; the Pages workflow
  * sets it. Anything that hardcodes a leading "/" must go through it —
  * that includes the manifest, the icons and the service worker.

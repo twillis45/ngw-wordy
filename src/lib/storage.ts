@@ -17,6 +17,26 @@
 import { dayKey } from './game';
 import { EMPTY_REVEAL, type RevealState } from './hints';
 
+/*
+ * The `ngw-wordy` prefix is FROZEN and must not be renamed.
+ *
+ * The app became Six on the Dial (PR #20) and the repo became `sixonthedial`
+ * (2026-08-19); every user-visible trace of the old name is gone, and these
+ * are the deliberate exception. A localStorage key is a storage address, not
+ * a label: renaming one does not migrate the data behind it, it orphans it.
+ * Changing this line would silently reset every existing player's found
+ * words, streak and rank, and the failure would be invisible in review — the
+ * new key reads empty, which looks exactly like a new player.
+ *
+ * The same holds for the sibling keys (theme, accent, text, reading,
+ * fullscreen, definitions cache) and, most sharply, for the PBKDF2 salt in
+ * sync.ts: that one is an input to the derived account id, so renaming it
+ * would point existing users at a different sync record entirely.
+ *
+ * If these ever do move, it takes a migration that reads the old key and
+ * writes the new one, exactly as `LEGACY_KEY` does for the v1 -> v2 change
+ * above — not a find-and-replace.
+ */
 const KEY = 'ngw-wordy/v2';
 const LEGACY_KEY = 'ngw-wordy/v1';
 
