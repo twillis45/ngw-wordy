@@ -434,8 +434,43 @@
    */
   --slot-h: clamp(17px, calc(4.35vh - 8.2px), 26px);
   --slot-h-base: clamp(19px, calc(4.8vh - 8.5px), 29px);
-  --slot-text: clamp(10px, calc(1.5vh + 1.6px), 14px);
-  --slot-text-base: clamp(11px, calc(1.95vh - 0.3px), 15px);
+  /*
+   * The glyph, re-derived from the box rather than from the viewport.
+   *
+   * These two ramps used to climb on their own vh curve, and the ceiling that
+   * curve reached — 14px — was BELOW --text-body (15px). The tile letter
+   * therefore could not be as large as the paragraph beside it on any screen,
+   * no matter how tall: the game's own subject matter was, by construction,
+   * the smallest type on the page. Measured 2026-08-19 across ten viewports,
+   * the tile letter ran 0.65x–0.93x the clue text on nine of them.
+   *
+   * Raised again 2026-08-19 to ~0.72 of --slot-h, after measuring what the
+   * letter was actually doing with the box it had: the ink filled 47-56% of
+   * the tile's width and 45-55% of its height. Half of every tile was
+   * padding. That is a pure win because it costs the DIAL nothing — the tile
+   * does not change size, only the glyph inside it — and the tile's height is
+   * the thing the wheel is sharing a budget with. An attempt to raise
+   * --slot-h itself on the same day was reverted: bisected across four
+   * ramps, every extra pixel of row came straight out of the dial (235 → 193
+   * on a phone), exactly as the note on --slot-h has always said.
+   *
+   * 0.72 is close to the ceiling, and the ceiling is real. The usable height
+   * is --slot-h minus the 2px border on each side, and `line-height: 1` does
+   * NOT bound the ink: a typical UI font's ascent plus descent is ~1.16em, so
+   * the glyph paints past its own line box. Freshly solved rows carry
+   * `.anim-sweep`, which is `overflow: hidden`, so anything past that box is
+   * genuinely cut — which is how a font at 0.92 produced a row of letters
+   * clipped top and bottom while every numeric check stayed green. The check
+   * script now puts a real letter in a real slot and measures the overflow.
+   *
+   * Vertically there is almost nothing left to win: the tile cannot get
+   * taller without the dial paying for it. The letter's remaining headroom is
+   * sideways, which is what --tile-glyph-x is for. The tile got wider first (see the
+   * aspect-ratio note in WordTray.tsx); without that, raising these would only
+   * have pushed the glyph into a wall it was already touching.
+   */
+  --slot-text: clamp(12px, calc(3.13vh - 5.9px), 19px);
+  --slot-text-base: clamp(14px, calc(3.46vh - 6.1px), 21px);
 
   /*
    * Type ramp — six named roles, in rem.
@@ -736,8 +771,8 @@
   :root {
     --slot-h: 40px;
     --slot-h-base: 48px;
-    --slot-text: 20px;
-    --slot-text-base: 24px;
+    --slot-text: 28px;
+    --slot-text-base: 34px;
   }
 }
 
@@ -745,8 +780,8 @@
   :root {
     --slot-h: 19px;
     --slot-h-base: 22px;
-    --slot-text: 11px;
-    --slot-text-base: 12px;
+    --slot-text: 14px;
+    --slot-text-base: 16px;
   }
 }
 
@@ -1365,16 +1400,91 @@ body {
  * scroll-end the browser has nothing left to fade, and `mask-image` on a
  * fully-scrolled box is visually inert.
  */
-.rail-scroll {
+/*
+ * The focus system's one piece of arithmetic.
+ *
+ * `--folded-n` and `--open-n` are set on the tray by WordTray; everything
+ * else is here because --slot-h is resolved by three different branches in
+ * this file and a pixel figure computed in JS would be correct in at most
+ * one of them.
+ *
+ * A folded row gives up the difference between a slot row and a word chip.
+ * The chip is 0.7 of a slot tall (see WordTray), so it frees 0.30 — and this
+ * spends 0.25 of it, deliberately less than was freed. The first version had
+ * these unmatched: the chip kept the FULL slot height, freeing nothing, while
+ * this line handed out 0.42 anyway. Every pixel of that came out of the dial,
+ * measured 235 -> 202 over three solves on a 390x844 phone. The two numbers
+ * are a matched pair and the inequality between them is the safety margin.
+ *
+ * The `min()` is the guard rail, not a nicety. Without it a board with five
+ * rows folded would hand all of that height to one row and the tray would
+ * grow past the budget the dial is sharing with it — the exact trade every
+ * previous tray change made by accident. check-tiles.mjs asserts the dial
+ * has not moved, at eight viewports, and that assertion is what makes this
+ * cap testable rather than a hope.
+ */
+.tray-focus {
+  /*
+   * The matched pair, declared once so they cannot drift apart.
+   *
+   * --fold-chip is how tall a folded row is, as a fraction of an open one, so
+   * folding FREES (1 - --fold-chip). --fold-glyph is the word's size inside
+   * that chip, and it lives here rather than in WordTray so check-tiles.mjs
+   * can build a probe chip that is genuinely the same box — the first version
+   * put the chip at 0.7 and left the glyph at full --slot-text, and the word
+   * hung out of the bottom of the pill on every solved row, clipped by
+   * overflow-hidden rather than fixed. --fold-spend is how much of that the
+   * open rows take. The invariant is simply spend < freed, and
+   * check-tiles.mjs asserts it by reading these two values rather than by
+   * re-deriving them, because re-deriving is what went wrong: the chip height
+   * lived in WordTray as a literal and the spend lived here as another, and
+   * the first version had them at 0 and 0.42 respectively. Nothing connected
+   * them, so nothing complained, and the dial paid for the difference.
+   */
+  /*
+   * The letter is stretched horizontally to use the tile it sits in.
+   *
+   * The tile is 5:4 — wider than tall, deliberately, because width is the
+   * axis the dial is not competing for. A normal glyph does not know that: it
+   * grows on both axes together, so raising the font alone fills the height
+   * and leaves the extra width as padding. Measured before this: 47-56% of
+   * the tile's width was ink. A modest x-scale spends the width the tile
+   * already has. 1.3 rather than something larger because past about a third
+   * the letterform stops reading as an extended face and starts reading as a
+   * squashed one; the check script asserts it does not run past the tile.
+   */
+  --tile-glyph-x: 1.3;
+
+  --fold-chip: 0.78;
+  --fold-glyph: 0.6;
+  --fold-spend: 0.18;
+  --focus-gain: min(
+    calc(var(--slot-h) * var(--fold-spend) * var(--folded-n) / var(--open-n)),
+    calc(var(--slot-h) * 0.5)
+  );
+}
+
+.rail-scroll[data-fade='true'] {
   mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
 }
 /*
  * No height exception. There used to be one at 900px, on the theory that a tall
  * window shows the whole rail — but a 1900x980 Chrome window still overflowed
- * it, so the fade switched itself off exactly where it was still needed. The
- * mask is harmless when nothing scrolls: the bottom 28px is empty space, so
- * there is nothing there to fade.
+ * it, so the fade switched itself off exactly where it was still needed.
+ *
+ * The rest of this comment used to read: "the mask is harmless when nothing
+ * scrolls: the bottom 28px is empty space, so there is nothing there to fade."
+ * That was reasoned, not measured, and it was wrong. The rail is sized to its
+ * content, so when it does not overflow there IS no empty space — the Streak
+ * card ends flush with the bottom edge. Measured 2026-08-19 at eight windows:
+ * the rail overflowed at NONE of them, and at seven the Streak clearance was
+ * exactly 0px, so the full 28px fade sat on the card. The one guard that
+ * should have caught it, check-rail.mjs, asserts only that Streak is not cut,
+ * and a card ending flush is not cut.
+ *
+ * The condition is now answered in JS and arrives as `data-fade`, because no
+ * CSS selector can ask whether a box overflows. See Game.tsx.
  */
 
 /*

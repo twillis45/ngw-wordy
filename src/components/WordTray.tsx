@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { revealedChip, revealedCount, type RevealState } from '@/lib/hints';
 import { fillClue } from '@/lib/game';
 
@@ -303,6 +303,74 @@ export default function WordTray({
     };
   }, [menuFor, closeMenu]);
 
+  /*
+   * Which finished rows have folded down to their word.
+   *
+   * A solved row does not need slot boxes: the boxes are a question, and the
+   * question has been answered. Folding it to the word alone gives its height
+   * back to the rows still being worked — see --focus-gain below — and turns
+   * six identical outlined runs into a board that shows what you have done.
+   *
+   * It is separate state rather than derived from `done` for one reason: the
+   * slots are the FLIGHT TARGET. `anim-land` measures the tile it is landing
+   * in, so folding on the same frame the word is solved deletes the thing the
+   * animation is animating toward, and the letters fly to a box that is not
+   * there. 420ms of landing plus a 45ms-per-tile stagger is ~750ms on a
+   * six-letter row, so the fold waits 800ms.
+   *
+   * Rows restored from storage fold immediately: they were solved on another
+   * day and have no animation to wait for. That distinction is exactly what
+   * `justSolved` already means, and it is why replaying the landing on reload
+   * was rejected — motion should describe change, not state.
+   */
+  /*
+   * Rows solved in an earlier session fold on sight; rows solved just now
+   * fold on a timer. Only the second needs state.
+   *
+   * The first version put both in state and wrote it from an effect, which is
+   * a cascading render — the lint rule that caught it is right, and the
+   * derived half never needed a store: `done && !justSolved` is knowable
+   * during render. What genuinely cannot be derived is "the landing has
+   * finished", because that is a clock, not a fact about props.
+   */
+  const [landed, setLanded] = useState<ReadonlySet<string>>(new Set());
+  const doneWords = grid.filter((w) => found.has(w) || reveal.words.includes(w));
+  const folded = new Set(
+    doneWords.filter((w) => !justSolved.has(w) || landed.has(w)),
+  );
+
+  /*
+   * 420ms of landing plus a 45ms-per-tile stagger is ~750ms on a six-letter
+   * row, so the fold waits 800ms. Folding on the solve frame would delete the
+   * slot `anim-land` is measuring, and the letters would fly to a box that is
+   * no longer there — the slots are the flight target.
+   */
+  const pending = doneWords.filter((w) => justSolved.has(w) && !landed.has(w));
+  const pendingKey = pending.join(',');
+  useEffect(() => {
+    if (!pendingKey) return;
+    const words = pendingKey.split(',');
+    const t = setTimeout(() => {
+      setLanded((prev) => new Set([...prev, ...words]));
+    }, 800);
+    return () => clearTimeout(t);
+  }, [pendingKey]);
+
+  /*
+   * Height freed by the folded rows, handed to the rows still open.
+   *
+   * Two counts rather than a pixel figure because --slot-h is resolved by
+   * three different branches in globals.css (a fluid clamp, a pinned short
+   * branch, a roomy one) and a number computed here would be right in at most
+   * one of them. The arithmetic stays in CSS, where the token it depends on
+   * lives — and where --fold-chip and --fold-spend are declared as a pair so
+   * they cannot drift apart. check-tiles.mjs asserts spend < freed.
+   */
+  const focusVars = {
+    '--folded-n': String(folded.size),
+    '--open-n': String(Math.max(1, grid.length - folded.size)),
+  } as CSSProperties;
+
   if (compact) {
     return (
       /*
@@ -454,8 +522,12 @@ export default function WordTray({
     );
   }
 
+
   return (
-    <div className="relative flex flex-col items-center gap-1 cramped:gap-0.5 roomy:gap-2">
+    <div
+      className="tray-focus relative flex flex-col items-center gap-1 cramped:gap-0.5 roomy:gap-2"
+      style={focusVars}
+    >
       {peekCard}
       {grid.map((word, rowIndex) => {
         const bought = reveal.words.includes(word);
@@ -464,6 +536,7 @@ export default function WordTray({
         const shown = revealedCount(reveal, word);
         const isBase = word === base;
         const fresh = solved && justSolved.has(word);
+        const isFolded = folded.has(word);
         // Before it's done the row buys hints; after, it explains the word.
         const actionable = canHint && !done;
         const definable = done && hasDefinition(word);
@@ -509,7 +582,52 @@ export default function WordTray({
                       : `Row ${rowIndex + 1} of ${grid.length}, ${word.length}-letter word, not found. No hints left.`
               }
             >
-              {word.split('').map((ch, i) => {
+              {isFolded ? (
+                /*
+                 * The folded row: the word, not six boxes around it.
+                 *
+                 * Same achievement colours as a solved slot, so nothing about
+                 * what this row means changes — only how much room it asks
+                 * for. `tracking` rather than gaps because the letters are one
+                 * string now; a solved row should read as a WORD, which is
+                 * the thing the slots were always standing in for.
+                 */
+                <span
+                  className="overflow-hidden rounded-md border border-success bg-success/20 liquid liquid-raised backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-2 font-semibold tabular-nums tracking-[0.18em] text-text-primary"
+                  style={{
+                    /*
+                     * SHORTER than the row it replaces — that difference is
+                     * the entire budget the open rows are spending. The first
+                     * version of this used the full --slot-h, so folding
+                     * freed nothing and every "gain" was taken straight out
+                     * of the dial: measured 235 -> 202 across three solves on
+                     * a 390x844. The number here and the 0.25 in --focus-gain
+                     * are a matched pair; changing one alone re-opens that.
+                     */
+                    height: isBase
+                      ? 'calc(var(--slot-h-base) * var(--fold-chip))'
+                      : 'calc(var(--slot-h) * var(--fold-chip))',
+                    /*
+                     * The glyph has to shrink WITH the chip, not keep the
+                     * open row's size. --slot-text is ~0.68 of --slot-h and
+                     * a line box needs ~1.25x its font, so a full-size letter
+                     * in a 0.7-height chip needs 0.85 of the row and spills
+                     * out of the bottom of the pill — which is exactly what
+                     * it did. 0.8 of the glyph fits inside 0.7 of the row
+                     * with room for the border.
+                     */
+                    fontSize: isBase
+                      ? 'calc(var(--slot-text-base) * var(--fold-glyph))'
+                      : 'calc(var(--slot-text) * var(--fold-glyph))',
+                    lineHeight: 1,
+                    display: 'grid',
+                    placeItems: 'center',
+                  }}
+                >
+                  {word.toUpperCase()}
+                </span>
+              ) : (
+              word.split('').map((ch, i) => {
                 const visible = done || i < shown;
                 return (
                   <span
@@ -539,7 +657,7 @@ export default function WordTray({
                            * inset top-left and a 1px dark inset bottom-right —
                            * and it does not scale with the box it is on. On a
                            * 74px wheel tile that is 2.7% of the width and reads
-                           * as a clean edge. On a 22.8px empty slot it is 17%,
+                           * as a clean edge. On a 32.5px empty slot it is 12%,
                            * so the border and the inset separate into a visible
                            * double line and the grid of unfilled slots reads
                            * embossed while the wheel above it reads flat.
@@ -557,9 +675,39 @@ export default function WordTray({
                       // The full-wheel word is the prize, so it gets real size
                       // over the others rather than only a ring. Both scale
                       // fluidly with the viewport — see --slot-h in globals.
-                      height: isBase ? 'var(--slot-h-base)' : 'var(--slot-h)',
+                      /*
+                       * Open rows absorb the height the folded ones gave up.
+                       * Done rows do not: a row that is about to fold must not
+                       * grow first, or every solve would kick the tray.
+                       */
+                      height: done
+                        ? isBase
+                          ? 'var(--slot-h-base)'
+                          : 'var(--slot-h)'
+                        : isBase
+                          ? 'calc(var(--slot-h-base) + var(--focus-gain, 0px))'
+                          : 'calc(var(--slot-h) + var(--focus-gain, 0px))',
                       width: 'auto',
-                      aspectRatio: '7 / 8',
+                      /*
+                       * WIDER than tall, and that is the whole point.
+                       *
+                       * This was `7 / 8` — narrower than tall — which quietly
+                       * made the dial's constraint the tile's constraint. The
+                       * height is capped to stop the tray eating the wheel (see
+                       * --slot-h), and with width derived from height that cap
+                       * shrank the horizontal axis too, where NOTHING is
+                       * competing: measured 2026-08-19, the six-letter row used
+                       * 157 of 342px on a 390-wide phone and 120 of 592 on a
+                       * laptop. Half to four-fifths of the row was empty while
+                       * the tile letter rendered smaller than body copy.
+                       *
+                       * Width is the free axis, so it is the one that grows.
+                       * `scripts/check-tiles.mjs` asserts both halves — tile at
+                       * least as wide as tall, and the dial no smaller than it
+                       * measured before this change — because the trade this
+                       * avoids is exactly the one every previous tray fix made.
+                       */
+                      aspectRatio: '5 / 4',
                       fontSize: isBase
                         ? 'var(--slot-text-base)'
                         : 'var(--slot-text)',
@@ -568,10 +716,38 @@ export default function WordTray({
                       animationDelay: fresh ? `${i * 45}ms` : undefined,
                     }}
                   >
-                    {visible ? ch.toUpperCase() : ''}
+                    {visible ? (
+                      /*
+                       * The glyph is its own box so the x-scale lands on the
+                       * LETTER and not on the tile — scaling the slot itself
+                       * would stretch its border and its rounding too.
+                       */
+                      <span
+                        style={{
+                          display: 'block',
+                          /*
+                           * line-height 1, or the glyph does not fit.
+                           *
+                           * --slot-text is ~0.92 of the tile's height now, and
+                           * a NORMAL line box is ~1.2x the font — so 24px type
+                           * in a 26px tile builds a 28px line and the letter is
+                           * clipped top and bottom. It looked fine in every
+                           * number the checks were reading and was obviously
+                           * wrong the moment a row had letters in it.
+                           */
+                          lineHeight: 1,
+                          transform: 'scaleX(var(--tile-glyph-x))',
+                        }}
+                      >
+                        {ch.toUpperCase()}
+                      </span>
+                    ) : (
+                      ''
+                    )}
                   </span>
                 );
-              })}
+              })
+              )}
             </button>
 
             {actionable && menuFor === word && (

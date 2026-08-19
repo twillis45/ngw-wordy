@@ -416,6 +416,47 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * synchronously, so commit always sees what the player actually entered.
    */
   const selRef = useRef<number[]>([]);
+
+  /*
+   * Does the rail have anything below the fold?
+   *
+   * `.rail-scroll` fades its last 28px. That fade is a promise — "there is
+   * more down here" — and an unconditional mask makes the promise on layouts
+   * where it is not true, erasing the bottom of the Streak card instead. It
+   * cannot be answered in CSS: no selector can ask whether a box overflows,
+   * and `check-rail.mjs` never caught it because it asserts only that Streak
+   * is not CUT, which a card ending flush with the edge satisfies while
+   * sitting entirely inside the fade.
+   *
+   * Two conditions, both required: the content must overflow, AND we must not
+   * already be scrolled to the end — at the bottom there is again nothing
+   * below to promise. Re-measured on scroll, on resize, and when the cards
+   * themselves change height (banking a word grows "Your words"), which is
+   * what the ResizeObserver on the CONTENT rather than the container is for.
+   */
+  const railRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    /*
+     * The scroller is INSIDE the aside now — Streak sits outside it as a
+     * pinned footer — so this measures the element that actually scrolls
+     * rather than the column that contains it.
+     */
+    const el = railRef.current?.querySelector<HTMLElement>('.rail-scroll');
+    if (!el) return;
+    const update = () => {
+      const more = el.scrollHeight - el.clientHeight - el.scrollTop > 1;
+      el.dataset.fade = more ? 'true' : 'false';
+    };
+    update();
+    el.addEventListener('scroll', update, { passive: true });
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    for (const child of Array.from(el.children)) ro.observe(child);
+    return () => {
+      el.removeEventListener('scroll', update);
+      ro.disconnect();
+    };
+  });
   const setSel = useCallback(
     (updater: number[] | ((prev: number[]) => number[])) => {
       const next =
@@ -1404,7 +1445,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const rail = (
     <Rail
       gridWords={puzzle.grid}
-      base={puzzle.base}
       found={found}
       bonusFound={bonusFound}
       rank={rank}
@@ -1827,6 +1867,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           opposite case, where the cards are taller than the viewport.
         */}
         <aside
+          ref={railRef}
           aria-label="Your progress"
           /*
            * `rail-scroll` fades the bottom edge when there is more below.
@@ -1838,8 +1879,19 @@ export default function Game({ data }: { data: PuzzleFile }) {
            * content, so a player on a 720p screen simply never learned the
            * streak existed. The short: compaction above recovers most of it;
            * the fade covers whatever is left at any height.
+           *
+           * The fade is now GATED on there actually being something below,
+           * via `data-fade` — see the effect that sets it. It used to be
+           * unconditional, on the reasoning that "the bottom 28px is empty
+           * space, so there is nothing there to fade". Measured 2026-08-19,
+           * that was false at seven of eight windows: the rail does not
+           * overflow at any of them, and the Streak card ends FLUSH with the
+           * rail's bottom edge, so all 28px of the fade landed on the card.
+           * The last thing in the rail was permanently half-erased by a
+           * gradient whose whole job was to say "there is more below" on the
+           * one layout where there was not.
            */
-          className="rail-scroll hidden md:block md:max-h-full md:self-stretch md:overflow-y-auto lg:sticky lg:top-6"
+          className="hidden md:flex md:max-h-full md:flex-col md:self-stretch lg:sticky lg:top-6"
         >
           {rail}
         </aside>
@@ -1849,7 +1901,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
         <Sheet onClose={() => setShowWords(false)} label="Your progress">
           <Rail
             gridWords={puzzle.grid}
-            base={puzzle.base}
             found={found}
             bonusFound={bonusFound}
             rank={rank}
