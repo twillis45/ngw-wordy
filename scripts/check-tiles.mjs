@@ -143,7 +143,72 @@ for (const vp of VIEWPORTS) {
       return Math.max(worst, over);
     }, -Infinity);
 
+    /*
+     * The focus system's one arithmetic invariant: a folded row must free
+     * more height than the open rows are allowed to spend.
+     *
+     * Read from the two declared custom properties rather than re-derived.
+     * Re-deriving is precisely what failed: the chip height was a literal in
+     * WordTray and the spend was a different literal in globals.css, nothing
+     * tied them together, and the first version shipped them as 0 freed and
+     * 0.42 spent. The dial went 235 -> 202 over three solves on a phone.
+     *
+     * Not swept by faking --folded-n: raising that counter without folding
+     * the matching rows describes a state the board cannot reach, so it fails
+     * for a reason that is not a bug. The numbers are the thing under test.
+     */
+    /*
+     * Does the folded row's WORD actually fit inside the folded row?
+     *
+     * Built here rather than reasoned about, because reasoning got it wrong
+     * once already: the chip was given 0.7 of a row's height while keeping
+     * the full --slot-text, and the word hung out of the bottom of the pill
+     * on every solved row. That shipped past the numeric checks above, which
+     * all passed — the tray height was right, the dial was right, and the
+     * text was still outside the box.
+     *
+     * A real element with the real tokens and the real box model, measured
+     * for overflow. Hidden and removed immediately; six letters because the
+     * base row is the longest word a chip has to hold.
+     */
+    const trayEl = document.querySelector('.tray-focus');
+    let chipOverflow = null;
+    if (trayEl) {
+      const probe = document.createElement('span');
+      probe.style.cssText = [
+        'height: calc(var(--slot-h) * var(--fold-chip))',
+        'font-size: calc(var(--slot-text) * var(--fold-glyph))',
+        'line-height: 1',
+        'border: 1px solid transparent',
+        'padding: 0 8px',
+        'display: grid',
+        'place-items: center',
+        'position: absolute',
+        'visibility: hidden',
+        'box-sizing: border-box',
+        'letter-spacing: 0.18em',
+      ].join(';');
+      probe.textContent = 'CRAFTY';
+      trayEl.appendChild(probe);
+      chipOverflow = {
+        y: probe.scrollHeight - probe.clientHeight,
+        x: probe.scrollWidth - probe.clientWidth,
+      };
+      probe.remove();
+    }
+
+    const fold = trayEl
+      ? (() => {
+          const cs = getComputedStyle(trayEl);
+          const chip = parseFloat(cs.getPropertyValue('--fold-chip'));
+          const spend = parseFloat(cs.getPropertyValue('--fold-spend'));
+          return { chip, spend, freed: +(1 - chip).toFixed(3) };
+        })()
+      : null;
+
     return {
+      fold,
+      chipOverflow,
       tileW: +Math.min(...boxes.map((b) => b.width)).toFixed(1),
       tileH: +Math.min(...boxes.map((b) => b.height)).toFixed(1),
       fontPx: +parseFloat(getComputedStyle(slots[slots.length - 1]).fontSize).toFixed(1),
@@ -183,14 +248,35 @@ for (const r of results) {
   if (r.tileW < r.tileH) why.push(`tile narrower than tall (${r.tileW} x ${r.tileH})`);
   if (r.vp.dial && r.dial < r.vp.dial - 1) why.push(`dial shrank ${r.vp.dial} → ${r.dial}`);
   if (r.spill > 0.5) why.push(`row spills ${r.spill}px past its card`);
+  /*
+   * The tray may never be TALLER with rows folded than it was with none. That
+   * is the whole safety property: the dial shares this budget, so a tray that
+   * only ever shrinks cannot take from it.
+   */
+  if (r.chipOverflow && (r.chipOverflow.y > 0.5 || r.chipOverflow.x > 0.5)) {
+    why.push(
+      `folded row's word overflows its chip by ${r.chipOverflow.y}px vertically, ${r.chipOverflow.x}px horizontally`,
+    );
+  }
+  if (r.fold) {
+    const { chip, spend, freed } = r.fold;
+    if (!(spend < freed)) {
+      why.push(
+        `folding frees ${freed} of a row but open rows spend ${spend} (chip ${chip}) — the tray will grow into the dial`,
+      );
+    }
+  }
   if (r.docScrollX > 0) why.push(`page scrolls horizontally by ${r.docScrollX}px`);
 
   if (why.length) {
     failed++;
     console.log(`✗  ${label} ${why.join('; ')}  — ${r.vp.note}`);
   } else {
+    const sw = r.fold
+      ? `, fold frees ${r.fold.freed} spends ${r.fold.spend}`
+      : '';
     console.log(
-      `✔  ${label} tile ${r.tileW}x${r.tileH} (font ${r.fontPx} vs body ${r.bodyPx}), dial ${r.dial}`,
+      `✔  ${label} tile ${r.tileW}x${r.tileH} (font ${r.fontPx} vs body ${r.bodyPx}), dial ${r.dial}${sw}`,
     );
   }
 }

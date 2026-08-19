@@ -1380,6 +1380,56 @@ body {
  * scroll-end the browser has nothing left to fade, and `mask-image` on a
  * fully-scrolled box is visually inert.
  */
+/*
+ * The focus system's one piece of arithmetic.
+ *
+ * `--folded-n` and `--open-n` are set on the tray by WordTray; everything
+ * else is here because --slot-h is resolved by three different branches in
+ * this file and a pixel figure computed in JS would be correct in at most
+ * one of them.
+ *
+ * A folded row gives up the difference between a slot row and a word chip.
+ * The chip is 0.7 of a slot tall (see WordTray), so it frees 0.30 — and this
+ * spends 0.25 of it, deliberately less than was freed. The first version had
+ * these unmatched: the chip kept the FULL slot height, freeing nothing, while
+ * this line handed out 0.42 anyway. Every pixel of that came out of the dial,
+ * measured 235 -> 202 over three solves on a 390x844 phone. The two numbers
+ * are a matched pair and the inequality between them is the safety margin.
+ *
+ * The `min()` is the guard rail, not a nicety. Without it a board with five
+ * rows folded would hand all of that height to one row and the tray would
+ * grow past the budget the dial is sharing with it — the exact trade every
+ * previous tray change made by accident. check-tiles.mjs asserts the dial
+ * has not moved, at eight viewports, and that assertion is what makes this
+ * cap testable rather than a hope.
+ */
+.tray-focus {
+  /*
+   * The matched pair, declared once so they cannot drift apart.
+   *
+   * --fold-chip is how tall a folded row is, as a fraction of an open one, so
+   * folding FREES (1 - --fold-chip). --fold-glyph is the word's size inside
+   * that chip, and it lives here rather than in WordTray so check-tiles.mjs
+   * can build a probe chip that is genuinely the same box — the first version
+   * put the chip at 0.7 and left the glyph at full --slot-text, and the word
+   * hung out of the bottom of the pill on every solved row, clipped by
+   * overflow-hidden rather than fixed. --fold-spend is how much of that the
+   * open rows take. The invariant is simply spend < freed, and
+   * check-tiles.mjs asserts it by reading these two values rather than by
+   * re-deriving them, because re-deriving is what went wrong: the chip height
+   * lived in WordTray as a literal and the spend lived here as another, and
+   * the first version had them at 0 and 0.42 respectively. Nothing connected
+   * them, so nothing complained, and the dial paid for the difference.
+   */
+  --fold-chip: 0.78;
+  --fold-glyph: 0.72;
+  --fold-spend: 0.18;
+  --focus-gain: min(
+    calc(var(--slot-h) * var(--fold-spend) * var(--folded-n) / var(--open-n)),
+    calc(var(--slot-h) * 0.5)
+  );
+}
+
 .rail-scroll[data-fade='true'] {
   mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
