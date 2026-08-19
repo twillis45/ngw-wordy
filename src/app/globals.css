@@ -1380,16 +1380,27 @@ body {
  * scroll-end the browser has nothing left to fade, and `mask-image` on a
  * fully-scrolled box is visually inert.
  */
-.rail-scroll {
+.rail-scroll[data-fade='true'] {
   mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
 }
 /*
  * No height exception. There used to be one at 900px, on the theory that a tall
  * window shows the whole rail — but a 1900x980 Chrome window still overflowed
- * it, so the fade switched itself off exactly where it was still needed. The
- * mask is harmless when nothing scrolls: the bottom 28px is empty space, so
- * there is nothing there to fade.
+ * it, so the fade switched itself off exactly where it was still needed.
+ *
+ * The rest of this comment used to read: "the mask is harmless when nothing
+ * scrolls: the bottom 28px is empty space, so there is nothing there to fade."
+ * That was reasoned, not measured, and it was wrong. The rail is sized to its
+ * content, so when it does not overflow there IS no empty space — the Streak
+ * card ends flush with the bottom edge. Measured 2026-08-19 at eight windows:
+ * the rail overflowed at NONE of them, and at seven the Streak clearance was
+ * exactly 0px, so the full 28px fade sat on the card. The one guard that
+ * should have caught it, check-rail.mjs, asserts only that Streak is not cut,
+ * and a card ending flush is not cut.
+ *
+ * The condition is now answered in JS and arrives as `data-fade`, because no
+ * CSS selector can ask whether a box overflows. See Game.tsx.
  */
 
 /*

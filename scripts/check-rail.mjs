@@ -105,10 +105,30 @@ for (const vp of VIEWPORTS) {
     rail.scrollTop = 0;
     const r = rail.getBoundingClientRect();
     const c = card.getBoundingClientRect();
+
+    /*
+     * The fade, and whether it is lying.
+     *
+     * `.rail-scroll` fades its last 28px to say "there is more below". This
+     * check used to ask only whether Streak was CUT — bottom past the rail's
+     * bottom — which a card ending exactly flush passes while sitting wholly
+     * inside the fade. That is how a permanently half-erased Streak card
+     * survived a guard written specifically to protect the Streak card.
+     *
+     * `fadedBy` is how much of the card the gradient covers. It is only a
+     * failure when the rail is NOT scrollable at this position, because then
+     * the fade is promising content that does not exist.
+     */
+    const FADE = 28;
+    const masked = getComputedStyle(rail).maskImage !== 'none';
+    const clearance = r.bottom - c.bottom;
     return {
       overflow: Math.max(0, rail.scrollHeight - rail.clientHeight),
       cutBy: Math.max(0, Math.round(c.bottom - r.bottom)),
       streakHeight: Math.round(c.height),
+      masked,
+      fadedBy: masked ? Math.max(0, Math.round(FADE - clearance)) : 0,
+      moreBelow: rail.scrollHeight - rail.clientHeight - rail.scrollTop > 1,
     };
   });
 
@@ -117,7 +137,12 @@ for (const vp of VIEWPORTS) {
   if (m.hidden) { results.push({ vp, skip: true }); continue; }
   if (m.error) { results.push({ vp, fail: true, why: m.error }); continue; }
 
-  const fail = m.cutBy > 0;
+  /*
+   * Two ways to lose the Streak card, and the second one is why this file
+   * grew: it can be cut off the bottom, or it can be sitting under a fade
+   * that has nothing to fade to.
+   */
+  const fail = m.cutBy > 0 || (m.fadedBy > 0 && !m.moreBelow);
   results.push({ vp, fail, ...m });
 }
 
@@ -130,9 +155,15 @@ for (const r of results) {
   if (r.skip) { console.log(`—  ${label} rail hidden at this width`); continue; }
   if (r.fail) {
     failed++;
-    console.log(`✗  ${label} Streak cut by ${r.cutBy ?? '?'}px${r.why ? ` (${r.why})` : ''}  — ${r.vp.note}`);
+    const why =
+      r.cutBy > 0
+        ? `Streak cut by ${r.cutBy}px`
+        : `Streak faded by ${r.fadedBy}px with nothing below to fade to`;
+    console.log(`✗  ${label} ${why}  — ${r.vp.note}`);
   } else {
-    console.log(`✔  ${label} Streak fully visible (rail overflow ${r.overflow}px)`);
+    console.log(
+      `✔  ${label} Streak fully visible and unfaded (overflow ${r.overflow}px, fade ${r.masked ? 'on' : 'off'})`,
+    );
   }
 }
 
