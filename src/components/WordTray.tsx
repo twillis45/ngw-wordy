@@ -539,7 +539,7 @@ export default function WordTray({
                            * inset top-left and a 1px dark inset bottom-right —
                            * and it does not scale with the box it is on. On a
                            * 74px wheel tile that is 2.7% of the width and reads
-                           * as a clean edge. On a 22.8px empty slot it is 17%,
+                           * as a clean edge. On a 32.5px empty slot it is 12%,
                            * so the border and the inset separate into a visible
                            * double line and the grid of unfilled slots reads
                            * embossed while the wheel above it reads flat.
@@ -559,7 +559,26 @@ export default function WordTray({
                       // fluidly with the viewport — see --slot-h in globals.
                       height: isBase ? 'var(--slot-h-base)' : 'var(--slot-h)',
                       width: 'auto',
-                      aspectRatio: '7 / 8',
+                      /*
+                       * WIDER than tall, and that is the whole point.
+                       *
+                       * This was `7 / 8` — narrower than tall — which quietly
+                       * made the dial's constraint the tile's constraint. The
+                       * height is capped to stop the tray eating the wheel (see
+                       * --slot-h), and with width derived from height that cap
+                       * shrank the horizontal axis too, where NOTHING is
+                       * competing: measured 2026-08-19, the six-letter row used
+                       * 157 of 342px on a 390-wide phone and 120 of 592 on a
+                       * laptop. Half to four-fifths of the row was empty while
+                       * the tile letter rendered smaller than body copy.
+                       *
+                       * Width is the free axis, so it is the one that grows.
+                       * `scripts/check-tiles.mjs` asserts both halves — tile at
+                       * least as wide as tall, and the dial no smaller than it
+                       * measured before this change — because the trade this
+                       * avoids is exactly the one every previous tray fix made.
+                       */
+                      aspectRatio: '5 / 4',
                       fontSize: isBase
                         ? 'var(--slot-text-base)'
                         : 'var(--slot-text)',

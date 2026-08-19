@@ -434,8 +434,23 @@
    */
   --slot-h: clamp(17px, calc(4.35vh - 8.2px), 26px);
   --slot-h-base: clamp(19px, calc(4.8vh - 8.5px), 29px);
-  --slot-text: clamp(10px, calc(1.5vh + 1.6px), 14px);
-  --slot-text-base: clamp(11px, calc(1.95vh - 0.3px), 15px);
+  /*
+   * The glyph, re-derived from the box rather than from the viewport.
+   *
+   * These two ramps used to climb on their own vh curve, and the ceiling that
+   * curve reached — 14px — was BELOW --text-body (15px). The tile letter
+   * therefore could not be as large as the paragraph beside it on any screen,
+   * no matter how tall: the game's own subject matter was, by construction,
+   * the smallest type on the page. Measured 2026-08-19 across ten viewports,
+   * the tile letter ran 0.65x–0.93x the clue text on nine of them.
+   *
+   * Now they track --slot-h at roughly 0.68x, which puts cap height near half
+   * the box — the share a letter tile wants. The tile got wider first (see the
+   * aspect-ratio note in WordTray.tsx); without that, raising these would only
+   * have pushed the glyph into a wall it was already touching.
+   */
+  --slot-text: clamp(12px, calc(2.9vh - 5.4px), 18px);
+  --slot-text-base: clamp(13px, calc(3.25vh - 5.8px), 20px);
 
   /*
    * Type ramp — six named roles, in rem.
@@ -736,8 +751,8 @@
   :root {
     --slot-h: 40px;
     --slot-h-base: 48px;
-    --slot-text: 20px;
-    --slot-text-base: 24px;
+    --slot-text: 26px;
+    --slot-text-base: 31px;
   }
 }
 
@@ -745,8 +760,8 @@
   :root {
     --slot-h: 19px;
     --slot-h-base: 22px;
-    --slot-text: 11px;
-    --slot-text-base: 12px;
+    --slot-text: 15px;
+    --slot-text-base: 17px;
   }
 }
 
