@@ -17,7 +17,6 @@ import { CheckIcon } from './Icon';
  */
 type Props = {
   gridWords: string[];
-  base: string;
   found: ReadonlySet<string>;
   bonusFound: string[];
   rank: Rank;
@@ -52,7 +51,6 @@ type Props = {
 
 export default function Rail({
   gridWords,
-  base,
   found,
   bonusFound,
   rank,
@@ -100,20 +98,29 @@ export default function Rail({
       */}
       <div className="rail-scroll flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto short:gap-2.5">
       <Card title="Your words" meta={`${score} pts`}>
-        <Group
-          label={`Targets · ${solvedTargets.length}/${gridWords.length}`}
-          empty="None yet"
-        >
-          {solvedTargets.map((w) => (
-            <Chip
-              key={w}
-              word={w}
-              tone={w === base ? 'base' : 'target'}
-              definable={hasDefinition(w)}
-              onOpen={onShowDefinition}
-            />
-          ))}
-        </Group>
+        {/*
+          Targets are COUNTED here, not listed.
+          
+          They used to be listed, and that was right while the board showed a
+          solved row as six filled boxes — the rail was the only place the word
+          itself appeared. Now a finished row folds to the word, so on any
+          screen wide enough to show the rail beside the board the same five
+          words were on screen twice, a few hundred pixels apart, in two
+          different shapes.
+          
+          The board wins that: it is where the word was earned, it is where
+          the row it belongs to is, and it already carries the definition
+          affordance these chips carried. What stays here is the number,
+          because "5 of 6" is the one thing the board states only by having a
+          gap in it. Bonus words keep their chips — they have no row to fold
+          into, so this is still the only place they exist.
+        */}
+        <p className="text-meta text-text-muted">
+          <span className="text-text-secondary">
+            Targets · {solvedTargets.length}/{gridWords.length}
+          </span>
+          {solvedTargets.length > 0 && ' · shown on the board'}
+        </p>
 
         <Group
           label={`Bonus · ${bonusFound.length}`}

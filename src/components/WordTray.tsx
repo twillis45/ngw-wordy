@@ -716,7 +716,34 @@ export default function WordTray({
                       animationDelay: fresh ? `${i * 45}ms` : undefined,
                     }}
                   >
-                    {visible ? ch.toUpperCase() : ''}
+                    {visible ? (
+                      /*
+                       * The glyph is its own box so the x-scale lands on the
+                       * LETTER and not on the tile — scaling the slot itself
+                       * would stretch its border and its rounding too.
+                       */
+                      <span
+                        style={{
+                          display: 'block',
+                          /*
+                           * line-height 1, or the glyph does not fit.
+                           *
+                           * --slot-text is ~0.92 of the tile's height now, and
+                           * a NORMAL line box is ~1.2x the font — so 24px type
+                           * in a 26px tile builds a 28px line and the letter is
+                           * clipped top and bottom. It looked fine in every
+                           * number the checks were reading and was obviously
+                           * wrong the moment a row had letters in it.
+                           */
+                          lineHeight: 1,
+                          transform: 'scaleX(var(--tile-glyph-x))',
+                        }}
+                      >
+                        {ch.toUpperCase()}
+                      </span>
+                    ) : (
+                      ''
+                    )}
                   </span>
                 );
               })

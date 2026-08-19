@@ -206,8 +206,66 @@ for (const vp of VIEWPORTS) {
         })()
       : null;
 
+    /*
+     * Is the LETTER substantial, not just the tile?
+     *
+     * Measured 2026-08-19 before this was raised: the glyph's ink filled
+     * 47-56% of its tile's width and 45-55% of its height. The tile had been
+     * widened and the box looked right, but half of every one of them was
+     * padding, so the thing a player actually reads had not grown at all.
+     *
+     * Asserted against the tile rather than in absolute px because --slot-h
+     * resolves differently in three branches. The floor is on the RATIO,
+     * which is the property that was wrong.
+     */
+    /*
+     * A real letter, in a real slot, measured for overflow.
+     *
+     * The ratio check below says the glyph is BIG enough. It cannot say it
+     * FITS: --slot-text reached 0.92 of the tile's height while the glyph
+     * still had a normal ~1.2x line box, so every filled row rendered its
+     * letters clipped top and bottom — and every number here stayed green,
+     * because the tile was the right size and the font was the right size and
+     * nothing was comparing the line box to the box it had to sit in.
+     *
+     * Slots are empty at the start of a board, so a letter is put into a
+     * clone of one rather than waiting for gameplay.
+     */
+    const glyphFit = (() => {
+      const el = slots[0];
+      if (!el) return null;
+      const clone = el.cloneNode(false);
+      const inner = document.createElement('span');
+      inner.style.cssText =
+        'display:block;line-height:1;transform:scaleX(var(--tile-glyph-x))';
+      inner.textContent = 'W';
+      clone.appendChild(inner);
+      clone.style.visibility = 'hidden';
+      el.parentElement.appendChild(clone);
+      const over = {
+        y: clone.scrollHeight - clone.clientHeight,
+        x: clone.scrollWidth - clone.clientWidth,
+      };
+      clone.remove();
+      return over;
+    })();
+
+    const glyph = (() => {
+      const el = slots[0];
+      const r = el.getBoundingClientRect();
+      const fs = parseFloat(getComputedStyle(el).fontSize);
+      const xs = parseFloat(
+        getComputedStyle(document.querySelector('.tray-focus')).getPropertyValue(
+          '--tile-glyph-x',
+        ),
+      );
+      return { ratio: +(fs / r.height).toFixed(3), xScale: xs };
+    })();
+
     return {
       fold,
+      glyph,
+      glyphFit,
       chipOverflow,
       tileW: +Math.min(...boxes.map((b) => b.width)).toFixed(1),
       tileH: +Math.min(...boxes.map((b) => b.height)).toFixed(1),
@@ -253,6 +311,21 @@ for (const r of results) {
    * is the whole safety property: the dial shares this budget, so a tray that
    * only ever shrinks cannot take from it.
    */
+  if (r.glyphFit && (r.glyphFit.y > 0.5 || r.glyphFit.x > 0.5)) {
+    why.push(
+      `letter overflows its tile by ${r.glyphFit.y}px vertically, ${r.glyphFit.x}px horizontally`,
+    );
+  }
+  if (r.glyph) {
+    if (r.glyph.ratio < 0.7) {
+      why.push(
+        `glyph is only ${r.glyph.ratio} of its tile's height — the tile grew but the letter did not`,
+      );
+    }
+    if (!(r.glyph.xScale >= 1)) {
+      why.push(`glyph x-scale ${r.glyph.xScale} wastes the tile's extra width`);
+    }
+  }
   if (r.chipOverflow && (r.chipOverflow.y > 0.5 || r.chipOverflow.x > 0.5)) {
     why.push(
       `folded row's word overflows its chip by ${r.chipOverflow.y}px vertically, ${r.chipOverflow.x}px horizontally`,
@@ -273,7 +346,7 @@ for (const r of results) {
     console.log(`✗  ${label} ${why.join('; ')}  — ${r.vp.note}`);
   } else {
     const sw = r.fold
-      ? `, fold frees ${r.fold.freed} spends ${r.fold.spend}`
+      ? `, glyph ${r.glyph?.ratio}x tile @${r.glyph?.xScale} wide, fold frees ${r.fold.freed} spends ${r.fold.spend}`
       : '';
     console.log(
       `✔  ${label} tile ${r.tileW}x${r.tileH} (font ${r.fontPx} vs body ${r.bodyPx}), dial ${r.dial}${sw}`,

@@ -1445,7 +1445,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
   const rail = (
     <Rail
       gridWords={puzzle.grid}
-      base={puzzle.base}
       found={found}
       bonusFound={bonusFound}
       rank={rank}
@@ -1902,7 +1901,6 @@ export default function Game({ data }: { data: PuzzleFile }) {
         <Sheet onClose={() => setShowWords(false)} label="Your progress">
           <Rail
             gridWords={puzzle.grid}
-            base={puzzle.base}
             found={found}
             bonusFound={bonusFound}
             rank={rank}

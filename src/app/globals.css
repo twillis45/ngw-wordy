@@ -444,13 +444,33 @@
    * the smallest type on the page. Measured 2026-08-19 across ten viewports,
    * the tile letter ran 0.65x–0.93x the clue text on nine of them.
    *
-   * Now they track --slot-h at roughly 0.68x, which puts cap height near half
-   * the box — the share a letter tile wants. The tile got wider first (see the
+   * Raised again 2026-08-19 to ~0.72 of --slot-h, after measuring what the
+   * letter was actually doing with the box it had: the ink filled 47-56% of
+   * the tile's width and 45-55% of its height. Half of every tile was
+   * padding. That is a pure win because it costs the DIAL nothing — the tile
+   * does not change size, only the glyph inside it — and the tile's height is
+   * the thing the wheel is sharing a budget with. An attempt to raise
+   * --slot-h itself on the same day was reverted: bisected across four
+   * ramps, every extra pixel of row came straight out of the dial (235 → 193
+   * on a phone), exactly as the note on --slot-h has always said.
+   *
+   * 0.72 is close to the ceiling, and the ceiling is real. The usable height
+   * is --slot-h minus the 2px border on each side, and `line-height: 1` does
+   * NOT bound the ink: a typical UI font's ascent plus descent is ~1.16em, so
+   * the glyph paints past its own line box. Freshly solved rows carry
+   * `.anim-sweep`, which is `overflow: hidden`, so anything past that box is
+   * genuinely cut — which is how a font at 0.92 produced a row of letters
+   * clipped top and bottom while every numeric check stayed green. The check
+   * script now puts a real letter in a real slot and measures the overflow.
+   *
+   * Vertically there is almost nothing left to win: the tile cannot get
+   * taller without the dial paying for it. The letter's remaining headroom is
+   * sideways, which is what --tile-glyph-x is for. The tile got wider first (see the
    * aspect-ratio note in WordTray.tsx); without that, raising these would only
    * have pushed the glyph into a wall it was already touching.
    */
-  --slot-text: clamp(12px, calc(2.9vh - 5.4px), 18px);
-  --slot-text-base: clamp(13px, calc(3.25vh - 5.8px), 20px);
+  --slot-text: clamp(12px, calc(3.13vh - 5.9px), 19px);
+  --slot-text-base: clamp(14px, calc(3.46vh - 6.1px), 21px);
 
   /*
    * Type ramp — six named roles, in rem.
@@ -751,8 +771,8 @@
   :root {
     --slot-h: 40px;
     --slot-h-base: 48px;
-    --slot-text: 26px;
-    --slot-text-base: 31px;
+    --slot-text: 28px;
+    --slot-text-base: 34px;
   }
 }
 
@@ -760,8 +780,8 @@
   :root {
     --slot-h: 19px;
     --slot-h-base: 22px;
-    --slot-text: 15px;
-    --slot-text-base: 17px;
+    --slot-text: 14px;
+    --slot-text-base: 16px;
   }
 }
 
@@ -1421,8 +1441,22 @@ body {
    * the first version had them at 0 and 0.42 respectively. Nothing connected
    * them, so nothing complained, and the dial paid for the difference.
    */
+  /*
+   * The letter is stretched horizontally to use the tile it sits in.
+   *
+   * The tile is 5:4 — wider than tall, deliberately, because width is the
+   * axis the dial is not competing for. A normal glyph does not know that: it
+   * grows on both axes together, so raising the font alone fills the height
+   * and leaves the extra width as padding. Measured before this: 47-56% of
+   * the tile's width was ink. A modest x-scale spends the width the tile
+   * already has. 1.3 rather than something larger because past about a third
+   * the letterform stops reading as an extended face and starts reading as a
+   * squashed one; the check script asserts it does not run past the tile.
+   */
+  --tile-glyph-x: 1.3;
+
   --fold-chip: 0.78;
-  --fold-glyph: 0.72;
+  --fold-glyph: 0.6;
   --fold-spend: 0.18;
   --focus-gain: min(
     calc(var(--slot-h) * var(--fold-spend) * var(--folded-n) / var(--open-n)),
