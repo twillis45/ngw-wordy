@@ -5,7 +5,7 @@ Runbook. Written 2026-08-16, for STORE_READINESS **0.3**.
 **Why this exists.** A TWA proves it owns its web content with a Digital Asset
 Links file at `https://<domain>/.well-known/assetlinks.json` — the **origin
 root**, not the app's sub-path. Today the app is served from
-`https://twillis45.github.io/ngw-wordy/`, and that well-known path belongs to
+`https://twillis45.github.io/sixonthedial/`, and that well-known path belongs to
 the `twillis45.github.io` user-pages repo, not this one. This repo structurally
 cannot publish it. Unverified, a TWA falls back to Custom-Tab UI **with a
 visible address bar** — the "repackaged website" read we are trying to avoid.
@@ -41,7 +41,7 @@ Committed ahead of the domain, and inert until `public/CNAME` exists:
 
 - **`.github/workflows/pages.yml`** derives `NEXT_PUBLIC_BASE_PATH` and
   `NEXT_PUBLIC_SHARE_URL` from whether `public/CNAME` is present. With no CNAME
-  it behaves exactly as before (`/ngw-wordy`, the Pages base URL). With one, it
+  it behaves exactly as before (`/sixonthedial`, the Pages base URL). With one, it
   serves from the root. The two settings must agree, and deriving both from one
   file is what stops them drifting apart.
 - **`public/.well-known/assetlinks.json`** exists with a placeholder
@@ -114,7 +114,7 @@ build the TWA before it is on: asset links are fetched over HTTPS only.
     curl -s  https://<domain>/manifest.webmanifest | head -20
 
 Expect: a 200 at the root, the asset links file served as `application/json`,
-and a manifest whose `start_url` and icon paths have **no `/ngw-wordy` prefix**.
+and a manifest whose `start_url` and icon paths have **no `/sixonthedial` prefix**.
 A stray prefix here means the CNAME was not in the export and the build took
 the project-pages branch.
 
@@ -164,7 +164,7 @@ Play will not let it change after the first upload.
   who installed from `github.io` keeps a stale icon and gets a second install
   alongside it. Acceptable pre-launch; it would not be after.
 - **The old origin keeps serving.** A service worker installed from
-  `twillis45.github.io/ngw-wordy/` will go on serving its cached copy to anyone
+  `twillis45.github.io/sixonthedial/` will go on serving its cached copy to anyone
   who has it, and nothing published at the new domain can reach it. If that
   matters, the last thing deployed to the old path should be a build whose
   worker unregisters itself.

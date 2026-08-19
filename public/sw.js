@@ -44,7 +44,7 @@ const CACHE = '__BUILD_ID__'.startsWith('__') ? 'wordy-dev' : '__BUILD_ID__';
 
 /**
  * Where the app is mounted, derived from this file's own URL — "/" on
- * localhost and Render, "/ngw-wordy/" on GitHub Pages. Reading it here rather
+ * localhost and Render, "/sixonthedial/" on GitHub Pages. Reading it here rather
  * than templating a build-time value in means one static file works at any
  * base, and the worker can never disagree with the page that registered it.
  */

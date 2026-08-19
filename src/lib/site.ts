@@ -19,7 +19,7 @@ const FALLBACK_ORIGIN = 'http://localhost:3000';
  * prevent.
  *
  * Note this may include a sub-path (GitHub Pages serves this repo from
- * /ngw-wordy), so it is NOT necessarily a bare origin.
+ * /sixonthedial), so it is NOT necessarily a bare origin.
  */
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SHARE_URL || FALLBACK_ORIGIN
