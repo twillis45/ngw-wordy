@@ -59,6 +59,34 @@ const VIEWPORTS = [
   { w: 1280, h: 720, note: 'laptop, short — pinned-short branch', dial: 200 },
   { w: 1440, h: 900, note: 'laptop', dial: 263 },
   { w: 1920, h: 1080, note: 'desktop — the roomy branch', dial: 340 },
+  /*
+   * Added 2026-08-19 with the tablet-portrait branch and the raised
+   * pinned-short one. The eight above did not cover either: the tablet
+   * viewports sit in the fluid clamp alongside the phones but behave nothing
+   * like them — past ~744px wide the dial has reached its 340px cap, so
+   * vertical space stops being contested. These are the windows the new rules
+   * actually govern, plus the worst case in each, which is what a sweep of
+   * the branch found rather than what looked representative.
+   */
+  { w: 744, h: 1133, note: 'iPad mini portrait — tablet branch', dial: 340 },
+  { w: 820, h: 1180, note: 'iPad Air portrait — tablet branch', dial: 340 },
+  { w: 1024, h: 1366, note: 'iPad Pro 12.9 portrait — tallest, most headroom', dial: 340 },
+  { w: 800, h: 1000, note: 'tablet branch floor — only 3px of headroom', dial: 340 },
+  { w: 1279, h: 1000, note: 'tablet branch, widest — 3px of headroom', dial: 340 },
+  { w: 900, h: 700, note: 'pinned-short worst case — 10px of headroom', dial: 200 },
+  { w: 768, h: 800, note: 'pinned-short, tallest', dial: 200 },
+  { w: 1133, h: 744, note: 'iPad mini landscape', dial: 200 },
+  /*
+   * The remaining tablet LANDSCAPE shapes. These are not the portrait ones
+   * rotated: 1180x820 and 1194x834 are tall enough to miss the pinned-short
+   * branch and land back in the fluid clamp, where the dial is still growing
+   * with the viewport and has no slack at all, while 1366x1024 crosses into
+   * the roomy branch. Three shapes, three different sizing rules, all reached
+   * by turning the same device sideways.
+   */
+  { w: 1180, h: 820, note: 'iPad Air landscape — falls back to fluid', dial: 203 },
+  { w: 1194, h: 834, note: 'iPad Pro 11 landscape — fluid', dial: 217 },
+  { w: 1366, h: 1024, note: 'iPad Pro 12.9 landscape — roomy branch', dial: 298 },
 ];
 
 const TYPES = {
