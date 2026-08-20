@@ -778,10 +778,45 @@
 
 @media (min-width: 768px) and (max-height: 800px) {
   :root {
-    --slot-h: 19px;
-    --slot-h-base: 22px;
-    --slot-text: 14px;
-    --slot-text-base: 16px;
+    /*
+     * Raised 2026-08-19 from 19/22 after sweeping this branch rather than
+     * assuming it. Every viewport in it had room the tray was not taking:
+     * 768x800 and 1279x800 could give the tray 26 more pixels per row before
+     * the dial moved at all, 1024x768 twenty-one, 1133x744 seventeen,
+     * 1280x720 thirteen, and the tightest case in the whole branch — 900x700
+     * — still had ten. The dial on these windows is already at its 340px cap
+     * or pinned at 200 by width, so the slack above the wheel was going
+     * nowhere. +7 keeps three pixels of margin against that worst case.
+     */
+    --slot-h: 26px;
+    --slot-h-base: 29px;
+    --slot-text: 19px;
+    --slot-text-base: 21px;
+  }
+}
+
+/*
+ * Tablet portrait: the one shape where the tray has real room to grow.
+ *
+ * Phones and tablets share the fluid clamp above, which is why the cap there
+ * cannot simply be raised — measured, a phone has ZERO headroom (its dial is
+ * still growing with the viewport and takes every pixel the tray gives up),
+ * while a 1024x1366 iPad has forty. The difference is not height, it is
+ * WIDTH: past ~744px the dial has already reached its 340px cap, so vertical
+ * space above it stops being contested and starts being waste.
+ *
+ * Hence the gate: wide enough that the dial is capped, tall enough that there
+ * is something to spend, and below 1280 so the roomy branch still owns the
+ * desktop. And a ramp rather than a flat bump, because the headroom itself
+ * ramps — 3px at exactly 1000 tall, 16 at 1080, 30 at 1133, 40 at 1366. A
+ * fixed increase would have to be sized for the 3.
+ */
+@media (min-width: 744px) and (min-height: 1000px) and (max-width: 1279px) {
+  :root {
+    --slot-h: clamp(26px, calc(4.2vh - 16px), 46px);
+    --slot-h-base: clamp(29px, calc(4.7vh - 18px), 51px);
+    --slot-text: clamp(19px, calc(3vh - 11.5px), 33px);
+    --slot-text-base: clamp(21px, calc(3.4vh - 13px), 37px);
   }
 }
 

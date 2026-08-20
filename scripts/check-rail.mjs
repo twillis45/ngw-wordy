@@ -51,6 +51,27 @@ const VIEWPORTS = [
    */
   { w: 1024, h: 400, note: 'Streak was 23px below the viewport' },
   { w: 1280, h: 420, note: 'Streak was 3px below the viewport' },
+  /*
+   * Tablets, both orientations, added 2026-08-19.
+   *
+   * Every entry above is laptop-shaped. The rail renders from `md` up, so
+   * each of these shows it and none were covered. Both orientations are here
+   * on purpose: they are not the same layout rotated. Portrait gives the rail
+   * a tall narrow column beside a tall board; landscape is short enough to
+   * land in the pinned-short sizing branch, which is where the tray was just
+   * given seven more pixels a row. Testing one and assuming the other is how
+   * the branch the tray actually uses gets missed.
+   */
+  { w: 744, h: 1133, note: 'iPad mini portrait' },
+  { w: 1133, h: 744, note: 'iPad mini landscape' },
+  { w: 820, h: 1180, note: 'iPad Air portrait' },
+  { w: 1180, h: 820, note: 'iPad Air landscape' },
+  { w: 834, h: 1194, note: 'iPad Pro 11 portrait' },
+  { w: 1194, h: 834, note: 'iPad Pro 11 landscape' },
+  { w: 1024, h: 1366, note: 'iPad Pro 12.9 portrait' },
+  { w: 1366, h: 1024, note: 'iPad Pro 12.9 landscape' },
+  { w: 768, h: 1024, note: 'iPad portrait, smallest that shows the rail' },
+  { w: 1024, h: 768, note: 'iPad landscape, smallest' },
 ];
 
 const TYPES = {
