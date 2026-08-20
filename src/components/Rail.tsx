@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { RANK_BASIS, rankLadder, type Rank } from '@/lib/game';
 import type { DayCell } from '@/lib/storage';
 import { CheckIcon } from './Icon';
@@ -70,6 +71,48 @@ export default function Rail({
   hasDefinition,
   onShowDefinition,
 }: Props) {
+  /*
+   * Does this rail have anything below the fold?
+   *
+   * `.rail-scroll` fades its last 28px, and that fade is a promise — "there
+   * is more down here". An unconditional mask makes the promise on layouts
+   * where it is false and erases the bottom of whatever sits last instead,
+   * which is how the Streak card spent a long time half-gone. It cannot be
+   * answered in CSS: no selector can ask whether a box overflows.
+   *
+   * This lives HERE, in the component that owns the class, and not in the
+   * page that happens to render one of them. It was in Game.tsx first, keyed
+   * off the desktop column — and the rail is rendered TWICE, once in that
+   * column and once inside the mobile progress sheet. The sheet's copy never
+   * got the attribute at all, so it could never fade no matter how much it
+   * had to scroll. Nothing looked wrong, because neither instance happened to
+   * overflow at the sizes anyone checked.
+   *
+   * Two conditions, both required: the content must overflow, AND we must not
+   * already be at the end — at the bottom there is again nothing below to
+   * promise. Re-measured on scroll, on resize, and when the cards themselves
+   * change height (banking a word grows "Your words"), which is what the
+   * ResizeObserver on the CHILDREN rather than the box is for.
+   */
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const update = () => {
+      const more = el.scrollHeight - el.clientHeight - el.scrollTop > 1;
+      el.dataset.fade = more ? 'true' : 'false';
+    };
+    update();
+    el.addEventListener('scroll', update, { passive: true });
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    for (const child of Array.from(el.children)) ro.observe(child);
+    return () => {
+      el.removeEventListener('scroll', update);
+      ro.disconnect();
+    };
+  });
+
   const solvedTargets = gridWords.filter((w) => found.has(w));
 
   return (
@@ -96,7 +139,10 @@ export default function Rail({
         min-height is auto, which refuses to shrink and would push Streak back
         off the bottom — the exact bug, reintroduced by omission.
       */}
-      <div className="rail-scroll flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto short:gap-2.5">
+      <div
+        ref={scrollerRef}
+        className="rail-scroll flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto short:gap-2.5"
+      >
       <Card title="Your words" meta={`${score} pts`}>
         {/*
           Targets are COUNTED here, not listed.
