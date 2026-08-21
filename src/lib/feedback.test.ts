@@ -7,6 +7,7 @@
  * fired a different number of pulses on Android than on iOS, because each
  * platform was handed the rhythm separately and the two descriptions drifted.
  */
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { RHYTHM, androidPattern, pulseCount, type Rhythm } from './feedback';
 
@@ -70,5 +71,87 @@ describe('haptic rhythms', () => {
     const trend = (g: number[]) => Math.sign(g[g.length - 1] - g[0]);
     expect(trend(RHYTHM.prize.gaps)).toBeLessThan(0);
     expect(trend(RHYTHM.complete.gaps)).toBeGreaterThan(0);
+  });
+});
+
+/*
+ * THE GAME IS IN C MAJOR, and it was only mostly true.
+ *
+ * `correct` walks C5 D5 E5 G5 A5 C6 and prize/complete are a C major triad —
+ * that half was designed. Three events were not: tap sounded a D#5, duplicate
+ * an F#4 and spend a C#5 falling to an F#4. Out of key, and the two F#s make a
+ * tritone against the tonic everything else resolves to, which is the single
+ * interval most reliably heard as an error — in the sound for a NON-error.
+ *
+ * This asserts the pitched content, not the noise bursts. `noise({ freq })`
+ * sets a bandpass centre for a transient click; it is not a note and holding
+ * it to a scale would be a category error. I made exactly that mistake when I
+ * first measured this file and called 3000Hz "off-grid".
+ */
+describe('the sound set is in one key', () => {
+  const C_MAJOR = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+  const NAMES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+
+  const noteOf = (hz: number) => {
+    const n = 12 * Math.log2(hz / 440) + 69;
+    const rounded = Math.round(n);
+    return { name: NAMES[((rounded % 12) + 12) % 12], cents: (n - rounded) * 100 };
+  };
+
+  /*
+   * Read from the source rather than re-listed here, so a new sound is caught
+   * the day it is added instead of the day somebody remembers this test.
+   * `reject` is exempt BY NAME: it is the one deliberate dissonance, and
+   * naming it is what stops a later reader tuning it into the key.
+   */
+  const src = readFileSync(new URL('./feedback.ts', import.meta.url), 'utf8');
+  const rejectBody = src.slice(src.indexOf('reject() {'), src.indexOf('duplicate() {'));
+
+  /*
+   * ALL frequency-shaped numbers in the block, not just `freq:` properties.
+   *
+   * The first version of this matched `freq:` and `glideTo:` only, and so
+   * checked eight values while silently skipping the two things most worth
+   * checking: the `correct` ladder and the prize/complete triads are bare
+   * array literals. The pitches I had just called well-designed were the ones
+   * not being tested.
+   */
+  /*
+   * COMMENTS STRIPPED FIRST. The fix for the three out-of-key sounds records
+   * the old values in prose — "Was 620Hz, which is D#5" — and a regex over raw
+   * text cannot tell a note from a sentence about a note. The first run of
+   * this test failed on 620, 380 and 560 while the code beside them read
+   * 523.25, 392 and 587.33. It was reading my own explanation.
+   */
+  const block = src
+    .slice(src.indexOf('export const feedback = {'))
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\/\/[^\n]*/g, '');
+  const rejectStart = block.indexOf('reject() {');
+  const rejectEnd = block.indexOf('duplicate() {');
+
+  const pitches = [...block.matchAll(/[\d]+\.?[\d]*/g)]
+    .map((m) => ({ hz: Number(m[0]), at: m.index ?? 0 }))
+    // Frequencies only: gains, durations and delays are all well under 1,
+    // and nothing in this file sounds a pitch below 40Hz or above 5kHz.
+    .filter(({ hz }) => hz >= 40 && hz <= 5000)
+    // Noise bursts are bandpass centres, not notes.
+    .filter(({ at }) => {
+      const from = block.lastIndexOf('\n', at);
+      return !block.slice(from, block.indexOf('\n', at)).includes('noise(');
+    })
+    // reject is the one deliberate dissonance, exempt by name.
+    .filter(({ at }) => at < rejectStart || at >= rejectEnd);
+
+  it('finds pitches to check', () => {
+    // 8 tone properties plus the ladder and both triads.
+    expect(pitches.length).toBeGreaterThanOrEqual(16);
+    expect(rejectBody).toContain('sawtooth');
+  });
+
+  it.each(pitches)('$hz Hz is a note in C major', ({ hz }) => {
+    const { name, cents } = noteOf(hz);
+    expect(C_MAJOR, `${hz}Hz is ${name}, outside C major`).toContain(name);
+    expect(Math.abs(cents), `${hz}Hz is ${Math.round(cents)} cents off ${name}`).toBeLessThan(10);
   });
 });

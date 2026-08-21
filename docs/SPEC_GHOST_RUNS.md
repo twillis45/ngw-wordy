@@ -1,6 +1,7 @@
 # Spec — ghost runs
 
-Written 2026-08-21, unbuilt. Companion to the chain ladder, which shipped the
+Written 2026-08-21, unbuilt. Question 1 ruled the same day; 2, 3 and 4 are
+still open, and the replay must not start until 2 has an answer. Companion to the chain ladder, which shipped the
 same day.
 
 **The idea.** A shared link replays a friend's solve against yours — not their
@@ -85,9 +86,13 @@ a marker against the rank bar, moving in replayed time.
 
 ## What must be decided before building
 
-1. **Is a behavioural timeline something we are willing to store at all**,
-   even locally and even opt-in? The board's privacy seat should rule on this
-   specifically; it did not, because ghosts were not in front of it.
+1. ~~**Is a behavioural timeline something we are willing to store at all**,
+   even locally and even opt-in?~~ **RULED 2026-08-21: yes, on the narrowest
+   terms — recorded in memory while playing, persisted ONLY if the player
+   chooses to share a ghost, never transmitted except in a link they send
+   themselves.** Silent recording is not authorised and neither is persisting
+   a run the player did not choose to share. STORE_READINESS 1.5 and 1.6 stay
+   accurate as written and `connect-src 'self'` is untouched.
 2. **Does a race belong in this game?** The Wardle lens on that board opposed
    mechanics that make the game about other people. A ladder is asynchronous
    and ignorable; a ghost ticking beside you is not obviously either.

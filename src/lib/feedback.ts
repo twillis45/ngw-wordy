@@ -320,7 +320,10 @@ export const feedback = {
   /** A letter joins the current word — the lightest thing we can do. */
   tap() {
     noise({ dur: 0.03, gain: 0.035, freq: 3000 });
-    tone({ freq: 620, dur: 0.045, type: 'triangle', gain: 0.07 });
+    // C5 — the tonic the `correct` ladder rises from, so a tap sits UNDER the
+    // reward rather than beside it. Was 620Hz, which is D#5: a minor third
+    // outside the key everything else in this file is written in.
+    tone({ freq: 523.25, dur: 0.045, type: 'triangle', gain: 0.07 });
     buzz(RHYTHM.tap);
   },
 
@@ -342,7 +345,15 @@ export const feedback = {
     buzz(RHYTHM.bonus);
   },
 
-  /** Not a word. A falling, broken shape — legible without sound. */
+  /**
+   * Not a word. A falling, broken shape — legible without sound.
+   *
+   * DELIBERATELY OUT OF KEY, and the only event that is. Everything else in
+   * this file is C major, so B3 falling to D3 on a sawtooth is the one sound
+   * that does not belong to the music the game is otherwise made of. That is
+   * the point of it, and `feedback.test.ts` exempts it by name rather than by
+   * silence, so nobody later "fixes" it into tune.
+   */
   reject() {
     noise({ dur: 0.05, gain: 0.05, freq: 700 });
     tone({ freq: 240, dur: 0.16, type: 'sawtooth', gain: 0.09, glideTo: 150 });
@@ -351,13 +362,20 @@ export const feedback = {
 
   /** Already found — a nudge, deliberately duller than either accept. */
   duplicate() {
-    tone({ freq: 380, dur: 0.07, type: 'triangle', gain: 0.06 });
+    // G4 — in key, a fifth below the tonic, so "you already have this" lands
+    // duller than an accept without going out of the key to do it. Was 380Hz,
+    // an F#4 forty-six cents sharp: a tritone against C, and the one interval
+    // guaranteed to sound like a mistake in the sound for a non-mistake.
+    tone({ freq: 392.0, dur: 0.07, type: 'triangle', gain: 0.06 });
     buzz(RHYTHM.duplicate);
   },
 
   /** A hint spent. Downward, so it reads as a cost, not a reward. */
   spend() {
-    tone({ freq: 560, dur: 0.13, type: 'sine', gain: 0.08, glideTo: 380 });
+    // D5 down to G4 — a falling fifth, which is the plainest "spent" shape
+    // there is, and both notes are in key. Was 560 -> 380, a C#5 to an F#4:
+    // two notes outside the key, a tritone apart from each other.
+    tone({ freq: 587.33, dur: 0.13, type: 'sine', gain: 0.08, glideTo: 392.0 });
     buzz(RHYTHM.spend);
   },
 
