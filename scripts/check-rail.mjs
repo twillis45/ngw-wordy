@@ -72,6 +72,17 @@ const VIEWPORTS = [
   { w: 1366, h: 1024, note: 'iPad Pro 12.9 landscape' },
   { w: 768, h: 1024, note: 'iPad portrait, smallest that shows the rail' },
   { w: 1024, h: 768, note: 'iPad landscape, smallest' },
+  /*
+   * Phones, where the rail lives inside the progress SHEET rather than beside
+   * the board — which is why they were never in this list. They are here now
+   * because the rail is rendered twice, and for a while only one of the two
+   * got the fade attribute at all: the effect that sets it was keyed off the
+   * desktop column, so the sheet's copy could not fade however much it had to
+   * scroll. Nothing looked wrong, because neither copy happened to overflow
+   * at any size anyone had checked.
+   */
+  { w: 390, h: 844, note: 'iPhone 14 — rail is in the sheet', sheet: true },
+  { w: 375, h: 667, note: 'iPhone SE — shortest phone', sheet: true },
 ];
 
 const TYPES = {
@@ -114,6 +125,16 @@ for (const vp of VIEWPORTS) {
   const page = await browser.newPage();
   await page.setViewport({ width: vp.w, height: vp.h });
   await page.goto(`${base}/`, { waitUntil: 'networkidle0' });
+  if (vp.sheet) {
+    // Below `md` the rail is only mounted once the progress sheet is opened.
+    await page.evaluate(() => {
+      const btn = [...document.querySelectorAll('button')].find((b) =>
+        /rank and progress/i.test(b.getAttribute('aria-label') ?? ''),
+      );
+      btn?.click();
+    });
+    await new Promise((r) => setTimeout(r, 500));
+  }
   await page.waitForSelector('.rail-scroll', { timeout: 10_000 });
 
   const m = await page.evaluate(() => {
@@ -157,7 +178,17 @@ for (const vp of VIEWPORTS) {
      */
     const FADE = 28;
     const masked = getComputedStyle(rail).maskImage !== 'none';
+    /*
+     * EVERY scroller must have decided, not just the one found first. The
+     * attribute being absent is a different failure from it being 'false':
+     * absent means nothing is managing that instance, so it can never fade.
+     */
+    const unmanaged = [...document.querySelectorAll('.rail-scroll')].filter(
+      (el) => el.dataset.fade !== 'true' && el.dataset.fade !== 'false',
+    ).length;
     return {
+      unmanaged,
+      railCount: document.querySelectorAll('.rail-scroll').length,
       overflow: Math.max(0, rail.scrollHeight - rail.clientHeight),
       /*
        * The invariant, restated 2026-08-19: the bottom of the Streak card is
@@ -186,7 +217,11 @@ for (const vp of VIEWPORTS) {
    * grew: it can be cut off the bottom, or it can be sitting under a fade
    * that has nothing to fade to.
    */
-  const fail = m.belowFold > 0 || m.overlapsFade > 0 || (m.masked && !m.moreBelow);
+  const fail =
+    m.belowFold > 0 ||
+    m.overlapsFade > 0 ||
+    (m.masked && !m.moreBelow) ||
+    m.unmanaged > 0;
   results.push({ vp, fail, ...m });
 }
 
@@ -213,7 +248,9 @@ for (const r of results) {
           ? `Streak ${r.belowFold}px below the viewport`
           : r.overlapsFade > 0
             ? `Streak overlaps the fade by ${r.overlapsFade}px`
-            : 'fade is on with nothing below to fade to';
+            : r.unmanaged > 0
+              ? `${r.unmanaged} of ${r.railCount} rail scrollers have no data-fade — nothing manages them, so they can never fade`
+              : 'fade is on with nothing below to fade to';
     console.log(`✗  ${label} ${why}  — ${r.vp.note}`);
   } else {
     console.log(
