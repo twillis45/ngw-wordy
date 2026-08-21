@@ -290,7 +290,15 @@ function buzz(r: Rhythm) {
  */
 export const RHYTHM = {
   /** One tick, the lightest thing available. */
-  tap: { pulses: [10], gaps: [] },
+  /*
+   * 15ms, not 10. A 10ms pulse is at the bottom of what a phone motor can
+   * render — on Android many drivers round it away entirely, and it arrives
+   * as nothing rather than as something subtle. 15 is still a tick and not a
+   * buzz, and it is the difference between feeling the dial and wondering
+   * whether you touched it. It stays the SHORTEST rhythm in the file, which is
+   * the property that matters: a tap must never be mistakable for a bank.
+   */
+  tap: { pulses: [15], gaps: [] },
   /** Fast triple — the reward. */
   correct: { pulses: [26, 22, 26], gaps: [45, 45] },
   /** Fast double — clearly not a bare tap. */
@@ -319,11 +327,24 @@ export const RHYTHM = {
 export const feedback = {
   /** A letter joins the current word — the lightest thing we can do. */
   tap() {
-    noise({ dur: 0.03, gain: 0.035, freq: 3000 });
-    // C5 — the tonic the `correct` ladder rises from, so a tap sits UNDER the
-    // reward rather than beside it. Was 620Hz, which is D#5: a minor third
-    // outside the key everything else in this file is written in.
-    tone({ freq: 523.25, dur: 0.045, type: 'triangle', gain: 0.07 });
+    /*
+     * LOUDER, 2026-08-21, after a report that the feedback was not strong
+     * enough on a phone — and part of that was mine.
+     *
+     * Putting the tap in key moved it from 620Hz to C5 at 523.25, which was
+     * musically right and perceptually quieter: a phone speaker is a small
+     * transducer that rolls off badly at the bottom of that range, so ~100Hz
+     * off the low end costs real audible level on exactly the device most
+     * people play on. The pitch stays — the key is worth keeping — and the
+     * level comes back instead.
+     *
+     * The transient carries most of what a tap FEELS like, so the noise burst
+     * gets the bigger share: it sits at 3kHz where a phone speaker is at its
+     * most efficient, and it is the part that reads as a click rather than a
+     * note. Doubling the tone alone would have made the dial hum.
+     */
+    noise({ dur: 0.03, gain: 0.055, freq: 3000 });
+    tone({ freq: 523.25, dur: 0.045, type: 'triangle', gain: 0.1 });
     buzz(RHYTHM.tap);
   },
 
