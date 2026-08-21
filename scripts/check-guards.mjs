@@ -112,6 +112,14 @@ const MUTATIONS = [
     why: 'a reduced-motion player on a desktop gets NO feedback for a wrong word',
   },
   {
+    name: 'ambient pools go back to steel',
+    file: 'src/app/globals.css',
+    from: '  --ambient-1: color-mix(in srgb, var(--color-steel-lift) 30%, transparent);',
+    to: '  --ambient-1: color-mix(in srgb, var(--color-steel) 30%, transparent);',
+    guard: 'check-color',
+    why: 'the lowest layer in the app turns blue and every card blurs it upward',
+  },
+  {
     name: 'dial glyph wrapper removed',
     file: 'src/components/LetterWheel.tsx',
     from: 'className="dial-glyph"',
