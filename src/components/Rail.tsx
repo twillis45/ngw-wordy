@@ -456,7 +456,37 @@ export default function Rail({
       <Card
         className="shrink-0"
         title="Streak"
-        meta={bestStreak > 1 ? `best ${bestStreak}` : undefined}
+        /*
+          The window goes in the META, not on a line of its own.
+          
+          Dates reached the accessible name and the `title` and stopped there,
+          which fixed the screen reader and left a sighted player on a PHONE
+          with nothing — there is no hover on touch, and the row still read
+          `S S M T W T F` where two cells begin S and two begin T. Stating the
+          range once resolves all seven without touching the cells: given the
+          range the letters become positional, and the second S is Saturday
+          because Saturday is where the range ends.
+          
+          On its own line it cost 19px and pushed the Record card under the
+          fade at 1440x900 — measured, and check-rail did not catch it because
+          that script guarded only this card. Both are fixed; the meta line was
+          already there and had room.
+        */
+        meta={[
+          days[0]?.date && days[days.length - 1]?.date
+            ? (() => {
+                const from = days[0].date.replace(/^[A-Za-z]+, /, '');
+                const to = days[days.length - 1].date.replace(/^[A-Za-z]+, /, '');
+                /* One month five weeks out of six — do not say August twice. */
+                return from.split(' ')[0] === to.split(' ')[0]
+                  ? `${from} – ${to.split(' ')[1]}`
+                  : `${from} – ${to}`;
+              })()
+            : null,
+          bestStreak > 1 ? `best ${bestStreak}` : null,
+        ]
+          .filter(Boolean)
+          .join(' · ')}
       >
         <div role="list" className="flex items-end justify-between gap-1">
           {days.map((d, i) => (
