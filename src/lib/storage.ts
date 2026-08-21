@@ -51,6 +51,17 @@ export type Progress = {
   clearedIds: string[];
   streak: number;
   bestStreak: number;
+  /**
+   * Freezes held. One is spent automatically to cover a single missed day.
+   *
+   * Earned by playing, never bought — see `FREEZE_EVERY`. A freeze that can
+   * be purchased turns a missed day into a sales opportunity, which is the
+   * shape of mechanic the restraint seat on the 2026-08-21 board exists to
+   * object to. This one only ever REDUCES pressure: it is the difference
+   * between "you lost 40 days" and "that's covered", and it costs the player
+   * nothing at the moment they need it.
+   */
+  freezes: number;
   lastPlayed: string | null;
   /** Hint ledger counters — the balance is derived, never stored. */
   bonusTotal: number;
@@ -90,6 +101,7 @@ export const EMPTY: Progress = Object.freeze({
   clearedIds: [],
   streak: 0,
   bestStreak: 0,
+  freezes: 0,
   lastPlayed: null,
   bonusTotal: 0,
   spent: 0,
@@ -178,6 +190,7 @@ export function migrateV1(
     words,
     days,
     streak: legacy.streak ?? 0,
+    freezes: 0,
     bestStreak: legacy.bestStreak ?? 0,
     lastPlayed: legacy.lastPlayed ?? null,
     muted: legacy.muted ?? false,
@@ -462,7 +475,25 @@ export function subscribeNever(): () => void {
   return () => {};
 }
 
-export type DayCell = { key: string; label: string; played: boolean };
+export type DayCell = {
+  key: string;
+  label: string;
+  played: boolean;
+  /**
+   * The full date, written out — "Friday, August 15".
+   *
+   * Carried because the visible label CANNOT carry it. Seven cells at 24px
+   * have room for one letter, and one letter is ambiguous by construction:
+   * a week contains two days beginning S and two beginning T, so a row
+   * reading `S S M T W T F` names four of its seven cells twice. Sighted
+   * players resolve that from position and the ring on today; a screen
+   * reader has neither.
+   *
+   * US format per house style, and no year — the row is a seven-day window,
+   * so a year is noise in the one place there is no room for any.
+   */
+  date: string;
+};
 
 /**
  * The trailing 7 days ending today, oldest first — for the streak strip.
@@ -483,21 +514,60 @@ export type DayCell = { key: string; label: string; played: boolean };
  */
 export function last7(p: Progress, today: Date | null): DayCell[] {
   const labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  const names = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
   const out: DayCell[] = [];
   for (let i = 6; i >= 0; i -= 1) {
     if (!today) {
-      out.push({ key: `pending-${i}`, label: '', played: false });
+      out.push({ key: `pending-${i}`, label: '', played: false, date: '' });
       continue;
     }
     const d = new Date(today);
     d.setDate(d.getDate() - i);
     const key = dayKey(d);
-    out.push({ key, label: labels[d.getDay()], played: p.days[key] === true });
+    out.push({
+      key,
+      label: labels[d.getDay()],
+      played: p.days[key] === true,
+      /*
+       * Spelled out rather than formatted with `toLocaleDateString`, which
+       * would follow the DEVICE locale and put a British reader's date in a
+       * different order from the rest of the copy. House style is US format
+       * everywhere, including the strings only a screen reader ever hears.
+       */
+      date: `${names[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`,
+    });
   }
   return out;
 }
 
 /**
+ * How often a freeze is earned, and how many can be held at once. */
+export const FREEZE_EVERY = 7;
+export const FREEZE_MAX = 3;
+
+/*
  * Advance the streak for `today`. Yesterday -> +1, same day -> unchanged,
  * any longer gap -> reset to 1. Returns a new object; never mutates.
  *
@@ -511,12 +581,43 @@ export function touchStreak(p: Progress, today: Date): Progress {
   const yesterday = new Date(today);
   yesterday.setDate(yesterday.getDate() - 1);
 
-  const streak = p.lastPlayed === dayKey(yesterday) ? p.streak + 1 : 1;
+  /*
+   * A single missed day is COVERED by a freeze, if one is held.
+   *
+   * Two days missed is not, and deliberately: a freeze is a near-miss made
+   * survivable, not an absence made irrelevant. Past one day the streak has
+   * genuinely stopped meaning "showed up", which is the only thing it is for.
+   *
+   * Spent automatically, with no prompt. Asking would turn the one moment the
+   * player already feels bad about into a decision they can get wrong, and it
+   * is not a decision — nobody holding a freeze wants to lose the streak
+   * instead. The card reports what happened after the fact.
+   */
+  const twoBack = new Date(today);
+  twoBack.setDate(twoBack.getDate() - 2);
+
+  const continued = p.lastPlayed === dayKey(yesterday);
+  const missedOne = p.lastPlayed === dayKey(twoBack);
+  const covered = !continued && missedOne && p.freezes > 0 && p.streak > 0;
+
+  const streak = continued || covered ? p.streak + 1 : 1;
+  const freezes = covered ? p.freezes - 1 : p.freezes;
+
+  /*
+   * Earned on the way up, so a long streak carries its own insurance. Capped,
+   * because beyond a few a freeze stops covering a slip and starts covering
+   * not playing.
+   */
+  const earned =
+    streak > 0 && streak % FREEZE_EVERY === 0 && freezes < FREEZE_MAX
+      ? freezes + 1
+      : freezes;
 
   return {
     ...p,
     streak,
     bestStreak: Math.max(p.bestStreak, streak),
+    freezes: earned,
     lastPlayed: key,
     days: { ...p.days, [key]: true },
   };

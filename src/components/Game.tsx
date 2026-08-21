@@ -1484,6 +1484,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       streakJustEarned={streakJustEarned}
       streak={progress.streak}
       bestStreak={progress.bestStreak}
+          freezes={progress.freezes}
       hasDefinition={hasDefinition}
       onShowDefinition={openDefinition}
     />
@@ -1950,6 +1951,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             streakJustEarned={streakJustEarned}
             streak={progress.streak}
             bestStreak={progress.bestStreak}
+          freezes={progress.freezes}
             hasDefinition={hasDefinition}
             onShowDefinition={openDefinition}
             howToClassName=""

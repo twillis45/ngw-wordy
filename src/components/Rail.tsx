@@ -44,6 +44,8 @@ type Props = {
   streakJustEarned?: boolean;
   streak: number;
   bestStreak: number;
+  /** Freezes held — each covers one missed day, automatically. */
+  freezes: number;
   /**
    * Visibility of the how-to card is a CSS concern, not a JS one — driving it
    * off a measured breakpoint would mean a hydration-unsafe guess about the
@@ -68,6 +70,7 @@ export default function Rail({
   streakJustEarned = false,
   streak,
   bestStreak,
+  freezes,
   /*
    * Width was never the whole question. This card is the LAST thing in the
    * rail, so on a wide-but-short window — 1900x980 is an ordinary maximised
@@ -381,9 +384,34 @@ export default function Rail({
         title="Streak"
         meta={bestStreak > 1 ? `best ${bestStreak}` : undefined}
       >
-        <div className="flex items-end justify-between gap-1">
+        <div role="list" className="flex items-end justify-between gap-1">
           {days.map((d, i) => (
-            <div key={d.key} className="flex flex-col items-center gap-1.5 short:gap-1">
+            /*
+              The whole cell is ONE labelled thing.
+
+              It used to be two silent ones: the box carried `aria-hidden` and
+              the letter under it was a bare span, so a screen reader heard
+              `S S M T W T F` and nothing else — not which dates those were,
+              and not whether any of them had been played. The played state
+              was carried entirely by a border colour and a tick glyph inside
+              an aria-hidden box, which is to say it was not carried at all.
+
+              `listitem` under the row's `list`, so the seven read as a set
+              and the reader is told how many there are.
+            */
+            <div
+              key={d.key}
+              role="listitem"
+              aria-label={
+                d.date
+                  ? `${d.date}${i === days.length - 1 ? ' (today)' : ''}: ${
+                      d.played ? 'played' : 'not played'
+                    }`
+                  : undefined
+              }
+              title={d.date || undefined}
+              className="flex flex-col items-center gap-1.5 short:gap-1"
+            >
               <span
                 aria-hidden
                 className={[
@@ -408,7 +436,10 @@ export default function Rail({
               >
                 {d.played ? <CheckIcon /> : null}
               </span>
-              <span className="text-kicker text-text-muted">{d.label}</span>
+              {/* Decorative now: the cell above carries the real name. */}
+              <span aria-hidden className="text-kicker text-text-muted">
+                {d.label}
+              </span>
             </div>
           ))}
         </div>
@@ -417,6 +448,23 @@ export default function Rail({
             ? `${streak} days in a row.`
             : 'Play tomorrow to start a streak.'}
         </p>
+        {/*
+          Freezes, stated plainly and only when held.
+
+          The point of showing them is BEFORE the miss, not after: a player
+          who knows a slip is covered is a player who is not afraid of the
+          streak, and fear of losing one is the thing that makes people stop
+          opening an app rather than start. Hidden until earned, because a
+          zero here would advertise a mechanic at exactly the moment it offers
+          nothing.
+        */}
+        {freezes > 0 && (
+          <p className="mt-1 text-meta text-text-muted">
+            {freezes === 1
+              ? '1 freeze — covers a missed day.'
+              : `${freezes} freezes — each covers a missed day.`}
+          </p>
+        )}
       </Card>
 
       <div className={howToClassName}>
