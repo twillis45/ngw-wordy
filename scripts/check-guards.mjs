@@ -163,6 +163,14 @@ const MUTATIONS = [
     why: "a reader whose BROWSER font is large gets a scrolling rail and data-text still reads default",
   },
   {
+    name: 'pointer not converted into ring space',
+    file: 'src/components/LetterWheel.tsx',
+    from: '    return toRing({\n      x: ((e.clientX - r.left) / r.width) * 100,',
+    to: '    return ({\n      x: ((e.clientX - r.left) / r.width) * 100,',
+    guard: 'check-drag',
+    why: 'a drag spells different letters than the ones it crossed once the dial has turned',
+  },
+  {
     name: 'dial glyph wrapper removed',
     file: 'src/components/LetterWheel.tsx',
     from: 'className="dial-glyph"',
