@@ -44,6 +44,44 @@ arbitrary order.
 Separately, from the kit: **zero** occurrences of clear space, minimum size,
 misuse, monochrome, favicon, safe area, lockup, or social/OG spec.
 
+## The renders themselves — evidence in the record
+
+The board's own rules say render first and reviewers **read the PNGs**. The
+first version of this review was written from the luminance table and my own
+look at a contact sheet, and the images were never put into the record. They
+are now, in `docs/brand/review/`:
+
+- `marks-contact-sheet.png` — the mark and the icon at 128 / 64 / 32 / 16, the
+  ladder at display size, and the ladder at 32.
+- `ladder-at-32.png` — the seven ranks at the size the rail actually renders.
+- `ladder-at-32-greyscale.png` — the same with hue removed, which is the
+  closest cheap approximation of what the hue-encoding costs.
+
+**One finding in the first version was WRONG and the images corrected it.** I
+wrote that form repeats across the ladder while only colour changes. It does
+not: Novice is a ring, Sharp is a scattered cluster, Wordsmith is a wide flat
+form, and the others are flowers of varying centre treatment. The silhouettes
+genuinely differ.
+
+The accurate finding is worse, not better. **The forms differ but they do not
+ORDER.** Nothing about a ring says "below" a cluster, and nothing about a
+cluster says "below" a flower. So the ladder has two channels — hue and form —
+and neither is monotonic, which is why the measurement and the eye agree that
+climbing shows you nothing. A ladder needs one variable that only ever moves
+one way; this has two that both wander.
+
+**The plinth is the same in all seven** and occupies roughly a third of each
+image's height. It is the one element that is genuinely consistent, and it is
+consistent in the place where consistency costs the most: it spends a third of
+a 32px budget saying nothing that distinguishes one rank from another.
+
+**On "indistinguishable".** The greyscale sheet is rendered at 3x, and at that
+magnification the silhouettes ARE separable. At the size the rail draws them
+they are not — that is what the 32px browser capture shows and what the
+luminance table explains. The claim is about rendered size, not about the
+artwork in isolation, and the first version of this review did not draw that
+line clearly enough.
+
 ## The two languages
 
 The mark is a flat geometric dial: six dots, one accented. The rank marks are
