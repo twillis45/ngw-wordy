@@ -443,8 +443,22 @@ for (const vp of VIEWPORTS) {
      * the list.
      */
     const ladder = (() => {
+      /*
+       * `> 1`, not `> 4`.
+       *
+       * This read `> 4` from a time when the ladder was always eight rungs.
+       * The ladder is WINDOWED now — three rungs when the rail is short or the
+       * text is large — so on every compacted viewport this selector matched
+       * nothing, `ladder` came back null, and the rhythm assertion silently
+       * did not run. A layout change disabled a guard as a side effect and
+       * said nothing, which is the same failure as the mutation that had
+       * drifted off its anchor: absence reported as success.
+       *
+       * Two rows are enough to have a rhythm between them, and a compacted
+       * ladder is exactly where a bad gap would be least visible.
+       */
       const ol = [...document.querySelectorAll('ol')].find(
-        (o) => o.querySelectorAll('li').length > 4,
+        (o) => o.querySelectorAll('li').length > 1,
       );
       if (!ol) return null;
       const rows = [...ol.querySelectorAll('li')].map((e) => e.getBoundingClientRect());

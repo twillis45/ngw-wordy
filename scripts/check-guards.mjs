@@ -88,28 +88,31 @@ const MUTATIONS = [
      * about the guard — it is the same trap as a probe that cannot fail for
      * the right reason, one level up.
      */
-    name: 'rank ladder spread to fill',
+    name: 'rank ladder rows spread apart',
     file: 'src/components/Rail.tsx',
-    edits: [
-      {
-        /*
-         * Re-anchored 2026-08-21. This read `gap-1.5 short:gap-0.5` and the
-         * class list has since gained a mid-band gap rule, so the anchor
-         * matched nothing and the harness printed SKIPPED — which is the one
-         * outcome nobody reads. A mutation whose anchor has drifted is not a
-         * weaker guard, it is no guard, and it announces itself in the same
-         * quiet line as a deliberate skip.
-         */
-        from: '<ol className="flex flex-col gap-1.5 [@media(min-height:801px)_and_(max-height:920px)]:gap-1 short:gap-0.5">',
-        to: '<ol className="flex min-h-0 flex-1 flex-col justify-between gap-0.5 overflow-y-auto">',
-      },
-      {
-        from: '        className="flex flex-col"\n        title="Rank"',
-        to: '        className="flex min-h-0 flex-1 flex-col"\n        title="Rank"',
-      },
-    ],
+    /*
+     * RETIRED AND REPLACED 2026-08-21.
+     *
+     * The old mutation set the Rank card to `flex-1` and the list to
+     * `justify-between`, so the rungs spread into whatever height the card
+     * had. It is unreachable now, and not because the guard got better: the
+     * scroller is `flex-initial`, so it is content-height and there is no
+     * slack for a card to grow into. The defect was designed out by a
+     * different fix, which has its own mutation above.
+     *
+     * That is worth saying plainly rather than deleting the entry, because a
+     * mutation that MISSES for that reason looks identical to one that misses
+     * because the guard is broken — and this one spent a day printing SKIPPED
+     * on a drifted anchor, which looks identical to both.
+     *
+     * The rhythm invariant is still real and still worth defending, so this
+     * attacks it the way it can still break: widen the gap directly. The rows
+     * must stay closer together than they are tall, whatever height they get.
+     */
+    from: "<ol className=\"flex flex-col gap-1.5 [@media(min-height:801px)_and_(max-height:920px)]:gap-1 short:gap-0.5\">",
+    to: '<ol className="flex flex-col gap-16">',
     guard: 'check-rail',
-    why: 'rungs drift to 108px apart on a tall tablet and stop reading as a list',
+    why: 'rungs sit further apart than they are tall and stop reading as one list',
   },
   {
     name: 'reduced motion silences the rejection',
