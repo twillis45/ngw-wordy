@@ -12,6 +12,7 @@
     "check:color": "node scripts/check-color.mjs",
     "check:drag": "node scripts/check-drag.mjs",
     "check:settings": "node scripts/check-settings.mjs",
+    "build:mockups": "node scripts/build-mockups.mjs",
     "check:depth": "node scripts/check-depth.mjs",
     "check:tiles": "node scripts/check-tiles.mjs",
     "check:motion": "node scripts/check-motion.mjs",
