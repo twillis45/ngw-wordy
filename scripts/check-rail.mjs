@@ -62,7 +62,7 @@ const VIEWPORTS = [
    * given seven more pixels a row. Testing one and assuming the other is how
    * the branch the tray actually uses gets missed.
    */
-  { w: 744, h: 1133, note: 'iPad mini portrait' },
+  { w: 744, h: 1133, note: 'iPad mini portrait', sheet: true },
   { w: 1133, h: 744, note: 'iPad mini landscape' },
   { w: 820, h: 1180, note: 'iPad Air portrait' },
   { w: 1180, h: 820, note: 'iPad Air landscape' },
@@ -72,6 +72,29 @@ const VIEWPORTS = [
   { w: 1366, h: 1024, note: 'iPad Pro 12.9 landscape' },
   { w: 768, h: 1024, note: 'iPad portrait, smallest that shows the rail' },
   { w: 1024, h: 768, note: 'iPad landscape, smallest' },
+  /*
+   * BIG DESKTOPS, added 2026-08-21 after a reader photographed the rail
+   * scrolling on an ordinary one.
+   *
+   * Every viewport above is either under 1536 wide or under 1000 tall, which
+   * are exactly the two conditions that keep the "How to play" card hidden.
+   * So no test in this file had ever rendered it — and that card sits OUTSIDE
+   * the scroller, so switching it on does not lengthen a scrollable list, it
+   * TAKES 189px from the three cards inside. 1536x1000 and 1600x1000
+   * overflowed by 95px, 1920x1080 by 15, and the whole suite stayed green
+   * because none of it had ever been on that side of both breakpoints.
+   *
+   * The lesson is the sizes, not the fix: a viewport list assembled from the
+   * windows that broke things in the past has a hole wherever a feature is
+   * gated on a combination nothing in the list satisfies.
+   */
+  { w: 1536, h: 1000, note: '2xl at exactly 1000 tall — how-to gate boundary' },
+  { w: 1600, h: 1000, note: 'overflowed 95px before the gate was raised' },
+  { w: 1728, h: 1080, note: 'MacBook Pro 16 default — overflowed 15px' },
+  { w: 1920, h: 1080, note: 'the commonest desktop — overflowed 15px' },
+  { w: 1970, h: 1110, note: 'the window this was reported from' },
+  { w: 1600, h: 1130, note: 'first height where how-to is meant to show' },
+  { w: 2560, h: 1400, note: 'large desktop, how-to showing with room' },
   /*
    * Phones, where the rail lives inside the progress SHEET rather than beside
    * the board — which is why they were never in this list. They are here now
@@ -138,7 +161,23 @@ for (const vp of VIEWPORTS) {
   await page.waitForSelector('.rail-scroll', { timeout: 10_000 });
 
   const m = await page.evaluate(() => {
-    const rail = document.querySelector('.rail-scroll');
+    /*
+     * THE VISIBLE rail, not the first one in the document.
+     *
+     * Both mounts are always in the DOM — the aside and the progress sheet —
+     * so `querySelector` returns the aside's copy even on a phone, where the
+     * aside is display:none and the sheet is the one the player is looking at.
+     * Every phone measurement in this file was therefore taken from the hidden
+     * mount, and reported Record missing on a 390x844 screen where it renders
+     * perfectly well.
+     *
+     * This is the same defect as the Record probe that read `display` on the
+     * scroller while the ASIDE was what got hidden: the query was correct and
+     * pointed at the wrong element. Pick by what is rendered.
+     */
+    const rail =
+      [...document.querySelectorAll('.rail-scroll')].find((e) => e.offsetParent) ??
+      document.querySelector('.rail-scroll');
     if (!rail) return { error: 'no .rail-scroll' };
     if (getComputedStyle(rail).display === 'none') return { hidden: true };
 
@@ -176,6 +215,48 @@ for (const vp of VIEWPORTS) {
      * failure when the rail is NOT scrollable at this position, because then
      * the fade is promising content that does not exist.
      */
+    /*
+     * THE RAIL MUST NOT SCROLL, at any viewport that shows it.
+     *
+     * This script asserted that Streak was visible and that the fade was
+     * honest, and never that the rail FIT. So a 95px overflow at 1600x1000
+     * passed every check: Streak was fine (it sits outside the scroller), and
+     * the fade was correctly on because there genuinely was more below. The
+     * Rank ladder was cut mid-rung and Record was out of sight, and the suite
+     * was green.
+     *
+     * The requirement is that every card is visible without scrolling. That
+     * is now the assertion rather than an implication of three narrower ones.
+     */
+    /*
+     * RECORD MUST BE REACHABLE.
+     *
+     * Record is allowed to hide on very short windows — it is reference, not
+     * status, and at 1024x400 the rail has 167px for three cards. What is not
+     * allowed is hiding with no way to get to it. The card's own comment said
+     * the figures were still in the progress sheet; the sheet mounts this very
+     * component, so the viewport-height rule hid it in both places and the
+     * defence was circular.
+     *
+     * So the assertion is not "Record is visible" — it is "Record is visible
+     * HERE, or this is the board and the sheet will show it." The sheet
+     * viewports below are the ones that prove the second half.
+     */
+    const recordCard = [...column.querySelectorAll('section')].find(
+      (s2) => s2.querySelector('h2')?.textContent?.trim() === 'Record',
+    );
+    const recordShown = !!recordCard?.offsetParent;
+
+    /*
+     * If Record is hidden, the way to it has to be on screen. That is the
+     * whole of the claim the card's comment used to make for free.
+     */
+    const escapeHatch = [...document.querySelectorAll('button')].some(
+      (b) => /rank and progress/i.test(b.getAttribute('aria-label') ?? '') && b.offsetParent,
+    );
+
+    const overflowPx = Math.max(0, rail.scrollHeight - rail.clientHeight);
+
     const FADE = 28;
     const masked = getComputedStyle(rail).maskImage !== 'none';
     /*
@@ -220,6 +301,9 @@ for (const vp of VIEWPORTS) {
     })();
     return {
       unmanaged,
+      overflowPx,
+      recordShown,
+      escapeHatch,
       ladder,
       railCount: document.querySelectorAll('.rail-scroll').length,
       overflow: Math.max(0, rail.scrollHeight - rail.clientHeight),
@@ -255,6 +339,8 @@ for (const vp of VIEWPORTS) {
     m.overlapsFade > 0 ||
     (m.masked && !m.moreBelow) ||
     m.unmanaged > 0 ||
+    m.overflowPx > 0 ||
+    (!m.recordShown && !m.escapeHatch) ||
     (m.ladder && m.ladder.maxGap > m.ladder.rung) ||
     (m.ladder && m.ladder.spread > 1);
   results.push({ vp, fail, ...m });
@@ -287,7 +373,11 @@ for (const r of results) {
               ? `rank ladder gap ${r.ladder.maxGap}px exceeds its ${r.ladder.rung}px rungs — the rows have stopped reading as one list`
               : r.ladder && r.ladder.spread > 1
                 ? `rank ladder gaps vary by ${r.ladder.spread}px — the rhythm is uneven`
-                : r.unmanaged > 0
+                : !r.recordShown && !r.escapeHatch
+              ? 'Record is hidden and nothing on screen leads to it'
+              : r.overflowPx > 0
+              ? `rail scrolls — ${r.overflowPx}px of cards below the fold; every card must be visible without scrolling`
+              : r.unmanaged > 0
               ? `${r.unmanaged} of ${r.railCount} rail scrollers have no data-fade — nothing manages them, so they can never fade`
               : 'fade is on with nothing below to fade to';
     console.log(`✗  ${label} ${why}  — ${r.vp.note}`);

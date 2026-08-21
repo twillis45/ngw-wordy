@@ -1994,7 +1994,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       </div>
 
       {showWords && (
-        <Sheet onClose={() => setShowWords(false)} label="Your progress">
+        <Sheet onClose={() => setShowWords(false)} label="Your progress" fit>
           <Rail
             gridWords={puzzle.grid}
             found={found}
@@ -2019,7 +2019,15 @@ export default function Game({ data }: { data: PuzzleFile }) {
           }
             hasDefinition={hasDefinition}
             onShowDefinition={openDefinition}
-            howToClassName=""
+            /*
+              How to play is not progress, and it is not orphaned by leaving:
+              the header carries its own button and its own sheet. It was here
+              because the override was blunt rather than because the card
+              belonged, and on an iPhone SE it was 205px of a 545px budget.
+            */
+            howToClassName="hidden"
+            recordClassName="flex flex-col"
+            tight
           />
         </Sheet>
       )}
@@ -2671,10 +2679,28 @@ function Sheet({
   label,
   children,
   onClose,
+  /*
+   * `fit` makes the panel a height-bounded flex column instead of a scrolling
+   * block, so its content shrinks to the panel and the panel itself never
+   * scrolls.
+   *
+   * Opt-in rather than the default, because most sheets SHOULD scroll — How to
+   * play is prose and bounding it would just clip the rules. Only the progress
+   * sheet wants this, and it wants it because its content is a rail: the rail
+   * already knows how to give up space, with a fade that says it did.
+   *
+   * The bug this fixes: the panel is `max-h-[82dvh]`, and `h-full` on the rail
+   * column resolves against a definite height, which a max-height is not. So
+   * the column ignored the bound and grew to its content — 627px inside a
+   * 547px panel — and the 80px it overhung became a scrollbar on the sheet
+   * with the Streak card pushed past the bottom of the screen.
+   */
+  fit = false,
 }: {
   label: string;
   children: React.ReactNode;
   onClose: () => void;
+  fit?: boolean;
 }) {
   const ref = useDialog(onClose);
   const mounted = useMounted();
@@ -2696,18 +2722,26 @@ function Sheet({
         // was a 1900px-wide tap target with its chevron marooned ~1600px from
         // its own label. Centred from md up rather than pinned to the bottom
         // of a tall desktop viewport.
-        className="anim-rise safe-bottom mx-auto max-h-[82dvh] w-full max-w-[560px] overflow-y-auto relative rounded-t-3xl border-t-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-5 pt-4 md:rounded-3xl md:border-2"
+        className={`anim-rise safe-bottom mx-auto w-full max-w-[560px] relative rounded-t-3xl border-t-2 border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-5 pt-4 md:rounded-3xl md:border-2 ${
+          fit ? 'flex flex-col overflow-hidden max-h-[94dvh]' : 'overflow-y-auto max-h-[82dvh]'
+        }`}
       >
         {/* Grab handle — signals "drag or tap away", costs one element. */}
         <div
           aria-hidden
           className="mx-auto mb-4 h-1 w-10 rounded-full bg-edge/40"
         />
-        {children}
+        {/* min-h-0 so the flex child may shrink below its content; without it
+            flex items floor at min-content and the bound does nothing. */}
+        {fit ? (
+          <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+        ) : (
+          children
+        )}
         <button
           type="button"
           onClick={onClose}
-          className="mt-4 h-11 w-full rounded-full border-2 border-edge-mid text-body text-text-secondary"
+          className="mt-4 h-11 w-full shrink-0 rounded-full border-2 border-edge-mid text-body text-text-secondary"
         >
           Close
         </button>
