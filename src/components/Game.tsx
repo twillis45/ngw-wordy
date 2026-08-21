@@ -25,6 +25,9 @@ import { feedback, setHapticsMuted, setMuted } from '@/lib/feedback';
 import {
   backupLink,
   beatFromHash,
+  chainFromHash,
+  chainToHash,
+  placeIn,
   codeFromHash,
   puzzleFromHash,
   themeFromHash,
@@ -183,6 +186,14 @@ export default function Game({ data }: { data: PuzzleFile }) {
   /* A score from a challenge link. Held back until the receiver has submitted
      their own, because two seats quit against a visible target. */
   const [beatTarget, setBeatTarget] = useState<number | null>(null);
+  /*
+   * Every score already played on this board, oldest first — the ladder.
+   *
+   * Held rather than shown for the same reason `beatTarget` is: seeing what
+   * to beat before you have played is being handed the answer to how hard to
+   * try. It is revealed with the placement, after submission.
+   */
+  const [chain, setChain] = useState<number[] | null>(null);
 
   /*
    * Lets the id -> base re-key resolve which board a saved number meant.
@@ -678,6 +689,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
     const n = puzzleFromHash(hash);
     const themeId = themeFromHash(hash);
     const beat = beatFromHash(hash);
+    const ladder = chainFromHash(hash);
     if (n === null && themeId === null) return;
     history.replaceState(null, '', window.location.pathname + window.location.search);
 
@@ -702,6 +714,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
     setOffset(offsetForIndex(data, today, index));
     // Held, not shown. It is revealed only once they have submitted their own.
     if (beat !== null) setBeatTarget(beat);
+    if (ladder !== null) setChain(ladder);
   }, [data, today]);
   /* eslint-enable react-hooks/set-state-in-effect */
 
@@ -1343,8 +1356,25 @@ export default function Game({ data }: { data: PuzzleFile }) {
    */
   const challenge = async () => {
     const n = isDaily ? dailyIndex(today, dailyPoolSize(data)) + 1 : index + 1;
-    const url = `${origin().replace(/\/$/, '')}/#play=${n}&beat=${score}`;
-    const text = `I scored ${score} on ${puzzle.theme?.name ?? 'Six on the Dial'}. Your turn.`;
+    /*
+     * Pass the LADDER on, not just this score.
+     *
+     * `beat=` ends a chain: whoever receives it plays one round against one
+     * number and the thread stops there. `chain=` carries everyone who has
+     * played, so a link going round a group comes back knowing all of it —
+     * and the whole ladder lives in the URL those people are already sending
+     * each other. No server, no account, no identity.
+     *
+     * `beat=` is still emitted alongside it so a link built by this version
+     * still means something to a client that only understands the old one.
+     */
+    const ladder = chainToHash(chain ?? [], score);
+    const url = `${origin().replace(/\/$/, '')}/#play=${n}&beat=${score}&chain=${ladder}`;
+    const played = ladder.split('.').length;
+    const text =
+      played > 1
+        ? `${played} of us have played ${puzzle.theme?.name ?? 'Six on the Dial'}. I got ${score}. Your turn.`
+        : `I scored ${score} on ${puzzle.theme?.name ?? 'Six on the Dial'}. Your turn.`;
     try {
       if (navigator.share) return void (await navigator.share({ text, url }));
       await navigator.clipboard.writeText(`${text}\n${url}`);
@@ -2525,6 +2555,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
              four seats rejected. It can only return after 30 days. */
           onDismissBackup={() => markBackupOffered()}
           beatTarget={beatTarget}
+          chain={chain}
           onReply={replyToChallenge}
           onChallenge={challenge}
           onShareTheme={shareTheme}
@@ -2768,6 +2799,7 @@ function CompleteSheet({
   onBackup,
   onDismissBackup,
   beatTarget,
+  chain,
   onReply,
   onChallenge,
   onShareTheme,
@@ -2789,6 +2821,8 @@ function CompleteSheet({
   onBackup: () => void;
   onDismissBackup: () => void;
   beatTarget: number | null;
+  /** Every score played on this board before yours — the ladder. */
+  chain: number[] | null;
   onReply: () => void;
   onChallenge: () => void;
   onShareTheme: () => void;
@@ -2863,6 +2897,45 @@ function CompleteSheet({
             <Stat key={s.label} label={s.label} value={s.value} />
           ))}
         </dl>
+
+        {/*
+          The LADDER, revealed at the same moment and above the duel.
+
+          Withheld until now for the same reason the beat target is: seeing
+          what four other people scored before you play is being told how hard
+          to try. It sits above the head-to-head because a placement is the
+          more interesting fact once more than two people have played — "third
+          of five" says something "you beat Sam" does not.
+
+          Honour system, and it says so. The numbers travelled in a URL that
+          anybody in the thread could have edited, and no client-side scheme
+          can fix that — signing needs a secret and there is no server to hold
+          one, which is the same constraint that makes the ladder possible at
+          all. So it is never called a ranking, and the wording stays casual:
+          this is for people who know each other.
+        */}
+        {chain !== null && chain.length > 0 && (
+          <div className="mt-4 rounded-xl border border-edge-mid px-4 py-3 text-center">
+            {(() => {
+              const { place, of } = placeIn(chain, score);
+              const best = Math.max(...chain, score);
+              return (
+                <>
+                  <p className="text-body font-semibold text-text-primary">
+                    {place === 1
+                      ? `Top of ${of}`
+                      : `${place}${place === 2 ? 'nd' : place === 3 ? 'rd' : 'th'} of ${of}`}
+                  </p>
+                  <p className="mt-0.5 text-meta text-text-muted">
+                    {place === 1
+                      ? 'Nobody in this thread has beaten it yet.'
+                      : `Best so far is ${best}. Send it on and see who else can.`}
+                  </p>
+                </>
+              );
+            })()}
+          </div>
+        )}
 
         {/*
           The challenge result, revealed only NOW.
