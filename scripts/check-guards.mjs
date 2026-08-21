@@ -171,6 +171,14 @@ const MUTATIONS = [
     why: 'a drag spells different letters than the ones it crossed once the dial has turned',
   },
   {
+    name: 'accent applies to matte only',
+    file: 'src/lib/accent.ts',
+    from: "  if (next === 'default') delete document.documentElement.dataset.accent;\n  else document.documentElement.dataset.accent = next;",
+    to: "  if (next === 'matte') document.documentElement.dataset.accent = next;\n  else delete document.documentElement.dataset.accent;",
+    guard: 'check-settings',
+    why: 'the control says Tide and the page stays green — a setting that does not take',
+  },
+  {
     name: 'dial glyph wrapper removed',
     file: 'src/components/LetterWheel.tsx',
     from: 'className="dial-glyph"',
