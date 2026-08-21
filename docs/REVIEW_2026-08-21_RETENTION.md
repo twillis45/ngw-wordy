@@ -135,9 +135,20 @@ Gaps against leaders, ranked by the board:
 4. **118 themed packs are invisible as a collection.** (Completionist.) The
    catalogue is the product's pricing power and there is no progress surface
    for it.
-5. **No reason to open the app on a day you do not want to play.** (Daily
-   ritual.) No archive browse, no "yesterday's answers", no light-touch
-   surface.
+5. ~~**No reason to open the app on a day you do not want to play.** No
+   archive browse, no light-touch surface.~~ **WITHDRAWN 2026-08-21 — this
+   finding was wrong.** There is a browse surface, reached from the header:
+   shelves, fourteen themed packs, each with its authored blurb and its own
+   progress count. It predates this review. I recorded the gap without opening
+   the sheet, from code greps and the main board screen — the same mistake as
+   auditing the share card without reading the share code, made twice in one
+   day.
+
+   What survives is smaller and real: the control that opens it is labelled
+   with WHERE YOU ARE ("Warm-up 1 of 2") rather than what it does, so a screen
+   reader heard a status with a popup and no indication of the catalogue
+   behind it. That is now fixed. The finding above was, in effect, a report of
+   that discoverability problem written by someone who had fallen for it.
 6. **The interrupted player is unmeasured.** (Interrupted player.) One-handed
    reach on the dial has never been checked, and there is an open, unresolved
    report of the wrong letters being selected while dragging.
