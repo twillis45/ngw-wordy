@@ -314,6 +314,39 @@ any meaning-bearing signal is silenced or still moves.
 
 ---
 
+## Rank marks
+
+Redrawn 2026-08-21 after the board scored the previous ladder **1/10**. Built
+by `npm run ranks`, guarded by `npm run check:ranks`.
+
+**The mark IS the ladder.** The game is six letters on a dial and six rows to
+fill, so a rank mark is the dial and rank is how many of the six are lit —
+Novice none, Complete all six. That comes from the rules rather than from
+taste, which is why it cannot be borrowed by anything that is not also
+six-and-six, and why the ranks and the app mark are finally one object instead
+of two visual languages shipping together.
+
+**Three redundant channels, ordered:**
+
+| Channel | Carries |
+|---|---|
+| Count | how many dots are lit — ordered by construction |
+| Value | lit dots brighten up the ladder, 46.8 → 147.1 of 255 |
+| Size | lit dots are fractionally larger — the last thing legible at 16px |
+
+**What the old ladder did wrong**, kept here because it is the reason for
+every rule above. Seven photorealistic renders, measured at 32px: luminance
+ran 31.6, 49.7, 47.5, 47.9, 40.8, 62.1, 57.7. Three adjacent pairs under 5 of
+255 apart, and NOT monotonic — a player climbing from Solid to Fluent watched
+their mark get darker. Form differed but did not order either. The whole
+ladder spanned 30.5 of 255; this one spans 100.3, and holds its order with hue
+removed.
+
+**Never encode a rank in hue alone.** Roughly 8% of men have colour-vision
+deficiency, and the reward surface is the last place to spend that.
+
+---
+
 ## Accessibility commitments
 
 - Every pinned contrast ratio lives in `src/lib/contrast.test.ts`, which
