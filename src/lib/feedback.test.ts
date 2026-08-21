@@ -155,3 +155,66 @@ describe('the sound set is in one key', () => {
     expect(Math.abs(cents), `${hz}Hz is ${Math.round(cents)} cents off ${name}`).toBeLessThan(10);
   });
 });
+
+/*
+ * Intensity has to scale the feedback WITHOUT reshaping it.
+ *
+ * The whole rhythm vocabulary rests on relative shape: one light tick to
+ * select, a firm double to bank, a broken triple to reject. A multiplier that
+ * flattened those into each other would make the game louder and less
+ * legible at the same time — and the failure would be invisible in code
+ * review, because every number would still be "bigger".
+ */
+import { INTENSITY_LABELS, INTENSITY_ORDER, nextIntensity } from './feedback';
+
+describe('feedback intensity', () => {
+  it('cycles through every level and returns to the start', () => {
+    let cur = INTENSITY_ORDER[0];
+    const seen = [cur];
+    for (let i = 0; i < INTENSITY_ORDER.length - 1; i++) {
+      cur = nextIntensity(cur);
+      seen.push(cur);
+    }
+    expect(seen).toEqual(INTENSITY_ORDER);
+    expect(nextIntensity(cur)).toBe(INTENSITY_ORDER[0]);
+  });
+
+  it('labels every level', () => {
+    for (const level of INTENSITY_ORDER) {
+      expect(INTENSITY_LABELS[level]).toBeTruthy();
+    }
+  });
+
+  /*
+   * The ordering that matters, asserted on the SOURCE multipliers rather than
+   * on a rendered buzz, because there is no vibration motor in a test runner.
+   * A tap must stay the shortest rhythm at every intensity — scaling is
+   * uniform, so the ordering is preserved by construction, and this is the
+   * test that would catch somebody making it per-rhythm later.
+   */
+  it('scales every rhythm by the same factor, so the shapes survive', () => {
+    const src = readFileSync(new URL('./feedback.ts', import.meta.url), 'utf8');
+    const buzzLine = src.match(/const INTENSITY_BUZZ[^;]+;/s)?.[0] ?? '';
+    const gainLine = src.match(/const INTENSITY_GAIN[^;]+;/s)?.[0] ?? '';
+    for (const level of INTENSITY_ORDER) {
+      expect(buzzLine, `INTENSITY_BUZZ is missing ${level}`).toContain(level);
+      expect(gainLine, `INTENSITY_GAIN is missing ${level}`).toContain(level);
+    }
+    // normal must be the identity, or "normal" is a lie about the default.
+    expect(gainLine).toMatch(/normal:\s*1\b/);
+    expect(buzzLine).toMatch(/normal:\s*1\b/);
+  });
+
+  /*
+   * `strong` stops at 1.4 on the audio because the bus feeds a limiter at
+   * -12dB and the prize already stacks four voices over a sustained root.
+   * Doubling would not arrive as twice as loud, it would arrive compressed.
+   */
+  it('does not push the audio into the limiter', () => {
+    const src = readFileSync(new URL('./feedback.ts', import.meta.url), 'utf8');
+    const gains = src.match(/const INTENSITY_GAIN[^;]+;/s)?.[0] ?? '';
+    const strong = Number(gains.match(/strong:\s*([\d.]+)/)?.[1]);
+    expect(strong).toBeGreaterThan(1);
+    expect(strong).toBeLessThanOrEqual(1.5);
+  });
+});

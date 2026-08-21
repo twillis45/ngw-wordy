@@ -13,6 +13,87 @@
 
 let ctx: AudioContext | null = null;
 let muted = false;
+
+/*
+ * FEEDBACK INTENSITY, a player setting rather than a number I choose.
+ *
+ * A report that "the whole thing feels muted" was answered first by turning
+ * the bus up, which was right and still a guess: perceived loudness and haptic
+ * strength are device-dependent in ways nothing here can measure. A phone
+ * speaker, a laptop, and a motor that rounds a 15ms pulse away are three
+ * different products, and picking one level for all of them means being wrong
+ * for two.
+ *
+ * Same reasoning that put the TEXT SCALE under the player's control instead of
+ * choosing one size. The difference is that this one has an off position that
+ * is not the same as mute: muting silences sound and deliberately leaves
+ * haptics alone, because the player who mutes in a meeting is the one who most
+ * needs the other channel. Intensity scales BOTH, which is what somebody means
+ * when they say the game feels weak.
+ */
+export type Intensity = 'soft' | 'normal' | 'strong';
+export const INTENSITY_KEY = 'ngw-wordy/feedback';
+export const INTENSITY_ORDER: Intensity[] = ['soft', 'normal', 'strong'];
+export const INTENSITY_LABELS: Record<Intensity, string> = {
+  soft: 'Soft',
+  normal: 'Normal',
+  strong: 'Strong',
+};
+
+/*
+ * The multipliers are deliberately modest at the top. `strong` is 1.4 and not
+ * 2: the bus feeds a limiter at -12dB and the prize already stacks four voices
+ * over a sustained root, so doubling would not get twice as loud, it would get
+ * compressed and duller. 1.4 is the most that still arrives as level rather
+ * than as squash.
+ */
+const INTENSITY_GAIN: Record<Intensity, number> = { soft: 0.6, normal: 1, strong: 1.4 };
+/*
+ * Haptics scale further, because the floor is the problem. Many phone motors
+ * round a short pulse away entirely, so `soft` shortens gently while `strong`
+ * nearly doubles — the difference between feeling the dial and wondering
+ * whether you touched it.
+ */
+const INTENSITY_BUZZ: Record<Intensity, number> = { soft: 0.7, normal: 1, strong: 1.8 };
+
+let intensity: Intensity = 'normal';
+
+export function getIntensity(): Intensity {
+  return intensity;
+}
+
+export function setIntensity(next: Intensity) {
+  intensity = next;
+  // The bus may already exist; move it now rather than at the next sound.
+  if (bus) bus.gain.value = BUS_BASE * INTENSITY_GAIN[intensity];
+  try {
+    if (next === 'normal') window.localStorage.removeItem(INTENSITY_KEY);
+    else window.localStorage.setItem(INTENSITY_KEY, next);
+  } catch {
+    /* storage unavailable — the setting still holds for this session */
+  }
+  listeners.forEach((l) => l());
+}
+
+export function nextIntensity(cur: Intensity): Intensity {
+  return INTENSITY_ORDER[(INTENSITY_ORDER.indexOf(cur) + 1) % INTENSITY_ORDER.length];
+}
+
+/** Read once on load; the caller applies it. */
+export function storedIntensity(): Intensity {
+  try {
+    const v = window.localStorage.getItem(INTENSITY_KEY);
+    return v === 'soft' || v === 'strong' ? v : 'normal';
+  } catch {
+    return 'normal';
+  }
+}
+
+const listeners = new Set<() => void>();
+export function subscribeFeedback(l: () => void): () => void {
+  listeners.add(l);
+  return () => listeners.delete(l);
+}
 /*
  * Haptics are a SEPARATE channel from audio.
  *
@@ -60,6 +141,9 @@ function audio(): AudioContext | null {
  * clipping on a phone speaker reads as a broken app rather than a triumph.
  */
 let bus: GainNode | null = null;
+/** The level everything is mixed against; intensity scales THIS, not each sound. */
+const BUS_BASE = 0.7;
+
 function output(ac: AudioContext): GainNode {
   if (bus) return bus;
   const gain = ac.createGain();
@@ -76,7 +160,7 @@ function output(ac: AudioContext): GainNode {
    * a tap is still lighter than a bank, a bank still lighter than the prize.
    * Turning up eight sounds individually is how a mix stops being a mix.
    */
-  gain.gain.value = 0.7;
+  gain.gain.value = BUS_BASE * INTENSITY_GAIN[intensity];
   const limiter = ac.createDynamicsCompressor();
   limiter.threshold.value = -12;
   limiter.ratio.value = 6;
@@ -276,6 +360,20 @@ export function pulseCount(r: Rhythm): number {
 
 function buzz(r: Rhythm) {
   if (typeof navigator === 'undefined' || hapticsMuted) return;
+
+  /*
+   * Scaled here rather than at each call site, so every rhythm keeps its
+   * shape: a tap stays the shortest thing in the file at any intensity, and a
+   * bank stays a firm double. Rounded because a fractional millisecond means
+   * nothing to a vibration motor.
+   */
+  const k = INTENSITY_BUZZ[intensity];
+  if (k !== 1) {
+    r = {
+      pulses: r.pulses.map((n) => Math.max(1, Math.round(n * k))),
+      gaps: r.gaps.map((n) => Math.max(1, Math.round(n * k))),
+    };
+  }
 
   // Android/Chromium: the real API, with real durations.
   if ('vibrate' in navigator) {

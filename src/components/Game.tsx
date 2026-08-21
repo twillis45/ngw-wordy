@@ -23,7 +23,16 @@ import {
   SoundIcon,
   SunIcon,
 } from './Icon';
-import { feedback, setHapticsMuted, setMuted } from '@/lib/feedback';
+import {
+  feedback,
+  setHapticsMuted,
+  setMuted,
+  setIntensity,
+  storedIntensity,
+  nextIntensity,
+  INTENSITY_LABELS,
+  type Intensity,
+} from '@/lib/feedback';
 import { reminderIcs, REMINDER_FILENAME } from '@/lib/reminder';
 import {
   backupLink,
@@ -1537,6 +1546,28 @@ export default function Game({ data }: { data: PuzzleFile }) {
     return () => window.removeEventListener('resize', read);
   }, [textScale]);
 
+  /*
+   * Feedback intensity. Restored on mount rather than through a no-flash
+   * script: this changes nothing you can see, so there is no flash to avoid,
+   * and it costs one render instead of a blocking inline script.
+   */
+  const [intensity, setIntensityState] = useState<Intensity>('normal');
+  useEffect(() => {
+    const stored = storedIntensity();
+    setIntensityState(stored);
+    setIntensity(stored);
+  }, []);
+
+  const cycleIntensity = useCallback(() => {
+    setIntensityState((cur) => {
+      const next = nextIntensity(cur);
+      setIntensity(next);
+      // Play the thing being tuned, so the choice is audible as it is made.
+      feedback.correct(0);
+      return next;
+    });
+  }, []);
+
   const scaledText = rootPx > 17;
 
   /*
@@ -2524,6 +2555,37 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 className="liquid-interactive h-10 shrink-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
               >
                 {TEXT_LABEL[textScale]}
+              </button>
+            </div>
+
+            {/*
+              INTENSITY, not a fixed level.
+              
+              Reported as "the whole thing feels muted", and the first answer
+              was to turn the bus up — right, and still a guess. Perceived
+              loudness and haptic strength are device-dependent in ways nothing
+              in this repo can measure: a phone speaker, a laptop and a motor
+              that rounds a short pulse away are three different products, and
+              one level is wrong for two of them.
+              
+              Cycling it fires the `correct` sound, so the choice is audible at
+              the moment it is made rather than the next time a word lands.
+            */}
+            <div className="mt-4 flex items-center justify-between gap-4 border-t border-edge-mid pt-4">
+              <div className="min-w-0">
+                <p className="text-meta font-medium text-text-primary">Feedback</p>
+                <p className="mt-0.5 text-kicker leading-snug text-text-muted">
+                  How firm the sound and the buzz are. Separate from muting —
+                  this changes both channels at once.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={cycleIntensity}
+                aria-label={`Feedback strength: ${INTENSITY_LABELS[intensity]}. Tap to change.`}
+                className="liquid-interactive h-10 shrink-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
+              >
+                {INTENSITY_LABELS[intensity]}
               </button>
             </div>
 
