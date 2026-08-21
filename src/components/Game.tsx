@@ -1503,7 +1503,40 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * the cards rather than added to a scrollable list, then Record, which is
    * reference rather than status and is reachable from the progress sheet.
    */
-  const scaledText = textScale !== 'default';
+  /*
+   * MEASURE the root font size; do not infer it from our own control.
+   *
+   * `textScale !== 'default'` was wrong, and wrong in the direction that
+   * hides the bug from every test. It asks whether the player turned text up
+   * in OUR setting, when the thing that actually governs every `rem` on the
+   * page is the browser's own default font size — a Chrome accessibility
+   * preference we neither set nor can see from CSS.
+   *
+   * Measured on a reader's machine: Chrome's font size set to Large gives a
+   * 20px root at our `default` scale, which made the Rank card 450px instead
+   * of ~300 and overflowed the rail by 112px while `data-text` read
+   * "default" and every guard I ran at Chrome's stock 16px came back clean.
+   * Three separate investigations missed it because the guard and the reader
+   * were not running the same browser settings.
+   *
+   * One number covers both axes. Our own scales multiply the browser's value
+   * — large is 115% of whatever it already was — so the computed root px is
+   * the only thing that has to be read. 17 is the threshold because 16 is the
+   * stock default and the next step up any browser offers clears it.
+   */
+  const [rootPx, setRootPx] = useState(16);
+  useEffect(() => {
+    const read = () =>
+      setRootPx(
+        parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
+      );
+    read();
+    // Zooming and changing the browser font both fire resize.
+    window.addEventListener('resize', read);
+    return () => window.removeEventListener('resize', read);
+  }, [textScale]);
+
+  const scaledText = rootPx > 17;
 
   const rail = (
     <Rail
