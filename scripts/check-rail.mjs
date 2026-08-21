@@ -96,6 +96,12 @@ const VIEWPORTS = [
   { w: 1600, h: 1130, note: 'first height where how-to is meant to show' , play: true },
   { w: 2560, h: 1400, note: 'large desktop, how-to showing with room' },
   /*
+   * 1294, not 1400. This is the reader's real window, and the difference
+   * matters: at a 20px root the broken build overflows 102px here and 0px at
+   * 1400. A viewport list assembled from round numbers had no way to catch it.
+   */
+  { w: 2560, h: 1294, note: "the reader's own window — 20px root broke here" },
+  /*
    * Phones, where the rail lives inside the progress SHEET rather than beside
    * the board — which is why they were never in this list. They are here now
    * because the rail is rendered twice, and for a while only one of the two
@@ -222,11 +228,7 @@ for (const vp of VIEWPORTS) {
        * navigation, one context, no race.
        */
       localStorage.removeItem('ngw-wordy/v2');
-      if (t === 'browser20') {
-        localStorage.removeItem('ngw-wordy/text');
-        // Stand in for the browser preference, before the app's first line.
-        document.documentElement.style.fontSize = '20px';
-      } else if (t === 'default') {
+      if (t === 'browser20' || t === 'default') {
         localStorage.removeItem('ngw-wordy/text');
       } else {
         localStorage.setItem('ngw-wordy/text', t);
@@ -248,6 +250,23 @@ for (const vp of VIEWPORTS) {
    * The settle below is what the measurement actually needs: the rail laid
    * out, which is a layout event and not a network one.
    */
+  /*
+   * CHROME'S OWN FONT SETTING, via CDP — not a style on <html>.
+   *
+   * The first version of this axis assigned `documentElement.style.fontSize`
+   * inside `evaluateOnNewDocument`, which runs before the document exists: the
+   * assignment threw into its own catch and did nothing, and 26 rows passed
+   * measuring a 16px root while claiming to measure 20. Reverting the fix they
+   * exist to protect produced no failures at all.
+   *
+   * `Page.setFontSizes` is the actual preference the reader had changed, and
+   * it reproduces their numbers: 20px root, 102px of overflow before the fix,
+   * 0 after — matching what was measured in their own browser.
+   */
+  if (text === 'browser20') {
+    const cdp = await page.createCDPSession();
+    await cdp.send('Page.setFontSizes', { fontSizes: { standard: 20, fixed: 20 } });
+  }
   await page.goto(`${base}/`, { waitUntil: 'domcontentloaded' });
   await new Promise((r) => setTimeout(r, 700));
 

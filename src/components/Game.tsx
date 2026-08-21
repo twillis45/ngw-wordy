@@ -1542,13 +1542,29 @@ export default function Game({ data }: { data: PuzzleFile }) {
     <Rail
       tight={scaledText}
       howToClassName={scaledText ? 'hidden' : undefined}
+      /*
+       * Record yields to HEIGHT, and how much height it needs depends on how
+       * big the text is. It is the designated give-way card — reference
+       * rather than status, and reachable from the progress sheet — so it is
+       * the right thing to spend when how-to and a compact ladder are not
+       * enough.
+       *
+       * 1080 at `larger`: an iPad portrait at 132% cleared the old 1000 by
+       * 24px and then overflowed by 1, on a number that predates the text
+       * scale existing.
+       *
+       * 1000 for any other scaled text, which is what a 20px browser root
+       * needs. Measured with that root: 1133x744 over by 21px, 1180x820 by
+       * 27, 1194x834 by 13 and 1440x900 by 5 — all four are laptops and
+       * tablets belonging to someone who set Chrome's font size to Large, and
+       * all four fit once this card stands down.
+       */
       recordClassName={
         textScale === 'larger'
-          ? // 1080, not 1000. At 132% an iPad portrait (768x1024) cleared the
-            // old threshold by 24px and then overflowed by 1 — the card was
-            // being let in by a number that predates the text scale existing.
-            'hidden [@media(min-height:1080px)]:flex [@media(min-height:1080px)]:flex-col'
-          : undefined
+          ? 'hidden [@media(min-height:1080px)]:flex [@media(min-height:1080px)]:flex-col'
+          : scaledText
+            ? 'hidden [@media(min-height:1000px)]:flex [@media(min-height:1000px)]:flex-col'
+            : undefined
       }
       gridWords={puzzle.grid}
       found={found}
