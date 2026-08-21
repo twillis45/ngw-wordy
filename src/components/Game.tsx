@@ -1759,7 +1759,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
           type="button"
           onClick={() => setShowRules(true)}
           aria-haspopup="dialog"
-          aria-label="How to play"
+          aria-label="How to play, and settings"
           className="liquid-interactive relative grid h-9 w-9 place-items-center rounded-full border-2 border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] text-text-primary transition-colors hover:border-edge hover:text-text-primary touch:h-11 touch:w-11"
         >
           <HelpIcon />
@@ -2481,8 +2481,25 @@ export default function Game({ data }: { data: PuzzleFile }) {
         </Sheet>
       )}
 
+      {/*
+        The label names BOTH jobs, because the sheet does both.
+          
+        The review board raised this and I deferred it, then made it worse by
+        adding two more settings rows the same day. A player who wants the
+        game louder, or a reminder, has to open a control labelled "How to
+        play" — and a screen-reader user navigating by dialog name has no
+        reason to ever open it.
+          
+        Renaming is the honest half of the fix. The larger half — a separate
+        entry point in the header — is a real change to a header that already
+        carries four controls, and it should be its own decision rather than
+        something smuggled in beside a rename.
+      */}
       {showRules && (
-        <Sheet onClose={() => setShowRules(false)} label="How to play">
+        <Sheet
+          onClose={() => setShowRules(false)}
+          label="How to play, and settings"
+        >
           <div className="relative rounded-2xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4">
             <h2 className="mb-3 text-item font-semibold text-text-primary">
               How to play
@@ -2535,7 +2552,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
             the backup code for exactly that reason.
           */}
           <div className="mt-4 rounded-2xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-5">
-            <h2 className="text-title font-bold leading-tight text-text-primary">Reading</h2>
+            {/*
+              "Settings", not "Reading".
+              
+              It was named for what it held when it held one thing: a text
+              scale. It now carries feedback strength, a daily reminder and the
+              accent, none of which are reading — and a heading that describes
+              a third of its contents is worse than a generic one, because it
+              tells a player looking for the other two that they are in the
+              wrong place.
+            */}
+            <h2 className="text-title font-bold leading-tight text-text-primary">Settings</h2>
             <p className="mt-1.5 mb-3 text-meta leading-relaxed text-text-muted">
               These travel with your backup link, so a new phone arrives set up
               the way you left it.
