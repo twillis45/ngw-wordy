@@ -186,8 +186,41 @@ for (const vp of VIEWPORTS) {
     const unmanaged = [...document.querySelectorAll('.rail-scroll')].filter(
       (el) => el.dataset.fade !== 'true' && el.dataset.fade !== 'false',
     ).length;
+
+    /*
+     * The rank ladder's RHYTHM.
+     *
+     * The rungs used to be spread with `justify-between` to fill whatever
+     * height the card had, on the reasoning that a growing list should add
+     * space between rows rather than leave a pool at the bottom. Measured
+     * across the sizes this rail actually runs at, the gap between rungs went
+     * from 0.9px at 898x586 to 108.8px at 1024x1366 — a 120x swing, ending
+     * three and a half times the height of the rows it separated, at which
+     * point eight rungs stop reading as one list.
+     *
+     * The invariant is a rhythm, not a number: whatever the gap resolves to,
+     * it must stay smaller than the rows it is separating. That is what every
+     * app doing this well holds to — Duolingo, Mimo, Speak, Life Reset and
+     * Agoda all keep tier rows contiguous and let the leftover sit outside
+     * the list.
+     */
+    const ladder = (() => {
+      const ol = [...document.querySelectorAll('ol')].find(
+        (o) => o.querySelectorAll('li').length > 4,
+      );
+      if (!ol) return null;
+      const rows = [...ol.querySelectorAll('li')].map((e) => e.getBoundingClientRect());
+      const gaps = [];
+      for (let i = 1; i < rows.length; i++) gaps.push(rows[i].top - rows[i - 1].bottom);
+      return {
+        rung: +rows[0].height.toFixed(1),
+        maxGap: +Math.max(...gaps).toFixed(1),
+        spread: +(Math.max(...gaps) - Math.min(...gaps)).toFixed(1),
+      };
+    })();
     return {
       unmanaged,
+      ladder,
       railCount: document.querySelectorAll('.rail-scroll').length,
       overflow: Math.max(0, rail.scrollHeight - rail.clientHeight),
       /*
@@ -221,7 +254,9 @@ for (const vp of VIEWPORTS) {
     m.belowFold > 0 ||
     m.overlapsFade > 0 ||
     (m.masked && !m.moreBelow) ||
-    m.unmanaged > 0;
+    m.unmanaged > 0 ||
+    (m.ladder && m.ladder.maxGap > m.ladder.rung) ||
+    (m.ladder && m.ladder.spread > 1);
   results.push({ vp, fail, ...m });
 }
 
@@ -248,7 +283,11 @@ for (const r of results) {
           ? `Streak ${r.belowFold}px below the viewport`
           : r.overlapsFade > 0
             ? `Streak overlaps the fade by ${r.overlapsFade}px`
-            : r.unmanaged > 0
+            : r.ladder && r.ladder.maxGap > r.ladder.rung
+              ? `rank ladder gap ${r.ladder.maxGap}px exceeds its ${r.ladder.rung}px rungs — the rows have stopped reading as one list`
+              : r.ladder && r.ladder.spread > 1
+                ? `rank ladder gaps vary by ${r.ladder.spread}px — the rhythm is uneven`
+                : r.unmanaged > 0
               ? `${r.unmanaged} of ${r.railCount} rail scrollers have no data-fade — nothing manages them, so they can never fade`
               : 'fade is on with nothing below to fade to';
     console.log(`✗  ${label} ${why}  — ${r.vp.note}`);
