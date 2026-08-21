@@ -14,6 +14,7 @@ import WordTray from './WordTray';
 import RankBar from './RankBar';
 import Rail from './Rail';
 import { playerRecord } from '@/lib/record';
+import { withBase } from '@/lib/basePath';
 import {
   ChevronIcon,
   FullscreenIcon,
@@ -124,6 +125,7 @@ import {
   submit,
   type Puzzle,
   type PuzzleFile,
+  RANK_NAMES,
 } from '@/lib/game';
 import {
   applyProgress,
@@ -2601,6 +2603,26 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onChallenge={challenge}
           onShareTheme={shareTheme}
           themeName={puzzle.theme?.name ?? null}
+          /*
+           * Counted here rather than in `playerRecord`, because that answers
+           * "how far through the catalogue am I" and this answers "how far
+           * through THIS pack" — a different question that only exists while
+           * a specific board is on screen.
+           */
+          packDone={
+            puzzle.theme
+              ? data.puzzles.filter(
+                  (q) =>
+                    q.theme?.id === puzzle.theme?.id &&
+                    progress.clearedIds.includes(String(q.id))
+                ).length
+              : 0
+          }
+          packTotal={
+            puzzle.theme
+              ? data.puzzles.filter((q) => q.theme?.id === puzzle.theme?.id).length
+              : 0
+          }
         />
       )}
     </main>
@@ -2823,6 +2845,20 @@ function ControlButton({
   );
 }
 
+/**
+ * Where a rank's mark lives.
+ *
+ * Lower-cased name, matched to the file the generator writes. Falls back to
+ * Novice rather than rendering a broken image if a rank name ever changes
+ * without the marks being rebuilt — a missing mark should look like the
+ * bottom of the ladder, not like a fault.
+ */
+function rankMarkSrc(rank: string): string {
+  const i = RANK_NAMES.indexOf(rank as (typeof RANK_NAMES)[number]);
+  const at = i >= 0 ? i : 0;
+  return withBase(`/brand/ranks/rank-${at}-${RANK_NAMES[at].toLowerCase()}.svg`);
+}
+
 function CompleteSheet({
   rank,
   score,
@@ -2845,6 +2881,8 @@ function CompleteSheet({
   onChallenge,
   onShareTheme,
   themeName,
+  packDone,
+  packTotal,
 }: {
   rank: string;
   score: number;
@@ -2868,6 +2906,9 @@ function CompleteSheet({
   onChallenge: () => void;
   onShareTheme: () => void;
   themeName: string | null;
+  /** Boards cleared in this board's pack, and how many it has. */
+  packDone: number;
+  packTotal: number;
 }) {
   /*
    * This is the only sheet in the app that was not a dialog.
@@ -2916,7 +2957,52 @@ function CompleteSheet({
               ? "Today's puzzle cleared"
               : 'Puzzle cleared'}
         </p>
-        <h2 className="mt-1 text-hero font-bold text-text-primary">{rank}</h2>
+        {/*
+          The rank you EARNED, drawn, beside its name.
+
+          Apple News gives a solved puzzle a ribbon and a full screen; ours
+          closed over the board with a number. The mark is not decoration
+          here — it is the dial with as many positions lit as rows you filled,
+          so it states the result in the game's own terms and a player can see
+          at a glance how much of the wheel they spent. Served from
+          public/brand/ranks, written by the same generator as the kit's copy,
+          so the mark you earn and the mark in the brand kit cannot drift.
+
+          `aria-hidden` because the name beside it already says it, and a
+          screen reader hearing "rank 5 of 6" and then "Wordsmith" is hearing
+          the same fact twice.
+        */}
+        <div className="mt-1 flex items-center gap-3">
+          <img
+            aria-hidden
+            src={rankMarkSrc(rank)}
+            alt=""
+            width={56}
+            height={56}
+            className="shrink-0"
+          />
+          <h2 className="text-hero font-bold text-text-primary">{rank}</h2>
+        </div>
+
+        {/*
+          Where this board sits in its pack.
+
+          The sheet said what you scored and how many warm-ups were left, and
+          nothing about the thing a player is actually working through. 118
+          themed packs are the half of this product with pricing power, and
+          finishing a board inside one is the moment that fact is most worth
+          stating — "4 of 6 in The Pit" is a reason to open the next one, where
+          a bare score is not.
+
+          Only when the pack has more than one board, because "1 of 1" is not
+          progress, it is a sentence about nothing.
+        */}
+        {themeName && packTotal > 1 && (
+          <p className="mt-2 text-meta text-text-secondary">
+            {packDone} of {packTotal} in {themeName}
+            {packDone === packTotal ? ' — pack complete' : ''}
+          </p>
+        )}
 
         {/*
           Only the stats that can mean something yet — see `completionStats`.

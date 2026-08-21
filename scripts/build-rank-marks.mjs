@@ -41,7 +41,14 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+/*
+ * TWO destinations, one definition. `docs/brand/ranks` is the kit's copy and
+ * `public/brand/ranks` is the one the app actually serves — written from the
+ * same generator so the mark a player earns and the mark in the brand kit
+ * cannot drift into being two different drawings.
+ */
 const OUT = path.join(ROOT, 'docs/brand/ranks');
+const APP_OUT = path.join(ROOT, 'public/brand/ranks');
 
 const RANKS = [
   'novice',
@@ -116,9 +123,11 @@ ${dots}
 };
 
 fs.mkdirSync(OUT, { recursive: true });
+fs.mkdirSync(APP_OUT, { recursive: true });
 RANKS.forEach((name, i) => {
-  const file = path.join(OUT, `rank-${i}-${name}.svg`);
-  fs.writeFileSync(file, svg(i));
+  const body = svg(i);
+  fs.writeFileSync(path.join(OUT, `rank-${i}-${name}.svg`), body);
+  fs.writeFileSync(path.join(APP_OUT, `rank-${i}-${name}.svg`), body);
   console.log(`  rank-${i}-${name}.svg   ${i}/6 lit`);
 });
-console.log(`\n✔ ${RANKS.length} rank marks written to docs/brand/ranks/`);
+console.log(`\n✔ ${RANKS.length} rank marks written to docs/brand/ranks/ and public/brand/ranks/`);
