@@ -92,7 +92,15 @@ const MUTATIONS = [
     file: 'src/components/Rail.tsx',
     edits: [
       {
-        from: '<ol className="flex flex-col gap-1.5 short:gap-0.5">',
+        /*
+         * Re-anchored 2026-08-21. This read `gap-1.5 short:gap-0.5` and the
+         * class list has since gained a mid-band gap rule, so the anchor
+         * matched nothing and the harness printed SKIPPED — which is the one
+         * outcome nobody reads. A mutation whose anchor has drifted is not a
+         * weaker guard, it is no guard, and it announces itself in the same
+         * quiet line as a deliberate skip.
+         */
+        from: '<ol className="flex flex-col gap-1.5 [@media(min-height:801px)_and_(max-height:920px)]:gap-1 short:gap-0.5">',
         to: '<ol className="flex min-h-0 flex-1 flex-col justify-between gap-0.5 overflow-y-auto">',
       },
       {
@@ -210,11 +218,74 @@ if (conflicts.length) {
   process.exit(2);
 }
 
+/*
+ * A LOCK, because the dirty-tree gate only guards the START.
+ *
+ * It answers "was the tree clean when this began" and nothing about what
+ * happens during the next several minutes of builds. While a run was in
+ * flight I audited the mutation anchors, read `BONUS_CHIPS = 999` off disk —
+ * a value this script had deliberately written seconds earlier — concluded
+ * the anchor was dead, and came within one step of "fixing" a file that was
+ * mid-test. Two concurrent runs would be worse: the second sees the first's
+ * mutation as the original and restores the break as truth, which is exactly
+ * how this script corrupted the tree the first time it ran.
+ *
+ * So the lock is not really about two harnesses. It is a sign on the door for
+ * anything else that reads this repo — including a person, or an agent, who
+ * would otherwise believe what the files say.
+ *
+ * Stale locks are cleared by checking whether the recorded pid is alive:
+ * `kill(pid, 0)` throws if it is not. A crashed run must not block the next
+ * one forever, which is the standard way lockfiles become worse than no lock.
+ */
+const LOCK = path.join(ROOT, 'node_modules', '.cache', 'check-guards.lock');
+
+const readLock = () => {
+  try {
+    return JSON.parse(fs.readFileSync(LOCK, 'utf8'));
+  } catch {
+    return null;
+  }
+};
+
+const alive = (pid) => {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+const held = readLock();
+if (held && alive(held.pid)) {
+  console.error('✗ refusing to run: another guard-mutation run holds the lock.');
+  console.error(`    pid ${held.pid}, started ${held.started}`);
+  console.error('    That run has bugs written into source right now. Wait for it,');
+  console.error('    and do not trust what these files say until it finishes.');
+  process.exit(2);
+}
+if (held) {
+  console.error(`!  clearing a stale lock from pid ${held.pid} (not running)`);
+  console.error('   Check the tree before believing this run: that process may');
+  console.error('   have died with a mutation still applied.\n');
+}
+fs.mkdirSync(path.dirname(LOCK), { recursive: true });
+fs.writeFileSync(
+  LOCK,
+  JSON.stringify({ pid: process.pid, started: new Date().toISOString() }, null, 2)
+);
+
 let restoreArmed = true;
 const restoreAll = () => {
   if (!restoreArmed) return;
   restoreArmed = false;
   touched.forEach(gitRestore);
+  try {
+    fs.unlinkSync(LOCK);
+  } catch {
+    /* already gone — the run that mattered was the restore above */
+  }
 };
 process.on('exit', restoreAll);
 for (const sig of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
