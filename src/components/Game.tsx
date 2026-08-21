@@ -2550,12 +2550,27 @@ export default function Game({ data }: { data: PuzzleFile }) {
                   sent anywhere, and you can move or delete it there.
                 </p>
               </div>
+              {/*
+                "Add to calendar", not "Get it" — and an aria-label, because
+                the two controls either side of this one carry them and this
+                one did not.
+                
+                The screen-reader seat reads a button by its own text when the
+                label is missing, and "Get it" out of context names nothing.
+                The first-timer seats had the same objection for the opposite
+                reason: neither of them has downloaded a calendar file before,
+                so the verb has to say what happens rather than gesture at it.
+                
+                The outcome was already handled — `say()` writes into a
+                role=status aria-live region, so the confirmation is spoken.
+              */}
               <button
                 type="button"
                 onClick={remindDaily}
+                aria-label="Add a daily 8am reminder to your calendar. Downloads a calendar file."
                 className="liquid-interactive h-10 shrink-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
               >
-                Get it
+                Add to calendar
               </button>
             </div>
 
