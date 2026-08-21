@@ -125,6 +125,50 @@ for (const panel of PANELS) {
   await new Promise((r) => setTimeout(r, 400));
 }
 
+/*
+ * THE DIAL, checked as a live selector match rather than as pixels.
+ *
+ * `div:has(> .liquid-disc) > button` matched nothing from the day the dial
+ * gained its ring wrappers, and nothing complained: a selector that matches
+ * nothing throws no error and reads as "the defaults look fine". The tiles
+ * quietly fell back to `.liquid-raised` and lost both their fill and their
+ * lift, and the CSS kept describing ratios for a rule that had not run in
+ * weeks.
+ *
+ * So this asserts the match itself, which is the thing that broke — plus the
+ * two facts that depend on it: the tiles are the same material as the wheel,
+ * and they are lifted with the TILE value rather than the panel one.
+ */
+const dial = await page.evaluate(() => {
+  const tile = [...document.querySelectorAll('button')]
+    .find((b) => /tile 1 of 6/.test(b.getAttribute('aria-label') ?? ''));
+  const disc = document.querySelector('.liquid-disc');
+  if (!tile || !disc) return { missing: true };
+  const t = getComputedStyle(tile);
+  return {
+    matches: tile.matches('div:has(> .liquid-disc) button.rounded-2xl'),
+    tileBg: t.backgroundColor,
+    discBg: getComputedStyle(disc).backgroundColor,
+    tileLift: t.boxShadow.includes('0.17'),
+  };
+});
+
+const dialChecks = dial.missing
+  ? [['dial', false, 'no dial on the page to measure']]
+  : [
+      /*
+       * This tests the DOM SHAPE, not the stylesheet — it stayed green while
+       * the CSS was broken, because it matches its own hardcoded string rather
+       * than asking whether the rule applied. Kept because a shape change is
+       * the thing that breaks the rule, and named for what it actually checks.
+       * The two below are what catch the breakage itself.
+       */
+      ['dial shape', dial.matches, 'the dial no longer has the shape the CSS targets'],
+      ['tile fill', dial.tileBg === dial.discBg,
+        `tile ${dial.tileBg} does not match the wheel ${dial.discBg}`],
+      ['tile lift', dial.tileLift, 'tiles lost --raise-light-tile to a broader rule'],
+    ];
+
 const baseShot = await page.screenshot({ type: 'png' });
 await browser.close();
 server.close();
@@ -167,8 +211,13 @@ for (const c of measured) {
   if (!ok) bad++;
   console.log(`${ok ? '✔' : '✗'}  ${c.name.padEnd(16)} ${c.kind.padEnd(5)} top edge ${lift >= 0 ? '+' : ''}${lift.toFixed(1)} over its own face`);
 }
+for (const [name, ok, why] of dialChecks) {
+  if (!ok) bad++;
+  console.log(`${ok ? '✔' : '✗'}  ${name.padEnd(16)} ${ok ? 'holds' : why}`);
+}
+
 if (bad) {
   console.log(`\n✖ studio has gone flat: ${bad} of ${measured.length} surfaces have no lit edge`);
   process.exit(1);
 }
-console.log(`\n✔ studio sits on the page — ${measured.length} surfaces, cards and launched panels, all lit`);
+console.log(`\n✔ studio sits on the page — ${measured.length} surfaces lit, dial matches the wheel`);

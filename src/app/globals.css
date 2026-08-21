@@ -573,16 +573,36 @@
    * New Yorker, Duolingo, Nibble, South China Morning Post — average +0.3 on
    * the ground. Ours was thirty times that. Nobody in the set is near +10.
    *
-   * Luminance is held, so this is temperature only. It is also contrast-
-   * neutral: every boundary ratio moves by at most 0.01. The panel stays pure
-   * white, which is where the field already sits.
+   * Luminance was held there, so that pass was temperature only.
    *
    * Steel is NOT touched, here or anywhere. It is identity rather than surface,
    * and the parent design system locks it across every mode.
    */
-  --color-carbon-body: #f2f3f5;
-  --color-carbon-panel: #ffffff;
-  --color-carbon-surface-2: #e6e7e9;
+  /*
+   * DIMMED 2026-08-21. The whole ramp drops one step; temperature and
+   * hierarchy are untouched.
+   *
+   * "The panel stays pure white, which is where the field already sits" was
+   * true about the TOKEN and wrong about the screen. Apple's light ground is
+   * #F2F2F7 with white cells and Material 3's surface-container-low is
+   * #F4F3F8 — we match both, near enough — but those are GROUPED layouts,
+   * where white cells sit in wide grey gutters and white is a minority of the
+   * view. Our board panel and rail cards make white the dominant surface, so
+   * the same token buys a far larger bright field. Measured before this
+   * change: the cards rendered at L=0.92 and covered most of the viewport,
+   * with the L=0.86 ground visible only in the gaps.
+   *
+   * So the field's VALUES were matched and the field's AREA was not, and area
+   * is what the eye is answering. Every level moves down together — panel to
+   * roughly where the ground used to be — which keeps every relationship
+   * intact and takes the glare out of the majority surface.
+   *
+   * Contrast improves rather than degrades: the text is dark, so a darker
+   * ground raises its ratio. The pins in contrast.test.ts are the check.
+   */
+  --color-carbon-body: #e2e3e5;
+  --color-carbon-panel: #f1f2f4;
+  --color-carbon-surface-2: #d6d7d9;
   --color-carbon-border: #bcbdbf;
   --color-carbon-strong: #a2a3a5;
   --color-edge: #24333f;
@@ -699,9 +719,19 @@
    * Steel is NOT touched, here or anywhere. It is identity rather than surface,
    * and the parent design system locks it across every mode.
    */
-  --color-carbon-body: #f2f3f5;
-  --color-carbon-panel: #ffffff;
-  --color-carbon-surface-2: #e6e7e9;
+  /*
+   * DIMMED 2026-08-21 — the same three values as the system-light block above,
+   * for the same reason, and they have to be edited together.
+   *
+   * Light is declared TWICE: once for `:root:not([data-theme='dark'])` so a
+   * system-light visitor gets it without choosing, and once here for the
+   * player who picked Light explicitly. Changing only the first one is exactly
+   * the mistake that made this comment necessary — the measurement came back
+   * byte-identical because the running theme was this block, not that one.
+   */
+  --color-carbon-body: #e2e3e5;
+  --color-carbon-panel: #f1f2f4;
+  --color-carbon-surface-2: #d6d7d9;
   --color-carbon-border: #bcbdbf;
   --color-carbon-strong: #a2a3a5;
   --color-edge: #24333f;
@@ -2081,7 +2111,16 @@ body {
  * surface — it is the same thing the tiles are already doing, at panel
  * strength rather than tile strength.
  */
-:root[data-theme='studio'] .liquid {
+/*
+ * `section.liquid`, NOT `.liquid`.
+ *
+ * This was written as a bare `.liquid` and there are 35 of those on the board,
+ * 19 of them buttons — including every letter tile. So the panel lift landed
+ * on the dial and overrode `--raise-light-tile` (0.17) with the card value
+ * (0.085), quietly flattening the one thing in this theme that was already
+ * right. Aimed at panels, hit everything wearing the same class.
+ */
+:root[data-theme='studio'] section.liquid {
   box-shadow:
     inset 0 1px 0 var(--raise-light),
     0 1px 1px -1px var(--raise-shadow),
@@ -2160,7 +2199,7 @@ body {
   --glass-fill-raised: #2d2f33;
 }
 
-:root[data-theme='studio'] div:has(> .liquid-disc) > button.rounded-2xl {
+:root[data-theme='studio'] div:has(> .liquid-disc) button.rounded-2xl {
   border-color: transparent;
   /*
    * Lifted with the disc, so the stack keeps BOTH boundaries.
@@ -2199,7 +2238,7 @@ body {
  * was picked. The neutral shadow does the lifting and a wider accent bloom
  * sits UNDER it, where it adds warmth without standing in for the depth cue.
  */
-:root[data-theme='studio'] div:has(> .liquid-disc) > button.rounded-2xl.tile-selected {
+:root[data-theme='studio'] div:has(> .liquid-disc) button.rounded-2xl.tile-selected {
   background-color: var(--color-select);
   box-shadow:
     inset 0 1px 0 var(--raise-light-accent),
@@ -2322,10 +2361,43 @@ body {
    * stack needs — see the dial comment for the measurements they satisfy.
    */
   --dial-face: #2d2f33;
-  --dial-tile: #5c5e62;
+  /*
+   * THE TILES ARE THE SAME MATERIAL AS THE WHEEL, 2026-08-21.
+   *
+   * They were #5c5e62 against a #2d2f33 face — a deliberate 2.06:1 fill step,
+   * standing in for the border studio removes from both. It worked and it
+   * read as two materials: pale keys set into a dark dial, where the reference
+   * is one matte object with letters cut into it.
+   *
+   * The separation does not disappear, it changes hands. A tile already
+   * carries `--raise-light-tile` and `--raise-shadow-tile` — a lit top edge
+   * and a deep contact shadow, the strongest lift in the theme — and that is
+   * what a matte object of the SAME colour uses to sit above its ground.
+   * Shape by light rather than by fill.
+   *
+   * The letters get better, not worse: white measured 5.69:1 on the old pale
+   * tile and 12.8:1 on this one. Since the doctrine here is that a tile is
+   * identified by the glyph it always contains, the thing carrying the
+   * identification is now twice as legible as it was.
+   */
+  --dial-tile: var(--dial-face);
 }
 
 /*
+ * DESCENDANT, NOT CHILD — repaired 2026-08-21.
+ *
+ * These read `div:has(> .liquid-disc) > button`, and the tiles stopped being
+ * direct children when the dial gained its two ring wrappers for the detent
+ * rotation. The selectors matched nothing from that day on: the tiles fell
+ * back to `.liquid-raised`, so they painted `--glass-fill-raised` instead of
+ * `--dial-tile` and never took `--raise-light-tile` at all. Everything below
+ * about 2.06:1 and 5.69:1 described a rule that had not applied in weeks.
+ *
+ * Nothing caught it because a selector that matches nothing throws no error
+ * and shows up as "the defaults look fine". The comment called this "a
+ * structural test" and it was — an untested one. check-depth measures the
+ * dial now.
+ *
  * The letter tiles AND the submit puck at the dial's centre both lift, but
  * only the tiles take a fill.
  *
@@ -2335,7 +2407,7 @@ body {
  * signal that Enter has become available. Flattening both to one colour threw
  * that away. Scoped by shape: tiles are rounded-2xl, the puck is rounded-full.
  */
-:root[data-theme='studio'] div:has(> .liquid-disc) > button.rounded-full {
+:root[data-theme='studio'] div:has(> .liquid-disc) button.rounded-full {
   box-shadow:
     inset 0 1px 0 var(--raise-light),
     0 1px 1px var(--raise-shadow),
@@ -2343,7 +2415,7 @@ body {
 }
 
 /* The letters, lifted further — see --raise-light-tile. */
-:root[data-theme='studio'] div:has(> .liquid-disc) > button.rounded-2xl {
+:root[data-theme='studio'] div:has(> .liquid-disc) button.rounded-2xl {
   box-shadow:
     inset 0 1px 0 var(--raise-light-tile),
     0 2px 2px -1px var(--raise-shadow-tile),
