@@ -1486,8 +1486,37 @@ export default function Game({ data }: { data: PuzzleFile }) {
     }
   };
 
+  /*
+   * THE TEXT SCALE IS A LAYOUT INPUT, and the rail had never been told about it.
+   *
+   * A player who turns text up to large gets 115% on the root, and to larger
+   * gets 132% — every card in the rail grows with it while the window does
+   * not. Measured across the viewports this app is guarded at: at large, five
+   * of eight overflow, up to 156px; at larger, all eight do, up to 344px. At
+   * default, every one is clean, which is precisely why every guard in the
+   * repo has always passed and a reader still saw the rail scrolling.
+   *
+   * The rail already knows how to give up space — `tight` is what the phone
+   * sheet uses — so scaled text takes the same treatment, and the two cards
+   * that exist to yield yield in the order they were always meant to: how-to
+   * first, because it sits OUTSIDE the scroller and its 189px are taken from
+   * the cards rather than added to a scrollable list, then Record, which is
+   * reference rather than status and is reachable from the progress sheet.
+   */
+  const scaledText = textScale !== 'default';
+
   const rail = (
     <Rail
+      tight={scaledText}
+      howToClassName={scaledText ? 'hidden' : undefined}
+      recordClassName={
+        textScale === 'larger'
+          ? // 1080, not 1000. At 132% an iPad portrait (768x1024) cleared the
+            // old threshold by 24px and then overflowed by 1 — the card was
+            // being let in by a number that predates the text scale existing.
+            'hidden [@media(min-height:1080px)]:flex [@media(min-height:1080px)]:flex-col'
+          : undefined
+      }
       gridWords={puzzle.grid}
       found={found}
       bonusFound={bonusFound}

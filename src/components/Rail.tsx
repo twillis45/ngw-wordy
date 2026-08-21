@@ -7,6 +7,18 @@ import { nextMilestone } from '@/lib/record';
 import { withBase } from '@/lib/basePath';
 
 /*
+ * How many bonus chips the rail shows before it starts counting instead.
+ *
+ * Four, not six. Six plus the "+N more" counter is seven items, which wraps
+ * to a third row on the narrowest rail — measured 2px over at 1440x900 with
+ * nineteen words found. Four plus the counter is two rows everywhere.
+ *
+ * The card needs a HEIGHT CEILING at all because the rail is not allowed to
+ * scroll and a board offers up to 30 bonus words.
+ */
+const BONUS_CHIPS = 4;
+
+/*
  * Mirrors the helper in Game.tsx deliberately rather than importing it: that
  * one lives beside the completion sheet and this file has no other reason to
  * depend on Game. Both resolve the same generated files, and check-ranks
@@ -320,17 +332,53 @@ export default function Rail({
           label={`Bonus · ${bonusFound.length}`}
           empty={tight ? '' : 'Extra words you find show up here'}
         >
-          {[...bonusFound]
-            .sort((a, b) => b.length - a.length || a.localeCompare(b))
-            .map((w) => (
-              <Chip
-                key={w}
-                word={w}
-                tone="bonus"
-                definable={hasDefinition(w)}
-                onOpen={onShowDefinition}
-              />
-            ))}
+          {/*
+            BOUNDED. This listed every bonus word, and a board has up to 30
+            findable ones, so the card grew all game while the rail it sits in
+            has to fit. Measured: an empty board is 0px over at 1600x1130 and
+            5px over after fourteen submissions, and that is a third of the way
+            in. Every guard in this repo tested an empty board or five words,
+            which is why a reader with a half-played board saw the rail
+            scrolling and none of my sweeps did.
+
+            The longest six, because length is what a player is proud of, and
+            the count is already in the label above — "Bonus · 14" with six
+            chips under it is not hiding anything, it is the same fact at two
+            resolutions. Nothing is lost: the words stay in the progress store,
+            score against the total, and are listed in full on the completion
+            sheet.
+          */}
+          {/* An ARRAY, not a fragment: Group decides whether to show its
+              empty text from `children.length`, so a single fragment child
+              would read as one chip and the empty state would never fire. */}
+          {(() => {
+            const sorted = [...bonusFound].sort(
+              (a, b) => b.length - a.length || a.localeCompare(b),
+            );
+            const rest = sorted.length - BONUS_CHIPS;
+            const chips: React.ReactNode[] = sorted
+              .slice(0, BONUS_CHIPS)
+              .map((w) => (
+                <Chip
+                  key={w}
+                  word={w}
+                  tone="bonus"
+                  definable={hasDefinition(w)}
+                  onOpen={onShowDefinition}
+                />
+              ));
+            if (rest > 0) {
+              chips.push(
+                <span
+                  key="more"
+                  className="self-center text-meta tabular-nums text-text-muted"
+                >
+                  +{rest} more
+                </span>,
+              );
+            }
+            return chips;
+          })()}
         </Group>
       </Card>
 
