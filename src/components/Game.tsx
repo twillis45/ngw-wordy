@@ -1540,6 +1540,28 @@ export default function Game({ data }: { data: PuzzleFile }) {
             type="button"
             onClick={() => setShowPuzzles(true)}
             aria-haspopup="dialog"
+            /*
+             * The visible text says WHERE YOU ARE; the accessible name has to
+             * say what the control DOES. A screen reader heard "Warm-up 1 of
+             * 2, button, has popup" — a status with a chevron on it, and no
+             * indication that this is the only route to the puzzle picker and
+             * the fourteen themed packs.
+             *
+             * It matters beyond assistive tech, and the board audit proved
+             * it: reviewing this app, I recorded a finding that there was "no
+             * archive browse, no light-touch surface" for a day somebody does
+             * not want to play. There is — shelves, packs, authored blurbs,
+             * per-pack progress — behind this control. I missed it because
+             * the label reads as a status rather than a door, which is the
+             * same reason a player would.
+             */
+            aria-label={`Puzzles and themes. Currently ${
+              warmup !== null
+                ? `warm-up ${warmup} of ${data.starters.length}`
+                : isDaily
+                  ? "today's puzzle"
+                  : (puzzle.theme?.name ?? `puzzle ${offset}`)
+            }.`}
             /* min-h-6 is WCAG 2.5.8's floor, not a style choice: this measured
                20.6px tall at 390px, so the app's only route to the puzzle
                picker and the themes was an undersized target. */
