@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { RANK_BASIS, rankLadder, type Rank } from '@/lib/game';
 import type { DayCell } from '@/lib/storage';
+import { nextMilestone } from '@/lib/record';
 import type { PlayerRecord } from '@/lib/record';
 import { CheckIcon } from './Icon';
 
@@ -340,7 +341,23 @@ export default function Rail({
         alongside them, so this card cannot drift out of step with the rest of
         the rail.
       */}
-      <Card title="Record" meta={`${record.cleared}/${record.total} boards`}>
+      {/*
+        Packs in the meta, boards in the body.
+
+        "21 of 499 boards" is true and says nothing about the thing a player
+        is actually collecting: the catalogue is sold as PACKS, and a player
+        three packs into fourteen has no way to see that from a board count.
+        The board count keeps its place below; it just stops being the
+        headline for a collection it does not describe.
+      */}
+      <Card
+        title="Record"
+        meta={
+          record.packsTotal > 0
+            ? `${record.packsDone}/${record.packsTotal} packs`
+            : `${record.cleared}/${record.total} boards`
+        }
+      >
         {/*
           THREE figures, on one row.
 
@@ -358,7 +375,7 @@ export default function Rail({
         <dl className="grid grid-cols-3 gap-x-3">
           {[
             { k: 'Best score', v: record.bestScore.toLocaleString() },
-            { k: 'Words', v: record.wordsFound.toLocaleString() },
+            { k: 'Boards', v: `${record.cleared}` },
             { k: 'Days', v: `${record.daysPlayed}` },
           ].map((row) => (
             <div key={row.k} className="flex flex-col gap-0.5">
@@ -458,6 +475,37 @@ export default function Rail({
           zero here would advertise a mechanic at exactly the moment it offers
           nothing.
         */}
+        {/*
+          The next rung, named.
+
+          "4 days in a row" tells a player what they have and gives them no
+          reason to believe day five is worth more than day four was. A named
+          milestone gives the streak a near edge — Deepstash runs a 7/14/30
+          track and Finch celebrates at three, and we celebrated nothing until
+          a board was complete.
+
+          Hidden once the last rung is passed rather than replaced with an
+          endless ladder: past 100 days a player is told what they have, not
+          what they still owe.
+        */}
+        {(() => {
+          /*
+           * Nothing at zero. The line above already says "play tomorrow to
+           * start a streak", and following it with "3 more days to 3" both
+           * repeats it and counts toward a rung the player has not stepped
+           * onto — a milestone is a near edge for someone already walking,
+           * not a target handed to someone standing still.
+           */
+          const next = streak > 0 ? nextMilestone(streak) : null;
+          if (!next) return null;
+          return (
+            <p className="mt-1 text-meta text-text-secondary">
+              {next.toGo === 1
+                ? `1 more day to ${next.at}.`
+                : `${next.toGo} more days to ${next.at}.`}
+            </p>
+          );
+        })()}
         {freezes > 0 && (
           <p className="mt-1 text-meta text-text-muted">
             {freezes === 1

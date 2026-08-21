@@ -553,8 +553,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
    * it does not run on every render.
    */
   const record = useMemo(
-    () => playerRecord(progress, data.wheel, data.puzzles.length),
-    [progress, data.wheel, data.puzzles.length]
+    () => playerRecord(progress, data.wheel, data.puzzles),
+    [progress, data.wheel, data.puzzles]
   );
 
   const shelves = useMemo(() => themeShelves(data), [data]);
