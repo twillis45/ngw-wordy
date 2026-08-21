@@ -3,9 +3,8 @@
   <rect x="200.96" y="33.02" width="110.08" height="110.08" rx="35.23" fill="#eef0f4"/>
   <rect x="346.40" y="116.99" width="110.08" height="110.08" rx="35.23" fill="#eef0f4"/>
   <rect x="346.40" y="284.93" width="110.08" height="110.08" rx="35.23" fill="#eef0f4"/>
-  <rect x="200.96" y="368.90" width="110.08" height="110.08" rx="35.23" fill="#f2831c"/>
+  <rect x="200.96" y="368.90" width="110.08" height="110.08" rx="35.23" fill="#eef0f4"/>
   <rect x="55.52" y="284.93" width="110.08" height="110.08" rx="35.23" fill="#eef0f4"/>
   <rect x="55.52" y="116.99" width="110.08" height="110.08" rx="35.23" fill="#eef0f4"/>
-  <circle cx="256" cy="256" r="24" fill="#eef0f4"/>
 </g>
 </svg>
