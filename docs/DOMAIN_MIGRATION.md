@@ -17,6 +17,23 @@ track is blocked on anything this cheap.
 below, `<domain>` is whatever gets bought. Exactly two files carry the choice:
 `public/CNAME`, and the `package_name` in `assetlinks.json`.
 
+**BOUGHT 2026-08-21: `sixonthedial.com` and `sixonthedial.app`,** both at
+Cloudflare Registrar, both already on Cloudflare nameservers. `6onthedial.com`
+and `6onthedial.app` were left available.
+
+**The purchase preceded clearance, deliberately.** Two paragraphs below, and in
+STORE_READINESS 1.11, this file says not to buy until the attorney closes the
+trademark question. That instruction was not followed and the reasoning is
+recorded here rather than left to contradict itself: the knockout search is
+clean, the exposure is one year of registration fees, and a name sitting
+unregistered while it is discussed in public is a squatting risk. 1.11 is still
+owed and still blocks LAUNCH; it no longer blocks the purchase.
+
+`sixonthedial.app` is a defensive registration and cannot be a second Pages
+site — GitHub Pages allows one custom domain per repository. It redirects via a
+Cloudflare Redirect Rule. Note `.app` is HSTS-preloaded, so it is HTTPS-only by
+construction; that is fine for a redirect and would be fine for hosting.
+
 **Decided 2026-08-17: `sixonthedial.com` is the pick.** `6onthedial.com` and
 both `.app` variants were re-verified free the same day (RDAP, with a control
 query) — still worth taking all four, because the only real weakness of a

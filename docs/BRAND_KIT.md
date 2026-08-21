@@ -15,8 +15,10 @@ regenerate it after any edit here so the two never drift.
 ## Identity
 
 **Name:** Six on the Dial
-**Domain:** sixonthedial.com (decided 2026-08-17; purchase gated on the
-attorney closing STORE_READINESS 1.11)
+**Domain:** sixonthedial.com — **registered 2026-08-21** at Cloudflare, with
+sixonthedial.app held defensively. The purchase deliberately preceded the
+attorney clearance that STORE_READINESS 1.11 still owes; see DOMAIN_MIGRATION.md
+for why. Clearance blocks launch, not registration.
 **Working title, retired 2026-08-17:** Wordy — replaced because WORDY is a
 live third-party trademark in Class 009 for exactly this product category
 (mobile application software, Wordy Plus LLC). The rename shipped in PR #20:
