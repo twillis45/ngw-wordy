@@ -51,9 +51,22 @@ export const DEFAULT_ACCENT: Accent = 'matte';
  * rendered green while readAccent() below reported matte — the DOM and the
  * store disagreeing about the one thing this script exists to keep in step.
  */
+/*
+ * The pre-paint script had the same two-value assumption, and it would have
+ * been the more visible half: `if(a!=='default')...='matte'` paints ANY stored
+ * accent orange on the first frame, so a player who chose Tide would have seen
+ * matte flash before React corrected it — except React did not correct it,
+ * because applyAccent was deleting the attribute instead. Two bugs cancelling
+ * into one wrong colour.
+ *
+ * Validated inline rather than trusted: this runs before the app and reads a
+ * value a player could have edited, so an unknown string falls back to the
+ * shipped default instead of being written into the DOM.
+ */
 export const NO_FLASH_SCRIPT =
   `var a=null;try{a=localStorage.getItem(${JSON.stringify(ACCENT_KEY)})}catch(e){}` +
-  `if(a!=='default')document.documentElement.dataset.accent='matte';`;
+  `if(a!=='default')document.documentElement.dataset.accent=` +
+  `(a==='tide'||a==='plum')?a:'matte';`;
 
 const listeners = new Set<() => void>();
 let snapshot: Accent = DEFAULT_ACCENT;
@@ -128,8 +141,20 @@ export function getAccentServerSnapshot(): Accent {
 
 export function applyAccent(next: Accent): void {
   if (typeof document === 'undefined') return;
-  if (next === 'matte') document.documentElement.dataset.accent = next;
-  else delete document.documentElement.dataset.accent;
+  /*
+   * Any accent EXCEPT 'default' carries an attribute.
+   *
+   * This read `next === 'matte'` and deleted the attribute otherwise, which
+   * was correct while there were exactly two accents and quietly wrong the
+   * moment there were four: picking Tide set the label to "Tide" and left the
+   * page green, because the attribute the CSS keys on was being removed. The
+   * control lied and nothing errored.
+   *
+   * 'default' is the one accent with no attribute by design — it IS the bare
+   * `:root` value, so removing the attribute is how you select it.
+   */
+  if (next === 'default') delete document.documentElement.dataset.accent;
+  else document.documentElement.dataset.accent = next;
 }
 
 export function setAccent(next: Accent): void {
