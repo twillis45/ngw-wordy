@@ -1,7 +1,11 @@
 # Spec — ghost runs
 
-Written 2026-08-21, unbuilt. Question 1 ruled the same day; 2, 3 and 4 are
-still open, and the replay must not start until 2 has an answer. Companion to the chain ladder, which shipped the
+Written 2026-08-21, unbuilt. **All four questions ruled the same day** — see
+each one below. The replay is now unblocked in principle and still deliberately
+unbuilt: the codec is a day's work and the replay is new UI on a surface with
+three interacting animation systems that were measured and guarded this week.
+Build the codec first and budget the replay separately, as the cost section
+below says. Companion to the chain ladder, which shipped the
 same day.
 
 **The idea.** A shared link replays a friend's solve against yours — not their
@@ -93,15 +97,45 @@ a marker against the rank bar, moving in replayed time.
    themselves.** Silent recording is not authorised and neither is persisting
    a run the player did not choose to share. STORE_READINESS 1.5 and 1.6 stay
    accurate as written and `connect-src 'self'` is untouched.
-2. **Does a race belong in this game?** The Wardle lens on that board opposed
-   mechanics that make the game about other people. A ladder is asynchronous
-   and ignorable; a ghost ticking beside you is not obviously either.
-3. **What happens when the ghost wins?** Every existing completion state
-   assumes the player finished. A ghost that finishes first needs an answer
-   that is not a loss screen.
-4. **Does it survive an interruption?** The interrupted-player seat is the one
-   most likely to be harmed here: a race that cannot be paused is a race that
-   punishes a commute.
+2. ~~**Does a race belong in this game?**~~ **RULED 2026-08-21: not as a
+   default, and not as anything that ticks at you.**
+
+   Three seats on PLAYER_BOARD say a race drives them out, in their own words:
+   Mr. Emory (74) — *"quiet pace, no clock, no punishment. Stops him: anything
+   timed"*; Angela (52) — *"does not want a rank, a streak, or a decision …
+   consequence-free"*; Tasha (31), playing in bed — *"quiet, dark, low-stakes …
+   one loud chime at 11:40pm. That's a delete."*
+
+   That is not a close call and it is not a matter of tuning. For those three,
+   a visible opponent advancing while they think is the reason they stop
+   playing, so a ghost that is on by default costs more players than it wins.
+
+   What survives: a ghost is **off unless the player opens one**, opt-in per
+   view rather than per setting, and **dismissible at any moment without
+   losing the board**. The spec's own reading — a ghost is a clock, not a
+   board — was right, and this adds the harder half: even as a clock it does
+   not get to be there uninvited.
+3. ~~**What happens when the ghost wins?**~~ **RULED 2026-08-21: nothing
+   happens.** The marker reaches the end and stops. No modal, no "they beat
+   you", no state change on the player's board, no sound.
+
+   The temptation is a moment — a flourish, a "so close". For the three seats
+   above, a *you lost* beat is precisely the thing that ends the relationship,
+   and this game has no other loss state anywhere: you cannot fail a board,
+   only not finish it yet. A ghost that introduces the first losing moment in
+   the product would be importing a mechanic the rest of the design refuses.
+4. ~~**Does it survive an interruption?**~~ **RULED 2026-08-21: yes, because
+   the ghost's clock only advances while the player is actually on the board.**
+
+   Not wall-clock time. The same rule the stall clock already follows, and for
+   the same reason — it resets on `dialogOpen()` so that time spent in a sheet
+   is not counted as being stuck, because *being stuck means staring at the
+   board*. A ghost measured against wall-clock time punishes Devin's commute,
+   Gloria's waiting room and Nia's interruptions for events that have nothing
+   to do with how they played.
+
+   This also removes the need for a pause control: there is nothing to pause,
+   because the ghost is already stopped whenever the player is not playing.
 
 ## Cost, honestly
 
