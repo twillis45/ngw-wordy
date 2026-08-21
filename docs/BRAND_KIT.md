@@ -314,6 +314,120 @@ any meaning-bearing signal is silenced or still moves.
 
 ---
 
+## Using the mark — the governing half
+
+Added 2026-08-21. The board found the kit documented assets but did not govern
+them: no clear space, no minimum size, no misuse rules, no one-ink version, no
+favicon or social spec. A kit without these is a folder, and every one of the
+rules below exists because the mark can be got wrong in that specific way.
+
+### The three files, and when each is correct
+
+| File | Use at | Why it exists |
+|---|---|---|
+| `mark.svg` | **32px and up** | The full mark: accent tile at six o'clock, centre puck |
+| `mark-small.svg` | **16–24px** | Puck dropped, tiles enlarged, ring pulled in |
+| `mark-mono.svg` | **32px and up**, one ink | Stamps, embroidery, single-colour partner footers |
+
+`npm run check:marks` rasterises each at its minimum and counts the separable
+shapes. **A mark that reads as five dots is not the mark**, and this is the
+only thing standing between the geometry and someone changing it without
+rechecking the sizes.
+
+### Minimum size, and why 16px needs its own file
+
+At 16px the full mark fails, and the arithmetic says why. Neighbouring tiles
+sit 60° apart, so the distance between their centres is exactly the ring
+radius (2·r·sin30° = r). Staying separable needs
+
+    radius > tile + roughly one pixel of clear air
+
+At 16px the full mark's ring gives 5.2px centres against 3.4px tiles and a
+puck that renders under one pixel — the middle muddies and the ring closes.
+`mark-small.svg` drops the puck and trades ring radius for tile size to hold
+a 1.5px gap. **Never scale `mark.svg` below 32px; use the small file.**
+
+### Clear space
+
+**One tile-width on every side**, measured from the outermost tile edge — 21%
+of the mark's width. Nothing sits inside it: no type, no rule, no other logo.
+The mark is a ring with a hole, so it reads as open; crowding it closes the
+shape and it stops being a dial.
+
+### Misuse — the specific ways this mark gets broken
+
+- **Do not scale below the minimums above.** This is the one that has already
+  happened.
+- **Do not recolour the accent tile.** It is the only element carrying
+  position, and it is what makes this a *dial* and not a loading spinner.
+- **Do not rotate.** The accent sits at six o'clock; rotating it makes the
+  mark read as a different rank, now that the rank marks are the same
+  geometry with lit positions.
+- **Do not add a seventh element**, including a centre puck on the small
+  variant. Six is the product's whole premise.
+- **Do not place the full mark on a busy image.** It has a hole; a photograph
+  fills it.
+- **Do not outline it or add a drop shadow.** The rank marks were rendered
+  once and it cost the ladder its ordering — see below.
+
+### Lockups
+
+Two, both shipped: `wordmark-horizontal.svg` and `wordmark-stacked.svg`. The
+mark and the wordmark are **not** to be re-spaced by hand — use the lockups.
+Horizontal is the default; stacked is for square-ish spaces (store tiles,
+avatars) where horizontal would force the wordmark below its own minimum.
+
+### Favicon and app icon
+
+- **Favicon** — `mark-small.svg` at 16 and 32. Not `mark.svg`.
+- **App icon** — `icon.svg`, which is the mark on a filled tile because both
+  stores composite onto their own shapes and a transparent mark loses its
+  ring. Smallest rendered use is 29px (iOS Settings).
+- **Maskable** — the icon already carries safe padding for Android's mask;
+  do not re-crop it.
+
+### Social and Open Graph
+
+1200×630, mark left, wordmark right, on `--color-carbon-body`. The mark sits
+at least two tile-widths from any edge — the extra clear space is because
+social crops are unpredictable and a mark clipped at the ring reads as broken
+rather than as cropped.
+
+---
+
+## Rank marks
+
+Redrawn 2026-08-21 after the board scored the previous ladder **1/10**. Built
+by `npm run ranks`, guarded by `npm run check:ranks`.
+
+**The mark IS the ladder.** The game is six letters on a dial and six rows to
+fill, so a rank mark is the dial and rank is how many of the six are lit —
+Novice none, Complete all six. That comes from the rules rather than from
+taste, which is why it cannot be borrowed by anything that is not also
+six-and-six, and why the ranks and the app mark are finally one object instead
+of two visual languages shipping together.
+
+**Three redundant channels, ordered:**
+
+| Channel | Carries |
+|---|---|
+| Count | how many dots are lit — ordered by construction |
+| Value | lit dots brighten up the ladder, 46.8 → 147.1 of 255 |
+| Size | lit dots are fractionally larger — the last thing legible at 16px |
+
+**What the old ladder did wrong**, kept here because it is the reason for
+every rule above. Seven photorealistic renders, measured at 32px: luminance
+ran 31.6, 49.7, 47.5, 47.9, 40.8, 62.1, 57.7. Three adjacent pairs under 5 of
+255 apart, and NOT monotonic — a player climbing from Solid to Fluent watched
+their mark get darker. Form differed but did not order either. The whole
+ladder spanned 30.5 of 255; this one spans 100.3, and holds its order with hue
+removed.
+
+**Never encode a rank in hue alone.** Roughly 8% of men have colour-vision
+deficiency, and the reward surface is the last place to spend that.
+
+---
+
 ## Accessibility commitments
 
 - Every pinned contrast ratio lives in `src/lib/contrast.test.ts`, which
