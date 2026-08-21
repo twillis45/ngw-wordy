@@ -378,6 +378,33 @@ for (const vp of VIEWPORTS) {
     const recordShown = !!recordCard?.offsetParent;
 
     /*
+     * NO VOID BETWEEN THE CARDS AND THE PINNED ONE.
+     *
+     * The scroller was `flex-1`, so it GREW to fill the column and shoved
+     * Streak to the floor — 984px of scroller around 608px of cards, a 362px
+     * hole in the middle, and a reader asking whether that was really the
+     * layout. Nothing here caught it: every assertion in this file was about
+     * overflow, and a void is the opposite failure. A column can be perfectly
+     * within its bounds and still look broken.
+     *
+     * Measured from the last card INSIDE the scroller to the pinned card
+     * below it. One card gap is ~15px; anything past 48 is a hole.
+     */
+    const lastInScroller = [...rail.querySelectorAll('section')]
+      .filter((s2) => s2.offsetParent)
+      .pop();
+    const pinned = [...column.querySelectorAll('section')].find(
+      (s2) => s2.querySelector('h2')?.textContent?.trim() === 'Streak',
+    );
+    const voidGap =
+      lastInScroller && pinned
+        ? Math.round(
+            pinned.getBoundingClientRect().top -
+              lastInScroller.getBoundingClientRect().bottom,
+          )
+        : 0;
+
+    /*
      * If Record is hidden, the way to it has to be on screen. That is the
      * whole of the claim the card's comment used to make for free.
      */
@@ -433,6 +460,7 @@ for (const vp of VIEWPORTS) {
       unmanaged,
       overflowPx,
       recordShown,
+      voidGap,
       escapeHatch,
       ladder,
       railCount: document.querySelectorAll('.rail-scroll').length,
@@ -471,6 +499,7 @@ for (const vp of VIEWPORTS) {
     m.unmanaged > 0 ||
     (m.overflowPx > 0 && !(isPhone(vp) && text !== 'default')) ||
     (!m.recordShown && !m.escapeHatch) ||
+    m.voidGap > 48 ||
     (m.ladder && m.ladder.maxGap > m.ladder.rung) ||
     (m.ladder && m.ladder.spread > 1);
   results.push({ vp, text, fail, ...m });
@@ -504,7 +533,9 @@ for (const r of results) {
               ? `rank ladder gap ${r.ladder.maxGap}px exceeds its ${r.ladder.rung}px rungs — the rows have stopped reading as one list`
               : r.ladder && r.ladder.spread > 1
                 ? `rank ladder gaps vary by ${r.ladder.spread}px — the rhythm is uneven`
-                : !r.recordShown && !r.escapeHatch
+                : r.voidGap > 48
+              ? `${r.voidGap}px of dead space between the last card and Streak — the column reads as broken in the middle`
+              : !r.recordShown && !r.escapeHatch
               ? 'Record is hidden and nothing on screen leads to it'
               : r.overflowPx > 0
               ? `rail scrolls — ${r.overflowPx}px of cards below the fold; every card must be visible without scrolling`
