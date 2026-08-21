@@ -168,7 +168,7 @@ export default function Rail({
       */}
       <div
         ref={scrollerRef}
-        className="rail-scroll flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto short:gap-2.5"
+        className="rail-scroll flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto [@media(min-height:801px)_and_(max-height:920px)]:gap-2.5 short:gap-1.5"
       >
       <Card title="Your words" meta={`${score} pts`}>
         {/*
@@ -306,7 +306,17 @@ export default function Rail({
             of the first-run explainer, so on a screen with no room to spare it
             is the one thing here a player has already been told — unlike the
             ladder and the streak, which exist nowhere else on desktop. */}
-        <p className="mb-2.5 hidden text-meta leading-snug text-text-muted short:hidden [@media(min-height:801px)]:block">
+        {/*
+          Gated at 900px tall, not 801.
+          
+          Measured: at 1180x820 this paragraph is the difference between the
+          rail fitting and overflowing by 74px, which pushed the Record card
+          under the fade. It explains the ladder rather than showing it, so it
+          is the one thing on this card a player can lose without losing
+          information they cannot get elsewhere — the same sentence is in the
+          how-to, and the ladder itself is directly below it.
+        */}
+        <p className="mb-2.5 hidden text-meta leading-snug text-text-muted short:hidden [@media(min-height:900px)]:block">
           {RANK_BASIS}
         </p>
         {/*
@@ -338,7 +348,7 @@ export default function Rail({
           collecting entirely at the bottom, which was the real objection.
           check-rail.mjs now asserts the gap never exceeds the rung height.
         */}
-        <ol className="flex flex-col gap-1.5 short:gap-0.5">
+        <ol className="flex flex-col gap-1.5 [@media(min-height:801px)_and_(max-height:920px)]:gap-1 short:gap-0.5">
           {rankLadder(rowsFilled, totalRows).map((step) => (
             <li
               key={step.name}
@@ -407,7 +417,22 @@ export default function Rail({
         The board count keeps its place below; it just stops being the
         headline for a collection it does not describe.
       */}
+      {/*
+        Record is the card that gives way when the rail cannot fit everything.
+
+        The requirement is that every card is visible without scrolling, and
+        at 1024x400 that is not achievable by compression: the rail gets 167px
+        for three cards. Something has to go, and this is it — Record is
+        REFERENCE, a thing you look up, where Your words and Rank and Streak
+        are STATUS, things you check while playing. A player on a 400px-tall
+        window is playing, not reviewing.
+
+        Hidden by height rather than width, because height is what is actually
+        short. It returns the moment there is room, and nothing in it is
+        unavailable elsewhere — the same figures are in the progress sheet.
+      */}
       <Card
+        className="hidden [@media(min-height:600px)]:flex [@media(min-height:600px)]:flex-col"
         title="Record"
         meta={
           record.packsTotal > 0
@@ -456,7 +481,37 @@ export default function Rail({
       <Card
         className="shrink-0"
         title="Streak"
-        meta={bestStreak > 1 ? `best ${bestStreak}` : undefined}
+        /*
+          The window goes in the META, not on a line of its own.
+          
+          Dates reached the accessible name and the `title` and stopped there,
+          which fixed the screen reader and left a sighted player on a PHONE
+          with nothing — there is no hover on touch, and the row still read
+          `S S M T W T F` where two cells begin S and two begin T. Stating the
+          range once resolves all seven without touching the cells: given the
+          range the letters become positional, and the second S is Saturday
+          because Saturday is where the range ends.
+          
+          On its own line it cost 19px and pushed the Record card under the
+          fade at 1440x900 — measured, and check-rail did not catch it because
+          that script guarded only this card. Both are fixed; the meta line was
+          already there and had room.
+        */
+        meta={[
+          days[0]?.date && days[days.length - 1]?.date
+            ? (() => {
+                const from = days[0].date.replace(/^[A-Za-z]+, /, '');
+                const to = days[days.length - 1].date.replace(/^[A-Za-z]+, /, '');
+                /* One month five weeks out of six — do not say August twice. */
+                return from.split(' ')[0] === to.split(' ')[0]
+                  ? `${from} – ${to.split(' ')[1]}`
+                  : `${from} – ${to}`;
+              })()
+            : null,
+          bestStreak > 1 ? `best ${bestStreak}` : null,
+        ]
+          .filter(Boolean)
+          .join(' · ')}
       >
         <div role="list" className="flex items-end justify-between gap-1">
           {days.map((d, i) => (
@@ -627,7 +682,19 @@ function Card({
    */
   return (
     <section
-      className={`relative rounded-3xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4 lg:p-3.5 short:p-3 ${className}`}
+      /*
+        `short` stops at 800px tall, which left a band nobody had sized: at
+        1180x820 the rail overflowed by 31px with full padding, and at
+        1280x720 by 12px even with `short` applied. The extra stop closes
+        both — the rail's requirement is that every card is visible without
+        scrolling, and padding is the cheapest thing to spend on it.
+        
+        Bounded ABOVE 800 as well as below 920. Written as a bare max-height
+        it also matched every short window, where it came later in the sheet
+        than `short` and quietly won — the ladder gap GREW from 2px to 4px at
+        1280x720 and cost 12px on the one rail that could least afford it.
+      */
+      className={`relative rounded-3xl border border-edge liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] p-4 lg:p-3.5 [@media(min-height:801px)_and_(max-height:920px)]:p-3 short:p-2.5 ${className}`}
     >
       <div className="mb-3 flex items-baseline justify-between gap-3">
         <h2 className="text-item font-semibold text-text-primary">

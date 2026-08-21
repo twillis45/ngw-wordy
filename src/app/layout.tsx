@@ -118,6 +118,21 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      /*
+       * The SVG first, and it has to be listed here rather than left to
+       * Next's `app/icon.svg` file convention — declaring `icons` at all
+       * overrides that convention, so the file was being written and never
+       * linked. The guard (check-marks) was watching an asset the product did
+       * not ship.
+       *
+       * It is `mark-small`, not the full mark: at 16px the full mark's ring
+       * closes and the six tiles merge into a smudge. The small variant drops
+       * the centre puck and trades ring radius for tile size to hold a 1.5px
+       * gap, which is the whole reason it exists.
+       *
+       * The PNGs stay behind it for anything that cannot take an SVG icon.
+       */
+      { url: withBase('/icon.svg'), type: 'image/svg+xml' },
       { url: withBase('/icon-192.png'), sizes: '192x192', type: 'image/png' },
       { url: withBase('/icon-512.png'), sizes: '512x512', type: 'image/png' },
     ],

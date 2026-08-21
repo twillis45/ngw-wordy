@@ -1976,7 +1976,18 @@ export default function Game({ data }: { data: PuzzleFile }) {
            * gradient whose whole job was to say "there is more below" on the
            * one layout where there was not.
            */
-          className="hidden md:flex md:max-h-full md:flex-col md:self-stretch lg:sticky lg:top-6"
+          /*
+           * Width AND height. The rail was gated on width alone, so a window
+           * 1024 wide and 400 tall showed a sidebar with 167px of room for
+           * 383px of cards — not a compression problem, a viewport with no
+           * space for a sidebar at all. Measured across the supported set,
+           * 600px of height is where three cards start to fit.
+           *
+           * Below that the progress lives where it lives on a phone: behind
+           * the button, in a sheet that gets the whole screen. Nothing is
+           * lost; the same cards are in it.
+           */
+          className="hidden [@media(min-width:768px)_and_(min-height:600px)]:flex md:max-h-full md:flex-col md:self-stretch lg:sticky lg:top-6"
         >
           {rail}
         </aside>

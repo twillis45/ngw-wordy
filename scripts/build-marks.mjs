@@ -31,6 +31,14 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'docs/brand');
+/*
+ * `src/app/icon.svg` is Next's file convention for the site icon, so writing
+ * the small variant there is what actually connects this work to the product.
+ * Without it the 16px fix lives in the kit and the browser tab keeps whatever
+ * the PNG pipeline last produced — a guard (check-marks) watching a file
+ * nothing ships.
+ */
+const APP_ICON = path.join(ROOT, 'src/app/icon.svg');
 
 const INK = '#eef0f4';
 const ACCENT = '#f2831c';
@@ -100,4 +108,6 @@ for (const [name, svg] of Object.entries(files)) {
   fs.writeFileSync(path.join(OUT, name), svg);
   console.log(`  ${name}`);
 }
-console.log('\n✔ marks written to docs/brand/');
+fs.writeFileSync(APP_ICON, files['mark-small.svg']);
+console.log('  src/app/icon.svg  (from mark-small)');
+console.log('\n✔ marks written to docs/brand/ and src/app/');
