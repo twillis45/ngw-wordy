@@ -338,3 +338,74 @@ export function beatFromHash(hash: string): number | null {
   const n = Number(m[1]);
   return Number.isInteger(n) && n >= 0 ? n : null;
 }
+
+/** How many scores a chain will carry. Beyond this the URL stops being sendable. */
+export const CHAIN_MAX = 12;
+
+/**
+ * The ladder: every score played on this board, in the order they were played.
+ *
+ * `beat=` carries ONE number and ends there — a one-way challenge. A chain
+ * carries the whole group, so a link passed around four friends comes back
+ * knowing all four rounds. No server, no account, no identity: the ladder
+ * lives entirely in the URL the players are already sending each other.
+ *
+ * SCORES ONLY, deliberately — no names, no initials, no tags. A ladder with
+ * names would be more fun and would put user-typed text into a link that gets
+ * pasted into group chats and, from there, anywhere. Positions carry almost
+ * all of the fun ("you came second of four") at none of that cost, and this is
+ * the one design here where the privacy-preserving option is also the simpler
+ * one.
+ *
+ * ON CHEATING, because a chain changes the answer. The note on `beat=` above
+ * says forging the number does not matter, and gives the reason: with no
+ * ladder and no return path it is cheating at solitaire. That reason expires
+ * here. A chain IS a ladder, so an inflated number now beats somebody. It is
+ * still trivially forgeable and cannot be made otherwise — signing needs a
+ * secret, and there is no server to hold one, which is the same constraint
+ * that makes the whole feature possible. So this is stated rather than
+ * solved: the ladder is honour-system, it is for people who know each other,
+ * and it must never be presented as a verified ranking.
+ */
+export function chainFromHash(hash: string): number[] | null {
+  const m = /[#&]chain=([\d.]{1,96})(?=[&#]|$)/.exec(hash);
+  if (!m) return null;
+  /*
+   * NOT filtered for empties. Dropping them would read `4..2` as `[4, 2]`,
+   * which is silent repair of a malformed link — and a link that arrives
+   * damaged should be refused, not guessed at, because the number it is
+   * guessing about is somebody's score.
+   */
+  const parts = m[1].split('.');
+  if (!parts.length || parts.length > CHAIN_MAX) return null;
+  const out: number[] = [];
+  for (const p of parts) {
+    if (!/^\d{1,6}$/.test(p)) return null;
+    const n = Number(p);
+    if (!Number.isInteger(n) || n < 0) return null;
+    out.push(n);
+  }
+  return out;
+}
+
+/**
+ * Append a score and render the chain back into a hash fragment.
+ *
+ * Oldest first, so reading the URL reads the history in order. When the chain
+ * is full the OLDEST entry drops rather than refusing the append: a ladder
+ * that stops accepting players is a dead link in a group chat, and the recent
+ * rounds are the ones anybody is arguing about.
+ */
+export function chainToHash(chain: number[], next: number): string {
+  const all = [...chain, Math.max(0, Math.round(next))];
+  return all.slice(-CHAIN_MAX).join('.');
+}
+
+/**
+ * Where a score places in a chain. 1 is best; ties share the better place.
+ */
+export function placeIn(chain: number[], score: number): { place: number; of: number } {
+  const all = [...chain, score];
+  const better = all.filter((s) => s > score).length;
+  return { place: better + 1, of: all.length };
+}
