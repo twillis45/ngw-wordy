@@ -10,6 +10,7 @@ const base = (over: Partial<Progress> = {}): Progress => ({
   streak: 0,
   bestStreak: 0,
   freezes: 0,
+  vacationSince: null,
   lastPlayed: null,
   bonusTotal: 0,
   spent: 0,

@@ -62,6 +62,21 @@ export type Progress = {
    * nothing at the moment they need it.
    */
   freezes: number;
+  /**
+   * Day the player last marked themselves away, or null.
+   *
+   * A freeze covers a SLIP — one day missed by accident. Vacation covers an
+   * ABSENCE the player knew about in advance, which is a different thing and
+   * cannot be solved by stockpiling freezes: a week away would need seven,
+   * and a mechanic you have to hoard against a holiday is a mechanic that
+   * makes holidays stressful.
+   *
+   * Stored as the day it was set, so the pause is checked against the gap
+   * rather than trusted indefinitely. There is no end date because the player
+   * ending it IS the end date — a vacation that expires on a schedule is one
+   * more thing to have got wrong before leaving.
+   */
+  vacationSince: string | null;
   lastPlayed: string | null;
   /** Hint ledger counters — the balance is derived, never stored. */
   bonusTotal: number;
@@ -102,6 +117,7 @@ export const EMPTY: Progress = Object.freeze({
   streak: 0,
   bestStreak: 0,
   freezes: 0,
+  vacationSince: null,
   lastPlayed: null,
   bonusTotal: 0,
   spent: 0,
@@ -191,6 +207,7 @@ export function migrateV1(
     days,
     streak: legacy.streak ?? 0,
     freezes: 0,
+    vacationSince: null,
     bestStreak: legacy.bestStreak ?? 0,
     lastPlayed: legacy.lastPlayed ?? null,
     muted: legacy.muted ?? false,
@@ -600,8 +617,22 @@ export function touchStreak(p: Progress, today: Date): Progress {
   const missedOne = p.lastPlayed === dayKey(twoBack);
   const covered = !continued && missedOne && p.freezes > 0 && p.streak > 0;
 
-  const streak = continued || covered ? p.streak + 1 : 1;
-  const freezes = covered ? p.freezes - 1 : p.freezes;
+  /*
+   * On vacation the streak simply does not break, however long the gap.
+   *
+   * It does not GROW either: the streak counts days shown up, and a paused
+   * streak that kept climbing would be a lie told to the player about their
+   * own record. Coming back resumes exactly where they left, which is the
+   * whole promise — "your streak is safe", not "your streak ran without you".
+   */
+  const paused = p.vacationSince !== null && p.streak > 0;
+
+  const streak = paused
+    ? p.streak
+    : continued || covered
+      ? p.streak + 1
+      : 1;
+  const freezes = covered && !paused ? p.freezes - 1 : p.freezes;
 
   /*
    * Earned on the way up, so a long streak carries its own insurance. Capped,
@@ -620,7 +651,22 @@ export function touchStreak(p: Progress, today: Date): Progress {
     freezes: earned,
     lastPlayed: key,
     days: { ...p.days, [key]: true },
+    /*
+     * Playing ends the vacation. Someone who has opened the app and finished
+     * a board is back, and asking them to also tell us so is asking them to
+     * do the app's bookkeeping.
+     */
+    vacationSince: null,
   };
+}
+
+/** Mark the player away. Ends by playing, or by `endVacation`. */
+export function startVacation(p: Progress, today: Date): Progress {
+  return { ...p, vacationSince: dayKey(today) };
+}
+
+export function endVacation(p: Progress): Progress {
+  return { ...p, vacationSince: null };
 }
 
 /*

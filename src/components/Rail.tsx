@@ -47,6 +47,9 @@ type Props = {
   bestStreak: number;
   /** Freezes held — each covers one missed day, automatically. */
   freezes: number;
+  /** Away since this day, or null. */
+  vacationSince?: string | null;
+  onVacation?: (on: boolean) => void;
   /**
    * Visibility of the how-to card is a CSS concern, not a JS one — driving it
    * off a measured breakpoint would mean a hydration-unsafe guess about the
@@ -54,6 +57,10 @@ type Props = {
    * the mobile sheet passes '' to always show it.
    */
   howToClassName?: string;
+  /** This board is finished — see the challenge note in the words card. */
+  boardComplete?: boolean;
+  /** Pass the ladder on. Only offered when the board is done. */
+  onChallenge?: () => void;
   hasDefinition: (word: string) => boolean;
   onShowDefinition: (word: string) => void;
 };
@@ -72,6 +79,8 @@ export default function Rail({
   streak,
   bestStreak,
   freezes,
+  vacationSince = null,
+  onVacation,
   /*
    * Width was never the whole question. This card is the LAST thing in the
    * rail, so on a wide-but-short window — 1900x980 is an ordinary maximised
@@ -79,6 +88,8 @@ export default function Rail({
    * while a narrower 1440x900 fitted fine. It needs room in both directions.
    */
   howToClassName = 'hidden 2xl:[@media(min-height:1000px)]:block',
+  boardComplete = false,
+  onChallenge,
   hasDefinition,
   onShowDefinition,
 }: Props) {
@@ -178,6 +189,30 @@ export default function Rail({
           </span>
           {solvedTargets.length > 0 && ' · shown on the board'}
         </p>
+
+        {/*
+          The challenge, where it does not vanish.
+
+          It lived only on the completion sheet, which made the best growth
+          mechanic in this app a ONE-SHOT on the single screen a player is
+          least likely to want to stop at — finish a board, feel finished,
+          dismiss the sheet, and the link is gone for good. The board's words:
+          "the one moment a player is least likely to want to stop and share."
+
+          Here it persists for as long as the finished board is open, and it
+          is the same handler, so the ladder it passes on is the same ladder.
+          Hidden until the board is done, because a challenge carrying an
+          unfinished score is not a challenge.
+        */}
+        {boardComplete && onChallenge && (
+          <button
+            type="button"
+            onClick={onChallenge}
+            className="liquid-interactive mb-3 h-9 w-full rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
+          >
+            Challenge a friend
+          </button>
+        )}
 
         <Group
           label={`Bonus · ${bonusFound.length}`}
@@ -461,9 +496,11 @@ export default function Rail({
           ))}
         </div>
         <p className="mt-3 text-meta text-text-muted">
-          {streak > 1
-            ? `${streak} days in a row.`
-            : 'Play tomorrow to start a streak.'}
+          {vacationSince
+            ? `Paused at ${streak} ${streak === 1 ? 'day' : 'days'}. Enjoy it.`
+            : streak > 1
+              ? `${streak} days in a row.`
+              : 'Play tomorrow to start a streak.'}
         </p>
         {/*
           Freezes, stated plainly and only when held.
@@ -496,7 +533,7 @@ export default function Rail({
            * onto — a milestone is a near edge for someone already walking,
            * not a target handed to someone standing still.
            */
-          const next = streak > 0 ? nextMilestone(streak) : null;
+          const next = streak > 0 && !vacationSince ? nextMilestone(streak) : null;
           if (!next) return null;
           return (
             <p className="mt-1 text-meta text-text-secondary">
@@ -506,12 +543,30 @@ export default function Rail({
             </p>
           );
         })()}
-        {freezes > 0 && (
+        {freezes > 0 && !vacationSince && (
           <p className="mt-1 text-meta text-text-muted">
             {freezes === 1
               ? '1 freeze — covers a missed day.'
               : `${freezes} freezes — each covers a missed day.`}
           </p>
+        )}
+        {/*
+          The pause control, and it is deliberately plain.
+
+          A freeze covers a slip; this covers a week somebody already knows
+          about. It sits on the Streak card rather than in settings because
+          the moment a player thinks "I am going away" is the moment they are
+          looking at their streak and worrying about it — which is the feeling
+          the whole mechanic exists to remove.
+        */}
+        {onVacation && (streak > 0 || vacationSince) && (
+          <button
+            type="button"
+            onClick={() => onVacation(!vacationSince)}
+            className="mt-2.5 text-meta text-text-muted underline underline-offset-2 hover:text-text-secondary"
+          >
+            {vacationSince ? 'I am back' : 'Going away?'}
+          </button>
         )}
       </Card>
 
