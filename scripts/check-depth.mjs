@@ -63,7 +63,23 @@ await page.evaluate(() => localStorage.setItem('ngw-wordy/theme', 'studio'));
 await page.reload({ waitUntil: 'networkidle0' });
 await new Promise((r) => setTimeout(r, 700));
 
-const cards = await page.evaluate(() => {
+/*
+ * EVERY PANEL, not just the cards on the board.
+ *
+ * "Panels that launch" are the sheets, and they are the half most likely to be
+ * missed: they only exist once something is clicked, so a guard that measures
+ * the resting page never sees them at all. Each one is opened by its own real
+ * control and measured while it is up.
+ */
+const PANELS = [
+  { label: 'Puzzles', open: 'Puzzles and themes' },
+  { label: 'How to play', open: 'How to play' },
+  { label: 'Your progress', open: 'Rank and progress details' },
+];
+
+const measured = [];
+
+const grabCards = () => page.evaluate(() => {
   const theme = document.documentElement.getAttribute('data-theme');
   const out = [];
   for (const s of document.querySelectorAll('section.liquid')) {
@@ -71,19 +87,56 @@ const cards = await page.evaluate(() => {
     if (!h2 || !s.offsetParent) continue;
     const b = s.getBoundingClientRect();
     if (b.width < 120 || b.height < 60) continue;
-    out.push({ name: h2.textContent.trim(),
+    out.push({ name: h2.textContent.trim(), kind: 'card',
       x: Math.round(b.left + 20), w: Math.round(b.width - 40),
       top: Math.round(b.top), mid: Math.round(b.top + Math.min(40, b.height / 2)) });
   }
   return { theme, out };
 });
 
-const shot = await page.screenshot({ type: 'png' });
-const { data, info } = await sharp(shot).raw().toBuffer({ resolveWithObject: true });
+const cards = await grabCards();
+measured.push(...cards.out);
+
+for (const panel of PANELS) {
+  const opened = await page.evaluate((aria) => {
+    const b = [...document.querySelectorAll('button')].find((x) =>
+      (x.getAttribute('aria-label') ?? '').includes(aria));
+    if (!b) return false;
+    b.click();
+    return true;
+  }, panel.open);
+  if (!opened) { measured.push({ name: panel.label, kind: 'panel', missing: true }); continue; }
+  await new Promise((r) => setTimeout(r, 500));
+  const box = await page.evaluate(() => {
+    const d = document.querySelector('[role=dialog]');
+    if (!d) return null;
+    const el = [...d.children].find((c) => c.classList.contains('liquid')) ?? d.firstElementChild;
+    if (!el) return null;
+    const b = el.getBoundingClientRect();
+    return { x: Math.round(b.left + 30), w: Math.round(b.width - 60),
+      top: Math.round(b.top), mid: Math.round(b.top + Math.min(50, b.height / 2)) };
+  });
+  if (box) measured.push({ name: panel.label, kind: 'panel', ...box });
+  else measured.push({ name: panel.label, kind: 'panel', missing: true });
+  // Screenshot while it is UP, then close for the next one.
+  const shot = await page.screenshot({ type: 'png' });
+  measured[measured.length - 1].shot = shot;
+  await page.keyboard.press('Escape');
+  await new Promise((r) => setTimeout(r, 400));
+}
+
+const baseShot = await page.screenshot({ type: 'png' });
 await browser.close();
 server.close();
 
-const lumRow = (x, w, y) => {
+const decode = async (buf) => {
+  const { data, info } = await sharp(buf).raw().toBuffer({ resolveWithObject: true });
+  return { data, info };
+};
+const baseImg = await decode(baseShot);
+
+const lumRow = (img, x, w, y) => {
+  const { data, info } = img;
   let sum = 0, n = 0;
   for (let xx = x; xx < x + w; xx++) {
     if (xx < 0 || y < 0 || xx >= info.width || y >= info.height) continue;
@@ -99,17 +152,23 @@ if (cards.theme !== 'studio') {
 }
 
 let bad = 0;
-for (const c of cards.out) {
+for (const c of measured) {
+  if (c.missing) {
+    bad++;
+    console.log(`✗  ${c.name.padEnd(16)} ${c.kind} never opened — cannot be measured`);
+    continue;
+  }
+  const img = c.shot ? await decode(c.shot) : baseImg;
   // +1 clears the border itself; the lit edge is the pixel just inside it.
-  const edge = lumRow(c.x, c.w, c.top + 1);
-  const body = lumRow(c.x, c.w, c.mid);
+  const edge = lumRow(img, c.x, c.w, c.top + 1);
+  const body = lumRow(img, c.x, c.w, c.mid);
   const lift = edge - body;
   const ok = lift >= MIN_EDGE_LIFT;
   if (!ok) bad++;
-  console.log(`${ok ? '✔' : '✗'}  ${c.name.padEnd(14)} top edge ${lift >= 0 ? '+' : ''}${lift.toFixed(1)} over its own face`);
+  console.log(`${ok ? '✔' : '✗'}  ${c.name.padEnd(16)} ${c.kind.padEnd(5)} top edge ${lift >= 0 ? '+' : ''}${lift.toFixed(1)} over its own face`);
 }
 if (bad) {
-  console.log(`\n✖ studio panels have gone flat: ${bad} of ${cards.out.length} have no lit edge`);
+  console.log(`\n✖ studio has gone flat: ${bad} of ${measured.length} surfaces have no lit edge`);
   process.exit(1);
 }
-console.log(`\n✔ studio panels sit on the page — every card has a lit top edge`);
+console.log(`\n✔ studio sits on the page — ${measured.length} surfaces, cards and launched panels, all lit`);
