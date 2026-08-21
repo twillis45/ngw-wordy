@@ -25,6 +25,9 @@ type Props = {
   rank: Rank;
   /** Every word banked, bonus included. What "Your words" is worth. */
   score: number;
+  /** Words found on this board out of everything findable on it. */
+  boardFound?: number;
+  boardTotal?: number;
   /**
    * The six rows only — the basis `rank` and RANK_BASIS both use.
    *
@@ -71,6 +74,8 @@ export default function Rail({
   bonusFound,
   rank,
   score,
+  boardFound = 0,
+  boardTotal = 0,
   rowsFilled,
   totalRows,
   days,
@@ -183,6 +188,23 @@ export default function Rail({
           gap in it. Bonus words keep their chips — they have no row to fold
           into, so this is still the only place they exist.
         */}
+        {/*
+          How much of THIS board is left — a real ratio, not a percentile.
+
+          The audit wanted the Vocabulary pattern ("you outrank 4% of
+          learners"). That needs a population, and there is no server and no
+          telemetry here by design, so printing one would mean inventing a
+          distribution and passing it off as other players. This says
+          something true instead: every board has a finite answer set, so
+          "23 of 41" is a fact about the board. It gives away no answers — a
+          count is not a word — and it does the job the percentile was wanted
+          for, which is telling somebody how much is still there.
+        */}
+        {boardTotal > 0 && (
+          <p className="mb-1 text-meta text-text-secondary">
+            {boardFound} of {boardTotal} words found
+          </p>
+        )}
         <p className="text-meta text-text-muted">
           <span className="text-text-secondary">
             Targets · {solvedTargets.length}/{gridWords.length}

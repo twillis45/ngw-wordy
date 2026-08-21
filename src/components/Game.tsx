@@ -13,7 +13,7 @@ import LetterWheel from './LetterWheel';
 import WordTray from './WordTray';
 import RankBar from './RankBar';
 import Rail from './Rail';
-import { playerRecord } from '@/lib/record';
+import { boardProgress, playerRecord } from '@/lib/record';
 import { withBase } from '@/lib/basePath';
 import {
   ChevronIcon,
@@ -1497,6 +1497,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
       totalRows={puzzle.grid.length}
       days={days}
       record={record}
+      boardFound={boardProgress(found, puzzle.grid, puzzle.bonus).found}
+      boardTotal={boardProgress(found, puzzle.grid, puzzle.bonus).total}
       boardComplete={rowsDone === puzzle.grid.length}
       onChallenge={challenge}
       streakJustEarned={streakJustEarned}
@@ -1970,6 +1972,8 @@ export default function Game({ data }: { data: PuzzleFile }) {
             totalRows={puzzle.grid.length}
             days={days}
             record={record}
+            boardFound={boardProgress(found, puzzle.grid, puzzle.bonus).found}
+            boardTotal={boardProgress(found, puzzle.grid, puzzle.bonus).total}
             boardComplete={rowsDone === puzzle.grid.length}
             onChallenge={challenge}
             streakJustEarned={streakJustEarned}

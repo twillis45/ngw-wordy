@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { nextMilestone, playerRecord } from './record';
+import { boardProgress, nextMilestone, playerRecord } from './record';
 import type { Progress } from './storage';
 
 const base = (over: Partial<Progress> = {}): Progress => ({
@@ -120,5 +120,32 @@ describe('nextMilestone', () => {
      */
     expect(nextMilestone(100)).toBeNull();
     expect(nextMilestone(500)).toBeNull();
+  });
+});
+
+describe('boardProgress', () => {
+  const grid = ['crafty', 'cart', 'tray'];
+  const bonus = ['arty', 'cat', 'far'];
+
+  it('counts against the board’s real answer set', () => {
+    const r = boardProgress(new Set(['crafty', 'cat']), grid, bonus);
+    expect(r).toEqual({ found: 2, total: 6 });
+  });
+
+  it('ignores words that are not on this board', () => {
+    /*
+     * Found words are stored per puzzle, but a caller passing the wrong set
+     * would otherwise inflate the numerator past the denominator and print
+     * "7 of 6", which reads as a bug to a player and is one.
+     */
+    const r = boardProgress(new Set(['crafty', 'zebra']), grid, bonus);
+    expect(r.found).toBe(1);
+  });
+
+  it('does not double-count a word that is both grid and bonus', () => {
+    /* crafty, cart, tray, cat — four distinct, not five. */
+    const r = boardProgress(new Set(['cart']), grid, ['cart', 'cat']);
+    expect(r.total).toBe(4);
+    expect(r.found).toBe(1);
   });
 });
