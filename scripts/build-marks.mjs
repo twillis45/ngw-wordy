@@ -86,6 +86,47 @@ ${shapes.map((s) => `  ${s}`).join('\n')}
 `;
 };
 
+/*
+ * The app icon: the same six tiles, inset on a filled ground.
+ *
+ * Generated here rather than hand-kept, because it was the one mark in the
+ * family nobody generated and therefore the one that could drift from the
+ * rest without anything noticing. Its ring is TIGHTER than the bare mark's
+ * (0.293 against 0.328) and that is deliberate, not drift: the icon sits on
+ * a rounded square that both stores composite into their own shapes, so the
+ * mark has to hold clear of an edge the bare mark does not have.
+ *
+ * `scripts/build-icons.py` redraws these same proportions in Pillow for the
+ * PNG sizes the stores require, and states them as fractions of 1024 —
+ * 300/1024 ring, 196/1024 tile, 44/1024 puck. Those are asserted against this
+ * file by check-marks, so the two implementations cannot drift apart quietly.
+ */
+const ICON_RING = 300 / 1024;
+const ICON_TILE = 196 / 1024;
+const ICON_PUCK = 44 / 1024;
+
+const iconSvg = () => {
+  const C = 512;
+  const R = 1024 * ICON_RING;
+  const T = 1024 * ICON_TILE;
+  const tiles = Array.from({ length: 6 }, (_, i) => {
+    const a = (i / 6) * Math.PI * 2 - Math.PI / 2;
+    const x = (C + Math.cos(a) * R - T / 2).toFixed(2);
+    const y = (C + Math.sin(a) * R - T / 2).toFixed(2);
+    const fill = i === 3 ? ACCENT : INK;
+    return `<rect x="${x}" y="${y}" width="${T.toFixed(2)}" height="${T.toFixed(2)}" rx="${(T * 0.32).toFixed(2)}" fill="${fill}"/>`;
+  });
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Six on the Dial">
+<rect width="1024" height="1024" rx="232" fill="#141517"/>
+<rect x="6" y="6" width="1012" height="1012" rx="226" fill="none" stroke="#27282a" stroke-width="12"/>
+<g>
+${tiles.map((t) => `  ${t}`).join('\n')}
+  <circle cx="512" cy="512" r="${(1024 * ICON_PUCK).toFixed(2)}" fill="${INK}"/>
+</g>
+</svg>
+`;
+};
+
 const files = {
   'mark.svg': build({ radius: 0.328, tile: 0.215, accent: true, puck: true }),
   'mark-mono.svg': build({ radius: 0.328, tile: 0.215, accent: false, puck: false }),
@@ -102,6 +143,7 @@ const files = {
    * caught it; the eye at review size would not have.
    */
   'mark-small.svg': build({ radius: 0.355, tile: 0.26, accent: true, puck: false }),
+  'icon.svg': iconSvg(),
 };
 
 for (const [name, svg] of Object.entries(files)) {
