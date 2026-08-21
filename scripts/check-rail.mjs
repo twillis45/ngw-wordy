@@ -160,7 +160,20 @@ const results = [];
  * trade — reflow is expected to scroll in one direction. What is NOT allowed
  * is scrolling silently, so the fade still has to be honest there.
  */
-const TEXT_SCALES = ['default', 'large', 'larger'];
+/*
+ * `browser20` IS NOT ONE OF OUR SETTINGS. It is Chrome's own default font
+ * size turned up — the axis this file was blind to.
+ *
+ * A reader reported the rail scrolling three separate times, and each fix
+ * missed because their Chrome renders a 20px root where this guard renders
+ * 16px. `data-text` read "default" on their machine the whole time, so even
+ * the text-scale matrix added to catch this class of bug came back clean.
+ *
+ * Simulated by setting the root font size directly, which is faithful: the
+ * app decides by reading the COMPUTED root px, and both a browser preference
+ * and our own control arrive there.
+ */
+const TEXT_SCALES = ['default', 'large', 'larger', 'browser20'];
 
 /*
  * Real words from the shipped warm-up board, typed through the real input, so
@@ -209,8 +222,15 @@ for (const vp of VIEWPORTS) {
        * navigation, one context, no race.
        */
       localStorage.removeItem('ngw-wordy/v2');
-      if (t === 'default') localStorage.removeItem('ngw-wordy/text');
-      else localStorage.setItem('ngw-wordy/text', t);
+      if (t === 'browser20') {
+        localStorage.removeItem('ngw-wordy/text');
+        // Stand in for the browser preference, before the app's first line.
+        document.documentElement.style.fontSize = '20px';
+      } else if (t === 'default') {
+        localStorage.removeItem('ngw-wordy/text');
+      } else {
+        localStorage.setItem('ngw-wordy/text', t);
+      }
     } catch {
       /* storage unavailable — the default scale is what gets measured */
     }
