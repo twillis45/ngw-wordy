@@ -576,15 +576,117 @@ for (const base of bases) {
    * move. Five boards shipped that way. The dedupe has to run against what is
    * left of the wheel, not against everything seen so far.
    */
+  /*
+   * ORDERED SO EVERY UNLOCK OPENS A WORD, which the previous version did not
+   * do and could not have.
+   *
+   * It laid down the shortest word's letters and then the rest of the wheel in
+   * whatever order `letters` happened to be in. That guarantees row ONE is
+   * solvable and says nothing about row two. Audited against the shipped
+   * catalogue on 2026-08-21: 187 of 499 boards deadlocked — the player cleared
+   * one or two rows, then held five letters with no legal move and no way
+   * forward, in the mode that ships ON by default. `castle` is the clean
+   * example: open on s·e·t, spell SET, unlock C, and nothing in CASTLE, SLATE,
+   * LACE, SALE or SEAT can be spelled from s·e·t·c.
+   *
+   * The constraint is one line of arithmetic. Letters unlock one per row, so
+   * the k-th word a player solves has to be spellable from
+   * `startActive + (k - 1)` letters — the cumulative distinct letters across
+   * the first k words may grow by at most one per word. Searching orders of
+   * six words is trivial, and a valid order exists for every board in the
+   * catalogue, so nothing has to be thrown away to fix this.
+   */
+  /*
+   * Planned against the REAL mechanic, not a proxy for it.
+   *
+   * The first version of this fix checked that cumulative distinct letters
+   * grew by at most one per word. That is necessary and NOT sufficient, and
+   * the gap is repeated letters: on `poison` (i n o o p s) the second `o`
+   * satisfied "grew by one" while opening no word at all, so the board still
+   * stalled. Five boards survived the first fix that way — poison, demure,
+   * raging, beater, suntan, every one of them a base with a doubled letter.
+   *
+   * So the plan simulates what actually happens: you hold a multiset, solving
+   * a row grants exactly one more letter, and the next word must be spellable
+   * from what you then hold. A word needing two letters you do not have can
+   * never be next, however the arithmetic looks.
+   */
+  const missingFor = (word, held) => {
+    const pool = new Map();
+    for (const ch of held) pool.set(ch, (pool.get(ch) ?? 0) + 1);
+    const missing = [];
+    for (const ch of word) {
+      const n = pool.get(ch) ?? 0;
+      if (n > 0) pool.set(ch, n - 1);
+      else missing.push(ch);
+    }
+    return missing;
+  };
+
+  const planLadder = (words, wheel) => {
+    let found = null;
+    const walk = (order, held, unlocks, left) => {
+      if (found) return;
+      if (!left.length) {
+        found = { order, unlocks };
+        return;
+      }
+      for (const w of left) {
+        const missing = missingFor(w, held);
+        /*
+         * One unlock per row, so a word short by two letters cannot be next.
+         * Short by one: that letter is what this row unlocks. Short by none:
+         * the row still unlocks something, and which letter it is only
+         * matters for the words after it, so the choice is deferred to the
+         * recursion rather than guessed here.
+         */
+        if (missing.length > 1) continue;
+        const rest = left.filter((x) => x !== w);
+        if (missing.length === 1) {
+          const pool = [...wheel];
+          const at = pool.indexOf(missing[0]);
+          if (at === -1) continue; // the wheel does not have it — unspellable
+          walk([...order, w], [...held, missing[0]], [...unlocks, missing[0]], rest);
+        } else {
+          walk([...order, w], held, unlocks, rest);
+        }
+        if (found) return;
+      }
+    };
+    /*
+     * Seed with each word's own letters as the opening hand, shortest first,
+     * so the kindest opening is tried before any harder one and the first
+     * plan found is also a sensible curve.
+     */
+    for (const opener of [...words].sort((a, b) => a.length - b.length)) {
+      walk([opener], [...opener], [], words.filter((w) => w !== opener));
+      if (found) return { ...found, opener };
+    }
+    return null;
+  };
+
+  const plan = planLadder(grid, letters);
+  if (!plan) {
+    throw new Error(
+      `no unlock ladder exists for "${base}" — every ordering leaves a row ` +
+        `needing two letters at once`
+    );
+  }
+
+  /*
+   * The letters in the order the ladder needs them: the opening word's, then
+   * one per row. Anything the grid never needs comes last; it is on the wheel
+   * for bonus words.
+   */
   const remaining = [...letters];
   const unlockOrder = [];
-  for (const ch of [...shortest, ...letters]) {
+  for (const ch of [...plan.opener, ...plan.unlocks, ...letters]) {
     const at = remaining.indexOf(ch);
-    if (at === -1) continue; // already spent — a third copy the wheel does not have
+    if (at === -1) continue;
     remaining.splice(at, 1);
     unlockOrder.push(ch);
   }
-  const startActive = shortest.length;
+  const startActive = plan.opener.length;
 
   /*
    * Difficulty, 0 (kindest) to 1 (hardest).
