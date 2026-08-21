@@ -1356,10 +1356,25 @@ body {
 /* Wheel tile confirming a letter as the finger crosses it. Overshoots on
    arrival and settles at the selected scale, so the class can both animate
    and hold the resting state — no competing transform utility. */
+/*
+ * STRENGTHENED 2026-08-21 — the same report that raised the audio bus.
+ *
+ * This is the only feedback channel that survives a muted phone and a device
+ * with no haptics at all, which on iOS is every device: there is no vibration
+ * API in Safari, so the app reaches Taptic through a switch-element trick that
+ * may simply not fire. When that fails there is nothing left but the picture.
+ *
+ * A 1.16 peak settling to 1.05 is a nudge. It now compresses BEFORE it grows —
+ * a tile you cross reads as taking the press rather than merely noticing it —
+ * and lands slightly higher. The reduced-motion branch is untouched: it still
+ * substitutes rm-appear, so nobody gets a bigger movement they asked not to
+ * have.
+ */
 @keyframes tick {
-  0% { transform: scale(1); }
-  45% { transform: scale(1.16); }
-  100% { transform: scale(1.05); }
+  0%   { transform: scale(1); }
+  18%  { transform: scale(0.93); }
+  50%  { transform: scale(1.22); }
+  100% { transform: scale(1.07); }
 }
 .anim-tick { animation: tick 180ms cubic-bezier(0.34, 1.4, 0.64, 1) both; }
 

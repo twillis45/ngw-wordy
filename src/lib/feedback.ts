@@ -63,7 +63,20 @@ let bus: GainNode | null = null;
 function output(ac: AudioContext): GainNode {
   if (bus) return bus;
   const gain = ac.createGain();
-  gain.gain.value = 0.45;
+  /*
+   * 0.7, not 0.45, reported 2026-08-21 as "the whole thing feels muted".
+   *
+   * 0.45 is most of a halving, and it was doing the job the limiter below is
+   * already there for. That compressor sits at -12dB with a 6:1 ratio and a
+   * 3ms attack, which is what actually stops a stacked chord — prize fires
+   * four voices plus a sustained root — from clipping. Holding the bus at 0.45
+   * as well meant paying for the ceiling twice and never reaching it.
+   *
+   * Raising the BUS rather than each sound keeps every relationship intact:
+   * a tap is still lighter than a bank, a bank still lighter than the prize.
+   * Turning up eight sounds individually is how a mix stops being a mix.
+   */
+  gain.gain.value = 0.7;
   const limiter = ac.createDynamicsCompressor();
   limiter.threshold.value = -12;
   limiter.ratio.value = 6;
