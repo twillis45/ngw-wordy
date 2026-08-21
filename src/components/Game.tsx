@@ -508,6 +508,33 @@ export default function Game({ data }: { data: PuzzleFile }) {
     [progress, todayKey]
   );
 
+  /*
+   * Did today's square fill during THIS session?
+   *
+   * The streak is the one mechanic here whose whole job is to bring someone
+   * back tomorrow, and it was the only thing on the board that never moved:
+   * the square went from empty to ticked between renders, silently, with no
+   * more ceremony than a checkbox.
+   *
+   * Session-scoped for the same reason `justSolved` is. A cell that animates
+   * because it is FILLED would replay every reload, and motion that describes
+   * state rather than change is exactly what this codebase decided against
+   * when it refused to replay the landing for restored words. The ref holds
+   * what today looked like on arrival, so the animation fires on the
+   * transition and never again.
+   */
+  const todayFilled = days.length > 0 && days[days.length - 1].played;
+  /*
+   * `useState` with a lazy initialiser, not a ref. A ref would be the obvious
+   * shape for "what it was when we arrived" and it is wrong here — reading
+   * `.current` during render is what the react-hooks rule flags, and the rule
+   * is right: this value is read to decide what to RENDER, which is the one
+   * thing a ref is not for. The initialiser runs once, so this holds the
+   * arrival value for the life of the mount without ever being written again.
+   */
+  const [todayOnArrival] = useState(() => todayFilled);
+  const streakJustEarned = todayFilled && !todayOnArrival;
+
   const shelves = useMemo(() => themeShelves(data), [data]);
   /* Which shelf is open; null is the four-shelf overview. Reset whenever the
      sheet closes, so it never reopens two levels deep. */
@@ -1412,6 +1439,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       rowsFilled={rowsDone}
       totalRows={puzzle.grid.length}
       days={days}
+      streakJustEarned={streakJustEarned}
       streak={progress.streak}
       bestStreak={progress.bestStreak}
       hasDefinition={hasDefinition}
@@ -1867,6 +1895,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             rowsFilled={rowsDone}
             totalRows={puzzle.grid.length}
             days={days}
+            streakJustEarned={streakJustEarned}
             streak={progress.streak}
             bestStreak={progress.bestStreak}
             hasDefinition={hasDefinition}

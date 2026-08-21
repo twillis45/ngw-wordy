@@ -713,7 +713,19 @@ export default function WordTray({
                         : 'var(--slot-text)',
                       // Stagger so the row fills left to right, in step with
                       // the letters arriving from the wheel.
-                      animationDelay: fresh ? `${i * 45}ms` : undefined,
+                      /*
+                       * 77ms per tile, up from 45.
+                       *
+                       * The stagger is what turns six tiles landing into one
+                       * wave crossing a word, and 45ms was too tight to read
+                       * as a wave — the far end started before the near end
+                       * had settled. 77ms is Spelling Bee's figure, taken
+                       * from its shipped CSS (`calc(383ms + var(--letterIndex)
+                       * * 77ms)`), and at six letters it puts 385ms between
+                       * the first tile and the last, which is about the
+                       * longest a wave can run before it reads as waiting.
+                       */
+                      animationDelay: fresh ? `${i * 77}ms` : undefined,
                     }}
                   >
                     {visible ? (
