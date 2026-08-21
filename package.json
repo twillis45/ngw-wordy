@@ -9,6 +9,8 @@
     "lint": "eslint",
     "test": "vitest run",
     "check:rail": "node scripts/check-rail.mjs",
+    "check:color": "node scripts/check-color.mjs",
+    "check:depth": "node scripts/check-depth.mjs",
     "check:tiles": "node scripts/check-tiles.mjs",
     "check:motion": "node scripts/check-motion.mjs",
     "check:guards": "node scripts/check-guards.mjs",

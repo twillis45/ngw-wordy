@@ -112,6 +112,22 @@ const MUTATIONS = [
     why: 'a reduced-motion player on a desktop gets NO feedback for a wrong word',
   },
   {
+    name: 'ambient pools go back to steel',
+    file: 'src/app/globals.css',
+    from: '  --ambient-1: color-mix(in srgb, var(--color-steel-lift) 30%, transparent);',
+    to: '  --ambient-1: color-mix(in srgb, var(--color-steel) 30%, transparent);',
+    guard: 'check-color',
+    why: 'the lowest layer in the app turns blue and every card blurs it upward',
+  },
+  {
+    name: 'studio panels lose their lit edge',
+    file: 'src/app/globals.css',
+    from: '    inset 0 1px 0 var(--raise-light),\n    0 1px 1px -1px var(--raise-shadow),',
+    to: '    0 1px 1px -1px var(--raise-shadow),',
+    guard: 'check-depth',
+    why: 'studio cards go back to being printed on the page instead of sitting on it',
+  },
+  {
     name: 'dial glyph wrapper removed',
     file: 'src/components/LetterWheel.tsx',
     from: 'className="dial-glyph"',

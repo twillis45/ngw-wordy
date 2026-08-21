@@ -314,8 +314,29 @@
    * Tinting here re-blues every glass surface at once.
    */
   --glass-tint: #cfe1fa;
-  --glass-body: color-mix(in srgb, var(--color-steel) 22%, var(--color-carbon-panel));
-  --glass-body-raised: color-mix(in srgb, var(--color-steel) 26%, var(--color-carbon-surface-2));
+  /*
+   * DE-BLUED 2026-08-21. The 2026-08-17 pass neutralised the carbon ramp and
+   * stopped there, so the ground was a flat b-r=+3 and every CARD sitting on
+   * it was +10 to +14 — because `liquid` paints this, and this was 22% steel.
+   * Steel is #4e6877, b-r=+41, and backdrop-saturate 1.8 then amplified what
+   * was left. Measured on composited pixels: Streak +14.3, Record +10.3,
+   * Your words +9.8, against a page ground of exactly +3.
+   *
+   * Reading the tokens would never have found it. Each one was correct on its
+   * own; the blue only existed once glass was composited over panel over
+   * ambient through a saturate filter. check-color.mjs measures the rendered
+   * pixel for that reason.
+   *
+   * `--color-steel-lift` is steel's LUMINANCE with none of its temperature —
+   * relative luminance 99.6 either way, b-r +41 -> +3. So the material still
+   * lifts a card off the ground by exactly as much as it did, and the lift no
+   * longer carries a colour. Steel itself is untouched and stays the identity
+   * hue everywhere it means something: rank fills, the picked tile, the
+   * ambient pools that give the glass something to bend.
+   */
+  --color-steel-lift: #626466;
+  --glass-body: color-mix(in srgb, var(--color-steel-lift) 22%, var(--color-carbon-panel));
+  --glass-body-raised: color-mix(in srgb, var(--color-steel-lift) 26%, var(--color-carbon-surface-2));
 
   --glass-fill: color-mix(in srgb, var(--glass-body) 55%, transparent);
   --glass-fill-raised: color-mix(in srgb, var(--glass-body-raised) 70%, transparent);
@@ -395,9 +416,32 @@
    * Three soft steel pools, kept dark on purpose — this has to add gradient,
    * not brightness, or it eats the sunlight contrast the edges were tuned for.
    */
-  --ambient-1: color-mix(in srgb, var(--color-steel) 30%, transparent);
-  --ambient-2: color-mix(in srgb, var(--color-steel-muted) 20%, transparent);
-  --ambient-3: color-mix(in srgb, var(--color-steel-dark) 34%, transparent);
+  /*
+   * DE-BLUED 2026-08-21, and this was the floor under everything else.
+   *
+   * These pools are the lowest layer in the app, and every card is a
+   * backdrop-blur over them — so their temperature became the temperature of
+   * the whole UI, amplified by backdrop-saturate 1.8 on the way through.
+   * Measured: with the pools steel, the page ground read +5.8 and no card
+   * could get below roughly that. Dropping the saturate to 1.0 — which throws
+   * the glass away entirely — still left Streak at +6.1, because saturate only
+   * multiplies a hue that is already there.
+   *
+   * Each pool keeps its own relative luminance and loses its temperature, the
+   * same trade as `--color-steel-lift`: steel 99.6, muted 130.9, dark 86.2,
+   * unchanged either side. The pools still do their actual job, which is to
+   * put STRUCTURE behind the glass so the blur has something to bend —
+   * "blurring one colour returns that colour" is why they exist, and a
+   * luminance gradient bends exactly as well as a hue gradient.
+   *
+   * Steel itself is untouched everywhere it carries meaning: rank fills, the
+   * picked tile, the identity edge.
+   */
+  --color-steel-muted-lift: #828385;
+  --color-steel-dark-lift: #555658;
+  --ambient-1: color-mix(in srgb, var(--color-steel-lift) 30%, transparent);
+  --ambient-2: color-mix(in srgb, var(--color-steel-muted-lift) 20%, transparent);
+  --ambient-3: color-mix(in srgb, var(--color-steel-dark-lift) 34%, transparent);
 
   /*
    * Letter-slot sizing, fluid rather than bucketed.
@@ -2013,6 +2057,58 @@ body {
 :root[data-theme='studio'] .liquid::after,
 :root[data-theme='studio'] .liquid-disc::before {
   content: none;
+}
+
+/*
+ * THE PANELS LIFT TOO.
+ *
+ * This theme already owns a matte way of raising an object — an inset top
+ * hairline plus a contact shadow, `--raise-light` and `--raise-shadow`, both
+ * declared for exactly this and both used only by the dial. So the letter
+ * tiles and the puck sat on the board with real weight while every CARD was a
+ * fill inside a hairline, and the eye read the difference as the cards being
+ * printed on the page rather than resting on it.
+ *
+ * Measured, that is not a matter of taste: a studio panel is 1.08:1 against
+ * its own ground, where the same panel in dark is 1.32:1. The surfaces are
+ * carrying almost none of the identification and the border is carrying all
+ * of it — which this file already says out loud, a few hundred lines up,
+ * about a different symptom of the same cause.
+ *
+ * NOT a walk back to glass. There is still no specular, no caustic, no rim
+ * light and no backdrop blur; those stay `transparent` and `0px` above. A top
+ * edge catching light and a shadow underneath is how a matte object sits on a
+ * surface — it is the same thing the tiles are already doing, at panel
+ * strength rather than tile strength.
+ */
+:root[data-theme='studio'] .liquid {
+  box-shadow:
+    inset 0 1px 0 var(--raise-light),
+    0 1px 1px -1px var(--raise-shadow),
+    0 10px 24px -12px var(--raise-shadow);
+}
+
+/*
+ * A LAUNCHED PANEL lifts harder, because it is further off the page.
+ *
+ * The sheets are `.liquid` too, so the rule above already reaches them — but
+ * a sheet is not a card. It floats over a scrim with the whole board behind
+ * it, and at card strength it read as a rectangle taped to the screen. The
+ * shadow is cast wide and upward here: these rise from the bottom edge, so
+ * the light that matters is above them.
+ *
+ * `> .liquid` and not a descendant selector: the panel is the dialog's direct
+ * child, and the cards INSIDE a progress sheet are `.liquid` as well. Without
+ * the child combinator every card in the sheet would take the sheet's own
+ * lift and the hierarchy would invert — the container and its contents
+ * raised by the same amount reads as neither being raised.
+ */
+:root[data-theme='studio'] [role='dialog'] > .liquid {
+  box-shadow:
+    inset 0 1px 0 var(--raise-light-accent),
+    0 -2px 0 var(--raise-light-soft),
+    0 -12px 40px -8px var(--raise-shadow),
+    0 4px 24px -4px var(--raise-shadow);
 }
 
 /*
