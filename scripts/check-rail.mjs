@@ -73,6 +73,29 @@ const VIEWPORTS = [
   { w: 768, h: 1024, note: 'iPad portrait, smallest that shows the rail' },
   { w: 1024, h: 768, note: 'iPad landscape, smallest' },
   /*
+   * BIG DESKTOPS, added 2026-08-21 after a reader photographed the rail
+   * scrolling on an ordinary one.
+   *
+   * Every viewport above is either under 1536 wide or under 1000 tall, which
+   * are exactly the two conditions that keep the "How to play" card hidden.
+   * So no test in this file had ever rendered it — and that card sits OUTSIDE
+   * the scroller, so switching it on does not lengthen a scrollable list, it
+   * TAKES 189px from the three cards inside. 1536x1000 and 1600x1000
+   * overflowed by 95px, 1920x1080 by 15, and the whole suite stayed green
+   * because none of it had ever been on that side of both breakpoints.
+   *
+   * The lesson is the sizes, not the fix: a viewport list assembled from the
+   * windows that broke things in the past has a hole wherever a feature is
+   * gated on a combination nothing in the list satisfies.
+   */
+  { w: 1536, h: 1000, note: '2xl at exactly 1000 tall — how-to gate boundary' },
+  { w: 1600, h: 1000, note: 'overflowed 95px before the gate was raised' },
+  { w: 1728, h: 1080, note: 'MacBook Pro 16 default — overflowed 15px' },
+  { w: 1920, h: 1080, note: 'the commonest desktop — overflowed 15px' },
+  { w: 1970, h: 1110, note: 'the window this was reported from' },
+  { w: 1600, h: 1130, note: 'first height where how-to is meant to show' },
+  { w: 2560, h: 1400, note: 'large desktop, how-to showing with room' },
+  /*
    * Phones, where the rail lives inside the progress SHEET rather than beside
    * the board — which is why they were never in this list. They are here now
    * because the rail is rendered twice, and for a while only one of the two
@@ -176,6 +199,21 @@ for (const vp of VIEWPORTS) {
      * failure when the rail is NOT scrollable at this position, because then
      * the fade is promising content that does not exist.
      */
+    /*
+     * THE RAIL MUST NOT SCROLL, at any viewport that shows it.
+     *
+     * This script asserted that Streak was visible and that the fade was
+     * honest, and never that the rail FIT. So a 95px overflow at 1600x1000
+     * passed every check: Streak was fine (it sits outside the scroller), and
+     * the fade was correctly on because there genuinely was more below. The
+     * Rank ladder was cut mid-rung and Record was out of sight, and the suite
+     * was green.
+     *
+     * The requirement is that every card is visible without scrolling. That
+     * is now the assertion rather than an implication of three narrower ones.
+     */
+    const overflowPx = Math.max(0, rail.scrollHeight - rail.clientHeight);
+
     const FADE = 28;
     const masked = getComputedStyle(rail).maskImage !== 'none';
     /*
@@ -220,6 +258,7 @@ for (const vp of VIEWPORTS) {
     })();
     return {
       unmanaged,
+      overflowPx,
       ladder,
       railCount: document.querySelectorAll('.rail-scroll').length,
       overflow: Math.max(0, rail.scrollHeight - rail.clientHeight),
@@ -255,6 +294,7 @@ for (const vp of VIEWPORTS) {
     m.overlapsFade > 0 ||
     (m.masked && !m.moreBelow) ||
     m.unmanaged > 0 ||
+    m.overflowPx > 0 ||
     (m.ladder && m.ladder.maxGap > m.ladder.rung) ||
     (m.ladder && m.ladder.spread > 1);
   results.push({ vp, fail, ...m });
@@ -287,7 +327,9 @@ for (const r of results) {
               ? `rank ladder gap ${r.ladder.maxGap}px exceeds its ${r.ladder.rung}px rungs — the rows have stopped reading as one list`
               : r.ladder && r.ladder.spread > 1
                 ? `rank ladder gaps vary by ${r.ladder.spread}px — the rhythm is uneven`
-                : r.unmanaged > 0
+                : r.overflowPx > 0
+              ? `rail scrolls — ${r.overflowPx}px of cards below the fold; every card must be visible without scrolling`
+              : r.unmanaged > 0
               ? `${r.unmanaged} of ${r.railCount} rail scrollers have no data-fade — nothing manages them, so they can never fade`
               : 'fade is on with nothing below to fade to';
     console.log(`✗  ${label} ${why}  — ${r.vp.note}`);

@@ -114,7 +114,22 @@ export default function Rail({
    * Chrome on a laptop — adding it was what pushed the Streak off the bottom,
    * while a narrower 1440x900 fitted fine. It needs room in both directions.
    */
-  howToClassName = 'hidden 2xl:[@media(min-height:1000px)]:block',
+  /*
+   * Gated at 1120px tall, not 1000.
+   *
+   * This card sits OUTSIDE the scroller, so turning it on does not add to a
+   * scrollable list — it TAKES 189px from the three cards inside. At 1000px
+   * of viewport the rail cannot pay that: measured, 1536x1000 and 1600x1000
+   * overflowed by 95px and 1920x1080 by 15, cutting the Rank ladder mid-rung
+   * and pushing Record out of sight entirely.
+   *
+   * The hole was in the test set, not only the CSS. Every viewport in
+   * check-rail was either under 1536 wide or under 1000 tall, so nothing ever
+   * rendered this card and the overflow it causes was invisible to all of
+   * them. A reader reported it from an ordinary desktop. Those sizes are in
+   * the list now.
+   */
+  howToClassName = 'hidden 2xl:[@media(min-height:1120px)]:block',
   boardComplete = false,
   onChallenge,
   hasDefinition,
