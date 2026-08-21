@@ -205,6 +205,46 @@ export default function LetterWheel({
    */
   const [byMouse, setByMouse] = useState(false);
 
+  /*
+   * The dial's rotation splits this component into TWO coordinate spaces, and
+   * every number below has to say which one it is in.
+   *
+   * The tiles are laid out at fixed angles and then the whole ring is turned
+   * by CSS — `detents * 60deg` — so where a tile IS on screen stops matching
+   * where `positions` says it is the moment the first row is solved. Hit
+   * testing compared a screen point against `positions` directly, so from one
+   * detent on it selected the wrong letter: measured, tapping A selected C,
+   * tapping F selected C, tapping T selected C. At detent 0 every tap was
+   * correct, which is why it survived the change that introduced it.
+   *
+   * RING space is where the geometry lives: `positions`, the hit test, the
+   * pull and the parallax. WORLD space is what the container renders in and
+   * what a pointer event arrives in. `toRing` takes a pointer into the
+   * geometry; `toWorld` takes geometry back out for anything drawn OUTSIDE
+   * the rotating ring — which is the thread and the pointer puck, both of
+   * which are siblings of the ring rather than children of it.
+   */
+  const ringRad = (detents * 60 * Math.PI) / 180;
+  const spin = useCallback(
+    (pt: { x: number; y: number }, rad: number) => {
+      if (!rad) return pt;
+      const dx = pt.x - 50;
+      const dy = pt.y - 50;
+      const c = Math.cos(rad);
+      const sn = Math.sin(rad);
+      return { x: 50 + dx * c - dy * sn, y: 50 + dx * sn + dy * c };
+    },
+    []
+  );
+  const toRing = useCallback(
+    (pt: { x: number; y: number }) => spin(pt, -ringRad),
+    [spin, ringRad]
+  );
+  const toWorld = useCallback(
+    (pt: { x: number; y: number }) => spin(pt, ringRad),
+    [spin, ringRad]
+  );
+
   const positions = letters.map((_, i) => {
     // Start at the top and go clockwise.
     const angle = (i / letters.length) * Math.PI * 2 - Math.PI / 2;
@@ -220,11 +260,17 @@ export default function LetterWheel({
     if (!box) return null;
     const r = box.getBoundingClientRect();
     if (!r.width || !r.height) return null;
-    return {
+    /*
+     * Returned in RING space. Every consumer of this — the hit test, the
+     * pull, the parallax — compares against `positions`, which is ring space,
+     * so converting once here is what keeps them all honest rather than
+     * asking each of them to remember.
+     */
+    return toRing({
       x: ((e.clientX - r.left) / r.width) * 100,
       y: ((e.clientY - r.top) / r.height) * 100,
-    };
-  }, []);
+    });
+  }, [toRing]);
 
   const isLocked = useCallback(
     (i: number) => (activeIndices ? !activeIndices.has(i) : false),
@@ -485,7 +531,12 @@ export default function LetterWheel({
     return `translate(${dx}%, ${dy}%) scale(${scale.toFixed(3)})`;
   };
 
-  const pathPoints = selected.map((i) => positions[i]);
+  /*
+   * Drawn OUTSIDE the rotating ring, so these go back to world space. Without
+   * this the thread joins where the tiles used to be, which after one detent
+   * is a line across empty disc.
+   */
+  const pathPoints = selected.map((i) => toWorld(positions[i]));
 
   return (
     <div
@@ -581,7 +632,9 @@ export default function LetterWheel({
             <polyline
               points={[
                 ...pathPoints.map((p) => `${p.x},${p.y}`),
-                ...(dragging && cursor ? [`${cursor.x},${cursor.y}`] : []),
+                ...(dragging && cursor
+                  ? [`${toWorld(cursor).x},${toWorld(cursor).y}`]
+                  : []),
               ].join(' ')}
               fill="none"
               stroke="var(--color-edge)"
@@ -593,7 +646,7 @@ export default function LetterWheel({
             <polyline
               points={[
                 ...pathPoints.map((p) => `${p.x},${p.y}`),
-                ...(dragging && cursor ? [`${cursor.x},${cursor.y}`] : []),
+                ...(dragging && cursor ? [`${toWorld(cursor).x},${toWorld(cursor).y}`] : []),
               ].join(' ')}
               fill="none"
               stroke="var(--color-edge)"
@@ -661,8 +714,14 @@ export default function LetterWheel({
              * and a margin in cqmin resolves against the container rather than
              * against the ambiguous percentage basis.
              */
-            left: `${pointer.x}%`,
-            top: `${pointer.y}%`,
+            /*
+              World space. `pointer` is computed against `positions`, which is
+              ring space, and this puck is a sibling of the ring rather than a
+              child — so without the conversion it snaps to where a tile was
+              before the dial turned.
+            */
+            left: `${toWorld(pointer).x}%`,
+            top: `${toWorld(pointer).y}%`,
             width: `${pointer.size}cqmin`,
             height: `${pointer.size}cqmin`,
             marginLeft: `${-pointer.size / 2}cqmin`,
