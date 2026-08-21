@@ -1313,6 +1313,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       tiles: puzzle.grid.map((w) => ({
         solved: found.has(w),
         isBase: w === puzzle.base,
+        length: w.length,
       })),
       bonusFound: bonusFound.length,
       streak: progress.streak,

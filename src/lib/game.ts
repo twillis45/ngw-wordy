@@ -766,7 +766,12 @@ const SQ_BASE = '🟩'; // the full-wheel word — matches its green ring in-app
 const SQ_SOLVED = '🟦';
 const SQ_MISSED = '⬛';
 
-export type ShareTile = { solved: boolean; isBase: boolean };
+export type ShareTile = {
+  solved: boolean;
+  isBase: boolean;
+  /** Letters in the row — the shape is drawn one square per letter. */
+  length: number;
+};
 
 /**
  * The share card.
@@ -817,11 +822,33 @@ export function shareText(opts: {
   /** Leave the URL out of the text, because the caller is passing it separately. */
   omitUrl?: boolean;
 }): string {
+  /*
+   * A staircase, one square per LETTER — not a flat strip of six.
+   *
+   * The strip said only how many rows were filled, which every word game's
+   * card says. Six rows of DIFFERENT lengths, longest first, is the rules
+   * showing through: one six-letter base and five shorter words pulled from
+   * the same wheel. Wordle's card is a rectangle because its board is; ours
+   * should be a staircase for the same reason, and a staircase is
+   * recognisable at a glance in a feed where a six-character strip is not.
+   *
+   * It still spoils nothing. Only two facts per row travel — how long the
+   * word is, and whether it was filled — and both are visible on the empty
+   * board before anyone starts. No letters, no positions, no order.
+   *
+   * The CLUE above it is untouched and stays the lead. Shape-only was tried
+   * and rejected once, on the grounds that the clues are the one asset here
+   * nobody else can generate and a shape-only card meant they never left the
+   * app. That still holds; this changes the line under the clue, not the
+   * decision about what leads.
+   */
   const shape = opts.tiles
     .map((t) =>
-      !t.solved ? SQ_MISSED : t.isBase ? SQ_BASE : SQ_SOLVED
+      (!t.solved ? SQ_MISSED : t.isBase ? SQ_BASE : SQ_SOLVED).repeat(
+        Math.max(1, t.length)
+      )
     )
-    .join('');
+    .join('\n');
 
   // Evidence line — only the parts that actually happened.
   const evidence = [

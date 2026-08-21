@@ -231,6 +231,13 @@ describe('shareText', () => {
     pattern.split('').map((c) => ({
       solved: c !== '.',
       isBase: c === 'b',
+      /*
+       * One letter per row in these fixtures, so a test that cares about
+       * MARKS stays about marks. The staircase — one square per letter — has
+       * its own tests below; mixing the two concerns is how an assertion ends
+       * up passing for the wrong reason.
+       */
+      length: 1,
     }));
 
   it('reveals shape and rank but never a word', () => {
@@ -257,7 +264,7 @@ describe('shareText', () => {
       bonusFound: 0,
       streak: 1,
     });
-    expect(text).toContain('🟩🟦🟦');
+    expect(text).toContain('🟩\n🟦\n🟦');
   });
 
   it('shows misses', () => {
@@ -268,7 +275,7 @@ describe('shareText', () => {
       bonusFound: 0,
       streak: 1,
     });
-    expect(text).toContain('⬛🟦⬛');
+    expect(text).toContain('⬛\n🟦\n⬛');
   });
 
   it('omits bonus, streak and url when they have nothing to say', () => {
@@ -282,7 +289,12 @@ describe('shareText', () => {
     expect(text).not.toContain('bonus');
     expect(text).not.toContain('streak');
     expect(text).not.toContain('http');
-    expect(text.trim().split('\n')).toHaveLength(3);
+    /*
+     * Heading, then ONE LINE PER ROW, then the evidence line. The shape used
+     * to be a single strip, so this was 3; the staircase makes it 2 + rows,
+     * which is the change and not a regression.
+     */
+    expect(text.trim().split('\n')).toHaveLength(2 + 2);
   });
 
   it('leads with the clue, because that is the part worth quoting', () => {
@@ -1205,9 +1217,9 @@ describe('share card day number', () => {
     rank: 'Complete',
     score: 120,
     tiles: [
-      { solved: true, isBase: true },
-      { solved: true, isBase: false },
-      { solved: false, isBase: false },
+      { solved: true, isBase: true, length: 6 },
+      { solved: true, isBase: false, length: 4 },
+      { solved: false, isBase: false, length: 3 },
     ],
     bonusFound: 3,
     streak: 5,
@@ -1245,7 +1257,7 @@ describe('share card names the escalating wheel', () => {
   const base = {
     rank: 'Complete',
     score: 120,
-    tiles: [{ solved: true, isBase: true }],
+    tiles: [{ solved: true, isBase: true, length: 6 }],
     bonusFound: 0,
     streak: 1,
   };
@@ -1264,7 +1276,7 @@ describe('share splits the link into its own field', () => {
   const base = {
     rank: 'Complete',
     score: 40,
-    tiles: [{ solved: true, isBase: true }],
+    tiles: [{ solved: true, isBase: true, length: 6 }],
     bonusFound: 0,
     streak: 1,
     theme: 'Sunday Service',
@@ -1415,5 +1427,44 @@ describe('completionStats', () => {
   it('drops warm-up progress rather than a real result', () => {
     const stats = completionStats({ ...base, bonus: 2, streak: 5, warmup: 1 });
     expect(stats.map((s) => s.label)).not.toContain('Warm-up');
+  });
+});
+
+describe('shareText — the staircase', () => {
+  const row = (length: number, solved: boolean, isBase = false) => ({
+    solved,
+    isBase,
+    length,
+  });
+
+  it('draws one square per LETTER, so the shape is the word lengths', () => {
+    const text = shareText({
+      rank: 'Solid',
+      score: 12,
+      tiles: [row(6, true, true), row(4, true), row(3, false)],
+      bonusFound: 0,
+      streak: 1,
+    });
+    const lines = text.split('\n');
+    const board = lines.filter((l) => /^[🟩🟦⬛]+$/u.test(l));
+    expect(board).toHaveLength(3);
+    expect([...board[0]]).toHaveLength(6);
+    expect([...board[1]]).toHaveLength(4);
+    expect([...board[2]]).toHaveLength(3);
+  });
+
+  it('still never contains a letter of any answer', () => {
+    const text = shareText({
+      rank: 'Complete',
+      score: 40,
+      tiles: [row(6, true, true), row(4, true), row(3, true)],
+      bonusFound: 0,
+      streak: 1,
+    });
+    const board = text
+      .split('\n')
+      .filter((l) => /^[🟩🟦⬛]+$/u.test(l))
+      .join('');
+    expect(/[a-z]/i.test(board)).toBe(false);
   });
 });
