@@ -1786,6 +1786,15 @@ export default function Game({ data }: { data: PuzzleFile }) {
           onClear={() => setSel([])}
           onUndo={undoLetter}
           activeIndices={unlockedIdx}
+          /*
+           * The dial's detent. Six rows, six tiles, six positions: each solved
+           * row advances the wheel a sixth of a turn, so a finished board has
+           * turned it exactly once. This is the reveal the game did not have —
+           * the letters leaving the wheel for the tray was the only thing that
+           * happened, and it happened to the TRAY. Now the object the game is
+           * named after answers a solve.
+           */
+          detents={rowsDone}
         />
       </div>
 

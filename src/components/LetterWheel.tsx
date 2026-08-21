@@ -17,6 +17,16 @@ type Props = {
    * player can see what's coming, but can't be selected.
    */
   activeIndices?: ReadonlySet<number>;
+  /**
+   * Rows solved on this board — the dial's DETENT position.
+   *
+   * "Six on the Dial": six rows, six tiles, six positions. Each solved word
+   * advances the wheel one sixth of a turn, so finishing a board turns the
+   * dial exactly once. The number is the game's own rules made visible, which
+   * is why it is this and not an arbitrary flourish — it cannot be lifted by
+   * anything that is not also six-and-six.
+   */
+  detents?: number;
 };
 
 /**
@@ -150,6 +160,7 @@ export default function LetterWheel({
   onUndo,
   disabled,
   activeIndices,
+  detents = 0,
 }: Props) {
   const boxRef = useRef<HTMLDivElement>(null);
 
@@ -715,6 +726,25 @@ export default function LetterWheel({
       {/* The ring of tiles. Wrapped so the turn applies to the SET — rotating
           each tile individually would spin the glyphs on their own centres
           rather than carry them around the dial. */}
+      {/*
+        Two rings, because two different rotations live here and they must not
+        fight over one `transform`.
+
+        The OUTER one holds the detent: a persistent angle that only ever
+        advances, one sixth of a turn per solved row, animated with a
+        transition so it moves between states rather than replaying. The INNER
+        one carries the shuffle, which is transient and keyframed. Nesting is
+        what lets a shuffle happen mid-board without losing the detent, and
+        lets a solve land while a shuffle is still settling.
+      */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          transform: `rotate(${detents * 60}deg)`,
+          transition: 'transform 620ms cubic-bezier(0.22, 1, 0.28, 1)',
+        }}
+      >
       <div
         className={turning ? 'anim-dial-turn contents-none' : 'contents-none'}
         style={{ position: 'absolute', inset: 0 }}
@@ -820,6 +850,23 @@ export default function LetterWheel({
               // size — everything else here is already a percentage of the
               // container, and the type was the one thing that wasn't.
               fontSize: '13.7cqmin',
+              /*
+                The TILE counter-rotates the detent, not just the letter.
+                Measured at one detent with only the glyph corrected: the
+                tiles sat at 60deg with upright letters inside them, which
+                reads as a lopsided diamond holding a straight glyph — a
+                rounded square is only square again every 90deg, and the
+                detent steps 60. It also broke the one visual claim the flight
+                animation rests on, that a wheel tile and a tray tile are the
+                same object: a letter left a tilted box and landed in an
+                upright one.
+                
+                On `rotate` rather than `transform`, because `transform` is
+                the parallax. The dial still plainly turns — the tiles travel
+                around the circle, which is the part that carries the meaning;
+                what they stop doing is tumbling.
+              */
+              rotate: `${-detents * 60}deg`,
               transform: parallaxFor(i) || undefined,
               transitionProperty: 'transform, background-color, border-color',
               transitionDuration: '120ms',
@@ -837,7 +884,16 @@ export default function LetterWheel({
               boxShadow: locked ? 'none' : undefined,
             }}
           >
-            {letter.toUpperCase()}
+            {/*
+              The glyph undoes the SHUFFLE's turn; the tile above undoes the
+              detent's. Two rotations, two elements, two CSS properties —
+              `transform` here and `rotate` on the tile — so nothing
+              overwrites anything. Without this the letters lie on their side
+              for the 420ms a shuffle takes.
+            */}
+            <span className="dial-glyph" style={{ display: 'block' }}>
+              {letter.toUpperCase()}
+            </span>
             {/*
               No order badge.
               A number stamped on each tile was carrying the sequence for the
@@ -850,6 +906,7 @@ export default function LetterWheel({
           </button>
         );
       })}
+      </div>
       </div>
     </div>
   );

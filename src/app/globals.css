@@ -1499,15 +1499,20 @@ body {
 }
 /*
  * The glyphs must NOT rotate with the ring, or a shuffle leaves every letter
- * lying on its side. The ring carries them around; each tile counter-rotates
+ * lying on its side. The ring carries them around; each glyph counter-rotates
  * by the same amount so it arrives upright.
+ *
+ * On `transform`, and on the GLYPH rather than the tile. The tile's transform
+ * is the parallax, and the glyph's `rotate` is the detent counter — the solve
+ * rotation, which is a steady state rather than an animation. Three rotations
+ * on one dial, each on a property nothing else is using.
  */
 @keyframes dial-turn-counter {
-  0%   { rotate: 0deg; }
-  70%  { rotate: -64deg; }
-  100% { rotate: -60deg; }
+  0%   { transform: rotate(0deg); }
+  70%  { transform: rotate(-64deg); }
+  100% { transform: rotate(-60deg); }
 }
-.anim-dial-turn > button {
+.anim-dial-turn .dial-glyph {
   animation: dial-turn-counter 420ms cubic-bezier(0.22, 1, 0.28, 1) both;
 }
 

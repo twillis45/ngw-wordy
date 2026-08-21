@@ -128,6 +128,52 @@ const probe = async (reduce) => {
   return out;
 };
 
+/*
+ * The dial's counter-rotation contract.
+ *
+ * Three rotations share this one object: the tile's `transform` is the
+ * parallax, the ring's `transform` is the detent (a sixth of a turn per
+ * solved row), and the glyph's `rotate` cancels the detent so the letter
+ * arrives upright. Get the last one wrong and every letter on the wheel lies
+ * on its side the moment a row is solved — a failure that cannot happen on a
+ * fresh board, so it would ship.
+ *
+ * What this asserts is the STRUCTURE that makes it work: a glyph element
+ * exists inside every tile, and the ring's angle and the glyph's angle cancel.
+ * It deliberately does not play a board — which word is solvable depends on
+ * the date's puzzle — so the dynamic behaviour (60deg per solve, verified at
+ * 0/1/2/3 rows) is checked by hand rather than here. This catches the
+ * regression that is actually likely: the glyph wrapper being removed or its
+ * class renamed, which silently breaks the shuffle counter too.
+ */
+const dial = await (async () => {
+  const page = await browser.newPage();
+  await page.setViewport({ width: 390, height: 844 });
+  await page.goto(`${base}/`, { waitUntil: 'networkidle0' });
+  await page.waitForSelector('[data-wheel-tile]');
+  const r = await page.evaluate(() => {
+    const tiles = [...document.querySelectorAll('[data-wheel-tile]')];
+    const glyphs = tiles.map((t) => t.querySelector('.dial-glyph')).filter(Boolean);
+    const deg = (m) => {
+      const t = m.match(/matrix\(([-0-9.]+),\s*([-0-9.]+)/);
+      return t ? Math.atan2(+t[2], +t[1]) * 180 / Math.PI : 0;
+    };
+    const ring = tiles[0]?.parentElement?.parentElement;
+    const ringDeg = ring ? deg(getComputedStyle(ring).transform) : null;
+    /*
+     * The TILE carries the detent counter, not the glyph. It was on the glyph
+     * first, and that left the tiles themselves tumbling: at one detent they
+     * sat at 60deg with upright letters inside, which a rounded square reads
+     * as a lopsided diamond. The glyph keeps only the transient shuffle
+     * counter, which is an animation and so is not measurable at rest.
+     */
+    const tileDeg = tiles[0] ? parseFloat(getComputedStyle(tiles[0]).rotate || '0') : null;
+    return { tiles: tiles.length, glyphs: glyphs.length, ringDeg, tileDeg };
+  });
+  await page.close();
+  return r;
+})();
+
 const on = await probe(true);
 const off = await probe(false);
 await browser.close();
@@ -149,6 +195,17 @@ for (const { cls } of SIGNALS) {
   const r = off[cls];
   if (r.ms < 40) { failed++; console.log(`✗  .${cls.padEnd(12)} only ${r.ms}ms — the reduced rule is leaking into everyone`); }
   else console.log(`✔  .${cls.padEnd(12)} ${r.name} ${r.ms}ms`);
+}
+
+console.log('\nthe dial — the detent and its counter-rotation\n');
+if (dial.glyphs !== dial.tiles || dial.tiles === 0) {
+  failed++;
+  console.log(`✗  ${dial.glyphs} of ${dial.tiles} wheel tiles carry a .dial-glyph — without it the letters turn with the ring`);
+} else if (Math.abs((dial.ringDeg ?? 0) + (dial.tileDeg ?? 0)) > 2) {
+  failed++;
+  console.log(`✗  ring at ${dial.ringDeg?.toFixed(1)}deg, tile at ${dial.tileDeg}deg — these must cancel or the tiles tumble as the dial advances`);
+} else {
+  console.log(`✔  ${dial.tiles} tiles upright (ring ${(dial.ringDeg ?? 0).toFixed(0)}deg cancelled by tile ${dial.tileDeg}deg), ${dial.glyphs} glyphs ready for the shuffle counter`);
 }
 
 if (failed) {
