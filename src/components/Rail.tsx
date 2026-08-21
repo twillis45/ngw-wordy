@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { RANK_BASIS, rankLadder, type Rank } from '@/lib/game';
 import type { DayCell } from '@/lib/storage';
 import { nextMilestone } from '@/lib/record';
@@ -82,6 +82,8 @@ type Props = {
    * the mobile sheet passes '' to always show it.
    */
   howToClassName?: string;
+  recordClassName?: string;
+  tight?: boolean;
   /** This board is finished — see the challenge note in the words card. */
   boardComplete?: boolean;
   /** Pass the ladder on. Only offered when the board is done. */
@@ -130,11 +132,46 @@ export default function Rail({
    * the list now.
    */
   howToClassName = 'hidden 2xl:[@media(min-height:1120px)]:block',
+  /*
+   * Record's hide rule is a PROP for the same reason how-to's is: the sheet
+   * mounts this same component, so a rule written inline applies there too.
+   * The card's own comment claimed the figures were "available in the progress
+   * sheet" — they were not. The sheet is this component, so a viewport-height
+   * media query hid the card in the escape hatch and on the board alike, and
+   * a player on a short window had no way to reach the numbers at all.
+   *
+   * Viewport height is also the wrong axis inside a sheet, which gets the
+   * whole screen rather than a squeezed column. The sheet passes '' and shows
+   * it unconditionally, which is what makes the hide defensible.
+   */
+  recordClassName = 'hidden [@media(min-height:600px)]:flex [@media(min-height:600px)]:flex-col',
+  /*
+   * `tight` means this mount has very little vertical room — it is the phone
+   * progress sheet, where the rail gets a 300px viewport and the cards want
+   * 484px.
+   *
+   * It buys the difference from the two places that can give it up without
+   * losing information. The ladder shows the rung you are on and its
+   * neighbours, with the rest one tap away; the Your-words card drops its
+   * placeholder line, which is a sentence about what will appear later rather
+   * than anything about now.
+   *
+   * Deliberately NOT a media query. The inline desktop rail keeps all seven
+   * rungs and their marks — that ladder was built to be read whole, and the
+   * only reason to compact it is a container that cannot hold it.
+   */
+  tight = false,
   boardComplete = false,
   onChallenge,
   hasDefinition,
   onShowDefinition,
 }: Props) {
+  /*
+   * Above every early return and every conditional. Hooks placed after a
+   * branch in this file cost a React #310 once already.
+   */
+  const [ladderOpen, setLadderOpen] = useState(false);
+
   /*
    * Does this rail have anything below the fold?
    *
@@ -238,11 +275,17 @@ export default function Rail({
           for, which is telling somebody how much is still there.
         */}
         {boardTotal > 0 && (
-          <p className="mb-1 text-meta text-text-secondary">
+          <p className={`text-meta text-text-secondary ${tight ? 'hidden' : 'mb-1'}`}>
             {boardFound} of {boardTotal} words found
           </p>
         )}
+        {/* In `tight` the count and the target tally share a line. They are
+            two facts about the same board, and stacking them cost a row the
+            phone sheet did not have. */}
         <p className="text-meta text-text-muted">
+          {tight && boardTotal > 0 && (
+            <span className="text-text-secondary">{boardFound}/{boardTotal} found · </span>
+          )}
           <span className="text-text-secondary">
             Targets · {solvedTargets.length}/{gridWords.length}
           </span>
@@ -275,7 +318,7 @@ export default function Rail({
 
         <Group
           label={`Bonus · ${bonusFound.length}`}
-          empty="Extra words you find show up here"
+          empty={tight ? '' : 'Extra words you find show up here'}
         >
           {[...bonusFound]
             .sort((a, b) => b.length - a.length || a.localeCompare(b))
@@ -385,8 +428,24 @@ export default function Rail({
           collecting entirely at the bottom, which was the real objection.
           check-rail.mjs now asserts the gap never exceeds the rung height.
         */}
+        {/*
+          In `tight`, the ladder shows the rung you are on and the one either
+          side of it. That is the part that is actually load-bearing while
+          playing — where you are, what you just cleared, what is next — and it
+          turns 7 rungs into 3 without turning the ladder into a single label.
+          The rest is one tap away rather than gone.
+        */}
         <ol className="flex flex-col gap-1.5 [@media(min-height:801px)_and_(max-height:920px)]:gap-1 short:gap-0.5">
-          {rankLadder(rowsFilled, totalRows).map((step) => (
+          {(() => {
+            const all = rankLadder(rowsFilled, totalRows);
+            if (!tight || ladderOpen) return all;
+            const i = all.findIndex((r) => r.current);
+            if (i < 0) return all.slice(0, 3);
+            // Clamped so the window keeps its width at both ends of the ladder
+            // rather than shrinking to two rungs at the top and bottom.
+            const start = Math.min(Math.max(0, i - 1), Math.max(0, all.length - 3));
+            return all.slice(start, start + 3);
+          })().map((step) => (
             <li
               key={step.name}
               aria-current={step.current ? 'step' : undefined}
@@ -446,6 +505,17 @@ export default function Rail({
             </li>
           ))}
         </ol>
+        {tight && (
+          <button
+            type="button"
+            onClick={() => setLadderOpen((v) => !v)}
+            className="mt-1 self-start rounded-lg px-2 py-0.5 text-meta text-text-secondary underline decoration-edge-mid underline-offset-2"
+          >
+            {ladderOpen
+              ? 'Show fewer'
+              : `See all ${rankLadder(rowsFilled, totalRows).length} ranks`}
+          </button>
+        )}
       </Card>
 
       {/*
@@ -483,11 +553,15 @@ export default function Rail({
         window is playing, not reviewing.
 
         Hidden by height rather than width, because height is what is actually
-        short. It returns the moment there is room, and nothing in it is
-        unavailable elsewhere — the same figures are in the progress sheet.
+        short. It returns the moment there is room.
+
+        The escape hatch is real, but it was not free: the progress sheet mounts
+        this same component, so this rule used to hide the card THERE too and
+        the "same figures are in the progress sheet" defence was circular. The
+        rule is a prop now and the sheet overrides it.
       */}
       <Card
-        className="hidden [@media(min-height:600px)]:flex [@media(min-height:600px)]:flex-col"
+        className={recordClassName}
         title="Record"
         meta={
           record.packsTotal > 0
