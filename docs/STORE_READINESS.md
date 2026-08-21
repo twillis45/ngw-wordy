@@ -1,5 +1,43 @@
 # Store readiness — Apple App Store + Google Play
 
+## The entity, for the forms that ask
+
+Both stores and the trademark application ask for the same handful of facts, and
+until now they lived in email and a PDF — reconstructed by hand on 2026-08-21,
+which is not a thing to repeat under filing pressure.
+
+| | |
+|---|---|
+| **Legal name** | No Guesswork Systems LLC |
+| **Maryland ID** | W26948752 — registered 2026-02-26, good standing |
+| **Business address** | 306 W Redwood St, STE 201, Baltimore, MD 21201 |
+| **Phone** | 240-232-7847 *(decided 2026-08-21)* |
+| **Domain** | sixonthedial.com |
+| **Android package** | com.sixonthedial.game |
+
+**Deliberately absent, and this repo is PUBLIC:** the EIN and the member's home
+address. Both are on file with the IRS — the CP 575 lists the LLC at a home
+address rather than the registered agent's — and neither belongs in a
+world-readable git history. They are in the LLC folder in Dropbox. Do not add
+them here for convenience later; the convenience is the whole failure mode.
+
+**The address moved and the registered agent already handled half of it.**
+Northwest bought a new Maryland building and filed the agent-address change with
+the state on 2026-04-22. What they did NOT do is amend the entity's own
+principal office, and the IRS record still points at a home address — so if that
+address was used on any filing, an amendment is owed. Worth checking the entity
+record on Maryland Business Express against W26948752 before either store form
+is submitted, because this address becomes public and permanent on a USPTO
+application.
+
+**The phone is the photography line**, chosen knowingly. It is already public in
+that business's own signature and site, so the store listing exposes nothing
+new — but it does mean the game's public contact and the portrait business share
+a number, which is the mixing Northwest's address service exists to prevent. A
+Business Identity line was offered in the same bundle as the mail and never
+activated; switching later means changing it in both store consoles and on any
+filed trademark, so it is cheaper to decide now than after.
+
 Tracker. Started 2026-08-12. Status values: **BLOCKER** (ships nothing until
 fixed) · **TODO** · **DONE** · **DECIDE** (needs a human ruling).
 
