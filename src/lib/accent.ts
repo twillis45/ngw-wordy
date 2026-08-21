@@ -27,7 +27,7 @@
  * migration to buy nothing but a nicer identifier. The user-facing labels
  * below never say "default", so only this file has to hold the oddity.
  */
-export type Accent = 'default' | 'matte';
+export type Accent = 'default' | 'matte' | 'tide' | 'plum';
 
 export const ACCENT_KEY = 'ngw-wordy/accent';
 
@@ -59,8 +59,15 @@ const listeners = new Set<() => void>();
 let snapshot: Accent = DEFAULT_ACCENT;
 let hydrated = false;
 
+export const ACCENT_ORDER: Accent[] = ['matte', 'default', 'tide', 'plum'];
+
 function isAccent(v: unknown): v is Accent {
-  return v === 'default' || v === 'matte';
+  return (ACCENT_ORDER as readonly unknown[]).includes(v);
+}
+
+/** Cycle for the settings control; wraps back to the shipped default. */
+export function nextAccent(cur: Accent): Accent {
+  return ACCENT_ORDER[(ACCENT_ORDER.indexOf(cur) + 1) % ACCENT_ORDER.length];
 }
 
 export function readAccent(): Accent {
@@ -147,4 +154,22 @@ export function setAccent(next: Accent): void {
 export const ACCENT_LABELS: Record<Accent, string> = {
   default: 'Signal green',
   matte: 'Studio matte',
+  tide: 'Tide',
+  plum: 'Plum',
 };
+
+/*
+ * WHY CYAN AND MAGENTA, and not two more warm colours.
+ *
+ * Green and orange — the two accents that already shipped — are the classic
+ * deuteranopia confusion pair. A player with the commonest colour-vision
+ * deficiency may not be able to tell the existing options apart at all, which
+ * makes a choice between them no choice. 195° and 310° separate from both, and
+ * from each other, under red-green deficiency.
+ *
+ * The accent is decoration rather than state, so this is not an accessibility
+ * FIX — nothing in the game is identified by accent alone, per the kit's
+ * commitment that meaning never rides on hue. It is the difference between
+ * offering four options and offering four that a colour-blind player can
+ * actually distinguish.
+ */

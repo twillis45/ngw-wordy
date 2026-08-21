@@ -205,3 +205,61 @@ describe('contrast claims in globals.css', () => {
     expect(ratio(secondary, panel)).toBeGreaterThanOrEqual(7);
   });
 });
+
+/*
+ * Every accent has to be as readable as the ones that shipped.
+ *
+ * The accent paints the found-word ring and its glow. A value picked because
+ * it looked good in a dark editor and measured worse than the green it sits
+ * beside would quietly degrade that ring for everybody who chose it — and the
+ * failure would be invisible, because nothing errors and the colour is
+ * "obviously fine".
+ *
+ * The shipped pair land at 6.67 (green) and 6.94 (orange) on the dark panel,
+ * and 6.42 on the light one. New accents were binary-searched to the same
+ * band rather than chosen, and this is what holds them there.
+ */
+describe('accent options are as readable as the ones that shipped', () => {
+  const DARK_PANEL = '#141517';
+  const LIGHT_PANEL = '#f1f2f4';
+
+  /*
+   * FILL AND INK ARE DIFFERENT JOBS, and the first version of this test
+   * conflated them.
+   *
+   * `--color-success` paints the found-word ring and its glow — decoration,
+   * held to no text threshold. `--color-success-ink` is what anything
+   * READABLE uses, and matte in light mode deliberately splits the two:
+   * #ef8f2a for the ring, #9c4a06 for the ink, because an orange bright
+   * enough to glow on white cannot also be read on it. Testing the fill
+   * against a text ratio failed matte and would have pushed a correct design
+   * toward a worse one.
+   *
+   * So: ink carries 4.5, everywhere. The fill only has to be visible.
+   */
+  const INK: Record<string, [string, string]> = {
+    'signal green': ['#4fae7a', '#186438'],
+    'studio matte': ['#e08c38', '#9c4a06'],
+    tide: ['#37aad0', '#1b5f75'],
+    plum: ['#d780c8', '#922e81'],
+  };
+
+  it.each(Object.entries(INK))('%s ink clears 4.5:1 on both panels', (_n, [dark, light]) => {
+    expect(ratio(dark, DARK_PANEL)).toBeGreaterThanOrEqual(4.5);
+    expect(ratio(light, LIGHT_PANEL)).toBeGreaterThanOrEqual(4.5);
+  });
+
+  /*
+   * The two accents ADDED are held tighter, to the band the shipped pair
+   * already occupy — 6.67 for green, 6.94 for orange on dark. An accent at
+   * 4.6 beside one at 6.9 would make choosing a colour also mean choosing how
+   * visible your own progress is, which is not a choice anybody is offering.
+   */
+  const ADDED = { tide: ['#37aad0', '#1b5f75'], plum: ['#d780c8', '#922e81'] } as const;
+  it.each(Object.entries(ADDED))('%s was solved into the existing band', (_n, [dark, light]) => {
+    expect(ratio(dark, DARK_PANEL)).toBeGreaterThanOrEqual(6);
+    expect(ratio(dark, DARK_PANEL)).toBeLessThanOrEqual(8);
+    expect(ratio(light, LIGHT_PANEL)).toBeGreaterThanOrEqual(6);
+    expect(ratio(light, LIGHT_PANEL)).toBeLessThanOrEqual(8);
+  });
+});

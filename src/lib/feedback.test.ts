@@ -194,8 +194,8 @@ describe('feedback intensity', () => {
    */
   it('scales every rhythm by the same factor, so the shapes survive', () => {
     const src = readFileSync(new URL('./feedback.ts', import.meta.url), 'utf8');
-    const buzzLine = src.match(/const INTENSITY_BUZZ[^;]+;/s)?.[0] ?? '';
-    const gainLine = src.match(/const INTENSITY_GAIN[^;]+;/s)?.[0] ?? '';
+    const buzzLine = src.match(/const INTENSITY_BUZZ[\s\S]+?;/)?.[0] ?? '';
+    const gainLine = src.match(/const INTENSITY_GAIN[\s\S]+?;/)?.[0] ?? '';
     for (const level of INTENSITY_ORDER) {
       expect(buzzLine, `INTENSITY_BUZZ is missing ${level}`).toContain(level);
       expect(gainLine, `INTENSITY_GAIN is missing ${level}`).toContain(level);
@@ -212,7 +212,7 @@ describe('feedback intensity', () => {
    */
   it('does not push the audio into the limiter', () => {
     const src = readFileSync(new URL('./feedback.ts', import.meta.url), 'utf8');
-    const gains = src.match(/const INTENSITY_GAIN[^;]+;/s)?.[0] ?? '';
+    const gains = src.match(/const INTENSITY_GAIN[\s\S]+?;/)?.[0] ?? '';
     const strong = Number(gains.match(/strong:\s*([\d.]+)/)?.[1]);
     expect(strong).toBeGreaterThan(1);
     expect(strong).toBeLessThanOrEqual(1.5);

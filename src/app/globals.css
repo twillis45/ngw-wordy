@@ -1839,6 +1839,57 @@ body {
  * preserved even though its literal value is used. This is an opt-in alternate
  * theme, not the default, and the default remains green.
  */
+/*
+ * TWO MORE ACCENTS, added 2026-08-21.
+ *
+ * Every value here was SOLVED, not chosen: binary-searched for the same
+ * contrast the shipped accents already hold against the surface they sit on —
+ * 6.8:1 on the dark carbon panel, 6.4:1 on the light one, matching green's
+ * 6.67/6.42 and orange's 6.94. An accent that looked right and measured worse
+ * would degrade the found-word ring for everyone who picked it.
+ *
+ * The hues are 195° and 310° for a reason. Green and orange, the two accents
+ * that already shipped, are the classic deuteranopia confusion pair — the
+ * commonest colour-vision deficiency may render them the same, which makes a
+ * choice between them no choice at all. Cyan and magenta separate from both,
+ * and from each other.
+ *
+ * Declared three times each, mirroring how --color-success already is: the
+ * dark root, the media query that catches 'auto' in a light OS, and the
+ * explicit light opt-in. An accent tuned for a dark panel is unreadable on a
+ * light one, which is why the light values are far deeper than the dark.
+ */
+:root[data-accent='tide'] {
+  --color-success: #37aad0;
+  --color-success-ink: #37aad0;
+}
+
+:root[data-accent='plum'] {
+  --color-success: #d780c8;
+  --color-success-ink: #d780c8;
+}
+
+@media (prefers-color-scheme: light) {
+  :root[data-accent='tide']:not([data-theme='dark']):not([data-theme='studio']) {
+    --color-success: #1b5f75;
+    --color-success-ink: #1b5f75;
+  }
+  :root[data-accent='plum']:not([data-theme='dark']):not([data-theme='studio']) {
+    --color-success: #922e81;
+    --color-success-ink: #922e81;
+  }
+}
+
+:root[data-accent='tide'][data-theme='light'] {
+  --color-success: #1b5f75;
+  --color-success-ink: #1b5f75;
+}
+
+:root[data-accent='plum'][data-theme='light'] {
+  --color-success: #922e81;
+  --color-success-ink: #922e81;
+}
+
 :root[data-accent='matte'] {
   --color-success: #e08c38;
   /* Dark mode needs no split: #e08c38 measures 6.96 on the panel, past AA for

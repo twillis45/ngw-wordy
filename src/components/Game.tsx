@@ -62,6 +62,7 @@ import {
   getAccentSnapshot,
   getAccentServerSnapshot,
   setAccent,
+  nextAccent,
   subscribeAccent,
   type Accent,
 } from '@/lib/accent';
@@ -2657,9 +2658,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 type="button"
                 disabled={theme === 'studio'}
                 onClick={() =>
-                  setAccent(
-                    (accent === 'default' ? 'matte' : 'default') as Accent
-                  )
+                  setAccent(nextAccent(accent))
                 }
                 aria-label={
                   theme === 'studio'
