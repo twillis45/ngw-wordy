@@ -11,7 +11,7 @@ which is not a thing to repeat under filing pressure.
 | **Legal name** | No Guesswork Systems LLC |
 | **Maryland ID** | W26948752 — registered 2026-02-26, good standing |
 | **Business address** | 306 W Redwood St, STE 201, Baltimore, MD 21201 |
-| **Phone** | 240-232-7847 *(decided 2026-08-21)* |
+| **Phone** | 240-782-0827 *(decided 2026-08-21)* |
 | **Domain** | sixonthedial.com |
 | **Android package** | com.sixonthedial.game |
 
@@ -30,13 +30,17 @@ record on Maryland Business Express against W26948752 before either store form
 is submitted, because this address becomes public and permanent on a USPTO
 application.
 
-**The phone is the photography line**, chosen knowingly. It is already public in
-that business's own signature and site, so the store listing exposes nothing
-new — but it does mean the game's public contact and the portrait business share
-a number, which is the mixing Northwest's address service exists to prevent. A
-Business Identity line was offered in the same bundle as the mail and never
-activated; switching later means changing it in both store consoles and on any
-filed trademark, so it is cheaper to decide now than after.
+**The phone is a separate line from the photography business**, which is the
+outcome worth having: 240-232-7847 appears in the portrait business's own
+signature and website, and using it here would have tied the game's public
+contact to a different company's inbound calls. It also would have been
+awkward to unpick, because a number on a filed trademark and in two store
+consoles is not a thing anyone changes casually.
+
+Nothing verifies this number from inside the repo — it is a fact about the
+world, recorded because both store forms and the trademark application ask for
+one. If it ever changes, it changes in three places at once: here, both
+developer consoles, and any filing already submitted.
 
 Tracker. Started 2026-08-12. Status values: **BLOCKER** (ships nothing until
 fixed) · **TODO** · **DONE** · **DECIDE** (needs a human ruling).
