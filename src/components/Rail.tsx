@@ -185,6 +185,76 @@ export default function Rail({
   const [ladderOpen, setLadderOpen] = useState(false);
 
   /*
+   * SHOW THE WHOLE LADDER WHEN IT DEMONSTRABLY FITS.
+   *
+   * `tight` compacts the ladder because the text is big, which is a proxy for
+   * "there is no room" and a bad one. Measured on a reader's 1294px window at
+   * a 20px root: 354px of slack under the column while the ladder showed 3 of
+   * 7 rungs. It was compacting to save space it was not short of.
+   *
+   * PREDICTIVE, not trial-and-error, because trial-and-error oscillates:
+   * expanding consumes the slack that justified expanding, so a naive "expand
+   * if it fits, collapse if it does not" loop flickers forever. The rung
+   * height is measurable from a rendered row, the number of hidden rungs is
+   * known, so the cost of expanding is known BEFORE expanding. Spend it only
+   * if the slack covers it with margin to spare.
+   *
+   * That margin is also the hysteresis: after expanding, slack is still
+   * positive, so nothing pulls it back. It collapses only when the window
+   * genuinely shrinks past zero.
+   */
+  const [fitsWholeLadder, setFitsWholeLadder] = useState(false);
+
+  useEffect(() => {
+    const col = scrollerRef.current?.parentElement;
+    if (!col) return;
+
+    const measure = () => {
+      const rungs = col.querySelectorAll('ol li');
+      const total = rankLadder(rowsFilled, totalRows).length;
+      const hidden = Math.max(0, total - rungs.length);
+      const rungH = rungs[0]?.getBoundingClientRect().height ?? 38;
+
+      /*
+       * Slack is the gap between the LAST CHILD and the column's own bottom.
+       *
+       * Not `clientHeight - scrollHeight`, which is what this measured first
+       * and is always zero here: the column is `h-full`, so it stretches to
+       * its container and its scrollHeight stretches with it. The cards ended
+       * 354px above the bottom and the subtraction still reported 0.
+       */
+      const last = [...col.children]
+        .reverse()
+        .find((el) => (el as HTMLElement).offsetParent !== null);
+      /*
+       * The last VISIBLE child. `lastElementChild` is the how-to wrapper, and
+       * on most windows it is `display: none` — a hidden box reports a rect
+       * bottom of 0, so the subtraction returned the whole column height as
+       * free space and the ladder would have expanded on every window,
+       * including ones with no room at all. Measured 1287px of "slack" in a
+       * 1294px window with 837px of cards in it.
+       */
+      const slack = last
+        ? col.getBoundingClientRect().bottom - last.getBoundingClientRect().bottom
+        : 0;
+      if (hidden > 0) {
+        // 24px of margin, which is also what stops this oscillating.
+        if (slack >= hidden * rungH + 24) setFitsWholeLadder(true);
+      } else if (slack < 0) {
+        setFitsWholeLadder(false);
+      }
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(col);
+    // The scroller too: its height changes when a card grows, and the column
+    // is h-full so its own box never moves to signal that.
+    if (scrollerRef.current) ro.observe(scrollerRef.current);
+    return () => ro.disconnect();
+  }, [rowsFilled, totalRows, tight, bonusFound.length, days.length]);
+
+  /*
    * Does this rail have anything below the fold?
    *
    * `.rail-scroll` fades its last 28px, and that fade is a promise — "there
@@ -254,7 +324,30 @@ export default function Rail({
       */}
       <div
         ref={scrollerRef}
-        className="rail-scroll flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto [@media(min-height:801px)_and_(max-height:920px)]:gap-2.5 short:gap-1.5"
+        /*
+          `flex-initial`, NOT `flex-1` — flex: 0 1 auto.
+          
+          With `flex-1` the scroller GROWS to fill the column, so on a tall
+          window it stretched to 984px around 608px of cards and pushed the
+          pinned Streak card to the floor. Measured on a reader's 1294px
+          window: 347px of dead space inside the scroller and a 362px gap
+          between Record and Streak. The column looked broken in the middle.
+          
+          Growing was never the point. The scroller needs to SHRINK when the
+          cards do not fit — that is what makes the fade and the internal
+          scroll work — and shrink is `flex-shrink: 1`, which this keeps.
+          Dropping grow to 0 makes it content-height whenever there is room,
+          so Streak follows the last card immediately and the leftover height
+          collects at the BOTTOM.
+          
+          Which is the answer this file already reached one level down: the
+          rank ladder was stopped from spreading its rungs to fill for exactly
+          this reason, checked against Duolingo, Mimo, Speak, Life Reset and
+          Agoda — all of which keep rows contiguous and let the slack sit
+          outside the list. The cards were still doing what the rungs were
+          told not to.
+        */
+        className="rail-scroll flex min-h-0 flex-initial flex-col gap-3 overflow-y-auto [@media(min-height:801px)_and_(max-height:920px)]:gap-2.5 short:gap-1.5"
       >
       <Card title="Your words" meta={`${score} pts`}>
         {/*
@@ -486,7 +579,7 @@ export default function Rail({
         <ol className="flex flex-col gap-1.5 [@media(min-height:801px)_and_(max-height:920px)]:gap-1 short:gap-0.5">
           {(() => {
             const all = rankLadder(rowsFilled, totalRows);
-            if (!tight || ladderOpen) return all;
+            if (!tight || ladderOpen || fitsWholeLadder) return all;
             const i = all.findIndex((r) => r.current);
             if (i < 0) return all.slice(0, 3);
             // Clamped so the window keeps its width at both ends of the ladder
@@ -553,7 +646,7 @@ export default function Rail({
             </li>
           ))}
         </ol>
-        {tight && (
+        {tight && !fitsWholeLadder && (
           <button
             type="button"
             onClick={() => setLadderOpen((v) => !v)}
