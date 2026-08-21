@@ -37,6 +37,8 @@ type Props = {
   rowsFilled: number;
   totalRows: number;
   days: DayCell[];
+  /** Today's square filled during this session — see Game.tsx. */
+  streakJustEarned?: boolean;
   streak: number;
   bestStreak: number;
   /**
@@ -59,6 +61,7 @@ export default function Rail({
   rowsFilled,
   totalRows,
   days,
+  streakJustEarned = false,
   streak,
   bestStreak,
   /*
@@ -340,6 +343,15 @@ export default function Rail({
                     : 'border-edge/60 liquid relative',
                   // Today reads as today whether or not it's been played.
                   i === days.length - 1 ? 'ring-1 ring-steel-muted/40' : '',
+                  /*
+                   * The one square that just filled gets the arrival the
+                   * streak never had. Only today's, and only when it changed
+                   * during this session — a cell that popped because it is
+                   * filled would replay on every reload.
+                   */
+                  i === days.length - 1 && d.played && streakJustEarned
+                    ? 'anim-land'
+                    : '',
                 ].join(' ')}
               >
                 {d.played ? <CheckIcon /> : null}

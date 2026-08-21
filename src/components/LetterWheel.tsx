@@ -152,6 +152,30 @@ export default function LetterWheel({
   activeIndices,
 }: Props) {
   const boxRef = useRef<HTMLDivElement>(null);
+
+  /*
+   * The dial turns when its letters are reshuffled.
+   *
+   * This is the object the game is named after and it did not move: pressing
+   * Shuffle swapped six glyphs in place, which reads as the letters changing
+   * rather than the wheel turning. The motion is what makes it a dial.
+   *
+   * Keyed off the letters CHANGING, not off the shuffle handler, so it also
+   * covers any other path that reorders them and cannot drift out of sync
+   * with the thing it is describing. The ring rotates a sixth of a turn —
+   * 60deg, exactly one tile position — so the movement matches the geometry
+   * instead of being an arbitrary spin.
+   */
+  const [turning, setTurning] = useState(false);
+  const prevLetters = useRef(letters.join(''));
+  useEffect(() => {
+    const key = letters.join('');
+    if (prevLetters.current === key) return;
+    prevLetters.current = key;
+    setTurning(true);
+    const t = setTimeout(() => setTurning(false), 420);
+    return () => clearTimeout(t);
+  }, [letters]);
   const [dragging, setDragging] = useState(false);
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
   /**
@@ -688,6 +712,13 @@ export default function LetterWheel({
         </button>
       )}
 
+      {/* The ring of tiles. Wrapped so the turn applies to the SET — rotating
+          each tile individually would spin the glyphs on their own centres
+          rather than carry them around the dial. */}
+      <div
+        className={turning ? 'anim-dial-turn contents-none' : 'contents-none'}
+        style={{ position: 'absolute', inset: 0 }}
+      >
       {letters.map((letter, i) => {
         const pos = positions[i];
         const order = selected.indexOf(i);
@@ -819,6 +850,7 @@ export default function LetterWheel({
           </button>
         );
       })}
+      </div>
     </div>
   );
 }

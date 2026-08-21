@@ -1254,15 +1254,28 @@ body {
   60% { transform: scale(1.08); opacity: 1; }
   100% { transform: scale(1); opacity: 1; }
 }
+/*
+ * Distances in `em`, not px — 2026-08-21.
+ *
+ * These animations live inside a tile, and the tile is now four different
+ * sizes: 19px on a short laptop, 26 on a phone, 33 on a tablet, 46 on a big
+ * desktop. A fixed 7px shake is a third of the small tile and a seventh of
+ * the large one, so the same gesture reads as a hard knock on one screen and
+ * a twitch on another. `em` resolves against the tile's own font-size, which
+ * is derived from its height, so the motion scales with the thing moving.
+ *
+ * Taken from Spelling Bee, which animates its letter wave in em for exactly
+ * this reason — translateY(0.525em) to -0.3em rather than any pixel figure.
+ */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-7px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(2px); }
+  20% { transform: translateX(-0.38em); }
+  40% { transform: translateX(0.32em); }
+  60% { transform: translateX(-0.21em); }
+  80% { transform: translateX(0.1em); }
 }
 @keyframes rise {
-  0% { transform: translateY(6px); opacity: 0; }
+  0% { transform: translateY(0.32em); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
 }
 
@@ -1284,7 +1297,7 @@ body {
  * having faded in.
  */
 @keyframes land {
-  0%   { transform: scale(0.55) translateY(-8px); opacity: 0; }
+  0%   { transform: scale(0.55) translateY(-0.42em); opacity: 0; }
   45%  { transform: scale(1.18) translateY(0); opacity: 1; }
   62%  { transform: scale(0.94); }
   78%  { transform: scale(1.04); }
@@ -1385,10 +1398,43 @@ body {
 }
 .anim-float { animation: float-up 900ms ease-out both; }
 
-.anim-pop { animation: tile-pop 260ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+/*
+ * 140ms, down from 260ms.
+ *
+ * This is the "your letter landed" beat, and the category is much faster than
+ * we were: Wordle's PopIn is 100ms, Quordle's tile-scale 120ms. At 260ms the
+ * pop was still finishing while a quick player had already typed the next
+ * letter, which is what makes input feel laggy even at a locked 60fps.
+ *
+ * Not 100ms flat: ours carries a spring (the 1.56 overshoot) where Wordle's
+ * is a plain scale, and a spring cut that short reads as a flinch. 140 is the
+ * shortest this curve stays legible at.
+ */
+.anim-pop { animation: tile-pop 140ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 .anim-shake { animation: shake 340ms ease-in-out; }
 .anim-rise { animation: rise 220ms ease-out both; }
 
+/*
+ * Reduced motion: remove the MOVEMENT, keep the MESSAGE.
+ *
+ * This block used to be the standard blanket kill and nothing else — every
+ * animation on the page collapsed to 0.01ms. That is the safe default and it
+ * is the right floor, but on its own it is too blunt here, because several of
+ * these animations are not decoration: they are the only channel some
+ * feedback has.
+ *
+ * The clearest case is the shake. A word the board rejects says so in exactly
+ * two ways — a haptic tap, which a desktop does not have, and the shake. Kill
+ * the shake and a reduced-motion player on a laptop submits a wrong word and
+ * receives NOTHING: the tiles sit there, the word stays put, and there is no
+ * way to tell "rejected" from "the key didn't register". The setting asks for
+ * less movement, not less information.
+ *
+ * So the blanket rule stays as the floor — anything not named below still
+ * collapses — and the signals that carry meaning get a substitute that does
+ * not travel. Opacity and colour are not vestibular triggers; translation and
+ * scale are. That distinction is the whole point of the setting.
+ */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1397,6 +1443,83 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  /* Arrivals: fade in place rather than fly, scale or spring. */
+  .anim-land,
+  .anim-pop,
+  .anim-rise,
+  .anim-tick,
+  .anim-prize-in,
+  .anim-bonus-in {
+    animation: rm-appear 160ms ease-out both !important;
+  }
+
+  /*
+   * Rejection: a colour pulse where the shake was. Two beats rather than one,
+   * because a single flash at this duration can be missed as a render glitch,
+   * and it is the one signal here a player must not miss.
+   */
+  .anim-shake {
+    animation: rm-reject 420ms ease-in-out both !important;
+  }
+
+  /* Points floating off a solved row: state it, do not fly it. */
+  .anim-float {
+    animation: rm-appear 220ms ease-out both !important;
+  }
+
+  /*
+   * Rings, sweeps and the impact flash are pure ornament — they say nothing
+   * that the colour change underneath them has not already said — so these
+   * keep the blanket kill and are listed only so it is clear the omission is
+   * deliberate rather than missed: .anim-land-ring, .anim-prize-ring,
+   * .anim-bonus-ring, .anim-sweep, .anim-rank-banner, .anim-dial-turn — the
+   * last of these because the shuffled letters state the change themselves.
+   */
+}
+
+/*
+ * The dial turning on a shuffle.
+ *
+ * A sixth of a turn — 60deg is exactly one tile position on a six-tile wheel,
+ * so the ring lands where a tile already was rather than at an arbitrary
+ * angle. It overshoots slightly and settles, which is what a physical detent
+ * does, and it is short: this fires on a control a player presses repeatedly
+ * while thinking, so anything longer starts costing them time.
+ *
+ * `contents-none` is a no-op class used only as a stable hook.
+ */
+@keyframes dial-turn {
+  0%   { transform: rotate(0deg); }
+  70%  { transform: rotate(64deg); }
+  100% { transform: rotate(60deg); }
+}
+.anim-dial-turn {
+  animation: dial-turn 420ms cubic-bezier(0.22, 1, 0.28, 1) both;
+}
+/*
+ * The glyphs must NOT rotate with the ring, or a shuffle leaves every letter
+ * lying on its side. The ring carries them around; each tile counter-rotates
+ * by the same amount so it arrives upright.
+ */
+@keyframes dial-turn-counter {
+  0%   { rotate: 0deg; }
+  70%  { rotate: -64deg; }
+  100% { rotate: -60deg; }
+}
+.anim-dial-turn > button {
+  animation: dial-turn-counter 420ms cubic-bezier(0.22, 1, 0.28, 1) both;
+}
+
+@keyframes rm-appear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes rm-reject {
+  0%, 100% { box-shadow: none; }
+  25%, 75% { box-shadow: 0 0 0 2px var(--color-danger); }
+  50%      { box-shadow: none; }
 }
 
 /*
