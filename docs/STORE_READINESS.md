@@ -21,14 +21,29 @@ address rather than the registered agent's — and neither belongs in a
 world-readable git history. They are in the LLC folder in Dropbox. Do not add
 them here for convenience later; the convenience is the whole failure mode.
 
-**The address moved and the registered agent already handled half of it.**
+**The registered agent's address changed; whether anything is owed is UNVERIFIED.**
 Northwest bought a new Maryland building and filed the agent-address change with
-the state on 2026-04-22. What they did NOT do is amend the entity's own
-principal office, and the IRS record still points at a home address — so if that
-address was used on any filing, an amendment is owed. Worth checking the entity
-record on Maryland Business Express against W26948752 before either store form
-is submitted, because this address becomes public and permanent on a USPTO
-application.
+the state on 2026-04-22. Their notice adds that "if you've opted to use our
+address on business filings, an amendment may be needed" — which only bites if
+the Articles of Organization used THEIR address. The CP 575 shows the LLC at a
+home address, which suggests the filings may not have used Northwest's at all,
+in which case their move is irrelevant to this entity and nothing is owed.
+
+I recorded "an amendment is owed" on 2026-08-21 and that was an inference stated
+as a conclusion. Attempting to check it, egov.maryland.gov is Turnstile-protected
+and JavaScript-driven, and the lookup did not complete — so the question is open,
+not answered.
+
+**To settle it:** Business Express → Entity Search → Department ID `W26948752` →
+read the Principal Office address.
+
+| record shows | owed |
+|---|---|
+| 306 W Redwood St, STE 201 | nothing, already current |
+| an older Northwest address | Articles of Amendment, ~$25 |
+| the member's home address | nothing REQUIRED — but it is a home address on a public state record, and a USPTO filing would put it on a second one |
+
+The third row is the one worth a decision rather than a fix.
 
 **The phone is a separate line from the photography business**, which is the
 outcome worth having: 240-232-7847 appears in the portrait business's own
