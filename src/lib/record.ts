@@ -23,6 +23,34 @@
 import { scoreWord } from './game';
 import type { Progress } from './storage';
 
+/**
+ * The streak milestones, and the next one a player is walking toward.
+ *
+ * Deepstash shows a 7 / 14 / 30 track; Finch throws a full celebration at
+ * THREE days. We celebrated nothing until a board was complete, which means
+ * the mechanic whose entire job is tomorrow had no visible middle — a player
+ * on day four was told "4 days in a row" and given no reason to believe day
+ * five mattered more than day four did.
+ *
+ * Three is deliberately the first rung and it is deliberately early. A
+ * milestone a player cannot see the near edge of is not a milestone, it is a
+ * distant fact, and the point of the first one is to arrive before anyone has
+ * decided whether this is a habit.
+ */
+export const MILESTONES = [3, 7, 14, 30, 60, 100] as const;
+
+export function nextMilestone(streak: number): { at: number; toGo: number } | null {
+  for (const m of MILESTONES) {
+    if (streak < m) return { at: m, toGo: m - streak };
+  }
+  /*
+   * Past the last rung there is no next one, and inventing an endless ladder
+   * would be the engagement-farming shape the restraint seat objects to. A
+   * player at 100+ days is told what they have, not what they still owe.
+   */
+  return null;
+}
+
 export type PlayerRecord = {
   /** Boards whose grid has been fully cleared. */
   cleared: number;
@@ -36,12 +64,26 @@ export type PlayerRecord = {
   daysPlayed: number;
   streak: number;
   bestStreak: number;
+  /** Themed packs with at least one board cleared. */
+  packsStarted: number;
+  /** Themed packs cleared outright. */
+  packsDone: number;
+  /** Themed packs in the catalogue. */
+  packsTotal: number;
 };
 
 export function playerRecord(
   p: Progress,
   wheelSize: number,
-  total: number
+  /*
+   * The whole catalogue, not just its length. Boards alone cannot answer
+   * "how far into the packs am I" — that needs to know which board belongs to
+   * which pack, and the packs are the half of this product with pricing
+   * power. A player who has finished three of fourteen packs is told 21 of
+   * 499 boards, which is true and says nothing about the thing they are
+   * collecting.
+   */
+  puzzles: readonly { id: number; theme?: { id: string } | null }[]
 ): PlayerRecord {
   let bestScore = 0;
   let wordsFound = 0;
@@ -61,13 +103,33 @@ export function playerRecord(
     if (board > bestScore) bestScore = board;
   }
 
+  /*
+   * Cleared ids are strings and puzzle ids are numbers; the comparison is by
+   * STRING on purpose, because that is how clearedIds was written and a
+   * silent type mismatch here would report every pack as unstarted.
+   */
+  const clearedSet = new Set(p.clearedIds.map(String));
+  const packs = new Map<string, { total: number; done: number }>();
+  for (const pz of puzzles) {
+    const id = pz.theme?.id;
+    if (!id) continue;
+    const entry = packs.get(id) ?? { total: 0, done: 0 };
+    entry.total += 1;
+    if (clearedSet.has(String(pz.id))) entry.done += 1;
+    packs.set(id, entry);
+  }
+  const packValues = [...packs.values()];
+
   return {
     cleared: p.clearedIds.length,
-    total,
+    total: puzzles.length,
     bestScore,
     wordsFound,
     daysPlayed: Object.keys(p.days).length,
     streak: p.streak,
     bestStreak: p.bestStreak,
+    packsStarted: packValues.filter((v) => v.done > 0).length,
+    packsDone: packValues.filter((v) => v.done === v.total).length,
+    packsTotal: packValues.length,
   };
 }
