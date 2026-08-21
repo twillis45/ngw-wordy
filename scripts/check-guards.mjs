@@ -76,10 +76,30 @@ const MUTATIONS = [
     why: 'the bottom of the Streak card is permanently erased by a gradient',
   },
   {
+    /*
+     * TWO edits, and the first version of this mutation had only one — which
+     * is how it reported the guard as broken when the guard was fine.
+     *
+     * The ladder fix was a pair: the list stopped spreading itself AND the
+     * card stopped absorbing the column's leftover height. Reverting only the
+     * list leaves the card at its natural size, so the list never grows, so
+     * the gaps stay tight and there is nothing for the guard to catch. A
+     * mutation that does not actually reproduce the defect proves nothing
+     * about the guard — it is the same trap as a probe that cannot fail for
+     * the right reason, one level up.
+     */
     name: 'rank ladder spread to fill',
     file: 'src/components/Rail.tsx',
-    from: '<ol className="flex flex-col gap-1.5 short:gap-0.5">',
-    to: '<ol className="flex min-h-0 flex-1 flex-col justify-between gap-0.5 overflow-y-auto">',
+    edits: [
+      {
+        from: '<ol className="flex flex-col gap-1.5 short:gap-0.5">',
+        to: '<ol className="flex min-h-0 flex-1 flex-col justify-between gap-0.5 overflow-y-auto">',
+      },
+      {
+        from: '        className="flex flex-col"\n        title="Rank"',
+        to: '        className="flex min-h-0 flex-1 flex-col"\n        title="Rank"',
+      },
+    ],
     guard: 'check-rail',
     why: 'rungs drift to 108px apart on a tall tablet and stop reading as a list',
   },
@@ -182,13 +202,18 @@ const results = [];
 for (const m of MUTATIONS) {
   const file = path.join(ROOT, m.file);
   const original = fs.readFileSync(file, 'utf8');
-  if (!original.includes(m.from)) {
+  const edits = m.edits ?? [{ from: m.from, to: m.to }];
+
+  const missing = edits.filter((e) => !original.includes(e.from));
+  if (missing.length) {
     console.log(`?  ${m.name.padEnd(38)} SKIPPED — anchor not found in ${m.file}`);
     results.push({ ...m, skipped: true });
     continue;
   }
 
-  fs.writeFileSync(file, original.replace(m.from, m.to));
+  let broken = original;
+  for (const e of edits) broken = broken.replace(e.from, e.to);
+  fs.writeFileSync(file, broken);
   const built = run('npm run build');
   /*
    * A mutation that will not BUILD proves nothing about the guard — the
