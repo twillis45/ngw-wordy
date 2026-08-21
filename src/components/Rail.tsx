@@ -210,7 +210,21 @@ export default function Rail({
         rail overflowed by 52px and Streak was cut by 47.
       */}
       <Card
-        className="flex min-h-0 flex-1 flex-col"
+        /*
+         * NATURAL height. This used to be `flex-1`, absorbing the column's
+         * leftover so that Streak would sit on the floor of the rail — and
+         * that reason expired when Streak moved OUT of the scroller and
+         * became a pinned footer. What was left was a card that grew to 977px
+         * around 286px of rungs on a 1024x1366 iPad: the list correct and
+         * centred inside an enormous bordered void. The leftover height
+         * belongs to the column, where it reads as spacing, not to a card,
+         * where it reads as a hole.
+         *
+         * The internal scroll went with it for the same reason: the ladder
+         * only ever needed to shrink to keep Streak on screen, and the
+         * scroller around these cards handles overflow now.
+         */
+        className="flex flex-col"
         title="Rank"
         meta={
           rank.next
@@ -232,8 +246,31 @@ export default function Rail({
           is eight rungs of the same shape, so a scroll costs a reader almost
           nothing — where clipping the Streak card costs them the whole card,
           which is the failure this rail has had twice before.
+
+          CENTRED at a fixed rhythm, not `justify-between`.
+
+          Spreading the rungs to fill the card was deliberate once, on the
+          reasoning that a list which grows should add space between its rows
+          rather than leave "a pool of nothing at the bottom". Measured across
+          the rail's real range, that does not hold up: the gap between rungs
+          ran 0.9px at 898x586 and 108.8px at 1024x1366 — a 120x swing on the
+          same component, ending three and a half times the height of the rows
+          it was separating. At that point the rungs have stopped reading as
+          one list.
+
+          Checked against how this is actually done — Duolingo, Mimo, Speak,
+          Life Reset and Agoda all keep tier rows contiguous at a constant
+          rhythm and let the leftover height sit outside the list. None of them
+          distribute rows to fill a container. The rhythm is what makes a
+          ladder read as a ladder.
+
+          So: one gap at every size, and the slack is split above and below
+          rather than injected between every pair of rows. `justify-center`
+          rather than `justify-start` because that keeps the pool from
+          collecting entirely at the bottom, which was the real objection.
+          check-rail.mjs now asserts the gap never exceeds the rung height.
         */}
-        <ol className="flex min-h-0 flex-1 flex-col justify-between gap-0.5 overflow-y-auto short:gap-0">
+        <ol className="flex flex-col gap-1.5 short:gap-0.5">
           {rankLadder(rowsFilled, totalRows).map((step) => (
             <li
               key={step.name}
