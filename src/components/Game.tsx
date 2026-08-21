@@ -1295,6 +1295,17 @@ export default function Game({ data }: { data: PuzzleFile }) {
   );
 
   const shareArgs = () => ({
+      /*
+       * The pack's `name`, not `category`.
+       *
+       * Sending both was tried on 2026-08-21 and reverted the same hour: the
+       * data splits a pack into an evocative half ("THE PIT") and a plain one
+       * ("Barbecue"), and joining them produced "Six on the Dial — THE PIT ·
+       * Barbecue · Complete" — forty-seven characters, three dot separators
+       * and a shout. Wordle's entire first line is three words. The heading
+       * is the part a reader scanning a feed sees and nothing else, so length
+       * costs more here than specificity buys.
+       */
       theme: puzzle.theme?.name ?? null,
       /*
        * Quote a clue from a row the player actually SOLVED — never an unsolved
@@ -2985,8 +2996,19 @@ function CompleteSheet({
           </div>
         )}
 
-        {/* Show exactly what gets sent. Nobody shares a card they can't see. */}
-        <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words relative rounded-xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3 text-center text-meta leading-relaxed text-text-secondary">
+        {/*
+          Show exactly what gets sent — and LEFT-ALIGNED, because that is what
+          "exactly" means for a block of plain text.
+
+          This was centred, and centring is not a neutral choice for this
+          payload. The shape is six rows of different lengths, longest first;
+          left-aligned it reads as a staircase, which is the board's own shape
+          and the whole reason the card is recognisable. Centred, the same six
+          rows read as an arrow or a diamond — a shape the game does not have.
+          So the preview was showing a card nobody would ever receive, and the
+          comment above it claimed otherwise.
+        */}
+        <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words relative rounded-xl border border-edge-mid liquid backdrop-blur-[var(--glass-blur)] backdrop-saturate-[var(--glass-saturate)] px-4 py-3 text-left text-meta leading-relaxed text-text-secondary">
           {preview}
         </pre>
 
