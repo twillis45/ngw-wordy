@@ -2314,6 +2314,27 @@ body {
 }
 
 /*
+ * THE SIX WORD SLOTS ARE GREY, NOT STEEL.
+ *
+ * They ship as `bg-steel-dark/40`, and steel-dark is #3f5b6a at b-r=+43. Over
+ * this theme's panel that composites to +19 — the bluest surface on the board,
+ * on the one component a player looks at most. It is also the same mistake
+ * this file has now made three times in different places: steel is IDENTITY
+ * and not a surface, and every time it gets used as a fill the neutral ramp
+ * underneath it stops mattering.
+ *
+ * Grey at the same job: a light neutral placeholder box, b-r=+3 in step with
+ * the ramp, so an empty slot reads as somewhere a letter goes rather than as a
+ * tinted panel. A filled slot takes near-white text over this at 6.2:1.
+ *
+ * Scoped to the word grid, not to `.rounded-md.border-2` at large — the streak
+ * cells and the row chips share that shape, and they are not this.
+ */
+:root[data-theme='studio'] [aria-label='Words to find'] span.rounded-md {
+  background-color: var(--slot-fill);
+}
+
+/*
  * RAISED — the dial, its letter tiles, and the cursor puck.
  *
  * Flattening the material took the elevation with it, and on this theme that
@@ -2360,6 +2381,13 @@ body {
    * de-blued ramp tops out at softer.border #46484F, below the luminance the
    * stack needs — see the dial comment for the measurements they satisfy.
    */
+  /*
+   * The empty word slots. Named here with the other studio surfaces so it is
+   * findable — a value buried in the rule that uses it is a value nobody
+   * retunes, which is the trap the dial pair was pulled out of.
+   */
+  --slot-fill: #5c5d5f;
+
   --dial-face: #2d2f33;
   /*
    * THE TILES ARE THE SAME MATERIAL AS THE WHEEL, 2026-08-21.

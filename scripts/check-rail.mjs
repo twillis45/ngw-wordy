@@ -144,10 +144,35 @@ const browser = await launch({
 });
 const results = [];
 
+/*
+ * THE TEXT SCALE IS PART OF THE MATRIX.
+ *
+ * Every viewport in this file had only ever been rendered at the default text
+ * size, and the app offers two more — large is 115% on the root and larger is
+ * 132%. The cards grow, the window does not. Measured before the fix: at large
+ * five of eight desktop sizes overflowed, up to 156px; at larger all eight did,
+ * up to 344px; at default every one was clean. So the whole suite passed while
+ * a reader with large text watched the rail scroll.
+ *
+ * PHONES AT SCALED TEXT ARE ALLOWED TO SCROLL, deliberately. On a 375x667
+ * screen at 132% the cards cannot fit without deleting some, and deleting
+ * information from the player who just asked for bigger type is the worse
+ * trade — reflow is expected to scroll in one direction. What is NOT allowed
+ * is scrolling silently, so the fade still has to be honest there.
+ */
+const TEXT_SCALES = ['default', 'large', 'larger'];
+const isPhone = (vp) => vp.w < 500;
+
 for (const vp of VIEWPORTS) {
+ for (const text of TEXT_SCALES) {
   const page = await browser.newPage();
   await page.setViewport({ width: vp.w, height: vp.h });
   await page.goto(`${base}/`, { waitUntil: 'networkidle0' });
+  await page.evaluate((t) => {
+    if (t === 'default') localStorage.removeItem('ngw-wordy/text');
+    else localStorage.setItem('ngw-wordy/text', t);
+  }, text);
+  await page.reload({ waitUntil: 'networkidle0' });
   if (vp.sheet) {
     // Below `md` the rail is only mounted once the progress sheet is opened.
     await page.evaluate(() => {
@@ -326,8 +351,8 @@ for (const vp of VIEWPORTS) {
 
   await page.close();
 
-  if (m.hidden) { results.push({ vp, skip: true }); continue; }
-  if (m.error) { results.push({ vp, fail: true, why: m.error }); continue; }
+  if (m.hidden) { results.push({ vp, text, skip: true }); continue; }
+  if (m.error) { results.push({ vp, text, fail: true, why: m.error }); continue; }
 
   /*
    * Two ways to lose the Streak card, and the second one is why this file
@@ -339,11 +364,12 @@ for (const vp of VIEWPORTS) {
     m.overlapsFade > 0 ||
     (m.masked && !m.moreBelow) ||
     m.unmanaged > 0 ||
-    m.overflowPx > 0 ||
+    (m.overflowPx > 0 && !(isPhone(vp) && text !== 'default')) ||
     (!m.recordShown && !m.escapeHatch) ||
     (m.ladder && m.ladder.maxGap > m.ladder.rung) ||
     (m.ladder && m.ladder.spread > 1);
-  results.push({ vp, fail, ...m });
+  results.push({ vp, text, fail, ...m });
+ }
 }
 
 await browser.close();
@@ -351,7 +377,7 @@ server.close();
 
 let failed = 0;
 for (const r of results) {
-  const label = `${r.vp.w}x${r.vp.h}`.padEnd(10);
+  const label = `${r.vp.w}x${r.vp.h} ${r.text === "default" ? "" : r.text}`.padEnd(18);
   if (r.skip) { console.log(`—  ${label} rail hidden at this width`); continue; }
   if (r.fail) {
     failed++;
@@ -392,4 +418,4 @@ if (failed) {
   console.log(`\n✗ rail regressed at ${failed} of ${results.length} viewports`);
   process.exit(1);
 }
-console.log(`\n✔ rail holds at all ${results.length} viewports`);
+console.log(`\n✔ rail holds at all ${results.length} viewport/text-size combinations`);

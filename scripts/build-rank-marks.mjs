@@ -86,11 +86,28 @@ const LIT = [
    * clearance the rest get, which matters because it is the FIRST reward the
    * game ever gives and the one most likely to be dismissed as nothing.
    */
-  '#5a6675',
-  '#6e7c8c',
-  '#8a8478',
-  '#b08350',
-  '#d4842c',
+  /*
+   * SATURATED 2026-08-21, at held luma.
+   *
+   * The ramp was right about value and washed out about colour: the first
+   * three rungs sat at S 0.13, 0.12 and 0.07, which is grey with a hint. A
+   * player climbing Novice to Sharp was watching three greys go by, and the
+   * orange only arrived once the climb was nearly over.
+   *
+   * Chroma is the only thing that moved. Each rung keeps its Rec.709 luma to
+   * a tenth — 100.5, 122.2, 132.4, 136.9, 142.7 — because luma is what
+   * check-ranks measures and what makes the ladder monotonic, and that
+   * property was bought with a redesign nobody wants to repeat. Saturation
+   * roughly doubles at the bottom and tapers to nothing at the top.
+   *
+   * The last rung is untouched. It is the brand accent itself, and the ramp
+   * arriving exactly there is the point of it.
+   */
+  '#4b688c',
+  '#607ea1',
+  '#90846c',
+  '#c48033',
+  '#e48216',
   '#f2831c',
 ];
 
