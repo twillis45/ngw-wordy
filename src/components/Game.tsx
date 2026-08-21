@@ -148,6 +148,8 @@ import {
   touchStreak,
   update,
   wordsFor,
+  startVacation,
+  endVacation,
 } from '@/lib/storage';
 import {
   BONUS_PER_TOKEN,
@@ -1493,10 +1495,16 @@ export default function Game({ data }: { data: PuzzleFile }) {
       totalRows={puzzle.grid.length}
       days={days}
       record={record}
+      boardComplete={rowsDone === puzzle.grid.length}
+      onChallenge={challenge}
       streakJustEarned={streakJustEarned}
       streak={progress.streak}
       bestStreak={progress.bestStreak}
           freezes={progress.freezes}
+          vacationSince={progress.vacationSince}
+          onVacation={(on) =>
+            update((cur) => (on ? startVacation(cur, new Date()) : endVacation(cur)))
+          }
       hasDefinition={hasDefinition}
       onShowDefinition={openDefinition}
     />
@@ -1960,10 +1968,16 @@ export default function Game({ data }: { data: PuzzleFile }) {
             totalRows={puzzle.grid.length}
             days={days}
             record={record}
+            boardComplete={rowsDone === puzzle.grid.length}
+            onChallenge={challenge}
             streakJustEarned={streakJustEarned}
             streak={progress.streak}
             bestStreak={progress.bestStreak}
           freezes={progress.freezes}
+          vacationSince={progress.vacationSince}
+          onVacation={(on) =>
+            update((cur) => (on ? startVacation(cur, new Date()) : endVacation(cur)))
+          }
             hasDefinition={hasDefinition}
             onShowDefinition={openDefinition}
             howToClassName=""
