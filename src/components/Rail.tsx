@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { RANK_BASIS, rankLadder, type Rank } from '@/lib/game';
 import type { DayCell } from '@/lib/storage';
+import type { PlayerRecord } from '@/lib/record';
 import { CheckIcon } from './Icon';
 
 /**
@@ -37,6 +38,8 @@ type Props = {
   rowsFilled: number;
   totalRows: number;
   days: DayCell[];
+  /** The player's own history — see lib/record.ts. */
+  record: PlayerRecord;
   /** Today's square filled during this session — see Game.tsx. */
   streakJustEarned?: boolean;
   streak: number;
@@ -61,6 +64,7 @@ export default function Rail({
   rowsFilled,
   totalRows,
   days,
+  record,
   streakJustEarned = false,
   streak,
   bestStreak,
@@ -316,6 +320,54 @@ export default function Rail({
             </li>
           ))}
         </ol>
+      </Card>
+
+      {/*
+        The player's own record.
+
+        The board of 2026-08-21 scored this dimension 2/10 — the lowest in
+        that review, and lower than the leaderboard it declined to build. The
+        game computed a score on every board and showed it for the CURRENT
+        board only: no best, no total, no sense of how much of the catalogue
+        was left. Every daily leader looked at shows a player their history.
+
+        INSIDE the scroller, unlike Streak, because it is reference rather
+        than status — a thing you look up, where the streak is a thing you
+        check. Every figure is derived from stored words rather than counted
+        alongside them, so this card cannot drift out of step with the rest of
+        the rail.
+      */}
+      <Card title="Record" meta={`${record.cleared}/${record.total} boards`}>
+        {/*
+          THREE figures, on one row.
+
+          Best streak is deliberately absent: the Streak card already carries
+          it in its own meta as "best N", and putting it here too repeats a
+          number a few hundred pixels from itself — the same duplication the
+          Targets list had before the board folded it into a count.
+
+          One row rather than a 2x2 grid because the card sits at the bottom
+          of a scroller that was already close to full: at 1440x900 the 2x2
+          version pushed the rail 20px past its box and left the last figures
+          half-cut under the fade. A card the player has to scroll to finish
+          reading is a worse answer than a card that says less.
+        */}
+        <dl className="grid grid-cols-3 gap-x-3">
+          {[
+            { k: 'Best score', v: record.bestScore.toLocaleString() },
+            { k: 'Words', v: record.wordsFound.toLocaleString() },
+            { k: 'Days', v: `${record.daysPlayed}` },
+          ].map((row) => (
+            <div key={row.k} className="flex flex-col gap-0.5">
+              <dt className="text-kicker uppercase tracking-[0.1em] text-text-muted">
+                {row.k}
+              </dt>
+              <dd className="text-item font-semibold tabular-nums text-text-primary">
+                {row.v}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </Card>
 
       </div>

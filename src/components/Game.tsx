@@ -13,6 +13,7 @@ import LetterWheel from './LetterWheel';
 import WordTray from './WordTray';
 import RankBar from './RankBar';
 import Rail from './Rail';
+import { playerRecord } from '@/lib/record';
 import {
   ChevronIcon,
   FullscreenIcon,
@@ -534,6 +535,16 @@ export default function Game({ data }: { data: PuzzleFile }) {
    */
   const [todayOnArrival] = useState(() => todayFilled);
   const streakJustEarned = todayFilled && !todayOnArrival;
+
+  /*
+   * Derived, not stored — see lib/record.ts. Memoised on `progress` because it
+   * walks every word ever banked, which is cheap now and stays cheap only if
+   * it does not run on every render.
+   */
+  const record = useMemo(
+    () => playerRecord(progress, data.wheel, data.puzzles.length),
+    [progress, data.wheel, data.puzzles.length]
+  );
 
   const shelves = useMemo(() => themeShelves(data), [data]);
   /* Which shelf is open; null is the four-shelf overview. Reset whenever the
@@ -1439,6 +1450,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
       rowsFilled={rowsDone}
       totalRows={puzzle.grid.length}
       days={days}
+      record={record}
       streakJustEarned={streakJustEarned}
       streak={progress.streak}
       bestStreak={progress.bestStreak}
@@ -1904,6 +1916,7 @@ export default function Game({ data }: { data: PuzzleFile }) {
             rowsFilled={rowsDone}
             totalRows={puzzle.grid.length}
             days={days}
+            record={record}
             streakJustEarned={streakJustEarned}
             streak={progress.streak}
             bestStreak={progress.bestStreak}
