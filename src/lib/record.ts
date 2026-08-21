@@ -51,6 +51,36 @@ export function nextMilestone(streak: number): { at: number; toGo: number } | nu
   return null;
 }
 
+/**
+ * How much of a single board has been found — a real ratio, not a percentile.
+ *
+ * The competitive audit wanted the Vocabulary pattern: "you outrank 4% of
+ * learners", a percentile against a population. That is not available here and
+ * should not be faked. There is no server and no telemetry by design, so the
+ * only way to print a percentile would be to invent a distribution and present
+ * it as if it described other players — a fabricated statistic on a reward
+ * surface, which is worse than showing nothing.
+ *
+ * This is the honest version of the same idea. Every board has a known,
+ * finite answer set — six grid words plus its bonus list, 26 to 105 words
+ * depending on the wheel — so "23 of 41" is a fact about the board rather than
+ * a claim about anybody else. Spelling Bee prints exactly this, and it does
+ * the same job: it tells a player how much is left, which is the part that
+ * makes someone keep looking.
+ *
+ * It gives away no answers. A count is not a word.
+ */
+export function boardProgress(
+  found: ReadonlySet<string>,
+  grid: readonly string[],
+  bonus: readonly string[]
+): { found: number; total: number } {
+  const findable = new Set<string>([...grid, ...bonus]);
+  let hit = 0;
+  for (const w of found) if (findable.has(w)) hit += 1;
+  return { found: hit, total: findable.size };
+}
+
 export type PlayerRecord = {
   /** Boards whose grid has been fully cleared. */
   cleared: number;
