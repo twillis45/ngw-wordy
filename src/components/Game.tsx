@@ -24,6 +24,7 @@ import {
   SunIcon,
 } from './Icon';
 import { feedback, setHapticsMuted, setMuted } from '@/lib/feedback';
+import { reminderIcs, REMINDER_FILENAME } from '@/lib/reminder';
 import {
   backupLink,
   beatFromHash,
@@ -1538,6 +1539,45 @@ export default function Game({ data }: { data: PuzzleFile }) {
 
   const scaledText = rootPx > 17;
 
+  /*
+   * A DAILY REMINDER, handed over as a calendar file.
+   *
+   * The app had no way to nudge anyone at all — no Notification, no push, no
+   * periodic sync — and the retention review that was specifically about
+   * retention never raised it. Duolingo pushes; NYT Games does not, and
+   * third-party apps exist purely to remind people to play Wordle, so the
+   * demand is real and the category leader is not serving it.
+   *
+   * A calendar file is the version that fits this app. Web push needs a push
+   * service, VAPID keys and a subscription endpoint — a third party receiving
+   * data, which breaks `connect-src 'self'` and makes STORE_READINESS 1.5 and
+   * 1.6 false. On iOS it only reaches a home-screen PWA anyway. This is
+   * generated locally, lives in the player's own calendar, and keeps working
+   * whether or not they ever open the site again.
+   *
+   * 8am because a daily puzzle is a morning habit and a reminder that has to
+   * be configured before it works is a reminder most people never finish
+   * setting up. The event is theirs once downloaded — moving it is one drag.
+   */
+  const remindDaily = useCallback(() => {
+    try {
+      const ics = reminderIcs({
+        hour: 8,
+        url: typeof window === 'undefined' ? '' : window.location.origin + window.location.pathname,
+      });
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = REMINDER_FILENAME;
+      a.click();
+      URL.revokeObjectURL(url);
+      say('Reminder saved — open it to add to your calendar', 'good');
+    } catch {
+      say('Could not build the reminder', 'bad');
+    }
+  }, [say]);
+
   const rail = (
     <Rail
       tight={scaledText}
@@ -2484,6 +2524,38 @@ export default function Game({ data }: { data: PuzzleFile }) {
                 className="liquid-interactive h-10 shrink-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
               >
                 {TEXT_LABEL[textScale]}
+              </button>
+            </div>
+
+            {/*
+              THE REMINDER LIVES HERE, not on the Streak card.
+              
+              It was on Streak first, on the reasoning that somebody thinking
+              about tomorrow is looking at their streak. The guard disagreed:
+              four of 108 viewport/text combinations overflowed, because the
+              vacation control renders NOTHING on a fresh profile — streak is
+              0 — while a reminder link renders always, so it added a row where
+              the rail had none. 1600x1130 failed by a single pixel, which is
+              how much slack that surface actually has.
+              
+              A reminder is a preference, not status: set once, never looked at
+              again. This sheet is where the other set-once decisions live, and
+              it has room the rail does not.
+            */}
+            <div className="mt-4 flex items-center justify-between gap-4 border-t border-edge-mid pt-4">
+              <div className="min-w-0">
+                <p className="text-meta font-medium text-text-primary">Daily reminder</p>
+                <p className="mt-0.5 text-kicker leading-snug text-text-muted">
+                  Adds a repeating 8am event to your own calendar. Nothing is
+                  sent anywhere, and you can move or delete it there.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={remindDaily}
+                className="liquid-interactive h-10 shrink-0 rounded-full border-2 border-edge liquid backdrop-blur-[var(--glass-blur)] px-4 text-meta font-medium text-text-primary"
+              >
+                Get it
               </button>
             </div>
 
