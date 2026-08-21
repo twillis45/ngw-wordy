@@ -4,6 +4,28 @@ import { useEffect, useRef } from 'react';
 import { RANK_BASIS, rankLadder, type Rank } from '@/lib/game';
 import type { DayCell } from '@/lib/storage';
 import { nextMilestone } from '@/lib/record';
+import { withBase } from '@/lib/basePath';
+
+/*
+ * Mirrors the helper in Game.tsx deliberately rather than importing it: that
+ * one lives beside the completion sheet and this file has no other reason to
+ * depend on Game. Both resolve the same generated files, and check-ranks
+ * asserts those files are correct.
+ */
+const LADDER_MARKS = [
+  'novice',
+  'solid',
+  'sharp',
+  'clever',
+  'fluent',
+  'wordsmith',
+  'complete',
+];
+function rankMarkSrc(name: string): string {
+  const i = LADDER_MARKS.indexOf(name.toLowerCase());
+  const at = i >= 0 ? i : 0;
+  return withBase(`/brand/ranks/rank-${at}-${LADDER_MARKS[at]}.svg`);
+}
 import type { PlayerRecord } from '@/lib/record';
 import { CheckIcon } from './Icon';
 
@@ -359,15 +381,33 @@ export default function Rail({
                 step.reached ? 'text-text-primary' : 'text-text-muted',
               ].join(' ')}
             >
-              <span
+              {/*
+                The rank's own mark, in place of a bullet.
+
+                The ladder listed seven names with seven identical dots, which
+                is a list of labels rather than a ladder — nothing about the
+                row said how far up it was. The mark is the dial with that
+                many positions lit, so the column now shows the climb: one lit
+                at Solid, six at Complete, brightening as it goes.
+
+                Sized to the LINE, not to the mark. A 16px mark sits inside a
+                22px rung without changing its height, which matters because
+                the rail was only just made to fit every card without
+                scrolling — a ladder that reads better and overflows is worse
+                than the dots.
+
+                Dimmed until reached, so the unearned rungs stay legible as
+                shape without competing with the row you are on.
+              */}
+              <img
                 aria-hidden
+                alt=""
+                src={rankMarkSrc(step.name)}
+                width={16}
+                height={16}
                 className={[
-                  'h-1.5 w-1.5 shrink-0 rounded-full',
-                  step.current
-                    ? 'bg-edge'
-                    : step.reached
-                      ? 'bg-steel-muted'
-                      : 'bg-edge',
+                  'h-4 w-4 shrink-0',
+                  step.reached || step.current ? 'opacity-100' : 'opacity-40',
                 ].join(' ')}
               />
               <span className="flex-1">{step.name}</span>
@@ -573,11 +613,27 @@ export default function Rail({
           ))}
         </div>
         <p className="mt-3 text-meta text-text-muted">
+          {/*
+            Three states, because there were two and one of them was wrong.
+            
+            The line read "Play tomorrow to start a streak" for BOTH zero and
+            one, and `touchStreak` sets the streak to at least 1 the moment you
+            play — so zero means you have not played TODAY. Telling that player
+            to come back tomorrow is telling them the wrong day, and it is the
+            one day that would actually start the thing.
+            
+            At one it was worse than wrong, it was dismissive: somebody who
+            just finished a board was told to play tomorrow to START a streak,
+            which denies the day they had just done. One day is a streak of
+            one; what it needs is tomorrow to become a run.
+          */}
           {vacationSince
             ? `Paused at ${streak} ${streak === 1 ? 'day' : 'days'}. Enjoy it.`
             : streak > 1
               ? `${streak} days in a row.`
-              : 'Play tomorrow to start a streak.'}
+              : streak === 1
+                ? 'One day. Come back tomorrow to keep it.'
+                : 'Play today to start a streak.'}
         </p>
         {/*
           Freezes, stated plainly and only when held.
