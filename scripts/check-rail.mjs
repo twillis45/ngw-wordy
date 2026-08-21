@@ -215,7 +215,21 @@ for (const vp of VIEWPORTS) {
       /* storage unavailable — the default scale is what gets measured */
     }
   }, text);
-  await page.goto(`${base}/`, { waitUntil: 'networkidle0' });
+  /*
+   * `domcontentloaded` and an explicit settle, NOT `networkidle0`.
+   *
+   * networkidle0 waits for 500ms with no network in flight, and this app
+   * registers a service worker — so on a machine that is busy with something
+   * else, that quiet window may simply never arrive and the guard dies on a
+   * 60s navigation timeout having measured nothing. It did, repeatedly, while
+   * an unrelated Playwright suite held a core at 82%.
+   *
+   * A guard that fails when the machine is busy teaches people to ignore it.
+   * The settle below is what the measurement actually needs: the rail laid
+   * out, which is a layout event and not a network one.
+   */
+  await page.goto(`${base}/`, { waitUntil: 'domcontentloaded' });
+  await new Promise((r) => setTimeout(r, 700));
 
   if (vp.play && text === 'default') {
     for (const word of PLAY_WORDS) {
