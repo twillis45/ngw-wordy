@@ -30,7 +30,26 @@ const TYPES = { '.html':'text/html', '.js':'text/javascript', '.css':'text/css',
   '.json':'application/json', '.svg':'image/svg+xml', '.png':'image/png',
   '.webmanifest':'application/manifest+json', '.ico':'image/x-icon', '.woff2':'font/woff2' };
 
-const src = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
+/*
+ * COMMENTS STRIPPED BEFORE ANY PARSING.
+ *
+ * Three times in one day a regex in this repo read prose as code: a pitch test
+ * matched the "Was 620Hz" note recording an old value, an anchor audit read a
+ * number the mutation harness had just written, and this file matched
+ * ACCENT_LABELS on a comment describing what the settings row prints and
+ * derived an empty map. Every one of those failed loudly against correct code,
+ * which is the good outcome — the bad one is a regex that matches a comment
+ * and produces a plausible wrong answer.
+ *
+ * globals.css is the sharpest case: it is a file whose comments discuss hex
+ * values constantly, and the default accent is read as "the first
+ * --color-success in the file". So the text is stripped first and the patterns
+ * only ever see code.
+ */
+const strip = (t) =>
+  t.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/[^\n]*/g, '$1');
+
+const src = (f) => strip(fs.readFileSync(path.join(ROOT, f), 'utf8'));
 
 /* Accent order, from the source of truth rather than a copy of it. */
 const accentOrder = (() => {
