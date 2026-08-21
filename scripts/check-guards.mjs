@@ -120,6 +120,14 @@ const MUTATIONS = [
     why: 'the lowest layer in the app turns blue and every card blurs it upward',
   },
   {
+    name: 'studio panels lose their lit edge',
+    file: 'src/app/globals.css',
+    from: '    inset 0 1px 0 var(--raise-light),\n    0 1px 1px -1px var(--raise-shadow),',
+    to: '    0 1px 1px -1px var(--raise-shadow),',
+    guard: 'check-depth',
+    why: 'studio cards go back to being printed on the page instead of sitting on it',
+  },
+  {
     name: 'dial glyph wrapper removed',
     file: 'src/components/LetterWheel.tsx',
     from: 'className="dial-glyph"',

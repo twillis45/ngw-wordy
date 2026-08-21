@@ -2060,6 +2060,58 @@ body {
 }
 
 /*
+ * THE PANELS LIFT TOO.
+ *
+ * This theme already owns a matte way of raising an object — an inset top
+ * hairline plus a contact shadow, `--raise-light` and `--raise-shadow`, both
+ * declared for exactly this and both used only by the dial. So the letter
+ * tiles and the puck sat on the board with real weight while every CARD was a
+ * fill inside a hairline, and the eye read the difference as the cards being
+ * printed on the page rather than resting on it.
+ *
+ * Measured, that is not a matter of taste: a studio panel is 1.08:1 against
+ * its own ground, where the same panel in dark is 1.32:1. The surfaces are
+ * carrying almost none of the identification and the border is carrying all
+ * of it — which this file already says out loud, a few hundred lines up,
+ * about a different symptom of the same cause.
+ *
+ * NOT a walk back to glass. There is still no specular, no caustic, no rim
+ * light and no backdrop blur; those stay `transparent` and `0px` above. A top
+ * edge catching light and a shadow underneath is how a matte object sits on a
+ * surface — it is the same thing the tiles are already doing, at panel
+ * strength rather than tile strength.
+ */
+:root[data-theme='studio'] .liquid {
+  box-shadow:
+    inset 0 1px 0 var(--raise-light),
+    0 1px 1px -1px var(--raise-shadow),
+    0 10px 24px -12px var(--raise-shadow);
+}
+
+/*
+ * A LAUNCHED PANEL lifts harder, because it is further off the page.
+ *
+ * The sheets are `.liquid` too, so the rule above already reaches them — but
+ * a sheet is not a card. It floats over a scrim with the whole board behind
+ * it, and at card strength it read as a rectangle taped to the screen. The
+ * shadow is cast wide and upward here: these rise from the bottom edge, so
+ * the light that matters is above them.
+ *
+ * `> .liquid` and not a descendant selector: the panel is the dialog's direct
+ * child, and the cards INSIDE a progress sheet are `.liquid` as well. Without
+ * the child combinator every card in the sheet would take the sheet's own
+ * lift and the hierarchy would invert — the container and its contents
+ * raised by the same amount reads as neither being raised.
+ */
+:root[data-theme='studio'] [role='dialog'] > .liquid {
+  box-shadow:
+    inset 0 1px 0 var(--raise-light-accent),
+    0 -2px 0 var(--raise-light-soft),
+    0 -12px 40px -8px var(--raise-shadow),
+    0 4px 24px -4px var(--raise-shadow);
+}
+
+/*
  * The dial and its letter tiles carry NO outline on this theme. They separate
  * by fill, which is what the reference does and what "matte" means here.
  *
