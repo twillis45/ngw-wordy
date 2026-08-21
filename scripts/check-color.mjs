@@ -32,15 +32,24 @@ const TYPES = { '.html':'text/html', '.js':'text/javascript', '.css':'text/css',
   '.webmanifest':'application/manifest+json', '.ico':'image/x-icon', '.woff2':'font/woff2' };
 
 /*
- * +6, not +3.
+ * TWO thresholds, because the ground and the cards are different materials.
  *
- * The target is +3 and the tolerance is what a JPEG-free screenshot can
- * actually hold: antialiased text, the ambient pools and the rim highlights
- * all bleed a little colour into any region big enough to average. +6 is
- * comfortably under "reads as blue" and comfortably over sampling noise.
- * The failure this guards against was +11 to +13, not +4.
+ * The page ground is the carbon ramp with nothing composited over it, so it
+ * should read the ramp's own documented value: +3. The cards are glass over
+ * ambient through a saturate filter, and their honest floor is around +4.7 —
+ * antialiased text, rim highlights and the pools all bleed a little colour
+ * into any region large enough to average.
+ *
+ * One shared +6 let a real regression through. The guard-mutation harness
+ * reverted a SINGLE ambient pool to steel and check-color passed: ground moved
+ * +3.0 -> +4.2 and every card stayed put, all of it under +6. I had red-proofed
+ * this guard by reverting all five substitutions at once, which fails loudly
+ * and proves less than it looks — a guard that only catches the whole fix being
+ * undone does not catch drift, and drift is the actual failure mode here. The
+ * ramp is measured against its own number now.
  */
-const MAX_BR = 6;
+const GROUND_MAX = 3.6;
+const CARD_MAX = 6;
 
 const server = http.createServer((req, res) => {
   let p = decodeURIComponent(req.url.split('?')[0]);
@@ -131,15 +140,16 @@ server.close();
 
 let bad = 0;
 for (const t of rows) {
-  const ok = t.br !== null && t.br <= MAX_BR;
+  const limit = t.name === 'page ground' ? GROUND_MAX : CARD_MAX;
+  const ok = t.br !== null && t.br <= limit;
   if (!ok) bad++;
   console.log(
     `${ok ? '✔' : '✗'}  ${t.name.padEnd(22)} b-r ${t.br === null ? 'n/a' : (t.br >= 0 ? '+' : '') + t.br.toFixed(1)}` +
-    `   (rgb ${t.r?.toFixed(0)}, ${t.g?.toFixed(0)}, ${t.b?.toFixed(0)}, ${t.n}px)`
+    `  (limit +${limit}, rgb ${t.r?.toFixed(0)}, ${t.g?.toFixed(0)}, ${t.b?.toFixed(0)})`
   );
 }
 if (bad) {
-  console.log(`\n✖ dark theme has drifted cool: ${bad} of ${rows.length} regions over +${MAX_BR}`);
+  console.log(`\n✖ dark theme has drifted cool: ${bad} of ${rows.length} regions over their limit`);
   process.exit(1);
 }
-console.log(`\n✔ dark stays neutral carbon — every region at or under +${MAX_BR}`);
+console.log(`\n✔ dark stays neutral carbon — ground at the ramp's +3, cards under +${CARD_MAX}`);
