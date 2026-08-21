@@ -233,19 +233,84 @@ System stack, no webfont: `ui-sans-serif, -apple-system, BlinkMacSystemFont,
 | `--text-title` | 22px | Modal titles |
 | `--text-hero` | 32px | The one set-piece per screen |
 
+**The board has its own scale**, because a tile is not a paragraph. These
+resolve through three branches — a fluid clamp, a pinned branch for short
+wide windows, and a roomy one — and the branch is chosen by WIDTH as much as
+height: past ~744px the dial has reached its 340px cap, so vertical space
+above it stops being contested and the tray can take it.
+
+| Token | Range | Use |
+|---|---|---|
+| `--slot-h` | 19–46px | Tray tile height. Capped to protect the dial. |
+| `--slot-h-base` | 22–54px | The six-letter prize row |
+| `--slot-text` | 14–31px | The letter, ~0.72 of its tile |
+| `--tile-glyph-x` | 1.3 | Horizontal scale on the glyph |
+
+**Tiles are wider than tall — 5:4.** Height is the axis the dial competes
+for; width is free. Measured before this was fixed, the six-letter row used
+157 of 342 available pixels on a phone and the letter filled 47–56% of its
+tile. The glyph is now ~72% of the tile's height and stretched 1.3× to spend
+the width the tile already has.
+
+**Height cannot be bought.** Raising `--slot-h` on the shared fluid ramp was
+tried and reverted: the dial is sized from what is left over, so every extra
+pixel of row came straight out of it — 235 to 193 on a phone, failing five of
+eight viewports. `scripts/check-tiles.mjs` asserts the dial has not shrunk at
+19 viewports.
+
 ---
 
 ## Motion
 
-Keyframe vocabulary, all disabled wholesale under `prefers-reduced-motion:
-reduce`:
+Retuned 2026-08-21 against numbers read from the leaders' shipped CSS, not
+from taste. Wordle's tile pop is 100ms and its reveal is a two-phase 250+250ms
+flip; Spelling Bee staggers its letter wave at `calc(383ms + var(--letterIndex)
+* 77ms)` and animates in `em` so the motion scales with the type; Connections
+runs its shake for 1.5 iterations rather than a whole number of them.
 
-- `tick` — a wheel tile confirming a letter under the finger
-- `land` + `land-ring` — a letter arriving in the tray, with impact
-- `fill-up` — the correct-word gradient (see Gradients, above)
-- `sweep` — light passing across a just-completed row
-- `float-up` — points earned, rising and fading
-- `tile-pop`, `shake`, `rise` — entrance, error, and settle primitives
+**Timings.** The ladder is deliberately spaced — nothing sits between 140 and
+180, or between 220 and 340, so two beats never read as one.
+
+| Animation | Duration | Beat |
+|---|---|---|
+| `tile-pop` | 140ms | a letter registered |
+| `tick` | 180ms | a wheel tile under the finger |
+| `rise` | 220ms | a panel arriving |
+| `shake` | 340ms | the word was rejected |
+| `land` + `land-ring` | 420 + 520ms | a letter arriving in the tray |
+| `dial-turn` | 420ms | the wheel turning on a shuffle |
+| `fill-up` | 620ms | the correct-word gradient |
+| `sweep` | 700ms | light across a completed row |
+| `float-up` | 900ms | points rising and fading |
+| `rank-banner` | 2200ms | a rank earned |
+
+**Distances are in `em`, never px.** A tile is four sizes across our
+breakpoints — 19px on a short laptop, 26 on a phone, 33 on a tablet, 46 on a
+desktop — so a fixed 7px shake is a third of the small tile and a seventh of
+the large one: a hard knock on one screen and a twitch on another. `em`
+resolves against the tile's own type, so the gesture scales with the thing
+moving.
+
+**Stagger is 77ms per tile.** Below about 60 the far end of a row starts
+before the near end has settled and six tiles landing read as noise rather
+than one wave crossing the word.
+
+**The dial is the signature.** Each solved row advances the wheel one sixth of
+a turn, so a finished board turns it exactly once — six rows, six tiles, six
+positions. It is the one motion here that cannot be copied by anything that is
+not also six-and-six. Three rotations share the object on separate CSS
+properties so none overwrites another: the tile's `transform` is its parallax,
+the tile's `rotate` cancels the detent, and the glyph's `transform` cancels the
+shuffle.
+
+**Reduced motion removes the MOVEMENT, not the MESSAGE.** The blanket
+0.01ms kill is the floor, but signals that carry meaning get a substitute that
+does not travel — opacity and colour are not vestibular triggers, translation
+and scale are. The sharp case is the shake: a rejected word is announced by a
+haptic tap, which a desktop does not have, and the shake. Kill both and a
+reduced-motion player on a laptop submits a wrong word and receives nothing.
+`scripts/check-motion.mjs` emulates the media feature and fails the build if
+any meaning-bearing signal is silenced or still moves.
 
 ---
 

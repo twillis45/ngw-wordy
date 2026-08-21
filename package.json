@@ -11,6 +11,7 @@
     "check:rail": "node scripts/check-rail.mjs",
     "check:tiles": "node scripts/check-tiles.mjs",
     "check:motion": "node scripts/check-motion.mjs",
+    "check:guards": "node scripts/check-guards.mjs",
     "check:intro": "node scripts/check-intro.mjs",
     "check:hydration": "node scripts/check-hydration.mjs",
     "puzzles": "node scripts/build-puzzles.mjs 520",
