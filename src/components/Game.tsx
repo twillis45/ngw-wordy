@@ -1511,7 +1511,10 @@ export default function Game({ data }: { data: PuzzleFile }) {
       howToClassName={scaledText ? 'hidden' : undefined}
       recordClassName={
         textScale === 'larger'
-          ? 'hidden [@media(min-height:1000px)]:flex [@media(min-height:1000px)]:flex-col'
+          ? // 1080, not 1000. At 132% an iPad portrait (768x1024) cleared the
+            // old threshold by 24px and then overflowed by 1 — the card was
+            // being let in by a number that predates the text scale existing.
+            'hidden [@media(min-height:1080px)]:flex [@media(min-height:1080px)]:flex-col'
           : undefined
       }
       gridWords={puzzle.grid}

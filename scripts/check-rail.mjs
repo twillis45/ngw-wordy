@@ -39,7 +39,7 @@ const OUT = path.join(ROOT, 'out');
 const VIEWPORTS = [
   { w: 898, h: 586, note: 'ede3ee0 — overflowed 52px, Streak cut by 47' },
   { w: 1900, h: 980, note: 'maximised Chrome, wide but short' },
-  { w: 1440, h: 900, note: 'fitted before — regression canary' },
+  { w: 1440, h: 900, note: 'fitted before — regression canary' , play: true },
   { w: 1280, h: 800, note: 'smallest desktop with the rail' },
   { w: 1512, h: 982, note: 'MacBook Pro 14 default' },
   /*
@@ -92,8 +92,8 @@ const VIEWPORTS = [
   { w: 1600, h: 1000, note: 'overflowed 95px before the gate was raised' },
   { w: 1728, h: 1080, note: 'MacBook Pro 16 default — overflowed 15px' },
   { w: 1920, h: 1080, note: 'the commonest desktop — overflowed 15px' },
-  { w: 1970, h: 1110, note: 'the window this was reported from' },
-  { w: 1600, h: 1130, note: 'first height where how-to is meant to show' },
+  { w: 1970, h: 1110, note: 'the window this was reported from' , play: true },
+  { w: 1600, h: 1130, note: 'first height where how-to is meant to show' , play: true },
   { w: 2560, h: 1400, note: 'large desktop, how-to showing with room' },
   /*
    * Phones, where the rail lives inside the progress SHEET rather than beside
@@ -161,18 +161,70 @@ const results = [];
  * is scrolling silently, so the fade still has to be honest there.
  */
 const TEXT_SCALES = ['default', 'large', 'larger'];
+
+/*
+ * Real words from the shipped warm-up board, typed through the real input, so
+ * the state is the app's own rather than a hand-made blob in localStorage.
+ */
+const PLAY_WORDS = ['CRAFTY','CRAFT','ARTY','RAFT','ACT','ART','RAT','CAR','CAT',
+  'FAR','FAT','TRY','FRY','AFT','ARC','TAR','RAY','FAY','CRY'];
 const isPhone = (vp) => vp.w < 500;
 
 for (const vp of VIEWPORTS) {
  for (const text of TEXT_SCALES) {
+  /*
+   * AN ISOLATED CONTEXT PER CASE.
+   *
+   * `browser.newPage()` shares one profile, so words typed at a `play`
+   * viewport persisted into every case measured after it — 375x667 went from
+   * 0px to 20px over with no app code changing, because it was being measured
+   * with someone else's game already in progress. Clearing the key first was
+   * the obvious patch and it raced the reload into a detached frame; a fresh
+   * context is the thing that was actually wanted.
+   */
   const page = await browser.newPage();
+  page.setDefaultNavigationTimeout(60_000);
   await page.setViewport({ width: vp.w, height: vp.h });
-  await page.goto(`${base}/`, { waitUntil: 'networkidle0' });
-  await page.evaluate((t) => {
-    if (t === 'default') localStorage.removeItem('ngw-wordy/text');
-    else localStorage.setItem('ngw-wordy/text', t);
+  /*
+   * The text scale is seeded BEFORE the first navigation, not set and then
+   * reloaded. The no-flash script reads it at document start, so this is the
+   * only moment it can be applied without a second load — and the second load
+   * was what made this file flaky: 78 isolated contexts each doing goto plus
+   * reload timed out, and clearing storage between them raced into a detached
+   * frame. One navigation per case, seeded, is both faster and deterministic.
+   */
+  await page.evaluateOnNewDocument((t) => {
+    try {
+      /*
+       * Isolation lives HERE, not in a per-case browser context.
+       *
+       * Three versions of this got it wrong. A shared profile leaked the words
+       * typed at a `play` viewport into every case after it, so 375x667 read
+       * 0px over and then 20px with no app code changing. Clearing the key
+       * after load raced the reload into a detached frame. Giving each of 78
+       * cases its own context fixed the state and timed the run out.
+       *
+       * Seeding on the new document is both: it runs before the app's first
+       * line, so the board starts empty and the scale is already set — one
+       * navigation, one context, no race.
+       */
+      localStorage.removeItem('ngw-wordy/v2');
+      if (t === 'default') localStorage.removeItem('ngw-wordy/text');
+      else localStorage.setItem('ngw-wordy/text', t);
+    } catch {
+      /* storage unavailable — the default scale is what gets measured */
+    }
   }, text);
-  await page.reload({ waitUntil: 'networkidle0' });
+  await page.goto(`${base}/`, { waitUntil: 'networkidle0' });
+
+  if (vp.play && text === 'default') {
+    for (const word of PLAY_WORDS) {
+      for (const ch of word) await page.keyboard.press(ch);
+      await page.keyboard.press('Enter');
+      await new Promise((r) => setTimeout(r, 90));
+    }
+    await new Promise((r) => setTimeout(r, 400));
+  }
   if (vp.sheet) {
     // Below `md` the rail is only mounted once the progress sheet is opened.
     await page.evaluate(() => {
