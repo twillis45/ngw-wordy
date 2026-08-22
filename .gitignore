@@ -63,4 +63,7 @@ data/wordnet.json
 # there is no generator for those, so git is the only place they exist.
 /store/marketing/*.png
 !/store/marketing/mockup-*.png
+!/store/marketing/flat-*.png
+# Campaign clips — rebuilt by capture-video.mjs from the shipped build.
+/store/video/
 /store/marketing/manifest.json

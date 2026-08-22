@@ -66,7 +66,19 @@ const run = async () => {
   const browser = await launch({ args: ['--no-sandbox', '--disable-dev-shm-usage'] });
   const made = [];
 
+  /*
+   * TWO VARIANTS PER PANEL, because they are for different places.
+   *
+   *   mockup-*  device frame, for a landing page and social, where a phone
+   *             silhouette says "this is an app" before anyone reads a word.
+   *   flat-*    no frame, for the STORE listings. Apple and Play already
+   *             scale and crop these, the bezel eats about a third of the
+   *             canvas, and a dial needs the room. Full-bleed is also what
+   *             most current top-grossing listings do — a device frame in a
+   *             store that is already showing you a device is a tautology.
+   */
   for (const panel of PANELS) {
+   for (const framed of [true, false]) {
     const apple = panel.shot.startsWith('apple');
     const W = apple ? 1290 : 1080;
     const H = apple ? 2796 : 1920;
@@ -126,13 +138,17 @@ const run = async () => {
       .stage { flex: 1; display: flex; align-items: center; justify-content: center;
                width: 100%; z-index: 2; }
       .device {
-        width: ${W * 0.70}px; padding: ${W * 0.010}px;
-        border-radius: ${W * 0.058}px; background: #1a1b1d;
-        border: 1px solid #3a3b3d;
-        box-shadow: 0 ${W * 0.045}px ${W * 0.10}px rgba(0,0,0,0.58),
-                    inset 0 1px 0 rgba(255,255,255,0.10);
+        width: ${framed ? W * 0.70 : W * 0.88}px;
+        padding: ${framed ? W * 0.010 : 0}px;
+        border-radius: ${framed ? W * 0.058 : W * 0.030}px;
+        background: ${framed ? '#1a1b1d' : 'transparent'};
+        border: ${framed ? '1px solid #3a3b3d' : 'none'};
+        box-shadow: ${framed
+          ? `0 ${W * 0.045}px ${W * 0.10}px rgba(0,0,0,0.58), inset 0 1px 0 rgba(255,255,255,0.10)`
+          : `0 ${W * 0.035}px ${W * 0.09}px rgba(0,0,0,0.5)`};
       }
-      .device img { display: block; width: 100%; border-radius: ${W * 0.052}px; }
+      .device img { display: block; width: 100%;
+                    border-radius: ${framed ? W * 0.052 : W * 0.030}px; }
       .foot { display: flex; flex-direction: column; align-items: center;
               gap: ${H * 0.008}px; margin-bottom: ${H * 0.030}px; z-index: 2; }
       .foot img { width: ${W * 0.055}px; }
@@ -149,7 +165,7 @@ const run = async () => {
     const page = await browser.newPage();
     await page.setViewport({ width: W, height: H, deviceScaleFactor: 1 });
     await page.setContent(html, { waitUntil: 'networkidle0' });
-    const file = `mockup-${panel.shot}`;
+    const file = `${framed ? 'mockup' : 'flat'}-${panel.shot}`;
     await page.screenshot({ path: path.join(OUT, file) });
     await page.close();
 
@@ -163,6 +179,7 @@ const run = async () => {
     const ok = w === W && h === H;
     made.push({ file, w, h, ok });
     console.log(`  ${ok ? '✔' : '✗'} ${file.padEnd(34)} ${w}x${h}`);
+   }
   }
 
   await browser.close();
